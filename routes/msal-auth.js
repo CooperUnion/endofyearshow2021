@@ -19,8 +19,6 @@ const cca = new msal.ConfidentialClientApplication(config);
 
 exports.validate = (req, res, next)=>{
   
-  req.session.attempts = req.session.attempts ? req.session.attempts++ : 1
-  
   if(req.session.user) {
     console.log('user has a valid session', req.session.user)
     return next()

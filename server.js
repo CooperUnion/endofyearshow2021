@@ -7,15 +7,13 @@ app.use(cookieSession({
   name: 'auth',
   keys: [process.env.COOKIE_KEY],
   maxAge: 168 * 60 * 60 * 1000, // 24*7 hours
-  sameSite: false,
-  secure: true
 }))
 
 app.use(express.static("public"));
 
 app.get('/', msalAuth.validate, (req, res) => {
   
-  res.end("hi")
+  res.json(req.session.user)
 });
 
 app.get('/redirect', msalAuth.redirect)
