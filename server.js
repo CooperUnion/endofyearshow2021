@@ -67,8 +67,8 @@ app.get('/redirect', (req, res, next) => {
     cca.acquireTokenByCode(tokenRequest).then((response) => {
         console.log("\nResponse: \n:", response);
         return res.json({
-          name: response.name,
-          email: response.username
+          name: response.account.name,
+          email: response.account.username
         })
     }).catch((error) => {
         console.log(error);
