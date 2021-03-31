@@ -45,33 +45,36 @@ app.use(express.static("public"));
 
 const cca = new msal.ConfidentialClientApplication(config);
 
-  app.get('/', (req, res) => {
-      const authCodeUrlParameters = {
-          scopes: ["user.read"],
-          redirectUri: "https://eoys-uploader-2021.glitch.me/redirect",
-      };
+app.get('/', (req, res) => {
+    const authCodeUrlParameters = {
+        scopes: ["user.read"],
+        redirectUri: "https://eoys-uploader-2021.glitch.me/redirect",
+    };
 
-      // get url to sign user in and consent to scopes needed for application
-      cca.getAuthCodeUrl(authCodeUrlParameters).then((response) => {
-          res.redirect(response);
-      }).catch((error) => console.log(JSON.stringify(error)));
-  });
+    // get url to sign user in and consent to scopes needed for application
+    cca.getAuthCodeUrl(authCodeUrlParameters).then((response) => {
+        res.redirect(response);
+    }).catch((error) => console.log(JSON.stringify(error)));
+});
 
-  app.get('/redirect', (req, res) => {
-      const tokenRequest = {
-          code: req.query.code,
-          scopes: ["user.read"],
-          redirectUri: "https://eoys-uploader-2021.glitch.me/redirect",
-      };
+app.get('/redirect', (req, res, next) => {
+    const tokenRequest = {
+        code: req.query.code,
+        scopes: ["user.read"],
+        redirectUri: "https://eoys-uploader-2021.glitch.me/redirect",
+    };
 
-      cca.acquireTokenByCode(tokenRequest).then((response) => {
-          console.log("\nResponse: \n:", response);
-          res.sendStatus(200);
-      }).catch((error) => {
-          console.log(error);
-          res.status(500).send(error);
-      });
-  });
+    cca.acquireTokenByCode(tokenRequest).then((response) => {
+        console.log("\nResponse: \n:", response);
+        return res.json({
+          name: response.name,
+          email: response.username
+        })
+    }).catch((error) => {
+        console.log(error);
+        return res.status(500).send(error);
+    });
+})
 
 // listen for requests :)
 const listener = app.listen(process.env.PORT, () => {
