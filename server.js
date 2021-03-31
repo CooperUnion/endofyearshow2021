@@ -1,41 +1,15 @@
-// server.js
-// where your node app starts
-
-// we've started you off with Express (https://expressjs.com/)
-// but feel free to use whatever libraries or frameworks you'd like through `package.json`.
 const express = require("express");
 const app = express();
 const msal = require('@azure/msal-node');
+const cookieSession = require("cookie-session");
+const config = require('./msal-config')(msal)
+app.use(cookieSession({
+  name: 'auth',
+  keys: [process.env.COOKIE_KEY],
+  maxAge: 168 * 60 * 60 * 1000 // 24*7 hours
+}))
 
-/*
 
-.env vars
-APPLICATION_CLIENT_ID
-DIRECTORY_ID
-OBJECT_ID
-TENANT_ID
-CLOUD_INSTANCE_ID
-CLIENT_SECRET_VALUE
-CLIENT_SECRET_ID
-
-*/
-
-const config = {
-    auth: {
-        clientId: process.env.APPLICATION_CLIENT_ID,
-        authority: `${process.env.CLOUD_INSTANCE_ID}/${process.env.TENANT_ID}`,
-        clientSecret: process.env.CLIENT_SECRET_VALUE
-    },
-    system: {
-        loggerOptions: {
-            loggerCallback(loglevel, message, containsPii) {
-                console.log(message);
-            },
-            piiLoggingEnabled: false,
-            logLevel: msal.LogLevel.Verbose,
-        }
-    }
-};
 
 
 
@@ -46,15 +20,20 @@ app.use(express.static("public"));
 const cca = new msal.ConfidentialClientApplication(config);
 
 app.get('/', (req, res) => {
-    const authCodeUrlParameters = {
-        scopes: ["user.read"],
-        redirectUri: "https://eoys-uploader-2021.glitch.me/redirect",
-    };
+  
+    if(req.session.user) {
+      return res.json(req.session)
+    } else {
+      const authCodeUrlParameters = {
+          scopes: ["user.read"],
+          redirectUri: "https://eoys-uploader-2021.glitch.me/redirect",
+      };
 
-    // get url to sign user in and consent to scopes needed for application
-    cca.getAuthCodeUrl(authCodeUrlParameters).then((response) => {
-        res.redirect(response);
-    }).catch((error) => console.log(JSON.stringify(error)));
+      // get url to sign user in and consent to scopes needed for application
+      cca.getAuthCodeUrl(authCodeUrlParameters).then((response) => {
+          return res.redirect(response);
+      }).catch((error) => console.log(JSON.stringify(error)));  
+    }
 });
 
 app.get('/redirect', (req, res, next) => {
@@ -66,10 +45,12 @@ app.get('/redirect', (req, res, next) => {
 
     cca.acquireTokenByCode(tokenRequest).then((response) => {
         console.log("\nResponse: \n:", response);
-        return res.json({
+        
+        req.session.user = {
           name: response.account.name,
           email: response.account.username
-        })
+        }
+        return res.redirect('/')
     }).catch((error) => {
         console.log(error);
         return res.status(500).send(error);
