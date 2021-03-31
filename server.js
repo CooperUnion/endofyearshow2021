@@ -5,13 +5,26 @@
 // but feel free to use whatever libraries or frameworks you'd like through `package.json`.
 const express = require("express");
 const app = express();
+const msal = require('@azure/msal-node');
 
-// our default array of dreams
-const dreams = [
-  "Find and count some sheep",
-  "Climb a really tall mountain",
-  "Wash the dishes"
-];
+const config = {
+    auth: {
+        clientId: process.env.APPLICATION_CLIENT_ID,
+        authority: `Enter_the_Cloud_Instance_Id_Here/Enter_the_Tenant_Id_here`,
+        clientSecret: "Enter_the_Client_secret"
+    },
+    system: {
+        loggerOptions: {
+            loggerCallback(loglevel, message, containsPii) {
+                console.log(message);
+            },
+            piiLoggingEnabled: false,
+            logLevel: msal.LogLevel.Verbose,
+        }
+    }
+};
+
+
 
 // make all the files in 'public' available
 // https://expressjs.com/en/starter/static-files.html
