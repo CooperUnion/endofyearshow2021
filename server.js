@@ -28,6 +28,10 @@ app.get('/logout', (req, res)=>{
   res.redirect('https://login.microsoftonline.com/common/oauth2/v2.0/logout?post_logout_redirect_uri=https://eoys-uploader-2021.glitch.me/')
 })
 
+app.get('/form', (req, res)=>{
+  res.sendFile(__dirname + "/views/form.html");
+})
+
 // listen for requests :)
 const listener = app.listen(process.env.PORT, () => {
   console.log("Your app is listening on port " + listener.address().port);
