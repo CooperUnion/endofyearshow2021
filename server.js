@@ -7,7 +7,7 @@ app.use(cookieSession({
   name: 'auth',
   keys: [process.env.COOKIE_KEY],
   maxAge: 168 * 60 * 60 * 1000, // 24*7 hours
-  sameSite: true,
+  sameSite: false,
   secure: true
 }))
 
