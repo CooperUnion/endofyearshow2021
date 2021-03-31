@@ -2,8 +2,7 @@ const express = require("express");
 const app = express();
 const msal = require('@azure/msal-node');
 const cookieSession = require("cookie-session");
-const config = require('./msal-config')(msal)
-const msalAuth = require('./msal-auth');
+const msalAuth = require('./routes/msal-auth');
 app.use(cookieSession({
   name: 'auth',
   keys: [process.env.COOKIE_KEY],
@@ -12,31 +11,11 @@ app.use(cookieSession({
   secure: true
 }))
 
-
-
-
-
-// make all the files in 'public' available
-// https://expressjs.com/en/starter/static-files.html
 app.use(express.static("public"));
 
-const cca = new msal.ConfidentialClientApplication(config);
-
-app.get('/', (req, res) => {
+app.get('/', msalAuth.validate, (req, res) => {
   
-    if(req.session.user) {
-      return res.json(req.session)
-    } else {
-      const authCodeUrlParameters = {
-          scopes: ["user.read"],
-          redirectUri: "https://eoys-uploader-2021.glitch.me/redirect",
-      };
-
-      // get url to sign user in and consent to scopes needed for application
-      cca.getAuthCodeUrl(authCodeUrlParameters).then((response) => {
-          return res.redirect(response);
-      }).catch((error) => console.log(JSON.stringify(error)));  
-    }
+  res.end("hi")
 });
 
 app.get('/redirect', msalAuth.redirect)
