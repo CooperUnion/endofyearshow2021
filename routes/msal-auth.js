@@ -19,8 +19,10 @@ const cca = new msal.ConfidentialClientApplication(config);
 
 exports.validate = (req, res, next)=>{
   if(req.session.user) {
+    console.log('user has a valid session')
     return next()
   } else {
+    console.log('user has no session', req.session)
     const authCodeUrlParameters = {
         scopes: ["user.read"],
         redirectUri: "https://eoys-uploader-2021.glitch.me/redirect",
