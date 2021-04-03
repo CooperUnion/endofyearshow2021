@@ -56,3 +56,4 @@ const FormFX = function() {
 window.addEventListener('DOMContentLoaded', function() {
   new FormFX;
 });
+
