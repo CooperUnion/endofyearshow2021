@@ -1,0 +1,52 @@
+ul {
+	list-style-type: none;
+}
+
+p {
+	margin-bottom: 1em;
+}
+
+legend {
+	font-size: 1.75rem;
+}
+
+.main {
+	border: none;
+	background-color: transparent;
+}
+
+fieldset.hide {
+	display: none;
+}
+
+.inputlist {
+	margin: 0;
+}
+
+.inputlist label {
+	display: inline-block;
+}
+
+.titlelabel, .pseudolabel {
+	font-size: 1.25rem;
+	font-weight: bold;
+	margin-bottom: 0.125em;
+}
+
+.label-context {
+	font-style: italic;
+}
+
+.formblock {
+	margin-bottom: 2rem;
+}
+
+.formblock[data-required="required"] .titlelabel:after,
+.formblock[data-required="required"] .pseudolabel:after {
+	content: " *";
+	color: #900;
+}
+
+.explan {
+	color: #900;
+}
