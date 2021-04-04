@@ -68,7 +68,7 @@ const FormFX = function() {
       });
   }
 
-  
+  populateDatalist("/teachers", "datalist-teachers");
   
 };
 
