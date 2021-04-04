@@ -412,7 +412,12 @@
 			<p class="label-context">
 				Please select the faculty who taught the class this piece was made in. If work was not done in a class, select that option below. 
 			</p>
-			<div class="form-input checkboxes">
+      <div class="form-input datalist">
+        <input list="datalist-teachers" id="classinfo" name="classinfo" placeholder="Instructor" />
+        <datalist id="datalist-teachers"></datalist>
+			</div>
+
+<!-- 			<div class="form-input checkboxes">
 				<ul class="inputlist checkboxes">
 					<li><label for="instructor-1"> 
 					<input type="checkbox" name="typeofwork" id="instructor-1" value="Erin Sparling">
@@ -424,7 +429,7 @@
 					<input type="checkbox" name="typeofwork" id="instructor-3" value="Not done in a class setting">
 					Not done in a class setting</label></li>
 				</ul>
-			</div>
+			</div> -->
 		</div>
 		<div class="formblock" data-required="required">
 			<span class="pseudolabel">Was this piece recommended by your instructor for inclusion in the End of the Year show?</span> 

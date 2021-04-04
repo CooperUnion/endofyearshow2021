@@ -30,7 +30,7 @@ const FormFX = function() {
   specialRadioText.addEventListener("focus", forceRadioCheck);
   
 	document.querySelector("fieldset.section-standardwork").classList.add("hide");
-	document.querySelector("fieldset.section-videowork").classList.remove("hide");
+	document.querySelector("fieldset.section-videowork").classList.add("hide");
 
   function handleFieldsetVisibility() {
     const workTypeChecked = worktypeRadio.querySelector("input:checked");
@@ -56,8 +56,21 @@ const FormFX = function() {
     .then((response) => {
       return response.json();
     })
-    .then((myJson) => {
-      console.log(myJson);
+    .then((data) => {
+      const theDatalist = document.querySelector("#datalist-teachers");
+
+    for (const teacher in data) {
+      console.log(`${teacher}: ${object[teacher]}`);
+    }
+
+    
+      // option = document.createElement('option');
+      // option.text = data[i].name;
+      // option.value = data[i].abbreviation;
+      // dropdown.add(option);
+
+    
+    console.log(data);
     });
   
 };
