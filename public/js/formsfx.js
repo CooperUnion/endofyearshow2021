@@ -29,7 +29,6 @@ const FormFX = function() {
   const specialRadioText = document.querySelector(".special.radio-text input[type='text']");
   specialRadioText.addEventListener("focus", forceRadioCheck);
   
-	document.querySelector("fieldset.section-standardwork").classList.add("hide");
 	document.querySelector("fieldset.section-videowork").classList.add("hide");
 
   function handleFieldsetVisibility() {
