@@ -82,6 +82,22 @@ const FormFX = function() {
     allActiveInputs.forEach(function(formblock, currentIndex) {
       if (formblock.dataset.required === "required") {
         const thisInput = formblock.querySelector(".form-input");
+        switch (thisInput.dataset.inputtype) {
+        case "radio":
+          const theseRadios = thisInput.querySelectorAll(".inputlist input[type='radio']");
+          break;
+
+        case "checkboxes":
+          document.querySelector("fieldset.section-standardwork").classList.add("hide");
+          document.querySelector("fieldset.section-videowork").classList.remove("hide");
+          break;
+
+        default:
+          document.querySelector("fieldset.section-standardwork").classList.remove("hide");
+          document.querySelector("fieldset.section-videowork").classList.add("hide");
+        }
+
+
       }
     });
   }
