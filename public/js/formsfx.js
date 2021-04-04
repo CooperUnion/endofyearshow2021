@@ -51,6 +51,15 @@ const FormFX = function() {
 	function forceRadioCheck(e) {
 		this.closest(".special").querySelector("input[type='radio']").checked = true;
 	}
+  
+  fetch("/courses")
+    .then((response) => {
+      return response.json();
+    })
+    .then((myJson) => {
+      console.log(myJson);
+    });
+  
 };
 
 window.addEventListener('DOMContentLoaded', function() {
