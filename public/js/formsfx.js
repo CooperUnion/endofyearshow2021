@@ -52,7 +52,7 @@ const FormFX = function() {
 		this.closest(".special").querySelector("input[type='radio']").checked = true;
 	}
   
-  fetch("/courses")
+  fetch("/teachers")
     .then((response) => {
       return response.json();
     })
