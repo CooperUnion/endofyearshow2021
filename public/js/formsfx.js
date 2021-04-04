@@ -84,6 +84,8 @@ const FormFX = function() {
   
   function validateInputs(e) {
     e.preventDefault();
+    
+    let invalidForms = 0;
     const allActiveInputs = document.querySelectorAll("fieldset:not(.hide) .formblock");
     allActiveInputs.forEach(function(formblock, currentIndex) {
       if (formblock.dataset.required === "required") {
@@ -91,7 +93,7 @@ const FormFX = function() {
         switch (thisInput.dataset.inputtype) {
         case "radio":
           const numRadioed = thisInput.querySelectorAll(".inputlist input[type='radio']:checked").length;
-            console.log(numRadioed);
+            if numRadioed 
           break;
 
         case "checkboxes":
@@ -100,8 +102,8 @@ const FormFX = function() {
           break;
 
         default:
-          const inputFilled = thisInput.querySelectorAll(".inputlist input").value;
-          console.log(inputFilled);
+          // const inputFilled = thisInput.querySelector(".inputlist input").value;
+          console.log(thisInput.querySelector("input").value.length);
         }
 
 
