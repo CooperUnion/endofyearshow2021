@@ -24,8 +24,31 @@ app.get('/logout', (req, res)=>{
   res.redirect('https://login.microsoftonline.com/common/oauth2/v2.0/logout?post_logout_redirect_uri=https://eoys-uploader-2021.glitch.me/')
 })
 
+
+//form endpoints
 app.get('/form', (req, res)=>{
   res.sendFile(__dirname + "/views/form.html");
+})
+
+app.get('/students', (req, res)=>{
+  res.json([
+    {id:1,name:'student 1'},
+    {id:2,name:'student 2'}
+  ])
+})
+
+app.get('/teachers', (req, res)=>{
+  res.json([
+    {id:1,name:'teacher 1'},
+    {id:2,name:'teacher 2'}
+  ])
+})
+
+app.get('/courses', (req, res)=>{
+  res.json([
+    {id:1,name:'student 1'},
+    {id:2,name:'student 2'}
+  ])
 })
 
 // listen for requests :)
