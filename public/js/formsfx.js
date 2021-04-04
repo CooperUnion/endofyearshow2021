@@ -85,7 +85,7 @@ const FormFX = function() {
   function validateInputs(e) {
     e.preventDefault();
     
-    let invalidForms = 0;
+    let invalidFormCount = 0;
     const allActiveInputs = document.querySelectorAll("fieldset:not(.hide) .formblock");
     allActiveInputs.forEach(function(formblock, currentIndex) {
       if (formblock.dataset.required === "required") {
@@ -93,19 +93,31 @@ const FormFX = function() {
         switch (thisInput.dataset.inputtype) {
         case "radio":
           const numRadioed = thisInput.querySelectorAll(".inputlist input[type='radio']:checked").length;
-            if numRadioed 
+            if (numRadioed === 0) {
+              invalidFormCount += 1;
+            }
           break;
 
         case "checkboxes":
           const numChecked = thisInput.querySelectorAll(".inputlist input[type='checkbox']:checked").length;
-          console.log(numChecked);
+            if (numChecked === 0) {
+              invalidFormCount += 1;
+            }
+
           break;
 
         default:
-          // const inputFilled = thisInput.querySelector(".inputlist input").value;
-          console.log(thisInput.querySelector("input").value.length);
+          const inputFilled = thisInput.querySelector("input").value.length;
+            if (inputFilled === 0) {
+              invalidFormCount += 1;
+            }
         }
 
+        if (invalidFormCount > 0) {
+          submitButton.classList.add("invalid")
+        } else {
+          submitButton.classList.remove("invalid")          
+        }
 
       }
     });

@@ -55,3 +55,7 @@ fieldset.hide {
 .explan {
 	color: #900;
 }
+
+button[type="submit"].invalid {
+  background-color: #900;
+}
