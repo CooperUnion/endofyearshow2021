@@ -29,6 +29,9 @@ const FormFX = function() {
   const specialRadioText = document.querySelector(".special.radio-text input[type='text']");
   specialRadioText.addEventListener("focus", forceRadioCheck);
   
+  const submitButton = document.querySelector("button[type='submit']");
+  submitButton.addEventListener("click", validateInputs);
+
 	document.querySelector("fieldset.section-videowork").classList.add("hide");
   document.querySelector("fieldset.section-standardwork").classList.add("hide");
   document.querySelector("fieldset.section-classinfo").classList.add("hide");
@@ -40,9 +43,12 @@ const FormFX = function() {
 
   function handleFieldsetVisibility() {
     const workTypeChecked = worktypeRadio.querySelector("input:checked");
-    const typeOfWork = workTypeChecked === null ? "not selected" : workTypeChecked.value;
+    
+    if (workTypeChecked === null) {
+      return false;
+    }
 
-    switch (typeOfWork) {
+    switch (workTypeChecked.value) {
     case "video":
       document.querySelector("fieldset.section-standardwork").classList.add("hide");
       document.querySelector("fieldset.section-videowork").classList.remove("hide");
@@ -54,7 +60,6 @@ const FormFX = function() {
     }
     
     document.querySelector("fieldset.section-classinfo").classList.remove("hide");
-
   }
   
 	function forceRadioCheck(e) {
@@ -77,32 +82,32 @@ const FormFX = function() {
       });
   }
   
-  function validateInputs() {
+  function validateInputs(e) {
+    e.preventDefault();
     const allActiveInputs = document.querySelectorAll("fieldset:not(.hide) .formblock");
     allActiveInputs.forEach(function(formblock, currentIndex) {
       if (formblock.dataset.required === "required") {
         const thisInput = formblock.querySelector(".form-input");
         switch (thisInput.dataset.inputtype) {
         case "radio":
-          const theseRadios = thisInput.querySelectorAll(".inputlist input[type='radio']");
+          const numRadioed = thisInput.querySelectorAll(".inputlist input[type='radio']:checked").length;
+            console.log(numRadioed);
           break;
 
         case "checkboxes":
-          document.querySelector("fieldset.section-standardwork").classList.add("hide");
-          document.querySelector("fieldset.section-videowork").classList.remove("hide");
+          const numChecked = thisInput.querySelectorAll(".inputlist input[type='checkbox']:checked").length;
+          console.log(numChecked);
           break;
 
         default:
-          document.querySelector("fieldset.section-standardwork").classList.remove("hide");
-          document.querySelector("fieldset.section-videowork").classList.add("hide");
+          const inputFilled = thisInput.querySelectorAll(".inputlist input").value;
+          console.log(inputFilled);
         }
 
 
       }
     });
   }
-  
-  validateInputs();
 };
 
 window.addEventListener('DOMContentLoaded', function() {
