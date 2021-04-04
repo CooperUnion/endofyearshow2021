@@ -30,6 +30,9 @@ const FormFX = function() {
   specialRadioText.addEventListener("focus", forceRadioCheck);
   
 	document.querySelector("fieldset.section-videowork").classList.add("hide");
+  document.querySelector("fieldset.section-standardwork").classList.add("hide");
+  document.querySelector("fieldset.section-classinfo").classList.add("hide");
+
 
   populateDatalist("/teachers", "datalist-teachers");
   populateDatalist("/courses", "datalist-classes");
@@ -49,6 +52,9 @@ const FormFX = function() {
       document.querySelector("fieldset.section-standardwork").classList.remove("hide");
       document.querySelector("fieldset.section-videowork").classList.add("hide");
     }
+    
+    document.querySelector("fieldset.section-classinfo").classList.remove("hide");
+
   }
   
 	function forceRadioCheck(e) {
@@ -75,7 +81,7 @@ const FormFX = function() {
     const allActiveInputs = document.querySelectorAll("fieldset:not(.hide) .formblock");
     allActiveInputs.forEach(function(formblock, currentIndex) {
       if (formblock.dataset.required === "required") {
-        console.log(formblock.querySelector(".form-input"));
+        const thisInput = formblock.querySelector(".form-input");
       }
     });
   }
