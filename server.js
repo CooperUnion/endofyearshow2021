@@ -46,8 +46,8 @@ app.get('/teachers', (req, res)=>{
 
 app.get('/courses', (req, res)=>{
   res.json([
-    {id:1,name:'student 1'},
-    {id:2,name:'student 2'}
+    {id:1,name:'course 1'},
+    {id:2,name:'course 2'}
   ])
 })
 
