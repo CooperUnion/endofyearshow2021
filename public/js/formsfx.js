@@ -59,18 +59,20 @@ const FormFX = function() {
     .then((data) => {
       const theDatalist = document.querySelector("#datalist-teachers");
 
+    console.log(data);
+
     for (const teacher in data) {
-      console.log(`${teacher}: ${object[teacher]}`);
+      option = document.createElement('option');
+      option.text = data[teacher].name;
+      option.value = data[teacher].name;
+      theDatalist.appendChild(option);
+
+      // console.log(`${data[teacher].name}`);
     }
 
     
-      // option = document.createElement('option');
-      // option.text = data[i].name;
-      // option.value = data[i].abbreviation;
-      // dropdown.add(option);
 
     
-    console.log(data);
     });
   
 };
