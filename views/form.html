@@ -413,7 +413,7 @@
 				Please select the faculty who taught the class this piece was made in. If work was not done in a class, select that option below. 
 			</p>
       <div class="form-input datalist">
-        <input list="datalist-teachers" id="classinfo" name="classinfo" placeholder="Instructor" />
+        <input list="datalist-teachers" id="faculty" name="faculty" placeholder="Instructor" />
         <datalist id="datalist-teachers"></datalist>
 			</div>
 
@@ -449,7 +449,13 @@
 			<p class="label-context">
 				Please choose the class(es). 
 			</p>
-			<div class="form-input checkboxes">
+      <div class="form-input datalist">
+        <input list="datalist-classes" id="classes" name="classes" placeholder="Classes" />
+        <datalist id="datalist-classes"></datalist>
+			</div>
+
+      
+<!-- 			<div class="form-input checkboxes">
 				<ul class="inputlist checkboxes">
 					<li><label for="class-1"> 
 					<input type="checkbox" name="typeofwork" id="class-1" value="TE305.1">
@@ -461,14 +467,20 @@
 					<input type="checkbox" name="typeofwork" id="class-3" value="Independent Study">
 					Independent Study</label></li>
 				</ul>
-			</div>
+			</div> -->
 		</div>
 		<div class="formblock" data-required="optional">
 			<span class="pseudolabel">Collaborators</span> 
 			<p class="label-context">
 				Please select your fellow collaborators. 
 			</p>
-			<div class="form-input checkboxes">
+      <div class="form-input datalist">
+        <input list="datalist-collaborators" id="collaborators" name="collaborators" placeholder="Classes" />
+        <datalist id="datalist-collaborators"></datalist>
+			</div>
+
+      
+<!-- 			<div class="form-input checkboxes">
 				<ul class="inputlist checkboxes">
 					<li><label for="collaborator-1"> 
 					<input type="checkbox" name="typeofwork" id="collaborator-1" value="Erin Sparling">
@@ -480,7 +492,7 @@
 					<input type="checkbox" name="typeofwork" id="collaborator-3" value="Option 3">
 					Option 3</label></li>
 				</ul>
-			</div>
+			</div> -->
 		</div>
 	</fieldset>
 	<button type="submit" disabled="disabled">Submit</button> 
