@@ -52,28 +52,23 @@ const FormFX = function() {
 		this.closest(".special").querySelector("input[type='radio']").checked = true;
 	}
   
-  fetch("/teachers")
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      const theDatalist = document.querySelector("#datalist-teachers");
+  function populateDatalist(listURL, listID) {
+    fetch(listURL)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        const theDatalist = document.getElementById(listID);
+        for (const key in data) {
+          option = document.createElement('option');
+          option.text = data[key].name;
+          option.value = data[key].name;
+          theDatalist.appendChild(option);
+        } 
+      });
+  }
 
-    console.log(data);
-
-    for (const teacher in data) {
-      option = document.createElement('option');
-      option.text = data[teacher].name;
-      option.value = data[teacher].name;
-      theDatalist.appendChild(option);
-
-      // console.log(`${data[teacher].name}`);
-    }
-
-    
-
-    
-    });
+  
   
 };
 
