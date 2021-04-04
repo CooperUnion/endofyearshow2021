@@ -31,6 +31,11 @@ const FormFX = function() {
   
 	document.querySelector("fieldset.section-videowork").classList.add("hide");
 
+  populateDatalist("/teachers", "datalist-teachers");
+  populateDatalist("/courses", "datalist-classes");
+  populateDatalist("/students", "datalist-collaborators");
+
+
   function handleFieldsetVisibility() {
     const workTypeChecked = worktypeRadio.querySelector("input:checked");
     const typeOfWork = workTypeChecked === null ? "not selected" : workTypeChecked.value;
@@ -66,11 +71,14 @@ const FormFX = function() {
         } 
       });
   }
-
-  populateDatalist("/teachers", "datalist-teachers");
-  populateDatalist("/courses", "datalist-classes");
-  populateDatalist("/students", "datalist-collaborators");
-
+  
+  function validateInputs() {
+    const allActiveInputs = document.querySelectorAll("fieldset:not(.hide) .formblock");
+    allActiveInputs.forEach(function(formblock, currentIndex) {
+      formblock.addEventListener("click", toggleMetadataDetails);
+    });
+    
+  }
   
 };
 
