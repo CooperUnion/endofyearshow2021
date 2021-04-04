@@ -69,6 +69,9 @@ const FormFX = function() {
   }
 
   populateDatalist("/teachers", "datalist-teachers");
+  populateDatalist("/courses", "datalist-classes");
+  populateDatalist("/students", "datalist-collaborators");
+
   
 };
 
