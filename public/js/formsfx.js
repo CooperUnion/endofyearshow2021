@@ -35,7 +35,6 @@ const FormFX = function() {
   populateDatalist("/courses", "datalist-classes");
   populateDatalist("/students", "datalist-collaborators");
 
-
   function handleFieldsetVisibility() {
     const workTypeChecked = worktypeRadio.querySelector("input:checked");
     const typeOfWork = workTypeChecked === null ? "not selected" : workTypeChecked.value;
@@ -75,11 +74,13 @@ const FormFX = function() {
   function validateInputs() {
     const allActiveInputs = document.querySelectorAll("fieldset:not(.hide) .formblock");
     allActiveInputs.forEach(function(formblock, currentIndex) {
-      formblock.addEventListener("click", toggleMetadataDetails);
+      if (formblock.dataset.required === "required") {
+        console.log(formblock.querySelector(".form-input"));
+      }
     });
-    
   }
   
+  validateInputs();
 };
 
 window.addEventListener('DOMContentLoaded', function() {
