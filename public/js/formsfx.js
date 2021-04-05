@@ -122,8 +122,9 @@ const FormFX = function() {
   }
  
   function validateOneInput(obj) {
-    const theInput = obj || this;
-    const thisInput = obj.closest(".form-input");
+    const input = obj || this;
+    console.log(input);
+    const thisInput = input.closest(".form-input");
     const formblock = thisInput.closest(".formblock");
 
     if (!isValid(thisInput)) {
