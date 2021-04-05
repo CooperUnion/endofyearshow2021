@@ -72,7 +72,7 @@ const FormFX = function() {
   
 	function forceRadioCheck(e) {
 		this.closest(".special").querySelector("input[type='radio']").checked = true;
-    validateOneInput();
+    validateOneInput(this);
 	}
   
 	function validateSpecialRadio(e) {
@@ -121,9 +121,9 @@ const FormFX = function() {
     });
   }
  
-  function validateOneInput(e) {
-    console.log(this);
-    const thisInput = this.closest(".form-input");
+  function validateOneInput(obj) {
+    const theInput = obj || this;
+    const thisInput = obj.closest(".form-input");
     const formblock = thisInput.closest(".formblock");
 
     if (!isValid(thisInput)) {
