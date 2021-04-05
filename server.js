@@ -3,7 +3,8 @@ const app = express();
 const msal = require('@azure/msal-node');
 const cookieSession = require("cookie-session");
 const msalAuth = require('./routes/msal-auth');
-const form = require('/views/form.js')
+const form = require('./views/form');
+const fetch = require('node-fetch');
 
 app.use(cookieSession({
   name: 'auth',
@@ -28,10 +29,26 @@ app.get('/logout', (req, res)=>{
 
 
 //form endpoints
-app.get('/form', (req, res)=>{
-  
-  
+app.get('/form', async (req, res)=>{
+ 
   res.sendFile(__dirname + "/views/form.html");
+})
+
+app.get('/formServerSide', async (req, res)=>{
+  
+  let students = await fetch ('https://eoys-uploader-2021.glitch.me/students').then((request)=>{return request.json()})
+  let teachers = await fetch ('https://eoys-uploader-2021.glitch.me/teachers').then((request)=>{return request.json()})
+  let courses = await fetch ('https://eoys-uploader-2021.glitch.me/courses').then((request)=>{return request.json()})
+
+  let data = {
+    students,
+    teachers,
+    courses
+  }
+  
+  let formTemplate = form(data)
+  
+  res.end(formTemplate)
 })
 
 app.get('/students', (req, res)=>{
