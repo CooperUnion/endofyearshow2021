@@ -6,8 +6,8 @@ const msalAuth = require('./routes/msal-auth');
 const fetch = require('node-fetch');
 const exphbs  = require('express-handlebars');
 
-app.engine('handlebars', exphbs());
-app.set('view engine', 'handlebars');
+app.engine('html', exphbs({extname: '.html'}));
+app.set('view engine', 'html');
 
 
 app.use(cookieSession({
@@ -50,7 +50,13 @@ app.get('/formServerSide', async (req, res)=>{
     courses
   }
   
-  res.render('form', {layout: false})
+  let renderOptions = {
+    data,
+    layout: false
+  }
+  
+  
+  res.render('form', renderOptions)
 })
 
 app.get('/students', (req, res)=>{
