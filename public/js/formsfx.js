@@ -72,7 +72,7 @@ const FormFX = function() {
   
 	function forceRadioCheck(e) {
 		this.closest(".special").querySelector("input[type='radio']").checked = true;
-    validateOneInput(this);
+    validateOneInput(e);
 	}
   
 	function validateSpecialRadio(e) {
@@ -121,10 +121,9 @@ const FormFX = function() {
     });
   }
  
-  function validateOneInput(obj) {
-    const input = obj || this;
-    console.log(input);
-    const thisInput = input.closest(".form-input");
+  function validateOneInput(e) {
+    const target = e.target;
+    const thisInput = target.closest(".form-input");
     const formblock = thisInput.closest(".formblock");
 
     if (!isValid(thisInput)) {
@@ -152,7 +151,17 @@ const FormFX = function() {
         }
       break;
 
+
+    case "textarea":
+      const textareaFilled = thisInput.querySelector("textarea").value.length;
+        if (textareaFilled === 0) {
+          isValid = false;
+        }
+      break;
+
+
     default:
+        console.log(thisInput);
       const inputFilled = thisInput.querySelector("input").value.length;
         if (inputFilled === 0) {
           isValid = false;
