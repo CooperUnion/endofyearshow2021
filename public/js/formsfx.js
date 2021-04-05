@@ -72,6 +72,7 @@ const FormFX = function() {
   
 	function forceRadioCheck(e) {
 		this.closest(".special").querySelector("input[type='radio']").checked = true;
+    validateOneInput();
 	}
   
 	function validateSpecialRadio(e) {
@@ -122,24 +123,14 @@ const FormFX = function() {
  
   function validateOneInput(e) {
     console.log(this);
-//     let invalidFormCount = 0;
-//     const allActiveInputs = document.querySelectorAll("fieldset:not(.hide) .formblock");
-//     allActiveInputs.forEach(function(formblock, currentIndex) {
-//       formblock.classList.remove("invalid");
-//       if (formblock.dataset.required === "required") {
-//         const thisInput = formblock.querySelector(".form-input");
-//         if (!isValid(thisInput)) {
-//           invalidFormCount += 1;
-//           formblock.classList.add("invalid");
-//         }
-//         if (invalidFormCount > 0) {
-//           submitButton.classList.add("invalid");
-//         } else {
-//           submitButton.classList.remove("invalid");         
-//         }
+    const thisInput = this.closest(".form-input");
+    const formblock = thisInput.closest(".formblock");
 
-//       }
-//     });
+    if (!isValid(thisInput)) {
+      formblock.classList.add("invalid");
+    } else {
+      formblock.classList.remove("invalid");      
+    }
   }
 
 
