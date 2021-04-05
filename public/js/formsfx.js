@@ -34,7 +34,7 @@ const FormFX = function() {
   const submitButton = document.querySelector("button[type='submit']");
   submitButton.addEventListener("click", validateAllInputs);
 
-  const allInputs = document.querySelectorAll(".formblock .form-input input");
+  const allInputs = document.querySelectorAll(".formblock .form-input input, .formblock .form-input textarea");
   allInputs.forEach(function(thisInput, currentIndex) {
     thisInput.addEventListener("change", validateOneInput);
   });
@@ -161,7 +161,6 @@ const FormFX = function() {
 
 
     default:
-        console.log(thisInput);
       const inputFilled = thisInput.querySelector("input").value.length;
         if (inputFilled === 0) {
           isValid = false;
