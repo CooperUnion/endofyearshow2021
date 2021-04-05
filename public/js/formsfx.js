@@ -32,11 +32,11 @@ const FormFX = function() {
 
   
   const submitButton = document.querySelector("button[type='submit']");
-  submitButton.addEventListener("click", validateInputs);
+  submitButton.addEventListener("click", validateAllInputs);
 
   const allInputs = document.querySelectorAll(".formblock .form-input input");
-  allInputs.forEach(function(formblock, currentIndex) {
-    allInputs.addEventListener("change", validateInputs);
+  allInputs.forEach(function(thisInput, currentIndex) {
+    thisInput.addEventListener("change", validateOneInput);
   });
   
 
@@ -98,41 +98,18 @@ const FormFX = function() {
       });
   }
   
-  function validateInputs(e) {
+  function validateAllInputs(e) {
     e.preventDefault();
-    
     let invalidFormCount = 0;
     const allActiveInputs = document.querySelectorAll("fieldset:not(.hide) .formblock");
     allActiveInputs.forEach(function(formblock, currentIndex) {
       formblock.classList.remove("invalid");
       if (formblock.dataset.required === "required") {
         const thisInput = formblock.querySelector(".form-input");
-        switch (thisInput.dataset.inputtype) {
-        case "radio":
-          const numRadioed = thisInput.querySelectorAll(".inputlist input[type='radio']:checked").length;
-            if (numRadioed === 0) {
-              invalidFormCount += 1;
-              formblock.classList.add("invalid");
-            }
-          break;
-
-        case "checkboxes":
-          const numChecked = thisInput.querySelectorAll(".inputlist input[type='checkbox']:checked").length;
-            if (numChecked === 0) {
-              invalidFormCount += 1;
-              formblock.classList.add("invalid");
-            }
-
-          break;
-
-        default:
-          const inputFilled = thisInput.querySelector("input").value.length;
-            if (inputFilled === 0) {
-              invalidFormCount += 1;
-              formblock.classList.add("invalid");
-            }
+        if (!isValid(thisInput)) {
+          invalidFormCount += 1;
+          formblock.classList.add("invalid");
         }
-
         if (invalidFormCount > 0) {
           submitButton.classList.add("invalid");
         } else {
@@ -141,6 +118,55 @@ const FormFX = function() {
 
       }
     });
+  }
+ 
+  function validateOneInput(e) {
+    console.log(this);
+//     let invalidFormCount = 0;
+//     const allActiveInputs = document.querySelectorAll("fieldset:not(.hide) .formblock");
+//     allActiveInputs.forEach(function(formblock, currentIndex) {
+//       formblock.classList.remove("invalid");
+//       if (formblock.dataset.required === "required") {
+//         const thisInput = formblock.querySelector(".form-input");
+//         if (!isValid(thisInput)) {
+//           invalidFormCount += 1;
+//           formblock.classList.add("invalid");
+//         }
+//         if (invalidFormCount > 0) {
+//           submitButton.classList.add("invalid");
+//         } else {
+//           submitButton.classList.remove("invalid");         
+//         }
+
+//       }
+//     });
+  }
+
+
+  function isValid(thisInput) {
+    let isValid = true;
+    switch (thisInput.dataset.inputtype) {
+    case "radio":
+      const numRadioed = thisInput.querySelectorAll(".inputlist input[type='radio']:checked").length;
+        if (numRadioed === 0) {
+          isValid = false;
+        }
+      break;
+
+    case "checkboxes":
+      const numChecked = thisInput.querySelectorAll(".inputlist input[type='checkbox']:checked").length;
+        if (numChecked === 0) {
+          isValid = false;
+        }
+      break;
+
+    default:
+      const inputFilled = thisInput.querySelector("input").value.length;
+        if (inputFilled === 0) {
+          isValid = false;
+        }
+    }
+    return isValid;
   }
 };
 
