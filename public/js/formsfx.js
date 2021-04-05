@@ -28,9 +28,17 @@ const FormFX = function() {
   
   const specialRadioText = document.querySelector(".special.radio-text input[type='text']");
   specialRadioText.addEventListener("focus", forceRadioCheck);
+  specialRadioText.addEventListener("blur", validateSpecialRadio);
+
   
   const submitButton = document.querySelector("button[type='submit']");
   submitButton.addEventListener("click", validateInputs);
+
+  const allInputs = document.querySelectorAll(".formblock .form-input input");
+  allInputs.forEach(function(formblock, currentIndex) {
+    allInputs.addEventListener("change", validateInputs);
+  });
+  
 
 	document.querySelector("fieldset.section-videowork").classList.add("hide");
   document.querySelector("fieldset.section-standardwork").classList.add("hide");
@@ -66,6 +74,14 @@ const FormFX = function() {
 		this.closest(".special").querySelector("input[type='radio']").checked = true;
 	}
   
+	function validateSpecialRadio(e) {
+		this.value = this.value.trim();
+    if (this.value.length === 0) {
+      this.closest(".special").querySelector("input[type='radio']").checked = false;
+    }
+	}
+  
+
   function populateDatalist(listURL, listID) {
     fetch(listURL)
       .then((response) => {
@@ -74,7 +90,7 @@ const FormFX = function() {
       .then((data) => {
         const theDatalist = document.getElementById(listID);
         for (const key in data) {
-          option = document.createElement('option');
+          const option = document.createElement('option');
           option.text = data[key].name;
           option.value = data[key].name;
           theDatalist.appendChild(option);
@@ -88,6 +104,7 @@ const FormFX = function() {
     let invalidFormCount = 0;
     const allActiveInputs = document.querySelectorAll("fieldset:not(.hide) .formblock");
     allActiveInputs.forEach(function(formblock, currentIndex) {
+      formblock.classList.remove("invalid");
       if (formblock.dataset.required === "required") {
         const thisInput = formblock.querySelector(".form-input");
         switch (thisInput.dataset.inputtype) {
@@ -117,9 +134,9 @@ const FormFX = function() {
         }
 
         if (invalidFormCount > 0) {
-          submitButton.classList.add("invalid")
+          submitButton.classList.add("invalid");
         } else {
-          submitButton.classList.remove("invalid")          
+          submitButton.classList.remove("invalid");         
         }
 
       }
