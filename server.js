@@ -3,6 +3,8 @@ const app = express();
 const msal = require('@azure/msal-node');
 const cookieSession = require("cookie-session");
 const msalAuth = require('./routes/msal-auth');
+const form = require('/views/form.js')
+
 app.use(cookieSession({
   name: 'auth',
   keys: [process.env.COOKIE_KEY],
@@ -27,6 +29,8 @@ app.get('/logout', (req, res)=>{
 
 //form endpoints
 app.get('/form', (req, res)=>{
+  
+  
   res.sendFile(__dirname + "/views/form.html");
 })
 
