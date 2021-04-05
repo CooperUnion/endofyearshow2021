@@ -3,8 +3,12 @@ const app = express();
 const msal = require('@azure/msal-node');
 const cookieSession = require("cookie-session");
 const msalAuth = require('./routes/msal-auth');
-const form = require('./views/form');
 const fetch = require('node-fetch');
+const exphbs  = require('express-handlebars');
+
+app.engine('handlebars', exphbs());
+app.set('view engine', 'handlebars');
+
 
 app.use(cookieSession({
   name: 'auth',
@@ -46,9 +50,7 @@ app.get('/formServerSide', async (req, res)=>{
     courses
   }
   
-  let formTemplate = form(data)
-  
-  res.end(formTemplate)
+  res.render('form', {layout: false})
 })
 
 app.get('/students', (req, res)=>{
