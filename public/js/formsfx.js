@@ -45,9 +45,9 @@ const FormFX = function() {
   document.querySelector("fieldset.section-classinfo").classList.add("hide");
 
 
-  populateDatalist("/teachers", "datalist-teachers");
-  populateDatalist("/courses", "datalist-classes");
-  populateDatalist("/students", "datalist-collaborators");
+  // populateDatalist("/teachers", "datalist-teachers");
+  // populateDatalist("/courses", "datalist-classes");
+  // populateDatalist("/students", "datalist-collaborators");
 
   function handleFieldsetVisibility() {
     const workTypeChecked = worktypeRadio.querySelector("input:checked");
@@ -83,21 +83,21 @@ const FormFX = function() {
 	}
   
 
-  function populateDatalist(listURL, listID) {
-    fetch(listURL)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        const theDatalist = document.getElementById(listID);
-        for (const key in data) {
-          const option = document.createElement('option');
-          option.text = data[key].name;
-          option.value = data[key].name;
-          theDatalist.appendChild(option);
-        } 
-      });
-  }
+  // function populateDatalist(listURL, listID) {
+  //   fetch(listURL)
+  //     .then((response) => {
+  //       return response.json();
+  //     })
+  //     .then((data) => {
+  //       const theDatalist = document.getElementById(listID);
+  //       for (const key in data) {
+  //         const option = document.createElement('option');
+  //         option.text = data[key].name;
+  //         option.value = data[key].name;
+  //         theDatalist.appendChild(option);
+  //       } 
+  //     });
+  // }
   
   function validateAllInputs(e) {
     e.preventDefault();

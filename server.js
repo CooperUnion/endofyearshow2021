@@ -34,11 +34,6 @@ app.get('/logout', (req, res)=>{
 
 //form endpoints
 app.get('/form', async (req, res)=>{
- 
-  res.sendFile(__dirname + "/views/form.html");
-})
-
-app.get('/formServerSide', async (req, res)=>{
   
   let students = await fetch ('https://eoys-uploader-2021.glitch.me/students').then((request)=>{return request.json()})
   let teachers = await fetch ('https://eoys-uploader-2021.glitch.me/teachers').then((request)=>{return request.json()})
@@ -53,10 +48,9 @@ app.get('/formServerSide', async (req, res)=>{
   let renderOptions = {
     data,
     layout: false
-  }
+  } 
   
-  
-  res.render('form', renderOptions)
+  return res.render('form', renderOptions)
 })
 
 app.get('/students', (req, res)=>{

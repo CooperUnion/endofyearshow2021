@@ -417,7 +417,12 @@
 			</p>
 			<div class="form-input" data-inputtype="datalist">
 				<input list="datalist-teachers" id="faculty" name="faculty" placeholder="Instructor" />
-				<datalist id="datalist-teachers"></datalist> 
+				<datalist id="datalist-teachers">
+        {{#data.teachers}}
+          <option value="{{id}}">{{name}}</option>
+        {{/data.teachers}}
+        </datalist>
+        
 			</div>
 		</div>
 		<div class="formblock" data-required="required">
@@ -440,7 +445,12 @@
 			</p>
 			<div class="form-input" data-inputtype="datalist">
 				<input list="datalist-classes" id="classes" name="classes" placeholder="Classes" />
-				<datalist id="datalist-classes"></datalist> 
+				<datalist id="datalist-classes"></datalist>
+        {{#data.teachers}}
+          <option value="{{id}}">{{name}}</option>
+        {{/data.teachers}}
+
+        
 			</div>
 		</div>
 		<div class="formblock" data-required="optional">
