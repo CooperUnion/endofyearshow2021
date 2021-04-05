@@ -95,6 +95,7 @@ const FormFX = function() {
           const numRadioed = thisInput.querySelectorAll(".inputlist input[type='radio']:checked").length;
             if (numRadioed === 0) {
               invalidFormCount += 1;
+              formblock.classList.add("invalid");
             }
           break;
 
@@ -102,6 +103,7 @@ const FormFX = function() {
           const numChecked = thisInput.querySelectorAll(".inputlist input[type='checkbox']:checked").length;
             if (numChecked === 0) {
               invalidFormCount += 1;
+              formblock.classList.add("invalid");
             }
 
           break;
@@ -110,6 +112,7 @@ const FormFX = function() {
           const inputFilled = thisInput.querySelector("input").value.length;
             if (inputFilled === 0) {
               invalidFormCount += 1;
+              formblock.classList.add("invalid");
             }
         }
 

@@ -44,7 +44,24 @@ fieldset.hide {
 
 .formblock {
 	margin-bottom: 2rem;
+  position: relative;
 }
+
+.formblock.invalid .titlelabel,
+.formblock.invalid .pseudolabel {
+  color: #900;
+}
+
+.formblock.invalid:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -24px;
+  width: 6px;
+	background-color: #900;
+}
+
 
 .formblock[data-required="required"] .titlelabel:after,
 .formblock[data-required="required"] .pseudolabel:after {
