@@ -95,14 +95,16 @@ const FormFX = function() {
     });
     if (invalidForms.length > 0) {
       submitButton.classList.add("invalid");
+      const newList = document.createElement("ul");
       for (const invalidForm of invalidForms) {
-        const newRow = document.createElement("div");
+        const newListItem = document.createElement("li");
+        newListItem.textContent = invalidForm;
+        newList.appendChild(newListItem);
       }
-      
-      validationMsg.textContent = invalidForms.join(', ');
+      validationMsg.appendChild(newList);
     } else {
       submitButton.classList.remove("invalid");         
-      validationMsg.textContent = "";
+      validationMsg.innerHTML = "";
     }
     console.log(invalidForms);
   }

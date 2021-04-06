@@ -5,6 +5,7 @@ input[list] {
 
 ul {
 	list-style-type: none;
+  margin: 0;
 }
 
 p {
@@ -82,6 +83,13 @@ button[type="submit"].invalid {
 }
 
 button[type="submit"].invalid ~ .validation-message:before {
-  content: "Required fields: ";
+  content: "The following fields are required: ";
+  text-transform: uppercase;
+}
+
+.validation-message ul > li {
+  color: #900;
   font-weight: bold;
 }
+
+
