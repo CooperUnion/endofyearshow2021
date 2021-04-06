@@ -96,6 +96,7 @@ button[type="submit"].invalid ~ .validation-message:before {
 .validation-message ul > li {
   color: #900;
   font-weight: bold;
+  margin: 0;
 }
 
 
