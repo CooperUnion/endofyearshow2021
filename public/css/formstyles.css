@@ -97,7 +97,15 @@ button[type="submit"].invalid ~ .validation-message:before {
   color: #900;
   font-weight: bold;
   margin: 0;
+  cursor: pointer;
 }
+
+.validation-message ul > li:after {
+  display: inline-block;
+  content: "\21AA";
+  transform: rotate(90deg);
+}
+
 
 
 

@@ -88,7 +88,7 @@ const FormFX = function() {
       if (formblock.dataset.required === "required") {
         const thisInput = formblock.querySelector(".form-input");
         if (!isValid(thisInput)) {
-          invalidForms.push(formblock.querySelector(".titlelabel, .pseudolabel").textContent);
+          invalidForms.push(formblock.querySelector(".titlelabel, .pseudolabel"));
           formblock.classList.add("invalid");
         }
       }
@@ -98,7 +98,9 @@ const FormFX = function() {
       const newList = document.createElement("ul");
       for (const invalidForm of invalidForms) {
         const newListItem = document.createElement("li");
-        newListItem.textContent = invalidForm;
+        newListItem.textContent = invalidForm.textContent;
+        newListItem.dataset.anchortarget = invalidForm.dataset.anchor;
+        newListItem.addEventListener("click", scrollToInvalidAnchor);
         newList.appendChild(newListItem);
       }
       validationMsg.appendChild(newList);
@@ -120,7 +122,10 @@ const FormFX = function() {
       formblock.classList.remove("invalid");      
     }
   }
-
+  
+  function scrollToInvalidAnchor() {
+    console.log(this.dataset.anchortarget);
+  }
 
   function isValid(thisInput) {
     let isValid = true;
