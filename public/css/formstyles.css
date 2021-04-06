@@ -100,10 +100,16 @@ button[type="submit"].invalid ~ .validation-message:before {
   cursor: pointer;
 }
 
-.validation-message ul > li:after {
+.validation-message ul > li:hover {
+  background-color: rgba(153, 0, 0, 0.1);
+}
+
+.validation-message ul > li:hover:after {
   display: inline-block;
-  content: "\21AA";
-  transform: rotate(90deg);
+  content: "\21B5";
+  transform: scaleX(-1) rotate(90deg);
+  margin-left: 0.25em;
+  color: #999;
 }
 
 
