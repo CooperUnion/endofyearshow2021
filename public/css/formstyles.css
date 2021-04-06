@@ -76,3 +76,12 @@ fieldset.hide {
 button[type="submit"].invalid {
   background-color: #900;
 }
+
+.validation-message {
+  display: block;
+}
+
+button[type="submit"].invalid ~ .validation-message:before {
+  content: "Required fields: ";
+  font-weight: bold;
+}

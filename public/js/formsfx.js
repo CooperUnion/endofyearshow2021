@@ -39,7 +39,7 @@ const FormFX = function() {
     thisInput.addEventListener("change", validateOneInput);
   });
   
-  const validationErr = document.querySelector(".validation-error");
+  const validationMsg = document.querySelector(".validation-message");
 
 
 	document.querySelector("fieldset.section-videowork").classList.add("hide");
@@ -95,12 +95,10 @@ const FormFX = function() {
     });
     if (invalidForms.length > 0) {
       submitButton.classList.add("invalid");
-      validationErr.forEach((el, i) => {
-        el.textContent = invalidForms[i];
-      });
+      validationMsg.textContent = invalidForms.join(', ');
     } else {
       submitButton.classList.remove("invalid");         
-      validationErr.textContent = "";
+      validationMsg.textContent = "";
     }
     console.log(invalidForms);
   }
