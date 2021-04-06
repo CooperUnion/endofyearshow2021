@@ -87,9 +87,16 @@ button[type="submit"].invalid ~ .validation-message:before {
   text-transform: uppercase;
 }
 
+.validation-message ul {
+  border-left: 6px solid #900;
+  padding-left: 24px;
+  margin-left: -24px;
+}
+
 .validation-message ul > li {
   color: #900;
   font-weight: bold;
 }
+
 
 
