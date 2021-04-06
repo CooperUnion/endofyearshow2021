@@ -95,6 +95,10 @@ const FormFX = function() {
     });
     if (invalidForms.length > 0) {
       submitButton.classList.add("invalid");
+      for (const invalidForm of invalidForms) {
+        const newRow = document.createElement("div");
+      }
+      
       validationMsg.textContent = invalidForms.join(', ');
     } else {
       submitButton.classList.remove("invalid");         
