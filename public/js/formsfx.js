@@ -39,15 +39,12 @@ const FormFX = function() {
     thisInput.addEventListener("change", validateOneInput);
   });
   
+  const validationErr = document.querySelector(".validation-error");
+
 
 	document.querySelector("fieldset.section-videowork").classList.add("hide");
   document.querySelector("fieldset.section-standardwork").classList.add("hide");
   document.querySelector("fieldset.section-classinfo").classList.add("hide");
-
-
-  // populateDatalist("/teachers", "datalist-teachers");
-  // populateDatalist("/courses", "datalist-classes");
-  // populateDatalist("/students", "datalist-collaborators");
 
   function handleFieldsetVisibility() {
     const workTypeChecked = worktypeRadio.querySelector("input:checked");
@@ -81,44 +78,31 @@ const FormFX = function() {
       this.closest(".special").querySelector("input[type='radio']").checked = false;
     }
 	}
-  
-
-  // function populateDatalist(listURL, listID) {
-  //   fetch(listURL)
-  //     .then((response) => {
-  //       return response.json();
-  //     })
-  //     .then((data) => {
-  //       const theDatalist = document.getElementById(listID);
-  //       for (const key in data) {
-  //         const option = document.createElement('option');
-  //         option.text = data[key].name;
-  //         option.value = data[key].name;
-  //         theDatalist.appendChild(option);
-  //       } 
-  //     });
-  // }
-  
+    
   function validateAllInputs(e) {
     e.preventDefault();
-    let invalidFormCount = 0;
+    let invalidForms = [];
     const allActiveInputs = document.querySelectorAll("fieldset:not(.hide) .formblock");
     allActiveInputs.forEach(function(formblock, currentIndex) {
       formblock.classList.remove("invalid");
       if (formblock.dataset.required === "required") {
         const thisInput = formblock.querySelector(".form-input");
         if (!isValid(thisInput)) {
-          invalidFormCount += 1;
+          invalidForms.push(formblock.querySelector(".titlelabel, .pseudolabel").textContent);
           formblock.classList.add("invalid");
         }
-        if (invalidFormCount > 0) {
-          submitButton.classList.add("invalid");
-        } else {
-          submitButton.classList.remove("invalid");         
-        }
-
       }
     });
+    if (invalidForms.length > 0) {
+      submitButton.classList.add("invalid");
+      validationErr.forEach((el, i) => {
+        el.textContent = invalidForms[i];
+      });
+    } else {
+      submitButton.classList.remove("invalid");         
+      validationErr.textContent = "";
+    }
+    console.log(invalidForms);
   }
  
   function validateOneInput(e) {
