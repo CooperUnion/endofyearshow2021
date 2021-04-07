@@ -78,12 +78,12 @@ fieldset.hide {
 	color: #900;
 }
 
-.validation-active button[type="submit"].invalid {
+.validation-active button[type="submit"]{
   background-color: #900;
 }
 
 .validation-message {
-  display: block;
+  display: none;
 }
 
 

@@ -30,6 +30,9 @@ const FormFX = function() {
   specialRadioText.addEventListener("focus", forceRadioCheck);
   specialRadioText.addEventListener("blur", validateSpecialRadio);
 
+  const specialRadioCheckbox = document.querySelector(".special.radio-text input[type='radio']");
+  specialRadioCheckbox.addEventListener("change", focusSpecialText);
+
   const formsBody = document.querySelector(".main");  
   const formsForm = formsBody.querySelector("form");  
   const submitButton = document.querySelector("button[type='submit']");
@@ -68,12 +71,20 @@ const FormFX = function() {
     document.querySelector("fieldset.section-classinfo").classList.remove("hide");
   }
   
-	function forceRadioCheck(e) {
+	function forceRadioCheck() {
 		this.closest(".special").querySelector("input[type='radio']").checked = true;
-    validateOneInput(e);
+    validateAllInputs();
 	}
   
-	function validateSpecialRadio(e) {
+
+	function focusSpecialText() {
+		if (this.closest(".special").querySelector("input[type='radio']").checked) {
+      this.closest(".special").querySelector("input[type='text']").focus();
+    }
+	}
+  
+
+	function validateSpecialRadio() {
 		this.value = this.value.trim();
     if (this.value.length === 0) {
       this.closest(".special").querySelector("input[type='radio']").checked = false;
@@ -112,19 +123,7 @@ const FormFX = function() {
       return true;
     }
   }
- 
-//   function validateOneInput(e) {
-//     const target = e.target;
-//     const thisInput = target.closest(".form-input");
-//     const formblock = thisInput.closest(".formblock");
-
-//     if (!isValid(thisInput)) {
-//       formblock.classList.add("invalid");
-//     } else {
-//       formblock.classList.remove("invalid");      
-//     }
-//   }
-  
+   
   function scrollToInvalidAnchor() {
     const targetAnchor = this.dataset.anchortarget;
     document.querySelector(`.formblock .titlelabel[data-anchor="${targetAnchor}"], .formblock .pseudolabel[data-anchor="${targetAnchor}"]`).scrollIntoView({ behavior: 'smooth'});
@@ -134,6 +133,8 @@ const FormFX = function() {
     e.preventDefault();
     if (validateAllInputs()) {
       formsBody.classList.remove("validation-active");
+      let formData = new FormData(formsForm);
+      console.log(formData);
       //submit the form
     } else {
       formsBody.classList.add("validation-active");     
