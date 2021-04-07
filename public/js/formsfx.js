@@ -129,11 +129,21 @@ const FormFX = function() {
     e.preventDefault();
     if (validateAllInputs()) {
       formsBody.classList.remove("validation-active");
-      let formData = new FormData(formsForm);
-for (var value of formData.values()) {
-   console.log(value);
-}      
-      //submit the form
+      
+      const formData = new FormData(formsForm);
+
+      const entries = formData.entries();
+      const data = Object.fromEntries(entries);
+      console.log(JSON.stringify(data));
+      fetch("/form", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }).then(function (response) {
+        console.log(response);
+      }).catch(/**/);
     } else {
       formsBody.classList.add("validation-active");     
     }
