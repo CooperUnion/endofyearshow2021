@@ -132,6 +132,9 @@ const FormFX = function() {
     document.querySelector(`.formblock .titlelabel[data-anchor="${targetAnchor}"], .formblock .pseudolabel[data-anchor="${targetAnchor}"]`).scrollIntoView({ behavior: 'smooth'});
   }
 
+  function activateValidation() {
+  }
+
   function isValid(thisInput) {
     let isValid = true;
     switch (thisInput.dataset.inputtype) {
