@@ -40,7 +40,7 @@ const FormFX = function() {
   });
   
   const validationMsg = document.querySelector(".validation-message");
-
+  let validationActive = false;
 
 	document.querySelector("fieldset.section-videowork").classList.add("hide");
   document.querySelector("fieldset.section-standardwork").classList.add("hide");
@@ -105,6 +105,11 @@ const FormFX = function() {
         newList.appendChild(newListItem);
       }
       validationMsg.appendChild(newList);
+      if (invalidForms.length === 1) {
+        document.documentElement.style.setProperty("--reqmsg", "'The following field is required: ''");
+      } else {
+        document.documentElement.style.setProperty("--reqmsg", "'The following fields are required: ''");          
+      }
     } else {
       submitButton.classList.remove("invalid");         
     }
