@@ -53,6 +53,18 @@ app.get('/form', async (req, res)=>{
   return res.render('form', renderOptions)
 })
 
+/*
+
+app.post('/form', async(req, res)=>{
+
+  console.log(req.body)
+
+  res.end("ok... check the server console")
+
+})
+
+*/
+
 app.get('/students', (req, res)=>{
   res.json([
     {id:1,name:'student 1'},

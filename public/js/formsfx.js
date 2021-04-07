@@ -114,7 +114,6 @@ const FormFX = function() {
       validationMsg.appendChild(newList);
       const msg = invalidForms.length === 1 ? "'The following field is required: ''" : "'The following fields are required: ''";
       document.documentElement.style.setProperty("--reqmsg", msg);
-      console.log(document.documentElement.style.getPropertyValue('--reqmsg'));
       return false;
     } else {
       return true;
@@ -131,7 +130,9 @@ const FormFX = function() {
     if (validateAllInputs()) {
       formsBody.classList.remove("validation-active");
       let formData = new FormData(formsForm);
-      console.log(formData);
+for (var value of formData.values()) {
+   console.log(value);
+}      
       //submit the form
     } else {
       formsBody.classList.add("validation-active");     
