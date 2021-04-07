@@ -30,13 +30,13 @@ const FormFX = function() {
   specialRadioText.addEventListener("focus", forceRadioCheck);
   specialRadioText.addEventListener("blur", validateSpecialRadio);
 
-  
+  const formsBody = document.querySelector(".main");  
   const submitButton = document.querySelector("button[type='submit']");
-  submitButton.addEventListener("click", validateAllInputs);
+  submitButton.addEventListener("click", activateValidation);
 
   const allInputs = document.querySelectorAll(".formblock .form-input input, .formblock .form-input textarea");
   allInputs.forEach(function(thisInput, currentIndex) {
-    thisInput.addEventListener("change", validateOneInput);
+    thisInput.addEventListener("change", validateAllInputs);
   });
   
   const validationMsg = document.querySelector(".validation-message");
@@ -80,7 +80,6 @@ const FormFX = function() {
 	}
     
   function validateAllInputs(e) {
-    e.preventDefault();
     let invalidForms = [];
     const allActiveInputs = document.querySelectorAll("fieldset:not(.hide) .formblock");
     allActiveInputs.forEach(function(formblock, currentIndex) {
@@ -105,13 +104,10 @@ const FormFX = function() {
         newList.appendChild(newListItem);
       }
       validationMsg.appendChild(newList);
-      if (invalidForms.length === 1) {
-        document.documentElement.style.setProperty("--reqmsg", "'The following field is required: ''");
-      } else {
-        document.documentElement.style.setProperty("--reqmsg", "'The following fields are required: ''");          
-      }
+      const msg = invalidForms.length === 1 ? "The following field is required: " : "The following fields are required: ";
+      document.documentElement.style.setProperty("--reqmsg", msg);
     } else {
-      submitButton.classList.remove("invalid");         
+      submitButton.classList.remove("invalid");       
     }
   }
  
@@ -132,7 +128,9 @@ const FormFX = function() {
     document.querySelector(`.formblock .titlelabel[data-anchor="${targetAnchor}"], .formblock .pseudolabel[data-anchor="${targetAnchor}"]`).scrollIntoView({ behavior: 'smooth'});
   }
 
-  function activateValidation() {
+  function activateValidation(e) {
+    formsBody.classList.add("validation-active");
+    validateAllInputs(e);
   }
 
   function isValid(thisInput) {
