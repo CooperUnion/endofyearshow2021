@@ -31,6 +31,7 @@ const FormFX = function() {
   specialRadioText.addEventListener("blur", validateSpecialRadio);
 
   const formsBody = document.querySelector(".main");  
+  const formsForm = formsBody.querySelector("form");  
   const submitButton = document.querySelector("button[type='submit']");
   submitButton.addEventListener("click", activateValidation);
 
@@ -79,7 +80,7 @@ const FormFX = function() {
     }
 	}
     
-  function validateAllInputs(e) {
+  function validateAllInputs() {
     let invalidForms = [];
     const allActiveInputs = document.querySelectorAll("fieldset:not(.hide) .formblock");
     allActiveInputs.forEach(function(formblock, currentIndex) {
@@ -94,7 +95,6 @@ const FormFX = function() {
     });
     validationMsg.innerHTML = "";
     if (invalidForms.length > 0) {
-      submitButton.classList.add("invalid");
       const newList = document.createElement("ul");
       for (const invalidForm of invalidForms) {
         const newListItem = document.createElement("li");
@@ -106,22 +106,23 @@ const FormFX = function() {
       validationMsg.appendChild(newList);
       const msg = invalidForms.length === 1 ? "The following field is required: " : "The following fields are required: ";
       document.documentElement.style.setProperty("--reqmsg", msg);
+      return false;
     } else {
-      submitButton.classList.remove("invalid");       
+      return true;
     }
   }
  
-  function validateOneInput(e) {
-    const target = e.target;
-    const thisInput = target.closest(".form-input");
-    const formblock = thisInput.closest(".formblock");
+//   function validateOneInput(e) {
+//     const target = e.target;
+//     const thisInput = target.closest(".form-input");
+//     const formblock = thisInput.closest(".formblock");
 
-    if (!isValid(thisInput)) {
-      formblock.classList.add("invalid");
-    } else {
-      formblock.classList.remove("invalid");      
-    }
-  }
+//     if (!isValid(thisInput)) {
+//       formblock.classList.add("invalid");
+//     } else {
+//       formblock.classList.remove("invalid");      
+//     }
+//   }
   
   function scrollToInvalidAnchor() {
     const targetAnchor = this.dataset.anchortarget;
@@ -129,8 +130,13 @@ const FormFX = function() {
   }
 
   function activateValidation(e) {
-    formsBody.classList.add("validation-active");
-    validateAllInputs(e);
+    e.preventDefault();
+    if (validateAllInputs()) {
+      formsBody.classList.remove("validation-active");
+      //submit the form
+    } else {
+      formsBody.classList.add("validation-active");     
+    }
   }
 
   function isValid(thisInput) {
