@@ -5,6 +5,9 @@ const cookieSession = require("cookie-session");
 const msalAuth = require('./routes/msal-auth');
 const fetch = require('node-fetch');
 const exphbs  = require('express-handlebars');
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' })
+
 
 app.engine('html', exphbs({extname: '.html'}));
 app.set('view engine', 'html');
@@ -53,17 +56,14 @@ app.get('/form', async (req, res)=>{
   return res.render('form', renderOptions)
 })
 
-/*
+app.post('/form', upload.any(), async(req, res)=>{
 
-app.post('/form', async(req, res)=>{
-
-  console.log(req.body)
+  console.log(req.body, req.files)
 
   res.end("ok... check the server console")
 
 })
 
-*/
 
 app.get('/students', (req, res)=>{
   res.json([
