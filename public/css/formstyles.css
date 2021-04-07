@@ -1,3 +1,7 @@
+:root {
+    --reqmsg: "The following fields are required: ";
+}
+
 input[list] {
 	border: 1px solid #595959;
 	padding: 0.3375rem 0.39375rem;
@@ -83,7 +87,7 @@ button[type="submit"].invalid {
 }
 
 button[type="submit"].invalid ~ .validation-message:before {
-  content: "The following fields are required: ";
+  content: var(--reqmsg);
   text-transform: uppercase;
 }
 
