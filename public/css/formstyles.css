@@ -101,7 +101,7 @@ button[type="submit"].invalid ~ .validation-message:before {
 }
 
 .validation-message ul > li:hover {
-  background-color: rgba(153, 0, 0, 0.1);
+  color: #666;
 }
 
 .validation-message ul > li:hover:after {

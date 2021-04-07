@@ -124,7 +124,8 @@ const FormFX = function() {
   }
   
   function scrollToInvalidAnchor() {
-    console.log(this.dataset.anchortarget);
+    const targetAnchor = this.dataset.anchortarget;
+    console.log(document.querySelector(`.formblock .titlelabel[data-anchor="${targetAnchor}"], .formblock .pseudolabel[data-anchor="${targetAnchor}"]`));
   }
 
   function isValid(thisInput) {
