@@ -52,12 +52,12 @@ fieldset.hide {
   position: relative;
 }
 
-.formblock.invalid .titlelabel,
-.formblock.invalid .pseudolabel {
+.validation-active .formblock.invalid .titlelabel,
+.validation-active .formblock.invalid .pseudolabel {
   color: #900;
 }
 
-.formblock.invalid:before {
+.validation-active .formblock.invalid:before {
   content: "";
   position: absolute;
   top: 0;
@@ -78,7 +78,7 @@ fieldset.hide {
 	color: #900;
 }
 
-button[type="submit"].invalid {
+.validation-active button[type="submit"].invalid {
   background-color: #900;
 }
 
@@ -86,7 +86,12 @@ button[type="submit"].invalid {
   display: block;
 }
 
-button[type="submit"].invalid ~ .validation-message:before {
+
+.validation-active .validation-message {
+  display: block;
+}
+
+.validation-active .validation-message:before {
   content: var(--reqmsg);
   text-transform: uppercase;
 }

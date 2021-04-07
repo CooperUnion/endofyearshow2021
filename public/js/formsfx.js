@@ -104,8 +104,9 @@ const FormFX = function() {
         newList.appendChild(newListItem);
       }
       validationMsg.appendChild(newList);
-      const msg = invalidForms.length === 1 ? "The following field is required: " : "The following fields are required: ";
+      const msg = invalidForms.length === 1 ? "'The following field is required: ''" : "'The following fields are required: ''";
       document.documentElement.style.setProperty("--reqmsg", msg);
+      console.log(document.documentElement.style.getPropertyValue('--reqmsg'));
       return false;
     } else {
       return true;
