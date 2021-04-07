@@ -93,6 +93,7 @@ const FormFX = function() {
         }
       }
     });
+    validationMsg.innerHTML = "";
     if (invalidForms.length > 0) {
       submitButton.classList.add("invalid");
       const newList = document.createElement("ul");
@@ -106,9 +107,7 @@ const FormFX = function() {
       validationMsg.appendChild(newList);
     } else {
       submitButton.classList.remove("invalid");         
-      validationMsg.innerHTML = "";
     }
-    console.log(invalidForms);
   }
  
   function validateOneInput(e) {
@@ -125,7 +124,7 @@ const FormFX = function() {
   
   function scrollToInvalidAnchor() {
     const targetAnchor = this.dataset.anchortarget;
-    console.log(document.querySelector(`.formblock .titlelabel[data-anchor="${targetAnchor}"], .formblock .pseudolabel[data-anchor="${targetAnchor}"]`));
+    document.querySelector(`.formblock .titlelabel[data-anchor="${targetAnchor}"], .formblock .pseudolabel[data-anchor="${targetAnchor}"]`).scrollIntoView({ behavior: 'smooth'});
   }
 
   function isValid(thisInput) {
