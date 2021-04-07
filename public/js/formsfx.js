@@ -44,7 +44,6 @@ const FormFX = function() {
   });
   
   const validationMsg = document.querySelector(".validation-message");
-  let validationActive = false;
 
 	document.querySelector("fieldset.section-videowork").classList.add("hide");
   document.querySelector("fieldset.section-standardwork").classList.add("hide");
@@ -76,14 +75,12 @@ const FormFX = function() {
     validateAllInputs();
 	}
   
-
 	function focusSpecialText() {
 		if (this.closest(".special").querySelector("input[type='radio']").checked) {
       this.closest(".special").querySelector("input[type='text']").focus();
     }
 	}
   
-
 	function validateSpecialRadio() {
 		this.value = this.value.trim();
     if (this.value.length === 0) {
