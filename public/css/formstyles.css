@@ -164,13 +164,13 @@ fieldset.hide {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 15px;
+  margin: 0.5em 0 -0.5em 0;
 }
 
 .form-input:not([data-valid = "true"]) .prompt {
   opacity: 0;
   max-height: 0em;
-  margin-top: 0;
+  margin: 0;
 }
 
 
@@ -182,7 +182,8 @@ fieldset.hide {
 .form-input .promptname {
   font-style: italic;
   font-weight: 300;
-  line-height: 1;
+  line-height: 2.1;
+  margin-left: 0.5em;
 }
 
 .upload__idoutput {
