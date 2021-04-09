@@ -155,3 +155,35 @@ fieldset.hide {
 	background-color: #fff;
 }
 
+.form-input .prompt {
+  display: block;
+/*   margin-top: 1em; */
+  font-weight: 700;
+	-webkit-transition: opacity .25s ease-in-out;
+	transition: opacity .25s ease-in-out;
+}
+
+.form-input fieldset:not([data-valid = "true"]) .prompt {
+  opacity: 0;
+}
+
+
+.success__info {
+ display: block; 
+}
+
+
+.form-input .promptname {
+  font-style: italic;
+  font-weight: 300;
+}
+
+.upload__idoutput {
+ display: inline-block;
+  border: 1px solid #111;
+  padding: 0.1em 0.2em;
+  margin: 0.25em 0 0.5em 0;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
