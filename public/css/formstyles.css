@@ -123,7 +123,7 @@ fieldset.hide {
 
 .form-input.has-advanced-upload {
   position: relative;
-  padding: 2em 1em;
+  padding: 2em 1em 1.5em 1em;
   text-align: center;
   outline: 2px dashed #111;
 	outline-offset: -2px;
@@ -161,6 +161,10 @@ fieldset.hide {
   font-weight: 700;
 	-webkit-transition: opacity .25s ease-in-out;
 	transition: opacity .25s ease-in-out;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 15px;
 }
 
 .form-input fieldset:not([data-valid = "true"]) .prompt {
@@ -176,6 +180,7 @@ fieldset.hide {
 .form-input .promptname {
   font-style: italic;
   font-weight: 300;
+  line-height: 1;
 }
 
 .upload__idoutput {
@@ -187,3 +192,18 @@ fieldset.hide {
   font-size: 1rem;
 }
 
+button.clear {
+  overflow: hidden;
+  text-indent: -200vw;
+  background-color: transparent;
+	background-image: url('data:image/svg+xml;utf8,<svg height="93.934" viewBox="0 0 93.934 93.934" width="93.934" xmlns="http://www.w3.org/2000/svg"><path d="m80.178 13.757c-18.341-18.342-48.08-18.342-66.421 0-18.342 18.341-18.342 48.08 0 66.421 18.341 18.342 48.08 18.342 66.421 0 18.342-18.342 18.342-48.08 0-66.421zm-8.602 47.98-9.838 9.838-14.771-14.77-14.771 14.77-9.838-9.838 14.77-14.771-14.77-14.771 9.838-9.838 14.771 14.771 14.771-14.771 9.838 9.838-14.77 14.772z"/></svg>');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  width: 1em;
+  height: 1.5em;
+  display: inline-block;
+  margin: 0 0 0 0.5em;
+  padding: 0;
+  opacity: 0.333;
+}
