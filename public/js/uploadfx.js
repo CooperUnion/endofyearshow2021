@@ -18,6 +18,7 @@
   var forms = document.querySelectorAll(".main form .formblock .form-input[data-inputtype='file']");
   Array.prototype.forEach.call(forms, function(form) {
     var uploadField = form.querySelector('input[type="file"]'),
+      promptClears = form.querySelectorAll("button.clear"),
       progBar = document.querySelector("#uploadProgress"),
       uploadAnchor = form.querySelector(".box__success .upload__link"),
       fileOutput = form.querySelector(".promptname"),
@@ -47,23 +48,22 @@
         } else {
           form.classList.remove("populated");
         }
-      }
-    //,
-      // clearInput = function(e) {
-      //   e.preventDefault();
-      //   e.stopPropagation();
-      //   const correspondingInput = e.target
-      //     .closest("fieldset")
-      //     .querySelector("input");
-      //   correspondingInput.value = "";
-      //   droppedFiles = correspondingInput.files ? false : droppedFiles;
-      //   var evt = document.createEvent("HTMLEvents");
-      //   evt.initEvent("change", false, true);
-      //   correspondingInput.dispatchEvent(evt); // Alas, the change event does not trigger when changed programmatically…
-      // };
+      },
+      clearInput = function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const correspondingInput = e.target.closest(".form-input").querySelector("input");
+        correspondingInput.value = "";
+        droppedFiles = correspondingInput.files ? false : droppedFiles;
+        var evt = document.createEvent("HTMLEvents");
+        evt.initEvent("change", false, true);
+        correspondingInput.dispatchEvent(evt); // Alas, the change event does not trigger when changed programmatically…
+      };
 
     uploadField.addEventListener("change", verifyFiles);
-
+    promptClears.forEach(function(elem, currentIndex, listObj) {
+      elem.addEventListener("click", clearInput);
+    });
 
     // drag&drop files if the feature is available
     if (isAdvancedUpload) {
