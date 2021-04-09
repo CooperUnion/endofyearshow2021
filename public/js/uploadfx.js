@@ -15,7 +15,7 @@
   })();
 
   // applying the effect for every form
-  var forms = document.querySelectorAll(".main form .formblock");
+  var forms = document.querySelectorAll(".main form .formblock .form-input[data-inputtype='file']");
   Array.prototype.forEach.call(forms, function(form) {
     var uploadField = form.querySelector('input[type="file"]'),
       clears = form.querySelectorAll("button.clear"),
@@ -102,119 +102,6 @@
 					verifyFiles(droppedFiles);
       });
     }
-
-    form.onsubmit = async e => {
-      e.preventDefault();
-      form.classList.add("is-uploading");
-      form.classList.remove("is-error");
-
-      const fileSize = droppedFiles ? droppedFiles[0].size : uploadField.files[0].size;
-      const fileName = droppedFiles ? droppedFiles[0].name : uploadField.files[0].name; // Currently unused
-      const fileData = droppedFiles ? droppedFiles[0] : uploadField.files[0];      
-
-      console.log({ fileSize, fileData });
-
-      let authResponse = await fetch("/token", {
-        method: "GET",
-        mode: "no-cors"
-      });
-
-      let authResult = await authResponse.json();
-      console.log(authResult.token);
-
-      const bearer = "bearer " + authResult.token;
-
-      let uploadRequest = await fetch("https://api.vimeo.com/me/videos", {
-        method: "POST",
-        body: JSON.stringify({
-          upload: {
-            approach: "tus",
-            size: fileSize,
-            redirect_url: window.location.href + "/uploaded"
-          },
-          privacy: { "view": "unlisted" },
-          description: email.value // Passing the e-mail in the description field, for easier identification later
-        }),
-        headers: {
-          Authorization: bearer,
-          Accept: "application/vnd.vimeo.*+json;version=3.4",
-          "Content-Type": "application/json"
-        }
-      });
-
-      let uploadResponse = await uploadRequest.json();
-      console.log(uploadResponse);
-
-      const uploadLink = uploadResponse.upload.upload_link;
-      console.log({ uploadLink });
-
-      const videoID = uploadResponse.uri.split("/")[2];
-      console.log({ videoID: videoID });
-
-      var xhr = new XMLHttpRequest();
-
-      xhr.upload.onprogress = function(e) {
-        if (e.lengthComputable) {
-          progBar.setAttribute("max", e.total);
-          progBar.setAttribute("value", e.loaded);
-          progBar.innerHTML = Math.floor(e.loaded / e.total) + "%";
-        }
-      };
-      xhr.onloadstart = function(e) {
-        console.log("upload initiated");
-      };
-      xhr.onloadend = function(e) {
-        console.log("upload complete");
-        changeStateSuccess();
-      };
-
-      xhr.open("PATCH", uploadLink);
-      xhr.setRequestHeader(
-        "Accept",
-        "application/vnd.vimeo.*+json;version=3.4"
-      );
-      xhr.setRequestHeader("Tus-Resumable", "1.0.0");
-      xhr.setRequestHeader("Upload-Offset", 0);
-      xhr.setRequestHeader("Content-Type", "application/offset+octet-stream");
-
-      xhr.send(fileData);
-
-      let changeStateSuccess = async () => {
-        form.classList.remove("is-uploading");
-        form.classList.add("is-success");
-        uploadIDOutput.value = videoID;
-        // uploadAnchor.href = uploadResponse.link;
-        // uploadAnchor.textContent = uploadResponse.link.substring(8);
-
-        const tagName = "cooper_union_vimeo_uploader";
-
-        let putRequest = fetch(
-          "https://api.vimeo.com/videos/" + videoID + "/tags/" + tagName,
-          {
-            method: "PUT",
-            headers: {
-              Authorization: bearer,
-              Accept: "application/vnd.vimeo.*+json;version=3.4",
-              "Content-Type": "application/vnd.vimeo.tag+json"
-            }
-          }
-        );
-
-        let downloadRequest = await fetch(
-          "https://api.vimeo.com/me/videos/" + videoID,
-          {
-            method: "GET",
-            headers: {
-              Authorization: bearer,
-              Accept: "application/vnd.vimeo.*+json;version=3.4",
-              "Content-Type": "application/json"
-            }
-          }
-        );
-        let downloadResponse = await downloadRequest.json();
-        console.log(downloadResponse);
-      };
-    };
 
     // // restart the form if has a state of error/success
     // Array.prototype.forEach.call(restart, function(entry) {
