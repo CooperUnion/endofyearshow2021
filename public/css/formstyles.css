@@ -123,7 +123,7 @@ fieldset.hide {
 
 .form-input.has-advanced-upload {
   position: relative;
-  padding: 2em 1em 1.5em 1em;
+  padding: 2em 1em 2em 1em;
   text-align: center;
   outline: 2px dashed #111;
 	outline-offset: -2px;
@@ -160,15 +160,17 @@ fieldset.hide {
 /*   margin-top: 1em; */
   font-weight: 700;
 	-webkit-transition: opacity .25s ease-in-out;
-	transition: opacity .25s ease-in-out;
+	transition: opacity .25s ease-in-out, max-height .25s ease-in-out, margin .25s ease-in-out;
   display: flex;
   flex-direction: row;
   justify-content: center;
   margin-top: 15px;
 }
 
-.form-input fieldset:not([data-valid = "true"]) .prompt {
+.form-input:not([data-valid = "true"]) .prompt {
   opacity: 0;
+  max-height: 0em;
+  margin-top: 0;
 }
 
 

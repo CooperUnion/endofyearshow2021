@@ -19,13 +19,13 @@
   Array.prototype.forEach.call(forms, function(form) {
     var uploadField = form.querySelector('input[type="file"]'),
       progBar = document.querySelector("#uploadProgress"),
-      // uploadAnchor = form.querySelector(".box__success .upload__link"),
-      // fileOutput = form.querySelector(".file__filename"),
+      uploadAnchor = form.querySelector(".box__success .upload__link"),
+      fileOutput = form.querySelector(".promptname"),
       re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
       droppedFiles = false,
       verifyFiles = function(passedEvent) {
         if (typeof passedEvent === 'undefined') {
-          // uploadField.closest("fieldset").dataset.valid = false;
+          // uploadField.closest(".form-input").dataset.valid = false;
           // fileOutput.textContent = "";
           return false;
         }
@@ -37,8 +37,8 @@
           droppedFiles = false;
           inputFiles = uploadField.files;
         } 
-        // fileOutput.textContent = inputFiles.length === 1 ? inputFiles[0].name : inputFiles.length > 1 ? (uploadField.getAttribute("data-multiple-caption") || "").replace("{count}", inputFiles.length): "";
-        // uploadField.closest("fieldset").dataset.valid = inputFiles.length > 0 ? true : false;
+        fileOutput.textContent = inputFiles.length === 1 ? inputFiles[0].name : inputFiles.length > 1 ? (uploadField.getAttribute("data-multiple-caption") || "").replace("{count}", inputFiles.length): "";
+        uploadField.closest(".form-input").dataset.valid = inputFiles.length > 0 ? true : false;
         verifyForm();
       },
       verifyForm = function(e) {
