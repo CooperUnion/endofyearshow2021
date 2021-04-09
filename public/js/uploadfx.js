@@ -25,7 +25,7 @@
       droppedFiles = false,
       verifyFiles = function(passedEvent) {
         if (typeof passedEvent === 'undefined') {
-          uploadField.closest("fieldset").dataset.valid = false;
+          // uploadField.closest("fieldset").dataset.valid = false;
           // fileOutput.textContent = "";
           return false;
         }
@@ -36,9 +36,9 @@
         } else {
           droppedFiles = false;
           inputFiles = uploadField.files;
-        } // Ensure that there's only ever one designated file for uploading, regardless of input method.
+        } 
         // fileOutput.textContent = inputFiles.length === 1 ? inputFiles[0].name : inputFiles.length > 1 ? (uploadField.getAttribute("data-multiple-caption") || "").replace("{count}", inputFiles.length): "";
-        uploadField.closest("fieldset").dataset.valid = inputFiles.length > 0 ? true : false;
+        // uploadField.closest("fieldset").dataset.valid = inputFiles.length > 0 ? true : false;
         verifyForm();
       },
       verifyForm = function(e) {
@@ -47,19 +47,20 @@
         } else {
           form.classList.remove("populated");
         }
-      },
-      clearInput = function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        const correspondingInput = e.target
-          .closest("fieldset")
-          .querySelector("input");
-        correspondingInput.value = "";
-        droppedFiles = correspondingInput.files ? false : droppedFiles;
-        var evt = document.createEvent("HTMLEvents");
-        evt.initEvent("change", false, true);
-        correspondingInput.dispatchEvent(evt); // Alas, the change event does not trigger when changed programmatically…
-      };
+      }
+    //,
+      // clearInput = function(e) {
+      //   e.preventDefault();
+      //   e.stopPropagation();
+      //   const correspondingInput = e.target
+      //     .closest("fieldset")
+      //     .querySelector("input");
+      //   correspondingInput.value = "";
+      //   droppedFiles = correspondingInput.files ? false : droppedFiles;
+      //   var evt = document.createEvent("HTMLEvents");
+      //   evt.initEvent("change", false, true);
+      //   correspondingInput.dispatchEvent(evt); // Alas, the change event does not trigger when changed programmatically…
+      // };
 
     uploadField.addEventListener("change", verifyFiles);
 
