@@ -122,7 +122,7 @@
           Please upload from one to five files of the same filetype that represent this piece. For the case of a work that requires two types of media, please submit a separate form for the alternate media. 
         </p>
         <div class="form-input" data-inputtype="file">
-          <label for="artworkupload" data-anchor="artworkupload"><button>Choose a file</button><span> or drag it here</span>.</label> 
+          <label for="artworkupload"><button>Choose a file</button><span> or drag it here</span>.</label> 
           <input id="artworkupload" name="artworkupload" class="input-file" type="file" data-multiple-caption="{count} files queued for upload">
           <small class="prompt">file: <output class="promptname"></output><button class="clear">clear</button></small>
         </div>
@@ -153,7 +153,7 @@
         </div>
       </div>
       <div class="formblock" data-required="required">
-        <label class="titlelabel" for="thumbnailupload" data-anchor="thumbnailupload">Thumbnail</label> 
+        <span class="pseudolabel" data-anchor="thumbnailupload">Thumbnail</span> 
         <p class="label-context">
           Please upload an image (png preferably, jpg or gif) to use as a thumbnail or key art for this work (640px as the widest dimension). 
         </p>
@@ -161,7 +161,9 @@
           NOTE: DO NOT upload anything other than an above image file type, despite what the form says.
         </p>
         <div class="form-input" data-inputtype="file">
-          <input id="thumbnailupload" name="thumbnailupload" class="input-file" type="file">
+          <input id="thumbnailupload" name="thumbnailupload" class="input-file" type="file" data-multiple-caption="{count} files queued for upload">
+          <label for="thumbnailupload"><button>Choose a file</button><span> or drag it here</span>.</label> 
+          <small class="prompt">file: <output class="promptname"></output><button class="clear">clear</button></small>
         </div>
       </div>
       <div class="formblock" data-required="required">
@@ -369,7 +371,7 @@
         </div>
       </div>
       <div class="formblock" data-required="required">
-        <label class="titlelabel" for="videothumbnailupload" data-anchor="videothumbnailupload">Thumbnail</label> 
+        <span class="pseudolabel" data-anchor="videothumbnailupload">Thumbnail</span> 
         <p class="label-context">
           Please upload an image (png preferably, jpg or gif) to use as a thumbnail or key art for this work (640px as the widest dimension). 
         </p>
@@ -377,7 +379,9 @@
           NOTE: DO NOT upload anything other than an above image file type, despite what the form says. 
         </p>
         <div class="form-input" data-inputtype="file">
-          <input id="videothumbnailupload" name="videothumbnailupload" class="input-file" type="file">
+          <label for="videothumbnailupload"><button>Choose a file</button><span> or drag it here</span>.</label> 
+          <input id="videothumbnailupload" name="videothumbnailupload" class="input-file" type="file" data-multiple-caption="{count} files queued for upload">
+          <small class="prompt">file: <output class="promptname"></output><button class="clear">clear</button></small>
         </div>
       </div>
       <div class="formblock" data-required="optional">
