@@ -174,8 +174,7 @@ const FormFX = function() {
       break;
 
     case "file":
-      const filesAdded = parseInt(thisInput.querySelector("input").dataset.count, 10) || 0;
-        console.log(thisInput.querySelector("input").dataset.count);
+      const filesAdded = parseInt(thisInput.querySelector("input").dataset.filecount, 10) || 0;
         if (filesAdded === 0) {
           isValid = false;
         }

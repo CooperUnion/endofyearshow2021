@@ -51,6 +51,15 @@
         } else {
           thisFileInput.dataset.filecount = 0;
         }
+        
+        const correspondingInput = e.target.closest(".form-input").querySelector("input");
+        correspondingInput.value = "";
+        droppedFiles = correspondingInput.files ? false : droppedFiles;
+        var evt = document.createEvent("HTMLEvents");
+        evt.initEvent("change", false, true);
+        correspondingInput.dispatchEvent(evt); // Alas, the change event does not trigger when changed programmatically…
+
+        
       },
       clearInput = function(e) {
         e.preventDefault();
