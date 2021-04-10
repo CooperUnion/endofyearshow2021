@@ -40,26 +40,18 @@
         } 
         fileOutput.textContent = inputFiles.length === 1 ? inputFiles[0].name : inputFiles.length > 1 ? (uploadField.getAttribute("data-multiple-caption") || "").replace("{count}", inputFiles.length): "";
         uploadField.closest(".form-input").dataset.valid = inputFiles.length > 0 ? true : false;
-        verifyFilesForm();
+        verifyFilesInput();
       },
-      verifyFilesForm = function(e) {
+      verifyFilesInput = function(e) {
         const thisFileInput = form.querySelector("input");
         if (droppedFiles) {
           thisFileInput.dataset.filecount = droppedFiles.length;
+          // notifyChange(thisFileInput);
         } else if (uploadField.files.length > 0) {
           thisFileInput.dataset.filecount = uploadField.files.length;
         } else {
           thisFileInput.dataset.filecount = 0;
         }
-        
-        const correspondingInput = e.target.closest(".form-input").querySelector("input");
-        correspondingInput.value = "";
-        droppedFiles = correspondingInput.files ? false : droppedFiles;
-        var evt = document.createEvent("HTMLEvents");
-        evt.initEvent("change", false, true);
-        correspondingInput.dispatchEvent(evt); // Alas, the change event does not trigger when changed programmatically…
-
-        
       },
       clearInput = function(e) {
         e.preventDefault();
@@ -67,9 +59,12 @@
         const correspondingInput = e.target.closest(".form-input").querySelector("input");
         correspondingInput.value = "";
         droppedFiles = correspondingInput.files ? false : droppedFiles;
+        notifyChange(correspondingInput);
+      },
+      notifyChange = function(inputObj) {
         var evt = document.createEvent("HTMLEvents");
         evt.initEvent("change", false, true);
-        correspondingInput.dispatchEvent(evt); // Alas, the change event does not trigger when changed programmatically…
+        inputObj.dispatchEvent(evt); // The change event does not trigger when changed programmatically…
       };
 
     uploadField.addEventListener("change", verifyFiles);
