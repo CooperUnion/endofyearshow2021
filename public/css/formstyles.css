@@ -144,9 +144,15 @@ fieldset.hide {
   margin: 0;
 }
 
-.form-input.has-advanced-upload label > button {
+.form-input.has-advanced-upload label > .button {
   display: inline-block;
   margin: 0 0.25em;
+  background-color: #ddd;
+  cursor: pointer;
+  color: #191919;
+  padding: 0.4078125rem 1.4625rem;
+  text-align: center;
+  border-radius: 3.6px;
 }
 
 .form-input.has-advanced-upload.is-dragover {
