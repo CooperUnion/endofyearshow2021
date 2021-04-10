@@ -36,7 +36,7 @@ const FormFX = function() {
   const formsBody = document.querySelector(".main");  
   const formsForm = formsBody.querySelector("form");  
   const submitButton = document.querySelector("button[type='submit']");
-  submitButton.addEventListener("click", activateValidation);
+  submitButton.addEventListener("click", validateAndSubmit);
 
   const allInputs = document.querySelectorAll(".formblock .form-input input, .formblock .form-input textarea");
   allInputs.forEach(function(thisInput, currentIndex) {
@@ -125,22 +125,21 @@ const FormFX = function() {
     document.querySelector(`.formblock .titlelabel[data-anchor="${targetAnchor}"], .formblock .pseudolabel[data-anchor="${targetAnchor}"]`).scrollIntoView({ behavior: 'smooth'});
   }
 
-  function activateValidation(e) {
+  function validateAndSubmit(e) {
     e.preventDefault();
     if (validateAllInputs()) {
       formsBody.classList.remove("validation-active");
       
       const formData = new FormData(formsForm);
-
-      const entries = formData.entries();
-      const data = Object.fromEntries(entries);
-      console.log(JSON.stringify(data));
+      // const entries = formData.entries();
+      // const data = Object.fromEntries(entries);
+      // console.log(JSON.stringify(data));
       fetch("/form", {
         method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json"
-        }
+        body: formData
+        // headers: {
+        //   "Content-Type": "application/json"
+        // }
       }).then(function (response) {
         console.log(response);
       }).catch(/**/);

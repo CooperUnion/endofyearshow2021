@@ -99,21 +99,6 @@
       });
     }
 
-    // // restart the form if has a state of error/success
-    // Array.prototype.forEach.call(restart, function(entry) {
-    //   entry.addEventListener("click", function(e) {
-    //     e.preventDefault();
-    //     form.classList.remove("is-error", "is-success");
-    //     uploadField.value = "";
-    //     droppedFiles = false;
-    //     form.classList.remove("populated");
-    //     progBar.setAttribute("max", 100);
-    //     progBar.setAttribute("value", 0);
-    //     progBar.innerHTML = "";
-    //     verifyFiles();
-    //   });
-    // });
-
     // Firefox focus bug fix for file input
     uploadField.addEventListener("focus", function() {
       uploadField.classList.add("has-focus");
