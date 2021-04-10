@@ -26,7 +26,6 @@
       droppedFiles = false,
       verifyFiles = function(passedEvent) {
         if (typeof passedEvent === 'undefined') {
-          // uploadField.closest(".form-input").dataset.valid = false;
           fileOutput.textContent = "";
           return false;
         }
@@ -34,19 +33,19 @@
         if (typeof passedEvent[0] !== 'undefined') { // Are we being passed a FileList?
           uploadField.value = "";
           inputFiles = passedEvent;
+          // notifyChange(uploadField, "drop");
         } else {
           droppedFiles = false;
           inputFiles = uploadField.files;
         } 
+        console.log(inputFiles);
         fileOutput.textContent = inputFiles.length === 1 ? inputFiles[0].name : inputFiles.length > 1 ? (uploadField.getAttribute("data-multiple-caption") || "").replace("{count}", inputFiles.length): "";
-        uploadField.closest(".form-input").dataset.valid = inputFiles.length > 0 ? true : false;
         verifyFilesInput();
       },
       verifyFilesInput = function(e) {
         const thisFileInput = form.querySelector("input");
         if (droppedFiles) {
           thisFileInput.dataset.filecount = droppedFiles.length;
-          // notifyChange(thisFileInput);
         } else if (uploadField.files.length > 0) {
           thisFileInput.dataset.filecount = uploadField.files.length;
         } else {
