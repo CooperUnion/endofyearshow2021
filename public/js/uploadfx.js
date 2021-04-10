@@ -43,20 +43,14 @@
         verifyFilesForm();
       },
       verifyFilesForm = function(e) {
-        if (droppedFiles || uploadField.files.length > 0) {
-          form.classList.add("populated");
-        } else {
-          form.classList.remove("populated");
-        }
-
+        const thisFileInput = form.querySelector("input");
         if (droppedFiles) {
-          
+          thisFileInput.dataset.filecount = droppedFiles.length;
         } else if (uploadField.files.length > 0) {
-          form.dataset.fileupload = ;
+          thisFileInput.dataset.filecount = uploadField.files.length;
         } else {
-          form.classList.remove("populated");
+          thisFileInput.dataset.filecount = 0;
         }
-
       },
       clearInput = function(e) {
         e.preventDefault();
