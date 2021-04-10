@@ -173,6 +173,14 @@ const FormFX = function() {
         }
       break;
 
+    case "file":
+      const filesAdded = thisInput.querySelector("input").files.length;
+        console.log(filesAdded);
+        if (filesAdded === 0) {
+          isValid = false;
+        }
+      break;
+
 
     default:
       const inputFilled = thisInput.querySelector("input").value.length;
