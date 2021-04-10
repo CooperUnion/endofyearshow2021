@@ -41,6 +41,9 @@ const FormFX = function() {
   const allInputs = document.querySelectorAll(".formblock .form-input input, .formblock .form-input textarea");
   allInputs.forEach(function(thisInput, currentIndex) {
     thisInput.addEventListener("change", validateAllInputs);
+    if (thisInput.type === "file") {
+      thisInput.addEventListener("drop", validateAllInputs);
+    } 
   });
   
   const validationMsg = document.querySelector(".validation-message");

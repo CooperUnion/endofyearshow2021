@@ -66,7 +66,7 @@
         var evt = document.createEvent("HTMLEvents");
         evt.initEvent(evtType, false, true);
         inputObj.dispatchEvent(evt); // The change event does not trigger when changed programmatically…
-        console.log(inputObj, evtType);
+        console.log(evtType);
       };
 
     uploadField.addEventListener("change", verifyFiles);
