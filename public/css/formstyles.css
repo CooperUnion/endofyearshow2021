@@ -169,7 +169,6 @@ fieldset.hide {
 }
 
 .form-input .prompt {
-  display: block;
 /*   margin-top: 1em; */
   font-weight: 700;
 	-webkit-transition: opacity .25s ease-in-out;
@@ -180,7 +179,7 @@ fieldset.hide {
   margin: 0.5em 0 -0.5em 0;
 }
 
-.form-input:not([data-valid = "true"]) .prompt {
+.form-input:not(.populated) .prompt {
   opacity: 0;
   max-height: 0em;
   margin: 0;
