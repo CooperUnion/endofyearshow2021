@@ -27,7 +27,7 @@
       verifyFiles = function(passedEvent) {
         if (typeof passedEvent === 'undefined') {
           // uploadField.closest(".form-input").dataset.valid = false;
-          // fileOutput.textContent = "";
+          fileOutput.textContent = "";
           return false;
         }
         let inputFiles = {};
@@ -40,14 +40,23 @@
         } 
         fileOutput.textContent = inputFiles.length === 1 ? inputFiles[0].name : inputFiles.length > 1 ? (uploadField.getAttribute("data-multiple-caption") || "").replace("{count}", inputFiles.length): "";
         uploadField.closest(".form-input").dataset.valid = inputFiles.length > 0 ? true : false;
-        verifyForm();
+        verifyFilesForm();
       },
-      verifyForm = function(e) {
+      verifyFilesForm = function(e) {
         if (droppedFiles || uploadField.files.length > 0) {
           form.classList.add("populated");
         } else {
           form.classList.remove("populated");
         }
+
+        if (droppedFiles) {
+          
+        } else if (uploadField.files.length > 0) {
+          form.dataset.fileupload = ;
+        } else {
+          form.classList.remove("populated");
+        }
+
       },
       clearInput = function(e) {
         e.preventDefault();
