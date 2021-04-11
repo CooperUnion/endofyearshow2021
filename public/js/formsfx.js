@@ -42,7 +42,7 @@ const FormFX = function() {
   allInputs.forEach(function(thisInput, currentIndex) {
     thisInput.addEventListener("change", validateAllInputs);
     if (thisInput.type === "file") {
-      thisInput.addEventListener("drop", validateAllInputs);
+      thisInput.addEventListener("dropped", validateAllInputs); // Drag-and-drop
     } 
   });
   
