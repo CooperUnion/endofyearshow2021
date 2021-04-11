@@ -42,7 +42,7 @@ const FormFX = function() {
   allInputs.forEach(function(thisInput, currentIndex) {
     thisInput.addEventListener("change", validateAllInputs);
     if (thisInput.type === "file") {
-      thisInput.addEventListener("dropped", validateAllInputs); // Drag-and-drop
+      thisInput.addEventListener("dropped", validateAllInputs); // Drag-and-drop overlay requires custom events.
     } 
   });
   
@@ -119,6 +119,7 @@ const FormFX = function() {
       document.documentElement.style.setProperty("--reqmsg", msg);
       return false;
     } else {
+      formsBody.classList.remove("validation-active");
       return true;
     }
   }
@@ -131,7 +132,6 @@ const FormFX = function() {
   function validateAndSubmit(e) {
     e.preventDefault();
     if (validateAllInputs()) {
-      formsBody.classList.remove("validation-active");
       
       const formData = new FormData(formsForm);
       // const entries = formData.entries();
