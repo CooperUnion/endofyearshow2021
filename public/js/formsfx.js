@@ -42,7 +42,7 @@ const FormFX = function() {
   allInputs.forEach(function(thisInput, currentIndex) {
     thisInput.addEventListener("change", validateAllInputs);
     if (thisInput.type === "file") {
-      thisInput.addEventListener("dropped", validateAllInputs); // Drag-and-drop overlay requires custom events.
+      thisInput.addEventListener("dropped", validateAllInputs); // Drag-and-drop overlays require custom events.
     } 
   });
   

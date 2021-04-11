@@ -24,7 +24,7 @@
       // uploadAnchor = form.querySelector(".box__success .upload__link"),
       // re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
       droppedFiles = false,
-      verifyFiles = function(passedEvent) {
+      handleFileOperation = function(passedEvent) {
         if (typeof passedEvent === 'undefined') {
           fileOutput.textContent = "";
           return false;
@@ -70,7 +70,7 @@
         console.log(evt);
       };
 
-    uploadField.addEventListener("change", verifyFiles);
+    uploadField.addEventListener("change", handleFileOperation);
 
     promptClears.forEach(function(elem, currentIndex, listObj) {
       elem.addEventListener("click", clearInput);
@@ -106,7 +106,7 @@
       });
       form.addEventListener("drop", function(e) {
 					droppedFiles = e.dataTransfer.files; // the files that were dropped
-					verifyFiles(droppedFiles);
+					handleFileOperation(droppedFiles);
       });
     }
 
