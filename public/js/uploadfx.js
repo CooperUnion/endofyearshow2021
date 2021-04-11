@@ -61,17 +61,20 @@
         correspondingInput.value = "";
         droppedFiles = correspondingInput.files ? false : droppedFiles;
         notifyChange(correspondingInput, "change");
+
+        notifyChange(correspondingInput, "click");
+
       },
       notifyChange = function(inputObj, evtType) {
         // var evt = document.createEvent("HTMLEvents");
          // evt.initEvent(evtType, true, true, true);
         const evt = new Event(evtType);
         inputObj.dispatchEvent(evt); // The change event does not trigger when changed programmatically…
-        console.log(inputObj);
+        console.log(evt);
       };
 
     uploadField.addEventListener("change", verifyFiles);
-    uploadField.addEventListener("drop", function() { alert("Hey") });
+    uploadField.addEventListener("click", function() { alert("Hey") });
 
     promptClears.forEach(function(elem, currentIndex, listObj) {
       elem.addEventListener("click", clearInput);
