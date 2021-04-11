@@ -44,7 +44,7 @@
         const thisFileInput = form.querySelector("input");
         if (droppedFiles) {
           thisFileInput.dataset.filecount = droppedFiles.length;
-          notifyChange(uploadField, "drop");
+          notifyChange(thisFileInput, "drop");
           form.classList.add("populated");
         } else if (uploadField.files.length > 0) {
           thisFileInput.dataset.filecount = uploadField.files.length;
@@ -63,14 +63,16 @@
         notifyChange(correspondingInput, "change");
       },
       notifyChange = function(inputObj, evtType) {
-        var evt = document.createEvent("HTMLEvents");
-        evt.initEvent(evtType, true, true);
+        // var evt = document.createEvent("HTMLEvents");
+         // evt.initEvent(evtType, true, true, true);
+        const evt = new Event(evtType);
         inputObj.dispatchEvent(evt); // The change event does not trigger when changed programmatically…
-        console.log(evtType);
+        console.log(inputObj);
       };
 
     uploadField.addEventListener("change", verifyFiles);
     uploadField.addEventListener("drop", function() { alert("Hey") });
+
     promptClears.forEach(function(elem, currentIndex, listObj) {
       elem.addEventListener("click", clearInput);
     });
