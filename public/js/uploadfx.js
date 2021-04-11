@@ -64,12 +64,13 @@
       },
       notifyChange = function(inputObj, evtType) {
         var evt = document.createEvent("HTMLEvents");
-        evt.initEvent(evtType, false, true);
+        evt.initEvent(evtType, true, true);
         inputObj.dispatchEvent(evt); // The change event does not trigger when changed programmatically…
         console.log(evtType);
       };
 
     uploadField.addEventListener("change", verifyFiles);
+    uploadField.addEventListener("drop", function() { alert("Hey") });
     promptClears.forEach(function(elem, currentIndex, listObj) {
       elem.addEventListener("click", clearInput);
     });
