@@ -228,13 +228,13 @@ const FormFX = function() {
         }
       break;
 
-    case "file":
-      console.log(thisInput);
-      const filesAdded = parseInt(thisInput.querySelector("input").dataset.filecount, 10) || 0;
-        if (filesAdded === 0) {
-          isValid = false;
-        }
-      break;
+    // case "file":
+    //   console.log(thisInput);
+    //   const filesAdded = parseInt(thisInput.querySelector("input").dataset.filecount, 10) || 0;
+    //     if (filesAdded === 0) {
+    //       isValid = false;
+    //     }
+    //   break;
 
 
     default:
