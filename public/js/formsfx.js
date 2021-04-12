@@ -58,14 +58,16 @@ const FormFX = function() {
         }
         let inputFiles = {};
         if (e.dataTransfer) { // Are we being passed a (drag and drop) FileList?
+          droppedFiles = true;
           thisInput.value = "";
-          droppedFiles = e.dataTransfer.files;
+          inputFiles = e.dataTransfer.files;
+          allDroppedFiles[thisInput.id] = e.dataTransfer.files;
           validateAllInputs();
         } else {
           droppedFiles = false;
           inputFiles = thisInput.files;
         }
-        console.log(e.dataTransfer);
+        console.log(inputFiles.length);
         fileOutput.textContent = inputFiles.length === 1 ? inputFiles[0].name : inputFiles.length > 1 ? (thisInput.getAttribute("data-multiple-caption") || "").replace("{count}", inputFiles.length) : "";
         updateFileCount();
       }
@@ -74,7 +76,6 @@ const FormFX = function() {
         if (droppedFiles) {
           thisInput.dataset.filecount = droppedFiles.length;
           inputBlock.classList.add("populated");
-          allDroppedFiles[thisInput.id] = droppedFiles;
         } else if (thisInput.files.length > 0) {
           thisInput.dataset.filecount = thisInput.files.length;
           inputBlock.classList.add("populated");
@@ -89,7 +90,7 @@ const FormFX = function() {
         e.stopPropagation();
         thisInput.value = "";
         droppedFiles = thisInput.files ? false : droppedFiles;
-        allDroppedFiles[thisInput.id] = false;
+        allDroppedFiles[thisInput.id] = {};
         notifyChange(thisInput); // The input's change event does not fire when changed programmatically
       }
       
@@ -126,8 +127,6 @@ const FormFX = function() {
 
       thisInput.addEventListener("change", handleFileOperation);
       promptClear.addEventListener("click", clearInput);
-
-      // thisInput.addEventListener("dropped", validateAllInputs); // Drag-and-drop overlays require custom events.
     }
   });
 
@@ -265,7 +264,7 @@ const FormFX = function() {
       break;
 
     case "file":
-      console.log(allDroppedFiles);
+      // console.log(allDroppedFiles);
       const filesAdded = parseInt(thisInput.querySelector("input").dataset.filecount, 10) || 0;
       if (filesAdded === 0) {
         isValid = false;
