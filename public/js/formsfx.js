@@ -55,10 +55,10 @@ const FormFX = function() {
         let inputFiles = {};
         if (typeof passedEvent[0] !== 'undefined') { // Are we being passed a (drag and drop) FileList?
           thisInput.value = "";
-          inputFiles = passedEvent;
+          droppedFiles[thisInput.id] = passedEvent;
           // notifyChange(thisInput, "change"); // Programmatically trigger the change event.
         } else {
-          thisInput.droppedFiles = false;
+          droppedFiles[thisInput.id] = false;
           inputFiles = thisInput.files; 
         } 
         fileOutput.textContent = inputFiles.length === 1 ? inputFiles[0].name : inputFiles.length > 1 ? (thisInput.getAttribute("data-multiple-caption") || "").replace("{count}", inputFiles.length): "";
