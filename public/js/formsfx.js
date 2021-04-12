@@ -32,7 +32,7 @@ const FormFX = function() {
   const specialRadioCheckbox = document.querySelector(".special.radio-text input[type='radio']");
   specialRadioCheckbox.addEventListener("change", focusSpecialText);
   
-  let droppedFiles = [];
+  let droppedFiles = {};
 
   const formsBody = document.querySelector(".main");  
   const formsForm = formsBody.querySelector("form");  
