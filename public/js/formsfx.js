@@ -42,8 +42,9 @@ const FormFX = function() {
   const allInputs = document.querySelectorAll(".formblock .form-input input, .formblock .form-input textarea");
   allInputs.forEach(function(thisInput, currentIndex) {
     thisInput.addEventListener("change", validateAllInputs); 
+    
     if (thisInput.type === "file") {
-      const droppedFiles = false;
+      let droppedFiles = false;
       const thisForm = thisInput.closest(".form-input"),
       promptClear = thisForm.querySelector("button.clear"),
       fileOutput = thisForm.querySelector(".promptname"),
@@ -56,7 +57,7 @@ const FormFX = function() {
         if (typeof passedEvent[0] !== 'undefined') { // Are we being passed a (drag and drop) FileList?
           thisInput.value = "";
           droppedFiles = passedEvent;
-          notifyChange(thisInput); // The input's change event does not fire when changed programmatically…
+          validateAllInputs();
         } else {
           droppedFiles = false;
           inputFiles = thisInput.files; 
@@ -93,10 +94,12 @@ const FormFX = function() {
       };
 
     thisInput.addEventListener("change", handleFileOperation);
+    thisInput.addEventListener("dropped", handleFileOperation); // This event is fired by the other script.
+
 
     promptClear.addEventListener("click", clearInput); 
       
-    thisInput.addEventListener("dropped", validateAllInputs); // Drag-and-drop overlays require custom events.
+    // thisInput.addEventListener("dropped", validateAllInputs); // Drag-and-drop overlays require custom events.
     } 
   });
   
