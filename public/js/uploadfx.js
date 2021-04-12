@@ -15,9 +15,9 @@
   })();
 
   // applying the effect for every form
-  var forms = document.querySelectorAll(".main form .formblock .form-input[data-inputtype='file']");
-  Array.prototype.forEach.call(forms, function(form) {
-    var uploadField = form.querySelector('input[type="file"]');
+  var formInputBlocks = document.querySelectorAll(".main form .formblock .form-input[data-inputtype='file']");
+  Array.prototype.forEach.call(formInputBlocks, function(inputBlock) {
+    var inputField = inputBlock.querySelector('input[type="file"]');
 //       promptClears = form.querySelectorAll("button.clear"),
 //       fileOutput = form.querySelector(".promptname"),
 //       // progBar = document.querySelector("#uploadProgress"),
@@ -78,7 +78,7 @@
 
     // drag&drop files if the feature is available
     if (isAdvancedUpload) {
-      form.classList.add("has-advanced-upload"); // letting the CSS part to know drag&drop is supported by the browser
+      inputBlock.classList.add("has-advanced-upload"); // letting the CSS part to know drag&drop is supported by the browser
       [
         "drag",
         "dragstart",
@@ -88,34 +88,34 @@
         "dragleave",
         "drop"
       ].forEach(function(event) {
-        form.addEventListener(event, function(e) {
+        inputBlock.addEventListener(event, function(e) {
           // preventing the unwanted behaviours
           e.preventDefault();
           e.stopPropagation();
         });
       });
       ["dragover", "dragenter"].forEach(function(event) {
-        form.addEventListener(event, function() {
-          form.classList.add("is-dragover");
+        inputBlock.addEventListener(event, function() {
+          inputBlock.classList.add("is-dragover");
         });
       });
       ["dragleave", "dragend", "drop"].forEach(function(event) {
-        form.addEventListener(event, function() {
-          form.classList.remove("is-dragover");
+        inputBlock.addEventListener(event, function() {
+          inputBlock.classList.remove("is-dragover");
         });
       });
-      form.addEventListener("drop", function(e) {
+      inputBlock.addEventListener("drop", function(e) {
 					// droppedFiles = e.dataTransfer.files; // the files that were dropped
 					// handleFileOperation(droppedFiles);
       });
     }
 
     // Firefox focus bug fix for file input
-    uploadField.addEventListener("focus", function() {
-      uploadField.classList.add("has-focus");
+    inputField.addEventListener("focus", function() {
+      inputField.classList.add("has-focus");
     });
-    uploadField.addEventListener("blur", function() {
-      uploadField.classList.remove("has-focus");
+    inputField.addEventListener("blur", function() {
+      inputField.classList.remove("has-focus");
     });
   });
 })(document, window, 0);
