@@ -62,11 +62,11 @@
 //         droppedFiles = correspondingInput.files ? false : droppedFiles;
 //         notifyChange(correspondingInput, "change");
 //       },
-      const notifyDrop = function(inputObj) {
-        const evt = new CustomEvent("dropped");
-        inputObj.dispatchEvent(evt); // The change event does not trigger when changed programmatically…
-        console.log(evt);
-      };
+      // const notifyDrop = function(inputObj, payload) {
+      //   const evt = new CustomEvent("dropped", payload);
+      //   inputObj.dispatchEvent(evt); // The change event does not trigger when changed programmatically…
+      //   console.log(evt);
+      // };
 
 //     uploadField.addEventListener("change", handleFileOperation);
 
@@ -103,7 +103,7 @@
         });
       });
       inputBlock.addEventListener("drop", function(e) {
-					notifyDrop(inputField);
+					// notifyDrop(inputField, e.dataTransfer.files);
 					// droppedFiles = e.dataTransfer.files; // the files that were dropped
       });
     }
