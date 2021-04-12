@@ -17,64 +17,64 @@
   // applying the effect for every form
   var forms = document.querySelectorAll(".main form .formblock .form-input[data-inputtype='file']");
   Array.prototype.forEach.call(forms, function(form) {
-    var uploadField = form.querySelector('input[type="file"]'),
-      promptClears = form.querySelectorAll("button.clear"),
-      fileOutput = form.querySelector(".promptname"),
-      // progBar = document.querySelector("#uploadProgress"),
-      // uploadAnchor = form.querySelector(".box__success .upload__link"),
-      // re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
-      droppedFiles = false,
-      handleFileOperation = function(passedEvent) {
-        if (typeof passedEvent === 'undefined') {
-          fileOutput.textContent = "";
-          return false;
-        }
-        let inputFiles = {};
-        if (typeof passedEvent[0] !== 'undefined') { // Are we being passed a FileList?
-          uploadField.value = "";
-          inputFiles = passedEvent;
-        } else {
-          droppedFiles = false;
-          inputFiles = uploadField.files;
-        } 
-        fileOutput.textContent = inputFiles.length === 1 ? inputFiles[0].name : inputFiles.length > 1 ? (uploadField.getAttribute("data-multiple-caption") || "").replace("{count}", inputFiles.length): "";
-        verifyFilesInput();
-      },
-      verifyFilesInput = function(e) {
-        const thisFileInput = form.querySelector("input");
-        if (droppedFiles) {
-          thisFileInput.dataset.filecount = droppedFiles.length;
-          notifyChange(thisFileInput, "dropped");
-          form.classList.add("populated");
-        } else if (uploadField.files.length > 0) {
-          thisFileInput.dataset.filecount = uploadField.files.length;
-          form.classList.add("populated");
-        } else {
-          thisFileInput.dataset.filecount = 0;
-          form.classList.remove("populated");
-        }
-      },
-      clearInput = function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        const correspondingInput = e.target.closest(".form-input").querySelector("input");
-        correspondingInput.value = "";
-        droppedFiles = correspondingInput.files ? false : droppedFiles;
-        notifyChange(correspondingInput, "change");
-      },
-      notifyChange = function(inputObj, evtType) {
-        // var evt = document.createEvent("HTMLEvents");
-         // evt.initEvent(evtType, true, true, true);
-        const evt = new CustomEvent(evtType);
-        inputObj.dispatchEvent(evt); // The change event does not trigger when changed programmatically…
-        console.log(evt);
-      };
+    var uploadField = form.querySelector('input[type="file"]');
+//       promptClears = form.querySelectorAll("button.clear"),
+//       fileOutput = form.querySelector(".promptname"),
+//       // progBar = document.querySelector("#uploadProgress"),
+//       // uploadAnchor = form.querySelector(".box__success .upload__link"),
+//       // re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
+//       droppedFiles = false,
+//       handleFileOperation = function(passedEvent) {
+//         if (typeof passedEvent === 'undefined') {
+//           fileOutput.textContent = "";
+//           return false;
+//         }
+//         let inputFiles = {};
+//         if (typeof passedEvent[0] !== 'undefined') { // Are we being passed a FileList?
+//           uploadField.value = "";
+//           inputFiles = passedEvent;
+//         } else {
+//           droppedFiles = false;
+//           inputFiles = uploadField.files;
+//         } 
+//         fileOutput.textContent = inputFiles.length === 1 ? inputFiles[0].name : inputFiles.length > 1 ? (uploadField.getAttribute("data-multiple-caption") || "").replace("{count}", inputFiles.length): "";
+//         verifyFilesInput();
+//       },
+//       verifyFilesInput = function(e) {
+//         const thisFileInput = form.querySelector("input");
+//         if (droppedFiles) {
+//           thisFileInput.dataset.filecount = droppedFiles.length;
+//           notifyChange(thisFileInput, "dropped");
+//           form.classList.add("populated");
+//         } else if (uploadField.files.length > 0) {
+//           thisFileInput.dataset.filecount = uploadField.files.length;
+//           form.classList.add("populated");
+//         } else {
+//           thisFileInput.dataset.filecount = 0;
+//           form.classList.remove("populated");
+//         }
+//       },
+//       clearInput = function(e) {
+//         e.preventDefault();
+//         e.stopPropagation();
+//         const correspondingInput = e.target.closest(".form-input").querySelector("input");
+//         correspondingInput.value = "";
+//         droppedFiles = correspondingInput.files ? false : droppedFiles;
+//         notifyChange(correspondingInput, "change");
+//       },
+//       notifyChange = function(inputObj, evtType) {
+//         // var evt = document.createEvent("HTMLEvents");
+//          // evt.initEvent(evtType, true, true, true);
+//         const evt = new CustomEvent(evtType);
+//         inputObj.dispatchEvent(evt); // The change event does not trigger when changed programmatically…
+//         console.log(evt);
+//       };
 
-    uploadField.addEventListener("change", handleFileOperation);
+//     uploadField.addEventListener("change", handleFileOperation);
 
-    promptClears.forEach(function(elem, currentIndex, listObj) {
-      elem.addEventListener("click", clearInput);
-    });
+//     promptClears.forEach(function(elem, currentIndex, listObj) {
+//       elem.addEventListener("click", clearInput);
+//     });
 
     // drag&drop files if the feature is available
     if (isAdvancedUpload) {
@@ -105,8 +105,8 @@
         });
       });
       form.addEventListener("drop", function(e) {
-					droppedFiles = e.dataTransfer.files; // the files that were dropped
-					handleFileOperation(droppedFiles);
+					// droppedFiles = e.dataTransfer.files; // the files that were dropped
+					// handleFileOperation(droppedFiles);
       });
     }
 
