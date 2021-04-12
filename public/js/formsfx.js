@@ -32,7 +32,7 @@ const FormFX = function() {
   const specialRadioCheckbox = document.querySelector(".special.radio-text input[type='radio']");
   specialRadioCheckbox.addEventListener("change", focusSpecialText);
   
-  let droppedFiles = {};
+  let allDroppedFiles = {};
 
   const formsBody = document.querySelector(".main");  
   const formsForm = formsBody.querySelector("form");  
@@ -43,7 +43,7 @@ const FormFX = function() {
   allInputs.forEach(function(thisInput, currentIndex) {
     thisInput.addEventListener("change", validateAllInputs);
     if (thisInput.type === "file") {
-      // const droppedFiles = false;
+      const droppedFiles = false;
       const thisForm = thisInput.closest(".form-input"),
       promptClear = thisForm.querySelector("button.clear"),
       fileOutput = thisForm.querySelector(".promptname"),
@@ -55,10 +55,10 @@ const FormFX = function() {
         let inputFiles = {};
         if (typeof passedEvent[0] !== 'undefined') { // Are we being passed a (drag and drop) FileList?
           thisInput.value = "";
-          droppedFiles[thisInput.id] = passedEvent;
+          droppedFiles = passedEvent;
           // notifyChange(thisInput, "change"); // Programmatically trigger the change event.
         } else {
-          droppedFiles[thisInput.id] = false;
+          droppedFiles = false;
           inputFiles = thisInput.files; 
         } 
         fileOutput.textContent = inputFiles.length === 1 ? inputFiles[0].name : inputFiles.length > 1 ? (thisInput.getAttribute("data-multiple-caption") || "").replace("{count}", inputFiles.length): "";
