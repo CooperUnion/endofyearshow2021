@@ -44,27 +44,62 @@ const FormFX = function() {
     thisInput.addEventListener("change", validateAllInputs);
 
     if (thisInput.type === "file") {
+      
+
+      [
+        "drag",
+        "dragstart",
+        "dragend",
+        "dragover",
+        "dragenter",
+        "dragleave",
+        "drop"
+      ].forEach(function(event) {
+        inputBlock.addEventListener(event, function(e) {
+          // preventing the unwanted behaviours
+          e.preventDefault();
+          e.stopPropagation();
+        });
+      });
+      ["dragover", "dragenter"].forEach(function(event) {
+        inputBlock.addEventListener(event, function() {
+          inputBlock.classList.add("is-dragover");
+        });
+      });
+      ["dragleave", "dragend", "drop"].forEach(function(event) {
+        inputBlock.addEventListener(event, function() {
+          inputBlock.classList.remove("is-dragover");
+        });
+      });
+      inputBlock.addEventListener("drop", function(e) {
+        console.log(e.dataTransfer.files);
+					// notifyDrop(inputField, e.dataTransfer.files);
+					// droppedFiles = e.dataTransfer.files; // the files that were dropped
+      });
+    
+
+
+      
       let droppedFiles = false;
       const inputBlock = thisInput.closest(".form-input"), 
             promptClear = inputBlock.querySelector("button.clear"), 
             fileOutput = inputBlock.querySelector(".promptname");
       
-      const handleFileOperation = function(passedEvent) {
-          console.log(passedEvent.dataTransfer);
-
-        if (typeof passedEvent === 'undefined') {
+      const handleFileOperation = function(e) {
+        if (typeof e === 'undefined') { // Should this ever occur?
           fileOutput.textContent = "";
           return false;
         }
         let inputFiles = {};
-        if (typeof passedEvent[0] !== 'undefined') { // Are we being passed a (drag and drop) FileList?
+        if (e.dataTransfer) { // Are we being passed a (drag and drop) FileList?
           thisInput.value = "";
-          droppedFiles = passedEvent;
+          droppedFiles = e.dataTransfer.files;
           validateAllInputs();
         } else {
           droppedFiles = false;
           inputFiles = thisInput.files;
         }
+        console.log(e.dataTransfer);
         fileOutput.textContent = inputFiles.length === 1 ? inputFiles[0].name : inputFiles.length > 1 ? (thisInput.getAttribute("data-multiple-caption") || "").replace("{count}", inputFiles.length) : "";
         updateFileCount();
       }, 

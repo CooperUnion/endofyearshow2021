@@ -103,6 +103,7 @@
         });
       });
       inputBlock.addEventListener("drop", function(e) {
+        console.log(e.dataTransfer.files);
 					// notifyDrop(inputField, e.dataTransfer.files);
 					// droppedFiles = e.dataTransfer.files; // the files that were dropped
       });
