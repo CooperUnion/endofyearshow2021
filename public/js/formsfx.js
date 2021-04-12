@@ -43,7 +43,7 @@ const FormFX = function() {
   allInputs.forEach(function(thisInput, currentIndex) {
     thisInput.addEventListener("change", validateAllInputs);
     if (thisInput.type === "file") {
-      const droppedFiles = false;
+      // const droppedFiles = false;
       const thisForm = thisInput.closest(".form-input"),
       promptClear = thisForm.querySelector("button.clear"),
       fileOutput = thisForm.querySelector(".promptname"),
