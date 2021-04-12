@@ -42,8 +42,8 @@ const FormFX = function() {
   allInputs.forEach(function(thisInput, currentIndex) {
     thisInput.addEventListener("change", validateAllInputs);
     if (thisInput.type === "file") {
-      thisInput.droppedFiles = false;
-      const thisForm = thisInput.closest("form-input"),
+      thisInput.droppedFiles = false; // Not ideal to be storing this data in the DOM, but oh well.
+      const thisForm = thisInput.closest(".form-input"),
       promptClear = thisForm.querySelector("button.clear"),
       fileOutput = thisForm.querySelector(".promptname"),
        handleFileOperation = function(passedEvent) {
@@ -52,13 +52,13 @@ const FormFX = function() {
           return false;
         }
         let inputFiles = {};
-        if (typeof passedEvent[0] !== 'undefined') { // Are we being passed a FileList?
+        if (typeof passedEvent[0] !== 'undefined') { // Are we being passed a (drag and drop) FileList?
           thisInput.value = "";
           inputFiles = passedEvent;
-          notifyChange(thisInput, "change");
+          notifyChange(thisInput, "change"); // Programmatically trigger the change event.
         } else {
           thisInput.droppedFiles = false;
-          inputFiles = thisInput.files;
+          inputFiles = thisInput.files; // If it's a conventional input operation, the change event will fire automatically.
         } 
         fileOutput.textContent = inputFiles.length === 1 ? inputFiles[0].name : inputFiles.length > 1 ? (thisInput.getAttribute("data-multiple-caption") || "").replace("{count}", inputFiles.length): "";
         updateFileCount();
@@ -85,7 +85,7 @@ const FormFX = function() {
       },
       notifyChange = function(inputObj, evtType) {
         const evt = new CustomEvent(evtType);
-        inputObj.dispatchEvent(evt); // The change event does not trigger when changed programmatically…
+        inputObj.dispatchEvent(evt); // The input's change event does not fire when changed programmatically…
         console.log(evt);
       };
 
@@ -228,6 +228,7 @@ const FormFX = function() {
       break;
 
     case "file":
+      console.log(thisInput);
       const filesAdded = parseInt(thisInput.querySelector("input").dataset.filecount, 10) || 0;
         if (filesAdded === 0) {
           isValid = false;
