@@ -42,7 +42,6 @@ const FormFX = function() {
   const allInputs = document.querySelectorAll(".formblock .form-input input, .formblock .form-input textarea");
   allInputs.forEach(function(thisInput, currentIndex) {
     thisInput.addEventListener("change", validateAllInputs);
-
     if (thisInput.type === "file") {
       let droppedFiles = false;
       const inputBlock = thisInput.closest(".form-input"), 
@@ -262,7 +261,8 @@ const FormFX = function() {
       break;
 
     case "file":
-      // console.log(allDroppedFiles);
+      const thisField = thisInput.querySelector("input[type='file']");
+      console.log();
       const filesAdded = parseInt(thisInput.querySelector("input").dataset.filecount, 10) || 0;
       if (filesAdded === 0) {
         isValid = false;
