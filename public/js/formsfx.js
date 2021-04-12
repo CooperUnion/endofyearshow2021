@@ -55,23 +55,23 @@ const FormFX = function() {
         if (typeof passedEvent[0] !== 'undefined') { // Are we being passed a FileList?
           thisInput.value = "";
           inputFiles = passedEvent;
+          notifyChange(thisInput, "change");
         } else {
           thisInput.droppedFiles = false;
           inputFiles = thisInput.files;
         } 
         fileOutput.textContent = inputFiles.length === 1 ? inputFiles[0].name : inputFiles.length > 1 ? (thisInput.getAttribute("data-multiple-caption") || "").replace("{count}", inputFiles.length): "";
+        updateFileCount();
       },
-      verifyFilesInput = function(e) {
-        const thisFileInput = thisForm.querySelector("input");
+      updateFileCount = function(e) {
         if (thisInput.droppedFiles) {
-          thisFileInput.dataset.filecount = thisInput.droppedFiles.length;
-          notifyChange(thisFileInput, "change");
+          thisInput.dataset.filecount = thisInput.droppedFiles.length;
           thisForm.classList.add("populated");
         } else if (thisInput.files.length > 0) {
-          thisFileInput.dataset.filecount = thisInput.files.length;
+          thisInput.dataset.filecount = thisInput.files.length;
           thisForm.classList.add("populated");
         } else {
-          thisFileInput.dataset.filecount = 0;
+          thisInput.dataset.filecount = 0;
           thisForm.classList.remove("populated");
         }
       },
@@ -84,8 +84,6 @@ const FormFX = function() {
         notifyChange(correspondingInput, "change");
       },
       notifyChange = function(inputObj, evtType) {
-        // var evt = document.createEvent("HTMLEvents");
-         // evt.initEvent(evtType, true, true, true);
         const evt = new CustomEvent(evtType);
         inputObj.dispatchEvent(evt); // The change event does not trigger when changed programmatically…
         console.log(evt);
