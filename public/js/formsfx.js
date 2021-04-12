@@ -67,7 +67,6 @@ const FormFX = function() {
           droppedFiles = false;
           inputFiles = thisInput.files;
         }
-        console.log(inputFiles.length);
         fileOutput.textContent = inputFiles.length === 1 ? inputFiles[0].name : inputFiles.length > 1 ? (thisInput.getAttribute("data-multiple-caption") || "").replace("{count}", inputFiles.length) : "";
         updateFileCount();
       }
@@ -97,7 +96,6 @@ const FormFX = function() {
       function notifyChange(inputObj) {
         const evt = new Event("change");
         inputObj.dispatchEvent(evt);
-        console.log(evt);
       }
 
       ["drag",
