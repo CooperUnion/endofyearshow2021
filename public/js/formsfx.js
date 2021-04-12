@@ -43,7 +43,6 @@ const FormFX = function() {
   allInputs.forEach(function(thisInput, currentIndex) {
     thisInput.addEventListener("change", validateAllInputs);
     if (thisInput.type === "file") {
-      let droppedFiles = false;
       const inputBlock = thisInput.closest(".form-input"), 
             promptClear = inputBlock.querySelector("button.clear"), 
             fileOutput = inputBlock.querySelector(".promptname");
@@ -55,27 +54,22 @@ const FormFX = function() {
           fileOutput.textContent = "";
           return false;
         }
-        let inputFiles = {};
+        // let inputFiles = {};
         if (e.dataTransfer) { // Are we being passed a (drag and drop) FileList?
-          droppedFiles = true;
           thisInput.value = "";
-          inputFiles = e.dataTransfer.files;
+          thisInput.submittedFiles = e.dataTransfer.files;
           allDroppedFiles[thisInput.id] = e.dataTransfer.files;
           validateAllInputs();
         } else {
-          droppedFiles = false;
-          inputFiles = thisInput.files;
+          thisInput.submittedFiles = thisInput.files;
         }
-        fileOutput.textContent = inputFiles.length === 1 ? inputFiles[0].name : inputFiles.length > 1 ? (thisInput.getAttribute("data-multiple-caption") || "").replace("{count}", inputFiles.length) : "";
+        fileOutput.textContent = thisInput.submittedFiles.length === 1 ? thisInput.submittedFiles[0].name : thisInput.submittedFiles.length > 1 ? (thisInput.submittedFiles.getAttribute("data-multiple-caption") || "").replace("{count}", thisInput.submittedFiles.length) : "";
         updateFileCount();
       }
       
-      function updateFileCount(e) {
-        if (droppedFiles) {
-          thisInput.dataset.filecount = droppedFiles.length;
-          inputBlock.classList.add("populated");
-        } else if (thisInput.files.length > 0) {
-          thisInput.dataset.filecount = thisInput.files.length;
+      function updateFileCount() {
+        if (thisInput.submittedFiles.length > 0) {
+          thisInput.dataset.filecount = thisInput.submittedFiles.length;
           inputBlock.classList.add("populated");
         } else {
           thisInput.dataset.filecount = 0;
@@ -87,7 +81,6 @@ const FormFX = function() {
         e.preventDefault();
         e.stopPropagation();
         thisInput.value = "";
-        droppedFiles = thisInput.files ? false : droppedFiles;
         allDroppedFiles[thisInput.id] = {};
         notifyChange(thisInput); // The input's change event does not fire when changed programmatically
       }
@@ -262,7 +255,9 @@ const FormFX = function() {
 
     case "file":
       const thisField = thisInput.querySelector("input[type='file']");
-      console.log();
+      if (allDroppedFiles[thisField.id]) {
+        console.log(this);
+      };
       const filesAdded = parseInt(thisInput.querySelector("input").dataset.filecount, 10) || 0;
       if (filesAdded === 0) {
         isValid = false;
