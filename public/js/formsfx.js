@@ -68,6 +68,7 @@ const FormFX = function() {
         if (droppedFiles) {
           thisInput.dataset.filecount = droppedFiles.length;
           thisForm.classList.add("populated");
+          allDroppedFiles[thisInput.id] = droppedFiles;
         } else if (thisInput.files.length > 0) {
           thisInput.dataset.filecount = thisInput.files.length;
           thisForm.classList.add("populated");
@@ -80,9 +81,10 @@ const FormFX = function() {
         e.preventDefault();
         e.stopPropagation();
         const correspondingInput = e.target.closest(".form-input").querySelector("input");
-        correspondingInput.value = "";
-        droppedFiles = correspondingInput.files ? false : droppedFiles;
-        notifyChange(correspondingInput, "change");
+        thisInput.value = "";
+        droppedFiles = thisInput.files ? false : droppedFiles;
+        allDroppedFiles[thisInput.id] = false;
+        notifyChange(thisInput;
       },
       notifyChange = function(inputObj, evtType) {
         const evt = new CustomEvent(evtType);
