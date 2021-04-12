@@ -44,48 +44,14 @@ const FormFX = function() {
     thisInput.addEventListener("change", validateAllInputs);
 
     if (thisInput.type === "file") {
-      
-
-      [
-        "drag",
-        "dragstart",
-        "dragend",
-        "dragover",
-        "dragenter",
-        "dragleave",
-        "drop"
-      ].forEach(function(event) {
-        inputBlock.addEventListener(event, function(e) {
-          // preventing the unwanted behaviours
-          e.preventDefault();
-          e.stopPropagation();
-        });
-      });
-      ["dragover", "dragenter"].forEach(function(event) {
-        inputBlock.addEventListener(event, function() {
-          inputBlock.classList.add("is-dragover");
-        });
-      });
-      ["dragleave", "dragend", "drop"].forEach(function(event) {
-        inputBlock.addEventListener(event, function() {
-          inputBlock.classList.remove("is-dragover");
-        });
-      });
-      inputBlock.addEventListener("drop", function(e) {
-        console.log(e.dataTransfer.files);
-					// notifyDrop(inputField, e.dataTransfer.files);
-					// droppedFiles = e.dataTransfer.files; // the files that were dropped
-      });
-    
-
-
-      
       let droppedFiles = false;
       const inputBlock = thisInput.closest(".form-input"), 
             promptClear = inputBlock.querySelector("button.clear"), 
             fileOutput = inputBlock.querySelector(".promptname");
+
+      inputBlock.classList.add("has-advanced-upload"); // letting the CSS part to know drag&drop is supported by the browser
       
-      const handleFileOperation = function(e) {
+      function handleFileOperation(e) {
         if (typeof e === 'undefined') { // Should this ever occur?
           fileOutput.textContent = "";
           return false;
@@ -102,8 +68,9 @@ const FormFX = function() {
         console.log(e.dataTransfer);
         fileOutput.textContent = inputFiles.length === 1 ? inputFiles[0].name : inputFiles.length > 1 ? (thisInput.getAttribute("data-multiple-caption") || "").replace("{count}", inputFiles.length) : "";
         updateFileCount();
-      }, 
-      updateFileCount = function(e) {
+      }
+      
+      function updateFileCount(e) {
         if (droppedFiles) {
           thisInput.dataset.filecount = droppedFiles.length;
           inputBlock.classList.add("populated");
@@ -115,24 +82,49 @@ const FormFX = function() {
           thisInput.dataset.filecount = 0;
           inputBlock.classList.remove("populated");
         }
-      },
-      clearInput = function(e) {
+      }
+      
+      function clearInput(e) {
         e.preventDefault();
         e.stopPropagation();
         thisInput.value = "";
         droppedFiles = thisInput.files ? false : droppedFiles;
         allDroppedFiles[thisInput.id] = false;
         notifyChange(thisInput); // The input's change event does not fire when changed programmatically
-      }, 
-      notifyChange = function(inputObj) {
+      }
+      
+      function notifyChange(inputObj) {
         const evt = new Event("change");
         inputObj.dispatchEvent(evt);
         console.log(evt);
-      };
+      }
+
+      ["drag",
+        "dragstart",
+        "dragend",
+        "dragover",
+        "dragenter",
+        "dragleave",
+        "drop"].forEach(function(event) {
+        inputBlock.addEventListener(event, function(e) {
+          // preventing the unwanted behaviours
+          e.preventDefault();
+          e.stopPropagation();
+        });
+      });
+      ["dragover", "dragenter"].forEach(function(event) {
+        inputBlock.addEventListener(event, function() {
+          inputBlock.classList.add("is-dragover");
+        });
+      });
+      ["dragleave", "dragend", "drop"].forEach(function(event) {
+        inputBlock.addEventListener(event, function() {
+          inputBlock.classList.remove("is-dragover");
+        });
+      });
+      inputBlock.addEventListener("drop", handleFileOperation);
 
       thisInput.addEventListener("change", handleFileOperation);
-      inputBlock.addEventListener("drop", handleFileOperation); // This event is fired by the other script.
-
       promptClear.addEventListener("click", clearInput);
 
       // thisInput.addEventListener("dropped", validateAllInputs); // Drag-and-drop overlays require custom events.
