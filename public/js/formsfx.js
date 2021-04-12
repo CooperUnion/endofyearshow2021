@@ -56,7 +56,7 @@ const FormFX = function() {
         if (typeof passedEvent[0] !== 'undefined') { // Are we being passed a (drag and drop) FileList?
           thisInput.value = "";
           droppedFiles = passedEvent;
-          // notifyChange(thisInput, "change"); // Programmatically trigger the change event.
+          notifyChange(thisInput); // The input's change event does not fire when changed programmatically…
         } else {
           droppedFiles = false;
           inputFiles = thisInput.files; 
@@ -84,11 +84,11 @@ const FormFX = function() {
         thisInput.value = "";
         droppedFiles = thisInput.files ? false : droppedFiles;
         allDroppedFiles[thisInput.id] = false;
-        notifyChange(thisInput;
+        notifyChange(thisInput); // The input's change event does not fire when changed programmatically…
       },
-      notifyChange = function(inputObj, evtType) {
-        const evt = new CustomEvent(evtType);
-        inputObj.dispatchEvent(evt); // The input's change event does not fire when changed programmatically…
+      notifyChange = function(inputObj) {
+        const evt = new Event("change");
+        inputObj.dispatchEvent(evt); 
         console.log(evt);
       };
 
@@ -230,13 +230,13 @@ const FormFX = function() {
         }
       break;
 
-    // case "file":
-    //   console.log(thisInput);
-    //   const filesAdded = parseInt(thisInput.querySelector("input").dataset.filecount, 10) || 0;
-    //     if (filesAdded === 0) {
-    //       isValid = false;
-    //     }
-    //   break;
+    case "file":
+      console.log(allDroppedFiles);
+      const filesAdded = parseInt(thisInput.querySelector("input").dataset.filecount, 10) || 0;
+        if (filesAdded === 0) {
+          isValid = false;
+        }
+      break;
 
 
     default:
