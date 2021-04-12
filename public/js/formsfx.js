@@ -29,7 +29,6 @@ const FormFX = function() {
   const specialRadioText = document.querySelector(".special.radio-text input[type='text']");
   specialRadioText.addEventListener("focus", forceRadioCheck);
   specialRadioText.addEventListener("blur", validateSpecialRadio);
-
   const specialRadioCheckbox = document.querySelector(".special.radio-text input[type='radio']");
   specialRadioCheckbox.addEventListener("change", focusSpecialText);
 
