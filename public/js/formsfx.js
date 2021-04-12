@@ -42,7 +42,60 @@ const FormFX = function() {
   allInputs.forEach(function(thisInput, currentIndex) {
     thisInput.addEventListener("change", validateAllInputs);
     if (thisInput.type === "file") {
-      thisInput.addEventListener("dropped", validateAllInputs); // Drag-and-drop overlays require custom events.
+      thisInput.droppedFiles = false;
+      const thisForm = thisInput.closest("form-input"),
+      promptClear = thisForm.querySelector("button.clear"),
+      fileOutput = thisForm.querySelector(".promptname"),
+       handleFileOperation = function(passedEvent) {
+        if (typeof passedEvent === 'undefined') {
+          fileOutput.textContent = "";
+          return false;
+        }
+        let inputFiles = {};
+        if (typeof passedEvent[0] !== 'undefined') { // Are we being passed a FileList?
+          thisInput.value = "";
+          inputFiles = passedEvent;
+        } else {
+          thisInput.droppedFiles = false;
+          inputFiles = thisInput.files;
+        } 
+        fileOutput.textContent = inputFiles.length === 1 ? inputFiles[0].name : inputFiles.length > 1 ? (thisInput.getAttribute("data-multiple-caption") || "").replace("{count}", inputFiles.length): "";
+      },
+      verifyFilesInput = function(e) {
+        const thisFileInput = thisForm.querySelector("input");
+        if (thisInput.droppedFiles) {
+          thisFileInput.dataset.filecount = thisInput.droppedFiles.length;
+          notifyChange(thisFileInput, "change");
+          thisForm.classList.add("populated");
+        } else if (thisInput.files.length > 0) {
+          thisFileInput.dataset.filecount = thisInput.files.length;
+          thisForm.classList.add("populated");
+        } else {
+          thisFileInput.dataset.filecount = 0;
+          thisForm.classList.remove("populated");
+        }
+      },
+      clearInput = function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const correspondingInput = e.target.closest(".form-input").querySelector("input");
+        correspondingInput.value = "";
+        thisInput.droppedFiles = correspondingInput.files ? false : thisInput.droppedFiles;
+        notifyChange(correspondingInput, "change");
+      },
+      notifyChange = function(inputObj, evtType) {
+        // var evt = document.createEvent("HTMLEvents");
+         // evt.initEvent(evtType, true, true, true);
+        const evt = new CustomEvent(evtType);
+        inputObj.dispatchEvent(evt); // The change event does not trigger when changed programmatically…
+        console.log(evt);
+      };
+
+    thisInput.addEventListener("change", handleFileOperation);
+
+    promptClear.addEventListener("click", clearInput); 
+      
+    thisInput.addEventListener("dropped", validateAllInputs); // Drag-and-drop overlays require custom events.
     } 
   });
   
