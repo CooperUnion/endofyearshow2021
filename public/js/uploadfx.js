@@ -62,13 +62,11 @@
 //         droppedFiles = correspondingInput.files ? false : droppedFiles;
 //         notifyChange(correspondingInput, "change");
 //       },
-//       notifyChange = function(inputObj, evtType) {
-//         // var evt = document.createEvent("HTMLEvents");
-//          // evt.initEvent(evtType, true, true, true);
-//         const evt = new CustomEvent(evtType);
-//         inputObj.dispatchEvent(evt); // The change event does not trigger when changed programmatically…
-//         console.log(evt);
-//       };
+      const notifyChange = function(inputObj) {
+        const evt = new CustomEvent("change");
+        inputObj.dispatchEvent(evt); // The change event does not trigger when changed programmatically…
+        console.log(evt);
+      };
 
 //     uploadField.addEventListener("change", handleFileOperation);
 
@@ -105,8 +103,8 @@
         });
       });
       inputBlock.addEventListener("drop", function(e) {
+					notifyChange(inputField);
 					// droppedFiles = e.dataTransfer.files; // the files that were dropped
-					// handleFileOperation(droppedFiles);
       });
     }
 

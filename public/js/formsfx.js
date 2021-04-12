@@ -41,7 +41,7 @@ const FormFX = function() {
 
   const allInputs = document.querySelectorAll(".formblock .form-input input, .formblock .form-input textarea");
   allInputs.forEach(function(thisInput, currentIndex) {
-    thisInput.addEventListener("change", validateAllInputs);
+    thisInput.addEventListener("change", validateAllInputs); 
     if (thisInput.type === "file") {
       const droppedFiles = false;
       const thisForm = thisInput.closest(".form-input"),
