@@ -104,8 +104,11 @@ let allDroppedFiles = {};
 
 async function validateAndSubmit(e) {
   for (let key in allDroppedFiles) {
-  console.log(allDroppedFiles[key]);
-}
+    Array.from(allDroppedFiles[key]).forEach(file => { 
+      console.log(file);
+    });
+
+  }
 
 
 
