@@ -63,7 +63,7 @@ const FormFX = function() {
         } else {
           thisInput.submittedFiles = thisInput.files;
         }
-        fileOutput.textContent = thisInput.submittedFiles.length === 1 ? thisInput.submittedFiles[0].name : thisInput.submittedFiles.length > 1 ? (thisInput.submittedFiles.getAttribute("data-multiple-caption") || "").replace("{count}", thisInput.submittedFiles.length) : "";
+        fileOutput.textContent = thisInput.submittedFiles.length === 1 ? thisInput.submittedFiles[0].name : thisInput.submittedFiles.length > 1 ? (thisInput.getAttribute("data-multiple-caption") || "").replace("{count}", thisInput.submittedFiles.length) : "";
         updateFileCount();
       }
       
@@ -255,9 +255,9 @@ const FormFX = function() {
 
     case "file":
         
-     console.log(thisInput.id in allDroppedFiles);
+      const filesSelected = thisInput.querySelector("input").files.length;
 
-      if (!(thisInput.id in allDroppedFiles) && thisInput.files.length === 0) {
+      if (!(thisInput.id in allDroppedFiles) && filesSelected === 0) {
         isValid = false;
       }      
 
