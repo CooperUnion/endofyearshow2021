@@ -1,6 +1,7 @@
 dependencies:
   '@azure/msal-node': 1.0.1
   cookie-session: 1.4.0
+  csv-reader: 1.0.7
   express: 4.17.1
   express-handlebars: 5.3.0
   lowdb: 1.0.0
@@ -160,6 +161,12 @@ packages:
     dev: false
     resolution:
       integrity: sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
+  /csv-reader/1.0.7:
+    dev: false
+    engines:
+      node: '>=8.0.0'
+    resolution:
+      integrity: sha512-sJ2kh1MPsYJ53r/yBdv+QvgGbigIaBYps1L2JcTe2Z/kX/Qs5Ciy/czgMTl1/qjvDK3tIPVNvwJlMDHQHDGJFw==
   /debug/2.6.9:
     dependencies:
       ms: 2.0.0
@@ -859,6 +866,7 @@ shrinkwrapVersion: 3
 specifiers:
   '@azure/msal-node': ^1.0.1
   cookie-session: ^1.4.0
+  csv-reader: ^1.0.6
   express: ^4.17.1
   express-handlebars: ^5.3.0
   lowdb: ^1.0.0

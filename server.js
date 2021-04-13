@@ -6,7 +6,8 @@ const msalAuth = require('./routes/msal-auth');
 const fetch = require('node-fetch');
 const exphbs  = require('express-handlebars');
 const multer = require('multer');
-const upload = multer({ dest: 'uploads/' })
+const upload = multer({ dest: 'uploads/' });
+// const data = require('./routes/data');
 
 
 app.engine('html', exphbs({extname: '.html'}));
@@ -54,6 +55,14 @@ app.get('/form', async (req, res)=>{
   } 
   
   return res.render('form', renderOptions)
+})
+
+
+app.get('/dataTest', async (req, res)=>{
+  
+  
+  
+  res.end("done")
 })
 
 app.get('/test', async (req, res)=>{
