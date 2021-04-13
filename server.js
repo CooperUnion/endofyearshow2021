@@ -6,7 +6,22 @@ const msalAuth = require('./routes/msal-auth');
 const fetch = require('node-fetch');
 const exphbs  = require('express-handlebars');
 const multer = require('multer');
-const upload = multer({ dest: 'uploads/' });
+// const upload = multer({ dest: 'uploads/' });
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/')
+  },
+  filename: function (req, file, cb) {
+    
+    
+    
+    cb(null, file.originalname + '-')
+  }
+})
+ 
+var upload = multer({ storage: storage })
+
+
 // const data = require('./routes/data');
 
 
