@@ -2,8 +2,90 @@ const formsForm = document.querySelector("form");
 const submitButton = document.querySelector("button[type='button']");
 submitButton.addEventListener("click", validateAndSubmit);
 
-function PromiseValidateAndSubmit(e) {
+let allDroppedFiles = {};
 
+  const allInputs = document.querySelectorAll(".formblock .form-input input");
+  allInputs.forEach(function(thisInput, currentIndex) {
+    if (thisInput.type === "file") {
+      const inputBlock = thisInput.closest(".form-input"), 
+            promptClear = inputBlock.querySelector("button.clear"), 
+            fileOutput = inputBlock.querySelector(".promptname");
+
+      inputBlock.classList.add("has-advanced-upload"); // letting the CSS part to know drag&drop is supported by the browser
+      
+      function handleFileOperation(e) {
+        if (typeof e === 'undefined') { // Should this ever occur?
+          fileOutput.textContent = "";
+          return false;
+        }
+        // let inputFiles = {};
+        if (e.dataTransfer) { // Are we being passed a (drag and drop) FileList?
+          thisInput.value = "";
+          thisInput.submittedFiles = e.dataTransfer.files;
+          allDroppedFiles[thisInput.id] = e.dataTransfer.files;
+        } else {
+          thisInput.submittedFiles = thisInput.files;
+        }
+        fileOutput.textContent = thisInput.submittedFiles.length === 1 ? thisInput.submittedFiles[0].name : thisInput.submittedFiles.length > 1 ? (thisInput.submittedFiles.getAttribute("data-multiple-caption") || "").replace("{count}", thisInput.submittedFiles.length) : "";
+        updateFileCount();
+      }
+      
+      function updateFileCount() {
+        if (thisInput.submittedFiles.length > 0) {
+          thisInput.dataset.filecount = thisInput.submittedFiles.length;
+          inputBlock.classList.add("populated");
+        } else {
+          thisInput.dataset.filecount = 0;
+          inputBlock.classList.remove("populated");
+        }
+      }
+      
+      function clearInput(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        thisInput.value = "";
+        allDroppedFiles[thisInput.id] = {};
+        notifyChange(thisInput); // The input's change event does not fire when changed programmatically
+      }
+      
+      function notifyChange(inputObj) {
+        const evt = new Event("change");
+        inputObj.dispatchEvent(evt);
+      }
+
+      ["drag",
+        "dragstart",
+        "dragend",
+        "dragover",
+        "dragenter",
+        "dragleave",
+        "drop"].forEach(function(event) {
+        inputBlock.addEventListener(event, function(e) {
+          // preventing the unwanted behaviours
+          e.preventDefault();
+          e.stopPropagation();
+        });
+      });
+      ["dragover", "dragenter"].forEach(function(event) {
+        inputBlock.addEventListener(event, function() {
+          inputBlock.classList.add("is-dragover");
+        });
+      });
+      ["dragleave", "dragend", "drop"].forEach(function(event) {
+        inputBlock.addEventListener(event, function() {
+          inputBlock.classList.remove("is-dragover");
+        });
+      });
+      inputBlock.addEventListener("drop", handleFileOperation);
+
+      thisInput.addEventListener("change", handleFileOperation);
+      promptClear.addEventListener("click", clearInput);
+    }
+  });
+
+
+
+function PromiseValidateAndSubmit(e) {
   e.preventDefault();
   const formData = new FormData(formsForm);
   fetch("/form", {
