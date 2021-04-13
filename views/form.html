@@ -10,6 +10,11 @@
 </head>
 <body>
 <header class="introduction">
+      {{#data.user}}
+    <h1>
+      Welcome, {{name}}.
+    </h1>
+    {{/data.user}}
 	<h1>
 		EOYS 2021 Submission Form 
 	</h1>
@@ -26,6 +31,9 @@
 </header>
 <article class="main">
   <form>
+
+    <!-- {{data.user.name}} {{data.user.email}} -->
+    
     <fieldset class="section-personalinfo">
       <legend>Personal Information</legend> 
       <div class="formblock" data-required="required">

@@ -36,7 +36,7 @@ app.use(express.static("public"));
 
 app.get('/', msalAuth.validate, (req, res) => {
   
-  res.json(req.session.user)
+  res.redirect('/form')
 });
 
 app.get('/redirect', msalAuth.redirect)
@@ -58,7 +58,8 @@ app.get('/form', async (req, res)=>{
   const data = {
     students,
     teachers,
-    courses
+    courses,
+    user:req.session.user || undefined
   }
   
   const renderOptions = {
