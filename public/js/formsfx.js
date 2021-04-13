@@ -256,7 +256,6 @@ const FormFX = function() {
     case "file":
         
       const thisInputField = thisInput.querySelector("input[type='file']");
-        console.log(allDroppedFiles);
       if (!(thisInputField.id in allDroppedFiles) && thisInputField.files.length === 0) {
         isValid = false;
       }      
