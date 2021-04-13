@@ -104,6 +104,8 @@ let allDroppedFiles = {};
 
 async function validateAndSubmit(e) {
  console.log(Object.keys(allDroppedFiles).length); // Number of FileLists, not number of files
+ console.log(allInputs[0].files.length); // Number of FileLists, not number of files
+
 
 
   e.preventDefault();
