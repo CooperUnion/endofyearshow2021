@@ -42,18 +42,28 @@ app.get('/form', async (req, res)=>{
   let teachers = await fetch ('https://eoys-uploader-2021.glitch.me/teachers').then((request)=>{return request.json()})
   let courses = await fetch ('https://eoys-uploader-2021.glitch.me/courses').then((request)=>{return request.json()})
 
-  let data = {
+  const data = {
     students,
     teachers,
     courses
   }
   
-  let renderOptions = {
+  const renderOptions = {
     data,
     layout: false
   } 
   
   return res.render('form', renderOptions)
+})
+
+app.get('/test', async (req, res)=>{
+  
+  const data = {}
+  const renderOptions = {
+    data,
+    layout: false
+  } 
+  return res.render('smallform', renderOptions)
 })
 
 app.post('/form', upload.any(), async(req, res)=>{
