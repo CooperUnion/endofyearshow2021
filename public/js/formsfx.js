@@ -47,7 +47,7 @@ const FormFX = function() {
             promptClear = inputBlock.querySelector("button.clear"), 
             fileOutput = inputBlock.querySelector(".promptname");
 
-      inputBlock.classList.add("has-advanced-upload"); // letting the CSS part to know drag&drop is supported by the browser
+      inputBlock.classList.add("has-advanced-upload"); // designating the file-select inputs for drag-and-drop decoration
       
       function handleFileOperation(e) {
         if (typeof e === 'undefined') { // Should this ever occur?
@@ -81,7 +81,7 @@ const FormFX = function() {
         e.preventDefault();
         e.stopPropagation();
         thisInput.value = "";
-        allDroppedFiles[thisInput.id] = {};
+        delete allDroppedFiles[thisInput.id];
         notifyChange(thisInput); // The input's change event does not fire when changed programmatically
       }
       
@@ -255,9 +255,9 @@ const FormFX = function() {
 
     case "file":
         
-      const filesSelected = thisInput.querySelector("input").files.length;
-console.log(thisInput.id in allDroppedFiles);
-      if (!(thisInput.id in allDroppedFiles) && filesSelected === 0) {
+      const thisInputField = thisInput.querySelector("input[type='file']");
+        console.log(allDroppedFiles);
+      if (!(thisInputField.id in allDroppedFiles) && thisInputField.files.length === 0) {
         isValid = false;
       }      
 
