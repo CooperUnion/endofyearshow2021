@@ -28,14 +28,23 @@ const fetchCsv = async (file)=>{
 }
 
 
-const students = async ()=>{
+exports.students = async ()=>{
   
-  let studentData = await fetchCsv('students.csv')
-  console.log(studentData)
+  return await fetchCsv('students.csv')  
   
 }
 
-
- 
-
-module.export = 
+exports.faculty = async ()=>{
+  const facultyData = await fetchCsv('faculty-and-classes.csv')
+  let formattedFacultyData = facultyData.map((course)=>{
+    return {
+      name: course['FIRST NAME'] + ' ' + course['LAST NAME']
+    }
+  })
+  
+  let deduplicatedFacultyData = new Set(formattedFacultyData)
+  
+  
+  return deduplicatedFacultyData
+  
+}

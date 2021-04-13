@@ -72,10 +72,9 @@ app.get('/form', async (req, res)=>{
 
 app.get('/dataTest', async (req, res)=>{
   
-  let studentData = await data.students()
+  let csvData = await data.faculty()
   
-  
-  res.json(studentData)
+  res.json(csvData)
 })
 
 app.get('/test', async (req, res)=>{
