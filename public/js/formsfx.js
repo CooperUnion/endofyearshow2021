@@ -256,7 +256,7 @@ const FormFX = function() {
     case "file":
         
       const filesSelected = thisInput.querySelector("input").files.length;
-console.log(thisInput.querySelector("input").files);
+console.log(thisInput.id in allDroppedFiles);
       if (!(thisInput.id in allDroppedFiles) && filesSelected === 0) {
         isValid = false;
       }      
