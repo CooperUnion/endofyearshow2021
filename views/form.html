@@ -54,6 +54,14 @@
           <input id="lastname" name="lastname" type="text" placeholder="Last name">
         </div>
       </div>
+      {{#data.user}}
+      <div class="formblock hidden">
+<!--         <label class="titlelabel" for="email" data-anchor="email">E-mail</label>  -->
+        <div class="form-input" data-inputtype="email">
+          <input id="email" name="email" type="hidden" value="{{email}}">
+        </div>
+      </div>   
+      {{/data.user}}
       <div class="formblock" data-required="required">
         <span class="pseudolabel" data-anchor="academicyear">Academic year</span> 
         <div class="form-input" data-inputtype="radio">

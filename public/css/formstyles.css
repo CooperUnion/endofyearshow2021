@@ -52,6 +52,13 @@ fieldset.hide {
   position: relative;
 }
 
+
+.formblock.hidden {
+	margin-bottom: 2rem;
+  position: relative;
+}
+
+
 .validation-active .formblock.invalid .titlelabel,
 .validation-active .formblock.invalid .pseudolabel {
   color: #900;

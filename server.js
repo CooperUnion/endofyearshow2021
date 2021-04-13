@@ -59,7 +59,7 @@ app.get('/form', async (req, res)=>{
     students,
     teachers,
     courses,
-    user:req.session.user || undefined
+    user:req.session.user || {name:"mike", email:"mike@test.com"}
   }
   
   const renderOptions = {
