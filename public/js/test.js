@@ -18,15 +18,15 @@ let allDroppedFiles = {};
           fileOutput.textContent = "";
           return false;
         }
-        // let inputFiles = {};
         if (e.dataTransfer) { // Are we being passed a (drag and drop) FileList?
           thisInput.value = "";
           thisInput.submittedFiles = e.dataTransfer.files;
           allDroppedFiles[thisInput.id] = e.dataTransfer.files;
-        } else {
+         } else {
           thisInput.submittedFiles = thisInput.files;
         }
-        fileOutput.textContent = thisInput.submittedFiles.length === 1 ? thisInput.submittedFiles[0].name : thisInput.submittedFiles.length > 1 ? (thisInput.submittedFiles.getAttribute("data-multiple-caption") || "").replace("{count}", thisInput.submittedFiles.length) : "";
+        
+       fileOutput.textContent = thisInput.submittedFiles.length === 1 ? thisInput.submittedFiles[0].name : thisInput.submittedFiles.length > 1 ? (thisInput.getAttribute("data-multiple-caption") || "").replace("{count}", thisInput.submittedFiles.length) : "";
         updateFileCount();
       }
       
@@ -44,7 +44,7 @@ let allDroppedFiles = {};
         e.preventDefault();
         e.stopPropagation();
         thisInput.value = "";
-        allDroppedFiles[thisInput.id] = {};
+        delete allDroppedFiles[thisInput.id];
         notifyChange(thisInput); // The input's change event does not fire when changed programmatically
       }
       
@@ -103,7 +103,7 @@ let allDroppedFiles = {};
 // }
 
 async function validateAndSubmit(e) {
- console.log(allDroppedFiles.fileList);
+ console.log(Object.keys(allDroppedFiles).length); // Number of FileLists, not number of files
 
 
   e.preventDefault();
