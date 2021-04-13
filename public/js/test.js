@@ -33,6 +33,6 @@ async function validateAndSubmit(e) {
   const json = await response.json()
   console.log(json)
   
-  document.querySelector('code').innerHTML = json
+  document.querySelector('code').innerHTML = JSON.stringify(json)
 }
     

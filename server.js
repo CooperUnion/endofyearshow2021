@@ -19,7 +19,7 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage })
 
 
-// const data = require('./routes/data');
+const data = require('./routes/data');
 
 
 app.engine('html', exphbs({extname: '.html'}));
@@ -72,9 +72,10 @@ app.get('/form', async (req, res)=>{
 
 app.get('/dataTest', async (req, res)=>{
   
+  let studentData = await data.students()
   
   
-  res.end("done")
+  res.json(studentData)
 })
 
 app.get('/test', async (req, res)=>{
