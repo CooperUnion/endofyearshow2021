@@ -42,6 +42,20 @@
             <small class="prompt">file: <output class="promptname"></output><button class="clear">clear</button></small>
           </div>
         </div>
+      <div class="formblock" data-required="required">
+        <span class="pseudolabel" data-anchor="thumbnailupload">Thumbnail</span> 
+        <p class="label-context">
+          Please upload an image (png preferably, jpg or gif) to use as a thumbnail or key art for this work (640px as the widest dimension). 
+        </p>
+        <p class="label-context">
+          NOTE: DO NOT upload anything other than an above image file type, despite what the form says.
+        </p>
+        <div class="form-input" data-inputtype="file">
+          <input id="thumbnailupload" name="thumbnailupload" class="input-file" type="file" data-multiple-caption="{count} files queued for upload">
+          <label for="thumbnailupload"><span class="button">Select a file</span><span> or drag it here</span>.</label> 
+          <small class="prompt">file: <output class="promptname"></output><button class="clear">clear</button></small>
+        </div>
+      </div>        
       </fieldset>
       <button type="button">Submit</button>
     </form>
