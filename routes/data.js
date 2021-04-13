@@ -2,13 +2,11 @@ const fs = require('fs')
 const CsvReadableStream = require('csv-reader')
 
 
-const students = ()=>{
+const fetchCsv = async (file)=>{
   
-}
+  let stream =  fs.createReadStream(`./.data/${file}`, 'utf8')
 
-let studentStream =  fs.createReadStream('./.data/students.csv', 'utf8')
-
-studentStream
+  stream
     .pipe(new CsvReadableStream({ 
       parseNumbers: true, 
       parseBooleans: true, 
@@ -21,6 +19,15 @@ studentStream
     .on('end', function (data) {
         console.log('No more rows!');
     });
+  
+}
+
+
+const students = ()=>{
+  
+}
+
+
  
 
 module.export = {}

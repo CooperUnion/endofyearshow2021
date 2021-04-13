@@ -77,7 +77,7 @@ app.get('/test', async (req, res)=>{
 
 app.post('/form', upload.any(), async(req, res)=>{
 
-  console.log(req.body, req.files)
+  console.log({body:req.body, files: req.files})
 
   res.end("ok... check the server console")
 
