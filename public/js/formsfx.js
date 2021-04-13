@@ -257,7 +257,7 @@ const FormFX = function() {
       const filesAdded = 0;
       const thisField = thisInput.querySelector("input[type='file']");
       if (allDroppedFiles[thisField.id]) {
-        filesAdded = allDroppedFiles[thisField.id].length);
+        filesAdded += allDroppedFiles[thisField.id].length);
       } else if() {
         
         
