@@ -93,7 +93,8 @@ app.post('/form', upload.any(), async(req, res)=>{
 
   req.files = req.files.map((file)=>{
     
-    file.fullpath = 'https://eoys-uploader-2021.glitch.me/file/'
+    file.fullpath = 'https://eoys-uploader-2021.glitch.me/file/' + file.filename
+    return file
     
   })
   res.json(req.files)
