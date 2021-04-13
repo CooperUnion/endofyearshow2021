@@ -36,15 +36,18 @@ exports.students = async ()=>{
 
 exports.faculty = async ()=>{
   const facultyData = await fetchCsv('faculty-and-classes.csv')
-  let formattedFacultyData = facultyData.map((course)=>{
-    return {
-      name: course['FIRST NAME'] + ' ' + course['LAST NAME']
+  
+  let dedupedData = new Set()
+  for (let course of facultyData) {
+    let faculty = {
+      name: course['FIRST NAME'] + ' ' + course['LAST NAME'],
+      first: course['FIRST NAME'],
+      last: course['LAST NAME']
     }
-  })
-  
-  let deduplicatedFacultyData = new Set(formattedFacultyData)
-  
-  
-  return deduplicatedFacultyData
-  
+    
+    let facultyString = JSON.stringify(faculty)
+    dedupedData.add(facultyString)
+  }
+   
+  return Array.from(dedupedData).map(JSON.parse)
 }
