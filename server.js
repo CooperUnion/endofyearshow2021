@@ -72,7 +72,7 @@ app.get('/form', async (req, res)=>{
 
 app.get('/dataTest', async (req, res)=>{
   
-  let csvData = await data.faculty()
+  let csvData = await data.courses()
   
   res.json(csvData)
 })
@@ -107,25 +107,22 @@ app.get('/file/:filename', (req, res)=>{
 })
 
 
-app.get('/students', (req, res)=>{
-  res.json([
-    {id:1,name:'student 1'},
-    {id:2,name:'student 2'}
-  ])
+app.get('/students', async (req, res)=>{
+  let csvData = await data.students()
+  
+  res.json(csvData)
 })
 
-app.get('/teachers', (req, res)=>{
-  res.json([
-    {id:1,name:'teacher 1'},
-    {id:2,name:'teacher 2'}
-  ])
+app.get('/teachers', async (req, res)=>{
+  let csvData = await data.faculty()
+  
+  res.json(csvData)
 })
 
-app.get('/courses', (req, res)=>{
-  res.json([
-    {id:1,name:'course 1'},
-    {id:2,name:'course 2'}
-  ])
+app.get('/courses', async (req, res)=>{
+  let csvData = await data.courses()
+  
+  res.json(csvData)
 })
 
 // listen for requests :)

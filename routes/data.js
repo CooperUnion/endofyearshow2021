@@ -38,7 +38,9 @@ exports.faculty = async ()=>{
   const facultyData = await fetchCsv('faculty-and-classes.csv')
   
   let dedupedData = new Set()
-  for (let course of facultyData) {
+  for (let i = 0; i<facultyData.length; i++) {
+    let course = facultyData[i]
+    
     let faculty = {
       name: course['FIRST NAME'] + ' ' + course['LAST NAME'],
       first: course['FIRST NAME'],
@@ -47,6 +49,25 @@ exports.faculty = async ()=>{
     
     let facultyString = JSON.stringify(faculty)
     dedupedData.add(facultyString)
+  }
+   
+  return Array.from(dedupedData).map(JSON.parse)
+}
+
+exports.courses = async ()=>{
+  const courseData = await fetchCsv('faculty-and-classes.csv')
+  
+  let dedupedData = new Set()
+  for (let i = 0; i<courseData.length; i++) {
+    let course = courseData[i]
+    
+    let specificCourse = {
+      course: course['COURSE'],
+      discipline: course['DISCIPLINE']
+    }
+    
+    let courseString = JSON.stringify(specificCourse)
+    dedupedData.add(courseString)
   }
    
   return Array.from(dedupedData).map(JSON.parse)
