@@ -103,25 +103,22 @@ let allDroppedFiles = {};
 // }
 
 async function validateAndSubmit(e) {
-  for (let key in allDroppedFiles) {
-    Array.from(allDroppedFiles[key]).forEach(file => { 
-      console.log(file);
-    });
-
-  }
-
-
-
   e.preventDefault();
   const formData = new FormData(formsForm);
-//   const response = await fetch("/form", {
-//     method: "POST",
-//     body: formData
-//   })
+  for (let key in allDroppedFiles) {
+    Array.from(allDroppedFiles[key]).forEach(file => { 
+      formData.append('file', file);
+    });
+  }
   
-//   const json = await response.json()
-//   console.log(json)
+  const response = await fetch("/form", {
+    method: "POST",
+    body: formData
+  })
   
-//   document.querySelector('code').textContent = JSON.stringify(json, null, "\t")
+  const json = await response.json()
+  console.log(json)
+  
+  document.querySelector('code').textContent = JSON.stringify(json, null, "\t")
 }
     
