@@ -205,29 +205,26 @@ const FormFX = function() {
     });
   }
 
-  function validateAndSubmit(e) {
+  async function validateAndSubmit(e) {
     e.preventDefault();
     if (validateAllInputs()) {
-
       const formData = new FormData(formsForm);
-      // const entries = formData.entries();
-      // const data = Object.fromEntries(entries);
-      // console.log(JSON.stringify(data));
-      fetch("/form", {
+      for (let key in allDroppedFiles) {
+        Array.from(allDroppedFiles[key]).forEach(file => { 
+          formData.append('file', file);
+        });
+      }
+      const response = await fetch("/form", {
         method: "POST",
         body: formData
-        // headers: {
-        //   "Content-Type": "application/json"
-        // }
-      }).then(function(response) {
-        console.log(response);
-      }).
-      catch ( /**/ );
+      })
+      const json = await response.json()
+      console.log(json)
     } else {
       formsBody.classList.add("validation-active");
     }
   }
-
+  
   function isValid(thisInput) {
     let isValid = true;
     switch (thisInput.dataset.inputtype) {
