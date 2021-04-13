@@ -426,7 +426,7 @@
           <input list="datalist-teachers" id="faculty" name="faculty" placeholder="Instructor" />
           <datalist id="datalist-teachers">
           {{#data.teachers}}
-            <option name="{{id}}">{{name}}</option>
+            <option name="{{@index}}">{{name}}</option>
           {{/data.teachers}}
           </datalist>
 
@@ -454,7 +454,7 @@
           <input list="datalist-classes" id="classes" name="classes" placeholder="Classes" />
           <datalist id="datalist-classes">
           {{#data.courses}}
-            <option name="{{id}}">{{name}}</option>
+            <option name="{{@index}}">{{course}}</option>
           {{/data.courses}}
           </datalist>
 
@@ -469,7 +469,7 @@
           <input list="datalist-collaborators" id="collaborators" name="collaborators" placeholder="Classes" />
           <datalist id="datalist-collaborators">
           {{#data.students}}
-            <option name="{{last}}">{{name}}</option>
+            <option name="{{@index}}">{{[First Name]}} {{[Last Name]}}</option>
           {{/data.students}}        
           </datalist> 
         </div>
