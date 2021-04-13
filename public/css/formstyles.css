@@ -54,8 +54,8 @@ fieldset.hide {
 
 
 .formblock.hidden {
-	margin-bottom: 2rem;
-  position: relative;
+	visibility: hidden;
+  height: 0;
 }
 
 
