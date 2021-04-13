@@ -12,10 +12,7 @@ var storage = multer.diskStorage({
     cb(null, 'uploads/')
   },
   filename: function (req, file, cb) {
-    
-    
-    
-    cb(null, file.originalname + '-')
+    cb(null, `${Date.now()}-${file.originalname}`)
   }
 })
  
@@ -94,8 +91,18 @@ app.post('/form', upload.any(), async(req, res)=>{
 
   console.log({body:req.body, files: req.files})
 
-  res.end("ok... check the server console")
+  req.files = req.files.map((file)=>{
+    
+    file.fullpath = 'https://eoys-uploader-2021.glitch.me/file/'
+    
+  })
+  res.json(req.files)
 
+})
+
+app.get('/file/:filename', (req, res)=>{
+  
+  res.sendFile(`${__dirname}/uploads/${req.params.filename}`)
 })
 
 
