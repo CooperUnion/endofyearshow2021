@@ -200,7 +200,7 @@ const FormFX = function() {
 
   function scrollToInvalidAnchor() {
     const targetAnchor = this.dataset.anchortarget;
-    document.querySelector(`.formblock.titlelabel[data - anchor = "${targetAnchor}"], .formblock.pseudolabel[data - anchor = "${targetAnchor}"]`).scrollIntoView({
+    document.querySelector(`.formblock .titlelabel[data-anchor = "${targetAnchor}"], .formblock .pseudolabel[data-anchor = "${targetAnchor}"]`).scrollIntoView({
       behavior: 'smooth'
     });
   }
@@ -256,7 +256,7 @@ const FormFX = function() {
     case "file":
         
       const filesSelected = thisInput.querySelector("input").files.length;
-
+console.log(thisInput.querySelector("input").files);
       if (!(thisInput.id in allDroppedFiles) && filesSelected === 0) {
         isValid = false;
       }      
