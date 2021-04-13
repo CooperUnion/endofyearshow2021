@@ -51,11 +51,11 @@ app.get('/logout', (req, res)=>{
 //form endpoints
 app.get('/form', async (req, res)=>{
   
-  let students = await fetch ('https://eoys-uploader-2021.glitch.me/students').then((request)=>{return request.json()})
-  let teachers = await fetch ('https://eoys-uploader-2021.glitch.me/teachers').then((request)=>{return request.json()})
-  let courses = await fetch ('https://eoys-uploader-2021.glitch.me/courses').then((request)=>{return request.json()})
+  let students = await data.students()
+  let teachers = await data.faculty()
+  let courses = await data.courses()
 
-  const data = {
+  const csvData = {
     students,
     teachers,
     courses,
@@ -63,7 +63,7 @@ app.get('/form', async (req, res)=>{
   }
   
   const renderOptions = {
-    data,
+    data: csvData,
     layout: false
   } 
   
