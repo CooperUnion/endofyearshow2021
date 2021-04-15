@@ -81,22 +81,16 @@
   color: #fff;
 }
 
-.box__input .input__block input:hover,
-.box__input label[for="file"]:hover > strong,
-.box__input label[for="file"]:focus > strong,
+
 .box__button:hover,
 .box__button:focus {
-	background-color: #111;
-	color: #fff;
-	cursor: pointer;
+
+  background-color: #173454;
+  color: #bfbfbf;
 }
 
 small {
-  font-size: 1rem;
-}
-
-.box__input fieldset + fieldset {
-  margin-top: 1.5em;
+/*   font-size: 1rem; */
 }
 
 .box__input .input__block {

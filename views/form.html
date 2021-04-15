@@ -321,18 +321,19 @@
       <div class="formblock">
         <div class="vimeo">
           <div class="box__input">
+            <fieldset>
+
             
               
                 
         {{#data.user}}
-          <div class="form-input" data-inputtype="email">
+          
             <input id="vimeoemail" name="vimeoemail" type="hidden" value="{{email}}">
-          </div>
+          
         {{/data.user}}
 
               
             
-            <fieldset>
               <div class="form-input">
                 <label for="file"><span class="button">Select a video file</span><span class="box__dragndrop"> or drag it here</span>.</label>
                 <input class="box__file" type="file" name="files[]" id="file" data-multiple-caption="{count} files selected" multiple="" enctype="multipart/form-data">

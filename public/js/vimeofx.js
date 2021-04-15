@@ -13,22 +13,23 @@
       restart = form.querySelectorAll(".box__restart"),
       clears = form.querySelectorAll("button.clear"),
       progBar = document.querySelector("#uploadProgress"),
-      // uploadAnchor = form.querySelector(".box__success .upload__link"),
+      inputBlock = form.querySelector(".form-input"),
       uploadIDOutput = document.querySelector(".box__success .upload__idoutput"),
       fileOutput = form.querySelector(".file__filename"),
       // emailOutput = form.querySelector(".email__address"),
       // re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
       droppedFiles = false,
-      verifyFiles = function(passedEvent) {
-        if (typeof passedEvent === 'undefined') {
+      verifyFiles = function(e) {
+        console.log(e);
+        if (typeof e === 'undefined') {
           input.closest("fieldset").dataset.valid = false;
           fileOutput.textContent = "";
           return false;
         }
         let inputFiles = {};
-        if (typeof passedEvent[0] !== 'undefined') { // Are we being passed a FileList?
+        if (e.dataTransfer) { // Are we being passed a (drag and drop) FileList?
           input.value = "";
-          inputFiles = passedEvent;
+          inputFiles = e.dataTransfer.files;
         } else {
           droppedFiles = false;
           inputFiles = input.files;
@@ -66,7 +67,6 @@
         evt.initEvent("change", false, true);
         correspondingInput.dispatchEvent(evt); // Alas, the change event does not trigger when changed programmatically…
       };
-    
     inputBlock.addEventListener("drop", verifyFiles);
     input.addEventListener("change", verifyFiles);
     // email.addEventListener("change", verifyEmail);
