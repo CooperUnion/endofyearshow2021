@@ -71,10 +71,8 @@
 	margin: -0.1em -0.2em;
 }
 
-.vimeo:not(.populated) .box__button {
-	opacity: 0;
-  height: 0;
-  margin: 0;
+.vimeo .form-input:not(.populated) .box__button {
+	display: none;
 }
 
 .box__button {

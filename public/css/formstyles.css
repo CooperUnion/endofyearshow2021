@@ -141,6 +141,8 @@ fieldset.hide {
 .form-input.has-advanced-upload input[type='file'] {
   width: 0px;
   height: 0px;
+  margin: 0;
+  padding: 0;
   opacity: 0;
   overflow: hidden;
   position: absolute;

@@ -6,9 +6,9 @@
   var forms = document.querySelectorAll(".vimeo");
   Array.prototype.forEach.call(forms, function(form) {
     var input = form.querySelector('input[type="file"]'),
-      // email = form.querySelector('input[type="email"]'),
+      email = form.querySelector('input#vimeoemail'),
       label = form.querySelector("label"),
-      submit = form.querySelector('button[type="submit"]'),
+      submit = form.querySelector('button[type="button"]'),
       errorMsg = form.querySelector(".box__error span"),
       restart = form.querySelectorAll(".box__restart"),
       clears = form.querySelectorAll("button.clear"),
@@ -16,7 +16,7 @@
       // uploadAnchor = form.querySelector(".box__success .upload__link"),
       uploadIDOutput = document.querySelector(".box__success .upload__idoutput"),
       fileOutput = form.querySelector(".file__filename"),
-      emailOutput = form.querySelector(".email__address"),
+      // emailOutput = form.querySelector(".email__address"),
       // re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
       droppedFiles = false,
       verifyFiles = function(passedEvent) {
@@ -66,7 +66,8 @@
         evt.initEvent("change", false, true);
         correspondingInput.dispatchEvent(evt); // Alas, the change event does not trigger when changed programmatically…
       };
-
+    
+    inputBlock.addEventListener("drop", verifyFiles);
     input.addEventListener("change", verifyFiles);
     // email.addEventListener("change", verifyEmail);
     clears.forEach(function(elem, currentIndex, listObj) {
