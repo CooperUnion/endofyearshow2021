@@ -318,26 +318,26 @@
         </div>
       </div>
       <div class="formblock">
-        <div class="box" method="post" action="/upload" enctype="multipart/form-data">
+        <div class="vimeo">
           <div class="box__input">
-            <fieldset data-valid="true">
-              <span class="input__block">
+            
+              
                 
         {{#data.user}}
-          <div class="form-input" data-inputtype="email" hidden>
-            <input id="vimeoemail" name="vimeoemail" type="email" value="{{email}}">
+          <div class="form-input" data-inputtype="email">
+            <input id="vimeoemail" name="vimeoemail" type="hidden" value="{{email}}">
           </div>
         {{/data.user}}
 
-              </span>
-              <small class="prompt email__prompt">email: <output class="promptname email__address">luckbat@gmail.com</output><button class="clear">clear</button></small>
-            </fieldset>
+              
+            
             <fieldset>
-              <span class="input__block">
+              <div class="form-input">
                 <label for="file"><strong>Choose a video file</strong><span class="box__dragndrop"> or drag it here</span>.</label>
                 <input class="box__file" type="file" name="files[]" id="file" data-multiple-caption="{count} files selected" multiple="" enctype="multipart/form-data">
-              </span>
               <small class="prompt file__prompt">file: <output class="promptname file__filename"></output><button class="clear">clear</button></small>
+
+              </div>
             </fieldset>
             <button class="box__button" type="submit" disabled="">
               Upload it

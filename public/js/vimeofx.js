@@ -3,10 +3,10 @@
 (function(document, window, index) {
   
   // applying the effect for every form
-  var forms = document.querySelectorAll(".box");
+  var forms = document.querySelectorAll(".vimeo");
   Array.prototype.forEach.call(forms, function(form) {
     var input = form.querySelector('input[type="file"]'),
-      email = form.querySelector('input[type="email"]'),
+      // email = form.querySelector('input[type="email"]'),
       label = form.querySelector("label"),
       submit = form.querySelector('button[type="submit"]'),
       errorMsg = form.querySelector(".box__error span"),
@@ -33,15 +33,6 @@
           droppedFiles = false;
           inputFiles = input.files;
         } // Ensure that there's only ever one designated file for uploading, regardless of input method.
-        fileOutput.textContent =
-          inputFiles.length === 1
-            ? inputFiles[0].name
-            : inputFiles.length > 1
-            ? (input.getAttribute("data-multiple-caption") || "").replace(
-                "{count}",
-                inputFiles.length
-              )
-            : "";
         input.closest("fieldset").dataset.valid =
           inputFiles.length > 0 ? true : false;
         verifyForm();
@@ -85,7 +76,7 @@
     // if (localStorage.getItem('emailaddress') != null) {
     //   email.value = localStorage.getItem('emailaddress');
     //   verifyEmail();
-    }  
+    // }  
 
     form.onsubmit = async e => {
       e.preventDefault();
