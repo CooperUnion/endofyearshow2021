@@ -7,6 +7,7 @@
 	<meta name="author" content="Erin Sparling">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yegor256/tacit@gh-pages/tacit-css-1.5.5.min.css" />
 	<link rel="stylesheet" href="css/formstyles.css">
+	<link rel="stylesheet" href="css/vimeo.css">
 </head>
 <body>
 <header class="introduction">
@@ -333,16 +334,12 @@
             
             <fieldset>
               <div class="form-input">
-                <label for="file"><strong>Choose a video file</strong><span class="box__dragndrop"> or drag it here</span>.</label>
+                <label for="file"><span class="button">Select a video file</span><span class="box__dragndrop"> or drag it here</span>.</label>
                 <input class="box__file" type="file" name="files[]" id="file" data-multiple-caption="{count} files selected" multiple="" enctype="multipart/form-data">
-              <small class="prompt file__prompt">file: <output class="promptname file__filename"></output><button class="clear">clear</button></small>
-
-              </div>
-            </fieldset>
-            <button class="box__button" type="submit" disabled="">
+                <small class="prompt file__prompt">file: <output class="promptname file__filename"></output><button class="clear">clear</button></small>
+            <button class="box__button" type="button" disabled="">
               Upload it
             </button>
-          </div>
           <div class="box__uploading">
             <p>Uploading…</p>
             <progress id="uploadProgress" value="0" max="100"></progress>
@@ -356,6 +353,11 @@
             <a href="/" class="box__restart" role="button">Upload another file</a>
           </div>
           <div class="box__error">Error! <span></span>.</div>
+
+
+              </div>
+            </fieldset>
+          </div>
         </div> <!-- End of Vimeo form -->
       </div>
       <div class="formblock" data-required="required">
