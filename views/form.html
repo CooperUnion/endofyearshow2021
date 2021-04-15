@@ -320,13 +320,9 @@
       <div class="formblock">
         <div class="box has-advanced-upload" method="post" action="/upload" enctype="multipart/form-data">
           <div class="box__input">
-            <svg class="box__icon" viewbox="0 0 480.24 480.24" xmlns="http://www.w3.org/2000/svg">
-              <path d="m391.86 144.552c.16-2.712.248-5.464.248-8.312.09-59.919-39.046-112.838-96.364-130.3-71.85-21.89-147.842 18.61-169.732 90.46-2.024-.104-3.976-.16-5.904-.16-66.274 0-120 53.726-120 120s53.726 120 120 120h72.088c4.418 0 8-3.582 8-8s-3.582-8-8-8h-72.088c-57.438 0-104-46.562-104-104s46.562-104 104-104c3.688.01 7.373.211 11.04.6 3.93.329 7.534-2.2 8.56-6.008 13.401-53.473 61.51-90.937 116.637-90.828 66.274.13 119.894 53.962 119.763 120.236.021 4.99-.303 9.975-.968 14.92-.049.358-.073.72-.073 1.081.001 4.418 3.583 7.999 8.001 7.999h1.04c44.183 0 80 35.817 80 80s-35.817 80-80 80h-95.464c-4.418 0-8 3.582-8 8s3.582 8 8 8h95.464c50.028.01 91.677-38.401 95.707-88.267 4.271-52.846-35.108-99.15-87.955-103.421z"></path>
-              <path d="m336.276 245.088-96.168-96.16-96.168 96.16 11.32 11.32 76.848-76.856v300.688h16v-300.688l76.848 76.856z"></path>
-            </svg>
             <fieldset data-valid="true">
               <span class="input__block">
-                <label for="email">email:</label>
+                
         {{#data.user}}
           <div class="form-input" data-inputtype="email" hidden>
             <input id="vimeoemail" name="vimeoemail" type="email" value="{{email}}">
@@ -354,7 +350,6 @@
           <div class="box__success">
             <p>Done!</p>
             <small class="success__info">Your video ID is:</small>
-  <!--             <a href="#" class="upload__link">https://vimeo.com/</a> -->
               <input class="upload__idoutput" size="9">
               <small class="success__info">Please copy this number into your content submission form.
             </small>
