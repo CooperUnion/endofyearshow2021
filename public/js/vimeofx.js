@@ -17,7 +17,7 @@
       uploadIDOutput = document.querySelector(".box__success .upload__idoutput"),
       fileOutput = form.querySelector(".file__filename"),
       emailOutput = form.querySelector(".email__address"),
-      re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
+      // re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
       droppedFiles = false,
       verifyFiles = function(passedEvent) {
         if (typeof passedEvent === 'undefined') {
@@ -46,16 +46,16 @@
           inputFiles.length > 0 ? true : false;
         verifyForm();
       },
-      verifyEmail = function() {
-        emailOutput.textContent = re.test(email.value) ? email.value : "";
-        email.closest("fieldset").dataset.valid = re.test(email.value)
-          ? true
-          : false;
-        localStorage.setItem('emailaddress', email.value); // Stores the value regardless of verification
-        verifyForm();
-      },
+      // verifyEmail = function() {
+      //   emailOutput.textContent = re.test(email.value) ? email.value : "";
+      //   email.closest("fieldset").dataset.valid = re.test(email.value)
+      //     ? true
+      //     : false;
+      //   localStorage.setItem('emailaddress', email.value); // Stores the value regardless of verification
+      //   verifyForm();
+      // },
       verifyForm = function(e) {
-        if ((droppedFiles || input.files.length > 0) && re.test(email.value)) {
+        if ((droppedFiles || input.files.length > 0)) {
           form.classList.add("populated");
           submit.disabled = false;
         } else {
@@ -77,14 +77,14 @@
       };
 
     input.addEventListener("change", verifyFiles);
-    email.addEventListener("change", verifyEmail);
+    // email.addEventListener("change", verifyEmail);
     clears.forEach(function(elem, currentIndex, listObj) {
       elem.addEventListener("click", clearInput);
     });
     
-    if (localStorage.getItem('emailaddress') != null) {
-      email.value = localStorage.getItem('emailaddress');
-      verifyEmail();
+    // if (localStorage.getItem('emailaddress') != null) {
+    //   email.value = localStorage.getItem('emailaddress');
+    //   verifyEmail();
     }  
 
     form.onsubmit = async e => {
