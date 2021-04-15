@@ -16,9 +16,7 @@
       inputBlock = form.querySelector(".form-input"),
       uploadIDOutput = document.querySelector(".box__success .upload__idoutput"),
       fileOutput = form.querySelector(".file__filename"),
-      // emailOutput = form.querySelector(".email__address"),
-      // re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
-      droppedFiles = false,
+      inputFiles = {},
       verifyFiles = function(e) {
         console.log(e);
         if (typeof e === 'undefined') {
@@ -26,16 +24,13 @@
           fileOutput.textContent = "";
           return false;
         }
-        let inputFiles = {};
         if (e.dataTransfer) { // Are we being passed a (drag and drop) FileList?
           input.value = "";
           inputFiles = e.dataTransfer.files;
         } else {
-          droppedFiles = false;
           inputFiles = input.files;
         } // Ensure that there's only ever one designated file for uploading, regardless of input method.
-        input.closest("fieldset").dataset.valid =
-          inputFiles.length > 0 ? true : false;
+        input.closest("fieldset").dataset.valid = inputFiles.length > 0 ? true : false;
         verifyForm();
       },
       // verifyEmail = function() {
@@ -47,11 +42,11 @@
       //   verifyForm();
       // },
       verifyForm = function(e) {
-        if ((droppedFiles || input.files.length > 0)) {
-          form.classList.add("populated");
+        if ((inputFiles.length > 0)) {
+          // form.classList.add("populated");
           submit.disabled = false;
         } else {
-          form.classList.remove("populated");
+          // form.classList.remove("populated");
           submit.disabled = true;
         }
       },
@@ -62,11 +57,12 @@
           .closest("fieldset")
           .querySelector("input");
         correspondingInput.value = "";
-        droppedFiles = correspondingInput.files ? false : droppedFiles;
+        inputFiles = {};
         var evt = document.createEvent("HTMLEvents");
         evt.initEvent("change", false, true);
         correspondingInput.dispatchEvent(evt); // Alas, the change event does not trigger when changed programmatically…
       };
+    submit.addEventListener("click", uploadToVimeo);
     inputBlock.addEventListener("drop", verifyFiles);
     input.addEventListener("change", verifyFiles);
     // email.addEventListener("change", verifyEmail);
@@ -79,14 +75,14 @@
     //   verifyEmail();
     // }  
 
-    form.onsubmit = async e => {
-      e.preventDefault();
+    async function uploadToVimeo(e) {
+      e.preventDefault(); // <-- Probably unnecessary
       form.classList.add("is-uploading");
       form.classList.remove("is-error");
 
-      const fileSize = droppedFiles ? droppedFiles[0].size : input.files[0].size;
-      const fileName = droppedFiles ? droppedFiles[0].name : input.files[0].name; // Currently unused
-      const fileData = droppedFiles ? droppedFiles[0] : input.files[0];      
+      const fileSize = inputFiles[0];
+      const fileName = inputFiles[0].name; // Currently unused
+      const fileData = inputFiles[0];      
 
       console.log({ fileSize, fileData });
 
@@ -198,7 +194,6 @@
         e.preventDefault();
         form.classList.remove("is-error", "is-success");
         input.value = "";
-        droppedFiles = false;
         form.classList.remove("populated");
         progBar.setAttribute("max", 100);
         progBar.setAttribute("value", 0);
