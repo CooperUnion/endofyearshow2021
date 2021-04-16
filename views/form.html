@@ -318,26 +318,12 @@
           <input id="videoworktitle" name="videoworktitle" type="text" placeholder="Title">
         </div>
       </div>
-      <div class="formblock">
+      <div class="formblock" data-required="required">
         <label class="titlelabel" for="videoworkupload" data-anchor="videoworkupload">Video Upload Artwork ID</label> 
         <p class="label-context">
-          1. Please upload your video file via the <a href="https://cooper-union-vimeo-uploader.glitch.me">Cooper Union Video Uploader</a>. This page will open in a new window. 
+          1. Please select your video via the file uploader below. 
         </p>
-        <p class="label-context">
-          2. Copy the Video ID from the end of the upload process above. The upload process may take a few minutes, depending on upload speed, file size, location etc. 
-        </p>
-        <p class="label-context">
-          3. Paste the Video ID in this form, below. 
-        </p>
-        <p class="label-context">
-          For any questions about this process, please refer to the <a href="https://cooperunion.sharepoint.com/:b:/s/art.eyos/EVBVdfN4bk1ArQlQTVQ6- xsBNaaYMyXSi8i83cof-J5zWw?e=U2R8Fb">ARTWORK UPLOADING GUIDELINES</a>. 
-        </p>
-        <div class="form-input" data-inputtype="text">
-          <input id="videoworkid" name="videoworkid" type="text" placeholder="Video ID">
-        </div>
-
-        
-        <div class="vimeo">
+         <div class="vimeo">
           <div class="box__input">
             <fieldset>
 
@@ -378,6 +364,23 @@
             </fieldset>
           </div>
         </div> <!-- End of Vimeo form -->
+
+         <p class="label-context">
+          2. Make sure that you have chosen the correct file, and click the <strong>Upload it</strong> button. 
+        </p>
+
+       <p class="label-context">
+          3. Once the video is uploaded, your Video ID will be automatically entered into the ID field below. The upload process may take a few minutes, depending on upload speed, file size, location etc. 
+        </p>
+        <div class="form-input" data-inputtype="text">
+          <input id="videoworkid" name="videoworkid" type="text" placeholder="Video ID" readonly="readonly">
+        </div>
+        <p class="label-context">
+          For any questions about this process, please refer to the <a href="https://cooperunion.sharepoint.com/:b:/s/art.eyos/EVBVdfN4bk1ArQlQTVQ6- xsBNaaYMyXSi8i83cof-J5zWw?e=U2R8Fb">ARTWORK UPLOADING GUIDELINES</a>. 
+        </p>
+
+
+        
       </div>
       <div class="formblock" data-required="required">
 <!--         <label class="titlelabel" for="videoworkupload" data-anchor="videoworkupload">Video Upload Artwork ID</label> 

@@ -171,7 +171,7 @@ const FormFX = function() {
     allActiveInputs.forEach(function(formblock, currentIndex) {
       formblock.classList.remove("invalid");
       if (formblock.dataset.required === "required") {
-        const thisInput = formblock.querySelector(".form-input");
+        const thisInput = formblock.querySelector(".form-input:not(.)");
         if (!isValid(thisInput)) {
           invalidForms.push(formblock.querySelector(".titlelabel, .pseudolabel"));
           formblock.classList.add("invalid");
