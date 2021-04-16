@@ -15,6 +15,7 @@
       progBar = document.querySelector("#uploadProgress"),
       inputBlock = form.querySelector(".form-input"),
       uploadIDOutput = document.querySelector(".box__success .upload__idoutput"),
+      uploadIDInput = document.querySelector("#videoworkid"),
       fileOutput = form.querySelector(".file__filename"),
       inputFiles = {},
       verifyFiles = function(e) {
@@ -154,7 +155,8 @@
       let changeStateSuccess = async () => {
         form.classList.remove("is-uploading");
         form.classList.add("is-success");
-        uploadIDOutput.value = videoID;
+        // uploadIDOutput.value = videoID;
+        uploadIDInput.value = videoID;
         // uploadAnchor.href = uploadResponse.link;
         // uploadAnchor.textContent = uploadResponse.link.substring(8);
 
