@@ -207,6 +207,7 @@ const FormFX = function() {
 
   async function validateAndSubmit(e) {
     e.preventDefault();
+    console.log(allDroppedFiles);
     if (validateAllInputs()) {
       const formData = new FormData(formsForm);
       for (let key in allDroppedFiles) {
