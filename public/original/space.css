@@ -1,0 +1,41 @@
+@font-face {
+  font-family: "Space Grotesk";
+  font-weight: 100;
+  src: 
+    url("https://cdn.glitch.com/0c986f61-9b58-4823-989c-354b3ef55d67%2FSpaceGrotesk-Light.woff2?v=1593280132350") format("woff2"),
+    url("https://cdn.glitch.com/0c986f61-9b58-4823-989c-354b3ef55d67%2FSpaceGrotesk-Light.woff?v=1593280132072") format("woff");
+}
+
+@font-face {
+  font-family: "Space Grotesk";
+  font-weight: 400;
+  src:
+    url("https://cdn.glitch.com/0c986f61-9b58-4823-989c-354b3ef55d67%2FSpaceGrotesk-Regular.woff2?v=1593280132250") format("woff2"),
+    url("https://cdn.glitch.com/0c986f61-9b58-4823-989c-354b3ef55d67%2FSpaceGrotesk-Regular.woff?v=1593280132359") format("woff");
+}
+
+
+@font-face {
+  font-family: "Space Grotesk";
+  font-weight: 500;
+  src:
+    url("https://cdn.glitch.com/0c986f61-9b58-4823-989c-354b3ef55d67%2FSpaceGrotesk-Medium.woff2?v=1593280132095") format("woff2"),
+    url("https://cdn.glitch.com/0c986f61-9b58-4823-989c-354b3ef55d67%2FSpaceGrotesk-Medium.woff?v=1593280132404") format("woff");
+}
+
+@font-face {
+  font-family: "Space Grotesk";
+  font-weight: 700;
+  src:
+    url("https://cdn.glitch.com/0c986f61-9b58-4823-989c-354b3ef55d67%2FSpaceGrotesk-SemiBold.woff2?v=1593280132585") format("woff2"),
+    url("https://cdn.glitch.com/0c986f61-9b58-4823-989c-354b3ef55d67%2FSpaceGrotesk-SemiBold.woff?v=1593280132397") format("woff");
+}
+
+
+@font-face {
+  font-family: "Space Grotesk";
+  font-weight: 900
+  src:
+    url("https://cdn.glitch.com/0c986f61-9b58-4823-989c-354b3ef55d67%2FSpaceGrotesk-Bold.woff2?v=1593280132230") format("woff2"),
+    url("https://cdn.glitch.com/0c986f61-9b58-4823-989c-354b3ef55d67%2FSpaceGrotesk-Bold.woff?v=1593280132176") format("woff");
+}
