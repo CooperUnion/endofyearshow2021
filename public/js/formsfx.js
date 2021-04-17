@@ -58,7 +58,9 @@ const FormFX = function() {
         if (e.dataTransfer) { // Are we being passed a (drag and drop) FileList?
           thisInput.value = "";
           thisInput.submittedFiles = e.dataTransfer.files;
-          allDroppedFiles[thisInput.id] = e.dataTransfer.files;
+          if (!thisInput.matches('[data-destination="external"]')) { // Excluding the Vimeo uploader file from submission
+            allDroppedFiles[thisInput.id] = e.dataTransfer.files;
+          }
           validateAllInputs();
         } else {
           thisInput.submittedFiles = thisInput.files;
