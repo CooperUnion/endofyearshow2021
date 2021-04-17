@@ -32,7 +32,7 @@
           inputFiles = input.files;
         } // Ensure that there's only ever one designated file for uploading, regardless of input method.
         // input.closest("fieldset").dataset. = inputFiles.length > 0 ? true : false;
-        fileOutput.textContent = inputFiles[0].name : thisInput.submittedFiles.length > 1 ? (thisInput.getAttribute("data-multiple-caption") || "").replace("{count}", thisInput.submittedFiles.length) : ""
+        fileOutput.textContent = inputFiles.length > 0 ? inputFiles[0].name : "";
         verifyForm();
       },
       // verifyEmail = function() {

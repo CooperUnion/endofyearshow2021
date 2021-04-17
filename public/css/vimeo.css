@@ -109,7 +109,7 @@ small {
   margin: 0 0 0 0.333em;
 }
 
-.box__input fieldset[data-valid = "true"] .input__block {
+.box__input .form-input:not(.populated) .input__block {
   opacity: 0;
   max-height: 0;
 }
@@ -122,7 +122,7 @@ small {
 	transition: opacity .25s ease-in-out;
 }
 
-.box__input fieldset:not([data-valid = "true"]) .prompt {
+.box__input .form-input:not(.populated) .prompt {
   opacity: 0;
 }
 
@@ -145,8 +145,6 @@ small {
   font-weight: bold;
   font-size: 1rem;
 }
-
-
 
 progress {
     -webkit-appearance: none;
