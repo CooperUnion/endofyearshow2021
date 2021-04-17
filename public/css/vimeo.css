@@ -71,7 +71,8 @@
 	margin: -0.1em -0.2em;
 }
 
-.vimeo .form-input:not(.populated) .box__button {
+.vimeo .form-input:not(.populated) .box__button,
+.vimeo input:not([data-filecount="1"]) ~ .box__button {
 	display: none;
 }
 
@@ -84,7 +85,6 @@
 
 .box__button:hover,
 .box__button:focus {
-
   background-color: #173454;
   color: #bfbfbf;
 }
