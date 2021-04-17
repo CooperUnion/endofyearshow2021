@@ -5,6 +5,7 @@ const cookieSession = require("cookie-session");
 const msalAuth = require('./routes/msal-auth');
 const fetch = require('node-fetch');
 const exphbs  = require('express-handlebars');
+const Vimeo = require("vimeo").Vimeo;
 const multer = require('multer');
 // const upload = multer({ dest: 'uploads/' });
 var storage = multer.diskStorage({
@@ -131,6 +132,19 @@ app.get("/token", async (req, res) => {
   const ACCESS_TOKEN = process.env.VIMEO_ACCESS_TOKEN;
   res.json({ token: ACCESS_TOKEN });
 });
+
+app.get("/tokenTest", async (req, res) => {
+  // const ACCESS_TOKEN = process.env.VIMEO_ACCESS_TOKEN;
+  
+  const CLIENT_ID = process.env.VIMEO_CLIENT_ID;
+  const CLIENT_SECRET = process.env.VIMEO_CLIENT_SECRET;
+  const ACCESS_TOKEN = process.env.VIMEO_ACCESS_TOKEN;
+
+  let client = new Vimeo(CLIENT_ID, CLIENT_SECRET, ACCESS_TOKEN);
+  console.log(client)
+  res.json({ token: ACCESS_TOKEN });
+});
+
 
 
 // listen for requests :)
