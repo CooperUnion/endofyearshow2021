@@ -81,7 +81,7 @@
       form.classList.add("is-uploading");
       form.classList.remove("is-error");
 
-      const fileSize = inputFiles[0];
+      const fileSize = inputFiles[0].size;
       const fileName = inputFiles[0].name; // Currently unused
       const fileData = inputFiles[0];      
 
@@ -187,6 +187,9 @@
         );
         let downloadResponse = await downloadRequest.json();
         console.log(downloadResponse);
+        
+        
+        
       };
     };
 
