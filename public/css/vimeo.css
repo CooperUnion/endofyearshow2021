@@ -1,5 +1,6 @@
 .vimeo {
 	position: relative;
+  margin-bottom: 1em;
 }
 
 .vimeo.is-uploading .box__input,

@@ -56,7 +56,7 @@
         e.preventDefault();
         e.stopPropagation();
         const correspondingInput = e.target
-          .closest("fieldset")
+          .closest(".form-input")
           .querySelector("input");
         correspondingInput.value = "";
         inputFiles = {};
