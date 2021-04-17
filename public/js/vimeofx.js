@@ -21,7 +21,7 @@
       verifyFiles = function(e) {
         console.log(e);
         if (typeof e === 'undefined') {
-          input.closest("fieldset").dataset.valid = false;
+          // input.closest("fieldset").dataset.valid = false;
           fileOutput.textContent = "";
           return false;
         }
@@ -31,12 +31,13 @@
         } else {
           inputFiles = input.files;
         } // Ensure that there's only ever one designated file for uploading, regardless of input method.
-        input.closest("fieldset").dataset.valid = inputFiles.length > 0 ? true : false;
+        // input.closest("fieldset").dataset. = inputFiles.length > 0 ? true : false;
+        fileOutput.textContent = inputFiles[0].name : thisInput.submittedFiles.length > 1 ? (thisInput.getAttribute("data-multiple-caption") || "").replace("{count}", thisInput.submittedFiles.length) : ""
         verifyForm();
       },
       // verifyEmail = function() {
       //   emailOutput.textContent = re.test(email.value) ? email.value : "";
-      //   email.closest("fieldset").dataset.valid = re.test(email.value)
+      //   email.closest("fieldset").dataset. = re.test(email.value)
       //     ? true
       //     : false;
       //   localStorage.setItem('emailaddress', email.value); // Stores the value regardless of verification
