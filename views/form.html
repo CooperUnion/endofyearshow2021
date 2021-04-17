@@ -325,19 +325,9 @@
         </p>
          <div class="vimeo">
           <div class="box__input">
-            
-
-            
-              
-                
         {{#data.user}}
-          
             <input id="vimeoemail" name="vimeoemail" type="hidden" value="{{email}}">
-          
         {{/data.user}}
-
-              
-            
               <div class="form-input no-validate">
                 <label for="file"><span class="button">Select a video file</span><span class="box__dragndrop"> or drag it here</span>.</label>
                 <input class="box__file" type="file" name="files[]" id="file" data-multiple-caption="Please select only one file." multiple="" enctype="multipart/form-data">
@@ -345,26 +335,26 @@
             <button class="box__button" type="button" disabled="">
               Upload it
             </button>
-
-
-              </div>
-            
+              </div> 
+          </div>
+           
           <div class="box__uploading">
-            <p>Uploading…</p>
+            <div>Uploading…</div>
             <progress id="uploadProgress" value="0" max="100"></progress>
           </div>
           <div class="box__success">
-            <p>Done!</p>
+            <h6>Upload successful.</h6>
+            <p>Your video ID  </p>
 <!--             <small class="success__info">Your video ID is:</small>
               <input class="upload__idoutput" size="9">
               <small class="success__info">Please copy this number into your content submission form.
             </small> -->
-            <a href="/" class="box__restart" role="button">Upload another file</a>
+<!--             <a href="/" class="box__restart" role="button">Upload another file</a> -->
           </div>
           <div class="box__error">Error! <span></span>.</div>
 
-            
-          </div>
+           
+           
         </div> <!-- End of Vimeo form -->
 
          <p class="label-context">

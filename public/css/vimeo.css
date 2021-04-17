@@ -18,6 +18,7 @@
 .vimeo.is-uploading .box__uploading,
 .vimeo.is-success .box__success,
 .vimeo.is-error .box__error {
+  text-align: center;
 	display: block;
 	position: absolute;
 	top: 50%;
@@ -78,7 +79,7 @@
 }
 
 .box__button {
-  margin: 2em 0 0 0;
+  margin: 1em 0 0 0;
   background-color: #275a90;
   color: #fff;
 }
