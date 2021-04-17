@@ -9,6 +9,15 @@
 	visibility: hidden;
 }
 
+.vimeo.is-uploading .file__prompt,
+.vimeo.is-success .file__prompt,
+.vimeo.is-error .file__prompt,
+.vimeo.is-uploading .box__button,
+.vimeo.is-success .box__button,
+.vimeo.is-error .box__button {
+	display: none;
+}
+
 .box__uploading,
 .box__success,
 .box__error {
