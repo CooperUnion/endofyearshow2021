@@ -145,7 +145,15 @@ app.get("/tokenTest", async (req, res) => {
   res.json({ token: ACCESS_TOKEN });
 });
 
-
+app.get('/original', async (req, res)=>{
+  
+  const data = {}
+  const renderOptions = {
+    data,
+    layout: false
+  } 
+  return res.render('original', renderOptions)
+})
 
 
 // listen for requests :)
