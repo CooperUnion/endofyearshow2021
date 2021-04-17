@@ -3,10 +3,10 @@
   margin-bottom: 1em;
 }
 
-.vimeo.is-uploading .box__input,
-.vimeo.is-success .box__input,
-.vimeo.is-error .box__input {
-	visibility: hidden;
+.vimeo.is-uploading .form-input > *,
+.vimeo.is-success .form-input > *,
+.vimeo.is-error .form-input > * {
+	display: none;
 }
 
 .vimeo.is-uploading .file__prompt,
@@ -40,6 +40,11 @@
 .box__uploading {
 	font-style: italic;
 }
+
+.box__uploading h5 {
+	margin-bottom: -0.5em;
+}
+
 
 .box__success {
 	-webkit-animation: appear-from-inside .25s ease-in-out;
