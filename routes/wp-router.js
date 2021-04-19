@@ -108,6 +108,13 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
     }
   }
   
+  router.post('/image', async (req, res)=>{
+    res.json({
+      filename:"123.jpg",
+      id:'abc123'
+    })
+  })
+  
   
   try {
     // return res.json({ok:true})

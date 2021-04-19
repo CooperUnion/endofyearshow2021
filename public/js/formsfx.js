@@ -229,7 +229,7 @@ const FormFX = function() {
           formData.append('file', file);
         });
       }
-      const response = await fetch("/formData", {
+      const response = await fetch("/wp/formData", {
         method: "POST",
         body: formData
       })
