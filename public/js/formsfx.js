@@ -217,7 +217,7 @@ const FormFX = function() {
           formData.append('file', file);
         });
       }
-      const response = await fetch("/form", {
+      const response = await fetch("/formData", {
         method: "POST",
         body: formData
       })
