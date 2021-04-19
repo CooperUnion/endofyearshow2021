@@ -20,7 +20,7 @@ var storage = multer.diskStorage({
 
 const router = express.Router()
 
-router.use('/auth', msalRouter)
+router.use(msalRouter)
  
 var upload = multer({ storage: storage })
 
@@ -48,17 +48,10 @@ app.get('/', msalAuth.validate, (req, res) => {
 app.get('/redirect', msalAuth.redirect)
 
 
-app.use(router)
+app.use('/auth', router)
 
-app.get('/auth', (req, res)=> {
-  res.end("caught")
-})
 
-app.get('/logout', (req, res)=>{
-  req.session = null
 
-  res.redirect('https://login.microsoftonline.com/common/oauth2/v2.0/logout?post_logout_redirect_uri=https://eoys-uploader-2021.glitch.me/')
-})
 
 
 //form endpoints
