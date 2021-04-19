@@ -29,16 +29,36 @@ const wpLogger = (req, res, next) =>{
 }
 
 router.get('/', wpLogger, async (req, res, next)=>{
+  
+  return res.json({ok: true})
+  
   console.log('running test')
   let test = await wp.create()
   res.json({ok:true, test})
 })
 
-router.post('/', wpLogger, multer, async (req, res, next)=>{
+router.post('/', wpLogger, upload.none(), async (req, res, next)=>{
   console.log('creating a post')
   console.log(req.body)
-  // let post = await wp.create()
-  res.json("ok")
+  try {
+    let post = await wp.create(req.body)
+    res.json("ok")
+  } catch (e) {
+    res.status(500).json({error:e})
+  }
+
+})
+
+router.post('/json', wpLogger, upload.none(), async (req, res, next)=>{
+  console.log('creating a post')
+  console.log(req.body)
+  try {
+    let post = await wp.create(req.body)
+    res.json("ok")
+  } catch (e) {
+    res.status(500).json({error:e})
+  }
+
 })
 
 router.get('/tags', wpLogger, async (req, res) => {
