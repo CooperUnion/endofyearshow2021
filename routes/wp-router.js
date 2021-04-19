@@ -73,7 +73,8 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
     description,
     dimensions,
     materials,
-    email
+    email,
+    project
   } = req.body
   
   const body = {
@@ -101,7 +102,8 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
           "dimensions": dimensions,
           "url": "https://NOT.USED"
         },
-        "email": email
+        "email": email,
+        project
       }
     }
   }
