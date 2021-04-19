@@ -3,61 +3,62 @@ const router = express.Router();
 const msalAuth = require('./msal-auth');
 const data = require('./data');
 
-//multer configuration
-const multer = require('multer');
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/')
-  },
-  filename: function (req, file, cb) {
-    cb(null, `${Date.now()}-${file.originalname}`)
-  }
-})
-var upload = multer({ storage: storage })
-
 const indexLogger = (req, res, next) =>{
   console.log('hit /index', req.path)
   next()
 }
 
+//auth router redirects
+router.get('/', msalAuth.validate, (req, res) => {
+  res.redirect('/form')
+});
 
-router.get('/', async (req, res)=>{
-  
-  let students = await data.students()
-  let teachers = await data.faculty()
-  let courses = await data.courses()
-
-  const csvData = {
-    students,
-    teachers,
-    courses,
-    user:req.session.user || {name:"mike", email:"mike@test.com"}
-  }
-  
-  const renderOptions = {
-    data: csvData,
-    layout: false
-  } 
-  
-  return res.render('form', renderOptions)
-})
-
-router.post('/form', upload.any(), async(req, res)=>{
-
-  console.log({body:req.body, files: req.files})
-
-  req.files = req.files.map((file)=>{
-    
-    file.fullpath = 'https://eoys-uploader-2021.glitch.me/file/' + file.filename
-    return file
-    
-  })
-  res.json(req.files)
+router.get('/logout', (req, res)=>{
+  res.redirect('/auth/logout')
 })
 
 router.get("/token", async (req, res) => {
-  res.json({ token: process.env.VIMEO_ACCESS_TOKEN });
-});
+  res.redirect('/form/token')
+})
+
+router.get('/dataTest', async (req, res)=>{
+  
+  let csvData = await data.courses()
+  
+  res.json(csvData)
+})
+
+router.get('/test', async (req, res)=>{
+  
+  const data = {}
+  const renderOptions = {
+    data,
+    layout: false
+  } 
+  return res.render('smallform', renderOptions)
+})
+
+router.get('/file/:filename', (req, res)=>{
+  
+  res.sendFile(`${__dirname}/uploads/${req.params.filename}`)
+})
+
+router.get('/students', async (req, res)=>{
+  let csvData = await data.students()
+  
+  res.json(csvData)
+})
+
+router.get('/teachers', async (req, res)=>{
+  let csvData = await data.faculty()
+  
+  res.json(csvData)
+})
+
+router.get('/courses', async (req, res)=>{
+  let csvData = await data.courses()
+  res.json(csvData)
+})
 
 
 module.exports = router
