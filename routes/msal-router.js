@@ -1,6 +1,9 @@
+const msalAuth = require('./msal-auth');
 
 
 
 module.exports = (req, res, next) => {
-  res.end("ok msal-router")
+  console.log("router in use")
+
+  next()
 }

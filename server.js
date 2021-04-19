@@ -47,6 +47,13 @@ app.get('/', msalAuth.validate, (req, res) => {
 
 app.get('/redirect', msalAuth.redirect)
 
+
+app.use(router)
+
+app.get('/auth', (req, res)=> {
+  res.end("caught")
+})
+
 app.get('/logout', (req, res)=>{
   req.session = null
 
@@ -161,7 +168,6 @@ app.get('/original', async (req, res)=>{
 })
 
 
-// listen for requests :)
 const listener = app.listen(process.env.PORT, () => {
   console.log("Your app is listening on port " + listener.address().port);
 });
