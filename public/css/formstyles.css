@@ -61,8 +61,8 @@ fieldset.hide {
 }
 
 .inputlist.checkboxes > li:hover label {
-  border: 2px solid #666;
-  margin: -1px;
+  border-color: #666;
+  box-shadow: 0 0 0 1px #666;
 }
 
 
