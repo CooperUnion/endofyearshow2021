@@ -16,7 +16,7 @@ const wpLogger = (req, res, next) =>{
 }
 
 router.get('/', wpLogger, async (req, res, next)=>{
-  
+  console.log('running test')
   let test = await wp.create()
   res.json({ok:true, test})
 })
