@@ -71,7 +71,7 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
   } = req.body
   
   const body = {
-    title,
+    title: worktitle,
     "fields": {
       "taxonomy": {
         "author": {
