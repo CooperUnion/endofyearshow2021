@@ -233,14 +233,8 @@ fieldset.hide {
 
 
 .form-input:not(.populated) .upload {
-  opacity: 0;
-  max-height: 0em;
-  margin: 0;
+  display: none;
 }
-
-
-
-
 
 .success__info {
  display: block; 
