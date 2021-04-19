@@ -1,5 +1,6 @@
 dependencies:
   '@azure/msal-node': 1.0.1
+  body-parser: 1.19.0
   cookie-session: 1.4.0
   csv-reader: 1.0.7
   express: 4.17.1
@@ -1031,6 +1032,7 @@ shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
   '@azure/msal-node': ^1.0.1
+  body-parser: ^1.19.0
   cookie-session: ^1.4.0
   csv-reader: ^1.0.6
   express: ^4.17.1
