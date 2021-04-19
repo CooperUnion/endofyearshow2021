@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const bodyParser = require('body-parser');
+const jsonParser = bodyParser.json({extended:true})
 
 //multer configuration
 const multer = require('multer');
@@ -49,12 +51,12 @@ router.post('/', wpLogger, upload.none(), async (req, res, next)=>{
 
 })
 
-router.post('/json', wpLogger, upload.none(), async (req, res, next)=>{
-  console.log('creating a post')
+router.post('/json', wpLogger, jsonParser, async (req, res, next)=>{
+  console.log('creating a post for real')
   console.log(req.body)
   try {
     let post = await wp.create(req.body)
-    res.json("ok")
+    res.json(post)
   } catch (e) {
     res.status(500).json({error:e})
   }
