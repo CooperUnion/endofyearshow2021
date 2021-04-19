@@ -3,6 +3,7 @@ const app = express();
 const msal = require('@azure/msal-node');
 const cookieSession = require("cookie-session");
 const msalAuth = require('./routes/msal-auth');
+const msalRouter = require('./routes/msal-router');
 const fetch = require('node-fetch');
 const exphbs  = require('express-handlebars');
 const Vimeo = require("vimeo").Vimeo;
@@ -17,6 +18,9 @@ var storage = multer.diskStorage({
   }
 })
 
+const router = express.Router()
+
+router.use('/auth', msalRouter)
  
 var upload = multer({ storage: storage })
 
