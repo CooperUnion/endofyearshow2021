@@ -8,10 +8,6 @@ const authLogger = (req, res, next) =>{
   next()
 }
 
-router.get('/', authLogger, (req, res, next)=>{
-    res.end("in /auth router")
-})
-
 router.get('/redirect', authLogger, msalAuth.redirect)
 
 

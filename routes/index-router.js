@@ -9,38 +9,37 @@ const indexLogger = (req, res, next) =>{
 }
 
 //auth router redirects
-router.get('/', msalAuth.validate, (req, res) => {
+router.get('/', indexLogger, msalAuth.validate, (req, res) => {
   res.redirect('/form')
 });
 
-router.get('/logout', (req, res)=>{
+router.get('/logout', indexLogger, (req, res)=>{
   res.redirect('/auth/logout')
 })
 
-router.get("/token", async (req, res) => {
+router.get("/token", indexLogger, async (req, res) => {
   res.redirect('/form/token')
 })
 
+//static file serving, for validating uploads
+router.get('/file/:filename', (req, res)=>{
+  res.sendFile(`${__dirname}/uploads/${req.params.filename}`)
+})
+
+
+//shouldn't be used
 router.get('/dataTest', async (req, res)=>{
-  
   let csvData = await data.courses()
-  
   res.json(csvData)
 })
 
 router.get('/test', async (req, res)=>{
-  
   const data = {}
   const renderOptions = {
     data,
     layout: false
   } 
   return res.render('smallform', renderOptions)
-})
-
-router.get('/file/:filename', (req, res)=>{
-  
-  res.sendFile(`${__dirname}/uploads/${req.params.filename}`)
 })
 
 router.get('/students', async (req, res)=>{

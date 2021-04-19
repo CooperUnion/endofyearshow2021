@@ -20,7 +20,6 @@ const formLogger = (req, res, next) =>{
   next()
 }
 
-
 router.get('/', formLogger, async (req, res)=>{
   
   let students = await data.students()

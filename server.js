@@ -11,6 +11,7 @@ const msalAuth = require('./routes/msal-auth');
 const msalRouter = require('./routes/msal-router');
 const formRouter = require('./routes/form-router');
 const indexRouter = require('./routes/index-router');
+const wpRouter = require('./routes/wp-router');
 
 //handlebars interception of .html files for custom rendering
 app.engine('html', exphbs({extname: '.html'}));
@@ -32,13 +33,16 @@ auth.use(msalRouter)
 const form = express.Router()
 form.use(formRouter)
 
+const wp = express.Router()
+wp.use(wpRouter)
+
 const index = express.Router()
 index.use(indexRouter)
  
-
 //attach routers
 app.use('/auth', auth)
 app.use('/form', form)
+app.use('wp', wp)
 app.use('/', index)
 
 const listener = app.listen(process.env.PORT, () => {
