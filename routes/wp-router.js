@@ -65,9 +65,10 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
   console.log(req.body)
   
   const {
-    title,
+    worktitle,
     firstname,
-    lastname
+    lastname,
+    faculty
   } = req.body
   
   const body = {
@@ -76,7 +77,7 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
       "taxonomy": {
         "author": {
           "artist": `${firstname} ${lastname}`,
-          "instructor": "Erin Sparling"
+          "instructor": faculty
         },
         "tags": {
           "tags": "animation,awesomeness",
