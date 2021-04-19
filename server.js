@@ -46,10 +46,10 @@ app.get('/', msalAuth.validate, (req, res) => {
   res.redirect('/form')
 });
 
-app.get('/redirect', (req, res, next)=>{
-  req.url = '/auth/redirect'
-  next()
-})
+// app.get('/redirect', (req, res, next)=>{
+//   req.url = '/auth/redirect'
+//   next()
+// })
 
 app.get('/logout', (req, res)=>{
   res.redirect('/auth/logout')

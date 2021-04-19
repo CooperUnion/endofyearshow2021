@@ -26,7 +26,7 @@ exports.validate = (req, res, next)=>{
     console.log('user has no session')
     const authCodeUrlParameters = {
         scopes: ["user.read"],
-        redirectUri: "https://eoys-uploader-2021.glitch.me/redirect",
+        redirectUri: "https://eoys-uploader-2021.glitch.me/auth/redirect",
     };
 
     // get url to sign user in and consent to scopes needed for application
@@ -40,7 +40,7 @@ exports.redirect = (req, res, next)=>{
   const tokenRequest = {
       code: req.query.code,
       scopes: ["user.read"],
-      redirectUri: "https://eoys-uploader-2021.glitch.me/redirect",
+      redirectUri: "https://eoys-uploader-2021.glitch.me/auth/redirect",
   };
 
   cca.acquireTokenByCode(tokenRequest).then((response) => {
