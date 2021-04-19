@@ -60,16 +60,22 @@ router.post('/json', wpLogger, jsonParser, async (req, res, next)=>{
 })
 
 //testing
-router.post('/formData', wpLogger, jsonParser, async (req, res, next)=>{
+router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
   console.log('creating a post for real')
   console.log(req.body)
   
+  const {
+    title,
+    firstname,
+    lastname
+  } = req.body
+  
   const body = {
-    "title": "Testing, testing, 1, 2, 3, 1,000,000",
+    title,
     "fields": {
       "taxonomy": {
         "author": {
-          "artist": "Mike Stamm",
+          "artist": `${firstname} ${lastname}`,
           "instructor": "Erin Sparling"
         },
         "tags": {
@@ -96,6 +102,7 @@ router.post('/formData', wpLogger, jsonParser, async (req, res, next)=>{
   
   
   try {
+    return res.json({ok:true})
     let post = await wp.create(req.body)
     res.json(post)
   } catch (e) {
