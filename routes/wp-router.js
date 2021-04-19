@@ -1,6 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const bodyParser = require('body-parser');
+
+//multer configuration
+const multer = require('multer');
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, `${Date.now()}-${file.originalname}`)
+  }
+})
+var upload = multer({ storage: storage })
 
 const {
   getAllTags, 
@@ -13,7 +24,7 @@ console.log(wp)
 const student_page_limit = 100
 
 const wpLogger = (req, res, next) =>{
-  console.log('hit /auth', req.path)
+  console.log('hit /wp', req.path)
   next()
 }
 
@@ -23,7 +34,7 @@ router.get('/', wpLogger, async (req, res, next)=>{
   res.json({ok:true, test})
 })
 
-router.post('/', wpLogger, async (req, res, next)=>{
+router.post('/', wpLogger, multer, async (req, res, next)=>{
   console.log('creating a post')
   console.log(req.body)
   // let post = await wp.create()
