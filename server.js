@@ -22,6 +22,7 @@ const data = require('./routes/data');
 const msalAuth = require('./routes/msal-auth');
 const msalRouter = require('./routes/msal-router');
 const formRouter = require('./routes/form-router');
+const indexRouter = require('./routes/index-router');
 
 //router setups
 const auth = express.Router()
@@ -29,6 +30,9 @@ auth.use(msalRouter)
 
 const form = express.Router()
 form.use(formRouter)
+
+const index = express.Router()
+index.use(indexRouter)
  
 //handlebars interception of .html files for custom rendering
 app.engine('html', exphbs({extname: '.html'}));
@@ -55,29 +59,6 @@ app.get('/logout', (req, res)=>{
 
 
 
-//form endpoints
-app.get('/form', async (req, res)=>{
-  
-  let students = await data.students()
-  let teachers = await data.faculty()
-  let courses = await data.courses()
-
-  const csvData = {
-    students,
-    teachers,
-    courses,
-    user:req.session.user || {name:"mike", email:"mike@test.com"}
-  }
-  
-  const renderOptions = {
-    data: csvData,
-    layout: false
-  } 
-  
-  return res.render('form', renderOptions)
-})
-
-
 app.get('/dataTest', async (req, res)=>{
   
   let csvData = await data.courses()
@@ -95,19 +76,7 @@ app.get('/test', async (req, res)=>{
   return res.render('smallform', renderOptions)
 })
 
-app.post('/form', upload.any(), async(req, res)=>{
 
-  console.log({body:req.body, files: req.files})
-
-  req.files = req.files.map((file)=>{
-    
-    file.fullpath = 'https://eoys-uploader-2021.glitch.me/file/' + file.filename
-    return file
-    
-  })
-  res.json(req.files)
-
-})
 
 app.get('/file/:filename', (req, res)=>{
   
@@ -135,23 +104,14 @@ app.get('/courses', async (req, res)=>{
 
 
 app.get("/token", async (req, res) => {
-  res.json({ token: process.env.VIMEO_ACCESS_TOKEN });
-});
-
-
-app.get('/original', async (req, res)=>{
-  
-  const data = {}
-  const renderOptions = {
-    data,
-    layout: false
-  } 
-  return res.render('original', renderOptions)
+  res.redirect('/form/token')
 })
+
 
 //load routers
 app.use('/auth', auth)
 app.use('/form', form)
+app.use('/', index)
 
 
 

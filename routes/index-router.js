@@ -15,13 +15,13 @@ var storage = multer.diskStorage({
 })
 var upload = multer({ storage: storage })
 
-const formLogger = (req, res, next) =>{
-  console.log('hit /form', req.path)
+const indexLogger = (req, res, next) =>{
+  console.log('hit /index', req.path)
   next()
 }
 
 
-router.get('/', formLogger, async (req, res)=>{
+router.get('/', async (req, res)=>{
   
   let students = await data.students()
   let teachers = await data.faculty()
@@ -42,7 +42,7 @@ router.get('/', formLogger, async (req, res)=>{
   return res.render('form', renderOptions)
 })
 
-router.post('/form', formLogger, upload.any(), async(req, res)=>{
+router.post('/form', upload.any(), async(req, res)=>{
 
   console.log({body:req.body, files: req.files})
 
@@ -55,7 +55,7 @@ router.post('/form', formLogger, upload.any(), async(req, res)=>{
   res.json(req.files)
 })
 
-router.get("/token", formLogger, async (req, res) => {
+router.get("/token", async (req, res) => {
   res.json({ token: process.env.VIMEO_ACCESS_TOKEN });
 });
 
