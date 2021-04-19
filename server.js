@@ -1,14 +1,12 @@
+//app setup and auth
 const express = require("express");
 const app = express();
 const msal = require('@azure/msal-node');
 const cookieSession = require("cookie-session");
-const msalAuth = require('./routes/msal-auth');
-const msalRouter = require('./routes/msal-router');
-const fetch = require('node-fetch');
 const exphbs  = require('express-handlebars');
-const Vimeo = require("vimeo").Vimeo;
+
+//multer configuration
 const multer = require('multer');
-// const upload = multer({ dest: 'uploads/' });
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'uploads/')
@@ -17,39 +15,39 @@ var storage = multer.diskStorage({
     cb(null, `${Date.now()}-${file.originalname}`)
   }
 })
-
-const router = express.Router()
-
-router.use(msalRouter)
- 
 var upload = multer({ storage: storage })
 
-
+//custom middleware
 const data = require('./routes/data');
+const msalAuth = require('./routes/msal-auth');
+const msalRouter = require('./routes/msal-router');
+const formRouter = require('./routes/form-router');
 
+//router setups
+const auth = express.Router()
+auth.use(msalRouter)
 
+const form = express.Router()
+form.use(formRouter)
+ 
+//handlebars interception of .html files for custom rendering
 app.engine('html', exphbs({extname: '.html'}));
 app.set('view engine', 'html');
 
-
+//always use cookies
 app.use(cookieSession({
   name: 'auth',
   keys: [process.env.COOKIE_KEY],
   maxAge: 168 * 60 * 60 * 1000, // 24*7 hours
 }))
 
+//serve static assets from /public
 app.use(express.static("public"));
-app.use('/auth', router)
 
 //auth router redirects
 app.get('/', msalAuth.validate, (req, res) => {
   res.redirect('/form')
 });
-
-// app.get('/redirect', (req, res, next)=>{
-//   req.url = '/auth/redirect'
-//   next()
-// })
 
 app.get('/logout', (req, res)=>{
   res.redirect('/auth/logout')
@@ -137,21 +135,9 @@ app.get('/courses', async (req, res)=>{
 
 
 app.get("/token", async (req, res) => {
-  const ACCESS_TOKEN = process.env.VIMEO_ACCESS_TOKEN;
-  res.json({ token: ACCESS_TOKEN });
+  res.json({ token: process.env.VIMEO_ACCESS_TOKEN });
 });
 
-app.get("/tokenTest", async (req, res) => {
-  // const ACCESS_TOKEN = process.env.VIMEO_ACCESS_TOKEN;
-  
-  const CLIENT_ID = process.env.VIMEO_CLIENT_ID;
-  const CLIENT_SECRET = process.env.VIMEO_CLIENT_SECRET;
-  const ACCESS_TOKEN = process.env.VIMEO_ACCESS_TOKEN;
-
-  let client = new Vimeo(CLIENT_ID, CLIENT_SECRET, ACCESS_TOKEN);
-  console.log(client)
-  res.json({ token: ACCESS_TOKEN });
-});
 
 app.get('/original', async (req, res)=>{
   
@@ -162,6 +148,11 @@ app.get('/original', async (req, res)=>{
   } 
   return res.render('original', renderOptions)
 })
+
+//load routers
+app.use('/auth', auth)
+app.use('/form', form)
+
 
 
 const listener = app.listen(process.env.PORT, () => {
