@@ -39,16 +39,12 @@ const FormFX = function() {
   const submitButton = document.querySelector("button[type='submit']");
   submitButton.addEventListener("click", validateAndSubmit);
 
-    const allInputs = document.querySelectorAll(".formblock .form-input input, .formblock .form-input textarea");
-  allInputs.forEach(function(thisInput, currentIndex) {
-    thisInput.addEventListener("change", validateAllInputs);
-    
-  });
-
-
   const allInputs = document.querySelectorAll(".formblock .form-input input, .formblock .form-input textarea");
   allInputs.forEach(function(thisInput, currentIndex) {
     thisInput.addEventListener("change", validateAllInputs);
+    if (thisInput.type === "checkbox") {
+      thisInput.addEventListener("change", toggleCheckTag);
+    }
     if (thisInput.type === "file") {
       const inputBlock = thisInput.closest(".form-input"), 
             promptClear = inputBlock.querySelector("button.clear"), 

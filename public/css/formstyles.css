@@ -37,6 +37,19 @@ fieldset.hide {
 	display: inline-block;
 }
 
+.inputlist.checkboxes > li {
+  display: inline-block;
+  background-color: #ccc;
+  border-radius: 1.5em;
+  padding: 0.5em;
+}
+
+
+.inputlist.checkboxes > li label {
+  margin: 0
+}
+
+
 .titlelabel, .pseudolabel {
 	font-size: 1.25rem;
 	font-weight: bold;
