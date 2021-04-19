@@ -70,7 +70,10 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
     lastname,
     faculty,
     medium,
-    description
+    description,
+    dimensions,
+    materials,
+    email
   } = req.body
   
   const body = {
@@ -95,18 +98,18 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
       "meta": {
         "description": description,
         "optional": {
-          "dimensions": "4x5 index card, pixels",
-          "url": "https://my website"
+          "dimensions": dimensions,
+          "url": "https://NOT.USED"
         },
-        "email": "ldap-email@cooper.edu"
+        "email": email
       }
     }
   }
   
   
   try {
-    return res.json({ok:true})
-    let post = await wp.create(req.body)
+    // return res.json({ok:true})
+    let post = await wp.create(body)
     res.json(post)
   } catch (e) {
     res.status(500).json({error:e})
