@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const {
   getAllTags, 
-  getAllCategories, 
+  getAllCategories,
   ...wp
 } = require('../lib/wp');
 
@@ -15,10 +15,10 @@ const wpLogger = (req, res, next) =>{
   next()
 }
 
-router.get('/', (req, res, next)=>{
+router.get('/', wpLogger, async (req, res, next)=>{
   
-  
-  res.json({ok:true})
+  let test = await wp.create()
+  res.json({ok:true, test})
 })
 
 router.get('/tags', wpLogger, async (req, res) => {
