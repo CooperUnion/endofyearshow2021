@@ -68,7 +68,9 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
     worktitle,
     firstname,
     lastname,
-    faculty
+    faculty,
+    medium,
+    description
   } = req.body
   
   const body = {
@@ -80,18 +82,18 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
           "instructor": faculty
         },
         "tags": {
-          "tags": "animation,awesomeness",
-          "category": "fine art,nerdery"
+          "tags": medium,
+          "category": "NOT USED"
         }
       },
       "external":{
         "vimeo_url": "vimeo://",
-        "youtube_url": "youtube://",
-        "soundcloud_url": "soundcloud://",
-        "dropbox_url": "dropbox://"
+        "youtube_url": "NOT USED",
+        "soundcloud_url": "NOT USED",
+        "dropbox_url": "NOT USED"
       },
       "meta": {
-        "description": "Testing, testing, 1, 2, 3, 1,000,000",
+        "description": description,
         "optional": {
           "dimensions": "4x5 index card, pixels",
           "url": "https://my website"
