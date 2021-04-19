@@ -39,18 +39,21 @@ app.use(cookieSession({
 }))
 
 app.use(express.static("public"));
+app.use('/auth', router)
 
+//auth router redirects
 app.get('/', msalAuth.validate, (req, res) => {
-  
   res.redirect('/form')
 });
 
-app.get('/redirect', msalAuth.redirect)
+app.get('/redirect', (req, res, next)=>{
+  req.url = '/auth/redirect'
+  next()
+})
 
-
-app.use('/auth', router)
-
-
+app.get('/logout', (req, res)=>{
+  res.redirect('/auth/logout')
+})
 
 
 
