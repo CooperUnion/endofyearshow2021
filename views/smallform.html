@@ -29,7 +29,7 @@
             represent this piece. For the case of a work that requires two types
             of media, please submit a separate form for the alternate media.
           </p>
-          <div class="form-input" data-inputtype="file">
+          <div class="form-input no-validate" data-inputtype="file">
             <label for="artworkupload"><span class="button">Select up to five files</span><span> or drag them here</span>.</label>
             <input
               id="artworkupload"
@@ -40,6 +40,9 @@
               data-multiple-caption="{count} files queued for upload"
             />
             <small class="prompt">file: <output class="promptname"></output><button class="clear">clear</button></small>
+          </div>
+          <div class="form-input" data-inputtype="text">
+            <input id="videoworkid" name="videoworkid" type="text" placeholder="Video ID" readonly="readonly">
           </div>
         </div>
       <div class="formblock" data-required="required">
