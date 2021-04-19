@@ -21,10 +21,6 @@ const {
   ...wp
 } = require('../lib/wp');
 
-console.log(wp)
-
-const student_page_limit = 100
-
 const wpLogger = (req, res, next) =>{
   console.log('hit /wp', req.path)
   next()
