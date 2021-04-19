@@ -39,6 +39,13 @@ const FormFX = function() {
   const submitButton = document.querySelector("button[type='submit']");
   submitButton.addEventListener("click", validateAndSubmit);
 
+    const allInputs = document.querySelectorAll(".formblock .form-input input, .formblock .form-input textarea");
+  allInputs.forEach(function(thisInput, currentIndex) {
+    thisInput.addEventListener("change", validateAllInputs);
+    
+  });
+
+
   const allInputs = document.querySelectorAll(".formblock .form-input input, .formblock .form-input textarea");
   allInputs.forEach(function(thisInput, currentIndex) {
     thisInput.addEventListener("change", validateAllInputs);
@@ -205,6 +212,15 @@ const FormFX = function() {
     document.querySelector(`.formblock .titlelabel[data-anchor = "${targetAnchor}"], .formblock .pseudolabel[data-anchor = "${targetAnchor}"]`).scrollIntoView({
       behavior: 'smooth'
     });
+  }
+  
+  function toggleCheckTag(e) {
+    const checkTag = this.closest("li");
+    if (this.checked) {
+      checkTag.classList.add("checked");
+    } else {
+      checkTag.classList.remove("checked");
+    }
   }
 
   async function validateAndSubmit(e) {
