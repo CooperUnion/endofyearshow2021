@@ -6,8 +6,10 @@ const cookieSession = require("cookie-session");
 const exphbs  = require('express-handlebars');
 
 //custom middleware
-const data = require('./routes/data');
-const msalAuth = require('./routes/msal-auth');
+const data = require('./lib/data');
+const msalAuth = require('./lib/msal-auth');
+
+//custom routers
 const msalRouter = require('./routes/msal-router');
 const formRouter = require('./routes/form-router');
 const indexRouter = require('./routes/index-router');
@@ -42,7 +44,7 @@ index.use(indexRouter)
 //attach routers
 app.use('/auth', auth)
 app.use('/form', form)
-app.use('wp', wp)
+app.use('/wp', wp)
 app.use('/', index)
 
 const listener = app.listen(process.env.PORT, () => {

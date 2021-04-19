@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const msalAuth = require('./msal-auth');
-const data = require('./data');
+const msalAuth = require('../lib/msal-auth');
+const data = require('../lib/data');
 
 //multer configuration
 const multer = require('multer');

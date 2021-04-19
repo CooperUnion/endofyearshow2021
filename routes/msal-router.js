@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const msalAuth = require('./msal-auth');
+const msalAuth = require('../lib/msal-auth');
 
 
 const authLogger = (req, res, next) =>{
