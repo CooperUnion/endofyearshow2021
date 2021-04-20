@@ -75,7 +75,7 @@ const FormFX = function() {
         uploadIt.textContent = thisInput.submittedFiles.length === 1 ? "Upload it" : "Upload them";
         promptList.innerHTML = `
           ${Array.from(thisInput.submittedFiles).map((item, i) => `
-            <dt class="filename">Filename: <span class="promptvalue">${item.name}</span><img src="${getThumb(item)}"></dt>
+            <dt class="filename">Filename: <span class="promptvalue">${item.name}</span></dt>
             <dd class="filemeta">Alt text: <input type="text" placeholder="Alt text for ${item.name}"></dd>`.trim()
           ).join('')}
         `;
