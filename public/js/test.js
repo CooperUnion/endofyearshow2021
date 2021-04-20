@@ -76,7 +76,7 @@ const FormFX = function() {
         promptList.innerHTML = `
           ${[...thisInput.submittedFiles].map((item, i) => `
             <dt class="filethumb"><img class="genthumb"></dt>
-            <dd class="filemeta"><span>Alt text:</span><input type="text" placeholder="Alt text for ${item.name}"></dd>`.trim()).join('')}
+            <dd class="filemeta" data-required="required"><span class="pseudolabel">Alt text:</span><input type="text" placeholder="Description of ${item.name}"></dd>`.trim()).join('')}
         `;
         
         [...thisInput.submittedFiles].forEach(function (file, i) {
@@ -85,6 +85,8 @@ const FormFX = function() {
           reader.onloadend = function() {
             promptList.querySelectorAll("img.genthumb")[i].src = reader.result;
           }
+          
+          promptList.querySelectorAll("img.genthumb")[i]
         });
         
         updateFileCount();

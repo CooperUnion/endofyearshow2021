@@ -223,7 +223,7 @@ fieldset.hide {
 }
 
 .form-input .promptlist {
-  margin: 1em 0 0 0;
+  margin: 2em 0 0 0;
   font-size: 1rem;
   display: flex;
   flex-direction: row;
@@ -232,22 +232,33 @@ fieldset.hide {
 }
 
 .form-input .promptlist .filethumb {
+  padding: 0;
   width: 33%;
   text-align: right;
 }
 
 .form-input .promptlist .filemeta {
+  padding: 0;
   width: 67%;
   text-align: left;
 }
 
-.form-input .promptlist .filemeta > input {
-  width: calc(100% - 5em);
+.form-input .promptlist .filemeta > .pseudolabel {
+  font-size: 1rem;
+  margin-right: 1em;
+  display: block;
 }
 
+
+.form-input .promptlist .filemeta > input {
+  width: calc(75%);
+}
+
+
 .form-input .promptlist .genthumb {
-  width: 5em;
+  width: 7em;
   height: auto;
+  margin-right: 2em;
 }
 
 .success__info {
