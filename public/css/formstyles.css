@@ -265,26 +265,23 @@ fieldset.hide {
   margin-right: 2em;
 }
 
-.uploader .filesummary {
+.form-input .filesummary {
 	display: block;
 	font-weight: 700;
 }
 
-.uploader .filesummary {
-  margin-top: 1em;
-}
-
-.uploader .form-input:not(.generated) .filesummary {
+.form-input:not(.generated) .filesummary {
 	display: none;
 }
 
-.uploader .filesummary .response-files {
+.form-input .filesummary .response-files {
   display: flex;
   flex-direction: row;
 }
 
-.uploader .filesummary .response-files .response-file:nth-child(n+1):after {
-  content: ", ";
+.form-input .filesummary .response-files .response-file:not(:last-child):after {
+  content: ",";
+  margin-right: 0.5em;
 }
 
 .form-input .promptname {
