@@ -159,6 +159,16 @@ const FormFX = function() {
       function resolveFromWordpress(response) {
         clearfileInputSelections();
         var result = Object.entries(response);
+        summaryOutput.textContent = ``;
+var menuHTML = `
+<nav class="news links">
+  <ul>
+    ${response.map(metadata => `
+    <li> <a href="http://${metadata[1].href}">${metadata[1].originalname}</a>
+`).join("\n")}
+  </ul>
+</nav>
+`;        
         console.log(result);
       }
       
