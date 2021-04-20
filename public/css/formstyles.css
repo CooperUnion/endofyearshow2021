@@ -226,18 +226,23 @@ fieldset.hide {
   margin: 1em 0 0 0;
   font-size: 1rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.form-input .promptlist .filethumb,
+.form-input .promptlist .filemeta {
+  width: 50%;
 }
 
 .form-input .promptlist .genthumb {
-  width: 2vw;
+  width: 5em;
   height: auto;
 }
 
 .success__info {
  display: block; 
 }
-
 
 .form-input .promptname {
   font-style: italic;
