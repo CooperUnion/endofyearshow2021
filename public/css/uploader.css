@@ -89,7 +89,8 @@
 	margin: -0.1em -0.2em;
 }
 
-.uploader .form-input:not(.populated) .uploadit {
+.uploader .form-input:not(.populated) .uploadit,
+.uploader .form-input:not(.populated) .clearall {
 	display: none;
 }
 
@@ -98,6 +99,12 @@
 	background-color: #275a90;
 	color: #fff;
 }
+
+
+.clearall {
+	margin: 1em 1em 0 0;
+}
+
 
 .uploadit:not([disabled]):hover,
 .uploadit:not([disabled]):focus {
@@ -110,17 +117,17 @@ small {
 }
 
 .uploader .prompt,
-.uploader .summary {
+.uploader .filesummary {
 	display: block;
 	font-weight: 700;
 }
 
-.uploader .summary {
+.uploader .filesummary {
   margin-top: 1em;
 }
 
 .uploader .form-input:not(.populated) .prompt,
-.uploader .form-input:not(.generated) .summary {
+.uploader .form-input:not(.generated) .filesummary {
 	opacity: 0;
 }
 

@@ -48,6 +48,7 @@ const FormFX = function() {
     if (thisInput.type === "file") {
       const inputBlock = thisInput.closest(".form-input"), 
             promptClear = inputBlock.querySelector("button.clear"),
+            clearAll = inputBlock.querySelector(".clearall"),
             uploadIt = inputBlock.querySelector(".uploadit"),
             promptList = inputBlock.querySelector(".promptlist"),
             summaryOutput = inputBlock.closest(".formblock").querySelector(".filesummary .summary-list");
@@ -156,8 +157,8 @@ const FormFX = function() {
       
       function clearfileInputSelections() {
         promptList.innerHTML = "";
-          thisInput.dataset.filecount = 0;
-          inputBlock.classList.remove("populated");
+        thisInput.dataset.filecount = 0;
+        inputBlock.classList.remove("populated");
         thisInput.submittedFiles = {};
         thisInput.value = "";
       }
@@ -189,6 +190,8 @@ const FormFX = function() {
 
       thisInput.addEventListener("change", handleFileOperation);
       uploadIt.addEventListener("click", uploadToWordpress);
+      clearAll.addEventListener("click", clearfileInputSelections);
+
       // promptClear.addEventListener("click", clearInput);
     }
   });
