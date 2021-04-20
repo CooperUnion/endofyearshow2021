@@ -59,11 +59,14 @@
         let form = document.querySelector("form")
         let file = document.querySelector("input[type=file]")
         let output = document.querySelector("code")
-
+        let endpoint = 'http://coopereoys2021.wpengine.com/wp-json/v2/media'
+        
+        
         form.onsubmit = async (e)=>{
           e.preventDefault()
           let formData = new FormData()
           formData.append("image", file.files[0])
+          formData.append("title", "a test title")
           const response = await fetch("/wp/image", {
             method: "POST",
             body: formData,
