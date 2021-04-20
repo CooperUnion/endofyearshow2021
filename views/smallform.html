@@ -42,9 +42,10 @@
                 data-multiple-caption="{count} files queued for upload"
               />
               <dl class="promptlist"></dl>
-              <small class="prompt">
+            
+<!--               <small class="prompt"> -->
 <!--                 file: <output class="promptname"></output> -->
-                <button class="clear">clear</button></small>
+<!--                 <button class="clear">clear</button></small> -->
               <button class="uploadit" type="button" disabled="">Upload it</button> 
             </div>
             <div class="form-input" data-inputtype="text">
@@ -62,13 +63,16 @@
         <p class="label-context">
           NOTE: DO NOT upload anything other than an above image file type, despite what the form says.
         </p>
-        <div class="form-input" data-inputtype="file">
-          <input id="thumbnailupload" name="thumbnailupload" class="input-file" type="file" data-multiple-caption="{count} files queued for upload">
-          <label for="thumbnailupload"><span class="button">Select a file</span><span> or drag it here</span>.</label> 
-            <dl class="promptlist"></dl>
-          <small class="prompt">
-<!--             file: <output class="promptname"></output> -->
-            <button class="clear">clear</button></small>
+        <div class="wordpress uploader">
+          <div class="form-input no-validate" data-inputtype="file">
+            <input id="thumbnailupload" name="thumbnailupload" class="input-file" type="file" data-multiple-caption="{count} files queued for upload">
+            <label for="thumbnailupload"><span class="button">Select a file</span><span> or drag it here</span>.</label> 
+              <dl class="promptlist"></dl>
+  <!--           <small class="prompt"> -->
+  <!--             file: <output class="promptname"></output> -->
+  <!--             <button class="clear">clear</button></small> -->
+            <button class="uploadit" type="button" disabled="">Upload it</button> 
+          </div>
         </div>
       </div>        
       </fieldset>

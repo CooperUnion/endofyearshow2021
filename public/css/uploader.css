@@ -89,8 +89,7 @@
 	margin: -0.1em -0.2em;
 }
 
-.uploader .form-input:not(.populated) .uploadit,
-.uploader input:not([data-filecount="1"]) ~ .uploadit {
+.uploader .form-input:not(.populated) .uploadit {
 	display: none;
 }
 

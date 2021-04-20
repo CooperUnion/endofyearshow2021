@@ -132,6 +132,7 @@ const FormFX = function() {
 
       thisInput.addEventListener("change", handleFileOperation);
       promptClear.addEventListener("click", clearInput);
+      
     }
   });
 

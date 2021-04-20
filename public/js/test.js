@@ -47,7 +47,8 @@ const FormFX = function() {
     }
     if (thisInput.type === "file") {
       const inputBlock = thisInput.closest(".form-input"), 
-            promptClear = inputBlock.querySelector("button.clear"), 
+            promptClear = inputBlock.querySelector("button.clear"),
+            uploadIt = inputBlock.querySelector(".uploadit"),
             // fileOutput = inputBlock.querySelector(".promptname"),
             promptList = inputBlock.querySelector(".promptlist");
 
@@ -71,8 +72,6 @@ const FormFX = function() {
           thisInput.submittedFiles = thisInput.files;
         }
         // fileOutput.textContent = thisInput.submittedFiles.length === 1 ? thisInput.submittedFiles[0].name : thisInput.submittedFiles.length > 1 ? (thisInput.getAttribute("data-multiple-caption") || "").replace("{count}", thisInput.submittedFiles.length) : "";
-              console.log(thisInput.submittedFiles);
-
 
         promptList.innerHTML = `
           ${Array.from(thisInput.submittedFiles).map((item, i) => `
@@ -134,7 +133,8 @@ const FormFX = function() {
       inputBlock.addEventListener("drop", handleFileOperation);
 
       thisInput.addEventListener("change", handleFileOperation);
-      promptClear.addEventListener("click", clearInput);
+      uploadIt.addEventListener("click", uploadToWordpress);
+      // promptClear.addEventListener("click", clearInput);
     }
   });
 
@@ -197,6 +197,12 @@ const FormFX = function() {
   async function validateAndSubmit(e) {
     e.preventDefault();
     console.log(allDroppedFiles);
+  }
+  
+
+  async function validateAndSubmit(e) {
+    e.preventDefault();
+    console.log(allDroppedFiles);
     // if (validateAllInputs()) {
     //   const formData = new FormData(formsForm);
     //   for (let key in allDroppedFiles) {
@@ -215,6 +221,7 @@ const FormFX = function() {
     // }
   }
   
+
   function isValid(thisInput) {
     let isValid = true;
     switch (thisInput.dataset.inputtype) {
