@@ -136,13 +136,14 @@ router.post('/image', wpLogger, upload.any(), async (req, res, next)=>{
     let media = await wp.createMedia(req.files[0], req.body)
     console.log(media)
 
-    const {id, media_details, caption, source_url} = media
+    const {id, media_details, caption, source_url, originalname} = media
     const {thumbnail} = media_details.sizes
     res.json({
       id, 
       caption: caption.raw, 
       thumbnail, 
-      source_url
+      source_url,
+      originalname
     })
   } catch(e) {
     console.log(e)
