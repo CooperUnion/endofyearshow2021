@@ -152,15 +152,16 @@ const FormFX = function() {
       }
       
       function resolveFromWordpress(response) {
-        promptList.innerHTML = "";
-        inputBlock.classList.remove("populated");
-        // remove populated class
-        // generate list of files
-// summaryOutput.textContent = response.
-
         var result = Object.entries(response);
         console.log(result);
+      }
       
+      function clearfileInputSelections() {
+        promptList.innerHTML = "";
+        inputBlock.classList.remove("populated");
+        thisInput.submittedFiles = {};
+        thisInput.files = 
+        
       }
 
       ["drag",
