@@ -228,11 +228,21 @@ fieldset.hide {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  align-items: center;
 }
 
-.form-input .promptlist .filethumb,
+.form-input .promptlist .filethumb {
+  width: 33%;
+  text-align: right;
+}
+
 .form-input .promptlist .filemeta {
-  width: 50%;
+  width: 67%;
+  text-align: left;
+}
+
+.form-input .promptlist .filemeta > input {
+  width: calc(100% - 5em);
 }
 
 .form-input .promptlist .genthumb {

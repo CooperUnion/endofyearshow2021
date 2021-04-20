@@ -76,7 +76,7 @@ const FormFX = function() {
         promptList.innerHTML = `
           ${[...thisInput.submittedFiles].map((item, i) => `
             <dt class="filethumb"><img class="genthumb"></dt>
-            <dd class="filemeta">Alt text: <input type="text" placeholder="Alt text for ${item.name}"></dd>`.trim()).join('')}
+            <dd class="filemeta"><span>Alt text:</span><input type="text" placeholder="Alt text for ${item.name}"></dd>`.trim()).join('')}
         `;
         
         [...thisInput.submittedFiles].forEach(function (file, i) {
@@ -112,26 +112,7 @@ const FormFX = function() {
         const evt = new Event("change");
         inputObj.dispatchEvent(evt);
       }
-      
-      // function previewFile(file) {
-      //   let reader = new FileReader()
-      //   reader.readAsDataURL(file)
-      //   reader.onloadend = function() {
-      //     let img = document.createElement('img')
-      //     img.src = reader.result
-      //     document.getElementById('gallery').appendChild(img)
-      //   }
-      // }
-
-      function parseThumb(file) {
-        let reader = new FileReader();
-        // reader.readAsDataURL(file);
-        // reader.onloadend = function() {
-        //   console.log(reader.result);
-        //   return reader.result;
-        // }
-      }
-            
+                  
       async function uploadToWordpress(e) {
         e.preventDefault();
         let formData = new FormData();
