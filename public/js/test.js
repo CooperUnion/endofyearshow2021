@@ -88,7 +88,10 @@ const FormFX = function() {
           promptList.querySelectorAll(".filemeta")[i].addEventListener("change", validateAltText);
         });
         uploadIt.disabled = true;
-        updateFileCount();
+        if (thisInput.submittedFiles.length > 0) {
+          inputBlock.classList.add("populated");
+          inputBlock.querySelector(".success-message small").textContent = "Your " + + " been submitted.";
+        }
       }
       
       function validateAltText() {
@@ -105,14 +108,14 @@ const FormFX = function() {
         }
       }
 
-      function updateFileCount() {
-        if (thisInput.submittedFiles.length > 0) {
-          thisInput.dataset.filecount = thisInput.submittedFiles.length;
-          inputBlock.classList.add("populated");
-        } else {
-          clearfileInputSelections();
-        }
-      }
+      // function updateFileCount() {
+      //   if (thisInput.submittedFiles.length > 0) {
+      //     // thisInput.dataset.filecount = thisInput.submittedFiles.length;
+      //     inputBlock.classList.add("populated");
+      //   } else {
+      //     clearfileInputSelections();
+      //   }
+      // }
       
       function clearInput(e) {
         e.preventDefault();
@@ -169,7 +172,7 @@ const FormFX = function() {
       function clearfileInputSelections() {
         promptList.innerHTML = "";
         promptList.classList.remove("uploading");
-        thisInput.dataset.filecount = 0;
+        // thisInput.dataset.filecount = 0;
         inputBlock.classList.remove("populated");
         thisInput.submittedFiles = {};
         thisInput.value = "";
