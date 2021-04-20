@@ -241,12 +241,12 @@ const FormFX = function() {
       }
       break;
 
-    case "file":
+//     case "file":
         
-      const thisInputField = thisInput.querySelector("input[type='file']");
-      if (!(thisInputField.id in allDroppedFiles) && thisInputField.files.length === 0) {
-        isValid = false;
-      }      
+//       const thisInputField = thisInput.querySelector("input[type='file']");
+//       if (!(thisInputField.id in allDroppedFiles) && thisInputField.files.length === 0) {
+//         isValid = false;
+//       }      
 
       break;
 
