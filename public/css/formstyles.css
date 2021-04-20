@@ -229,7 +229,6 @@ fieldset.hide {
   align-items: center;
 }
 
-
 .form-input .promptlist.uploading {
   opacity: 0.25;
 }
@@ -253,11 +252,9 @@ fieldset.hide {
   display: block;
 }
 
-
 .form-input .promptlist .filemeta > .alttextfield {
   width: calc(75%);
 }
-
 
 .form-input .promptlist .genthumb {
   width: 7em;
@@ -284,22 +281,60 @@ fieldset.hide {
   margin-right: 0.5em;
 }
 
-.form-input .promptname {
-  font-style: italic;
-  font-weight: 300;
-  line-height: 2.25;
-  margin-left: 0.5em;
+.uploader label[for="file"] > strong {
+	display: inline-block;
+	border: 1px solid #111;
+	padding: 0.1em 0.2em;
+	margin: -0.1em -0.2em;
+}
+
+.uploader .form-input:not(.populated) .uploadit,
+.uploader .form-input:not(.populated) .clearall {
+	display: none;
+}
+
+.uploadit {
+	margin: 1em 0 0 0;
+	background-color: #275a90;
+	color: #fff;
+}
+
+
+.clearall {
+	margin: 1em 1em 0 0;
+}
+
+.uploadit:not([disabled]):hover,
+.uploadit:not([disabled]):focus {
+	background-color: #173454;
+	color: #bfbfbf;
+}
+
+.form-input.success > label,
+.form-input:not(.success) .success-message {
+  display: none;
+}
+
+.form-input.success .success-message {
+	-webkit-animation: appear-from-inside .25s ease-in-out;
+	animation: appear-from-inside .25s ease-in-out;
+}
+
+
+/* .uploader .promptname {
+	font-style: italic;
+	font-weight: 300;
 }
 
 .upload__idoutput {
- display: inline-block;
-  border: 1px solid #111;
-  padding: 0.1em 0.2em;
-  margin: 0.25em 0 0.5em 0;
-  font-weight: bold;
-  font-size: 1rem;
+	display: inline-block;
+	border: 1px solid #111;
+	padding: 0.1em 0.2em;
+	margin: 0.25em 0 0.5em 0;
+	font-weight: bold;
+	font-size: 1rem;
 }
-
+ */
 button.clear {
   overflow: hidden;
   text-indent: -200vw;

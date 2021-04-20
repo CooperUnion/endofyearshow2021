@@ -156,7 +156,7 @@ const FormFX = function() {
       
       function resolveFromWordpress(response) {
         clearfileInputSelections();
-        
+        inputBlock.classList.add("success");
         summaryOutput.innerHTML = `
           <ul class="response-files">
             ${response.map(metadata => `
