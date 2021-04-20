@@ -117,7 +117,6 @@ const FormFX = function() {
         }
       }
       
-
       function clearInput(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -138,7 +137,9 @@ const FormFX = function() {
         let formData = new FormData();
 
         for (let i = 0; i < thisInput.submittedFiles.length; i++) {
-          formData.append(thisInput.submittedFiles[i].name, thisInput.submittedFiles[i])
+          formData.append(thisInput.submittedFiles[i].name, thisInput.submittedFiles[i]);
+          formData.append(thisInput.submittedFiles[i].name, thisInput.submittedFiles[i]);
+          
         }
 
         const response = await fetch("/wp/image", {

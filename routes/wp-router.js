@@ -157,13 +157,35 @@ router.post('/imageArray', wpLogger, upload.any(), async (req, res, next)=>{
     
   console.log(req.body)
   
-  let medias = req.files.map((file, i)=>{
+  const medias = req.files.map((file, i)=>{
     try {
-      const meta = 
-      const media = wp.createMedia(req.files[i], req.body[i])
-      console.log(media)
+      const meta = {}
+      for (const [key, value] of req.body) {
+        const parsedItem = JSON.parse(value)[i]
+        meta[key] = parsedItem
+      }
+      return wp.createMedia(req.files[i], meta)
     } catch (e){
-      
+      const errorMessage = `Error submitting file ${file.originalname}`
+      console.log(errorMessage, e)
+      throw new Error(e)
+    }
+  })
+  
+  const submitted = await Promise.all(medias)
+  
+  const formattedSubmissions = submitted.map((media)=>{
+    console.log(media)
+
+    const {id, media_details, caption, source_url, originalname} = media
+    const {thumbnail} = media_details.sizes
+    
+    return {
+      id, 
+      caption: caption.raw, 
+      thumbnail, 
+      source_url,
+      originalname
     }
   })
   
