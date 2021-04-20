@@ -127,33 +127,14 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
   
 router.post('/image', wpLogger, upload.any(), async (req, res, next)=>{
 
-    let {
-      author, 
-      email,
-      title,
-      alt_text,
-      caption,
-      description
-    } = req.body
     
-    let meta = {
-      title,
-      caption,
-      description,
-      alt_text,
-      fields: {
-        author,
-        email
-      }
-    }
+  console.log(req.body)
 
-    
-    console.log(meta)
-    
-    let media = await wp.createMedia(req.files[0], meta)
+  try {
+let media = await wp.createMedia(req.files[0], req.body)
     console.log(media)
-  
-    const {id, media_details, source_url} = media
+
+    const {id, media_details, caption, source_url} = media
     const {thumbnail} = media_details.sizes
     res.json({
       id, 
@@ -161,6 +142,10 @@ router.post('/image', wpLogger, upload.any(), async (req, res, next)=>{
       thumbnail, 
       source_url
     })
+  } catch(e) {
+
+  }
+   
 
 })
 
