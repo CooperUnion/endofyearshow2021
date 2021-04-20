@@ -106,6 +106,14 @@ const FormFX = function() {
         const evt = new Event("change");
         inputObj.dispatchEvent(evt);
       }
+      
+      async function uploadToWordpress(e) {
+        e.preventDefault();
+        console.log(thisInput.submittedFiles);
+        var formData = new FormData(); 
+      }
+
+      
 
       ["drag",
         "dragstart",
@@ -198,29 +206,7 @@ const FormFX = function() {
     e.preventDefault();
     console.log(allDroppedFiles);
   }
-  
-
-  async function validateAndSubmit(e) {
-    e.preventDefault();
-    console.log(allDroppedFiles);
-    // if (validateAllInputs()) {
-    //   const formData = new FormData(formsForm);
-    //   for (let key in allDroppedFiles) {
-    //     Array.from(allDroppedFiles[key]).forEach(file => { 
-    //       formData.append('file', file);
-    //     });
-    //   }
-    //   const response = await fetch("/wp/formData", {
-    //     method: "POST",
-    //     body: formData
-    //   })
-    //   const json = await response.json()
-    //   console.log(json)
-    // } else {
-    //   formsBody.classList.add("validation-active");
-    // }
-  }
-  
+    
 
   function isValid(thisInput) {
     let isValid = true;
