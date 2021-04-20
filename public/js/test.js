@@ -75,12 +75,17 @@ const FormFX = function() {
         uploadIt.textContent = thisInput.submittedFiles.length === 1 ? "Upload it" : "Upload them";
         promptList.innerHTML = `
           ${[...thisInput.submittedFiles].map((item, i) => `
-            <dt class="filethumb"><img class="dragthumb"></dt>
+            <dt class="filethumb"><img class="genthumb"></dt>
             <dd class="filemeta">Alt text: <input type="text" placeholder="Alt text for ${item.name}"></dd>`.trim()).join('')}
         `;
         
         [...thisInput.submittedFiles].forEach(function (file, i) {
-          
+          let reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onloadend = function() {
+            return reader.result;
+          }
+          promptList.querySelectorAll("img.genthumb")[i].src = 
           
         });
         updateFileCount();
