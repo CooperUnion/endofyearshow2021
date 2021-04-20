@@ -32,8 +32,6 @@ const FormFX = function() {
 //   const specialRadioCheckbox = document.querySelector(".special.radio-text input[type='radio']");
 //   specialRadioCheckbox.addEventListener("change", focusSpecialText);
 
-  // let allDroppedFiles = {};
-
   // const formsBody = document.querySelector(".main");
   const formsForm = document.querySelector("form");
   const submitButton = document.querySelector("button[type='submit']");
@@ -158,15 +156,13 @@ const FormFX = function() {
       
       function resolveFromWordpress(response) {
         clearfileInputSelections();
-        var result = Object.entries(response);
-        summaryOutput.textContent = `
+        summaryOutput.innerHTML = `
           <ul class="response-files">
             ${response.map(metadata => `
-            <li>${metadata[1].originalname}</li>
+              <li data-thumb="">${metadata.originalname}</li>
           `).join("\n")}
           </ul>
         `;        
-        console.log(result);
       }
       
       function clearfileInputSelections() {
