@@ -153,9 +153,14 @@ const FormFX = function() {
         // promptlist empty
         // remove populated class
         // generate list of files
-summaryOutput.textContent =
-        
-        
+// summaryOutput.textContent = response.
+
+        var result = Object.keys(response).map((key) => [Number(key), obj[key]]);
+
+        for (const [key, value] of Object.entries(response)) {
+          console.log(`${key}: ${value}`);
+        }
+      
       }
 
       ["drag",
