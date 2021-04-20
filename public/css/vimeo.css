@@ -1,6 +1,6 @@
-.vimeo {
+.uploader {
 	position: relative;
-  margin-bottom: 1em;
+	margin-bottom: 1em;
 }
 
 .vimeo.is-uploading .form-input {
@@ -21,7 +21,6 @@
 	display: none;
 }
 
-
 .vimeo.is-uploading .file__prompt,
 .vimeo.is-success .file__prompt,
 .vimeo.is-error .file__prompt,
@@ -40,7 +39,7 @@
 .vimeo.is-uploading .box__uploading,
 .vimeo.is-success .box__success,
 .vimeo.is-error .box__error {
-  text-align: center;
+	text-align: center;
 	display: block;
 	position: absolute;
 	top: 50%;
@@ -67,6 +66,125 @@
 	animation: appear-from-inside .25s ease-in-out;
 }
 
+.box__restart {
+	display: inline-block;
+	font-weight: 700;
+	color: #111;
+	border: 1px solid #111;
+	padding: 0.1em 0.2em;
+	margin: -0.1em -0.2em;
+	text-decoration: none;
+	margin-top: 1.5em;
+}
+
+.box__restart:focus,
+.box__restart:hover {
+	color: #111;
+}
+
+.uploader label[for="file"] > strong {
+	display: inline-block;
+	border: 1px solid #111;
+	padding: 0.1em 0.2em;
+	margin: -0.1em -0.2em;
+}
+
+.uploader .form-input:not(.populated) .box__button,
+.uploader input:not([data-filecount="1"]) ~ .box__button {
+	display: none;
+}
+
+.box__button {
+	margin: 1em 0 0 0;
+	background-color: #275a90;
+	color: #fff;
+}
+
+.box__button:hover,
+.box__button:focus {
+	background-color: #173454;
+	color: #bfbfbf;
+}
+
+small {
+	/*   font-size: 1rem; */
+}
+
+.uploader .input__block {
+	-webkit-transition: opacity .25s ease-in-out;
+	transition: opacity .25s ease-in-out;
+	transtion: max-height: 0.25s ease-in;
+	max-height: 1em;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.uploader .input__block input {
+	border: 1px solid #111;
+	padding: 0.25em;
+	margin: 0 0 0 0.333em;
+}
+
+.uploader .form-input:not(.populated) .input__block {
+	opacity: 0;
+	max-height: 0;
+}
+
+.uploader .prompt {
+	display: block;
+	/*   margin-top: 1em; */
+	font-weight: 700;
+	-webkit-transition: opacity .25s ease-in-out;
+	transition: opacity .25s ease-in-out;
+}
+
+.uploader .form-input:not(.populated) .prompt {
+	opacity: 0;
+}
+
+.success__info {
+	display: block;
+}
+
+.uploader .promptname {
+	font-style: italic;
+	font-weight: 300;
+}
+
+.upload__idoutput {
+	display: inline-block;
+	border: 1px solid #111;
+	padding: 0.1em 0.2em;
+	margin: 0.25em 0 0.5em 0;
+	font-weight: bold;
+	font-size: 1rem;
+}
+
+progress {
+	-webkit-appearance: none;
+	appearance: none;
+	height: 2px;
+	width: 33%;
+}
+
+progress[value]::-webkit-progress-bar {
+	background-color: #eee;
+}
+
+progress[value]::-webkit-progress-value {
+	background-color: #111;
+}
+
+.videos-list li {
+	margin: 0.5em 0;
+	font-size: 12px;
+}
+
+.videos-list li .title {
+	font-weight: bold;
+}
+
 @-webkit-keyframes appear-from-inside
 						{
 							from	{ -webkit-transform: translateY( -50% ) scale( 0 ); }
@@ -79,126 +197,4 @@
 							75%		{ transform: translateY( -50% ) scale( 1.1 ); }
 							to		{ transform: translateY( -50% ) scale( 1 ); }
 						}
-
-.box__restart {
-  display: inline-block;
-	font-weight: 700;
-  color: #111;
-	border: 1px solid #111;
-	padding: 0.1em 0.2em;
-	margin: -0.1em -0.2em;
-  text-decoration: none;
-  margin-top: 1.5em;
-}
-
-.box__restart:focus,
-.box__restart:hover {
-	color: #111;
-}
-
-.box__input label[for="file"] > strong {
-	display: inline-block;
-	border: 1px solid #111;
-	padding: 0.1em 0.2em;
-	margin: -0.1em -0.2em;
-}
-
-.vimeo .form-input:not(.populated) .box__button,
-.vimeo input:not([data-filecount="1"]) ~ .box__button {
-	display: none;
-}
-
-.box__button {
-  margin: 1em 0 0 0;
-  background-color: #275a90;
-  color: #fff;
-}
-
-
-.box__button:hover,
-.box__button:focus {
-  background-color: #173454;
-  color: #bfbfbf;
-}
-
-small {
-/*   font-size: 1rem; */
-}
-
-.box__input .input__block {
-	-webkit-transition: opacity .25s ease-in-out;
-	transition: opacity .25s ease-in-out;
-  transtion: max-height: 0.25s ease-in;
-  max-height: 1em;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-.box__input .input__block input {
-  border: 1px solid #111;
-  padding: 0.25em;
-  margin: 0 0 0 0.333em;
-}
-
-.box__input .form-input:not(.populated) .input__block {
-  opacity: 0;
-  max-height: 0;
-}
-
-.box__input .prompt {
-  display: block;
-/*   margin-top: 1em; */
-  font-weight: 700;
-	-webkit-transition: opacity .25s ease-in-out;
-	transition: opacity .25s ease-in-out;
-}
-
-.box__input .form-input:not(.populated) .prompt {
-  opacity: 0;
-}
-
-
-.success__info {
- display: block; 
-}
-
-
-.box__input .promptname {
-  font-style: italic;
-  font-weight: 300;
-}
-
-.upload__idoutput {
- display: inline-block;
-  border: 1px solid #111;
-  padding: 0.1em 0.2em;
-  margin: 0.25em 0 0.5em 0;
-  font-weight: bold;
-  font-size: 1rem;
-}
-
-progress {
-    -webkit-appearance: none;
-   appearance: none;
-  height: 2px;
-  width: 33%;
-}
-
-progress[value]::-webkit-progress-bar {
-  background-color: #eee;
-}
-
-progress[value]::-webkit-progress-value {
-  background-color: #111;
-}
-
-.videos-list li {
-  margin: 0.5em 0;
-  font-size: 12px;
-}
-
-.videos-list li .title {
-  font-weight: bold;
-}
 
