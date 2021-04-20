@@ -150,12 +150,13 @@ const FormFX = function() {
           method: "POST",
           body: formData
         }).then(post => post.json())
-        document.querySelector("code").innerHTML = JSON.stringify(response, null, "\t");
+        // document.querySelector("code").innerHTML = JSON.stringify(response, null, "\t");
         resolveFromWordpress(response);
       }
       
       function resolveFromWordpress(response) {
         clearfileInputSelections();
+        
         summaryOutput.innerHTML = `
           <ul class="response-files">
             ${response.map(metadata => `
