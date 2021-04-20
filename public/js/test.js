@@ -49,7 +49,7 @@ const FormFX = function() {
             clearAll = inputBlock.querySelector(".clearall"),
             uploadIt = inputBlock.querySelector(".uploadit"),
             promptList = inputBlock.querySelector(".promptlist"),
-            summaryOutput = inputBlock.closest(".formblock").querySelector(".filesummary .summary-list");
+            summaryOutput = inputBlock.closest(".formblock").querySelector(":scope > .form-input");
 
       inputBlock.classList.add("has-advanced-upload"); // designating the file-select inputs for drag-and-drop decoration
       
