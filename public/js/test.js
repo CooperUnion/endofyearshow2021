@@ -109,11 +109,18 @@ const FormFX = function() {
       
       async function uploadToWordpress(e) {
         e.preventDefault();
-        console.log(thisInput.submittedFiles);
-        var formData = new FormData(); 
-      }
+        let formData = new FormData();
 
-      
+        for (let i = 0; i < thisInput.submittedFiles.length; i++) {
+          formData.append(thisInput.submittedFiles[i].name, thisInput.submittedFiles[i])
+        }
+
+        const response = await fetch("/wp/image", {
+          method: "POST",
+          body: formData
+        }).then(post => post.json())
+        document.querySelector("code").innerHTML = JSON.stringify(response)
+      }
 
       ["drag",
         "dragstart",
