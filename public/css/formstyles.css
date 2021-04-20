@@ -265,8 +265,26 @@ fieldset.hide {
   margin-right: 2em;
 }
 
-.success__info {
- display: block; 
+.uploader .filesummary {
+	display: block;
+	font-weight: 700;
+}
+
+.uploader .filesummary {
+  margin-top: 1em;
+}
+
+.uploader .form-input:not(.generated) .filesummary {
+	display: none;
+}
+
+.uploader .filesummary .response-files {
+  display: flex;
+  flex-direction: row;
+}
+
+.uploader .filesummary .response-files .response-file:nth-child(n+1):after {
+  content: ", ";
 }
 
 .form-input .promptname {

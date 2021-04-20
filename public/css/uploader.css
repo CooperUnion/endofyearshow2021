@@ -116,21 +116,6 @@ small {
 	/*   font-size: 1rem; */
 }
 
-.uploader .prompt,
-.uploader .filesummary {
-	display: block;
-	font-weight: 700;
-}
-
-.uploader .filesummary {
-  margin-top: 1em;
-}
-
-.uploader .form-input:not(.populated) .prompt,
-.uploader .form-input:not(.generated) .filesummary {
-	display: none;
-}
-
 .success__info {
 	display: block;
 }

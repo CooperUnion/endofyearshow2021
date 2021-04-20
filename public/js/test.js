@@ -159,7 +159,7 @@ const FormFX = function() {
         summaryOutput.innerHTML = `
           <ul class="response-files">
             ${response.map(metadata => `
-              <li data-thumb="${metadata.originalname}">${metadata.originalname}</li>
+              <li class="response-file" data-id="${metadata.id}" data-thumb="${metadata.thumbnail.source_url}">${metadata.originalname}</li>
           `).join("\n")}
           </ul>
         `;        
