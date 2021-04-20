@@ -229,6 +229,12 @@ fieldset.hide {
   align-items: center;
 }
 
+
+.form-input .promptlist.uploading {
+  opacity: 0.25;
+}
+
+
 .form-input .promptlist .filethumb {
   padding: 0;
   width: 33%;

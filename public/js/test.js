@@ -72,7 +72,7 @@ const FormFX = function() {
         } else {
           thisInput.submittedFiles = thisInput.files;
         }
-        
+        clearAll.disabled = thisInput.submittedFiles.length > 0 ? false: true;
         uploadIt.textContent = thisInput.submittedFiles.length === 1 ? "Upload it" : "Upload them";
         promptList.innerHTML = `
           ${[...thisInput.submittedFiles].map((item, i) => `
@@ -131,8 +131,14 @@ const FormFX = function() {
                   
       async function uploadToWordpress(e) {
         e.preventDefault();
+        clearAll.disabled = true;
         uploadIt.disabled = true;
         uploadIt.textContent = "Uploading…";
+        promptList.classList.add("uploading");
+        promptList.querySelectorAll(".alttextfield").forEach(function() {
+          this.readOnly = true;
+        });
+        
         let formData = new FormData();
 
         let alttext = [];
@@ -157,6 +163,7 @@ const FormFX = function() {
       
       function clearfileInputSelections() {
         promptList.innerHTML = "";
+        promptList.classList.remove("uploading");
         thisInput.dataset.filecount = 0;
         inputBlock.classList.remove("populated");
         thisInput.submittedFiles = {};
