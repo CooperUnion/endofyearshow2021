@@ -74,12 +74,15 @@ const FormFX = function() {
         
         uploadIt.textContent = thisInput.submittedFiles.length === 1 ? "Upload it" : "Upload them";
         promptList.innerHTML = `
-          ${[...thisInput.submittedFiles.map((item, i) => `
-            <dt class="filename">Filename: <span class="promptvalue">${item.name}</span></dt>
-            <dd class="filemeta">Alt text: <input type="text" placeholder="Alt text for ${item.name}"></dd>`.trim()
-          ).join('')}
+          ${[...thisInput.submittedFiles].map((item, i) => `
+            <dt class="filethumb"><img class="dragthumb"></dt>
+            <dd class="filemeta">Alt text: <input type="text" placeholder="Alt text for ${item.name}"></dd>`.trim()).join('')}
         `;
         
+        [...thisInput.submittedFiles].forEach(function (file, i) {
+          
+          
+        });
         updateFileCount();
       }
       
@@ -116,13 +119,13 @@ const FormFX = function() {
       //   }
       // }
 
-      function getThumb(file) {
-        let reader = new FileReader()
-        reader.readAsDataURL(file);
-        reader.onloadend = function() {
-          console.log(reader.result);
-          return reader.result;
-        }
+      function parseThumb(file) {
+        let reader = new FileReader();
+        // reader.readAsDataURL(file);
+        // reader.onloadend = function() {
+        //   console.log(reader.result);
+        //   return reader.result;
+        // }
       }
             
       async function uploadToWordpress(e) {
