@@ -99,8 +99,8 @@
 	color: #fff;
 }
 
-.uploadit:hover,
-.uploadit:focus {
+.uploadit:not([disabled]):hover,
+.uploadit:not([disabled]):focus {
 	background-color: #173454;
 	color: #bfbfbf;
 }

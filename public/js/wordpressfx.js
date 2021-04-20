@@ -29,15 +29,15 @@
         } else {
           inputFiles = input.files;
         }
-        verifyForm();
+        // verifyForm();
       },
-      verifyForm = function(e) {
-        if ((inputFiles.length > 0)) {
-          submit.disabled = false;
-        } else {
-          submit.disabled = true;
-        }
-      },
+      // verifyForm = function(e) {
+      //   if ((inputFiles.length > 0)) {
+      //     submit.disabled = false;
+      //   } else {
+      //     submit.disabled = true;
+      //   }
+      // },
       clearInput = function(e) {
         e.preventDefault();
         e.stopPropagation();

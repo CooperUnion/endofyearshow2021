@@ -88,7 +88,7 @@ const FormFX = function() {
           
           promptList.querySelectorAll(".filemeta")[i].addEventListener("change", validateAltText);
         });
-        
+        uploadIt.disabled = true;
         updateFileCount();
       }
       
@@ -100,9 +100,9 @@ const FormFX = function() {
           };
         });
         if (validCount) {
-          
+          uploadIt.disabled = false;
         } else {
-          
+          uploadIt.disabled = true;
         }
       }
       
@@ -133,6 +133,8 @@ const FormFX = function() {
                   
       async function uploadToWordpress(e) {
         e.preventDefault();
+        uploadIt.disabled = true;
+        uploadIt.textContent = "Uploading…";
         let formData = new FormData();
 
         for (let i = 0; i < thisInput.submittedFiles.length; i++) {
@@ -143,7 +145,8 @@ const FormFX = function() {
           method: "POST",
           body: formData
         }).then(post => post.json())
-        document.querySelector("code").innerHTML = JSON.stringify(response)
+        document.querySelector("code").innerHTML = JSON.stringify(response);
+        // CLEAN UP THE SUBMISSION BOX
       }
 
       ["drag",
