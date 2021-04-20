@@ -36,6 +36,11 @@
                 multiple="multiple"
                 data-multiple-caption="{count} files queued for upload"
               />
+              <input type="text" id="alt_text" name="alt_text" placeholder="alt_text" />
+              <input type="text" id="caption" name="caption" placeholder="caption" />
+              <input type="text" id="description" name="description" placeholder="description" />
+
+
               <small class="prompt">file: <output class="promptname"></output>
                 <button class="clear">clear</button></small>
               <button class="uploadit" type="button" disabled=""> Upload it </button> 
@@ -58,6 +63,9 @@
 
         let form = document.querySelector("form")
         let file = document.querySelector("input[type=file]")
+        let alt_text = document.querySelector("#alt_text")
+        let caption = document.querySelector("caption")
+        let description = document.querySelector("description")
         let output = document.querySelector("code")
         let endpoint = 'http://coopereoys2021.wpengine.com/wp-json/v2/media'
         
@@ -67,6 +75,7 @@
           let formData = new FormData()
           formData.append("image", file.files[0])
           formData.append("title", "a test title")
+          formData.append("alt_text", alt_text)
           const response = await fetch("/wp/image", {
             method: "POST",
             body: formData

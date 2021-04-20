@@ -30,19 +30,9 @@
           inputFiles = e.dataTransfer.files;
         } else {
           inputFiles = input.files;
-        } // Ensure that there's only ever one designated file for uploading, regardless of input method.
-        // input.closest("fieldset").dataset. = inputFiles.length > 0 ? true : false;
-        // fileOutput.textContent = inputFiles.length > 0 ? inputFiles[0].name : "";
+        } 
         verifyForm();
       },
-      // verifyEmail = function() {
-      //   emailOutput.textContent = re.test(email.value) ? email.value : "";
-      //   email.closest("fieldset").dataset. = re.test(email.value)
-      //     ? true
-      //     : false;
-      //   localStorage.setItem('emailaddress', email.value); // Stores the value regardless of verification
-      //   verifyForm();
-      // },
       verifyForm = function(e) {
         if ((inputFiles.length > 0)) {
           // form.classList.add("populated");
@@ -72,11 +62,6 @@
       elem.addEventListener("click", clearInput);
     });
     
-    // if (localStorage.getItem('emailaddress') != null) {
-    //   email.value = localStorage.getItem('emailaddress');
-    //   verifyEmail();
-    // }  
-
     async function uploadToVimeo(e) {
       e.preventDefault(); // <-- Probably unnecessary
       form.classList.add("is-uploading");
