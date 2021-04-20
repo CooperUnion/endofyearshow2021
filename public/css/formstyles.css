@@ -250,7 +250,7 @@ fieldset.hide {
 }
 
 
-.form-input .promptlist .filemeta > input {
+.form-input .promptlist .filemeta > .alttextfield {
   width: calc(75%);
 }
 

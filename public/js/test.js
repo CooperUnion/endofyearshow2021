@@ -76,7 +76,7 @@ const FormFX = function() {
         promptList.innerHTML = `
           ${[...thisInput.submittedFiles].map((item, i) => `
             <dt class="filethumb"><img class="genthumb"></dt>
-            <dd class="filemeta" data-required="required"><span class="pseudolabel">Alt text:</span><input type="text" placeholder="Description of ${item.name}"></dd>`.trim()).join('')}
+            <dd class="filemeta" data-required="required"><span class="pseudolabel">Alt text:</span><input type="text" class="alttextfield" placeholder="Description of ${item.name}"></dd>`.trim()).join('')}
         `;
         
         [...thisInput.submittedFiles].forEach(function (file, i) {
@@ -86,12 +86,27 @@ const FormFX = function() {
             promptList.querySelectorAll("img.genthumb")[i].src = reader.result;
           }
           
-          promptList.querySelectorAll("img.genthumb")[i]
+          promptList.querySelectorAll(".filemeta")[i].addEventListener("change", validateAltText);
         });
         
         updateFileCount();
       }
       
+      function validateAltText() {
+        let validCount = true;
+        promptList.querySelectorAll(".alttextfield").forEach(function(alttextinput) {
+          if (alttextinput.value.length === 0) {
+            validCount = false;
+          };
+        });
+        if (validCount) {
+          
+        } else {
+          
+        }
+      }
+      
+
       function updateFileCount() {
         if (thisInput.submittedFiles.length > 0) {
           thisInput.dataset.filecount = thisInput.submittedFiles.length;
@@ -102,6 +117,7 @@ const FormFX = function() {
         }
       }
       
+
       function clearInput(e) {
         e.preventDefault();
         e.stopPropagation();
