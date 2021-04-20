@@ -139,7 +139,7 @@ const FormFX = function() {
         let alttext = [];
         for (let i = 0; i < thisInput.submittedFiles.length; i++) {
           formData.append(thisInput.submittedFiles[i].name, thisInput.submittedFiles[i]);
-          alttext.push(promptList.querySelectorAll(".alttextfield")[i]);
+          alttext.push(promptList.querySelectorAll(".alttextfield")[i].value);
         }
         formData.append("alt_text", alttext);
         
@@ -152,8 +152,8 @@ const FormFX = function() {
       }
       
       function resolveFromWordpress(response) {
-        promptlist.innerHTML = "";
-        
+        promptList.innerHTML = "";
+        inputBlock.classList.remove("populated");
         // remove populated class
         // generate list of files
 // summaryOutput.textContent = response.
