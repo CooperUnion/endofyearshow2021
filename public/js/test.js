@@ -80,8 +80,6 @@ const FormFX = function() {
           ).join('')}
         `;
         
-}
-        
         updateFileCount();
       }
       
@@ -122,6 +120,7 @@ const FormFX = function() {
         let reader = new FileReader()
         reader.readAsDataURL(file);
         reader.onloadend = function() {
+          console.log(reader.result);
           return reader.result;
         }
       }
