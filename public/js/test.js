@@ -155,11 +155,8 @@ const FormFX = function() {
         // generate list of files
 // summaryOutput.textContent = response.
 
-        var result = Object.keys(response).map((key) => [Number(key), obj[key]]);
-
-        for (const [key, value] of Object.entries(response)) {
-          console.log(`${key}: ${value}`);
-        }
+        var result = Object.entries(response);
+        console.log(result);
       
       }
 
