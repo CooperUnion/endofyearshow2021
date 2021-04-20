@@ -80,7 +80,7 @@
           formData.append("alt_text", alt_text)
           formData.append("caption", caption)
           formData.append("description", description)
-          form
+          formData.append("email", "test@here.com")
           const response = await fetch("/wp/image", {
             method: "POST",
             body: formData
