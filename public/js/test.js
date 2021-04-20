@@ -33,6 +33,39 @@ const FormFX = function() {
 //   specialRadioCheckbox.addEventListener("change", focusSpecialText);
 
   // const formsBody = document.querySelector(".main");
+  
+  
+  const response = [
+    {
+        "caption": "",
+        "id": 3091,
+        "originalname": "andrew-porter-04-phandy-2021-weaponsmith-c.jpg",
+        "source_url": "https://coopereoys2021.wpengine.com/wp-content/uploads/2021/04/andrew-porter-04-phandy-2021-weaponsmith-c-scaled.jpg",
+        "thumbnail": {
+            "file": "andrew-porter-04-phandy-2021-weaponsmith-c-150x150.jpg",
+            "height": 150,
+            "mime_type": "image/jpeg",
+            "source_url": "https://coopereoys2021.wpengine.com/wp-content/uploads/2021/04/andrew-porter-04-phandy-2021-weaponsmith-c-150x150.jpg",
+            "width": 150
+        }
+    },
+    {
+        "caption": "",
+        "id": 3091,
+        "originalname": "andrew-porter-04-phandy-2021-weaponsmith-c.jpg",
+        "source_url": "https://coopereoys2021.wpengine.com/wp-content/uploads/2021/04/andrew-porter-04-phandy-2021-weaponsmith-c-scaled.jpg",
+        "thumbnail": {
+            "file": "andrew-porter-04-phandy-2021-weaponsmith-c-150x150.jpg",
+            "height": 150,
+            "mime_type": "image/jpeg",
+            "source_url": "https://coopereoys2021.wpengine.com/wp-content/uploads/2021/04/andrew-porter-04-phandy-2021-weaponsmith-c-150x150.jpg",
+            "width": 150
+        }
+    }
+];
+  console.log( Object.keys(response).map(id => response[id]) );
+
+  
   const formsForm = document.querySelector("form");
   const submitButton = document.querySelector("button[type='submit']");
   submitButton.addEventListener("click", validateAndSubmit);
