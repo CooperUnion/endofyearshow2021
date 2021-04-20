@@ -131,7 +131,9 @@ small {
 	max-height: 0;
 }
 
-.uploader .prompt {
+.uploader .prompt,
+.uploader .summary {
+
 	display: block;
 	/*   margin-top: 1em; */
 	font-weight: 700;
@@ -139,7 +141,8 @@ small {
 	transition: opacity .25s ease-in-out;
 }
 
-.uploader .form-input:not(.populated) .prompt {
+.uploader .form-input:not(.populated) .prompt,
+.uploader .form-input:not(.populated) ~ .form-input .summary {
 	opacity: 0;
 }
 

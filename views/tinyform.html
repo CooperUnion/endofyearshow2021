@@ -25,40 +25,53 @@
         </p>
         <div class="formblock" data-required="required">
           <span class="titlelabel" data-anchor="artworkid">Artwork</span>
-          <p class="label-context">
-            Please upload from one to five files of the same filetype that
-            represent this piece. For the case of a work that requires two types
-            of media, please submit a separate form for the alternate media.
-          </p>
           <div class="wordpress uploader">
-          <div class="form-input no-validate" data-inputtype="file">
-            <label for="artworkupload"><span class="button">Select up to five files</span><span> or drag them here</span>.</label>
-            <input
-              id="artworkupload"
-              name="artworkupload"
-              class="input-file"
-              type="file"
-              multiple="multiple"
-              data-multiple-caption="{count} files queued for upload"
-            />
-            <small class="prompt">file: <output class="promptname"></output>
-              <button class="clear">clear</button></small>
-            <button class="uploadit" type="button" disabled=""> Upload it </button> 
+            <div class="form-input no-validate" data-inputtype="file">
+              <label for="artworkupload"><span class="button">Select up to five files</span><span> or drag them here</span>.</label>
+              <input
+                id="artworkupload"
+                name="artworkupload"
+                class="input-file"
+                type="file"
+                multiple="multiple"
+                data-multiple-caption="{count} files queued for upload"
+              />
+              <small class="prompt">file: <output class="promptname"></output>
+                <button class="clear">clear</button></small>
+              <button class="uploadit" type="button" disabled=""> Upload it </button> 
+            </div>
           </div>
-          </div>
-          
           <div class="form-input" data-inputtype="text">
             <small class="summary">uploaded: <output class="summary-list"></output></small>
             <input id="artworkid" name="artworkid" type="hidden" placeholder="Artwork ID" readonly="readonly">
           </div>
-        </div>
-        
+        </div>    
       </fieldset>
-      <button type="button">Submit</button>
+      <input type="submit" name="submit">
     </form>
     
     <pre><code></code></pre>
   
+    <script>
+    
+        
+
+        let form = document.querySelector("form")
+        let file = document.querySelector("input[type=file]")
+        let output = document.querySelector("code")
+
+        form.onsubmit = async (e)=>{
+          e.preventDefault()
+          let formData = new FormData()
+          formData.append("image", file.files[0])
+          const response = await fetch("/wp/formData", {
+            method: "POST",
+            body: formData
+          }).then(this.json())
+          output.innerHTML = JSON.stringify(response)
+        }
+    
+    </script>
 
   </body>
 </html>
