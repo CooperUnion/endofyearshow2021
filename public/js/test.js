@@ -90,7 +90,7 @@ const FormFX = function() {
         uploadIt.disabled = true;
         if (thisInput.submittedFiles.length > 0) {
           inputBlock.classList.add("populated");
-          inputBlock.querySelector(".success-message small").textContent = "Your " + + " been submitted.";
+          inputBlock.querySelector(".success-message small").textContent = "Your " + (thisInput.submittedFiles.length === 1 ? "file has" : "files have") + " been submitted.";
         }
       }
       
@@ -166,7 +166,8 @@ const FormFX = function() {
               <li class="response-file" data-id="${metadata.id}" data-thumb="${metadata.thumbnail.source_url}">${metadata.originalname}</li>
           `).join("\n")}
           </ul>
-        `;        
+        `;
+        summaryOutput.closest(".form-input").classList.add("generated");
       }
       
       function clearfileInputSelections() {
