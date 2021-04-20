@@ -159,8 +159,9 @@ router.post('/imageArray', wpLogger, upload.any(), async (req, res, next)=>{
   const medias = req.files.map((file, i)=>{
     try {
       const meta = {}
-      for (const [key, value] of req.body) {
-        const parsedItem = JSON.parse(value)[i]
+      for (const key of Object.keys(req.body)) {
+        console.log({key})
+        const parsedItem = JSON.parse(req.body[key])[i]
         meta[key] = parsedItem
       }
       return wp.createMedia(req.files[i], meta)
