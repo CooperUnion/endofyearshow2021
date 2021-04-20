@@ -15,6 +15,10 @@ var storage = multer.diskStorage({
 })
 var upload = multer({ storage: storage })
 
+let memoryStorage = multer.memoryStorage()
+
+const uploadBuffer = multer({ storage: memoryStorage})
+
 const {
   getAllTags, 
   getAllCategories,
@@ -119,7 +123,9 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
 })
 
   
-router.post('/image', wpLogger, upload.any(), async (req, res)=>{
+router.post('/image', wpLogger, uploadBuffer.any(), async (req, res)=>{
+  
+  console.log(req.file, req.files, req.body)
   
   res.json({
     filename:"123.jpg",

@@ -5,20 +5,8 @@
   // applying the effect for every form
   var forms = document.querySelectorAll(".wordpress");
   Array.prototype.forEach.call(forms, function(form) {
-    
-const element = document.createElement('div')
-element.innerHTML = `
-  <h1>This element has items</h1>
-  ${this._items.map((item, i) => `
-    <div>
-      I am item number ${i < 10 ? '0' + (i + 1) : i + 1}. 
-      My name is ${item.name}.
-    </div>
-  `.trim()).join('')}
-`
-    
+        
     var input = form.querySelector('input[type="file"]'),
-      email = form.querySelector('input#vimeoemail'),
       label = form.querySelector("label"),
       submit = form.querySelector('button[type="button"]'),
       errorMsg = form.querySelector(".box__error span"),
@@ -29,6 +17,7 @@ element.innerHTML = `
       uploadIDOutput = document.querySelector(".box__success .upload__idoutput"),
       uploadIDInput = document.querySelector("#videoworkid"),
       fileOutput = form.querySelector(".file__filename"),
+      promptList = = document.querySelector('.promptlist'),
       inputFiles = {},
       verifyFiles = function(e) {
         console.log(e);

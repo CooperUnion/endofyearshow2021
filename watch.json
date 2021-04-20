@@ -8,6 +8,7 @@
   "restart": {
     "exclude": [
       "^public/",
+      "^views/",
       "^dist/"
     ],
     "include": [

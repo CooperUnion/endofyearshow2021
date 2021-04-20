@@ -48,7 +48,8 @@ const FormFX = function() {
     if (thisInput.type === "file") {
       const inputBlock = thisInput.closest(".form-input"), 
             promptClear = inputBlock.querySelector("button.clear"), 
-            fileOutput = inputBlock.querySelector(".promptname");
+            fileOutput = inputBlock.querySelector(".promptname"),
+            promptList = inputBlock.querySelector("promptlist");
 
       inputBlock.classList.add("has-advanced-upload"); // designating the file-select inputs for drag-and-drop decoration
       
@@ -69,6 +70,14 @@ const FormFX = function() {
           thisInput.submittedFiles = thisInput.files;
         }
         fileOutput.textContent = thisInput.submittedFiles.length === 1 ? thisInput.submittedFiles[0].name : thisInput.submittedFiles.length > 1 ? (thisInput.getAttribute("data-multiple-caption") || "").replace("{count}", thisInput.submittedFiles.length) : "";
+        
+    promptList.innerHTML = `
+      ${thisInput.submittedFiles.map((item, i) => `
+      <dt class="filename">Filename: ${item.name}</dt>
+      <dd class="filemeta">${item.name}</dd>`.trim()).join('')}
+      `;
+
+        
         updateFileCount();
       }
       
