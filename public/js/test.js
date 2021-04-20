@@ -136,11 +136,13 @@ const FormFX = function() {
         uploadIt.textContent = "Uploading…";
         let formData = new FormData();
 
+        let alttext = [];
         for (let i = 0; i < thisInput.submittedFiles.length; i++) {
           formData.append(thisInput.submittedFiles[i].name, thisInput.submittedFiles[i]);
-          formData.append(`alttext-${i}`, promptList.querySelectorAll(".alttextfield")[i]);
+          alttext.push(promptList.querySelectorAll(".alttextfield")[i]);
         }
-
+        formData.append("alt_text", alttext);
+        
         const response = await fetch("/wp/image", {
           method: "POST",
           body: formData
@@ -150,7 +152,8 @@ const FormFX = function() {
       }
       
       function resolveFromWordpress(response) {
-        // promptlist empty
+        promptlist.innerHTML = "";
+        
         // remove populated class
         // generate list of files
 // summaryOutput.textContent = response.
