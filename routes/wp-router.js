@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json({extended:true})
-const uploadParser = require('express-fileupload')
 
 //multer configuration
 const multer = require('multer');
@@ -126,7 +125,7 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
 })
 
   
-router.post('/image', wpLogger, uploadParser(), async (req, res, next)=>{
+router.post('/image', wpLogger, upload.any(), async (req, res, next)=>{
   
 
     console.log(req.file, req.files, req.body)

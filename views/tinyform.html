@@ -69,10 +69,7 @@
           formData.append("title", "a test title")
           const response = await fetch("/wp/image", {
             method: "POST",
-            body: formData,
-            headers: {
-              'Content-Type': 'multipart/form-data;boundary=**asdfjkl;**'
-            }
+            body: formData
           }).then(post=>post.json())
           output.innerHTML = JSON.stringify(response)
         }

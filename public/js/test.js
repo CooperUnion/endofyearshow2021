@@ -76,8 +76,9 @@ const FormFX = function() {
 
         promptList.innerHTML = `
           ${Array.from(thisInput.submittedFiles).map((item, i) => `
-          <dt class="filename">Filename: ${item.name}</dt>
-          <dd class="filemeta">Alt text: <input type="text" placeholder="Alt text for ${item.name}"></dd>`.trim()).join('')}
+            <dt class="filename">Filename: <span class="promptvalue">${item.name}</span></dt>
+            <dd class="filemeta">Alt text: <input type="text" placeholder="Alt text for ${item.name}"></dd>`.trim()
+          ).join('')}
         `;
 
         

@@ -224,6 +224,17 @@ fieldset.hide {
   margin: 0;
 }
 
+.form-input .promptlist {
+  margin-top: 1em;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-input .promptlist .promptvalue {
+  font-weight: 300;
+}
+
 .success__info {
  display: block; 
 }
