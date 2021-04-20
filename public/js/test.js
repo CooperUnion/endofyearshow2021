@@ -143,7 +143,7 @@ const FormFX = function() {
         }
         formData.append("alt_text", alttext);
         
-        const response = await fetch("/wp/image", {
+        const response = await fetch("/wp/imageArray", {
           method: "POST",
           body: formData
         }).then(post => post.json())
