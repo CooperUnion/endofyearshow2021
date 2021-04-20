@@ -128,7 +128,7 @@ small {
 
 .uploader .form-input:not(.populated) .prompt,
 .uploader .form-input:not(.generated) .filesummary {
-	opacity: 0;
+	display: none;
 }
 
 .success__info {

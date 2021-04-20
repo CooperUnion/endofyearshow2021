@@ -157,6 +157,7 @@ const FormFX = function() {
       }
       
       function resolveFromWordpress(response) {
+        clearfileInputSelections();
         var result = Object.entries(response);
         console.log(result);
       }
