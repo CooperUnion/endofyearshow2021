@@ -64,10 +64,13 @@
           e.preventDefault()
           let formData = new FormData()
           formData.append("image", file.files[0])
-          const response = await fetch("/wp/formData", {
+          const response = await fetch("/wp/image", {
             method: "POST",
-            body: formData
-          }).then(this.json())
+            body: formData,
+            headers: {
+              'Content-Type': 'multipart/form-data;boundary=**asdfjkl;**'
+            }
+          }).then(post=>post.json())
           output.innerHTML = JSON.stringify(response)
         }
     

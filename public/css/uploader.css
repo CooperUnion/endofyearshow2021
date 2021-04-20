@@ -110,39 +110,18 @@ small {
 	/*   font-size: 1rem; */
 }
 
-.uploader .input__block {
-	-webkit-transition: opacity .25s ease-in-out;
-	transition: opacity .25s ease-in-out;
-	transtion: max-height: 0.25s ease-in;
-	max-height: 1em;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-}
-
-.uploader .input__block input {
-	border: 1px solid #111;
-	padding: 0.25em;
-	margin: 0 0 0 0.333em;
-}
-
-.uploader .form-input:not(.populated) .input__block {
-	opacity: 0;
-	max-height: 0;
-}
-
 .uploader .prompt,
 .uploader .summary {
-
 	display: block;
-	/*   margin-top: 1em; */
 	font-weight: 700;
-	-webkit-transition: opacity .25s ease-in-out;
-	transition: opacity .25s ease-in-out;
+}
+
+.uploader .summary {
+  margin-top: 1em;
 }
 
 .uploader .form-input:not(.populated) .prompt,
-.uploader .form-input:not(.populated) ~ .form-input .summary {
+.uploader .form-input:not(.generated) .summary {
 	opacity: 0;
 }
 

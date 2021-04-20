@@ -108,14 +108,6 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
     }
   }
   
-  router.post('/image', async (req, res)=>{
-    res.json({
-      filename:"123.jpg",
-      id:'abc123'
-    })
-  })
-  
-  
   try {
     // return res.json({ok:true})
     let post = await wp.create(body)
@@ -124,6 +116,15 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
     res.status(500).json({error:e})
   }
 
+})
+
+  
+router.post('/image', wpLogger, upload.any(), async (req, res)=>{
+  
+  res.json({
+    filename:"123.jpg",
+    id:'abc123'
+  })
 })
 
 router.get('/tags', wpLogger, async (req, res) => {
