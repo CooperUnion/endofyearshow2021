@@ -146,7 +146,7 @@ const FormFX = function() {
           formData.append(thisInput.submittedFiles[i].name, thisInput.submittedFiles[i]);
           alttext.push(promptList.querySelectorAll(".alttextfield")[i].value);
         }
-        formData.append("alt_text", alttext);
+        formData.append("alt_text", JSON.stringify(alttext));
         
         const response = await fetch("/wp/imageArray", {
           method: "POST",
