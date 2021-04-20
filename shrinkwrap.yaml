@@ -4,6 +4,7 @@ dependencies:
   cookie-session: 1.4.0
   csv-reader: 1.0.7
   express: 4.17.1
+  express-fileupload: 1.2.1
   express-handlebars: 5.3.0
   lowdb: 1.0.0
   multer: 1.4.2
@@ -101,6 +102,14 @@ packages:
       node: '>=0.8.0'
     resolution:
       integrity: sha1-bCpiLvz0fFe7vh4qnDetNseSVFM=
+  /busboy/0.3.1:
+    dependencies:
+      dicer: 0.3.0
+    dev: false
+    engines:
+      node: '>=4.5.0'
+    resolution:
+      integrity: sha512-y7tTxhGKXcyBxRKAni+awqx8uqaJKrSFSNFSeRG5CsWNdmy2BIK+6VGWEW7TZnIO/533mtMEA4rOevQV815YJw==
   /bytes/3.1.0:
     dev: false
     engines:
@@ -241,6 +250,14 @@ packages:
       node: '>=0.8.0'
     resolution:
       integrity: sha1-WZbAhrszIYyBLAkL3cCc0S+stw8=
+  /dicer/0.3.0:
+    dependencies:
+      streamsearch: 0.1.2
+    dev: false
+    engines:
+      node: '>=4.5.0'
+    resolution:
+      integrity: sha512-MdceRRWqltEG2dZqO769g27N/3PXfcKl04VhYnBlo2YhH7zPi88VebsjTKclaOyiuMaGU72hTfw3VkUitGcVCA==
   /ecdsa-sig-formatter/1.0.11:
     dependencies:
       safe-buffer: 5.2.1
@@ -267,6 +284,14 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha1-Qa4u62XvpiJorr/qg6x9eSmbCIc=
+  /express-fileupload/1.2.1:
+    dependencies:
+      busboy: 0.3.1
+    dev: false
+    engines:
+      node: '>=8.0.0'
+    resolution:
+      integrity: sha512-fWPNAkBj+Azt9Itmcz/Reqdg3LeBfaXptDEev2JM8bCC0yDptglCnlizhf0YZauyU5X/g6v7v4Xxqhg8tmEfEA==
   /express-handlebars/5.3.0:
     dependencies:
       glob: 7.1.6
@@ -1036,6 +1061,7 @@ specifiers:
   cookie-session: ^1.4.0
   csv-reader: ^1.0.6
   express: ^4.17.1
+  express-fileupload: ^1.2.1
   express-handlebars: ^5.3.0
   lowdb: ^1.0.0
   multer: ^1.4.2

@@ -19,7 +19,6 @@
       fileOutput = form.querySelector(".file__filename"),
       inputFiles = {},
       verifyFiles = function(e) {
-        console.log(e);
         if (typeof e === 'undefined') {
           fileOutput.textContent = "";
           return false;

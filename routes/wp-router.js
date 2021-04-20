@@ -2,22 +2,25 @@ const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json({extended:true})
+const uploadParser = require('express-fileupload')
 
 //multer configuration
 const multer = require('multer');
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/')
-  },
-  filename: function (req, file, cb) {
-    cb(null, `${Date.now()}-${file.originalname}`)
-  }
-})
-var upload = multer({ storage: storage })
+// var storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, 'uploads/')
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, `${Date.now()}-${file.originalname}`)
+//   }
+// })
 
-let memoryStorage = multer.memoryStorage()
+var memoryStorage = multer.memoryStorage()
 
-const uploadBuffer = multer({ storage: memoryStorage})
+var upload = multer({ storage: memoryStorage })
+
+
+// const uploadBuffer = multer({ storage: memoryStorage})
 
 const {
   getAllTags, 
@@ -123,14 +126,19 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
 })
 
   
-router.post('/image', wpLogger, uploadBuffer.any(), async (req, res, next)=>{
-  console.log("no")
-  console.log(req.file, req.files, req.body)
+router.post('/image', wpLogger, uploadParser(), async (req, res, next)=>{
   
-  res.json({
-    filename:"123.jpg",
-    id:'abc123'
-  })
+
+    console.log(req.file, req.files, req.body)
+
+    res.json({
+      filename:"1234.jpg",
+      id:'abc123'
+    })
+ 
+  
+  
+
 })
 
 router.get('/tags', wpLogger, async (req, res) => {

@@ -1,32 +1,86 @@
-const formsForm = document.querySelector("form");
-const submitButton = document.querySelector("button[type='button']");
-submitButton.addEventListener("click", validateAndSubmit);
+/*jshint esversion: 6 */
 
-let allDroppedFiles = {};
+const FormFX = function() {
 
-  const allInputs = document.querySelectorAll(".formblock .form-input input");
+  if (!Element.prototype.matches) Element.prototype.matches = Element.prototype.msMatchesSelector;
+  if (!Element.prototype.closest) Element.prototype.closest = function(selector) {
+    var el = this;
+    while (el) {
+      if (el.matches(selector)) {
+        return el;
+      }
+      el = el.parentElement;
+    }
+  };
+
+  if ('NodeList' in window && !NodeList.prototype.forEach) {
+    console.info('polyfill for IE11');
+    NodeList.prototype.forEach = function(callback, thisArg) {
+      thisArg = thisArg || window;
+      for (var i = 0; i < this.length; i++) {
+        callback.call(thisArg, this[i], i, this);
+      }
+    };
+  }
+
+//   const worktypeRadio = document.querySelector("fieldset.section-typeofwork .inputlist.radio");
+//   worktypeRadio.addEventListener("click", handleFieldsetVisibility);
+
+//   const specialRadioText = document.querySelector(".special.radio-text input[type='text']");
+//   specialRadioText.addEventListener("focus", forceRadioCheck);
+//   specialRadioText.addEventListener("blur", validateSpecialRadio);
+//   const specialRadioCheckbox = document.querySelector(".special.radio-text input[type='radio']");
+//   specialRadioCheckbox.addEventListener("change", focusSpecialText);
+
+  let allDroppedFiles = {};
+
+  // const formsBody = document.querySelector(".main");
+  const formsForm = document.querySelector("form");
+  const submitButton = document.querySelector("button[type='submit']");
+  submitButton.addEventListener("click", validateAndSubmit);
+
+  const allInputs = document.querySelectorAll(".formblock .form-input input, .formblock .form-input textarea");
   allInputs.forEach(function(thisInput, currentIndex) {
+    // thisInput.addEventListener("change", validateAllInputs);
+    if (thisInput.type === "checkbox") {
+      thisInput.addEventListener("change", toggleCheckTag);
+    }
     if (thisInput.type === "file") {
       const inputBlock = thisInput.closest(".form-input"), 
             promptClear = inputBlock.querySelector("button.clear"), 
-            fileOutput = inputBlock.querySelector(".promptname");
+            // fileOutput = inputBlock.querySelector(".promptname"),
+            promptList = inputBlock.querySelector(".promptlist");
 
-      inputBlock.classList.add("has-advanced-upload"); // letting the CSS part to know drag&drop is supported by the browser
+      inputBlock.classList.add("has-advanced-upload"); // designating the file-select inputs for drag-and-drop decoration
       
       function handleFileOperation(e) {
         if (typeof e === 'undefined') { // Should this ever occur?
-          fileOutput.textContent = "";
+          // fileOutput.textContent = "";
+          promptList.innerHTML = "";
           return false;
         }
+        // let inputFiles = {};
         if (e.dataTransfer) { // Are we being passed a (drag and drop) FileList?
           thisInput.value = "";
           thisInput.submittedFiles = e.dataTransfer.files;
-          allDroppedFiles[thisInput.id] = e.dataTransfer.files;
-         } else {
+          if (!thisInput.matches('[data-destination="external"]')) { // Excluding the Vimeo uploader file from submission
+            allDroppedFiles[thisInput.id] = e.dataTransfer.files;
+          }
+          // validateAllInputs();
+        } else {
           thisInput.submittedFiles = thisInput.files;
         }
+        // fileOutput.textContent = thisInput.submittedFiles.length === 1 ? thisInput.submittedFiles[0].name : thisInput.submittedFiles.length > 1 ? (thisInput.getAttribute("data-multiple-caption") || "").replace("{count}", thisInput.submittedFiles.length) : "";
+              console.log(thisInput.submittedFiles);
+
+
+        promptList.innerHTML = `
+          ${Array.from(thisInput.submittedFiles).map((item, i) => `
+          <dt class="filename">Filename: ${item.name}</dt>
+          <dd class="filemeta">Alt text: <input type="text" placeholder="Alt text for ${item.name}"></dd>`.trim()).join('')}
+        `;
+
         
-       fileOutput.textContent = thisInput.submittedFiles.length === 1 ? thisInput.submittedFiles[0].name : thisInput.submittedFiles.length > 1 ? (thisInput.getAttribute("data-multiple-caption") || "").replace("{count}", thisInput.submittedFiles.length) : "";
         updateFileCount();
       }
       
@@ -83,42 +137,129 @@ let allDroppedFiles = {};
     }
   });
 
-// function PromiseValidateAndSubmit(e) {
-//   e.preventDefault();
-//   const formData = new FormData(formsForm);
-   
-//   fetch("/form", {
-//     method: "POST",
-//     body: formData
-//   })
-//     .then(function(response) {
-    
-//       return response.json()  
-//     })
-//     .then(function(json){
-    
-//       console.log(json)
-//     })
-//     .catch(/**/);
-// }
+  const validationMsg = document.querySelector(".validation-message");
 
-async function validateAndSubmit(e) {
-  e.preventDefault();
-  const formData = new FormData(formsForm);
-  for (let key in allDroppedFiles) {
-    Array.from(allDroppedFiles[key]).forEach(file => { 
-      formData.append('file', file);
+  // document.querySelector("fieldset.section-videowork").classList.add("hide");
+  // document.querySelector("fieldset.section-standardwork").classList.add("hide");
+  // document.querySelector("fieldset.section-classinfo").classList.add("hide");
+
+
+  // function validateAllInputs() {
+  //   let invalidForms = [];
+  //   const allActiveInputs = document.querySelectorAll("fieldset:not(.hide) .formblock");
+  //   allActiveInputs.forEach(function(formblock, currentIndex) {
+  //     formblock.classList.remove("invalid");
+  //     if (formblock.dataset.required === "required") {
+  //       const thisInput = formblock.querySelector(".form-input:not(.no-validate)");
+  //       if (!isValid(thisInput)) {
+  //         invalidForms.push(formblock.querySelector(".titlelabel, .pseudolabel"));
+  //         formblock.classList.add("invalid");
+  //       }
+  //     }
+  //   });
+  //   validationMsg.innerHTML = "";
+  //   if (invalidForms.length > 0) {
+  //     const newList = document.createElement("ul");
+  //     for (const invalidForm of invalidForms) {
+  //       const newListItem = document.createElement("li");
+  //       newListItem.textContent = invalidForm.textContent;
+  //       newListItem.dataset.anchortarget = invalidForm.dataset.anchor;
+  //       newListItem.addEventListener("click", scrollToInvalidAnchor);
+  //       newList.appendChild(newListItem);
+  //     }
+  //     validationMsg.appendChild(newList);
+  //     const msg = invalidForms.length === 1 ? "'The following field is required: ''" : "'The following fields are required: ''";
+  //     document.documentElement.style.setProperty("--reqmsg", msg);
+  //     return false;
+  //   } else {
+  //     formsBody.classList.remove("validation-active");
+  //     return true;
+  //   }
+  // }
+
+  function scrollToInvalidAnchor() {
+    const targetAnchor = this.dataset.anchortarget;
+    document.querySelector(`.formblock .titlelabel[data-anchor = "${targetAnchor}"], .formblock .pseudolabel[data-anchor = "${targetAnchor}"]`).scrollIntoView({
+      behavior: 'smooth'
     });
   }
   
-  const response = await fetch("/form", {
-    method: "POST",
-    body: formData
-  })
+  function toggleCheckTag(e) {
+    const checkTag = this.closest("li");
+    if (this.checked) {
+      checkTag.classList.add("checked");
+    } else {
+      checkTag.classList.remove("checked");
+    }
+  }
+
+  async function validateAndSubmit(e) {
+    e.preventDefault();
+    console.log(allDroppedFiles);
+    // if (validateAllInputs()) {
+    //   const formData = new FormData(formsForm);
+    //   for (let key in allDroppedFiles) {
+    //     Array.from(allDroppedFiles[key]).forEach(file => { 
+    //       formData.append('file', file);
+    //     });
+    //   }
+    //   const response = await fetch("/wp/formData", {
+    //     method: "POST",
+    //     body: formData
+    //   })
+    //   const json = await response.json()
+    //   console.log(json)
+    // } else {
+    //   formsBody.classList.add("validation-active");
+    // }
+  }
   
-  const json = await response.json()
-  console.log(json)
-  
-  document.querySelector('code').textContent = JSON.stringify(json, null, "\t")
-}
-    
+  function isValid(thisInput) {
+    let isValid = true;
+    switch (thisInput.dataset.inputtype) {
+    case "radio":
+      const numRadioed = thisInput.querySelectorAll(".inputlist input[type='radio']:checked").length;
+      if (numRadioed === 0) {
+        isValid = false;
+      }
+      break;
+
+    case "checkboxes":
+      const numChecked = thisInput.querySelectorAll(".inputlist input[type='checkbox']:checked").length;
+      if (numChecked === 0) {
+        isValid = false;
+      }
+      break;
+
+
+    case "textarea":
+      const textareaFilled = thisInput.querySelector("textarea").value.length;
+      if (textareaFilled === 0) {
+        isValid = false;
+      }
+      break;
+
+    case "file":
+        
+      const thisInputField = thisInput.querySelector("input[type='file']");
+      if (!(thisInputField.id in allDroppedFiles) && thisInputField.files.length === 0) {
+        isValid = false;
+      }      
+
+      break;
+
+
+    default:
+      const inputFilled = thisInput.querySelector("input").value.length;
+      if (inputFilled === 0) {
+        isValid = false;
+      }
+    }
+    return isValid;
+  }
+};
+
+window.addEventListener('DOMContentLoaded', function() {
+  new FormFX;
+});
+
