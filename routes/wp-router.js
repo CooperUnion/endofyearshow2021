@@ -80,7 +80,8 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
     dimensions,
     materials,
     email,
-    project
+    project,
+    media
   } = req.body
   
   const body = {
@@ -110,7 +111,8 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
         },
         "email": email,
         project
-      }
+      },
+      "media": JSON.parse(media)
     }
   }
   
@@ -131,7 +133,7 @@ router.post('/image', wpLogger, upload.any(), async (req, res, next)=>{
   console.log(req.body)
 
   try {
-let media = await wp.createMedia(req.files[0], req.body)
+    let media = await wp.createMedia(req.files[0], req.body)
     console.log(media)
 
     const {id, media_details, caption, source_url} = media
@@ -143,7 +145,8 @@ let media = await wp.createMedia(req.files[0], req.body)
       source_url
     })
   } catch(e) {
-
+    console.log(e)
+    res.status(500).json({error:e})
   }
    
 
