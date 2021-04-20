@@ -135,8 +135,8 @@ const FormFX = function() {
         uploadIt.disabled = true;
         uploadIt.textContent = "Uploading…";
         promptList.classList.add("uploading");
-        promptList.querySelectorAll(".alttextfield").forEach(function() {
-          this.readOnly = true;
+        promptList.querySelectorAll(".alttextfield").forEach(function(textfield) {
+          textfield.readOnly = true;
         });
         
         let formData = new FormData();
