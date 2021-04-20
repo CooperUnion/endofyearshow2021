@@ -22,7 +22,7 @@ router.get("/token", indexLogger, async (req, res) => {
 })
 
 //static file serving, for validating uploads
-router.get('/file/:filename', (req, res)=>{
+router.get('/file/:filename', indexLogger, (req, res)=>{
   res.sendFile(`${__dirname}/uploads/${req.params.filename}`)
 })
 
