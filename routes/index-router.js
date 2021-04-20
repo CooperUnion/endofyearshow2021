@@ -42,6 +42,15 @@ router.get('/test', async (req, res)=>{
   return res.render('smallform', renderOptions)
 })
 
+router.get('/tinytest', async (req, res)=>{
+  const data = {}
+  const renderOptions = {
+    data,
+    layout: false
+  } 
+  return res.render('tinyform', renderOptions)
+})
+
 router.get('/students', async (req, res)=>{
   let csvData = await data.students()
   
