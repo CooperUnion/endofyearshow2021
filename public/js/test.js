@@ -138,8 +138,7 @@ const FormFX = function() {
 
         for (let i = 0; i < thisInput.submittedFiles.length; i++) {
           formData.append(thisInput.submittedFiles[i].name, thisInput.submittedFiles[i]);
-          formData.append(thisInput.submittedFiles[i].name, thisInput.submittedFiles[i]);
-          
+          formData.append(`alttext-${i}`, promptList.querySelectorAll(".alttextfield")[i]);
         }
 
         const response = await fetch("/wp/image", {
