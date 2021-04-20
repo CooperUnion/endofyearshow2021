@@ -49,8 +49,8 @@ const FormFX = function() {
       const inputBlock = thisInput.closest(".form-input"), 
             promptClear = inputBlock.querySelector("button.clear"),
             uploadIt = inputBlock.querySelector(".uploadit"),
-            // fileOutput = inputBlock.querySelector(".promptname"),
-            promptList = inputBlock.querySelector(".promptlist");
+            promptList = inputBlock.querySelector(".promptlist"),
+            summaryOutput = inputBlock.closest(".formblock").querySelector(".filesummary .summary-list");
 
       inputBlock.classList.add("has-advanced-upload"); // designating the file-select inputs for drag-and-drop decoration
       
@@ -146,7 +146,16 @@ const FormFX = function() {
           body: formData
         }).then(post => post.json())
         document.querySelector("code").innerHTML = JSON.stringify(response, null, "\t");
-        // CLEAN UP THE SUBMISSION BOX
+        resolveFromWordpress(response);
+      }
+      
+      function resolveFromWordpress(response) {
+        // promptlist empty
+        // remove populated class
+        // generate list of files
+summaryOutput.textContent =
+        
+        
       }
 
       ["drag",
