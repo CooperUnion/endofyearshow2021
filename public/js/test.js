@@ -32,7 +32,7 @@ const FormFX = function() {
 //   const specialRadioCheckbox = document.querySelector(".special.radio-text input[type='radio']");
 //   specialRadioCheckbox.addEventListener("change", focusSpecialText);
 
-  let allDroppedFiles = {};
+  // let allDroppedFiles = {};
 
   // const formsBody = document.querySelector(".main");
   const formsForm = document.querySelector("form");
@@ -64,9 +64,9 @@ const FormFX = function() {
         if (e.dataTransfer) { // Are we being passed a (drag and drop) FileList?
           thisInput.value = "";
           thisInput.submittedFiles = e.dataTransfer.files;
-          if (!thisInput.matches('[data-destination="external"]')) { // Excluding the Vimeo uploader file from submission
-            allDroppedFiles[thisInput.id] = e.dataTransfer.files;
-          }
+          // if (!thisInput.matches('[data-destination="external"]')) { // Excluding the Vimeo uploader file from submission
+          //   allDroppedFiles[thisInput.id] = e.dataTransfer.files;
+          // }
           // validateAllInputs();
         } else {
           thisInput.submittedFiles = thisInput.files;
@@ -105,23 +105,21 @@ const FormFX = function() {
           uploadIt.disabled = true;
         }
       }
-      
 
       function updateFileCount() {
         if (thisInput.submittedFiles.length > 0) {
           thisInput.dataset.filecount = thisInput.submittedFiles.length;
           inputBlock.classList.add("populated");
         } else {
-          thisInput.dataset.filecount = 0;
-          inputBlock.classList.remove("populated");
+          clearfileInputSelections();
         }
       }
       
       function clearInput(e) {
         e.preventDefault();
         e.stopPropagation();
-        thisInput.value = "";
-        delete allDroppedFiles[thisInput.id];
+        // delete allDroppedFiles[thisInput.id];
+        clearfileInputSelections();
         notifyChange(thisInput); // The input's change event does not fire when changed programmatically
       }
       
@@ -158,10 +156,10 @@ const FormFX = function() {
       
       function clearfileInputSelections() {
         promptList.innerHTML = "";
-        inputBlock.classList.remove("populated");
+          thisInput.dataset.filecount = 0;
+          inputBlock.classList.remove("populated");
         thisInput.submittedFiles = {};
-        thisInput.files = 
-        
+        thisInput.value = "";
       }
 
       ["drag",
@@ -215,7 +213,6 @@ const FormFX = function() {
 
   async function validateAndSubmit(e) {
     e.preventDefault();
-    console.log(allDroppedFiles);
   }
     
 
