@@ -80,7 +80,6 @@ const FormFX = function() {
           ).join('')}
         `;
         
-        Array.from(thisInput.submittedFiles).forEach(previewFile);
 }
         
         updateFileCount();
@@ -174,44 +173,6 @@ const FormFX = function() {
   });
 
   const validationMsg = document.querySelector(".validation-message");
-
-  // document.querySelector("fieldset.section-videowork").classList.add("hide");
-  // document.querySelector("fieldset.section-standardwork").classList.add("hide");
-  // document.querySelector("fieldset.section-classinfo").classList.add("hide");
-
-
-  // function validateAllInputs() {
-  //   let invalidForms = [];
-  //   const allActiveInputs = document.querySelectorAll("fieldset:not(.hide) .formblock");
-  //   allActiveInputs.forEach(function(formblock, currentIndex) {
-  //     formblock.classList.remove("invalid");
-  //     if (formblock.dataset.required === "required") {
-  //       const thisInput = formblock.querySelector(".form-input:not(.no-validate)");
-  //       if (!isValid(thisInput)) {
-  //         invalidForms.push(formblock.querySelector(".titlelabel, .pseudolabel"));
-  //         formblock.classList.add("invalid");
-  //       }
-  //     }
-  //   });
-  //   validationMsg.innerHTML = "";
-  //   if (invalidForms.length > 0) {
-  //     const newList = document.createElement("ul");
-  //     for (const invalidForm of invalidForms) {
-  //       const newListItem = document.createElement("li");
-  //       newListItem.textContent = invalidForm.textContent;
-  //       newListItem.dataset.anchortarget = invalidForm.dataset.anchor;
-  //       newListItem.addEventListener("click", scrollToInvalidAnchor);
-  //       newList.appendChild(newListItem);
-  //     }
-  //     validationMsg.appendChild(newList);
-  //     const msg = invalidForms.length === 1 ? "'The following field is required: ''" : "'The following fields are required: ''";
-  //     document.documentElement.style.setProperty("--reqmsg", msg);
-  //     return false;
-  //   } else {
-  //     formsBody.classList.remove("validation-active");
-  //     return true;
-  //   }
-  // }
 
   function scrollToInvalidAnchor() {
     const targetAnchor = this.dataset.anchortarget;
