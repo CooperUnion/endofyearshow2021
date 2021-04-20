@@ -149,8 +149,42 @@ router.post('/image', wpLogger, upload.any(), async (req, res, next)=>{
     console.log(e)
     res.status(500).json({error:e})
   }
-   
+  
+})
 
+router.post('/imageArray', wpLogger, upload.any(), async (req, res, next)=>{
+
+    
+  console.log(req.body)
+  
+  let medias = req.files.map((file, i)=>{
+    try {
+      const meta = 
+      const media = wp.createMedia(req.files[i], req.body[i])
+      console.log(media)
+    } catch (e){
+      
+    }
+  })
+  
+  try {
+    let media = await wp.createMedia(req.files[0], req.body)
+    console.log(media)
+
+    const {id, media_details, caption, source_url, originalname} = media
+    const {thumbnail} = media_details.sizes
+    res.json({
+      id, 
+      caption: caption.raw, 
+      thumbnail, 
+      source_url,
+      originalname
+    })
+  } catch(e) {
+    console.log(e)
+    res.status(500).json({error:e})
+  }
+  
 })
 
 router.get('/tags', wpLogger, async (req, res) => {
