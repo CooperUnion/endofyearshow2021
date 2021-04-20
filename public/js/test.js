@@ -49,7 +49,7 @@ const FormFX = function() {
             clearAll = inputBlock.querySelector(".clearall"),
             uploadIt = inputBlock.querySelector(".uploadit"),
             promptList = inputBlock.querySelector(".promptlist"),
-            summaryOutput = inputBlock.closest(".formblock").querySelector(":scope > .form-input");
+            summaryInput = inputBlock.closest(".formblock").querySelector(":scope > .form-input");
 
       inputBlock.classList.add("has-advanced-upload"); // designating the file-select inputs for drag-and-drop decoration
       
@@ -160,14 +160,15 @@ const FormFX = function() {
       function resolveFromWordpress(response) {
         clearfileInputSelections();
         inputBlock.classList.add("success");
-        summaryOutput.innerHTML = `
+        summaryInput.querySelector(".summary-list").innerHTML = `
           <ul class="response-files">
             ${response.map(metadata => `
               <li class="response-file" data-id="${metadata.id}" data-thumb="${metadata.thumbnail.source_url}">${metadata.originalname}</li>
           `).join("\n")}
           </ul>
         `;
-        summaryOutput.closest(".form-input").classList.add("generated");
+        summaryInput.classList.add("generated");
+        summaryInput.querySelector("input[type='hidden']").value = JSON.stringify(response);
       }
       
       function clearfileInputSelections() {
