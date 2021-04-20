@@ -1,6 +1,6 @@
 {
   "name": "eoys-uploader-2021",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A node app for data collection, using azure ad auth",
   "main": "server.js",
   "scripts": {

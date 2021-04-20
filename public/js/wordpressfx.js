@@ -17,7 +17,6 @@
       uploadIDOutput = document.querySelector(".box__success .upload__idoutput"),
       uploadIDInput = document.querySelector("#videoworkid"),
       fileOutput = form.querySelector(".file__filename"),
-      promptList = = document.querySelector('.promptlist'),
       inputFiles = {},
       verifyFiles = function(e) {
         console.log(e);

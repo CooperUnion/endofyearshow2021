@@ -123,8 +123,8 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
 })
 
   
-router.post('/image', wpLogger, uploadBuffer.any(), async (req, res)=>{
-  
+router.post('/image', wpLogger, uploadBuffer.any(), async (req, res, next)=>{
+  console.log("no")
   console.log(req.file, req.files, req.body)
   
   res.json({
