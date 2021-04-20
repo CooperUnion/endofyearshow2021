@@ -75,10 +75,13 @@ const FormFX = function() {
         uploadIt.textContent = thisInput.submittedFiles.length === 1 ? "Upload it" : "Upload them";
         promptList.innerHTML = `
           ${Array.from(thisInput.submittedFiles).map((item, i) => `
-            <dt class="filename">Filename: <span class="promptvalue">${item.name}</span></dt>
+            <dt class="filename">Filename: <span class="promptvalue">${item.name}</span><img src="${getThumb(item)}"></dt>
             <dd class="filemeta">Alt text: <input type="text" placeholder="Alt text for ${item.name}"></dd>`.trim()
           ).join('')}
         `;
+        
+        Array.from(thisInput.submittedFiles).forEach(previewFile);
+}
         
         updateFileCount();
       }
@@ -106,17 +109,24 @@ const FormFX = function() {
         inputObj.dispatchEvent(evt);
       }
       
-      function previewFile(file) {
+      // function previewFile(file) {
+      //   let reader = new FileReader()
+      //   reader.readAsDataURL(file)
+      //   reader.onloadend = function() {
+      //     let img = document.createElement('img')
+      //     img.src = reader.result
+      //     document.getElementById('gallery').appendChild(img)
+      //   }
+      // }
+
+      function getThumb(file) {
         let reader = new FileReader()
-        reader.readAsDataURL(file)
+        reader.readAsDataURL(file);
         reader.onloadend = function() {
-          let img = document.createElement('img')
-          img.src = reader.result
-          document.getElementById('gallery').appendChild(img)
+          return reader.result;
         }
       }
-      
-      
+            
       async function uploadToWordpress(e) {
         e.preventDefault();
         let formData = new FormData();
