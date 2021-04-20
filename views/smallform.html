@@ -10,6 +10,7 @@
       href="https://cdn.jsdelivr.net/gh/yegor256/tacit@gh-pages/tacit-css-1.5.5.min.css"
     />
     <link rel="stylesheet" href="css/formstyles.css" />
+    <link rel="stylesheet" href="css/uploader.css" />
   </head>
   <body>
     <form>
@@ -29,6 +30,7 @@
             represent this piece. For the case of a work that requires two types
             of media, please submit a separate form for the alternate media.
           </p>
+          <div class="wordpress uploader">
           <div class="form-input no-validate" data-inputtype="file">
             <label for="artworkupload"><span class="button">Select up to five files</span><span> or drag them here</span>.</label>
             <input
@@ -41,8 +43,10 @@
             />
             <small class="prompt">file: <output class="promptname"></output>
               <button class="clear">clear</button></small>
-            <button class="upload" type="button" disabled=""> Upload it </button> 
+            <button class="uploadit" type="button" disabled=""> Upload it </button> 
           </div>
+          </div>
+          
           <div class="form-input" data-inputtype="text">
             <small class="summary">uploaded: <output class="summary-list"></output></small>
             <input id="artworkid" name="artworkid" type="hidden" placeholder="Artwork ID" readonly="readonly">

@@ -24,9 +24,9 @@
 .vimeo.is-uploading .file__prompt,
 .vimeo.is-success .file__prompt,
 .vimeo.is-error .file__prompt,
-.vimeo.is-uploading .box__button,
-.vimeo.is-success .box__button,
-.vimeo.is-error .box__button {
+.vimeo.is-uploading .uploadit,
+.vimeo.is-success .uploadit,
+.vimeo.is-error .uploadit {
 	display: none;
 }
 
@@ -89,19 +89,19 @@
 	margin: -0.1em -0.2em;
 }
 
-.uploader .form-input:not(.populated) .box__button,
-.uploader input:not([data-filecount="1"]) ~ .box__button {
+.uploader .form-input:not(.populated) .uploadit,
+.uploader input:not([data-filecount="1"]) ~ .uploadit {
 	display: none;
 }
 
-.box__button {
+.uploadit {
 	margin: 1em 0 0 0;
 	background-color: #275a90;
 	color: #fff;
 }
 
-.box__button:hover,
-.box__button:focus {
+.uploadit:hover,
+.uploadit:focus {
 	background-color: #173454;
 	color: #bfbfbf;
 }
@@ -185,16 +185,14 @@ progress[value]::-webkit-progress-value {
 	font-weight: bold;
 }
 
-@-webkit-keyframes appear-from-inside
-						{
-							from	{ -webkit-transform: translateY( -50% ) scale( 0 ); }
-							75%		{ -webkit-transform: translateY( -50% ) scale( 1.1 ); }
-							to		{ -webkit-transform: translateY( -50% ) scale( 1 ); }
-						}
-@keyframes appear-from-inside
-						{
-							from	{ transform: translateY( -50% ) scale( 0 ); }
-							75%		{ transform: translateY( -50% ) scale( 1.1 ); }
-							to		{ transform: translateY( -50% ) scale( 1 ); }
-						}
+@-webkit-keyframes appear-from-inside {
+  from	{ -webkit-transform: translateY( -50% ) scale( 0 ); }
+  75%		{ -webkit-transform: translateY( -50% ) scale( 1.1 ); }
+  to		{ -webkit-transform: translateY( -50% ) scale( 1 ); }
+}
 
+@keyframes appear-from-inside {
+  from	{ transform: translateY( -50% ) scale( 0 ); }
+  75%		{ transform: translateY( -50% ) scale( 1.1 ); }
+  to		{ transform: translateY( -50% ) scale( 1 ); }
+}

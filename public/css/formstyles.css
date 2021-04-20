@@ -224,18 +224,6 @@ fieldset.hide {
   margin: 0;
 }
 
-
-.form-input .upload {
-  margin: 1em 0 0 0;
-  background-color: #275a90;
-  color: #fff;
-}
-
-
-.form-input:not(.populated) .upload {
-  display: none;
-}
-
 .success__info {
  display: block; 
 }
