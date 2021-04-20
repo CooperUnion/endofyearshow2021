@@ -145,7 +145,7 @@ const FormFX = function() {
           method: "POST",
           body: formData
         }).then(post => post.json())
-        document.querySelector("code").innerHTML = JSON.stringify(response);
+        document.querySelector("code").innerHTML = JSON.stringify(response, null, "\t");
         // CLEAN UP THE SUBMISSION BOX
       }
 
