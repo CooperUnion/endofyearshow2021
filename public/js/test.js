@@ -83,11 +83,10 @@ const FormFX = function() {
           let reader = new FileReader();
           reader.readAsDataURL(file);
           reader.onloadend = function() {
-            return reader.result;
+            promptList.querySelectorAll("img.genthumb")[i].src = reader.result;
           }
-          promptList.querySelectorAll("img.genthumb")[i].src = 
-          
         });
+        
         updateFileCount();
       }
       

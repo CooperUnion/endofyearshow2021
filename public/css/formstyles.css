@@ -65,8 +65,6 @@ fieldset.hide {
   box-shadow: 0 0 0 1px #666;
 }
 
-
-
 .titlelabel, .pseudolabel {
 	font-size: 1.25rem;
 	font-weight: bold;
@@ -231,8 +229,9 @@ fieldset.hide {
   flex-direction: column;
 }
 
-.form-input .promptlist .promptvalue {
-  font-weight: 300;
+.form-input .promptlist .genthumb {
+  width: 2vw;
+  height: auto;
 }
 
 .success__info {
