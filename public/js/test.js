@@ -71,15 +71,14 @@ const FormFX = function() {
         } else {
           thisInput.submittedFiles = thisInput.files;
         }
-        // fileOutput.textContent = thisInput.submittedFiles.length === 1 ? thisInput.submittedFiles[0].name : thisInput.submittedFiles.length > 1 ? (thisInput.getAttribute("data-multiple-caption") || "").replace("{count}", thisInput.submittedFiles.length) : "";
-
+        
+        uploadIt.textContent = thisInput.submittedFiles.length === 1 ? "Upload it" : "Upload them";
         promptList.innerHTML = `
           ${Array.from(thisInput.submittedFiles).map((item, i) => `
             <dt class="filename">Filename: <span class="promptvalue">${item.name}</span></dt>
             <dd class="filemeta">Alt text: <input type="text" placeholder="Alt text for ${item.name}"></dd>`.trim()
           ).join('')}
         `;
-
         
         updateFileCount();
       }
@@ -106,6 +105,17 @@ const FormFX = function() {
         const evt = new Event("change");
         inputObj.dispatchEvent(evt);
       }
+      
+      function previewFile(file) {
+        let reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.onloadend = function() {
+          let img = document.createElement('img')
+          img.src = reader.result
+          document.getElementById('gallery').appendChild(img)
+        }
+      }
+      
       
       async function uploadToWordpress(e) {
         e.preventDefault();
