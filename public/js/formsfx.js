@@ -1,4 +1,4 @@
-/*jshint esversion: 6 */
+/*jshint esversion: 8 */
 const FormFX = function() {
 
 	if (!Element.prototype.matches) Element.prototype.matches = Element.prototype.msMatchesSelector;
@@ -107,8 +107,9 @@ const FormFX = function() {
  					promptList.querySelectorAll(".filemeta")[i].addEventListener("change", validateAltText);          
           (async function(){
             const generatedThumbSrc = await getThumbSrc(file);
+            console.log(generatedThumbSrc);
             promptList.querySelectorAll("img.genthumb")[i].src = generatedThumbSrc;
-          })()
+          })();
 				});
 				uploadIt.disabled = true;
 				if (thisInput.submittedFiles.length > 0) {
@@ -132,16 +133,24 @@ const FormFX = function() {
 			}
 
       function getThumbSrc(file, seekTo = 5.0) {
-        var fileReader = new FileReader();
-        if (file.type.match('image')) {
-          fileReader.onload = function() {
-            return fileReader.result;
-          };
-          fileReader.readAsDataURL(file);
-        } else {
-          fileReader.onload = function() {
-            console.log("getting video cover for file: ", file);
-            return new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
+          var fileReader = new FileReader();
+          if (file.type.match('image')) {
+            fileReader.onload = function() {
+              console.log(fileReader.result);
+              return fileReader.result;
+            };
+            fileReader.readAsDataURL(file);
+          } else {
+            fileReader.onload = function() {
+              console.log("getting video cover for file: ", file);
+
+
+
+
+
+
+
               // load the file to a video player
               const videoPlayer = document.createElement('video');
               videoPlayer.setAttribute('src', URL.createObjectURL(file));
@@ -173,11 +182,19 @@ const FormFX = function() {
                       return imgData;
                   });
                 });
-            });
-          };
-          fileReader.readAsArrayBuffer(file);
-        }       
-       }
+
+
+
+
+
+
+
+            };
+            fileReader.readAsArrayBuffer(file);
+          }      
+        
+        }
+      }
       
       function uploadToExternalService(e) {
         e.preventDefault();
@@ -355,13 +372,8 @@ const FormFX = function() {
           );
           let downloadResponse = await downloadRequest.json();
           console.log(downloadResponse);
-
-
-
         };
-      };
-
-      
+      }
 		}
 	});
 
