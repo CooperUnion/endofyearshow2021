@@ -336,6 +336,12 @@ fieldset.hide {
   display: none;
 }
 
+
+.form-input:not(.uploading) .progress-bar {
+  display: none;
+}
+
+
 .form-input.success .success-message {
 	-webkit-animation: appear-from-inside .25s ease-in-out;
 	animation: appear-from-inside .25s ease-in-out;

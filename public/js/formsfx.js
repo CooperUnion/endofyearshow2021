@@ -104,6 +104,9 @@ const FormFX = function() {
         `;
 
 				[...thisInput.submittedFiles].forEach(function(file, i) {
+          if () {
+            
+          }
 					let reader = new FileReader();
 					reader.readAsDataURL(file);
 					reader.onloadend = function() {
@@ -167,9 +170,8 @@ const FormFX = function() {
 			}  
 
 			async function uploadToWordpress() {
-
 				let formData = new FormData();
-
+        
 				let alttext = [];
 				for (let i = 0; i < thisInput.submittedFiles.length; i++) {
 					formData.append(thisInput.submittedFiles[i].name, thisInput.submittedFiles[i]);
@@ -276,16 +278,16 @@ const FormFX = function() {
         let changeStateSuccess = async () => {
           clearFileInputSelections();
 
-				inputBlock.classList.add("success");
-				summaryInput.querySelector(".summary-list").innerHTML = `
-          <ul class="response-files">
-            ${uploadResponse.map(metadata => `
-              <li class="response-file" data-id="${metadata.id}" data-thumb="${metadata.thumbnail.source_url}">${metadata.originalname}</li>
-          `).join("\n")}
-          </ul>
-        `;
-				summaryInput.classList.add("generated");
-				summaryInput.querySelector("input[type='hidden']").value = videoID;
+          inputBlock.classList.add("success");
+          summaryInput.querySelector(".summary-list").innerHTML = `
+            <ul class="response-files">
+              ${uploadResponse.map(metadata => `
+                <li class="response-file" data-id="${metadata.id}" data-thumb="${metadata.thumbnail.source_url}">${metadata.originalname}</li>
+            `).join("\n")}
+            </ul>
+          `;
+          summaryInput.classList.add("generated");
+          summaryInput.querySelector("input[type='hidden']").value = videoID;
 
 
           const tagName = "cooper_union_vimeo_uploader";
