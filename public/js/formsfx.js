@@ -95,6 +95,7 @@ const FormFX = function() {
 				} else {
 					thisInput.submittedFiles = thisInput.files;
 				}
+        inputBlock.classList.remove("success");
 				clearAll.disabled = thisInput.submittedFiles.length > 0 ? false : true;
 				uploadIt.textContent = thisInput.submittedFiles.length === 1 ? "Upload it" : "Upload them";
 				promptList.innerHTML = `
@@ -182,7 +183,7 @@ const FormFX = function() {
         clearAll.disabled = true;
 				uploadIt.disabled = true;
 				uploadIt.textContent = "Uploading…";
-				promptList.classList.add("uploading");
+				inputBlock.classList.add("uploading");
 				promptList.querySelectorAll(".alttextfield").forEach(function(textfield) {
 					textfield.readOnly = true;
 				});
@@ -197,7 +198,7 @@ const FormFX = function() {
 
 			function clearFileInputSelections() {
 				promptList.innerHTML = "";
-				promptList.classList.remove("uploading");
+				inputBlock.classList.remove("uploading");
 				// thisInput.dataset.filecount = 0;
 				inputBlock.classList.remove("populated");
 				thisInput.submittedFiles = {};

@@ -175,6 +175,14 @@ fieldset.hide {
 	transition: outline-offset .15s ease-in-out, background-color .15s linear;
 }
 
+.form-input.has-advanced-upload.uploading {
+	outline-color: #ccc;
+}
+
+.form-input.has-advanced-upload.success {
+	outline-color: transparent;
+}
+
 .form-input.has-advanced-upload input[type='file'] {
   width: 0px;
   height: 0px;
@@ -227,7 +235,7 @@ fieldset.hide {
   align-items: center;
 }
 
-.form-input .promptlist.uploading {
+.form-input.uploading .promptlist {
   opacity: 0.25;
 }
 
