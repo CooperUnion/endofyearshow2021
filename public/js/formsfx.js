@@ -104,15 +104,16 @@ const FormFX = function() {
         `;
 
 				[...thisInput.submittedFiles].forEach(function(file, i) {
-          if () {
-            
+          const upServ = thisInput.closest("[data-uploadservice]").dataset.uploadservice;
+          if (upServ === "wordpress") {
+            let reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onloadend = function() {
+              promptList.querySelectorAll("img.genthumb")[i].src = reader.result;
+            };
+          } else if (upServ === "vimeo") {
+            // Render an image from the video
           }
-					let reader = new FileReader();
-					reader.readAsDataURL(file);
-					reader.onloadend = function() {
-						promptList.querySelectorAll("img.genthumb")[i].src = reader.result;
-					};
-
 					promptList.querySelectorAll(".filemeta")[i].addEventListener("change", validateAltText);
 				});
 				uploadIt.disabled = true;
