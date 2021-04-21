@@ -45,14 +45,6 @@ const FormFX = function() {
 			thisInput.addEventListener("change", toggleCheckTag);
 		}
 		if (thisInput.type === "file") {
-			const inputBlock = thisInput.closest(".form-input"),
-				promptClear = inputBlock.querySelector("button.clear"),
-				clearAll = inputBlock.querySelector(".clearall"),
-				uploadIt = inputBlock.querySelector(".uploadit"),
-				promptList = inputBlock.querySelector(".promptlist"),
-				summaryInput = inputBlock.closest(".formblock").querySelector(":scope > .form-input");
-
-			inputBlock.classList.add("has-advanced-upload"); // designating the file-select inputs for drag-and-drop decoration
 
 			function handleFileOperation(e) {
 				if (typeof e === 'undefined') { // Should this ever occur?
@@ -84,7 +76,7 @@ const FormFX = function() {
 					reader.readAsDataURL(file);
 					reader.onloadend = function() {
 						promptList.querySelectorAll("img.genthumb")[i].src = reader.result;
-					}
+					};
 
 					promptList.querySelectorAll(".filemeta")[i].addEventListener("change", validateAltText);
 				});
@@ -100,7 +92,7 @@ const FormFX = function() {
 				promptList.querySelectorAll(".alttextfield").forEach(function(alttextinput) {
 					if (alttextinput.value.length === 0) {
 						validCount = false;
-					};
+					}
 				});
 				if (validCount) {
 					uploadIt.disabled = false;
@@ -109,14 +101,13 @@ const FormFX = function() {
 				}
 			}
 
-			function clearInput(e) {
-				e.preventDefault();
-				e.stopPropagation();
-				thisInput.value = "";
-				//         delete allDroppedFiles[thisInput.id];
-				clearfileInputSelections();
-				notifyChange(thisInput); // The input's change event does not fire when changed programmatically
-			}
+			// function clearInput(e) {
+			// 	e.preventDefault();
+			// 	e.stopPropagation();
+			// 	thisInput.value = "";
+			// 	clearfileInputSelections();
+			// 	notifyChange(thisInput); // The input's change event does not fire when changed programmatically
+			// }
 
 			function notifyChange(inputObj) {
 				const evt = new Event("change");
@@ -145,7 +136,7 @@ const FormFX = function() {
 				const response = await fetch("/wp/imageArray", {
 					method: "POST",
 					body: formData
-				}).then(post => post.json())
+				}).then(post => post.json());
 				// document.querySelector("code").innerHTML = JSON.stringify(response, null, "\t");
 				resolveFromWordpress(response);
 			}
@@ -161,7 +152,7 @@ const FormFX = function() {
           </ul>
         `;
 				summaryInput.classList.add("generated");
-				summaryInput.querySelector("input[type='hidden']").value = JSON.stringify(response.map(item => item['id']));
+				summaryInput.querySelector("input[type='hidden']").value = JSON.stringify(response.map(item => item.id));
 			}
 
 			function clearfileInputSelections() {
@@ -197,12 +188,23 @@ const FormFX = function() {
 					inputBlock.classList.remove("is-dragover");
 				});
 			});
-			inputBlock.addEventListener("drop", handleFileOperation);
+      
+ 			const inputBlock = thisInput.closest(".form-input"),
+				// promptClear = inputBlock.querySelector("button.clear"),
+				clearAll = inputBlock.querySelector(".clearall"),
+				uploadIt = inputBlock.querySelector(".uploadit"),
+				promptList = inputBlock.querySelector(".promptlist"),
+				summaryInput = inputBlock.closest(".formblock").querySelector(":scope > .form-input");   
+      
+			inputBlock.classList.add("has-advanced-upload"); // designating the file-select inputs for drag-and-drop decoration
 
+			inputBlock.addEventListener("drop", handleFileOperation);
 			thisInput.addEventListener("change", handleFileOperation);
 			uploadIt.addEventListener("click", uploadToWordpress);
 			clearAll.addEventListener("click", clearfileInputSelections);
+      
 		}
+    
 	});
 
 	const validationMsg = document.querySelector(".validation-message");
@@ -312,9 +314,9 @@ const FormFX = function() {
 			const response = await fetch("/wp/formData", {
 				method: "POST",
 				body: formData
-			})
-			const json = await response.json()
-			console.log(json)
+			});
+			const json = await response.json();
+			console.log(json);
 		} else {
 			formsBody.classList.add("validation-active");
 		}
