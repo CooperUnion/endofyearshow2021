@@ -53,14 +53,23 @@ fieldset.hide {
   border-radius: 1.5em;
   padding: 0.5em 1em 0.5em 1em;
   margin: 0;
+}
+
+.inputlist.checkboxes > li label:not(.disabled) {
   cursor: pointer;
 }
+
+
+.inputlist.checkboxes > li label.disabled {
+  border-color: #eee;
+}
+
 
 .inputlist.checkboxes > li.checked label {
   background-color: #ccc;
 }
 
-.inputlist.checkboxes > li:hover label {
+.inputlist.checkboxes > li:hover label:not(.disabled) {
   border-color: #666;
   box-shadow: 0 0 0 1px #666;
 }
