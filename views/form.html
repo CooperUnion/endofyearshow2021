@@ -133,16 +133,45 @@
         </div>
       </div>
       <div class="formblock" data-required="required">
-        <span class="titlelabel" data-anchor="artworkupload">Artwork</span> 
-        <p class="label-context">
-          Please upload from one to five files of the same filetype that represent this piece. For the case of a work that requires two types of media, please submit a separate form for the alternate media. 
+          <span class="titlelabel" data-anchor="artworkid">Artwork</span>
+          <p class="label-context">
+            1. Please upload from one to five files of the same filetype that
+            represent this piece. For the case of a work that requires two types
+            of media, please submit a separate form for the alternate media.
+          </p>
+          
+          <div class="wordpress uploader">
+            <div class="form-input no-validate" data-inputtype="file">
+              <label for="artworkupload"><span class="button">Select up to five files</span><span> or drag them here</span>.</label>
+              <input
+                id="artworkupload"
+                name="artworkupload"
+                class="input-file"
+                type="file"
+                multiple="multiple"
+                data-multiple-caption="{count} files queued for upload"
+              />
+              <dl class="promptlist"></dl>           
+              <button class="clearall" type="button">Clear all</button><button class="uploadit" type="button" disabled="">Upload it</button>
+              <div class="success-message">
+            <h5>
+              Upload successful.
+            </h5>
+            <small>Your file(s) have been submitted.</small> 
+          </div>
+            </div>
+          </div>
+       <p class="label-context">
+          2. Make sure that you have chosen the correct file(s), and click the <strong>Upload them</strong> button. 
         </p>
-        <div class="form-input" data-inputtype="file">
-          <label for="artworkupload"><span class="button">Select up to five files</span><span> or drag them here</span>.</label> 
-          <input id="artworkupload" name="artworkupload" class="input-file" type="file" multiple="multiple" data-multiple-caption="{count} files queued for upload">
-          <small class="prompt">file: <output class="promptname"></output><button class="clear">clear</button></small>
+        <p class="label-context">
+          3. Once the upload is completed, a list of your submitted files will appear below. 
+        </p>
+            <div class="form-input" data-inputtype="text">
+              <small class="filesummary">Files submitted: <output class="summary-list"></output></small>
+              <input id="artworkid" name="artworkid" type="hidden" placeholder="Artwork ID" readonly="readonly">
+            </div>     
         </div>
-      </div>
       <div class="formblock" data-required="required">
         <span class="pseudolabel" data-anchor="typeofwork">Type of work</span> 
         <p class="label-context">
@@ -176,11 +205,49 @@
         <p class="label-context">
           NOTE: DO NOT upload anything other than an above image file type, despite what the form says.
         </p>
+        
+          <div class="wordpress uploader">
+            <div class="form-input no-validate" data-inputtype="file">
+              <label for="artworkupload"><span class="button">Select up to five files</span><span> or drag them here</span>.</label>
+              <input
+                id="artworkupload"
+                name="artworkupload"
+                class="input-file"
+                type="file"
+                multiple="multiple"
+                data-multiple-caption="{count} files queued for upload"
+              />
+              <dl class="promptlist"></dl>           
+              <button class="clearall" type="button">Clear all</button><button class="uploadit" type="button" disabled="">Upload it</button>
+              <div class="success-message">
+            <h5>
+              Upload successful.
+            </h5>
+            <small>Your file(s) have been submitted.</small> 
+          </div>
+            </div>
+          </div>
+       <p class="label-context">
+          2. Make sure that you have chosen the correct file(s), and click the <strong>Upload them</strong> button. 
+        </p>
+        <p class="label-context">
+          3. Once the upload is completed, a list of your submitted files will appear below. 
+        </p>
+ 
         <div class="form-input" data-inputtype="file">
           <input id="thumbnailupload" name="thumbnailupload" class="input-file" type="file" data-multiple-caption="{count} files queued for upload">
           <label for="thumbnailupload"><span class="button">Select a file</span><span> or drag it here</span>.</label> 
           <small class="prompt">file: <output class="promptname"></output><button class="clear">clear</button></small>
         </div>
+
+        
+        
+        <div class="form-input" data-inputtype="text">
+              <small class="filesummary">Files submitted: <output class="summary-list"></output></small>
+              <input id="artworkid" name="artworkid" type="hidden" placeholder="Artwork ID" readonly="readonly">
+            </div>     
+
+        
       </div>
       <div class="formblock" data-required="required">
         <label class="titlelabel" for="dimensions" data-anchor="dimensions">Dimensions</label> 

@@ -45,7 +45,21 @@ const FormFX = function() {
 			thisInput.addEventListener("change", toggleCheckTag);
 		}
 		if (thisInput.type === "file") {
+      
+ 			const inputBlock = thisInput.closest(".form-input"),
+				// promptClear = inputBlock.querySelector("button.clear"),
+				clearAll = inputBlock.querySelector(".clearall"),
+				uploadIt = inputBlock.querySelector(".uploadit"),
+				promptList = inputBlock.querySelector(".promptlist"),
+				summaryInput = inputBlock.closest(".formblock").querySelector(":scope > .form-input");   
+      
+			inputBlock.classList.add("has-advanced-upload"); // designating the file-select inputs for drag-and-drop decoration
 
+			inputBlock.addEventListener("drop", handleFileOperation);
+			thisInput.addEventListener("change", handleFileOperation);
+			uploadIt.addEventListener("click", uploadToWordpress);
+			clearAll.addEventListener("click", clearfileInputSelections);
+      
 			function handleFileOperation(e) {
 				if (typeof e === 'undefined') { // Should this ever occur?
 					// fileOutput.textContent = "";
@@ -188,21 +202,7 @@ const FormFX = function() {
 					inputBlock.classList.remove("is-dragover");
 				});
 			});
-      
- 			const inputBlock = thisInput.closest(".form-input"),
-				// promptClear = inputBlock.querySelector("button.clear"),
-				clearAll = inputBlock.querySelector(".clearall"),
-				uploadIt = inputBlock.querySelector(".uploadit"),
-				promptList = inputBlock.querySelector(".promptlist"),
-				summaryInput = inputBlock.closest(".formblock").querySelector(":scope > .form-input");   
-      
-			inputBlock.classList.add("has-advanced-upload"); // designating the file-select inputs for drag-and-drop decoration
-
-			inputBlock.addEventListener("drop", handleFileOperation);
-			thisInput.addEventListener("change", handleFileOperation);
-			uploadIt.addEventListener("click", uploadToWordpress);
-			clearAll.addEventListener("click", clearfileInputSelections);
-      
+            
 		}
     
 	});
