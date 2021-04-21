@@ -318,7 +318,7 @@ const FormFX = function() {
           summaryInput.querySelector(".summary-list").innerHTML = `
             <ul class="response-files">
               ${uploadResponse.map(metadata => `
-                <li class="response-file" data-id="${metadata.id}" data-thumb="${metadata.thumbnail.source_url}">${metadata.originalname}</li>
+                <li class="response-file" data-id="${metadata.id}" data-link="${metadata.link}">${metadata.name}</li>
             `).join("\n")}
             </ul>
           `;
