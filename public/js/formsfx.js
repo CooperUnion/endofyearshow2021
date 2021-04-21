@@ -133,14 +133,6 @@ const FormFX = function() {
 				}
 			}
 
-			// function clearInput(e) {
-			// 	e.preventDefault();
-			// 	e.stopPropagation();
-			// 	thisInput.value = "";
-			// 	clearfileInputSelections();
-			// 	notifyChange(thisInput); // The input's change event does not fire when changed programmatically
-			// }
-
 			function notifyChange(inputObj) {
 				const evt = new Event("change");
 				inputObj.dispatchEvent(evt);
@@ -148,22 +140,33 @@ const FormFX = function() {
       
       function uploadToExternalService(e) {
         e.preventDefault();
-        const upServ = this.closest("[data-uploadservice]").dataset.uploadservice;
-        if (upServ === "wordpress") {
-          
-        } else {
-          
-        }
-      }
 
-			async function uploadToWordpress() {
-				clearAll.disabled = true;
+        clearAll.disabled = true;
 				uploadIt.disabled = true;
 				uploadIt.textContent = "Uploading…";
 				promptList.classList.add("uploading");
 				promptList.querySelectorAll(".alttextfield").forEach(function(textfield) {
 					textfield.readOnly = true;
 				});
+
+        const upServ = this.closest("[data-uploadservice]").dataset.uploadservice;
+        if (upServ === "wordpress") {
+          uploadToWordpress();
+        } else if (upServ === "vimeo") {
+          uploadToVimeo();
+        }
+      }
+
+			function clearFileInputSelections() {
+				promptList.innerHTML = "";
+				promptList.classList.remove("uploading");
+				// thisInput.dataset.filecount = 0;
+				inputBlock.classList.remove("populated");
+				thisInput.submittedFiles = {};
+				thisInput.value = "";
+			}  
+
+			async function uploadToWordpress() {
 
 				let formData = new FormData();
 
@@ -195,14 +198,122 @@ const FormFX = function() {
 				summaryInput.querySelector("input[type='hidden']").value = JSON.stringify(response.map(item => item.id));
 			}
 
-			function clearFileInputSelections() {
-				promptList.innerHTML = "";
-				promptList.classList.remove("uploading");
-				// thisInput.dataset.filecount = 0;
-				inputBlock.classList.remove("populated");
-				thisInput.submittedFiles = {};
-				thisInput.value = "";
-			}
+      async function uploadToVimeo(e) {
+
+        const email = thisInput.querySelector('input.vimeoemail'),
+              fileSize = thisInput.submittedFiles[0].size,
+              fileName = thisInput.submittedFiles[0].name, // Currently unused
+              fileData = thisInput.submittedFiles[0];      
+
+        console.log({ fileSize, fileData });
+
+        let authResponse = await fetch("/token", {
+          method: "GET",
+          mode: "no-cors"
+        });
+
+        let authResult = await authResponse.json();
+        console.log(authResult.token);
+
+        const bearer = "bearer " + authResult.token;
+
+        let uploadRequest = await fetch("https://api.vimeo.com/me/videos", {
+          method: "POST",
+          body: JSON.stringify({
+            upload: {
+              approach: "tus",
+              size: fileSize,
+              redirect_url: window.location.href + "/uploaded"
+            },
+            privacy: { "view": "unlisted" },
+            description: email.value // Passing the e-mail in the description field, for easier identification later
+          }),
+          headers: {
+            Authorization: bearer,
+            Accept: "application/vnd.vimeo.*+json;version=3.4",
+            "Content-Type": "application/json"
+          }
+        });
+
+        let uploadResponse = await uploadRequest.json();
+        console.log(uploadResponse);
+
+        const uploadLink = uploadResponse.upload.upload_link;
+        console.log({ uploadLink });
+
+        const videoID = uploadResponse.uri.split("/")[2];
+        console.log({ videoID: videoID });
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.upload.onprogress = function(e) {
+          if (e.lengthComputable) {
+            progBar.setAttribute("max", e.total);
+            progBar.setAttribute("value", e.loaded);
+            progBar.innerHTML = Math.floor(e.loaded / e.total) + "%";
+          }
+        };
+        xhr.onloadstart = function(e) {
+          console.log("upload initiated");
+        };
+        xhr.onloadend = function(e) {
+          console.log("upload complete");
+          changeStateSuccess();
+        };
+
+        xhr.open("PATCH", uploadLink);
+        xhr.setRequestHeader(
+          "Accept",
+          "application/vnd.vimeo.*+json;version=3.4"
+        );
+        xhr.setRequestHeader("Tus-Resumable", "1.0.0");
+        xhr.setRequestHeader("Upload-Offset", 0);
+        xhr.setRequestHeader("Content-Type", "application/offset+octet-stream");
+
+        xhr.send(fileData);
+
+        let changeStateSuccess = async () => {
+          form.classList.remove("is-uploading");
+          form.classList.add("is-success");
+          // uploadIDOutput.value = videoID;
+          uploadIDInput.value = videoID;
+          // uploadAnchor.href = uploadResponse.link;
+          // uploadAnchor.textContent = uploadResponse.link.substring(8);
+
+          const tagName = "cooper_union_vimeo_uploader";
+
+          let putRequest = fetch(
+            "https://api.vimeo.com/videos/" + videoID + "/tags/" + tagName,
+            {
+              method: "PUT",
+              headers: {
+                Authorization: bearer,
+                Accept: "application/vnd.vimeo.*+json;version=3.4",
+                "Content-Type": "application/vnd.vimeo.tag+json"
+              }
+            }
+          );
+
+          let downloadRequest = await fetch(
+            "https://api.vimeo.com/me/videos/" + videoID,
+            {
+              method: "GET",
+              headers: {
+                Authorization: bearer,
+                Accept: "application/vnd.vimeo.*+json;version=3.4",
+                "Content-Type": "application/json"
+              }
+            }
+          );
+          let downloadResponse = await downloadRequest.json();
+          console.log(downloadResponse);
+
+
+
+        };
+      };
+
+      
 		}
 	});
 
