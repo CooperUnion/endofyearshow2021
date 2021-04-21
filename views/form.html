@@ -381,35 +381,21 @@
             <input id="vimeoemail" name="vimeoemail" type="hidden" value="{{email}}">
             {{/data.user}} 
             <div class="form-input no-validate">
-              <label for="videofile"><span class="button">Select a video file</span><span class="box__dragndrop"> or drag it here</span>.</label> 
-              <input class="box__file" type="file" name="videofile" id="videofile" data-multiple-caption="Please select only one file." multiple="" enctype="multipart/form-data" data-destination="external">
-              <small class="prompt file__prompt">file: 
-              <output class="promptname file__filename">
+              
+              <input id="videofile" name="videofile" class="input-file" type="file">
+              <label for="videofile"><span class="button">Select a file</span><span> or drag it here</span>.</label> <small class="prompt">file: 
+              <output class="promptname">
               </output>
-              <button class="clear">clear</button></small>
-              <button class="uploadit" type="button" disabled=""> Upload it </button> 
+              <button class="clear">clear</button></small> 
+              <dl class="promptlist"></dl>
+              <button class="clearall" type="button">Clear all</button><button class="uploadit" type="button" disabled="">Upload it</button> 
+              <div class="success-message">
+                <h5>
+                  Upload successful. 
+                </h5>
+                <small>Your file has been submitted.</small> 
+              </div>            
             </div>
-          
-          <div class="box__uploading">
-            <h5>
-              Uploading…
-            </h5>
-            <progress id="uploadProgress" value="0" max="100"></progress> 
-          </div>
-          <div class="box__success">
-            <h5>
-              Upload successful.
-            </h5>
-            <small>Your video ID has been filled in below.</small> 
-      <!--             <small class="success__info">Your video ID is:</small>
-                    <input class="upload__idoutput" size="9">
-                    <small class="success__info">Please copy this number into your content submission form.
-                  </small> -->
-      <!--             <a href="/" class="box__restart" role="button">Upload another file</a> -->
-          </div>
-          <div class="box__error">
-            Error! <span></span>.
-          </div>
         </div>
       <!-- End of Vimeo form -->
         <p class="label-context">
@@ -418,8 +404,9 @@
         <p class="label-context">
           3. Once the video is uploaded, your Video ID will be automatically entered into the ID field below. The upload process may take a few minutes, depending on upload speed, file size, location etc. 
         </p>
-        <div class="form-input" data-inputtype="text">
-          <input id="videoworkid" name="videoworkid" type="text" placeholder="Video ID" readonly="readonly">
+        <div class="form-input" data-inputtype="text">  
+          <small class="filesummary">Files submitted: <output class="summary-list"></output></small> 
+          <input id="videoworkid" name="videoworkid" type="hidden" readonly="readonly">
         </div>
         <p class="label-context">
           For any questions about this process, please refer to the <a href="https://cooperunion.sharepoint.com/:b:/s/art.eyos/EVBVdfN4bk1ArQlQTVQ6- xsBNaaYMyXSi8i83cof-J5zWw?e=U2R8Fb">ARTWORK UPLOADING GUIDELINES</a>. 
