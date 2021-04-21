@@ -376,7 +376,7 @@
         <p class="label-context">
           1. Please select your video via the file uploader below. 
         </p>
-        <div class="vimeo uploader">
+        <div class="uploader" data-uploadservice="vimeo">
             {{#data.user}} 
             <input id="vimeoemail" name="vimeoemail" type="hidden" value="{{email}}">
             {{/data.user}} 
@@ -469,10 +469,7 @@
           </p>
           <div class="form-input no-validate" data-inputtype="file">
             <input id="videothumbnailupload" name="videothumbnailupload" class="input-file" type="file" data-multiple-caption="{count} files queued for upload">
-            <label for="videothumbnailupload"><span class="button">Select a file</span><span> or drag it here</span>.</label> <small class="prompt">file: 
-            <output class="promptname">
-            </output>
-            <button class="clear">clear</button></small> 
+            <label for="videothumbnailupload"><span class="button">Select a file</span><span> or drag it here</span>.</label>
             <dl class="promptlist"></dl>
             <button class="clearall" type="button">Clear all</button><button class="uploadit" type="button" disabled="">Upload it</button> 
             <div class="success-message">

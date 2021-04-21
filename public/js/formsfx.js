@@ -57,7 +57,7 @@ const FormFX = function() {
 
 			inputBlock.addEventListener("drop", handleFileOperation);
 			thisInput.addEventListener("change", handleFileOperation);
-			uploadIt.addEventListener("click", uploadToWordpress);
+			uploadIt.addEventListener("click", uploadToExternalService);
 			clearAll.addEventListener("click", clearFileInputSelections);
 
 			["drag", "dragstart", "dragend", "dragover", "dragenter", "dragleave", "drop"].forEach(function(event) {
@@ -145,9 +145,13 @@ const FormFX = function() {
 				const evt = new Event("change");
 				inputObj.dispatchEvent(evt);
 			}
+      
+      function uploadToExternalService(e) {
+        e.preventDefault();
+        
+      }
 
-			async function uploadToWordpress(e) {
-				e.preventDefault();
+			async function uploadToWordpress() {
 				clearAll.disabled = true;
 				uploadIt.disabled = true;
 				uploadIt.textContent = "Uploading…";
