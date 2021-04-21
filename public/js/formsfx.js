@@ -107,7 +107,6 @@ const FormFX = function() {
  					promptList.querySelectorAll(".filemeta")[i].addEventListener("change", validateAltText);          
           (async function(){
             const generatedThumbSrc = await getThumbSrc(file);
-            console.log(generatedThumbSrc);
             promptList.querySelectorAll("img.genthumb")[i].src = generatedThumbSrc;
           })();
 				});
@@ -137,20 +136,11 @@ const FormFX = function() {
           var fileReader = new FileReader();
           if (file.type.match('image')) {
             fileReader.onload = function() {
-              console.log(fileReader.result);
-              return fileReader.result;
+              resolve(fileReader.result);
             };
             fileReader.readAsDataURL(file);
           } else {
             fileReader.onload = function() {
-              console.log("getting video cover for file: ", file);
-
-
-
-
-
-
-
               // load the file to a video player
               const videoPlayer = document.createElement('video');
               videoPlayer.setAttribute('src', URL.createObjectURL(file));
@@ -171,29 +161,20 @@ const FormFX = function() {
                   }, 200);
                   // extract video thumbnail once seeking is complete
                   videoPlayer.addEventListener('seeked', () => {
-                      console.log('video is now paused at %ss.', seekTo);
                       // define a canvas to have the same dimension as the video
                       const canvas = document.createElement("canvas");
                       canvas.width = videoPlayer.videoWidth;
                       canvas.height = videoPlayer.videoHeight;
                       // draw the video frame to canvas
-                      const ctx = canvas.getContext("2d").drawImage(videoPlayer, 0, 0, canvas.width, canvas.height);
+                      canvas.getContext("2d").drawImage(videoPlayer, 0, 0, canvas.width, canvas.height);
                       var imgData = canvas.toDataURL();
-                      return imgData;
+                      resolve(imgData);
                   });
                 });
-
-
-
-
-
-
-
             };
             fileReader.readAsArrayBuffer(file);
-          }      
-        
-        }
+          }            
+        });
       }
       
       function uploadToExternalService(e) {

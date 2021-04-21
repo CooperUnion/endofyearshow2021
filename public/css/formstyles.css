@@ -258,6 +258,8 @@ fieldset.hide {
   width: 7em;
   height: auto;
   margin-right: 2em;
+  border: 1px solid #999;
+  background-color: #eee;
 }
 
 .form-input .filesummary {
