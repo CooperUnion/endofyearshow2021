@@ -105,7 +105,8 @@ const FormFX = function() {
         `;
 
 				[...thisInput.submittedFiles].forEach(function(file, i) {
- 					promptList.querySelectorAll(".filemeta")[i].addEventListener("change", validateAltText);          
+ 					promptList.querySelectorAll(".filemeta")[i].addEventListener("focus", trustAltText);          
+ 					promptList.querySelectorAll(".filemeta")[i].addEventListener("blur", validateAltText);          
           (async function() {
             const generatedThumbSrc = await getThumbSrc(file);
             promptList.querySelectorAll("img.genthumb")[i].src = generatedThumbSrc;
@@ -116,6 +117,10 @@ const FormFX = function() {
 					inputBlock.classList.add("populated");
 					inputBlock.querySelector(".success-message small").textContent = "Your " + (thisInput.submittedFiles.length === 1 ? "file has" : "files have") + " been submitted.";
 				}
+			}
+      
+			function trustAltText() {
+        uploadIt.disabled = false;
 			}
 
 			function validateAltText() {
@@ -238,7 +243,7 @@ const FormFX = function() {
 
       async function uploadToVimeo(e) {
 
-        const email = thisInput.querySelector('input.vimeoemail'),
+        const email = inputBlock.querySelector('input.vimeoemail'),
               progBar = document.querySelector(".uploadProgress"),
               fileSize = thisInput.submittedFiles[0].size,
               fileName = thisInput.submittedFiles[0].name, // Currently unused
