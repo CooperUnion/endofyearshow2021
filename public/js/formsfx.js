@@ -152,8 +152,7 @@ const FormFX = function() {
               videoPlayer.addEventListener('loadedmetadata', () => {
                   // seek to user defined timestamp (in seconds) if possible
                   if (videoPlayer.duration < seekTo) {
-                      reject("video is too short.");
-                      return;
+                      seekTo = 0.0;
                   }
                   // delay seeking or else 'seeked' event won't fire on Safari
                   setTimeout(() => {
