@@ -148,7 +148,12 @@ const FormFX = function() {
       
       function uploadToExternalService(e) {
         e.preventDefault();
-        
+        const upServ = this.closest("[data-uploadservice]").dataset.uploadservice;
+        if (upServ === "wordpress") {
+          
+        } else {
+          
+        }
       }
 
 			async function uploadToWordpress() {
@@ -198,9 +203,7 @@ const FormFX = function() {
 				thisInput.submittedFiles = {};
 				thisInput.value = "";
 			}
-            
 		}
-    
 	});
 
 	const validationMsg = document.querySelector(".validation-message");
