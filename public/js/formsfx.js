@@ -58,7 +58,25 @@ const FormFX = function() {
 			inputBlock.addEventListener("drop", handleFileOperation);
 			thisInput.addEventListener("change", handleFileOperation);
 			uploadIt.addEventListener("click", uploadToWordpress);
-			clearAll.addEventListener("click", clearfileInputSelections);
+			clearAll.addEventListener("click", clearFileInputSelections);
+
+			["drag", "dragstart", "dragend", "dragover", "dragenter", "dragleave", "drop"].forEach(function(event) {
+				inputBlock.addEventListener(event, function(e) {
+					// preventing the unwanted behaviours
+					e.preventDefault();
+					e.stopPropagation();
+				});
+			});
+			["dragover", "dragenter"].forEach(function(event) {
+				inputBlock.addEventListener(event, function() {
+					inputBlock.classList.add("is-dragover");
+				});
+			});
+			["dragleave", "dragend", "drop"].forEach(function(event) {
+				inputBlock.addEventListener(event, function() {
+					inputBlock.classList.remove("is-dragover");
+				});
+			});     
       
 			function handleFileOperation(e) {
 				if (typeof e === 'undefined') { // Should this ever occur?
@@ -151,12 +169,11 @@ const FormFX = function() {
 					method: "POST",
 					body: formData
 				}).then(post => post.json());
-				// document.querySelector("code").innerHTML = JSON.stringify(response, null, "\t");
 				resolveFromWordpress(response);
 			}
 
 			function resolveFromWordpress(response) {
-				clearfileInputSelections();
+				clearFileInputSelections();
 				inputBlock.classList.add("success");
 				summaryInput.querySelector(".summary-list").innerHTML = `
           <ul class="response-files">
@@ -169,7 +186,7 @@ const FormFX = function() {
 				summaryInput.querySelector("input[type='hidden']").value = JSON.stringify(response.map(item => item.id));
 			}
 
-			function clearfileInputSelections() {
+			function clearFileInputSelections() {
 				promptList.innerHTML = "";
 				promptList.classList.remove("uploading");
 				// thisInput.dataset.filecount = 0;
@@ -177,31 +194,6 @@ const FormFX = function() {
 				thisInput.submittedFiles = {};
 				thisInput.value = "";
 			}
-
-			["drag",
-				"dragstart",
-				"dragend",
-				"dragover",
-				"dragenter",
-				"dragleave",
-				"drop"
-			].forEach(function(event) {
-				inputBlock.addEventListener(event, function(e) {
-					// preventing the unwanted behaviours
-					e.preventDefault();
-					e.stopPropagation();
-				});
-			});
-			["dragover", "dragenter"].forEach(function(event) {
-				inputBlock.addEventListener(event, function() {
-					inputBlock.classList.add("is-dragover");
-				});
-			});
-			["dragleave", "dragend", "drop"].forEach(function(event) {
-				inputBlock.addEventListener(event, function() {
-					inputBlock.classList.remove("is-dragover");
-				});
-			});
             
 		}
     
