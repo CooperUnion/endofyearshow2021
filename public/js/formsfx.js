@@ -137,7 +137,7 @@ const FormFX = function() {
 				}
 			}
 
-      function getVideoCover(file, seekTo = 0.0) {
+      function getVideoCover(file, seekTo = 10.0) {
           console.log("getting video cover for file: ", file);
           return new Promise((resolve, reject) => {
               // load the file to a video player
