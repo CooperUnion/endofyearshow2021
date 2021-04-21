@@ -100,12 +100,12 @@ const FormFX = function() {
 				promptList.innerHTML = `
           ${[...thisInput.submittedFiles].map((item, i) => `
             <dt class="filethumb"><img class="genthumb" src=""></dt>
-            <dd class="filemeta" data-required="required"><span class="pseudolabel">Alt text:</span><input type="text" class="alttextfield" placeholder="Description of ${item.name}"></dd>`.trim()).join('')}
+            <dd class="filemeta" data-required="required"><span class="pseudolabel">Alt text:</span><input type="text" class="alttextfield" placeholder="Please provide a description of ${item.name}"></dd>`.trim()).join('')}
         `;
 
 				[...thisInput.submittedFiles].forEach(function(file, i) {
  					promptList.querySelectorAll(".filemeta")[i].addEventListener("change", validateAltText);          
-          (async function(){
+          (async function() {
             const generatedThumbSrc = await getThumbSrc(file);
             promptList.querySelectorAll("img.genthumb")[i].src = generatedThumbSrc;
           })();
