@@ -381,12 +381,8 @@
             <input id="vimeoemail" name="vimeoemail" type="hidden" value="{{email}}">
             {{/data.user}} 
             <div class="form-input no-validate">
-              
               <input id="videofile" name="videofile" class="input-file" type="file">
-              <label for="videofile"><span class="button">Select a file</span><span> or drag it here</span>.</label> <small class="prompt">file: 
-              <output class="promptname">
-              </output>
-              <button class="clear">clear</button></small> 
+              <label for="videofile"><span class="button">Select a file</span><span> or drag it here</span>.</label>
               <dl class="promptlist"></dl>
               <button class="clearall" type="button">Clear all</button><button class="uploadit" type="button" disabled="">Upload it</button> 
               <div class="success-message">
@@ -463,17 +459,39 @@
         </div>
       </div>
       <div class="formblock" data-required="required">
-        <span class="pseudolabel" data-anchor="videothumbnailupload">Thumbnail</span> 
+        <div class="wordpress uploader">
+          <span class="pseudolabel" data-anchor="videothumbnailupload">Thumbnail</span> 
+          <p class="label-context">
+            1. Please upload an image (png preferably, jpg or gif) to use as a thumbnail or key art for this work (640px as the widest dimension). 
+          </p>
+          <p class="label-context">
+            NOTE: DO NOT upload anything other than an above image file type, despite what the form says. 
+          </p>
+          <div class="form-input no-validate" data-inputtype="file">
+            <input id="videothumbnailupload" name="videothumbnailupload" class="input-file" type="file" data-multiple-caption="{count} files queued for upload">
+            <label for="videothumbnailupload"><span class="button">Select a file</span><span> or drag it here</span>.</label> <small class="prompt">file: 
+            <output class="promptname">
+            </output>
+            <button class="clear">clear</button></small> 
+            <dl class="promptlist"></dl>
+            <button class="clearall" type="button">Clear all</button><button class="uploadit" type="button" disabled="">Upload it</button> 
+            <div class="success-message">
+              <h5>
+                Upload successful. 
+              </h5>
+              <small>Your file has been submitted.</small> 
+            </div>
+          </div>
+        </div>
         <p class="label-context">
-          Please upload an image (png preferably, jpg or gif) to use as a thumbnail or key art for this work (640px as the widest dimension). 
+          2. Make sure that you have chosen the correct file, and click the <strong>Upload it</strong> button. 
         </p>
         <p class="label-context">
-          NOTE: DO NOT upload anything other than an above image file type, despite what the form says. 
+          3. Once the upload is completed, a list of your submitted files will appear below. 
         </p>
-        <div class="form-input" data-inputtype="file">
-          <label for="videothumbnailupload"><span class="button">Select a file</span><span> or drag it here</span>.</label> 
-          <input id="videothumbnailupload" name="videothumbnailupload" class="input-file" type="file" data-multiple-caption="{count} files queued for upload">
-          <small class="prompt">file: <output class="promptname"></output><button class="clear">clear</button></small>
+        <div class="form-input" data-inputtype="text">
+          <small class="filesummary">Files submitted: <output class="summary-list"></output></small> 
+          <input id="videothumbnailid" name="videothumbnailid" type="hidden" readonly="readonly">
         </div>
       </div>
       <div class="formblock" data-required="optional">

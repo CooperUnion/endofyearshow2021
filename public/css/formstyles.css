@@ -203,17 +203,6 @@ fieldset.hide {
 	background-color: #fff;
 }
 
-.form-input .prompt {
-/*   margin-top: 1em; */
-  font-weight: 700;
-	-webkit-transition: opacity .25s ease-in-out;
-	transition: opacity .25s ease-in-out, max-height .25s ease-in-out, margin .25s ease-in-out;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin: 0.5em 0 -0.5em 0;
-}
-
 .form-input:not(.populated) .promptlist {
   opacity: 0;
   max-height: 0em;
@@ -279,6 +268,11 @@ fieldset.hide {
 .form-input .filesummary .response-files .response-file:not(:last-child):after {
   content: ",";
   margin-right: 0.5em;
+}
+
+.uploader {
+	position: relative;
+	margin-bottom: 1em;
 }
 
 .uploader label[for="file"] > strong {
