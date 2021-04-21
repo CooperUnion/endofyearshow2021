@@ -105,8 +105,7 @@ const FormFX = function() {
         `;
 
 				[...thisInput.submittedFiles].forEach(function(file, i) {
- 					promptList.querySelectorAll(".filemeta")[i].addEventListener("focus", trustAltText);          
- 					promptList.querySelectorAll(".filemeta")[i].addEventListener("blur", validateAltText);          
+ 					promptList.querySelectorAll(".filemeta")[i].addEventListener("input", validateAltText);          
           (async function() {
             const generatedThumbSrc = await getThumbSrc(file);
             promptList.querySelectorAll("img.genthumb")[i].src = generatedThumbSrc;
@@ -119,10 +118,6 @@ const FormFX = function() {
 				}
 			}
       
-			function trustAltText() {
-        uploadIt.disabled = false;
-			}
-
 			function validateAltText() {
 				let validCount = true;
 				promptList.querySelectorAll(".alttextfield").forEach(function(alttextinput) {
@@ -243,7 +238,7 @@ const FormFX = function() {
 
       async function uploadToVimeo(e) {
 
-        const email = inputBlock.querySelector('input.vimeoemail'),
+        const email = inputBlock.closest(".uploader").querySelector('input.vimeoemail'),
               progBar = document.querySelector(".uploadProgress"),
               fileSize = thisInput.submittedFiles[0].size,
               fileName = thisInput.submittedFiles[0].name, // Currently unused
