@@ -201,6 +201,7 @@ const FormFX = function() {
       async function uploadToVimeo(e) {
 
         const email = thisInput.querySelector('input.vimeoemail'),
+              progBar = document.querySelector(".uploadProgress"),
               fileSize = thisInput.submittedFiles[0].size,
               fileName = thisInput.submittedFiles[0].name, // Currently unused
               fileData = thisInput.submittedFiles[0];      
@@ -273,12 +274,19 @@ const FormFX = function() {
         xhr.send(fileData);
 
         let changeStateSuccess = async () => {
-          form.classList.remove("is-uploading");
-          form.classList.add("is-success");
-          // uploadIDOutput.value = videoID;
-          uploadIDInput.value = videoID;
-          // uploadAnchor.href = uploadResponse.link;
-          // uploadAnchor.textContent = uploadResponse.link.substring(8);
+          clearFileInputSelections();
+
+				inputBlock.classList.add("success");
+				summaryInput.querySelector(".summary-list").innerHTML = `
+          <ul class="response-files">
+            ${uploadResponse.map(metadata => `
+              <li class="response-file" data-id="${metadata.id}" data-thumb="${metadata.thumbnail.source_url}">${metadata.originalname}</li>
+          `).join("\n")}
+          </ul>
+        `;
+				summaryInput.classList.add("generated");
+				summaryInput.querySelector("input[type='hidden']").value = videoID;
+
 
           const tagName = "cooper_union_vimeo_uploader";
 
