@@ -63,7 +63,8 @@ const FormFX = function() {
         }
     }
 ];
-  console.log( Object.keys(response).map(id => response[id]) );
+
+  Object.entries(response).map(id => console.log(response[id])) ;
 
   
   const formsForm = document.querySelector("form");
