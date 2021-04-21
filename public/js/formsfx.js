@@ -99,7 +99,7 @@ const FormFX = function() {
 				uploadIt.textContent = thisInput.submittedFiles.length === 1 ? "Upload it" : "Upload them";
 				promptList.innerHTML = `
           ${[...thisInput.submittedFiles].map((item, i) => `
-            <dt class="filethumb"><img class="genthumb"></dt>
+            <dt class="filethumb"><img class="genthumb" src=""></dt>
             <dd class="filemeta" data-required="required"><span class="pseudolabel">Alt text:</span><input type="text" class="alttextfield" placeholder="Description of ${item.name}"></dd>`.trim()).join('')}
         `;
 
