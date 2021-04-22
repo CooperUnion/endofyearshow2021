@@ -460,7 +460,9 @@ const FormFX = function() {
 
 
 	function handleReqRads() {
-    reqRads.forEach();
+    reqRads.forEach(function(elem) {
+      console.log(elem.dataset.reqrad);
+    });
   }
 
 
