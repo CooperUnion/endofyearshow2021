@@ -360,6 +360,22 @@ fieldset.hide {
   display: none;
 }
 
+progress {
+	-webkit-appearance: none;
+	appearance: none;
+	height: 2px;
+	width: 33%;
+}
+
+progress[value]::-webkit-progress-bar {
+	background-color: #eee;
+}
+
+progress[value]::-webkit-progress-value {
+	background-color: #111;
+}
+
+
 
 .form-input.success .success-message {
 	-webkit-animation: appear-from-inside .25s ease-in-out;
