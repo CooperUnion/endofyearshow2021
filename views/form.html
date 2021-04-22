@@ -156,7 +156,7 @@
 				</p>
 				<div class="form-input" data-inputtype="text">
 					<small class="filesummary">Files submitted: <output class="summary-list"></output></small> 
-					<input id="artworkid" name="artworkid" type="hidden" placeholder="Artwork ID" readonly="readonly">
+					<input id="artworkid" name="workid" type="hidden" readonly="readonly">
 				</div>
 			</div>
 			<div class="formblock" data-required="required">
@@ -336,7 +336,7 @@
 				</div>
 			</div>
 		</fieldset>
-		<fieldset class="section-videowork">
+<fieldset class="section-videowork">
 			<legend>Video Work Information</legend> 
 			<p class="sublegend">
 				This section is ONLY for for video work. If your documentation of your work is not video, please go back and choose the correct media. Note, you must follow the video uploading instructions below. 
@@ -350,7 +350,7 @@
 					If untitled, please write it as so. 
 				</p>
 				<div class="form-input" data-inputtype="text">
-					<input id="videoworktitle" name="videoworktitle" type="text" placeholder="Title">
+					<input id="videoworktitle" name="worktitle" type="text" placeholder="Title">
 				</div>
 			</div>
 			<div class="formblock" data-required="required">
@@ -389,7 +389,7 @@
 				</p>
 				<div class="form-input" data-inputtype="text">
 					<small class="filesummary">Files submitted: <output class="summary-list"></output></small> 
-					<input id="videoworkid" name="videoworkid" type="hidden" readonly="readonly">
+					<input id="videoworkid" name="workid" type="hidden" readonly="readonly">
 				</div>
 			</div>
 			<div class="formblock" data-required="required">
@@ -400,7 +400,7 @@
 				<div class="form-input" data-inputtype="checkboxes">
 					<ul class="inputlist checkboxes">
 						<li><label for="typeofvideowork-1" class="disabled"> 
-						<input type="checkbox" name="typeofvideowork" id="typeofvideowork-1" value="video" checked="checked" disabled="disabled">
+						<input type="checkbox" name="typeofwork" id="typeofvideowork-1" value="video" checked="checked" disabled="disabled">
 						Video</label></li>
 					</ul>
 				</div>
@@ -416,28 +416,28 @@
 				<div class="form-input" data-inputtype="checkboxes">
 					<ul class="inputlist checkboxes">
 						<li><label for="videomedium-1"> 
-						<input type="checkbox" name="videomedium" id="videomedium-1" value="Animation">
+						<input type="checkbox" name="medium" id="videomedium-1" value="Animation">
 						Animation</label></li>
 						<li><label for="videomedium-2"> 
-						<input type="checkbox" name="videomedium" id="videomedium-2" value="Film">
+						<input type="checkbox" name="medium" id="videomedium-2" value="Film">
 						Film</label></li>
 						<li><label for="videomedium-3"> 
-						<input type="checkbox" name="videomedium" id="videomedium-3" value="Graphic Design ">
+						<input type="checkbox" name="medium" id="videomedium-3" value="Graphic Design ">
 						Graphic Design </label></li>
 						<li><label for="videomedium-4"> 
-						<input type="checkbox" name="videomedium" id="videomedium-4" value="Installation ">
+						<input type="checkbox" name="medium" id="videomedium-4" value="Installation ">
 						Installation </label></li>
 						<li><label for="videomedium-5"> 
-						<input type="checkbox" name="videomedium" id="videomedium-5" value="Motion Graphics ">
+						<input type="checkbox" name="medium" id="videomedium-5" value="Motion Graphics ">
 						Motion Graphics </label></li>
 						<li><label for="videomedium-6"> 
-						<input type="checkbox" name="videomedium" id="videomedium-6" value="Performance ">
+						<input type="checkbox" name="medium" id="videomedium-6" value="Performance ">
 						Performance </label></li>
 						<li><label for="videomedium-7"> 
-						<input type="checkbox" name="videomedium" id="videomedium-7" value="Sound Art">
+						<input type="checkbox" name="medium" id="videomedium-7" value="Sound Art">
 						Sound Art</label></li>
 						<li><label for="videomedium-8"> 
-						<input type="checkbox" name="videomedium" id="videomedium-8" value="Video">
+						<input type="checkbox" name="medium" id="videomedium-8" value="Video">
 						Video</label></li>
 					</ul>
 				</div>
@@ -472,7 +472,7 @@
 				</p>
 				<div class="form-input" data-inputtype="text">
 					<small class="filesummary">Files submitted: <output class="summary-list"></output></small> 
-					<input id="videothumbnailid" name="videothumbnailid" type="hidden" readonly="readonly">
+					<input id="videothumbnailid" name="thumbnailid" type="hidden" readonly="readonly">
 				</div>
 			</div>
 			<div class="formblock" data-required="optional">
@@ -481,7 +481,7 @@
 					OPTIONAL: Please describe your piece in any length, as an artist statement or otherwise. 
 				</p>
 				<div class="form-input" data-inputtype="text">
-					<input id="videodimensions" name="videodimensions" type="text" placeholder="Dimensions">
+					<input id="videodimensions" name="dimensions" type="text" placeholder="Dimensions">
 				</div>
 			</div>
 			<div class="formblock" data-required="required">
@@ -490,7 +490,7 @@
 					Please describe your piece in any length. 
 				</p>
 				<div class="form-input" data-inputtype="textarea">
-					<textarea id="videodescription" name="videodescription" placeholder="Description"></textarea>
+					<textarea id="videodescription" name="description" placeholder="Description"></textarea>
 				</div>
 			</div>
 			<div class="formblock" data-required="required">
@@ -499,7 +499,7 @@
 					For accessibility considerations, please enter a description of the physical characteristics of the work. For reference, please see <a href="https://www.artnews.com/art-in-america/features/the-met-mca-chicago-blind-access-alt-text- park-mcarthur-shannon-finnegan-1202677577/">this Art News article on alt text and museums</a>. 
 				</p>
 				<div class="form-input" data-inputtype="text">
-					<input id="alttextvideo" name="alttextvideo" type="text" placeholder="Alt text">
+					<input id="alttextvideo" name="alttext" type="text" placeholder="Alt text">
 				</div>
 			</div>
 		</fieldset>
