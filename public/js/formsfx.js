@@ -52,6 +52,10 @@ const FormFX = function() {
 			thisInput.addEventListener("change", handleReqRads);
 		}
 
+    if (thisInput.hasAttribute('list')) {
+      thisInput.addEventListener("change", handleDatalist);
+    }
+
 		if (thisInput.type === "file") {
       
  			const inputBlock = thisInput.closest(".form-input"),
@@ -475,6 +479,20 @@ const FormFX = function() {
     validateAllInputs();
   }
 
+  function handleDatalist() {
+    const checkList = this.closest(".formblock").querySelector(".inputlist.checkboxes");
+    if ([...this.list.options].map(option => option.value).includes(this.value)) {
+      const newLi = document.createElement("li");
+      newLi.innerHTML = `<label><input type="checkbox" name="${checkList.dataset.name}" value="${this.value}" checked="checked">${this.value}</label>`;
+      newLi.addEventListener("change", removeLi);
+      checkList.appendChild(newLi);
+      this.value = "";
+    }
+    function removeLi() {
+      // console.log(this);
+      checkList.removeChild(this);
+    }
+  }
 
 	async function validateAndSubmit(e) {
 		e.preventDefault();

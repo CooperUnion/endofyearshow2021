@@ -528,12 +528,13 @@
 				Please use this section to annotate which class this work is from. 
 			</p>
 			<div class="formblock" data-required="required">
-				<span class="pseudolabel" data-anchor="instructor">Instructor</span> 
+				<span class="pseudolabel" data-anchor="faculty">Instructor</span> 
 				<p class="label-context">
 					Please select the faculty who taught the class this piece was made in. If work was not done in a class, select that option below. 
 				</p>
 				<div class="form-input" data-inputtype="datalist">
-					<input list="datalist-teachers" id="faculty" name="faculty" placeholder="Instructor" />
+          <ul class="inputlist checkboxes" data-name="faculty"></ul>
+					<input list="datalist-teachers" placeholder="Instructor" />
 					<datalist id="datalist-teachers"> {{#data.teachers}} 
 					<option name="{{@index}}">{{name}}</option>
 					{{/data.teachers}} </datalist> 
@@ -553,12 +554,13 @@
 				</div>
 			</div>
 			<div class="formblock" data-required="required">
-				<span class="pseudolabel" data-anchor="class">Class</span> 
+				<span class="pseudolabel" data-anchor="classes">Class</span> 
 				<p class="label-context">
 					Please choose the class(es). 
 				</p>
 				<div class="form-input" data-inputtype="datalist">
-					<input list="datalist-classes" id="classes" name="classes" placeholder="Classes" />
+          <ul class="inputlist checkboxes" data-name="classes"></ul>
+					<input list="datalist-classes" placeholder="Classes" />
 					<datalist id="datalist-classes"> {{#data.courses}} 
 					<option name="{{@index}}">{{course}}</option>
 					{{/data.courses}} </datalist> 
@@ -570,7 +572,8 @@
 					Please select your fellow collaborators. 
 				</p>
 				<div class="form-input" data-inputtype="datalist">
-					<input list="datalist-collaborators" id="collaborators" name="collaborators" placeholder="Classes" />
+          <ul class="inputlist checkboxes" data-name="collaborators"></ul>
+					<input list="datalist-collaborators" placeholder="Classes" />
 					<datalist id="datalist-collaborators"> {{#data.students}} 
 					<option name="{{@index}}">{{[First Name]}} {{[Last Name]}}</option>
 					{{/data.students}} </datalist> 

@@ -76,7 +76,7 @@ const FormFX = function() {
     }
 
     if (thisInput.hasAttribute('list')) {
-      thisInput.addEventListener("change", updateDatalist);
+      thisInput.addEventListener("change", handleDatalist);
     }
 
     if (thisInput.type === "file") {
@@ -267,7 +267,7 @@ const FormFX = function() {
     }
   }
   
-  function updateDatalist() {
+  function handleDatalist() {
     const checkList = this.closest(".formblock").querySelector(".inputlist.checkboxes");
     if ([...this.list.options].map(option => option.value).includes(this.value)) {
       const newLi = document.createElement("li");
