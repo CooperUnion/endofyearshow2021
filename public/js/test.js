@@ -74,6 +74,11 @@ const FormFX = function() {
     if (thisInput.type === "checkbox") {
       thisInput.addEventListener("change", toggleCheckTag);
     }
+
+    if (thisInput.hasAttribute('list')) {
+      thisInput.addEventListener("change", updateDatalist);
+    }
+
     if (thisInput.type === "file") {
       const inputBlock = thisInput.closest(".form-input"), 
             promptClear = inputBlock.querySelector("button.clear"),
@@ -262,8 +267,9 @@ const FormFX = function() {
     }
   }
   
-  function generateCheckboxes() {
-    
+  function updateDatalist() {
+    // const dList = this.list
+    console.log(this.list.map );
     
   }
 
