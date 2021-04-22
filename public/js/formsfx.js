@@ -317,9 +317,7 @@ const FormFX = function() {
           inputBlock.classList.add("success");
           summaryInput.querySelector(".summary-list").innerHTML = `
             <ul class="response-files">
-              ${uploadResponse.map(metadata => `
-                <li class="response-file" data-id="${metadata.id}" data-link="${metadata.link}">${metadata.name}</li>
-            `).join("\n")}
+                <li class="response-file" data-id="${videoID}" data-link="${uploadResponse.link}">${uploadResponse.name}</li>
             </ul>
           `;
           summaryInput.classList.add("generated");
