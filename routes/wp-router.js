@@ -83,12 +83,13 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
     project,
     media,
     artworkid,
-    videoworkid
+    videoworkid,
+    videoworktitle
     
   } = req.body
   
   const body = {
-    title: worktitle,
+    title: worktitle || videoworktitle,
     "fields": {
       "taxonomy": {
         "author": {
@@ -204,6 +205,13 @@ router.post('/imageArray', wpLogger, upload.any(), async (req, res, next)=>{
 router.get('/tags', wpLogger, async (req, res) => {
   const tags = await getAllCategories()  
   res.json(tags)
+})
+
+router.get('/post/:id', wpLogger, async (req,res)=>{
+  const post = await wp.getPostById(req.params.id)
+  
+  res.json(post)
+  
 })
 
 module.exports = router
