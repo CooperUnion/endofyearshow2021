@@ -462,10 +462,15 @@ const FormFX = function() {
     console.log(this.checked)
     reqRads.forEach(function(reqElem) {
       const idsArray = reqElem.dataset.reqrad.split(",").map(str => str.trim());
-      let isVis = false;
+      let isMatch = false;
       idsArray.forEach(function(radioID){
-        
+        isMatch = radioID.checked;
       });
+      if (isMatch) {
+        reqElem.classList.add("radio-show");
+      } else {
+        reqElem.classList.remove("radio-show");
+      }
     });
   }
 
