@@ -268,13 +268,17 @@ const FormFX = function() {
   }
   
   function updateDatalist() {
+    const checkList = this.closest(".formblock").querySelector(".inputlist.checkboxes");
     if ([...this.list.options].map(option => option.value).includes(this.value)) {
-      
+      const newLi = document.createElement("li");
+      newLi.innerHTML = `<label><input type="checkbox" name="medium" id="medium-1" value="Audiovisual">${this.value}</label>`;
+      newLi.addEventListener("change", removeLi);
+      checkList.appendChild(newLi);
     }
-    // [...this.list.options].forEach(function(opt){
-    //   console.log(opt.value);
-    // });
-    
+    function removeLi() {
+      // console.log(this);
+      checkList.removeChild(this);
+    }
   }
 
   async function validateAndSubmit(e) {
