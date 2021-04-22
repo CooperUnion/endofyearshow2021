@@ -460,10 +460,12 @@ const FormFX = function() {
 
 	function handleReqRads() {
     console.log(this.checked)
-    reqRads.forEach(function(elem) {
-      const idsArray = elem.dataset.reqrad.split(",").map(str => str.trim());
-      idsArray.forEach(
-      );
+    reqRads.forEach(function(reqElem) {
+      const idsArray = reqElem.dataset.reqrad.split(",").map(str => str.trim());
+      let isVis = false;
+      idsArray.forEach(function(radioID){
+        
+      });
     });
   }
 
