@@ -81,7 +81,8 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
     materials,
     email,
     project,
-    media
+    media,
+    artworkid
   } = req.body
   
   const body = {
@@ -112,7 +113,7 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
         "email": email,
         project
       },
-      "media": JSON.parse(media)
+      "media": JSON.parse(media || artworkid)
     }
   }
   
