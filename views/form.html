@@ -580,47 +580,22 @@
 		<fieldset class="section-projectsinfo" data-reqrad="classproject-2">
 			<legend>Special Projects Information</legend> 
 			<p class="sublegend">
-				Please use this section to annotate which special projectthis work is from. 
+				Please use this section to annotate which special project this work is from. 
 			</p>
 			<div class="formblock" data-required="required">
-				<span class="pseudolabel" data-anchor="recommended">Was this piece recommended by your instructor for inclusion in the End of the Year show?</span> 
+				<span class="pseudolabel" data-anchor="whichproject">Which special project is this from?</span> 
 				<div class="form-input" data-inputtype="radio">
 					<ul class="inputlist radio">
-						<li><label for="recommended-1"> 
-						<input type="radio" name="recommended" id="recommended-1" value="yes">
-						Yes</label></li>
-						<li><label for="recommended-2"> 
-						<input type="radio" name="recommended" id="recommended-2" value="no">
-						No</label></li>
+						<li><label for="whichproject-1"> 
+						<input type="radio" name="whichproject" id="whichproject-1" value="Senior show">
+						Senior show</label></li>
+						<li><label for="whichproject-2"> 
+						<input type="radio" name="whichproject" id="whichproject-2" value="Menschel">
+						Menschel</label></li>
 					</ul>
 				</div>
 			</div>
-			<div class="formblock" data-required="required">
-				<span class="pseudolabel" data-anchor="class">Class</span> 
-				<p class="label-context">
-					Please choose the class(es). 
-				</p>
-				<div class="form-input" data-inputtype="datalist">
-					<input list="datalist-classes" id="classes" name="classes" placeholder="Classes" />
-					<datalist id="datalist-classes"> {{#data.courses}} 
-					<option name="{{@index}}">{{course}}</option>
-					{{/data.courses}} </datalist> 
-				</div>
-			</div>
-			<div class="formblock" data-required="optional">
-				<span class="pseudolabel" data-anchor="collaborators">Collaborators</span> 
-				<p class="label-context">
-					Please select your fellow collaborators. 
-				</p>
-				<div class="form-input" data-inputtype="datalist">
-					<input list="datalist-collaborators" id="collaborators" name="collaborators" placeholder="Classes" />
-					<datalist id="datalist-collaborators"> {{#data.students}} 
-					<option name="{{@index}}">{{[First Name]}} {{[Last Name]}}</option>
-					{{/data.students}} </datalist> 
-				</div>
-			</div>
 		</fieldset>
-
 		<button type="submit">Submit</button> <small class="validation-message"></small> 
 	</form>
 </article>
