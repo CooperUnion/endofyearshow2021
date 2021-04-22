@@ -465,12 +465,20 @@ const FormFX = function() {
 				body: formData
 			});
 			const json = await response.json();
-			console.log(json);
+			handleSubmissionResponse(json);
 		} else {
 			formsBody.classList.add("validation-active");
 		}
 	}
 
+  function handleSubmissionResponse(json) {
+    console.log(json);
+    const resultsLink = document.createElement('a');
+    resultsLink.textContent = "";
+    document.querySelector("footer").appendChild();
+    console.log(`https://eoys-uploader-2021.glitch.me/wp/post/${json.id}`);
+  }
+  
 	function isValid(thisInput) {
 		let isValid = true;
 		switch (thisInput.dataset.inputtype) {
