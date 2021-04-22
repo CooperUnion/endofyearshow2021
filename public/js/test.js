@@ -271,7 +271,7 @@ const FormFX = function() {
     const checkList = this.closest(".formblock").querySelector(".inputlist.checkboxes");
     if ([...this.list.options].map(option => option.value).includes(this.value)) {
       const newLi = document.createElement("li");
-      newLi.innerHTML = `<label><input type="checkbox" name="${checkList.dataset.name}" value="{this.value}" checked="checked">${this.value}</label>`;
+      newLi.innerHTML = `<label><input type="checkbox" name="${checkList.dataset.name}" value="${this.value}" checked="checked">${this.value}</label>`;
       newLi.addEventListener("change", removeLi);
       checkList.appendChild(newLi);
       this.value = "";
@@ -286,8 +286,8 @@ const FormFX = function() {
 		e.preventDefault();
 			const formData = new FormData(formsForm);
 // Display the values
-for (var value of formData.values()) {
-   console.log(value);
+for (var entry of formData.entries()) {
+   console.log(entry); 
 }
     const response = await fetch("/wp/formData", {
 				method: "POST",
