@@ -21,7 +21,12 @@
           one form. For each new piece, re-submit a new form.
         </p>
         <p class="sublegend">
-          Please see the <a href="https://cooperunion.sharepoint.com/:b:/s/art.eyos/EVBVdfN4bk1ArQlQTVQ6- xsBNaaYMyXSi8i83cof-J5zWw?e=U2R8Fb">ARTWORK UPLOAD GUIDELINES</a> for more information.
+          Please see the
+          <a
+            href="https://cooperunion.sharepoint.com/:b:/s/art.eyos/EVBVdfN4bk1ArQlQTVQ6- xsBNaaYMyXSi8i83cof-J5zWw?e=U2R8Fb"
+            >ARTWORK UPLOAD GUIDELINES</a
+          >
+          for more information.
         </p>
         <div class="formblock" data-required="required">
           <span class="titlelabel" data-anchor="artworkid">Artwork</span>
@@ -30,10 +35,13 @@
             represent this piece. For the case of a work that requires two types
             of media, please submit a separate form for the alternate media.
           </p>
-          
+
           <div class="wordpress uploader">
             <div class="form-input no-validate" data-inputtype="file">
-              <label for="artworkupload"><span class="button">Select up to five files</span><span> or drag them here</span>.</label>
+              <label for="artworkupload"
+                ><span class="button">Select up to five files</span
+                ><span> or drag them here</span>.</label
+              >
               <input
                 id="artworkupload"
                 name="artworkupload"
@@ -42,55 +50,68 @@
                 multiple="multiple"
                 data-multiple-caption="{count} files queued for upload"
               />
-              <dl class="promptlist"></dl>           
-              <button class="clearall" type="button">Clear all</button><button class="uploadit" type="button" disabled="">Upload it</button>
+              <dl class="promptlist"></dl>
+              <button class="clearall" type="button">Clear all</button
+              ><button class="uploadit" type="button" disabled="">
+                Upload it
+              </button>
               <div class="success-message">
-            <h5>
-              Upload successful.
-            </h5>
-            <small>Your file(s) have been submitted.</small> 
-          </div>
+                <h5>
+                  Upload successful.
+                </h5>
+                <small>Your file(s) have been submitted.</small>
+              </div>
             </div>
           </div>
-       <p class="label-context">
-          2. Make sure that you have chosen the correct file(s), and click the <strong>Upload them</strong> button. 
-        </p>
-        <p class="label-context">
-          3. Once the upload is completed, a list of your submitted files will appear below. 
-        </p>
-            <div class="form-input" data-inputtype="text">
-              <small class="filesummary">Files submitted: <output class="summary-list"></output></small>
-              <input id="artworkid" name="artworkid" type="hidden" placeholder="Artwork ID" readonly="readonly">
-            </div>     
-
-        </div>
-      <div class="formblock" data-required="required">
-        <span class="pseudolabel" data-anchor="thumbnailupload">Thumbnail</span> 
-        <p class="label-context">
-          Please upload an image (png preferably, jpg or gif) to use as a thumbnail or key art for this work (640px as the widest dimension). 
-        </p>
-        <p class="label-context">
-          NOTE: DO NOT upload anything other than an above image file type, despite what the form says.
-        </p>
-        <div class="wordpress uploader">
-          <div class="form-input no-validate" data-inputtype="file">
-            <input id="thumbnailupload" name="thumbnailupload" class="input-file" type="file" data-multiple-caption="{count} files queued for upload">
-            <label for="thumbnailupload"><span class="button">Select a file</span><span> or drag it here</span>.</label> 
-              <dl class="promptlist"></dl>
-             <button class="clearall" type="button">Clear all</button><button class="uploadit" type="button" disabled="">Upload it</button> 
+          <p class="label-context">
+            2. Make sure that you have chosen the correct file(s), and click the
+            <strong>Upload them</strong> button.
+          </p>
+          <p class="label-context">
+            3. Once the upload is completed, a list of your submitted files will
+            appear below.
+          </p>
+          <div class="form-input" data-inputtype="text">
+            <small class="filesummary"
+              >Files submitted: <output class="summary-list"></output
+            ></small>
+            <input
+              id="artworkid"
+              name="artworkid"
+              type="hidden"
+              placeholder="Artwork ID"
+              readonly="readonly"
+            />
           </div>
         </div>
-      </div>        
+        <div class="formblock" data-required="required">
+          <span class="pseudolabel" data-anchor="class">Class</span>
+          <p class="label-context">
+            Please choose the class(es).
+          </p>
+          <div class="form-input" data-inputtype="datalist">
+            <input
+              list="datalist-classes"
+              id="classes"
+              name="classes"
+              placeholder="Classes"
+            />
+            <datalist id="datalist-classes">
+              {{#data.courses}}
+              <option name="{{@index}}">{{course}}</option>
+              {{/data.courses}}
+            </datalist>
+          </div>
+        </div>
       </fieldset>
       <button type="submit">Submit</button>
     </form>
-    
-    <pre><code></code></pre>
-    
-    <script src="js/test.js">
-    </script>
 
-<!--     <script src="js/wordpressfx.js">
+    <pre><code></code></pre>
+
+    <script src="js/test.js"></script>
+
+    <!--     <script src="js/wordpressfx.js">
     </script>
  -->
   </body>
