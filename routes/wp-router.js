@@ -214,4 +214,11 @@ router.get('/post/:id', wpLogger, async (req,res)=>{
   
 })
 
+
+router.get('/media/:id', wpLogger, async (req,res)=>{
+  const media = await wp.getMediaById(req.params.id)
+  res.json(media)
+  
+})
+
 module.exports = router
