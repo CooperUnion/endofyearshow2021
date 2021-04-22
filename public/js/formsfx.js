@@ -39,7 +39,7 @@ const FormFX = function() {
 	const submitButton = document.querySelector("button[type='submit']");
 	submitButton.addEventListener("click", validateAndSubmit);
   
-  const reqRads = document.querySelector("[reqrad]");
+  const reqRads = document.querySelectorAll("[data-reqrad]");
 
 	const allInputs = document.querySelectorAll(".formblock .form-input input, .formblock .form-input textarea");
 	allInputs.forEach(function(thisInput, currentIndex) {

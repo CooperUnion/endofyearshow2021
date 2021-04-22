@@ -93,20 +93,20 @@
 				</p>
 				<div class="form-input" data-inputtype="radio">
 					<ul class="inputlist radio">
-						<li><label for="documentationformat-video"> 
-						<input type="radio" name="documentationformat" id="documentationformat-video" value="video">
+						<li><label for="docformat-video"> 
+						<input type="radio" name="documentationformat" id="docformat-video" value="video">
 						Video</label></li>
-						<li><label for="documentationformat-audio"> 
-						<input type="radio" name="documentationformat" id="documentationformat-audio" value="audio">
+						<li><label for="docformat-audio"> 
+						<input type="radio" name="documentationformat" id="docformat-audio" value="audio">
 						Audio</label></li>
-						<li><label for="documentationformat-images"> 
-						<input type="radio" name="documentationformat" id="documentationformat-images" value="images">
+						<li><label for="docformat-images"> 
+						<input type="radio" name="documentationformat" id="docformat-images" value="images">
 						Images</label></li>
-						<li><label for="documentationformat-text"> 
-						<input type="radio" name="documentationformat" id="documentationformat-text" value="text">
+						<li><label for="docformat-text"> 
+						<input type="radio" name="documentationformat" id="docformat-text" value="text">
 						Text</label></li>
-						<li><label for="documentationformat-url"> 
-						<input type="radio" name="documentationformat" id="documentationformat-url" value="url">
+						<li><label for="docformat-url"> 
+						<input type="radio" name="documentationformat" id="docformat-url" value="url">
 						URL</label></li>
 					</ul>
 				</div>
@@ -129,7 +129,7 @@
 					<input id="worktitle" name="worktitle" type="text" placeholder="Title">
 				</div>
 			</div>
-			<div class="formblock" data-required="required" data-reqrad[]>
+			<div class="formblock" data-required="required" data-reqrad[docformat-audio,docformat-images,docformat-text]>
 				<span class="titlelabel" data-anchor="artworkid">Artwork</span> 
 				<p class="label-context">
 					1. Please upload from one to five files of the same filetype that represent this piece. For the case of a work that requires two types of media, please submit a separate form for the alternate media. 
@@ -244,7 +244,7 @@
 					<textarea id="description" name="description" placeholder="Description"></textarea>
 				</div>
 			</div>
-			<div class="formblock" data-required="required">
+			<div class="formblock" data-required="required" data-reqrad[docformat-audio,docformat-images,docformat-text]>
 				<span class="pseudolabel" data-anchor="medium">Medium</span> 
 				<p class="label-context">
 					Select all the tags that best describe the medium of the work(s) you are submitting. 
