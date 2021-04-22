@@ -116,7 +116,7 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
         "email": email,
         project
       },
-      "media": JSON.parse(media || artworkid || videoworkid)
+      "media": JSON.parse(media || artworkid || videoworkid) || null
     }
   }
   
