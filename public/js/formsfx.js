@@ -459,7 +459,7 @@ const FormFX = function() {
 	}
 
 	function handleReqRads() {
-    console.log(this.id)
+    console.log(this.checked)
     reqRads.forEach(function(elem) {
       const idsArray = elem.dataset.reqrad.split(",").map(str => str.trim());
       console.log(idsArray);

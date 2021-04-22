@@ -210,7 +210,8 @@ router.get('/tags', wpLogger, async (req, res) => {
 router.get('/post/:id', wpLogger, async (req,res)=>{
   const post = await wp.getPostById(req.params.id)
   
-  res.json(post)
+  //res.json(post)
+  res.end(JSON.stringify(post, null, "\t"))
   
 })
 
