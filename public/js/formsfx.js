@@ -473,10 +473,9 @@ const FormFX = function() {
 
   function handleSubmissionResponse(json) {
     console.log(json);
-    const resultsLink = document.createElement('a');
-    resultsLink.textContent = "";
-    document.querySelector("footer").appendChild();
-    console.log(`https://eoys-uploader-2021.glitch.me/wp/post/${json.id}`);
+    const resultsLink = document.createElement('h5');
+    resultsLink.innerHTML = `You can view the results of your submission <a href="https://eoys-uploader-2021.glitch.me/wp/post/${json.id}">here</a>.`;
+    document.querySelector("footer").appendChild(resultsLink);
   }
   
 	function isValid(thisInput) {
