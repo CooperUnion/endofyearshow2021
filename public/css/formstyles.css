@@ -29,11 +29,6 @@ fieldset.hide {
 	display: none;
 }
 
-
-*[reqrad]:not(.radio-show) {
-	display: none;
-}
-
 .inputlist {
 	margin: 0;
 }
@@ -380,12 +375,16 @@ progress[value]::-webkit-progress-value {
 	background-color: #111;
 }
 
-
-
 .form-input.success .success-message {
 	-webkit-animation: appear-from-inside .25s ease-in-out;
 	animation: appear-from-inside .25s ease-in-out;
 }
+
+*[data-reqrad]:not(.radio-show) {
+	display: none;
+}
+
+
 
 
 /* .uploader .promptname {
