@@ -503,26 +503,26 @@
 				</div>
 			</div> -->
 		</fieldset>
-    <fieldset class="section-projects">
+    <fieldset class="section-projects" data-reqrad="docformat-video,docformat-audio,docformat-images,docformat-text,docformat-url">
       <legend>Projects</legend>
       <p class="sublegend">
 				Is this for a class, or is this for a special project? 
 			</p>
       <div class="formblock" data-required="required">
-				<span class="pseudolabel" data-anchor="recommended">Is this for a class, or is this for a special project?</span> 
+				<span class="pseudolabel" data-anchor="classproject">Project origin</span> 
 				<div class="form-input" data-inputtype="radio">
 					<ul class="inputlist radio">
-						<li><label for="recommended-1"> 
-						<input type="radio" name="recommended" id="recommended-1" value="yes">
-						A class</label></li>
-						<li><label for="recommended-2"> 
-						<input type="radio" name="recommended" id="recommended-2" value="no">
-						A special project</label></li>
+						<li><label for="classproject-1"> 
+						<input type="radio" name="classproject" id="classproject-1" value="class">
+						Class</label></li>
+						<li><label for="classproject-2"> 
+						<input type="radio" name="classproject" id="classproject-2" value="project">
+						Special project</label></li>
 					</ul>
 				</div>
 			</div>
     </fieldset>
-		<fieldset class="section-classinfo" data-reqrad="docformat-video,docformat-audio,docformat-images,docformat-text,docformat-url">
+		<fieldset class="section-classinfo" data-reqrad="classproject-1">
 			<legend>Class Information</legend> 
 			<p class="sublegend">
 				Please use this section to annotate which class this work is from. 
@@ -577,6 +577,50 @@
 				</div>
 			</div>
 		</fieldset>
+		<fieldset class="section-projectsinfo" data-reqrad="classproject-2">
+			<legend>Special Projects Information</legend> 
+			<p class="sublegend">
+				Please use this section to annotate which special projectthis work is from. 
+			</p>
+			<div class="formblock" data-required="required">
+				<span class="pseudolabel" data-anchor="recommended">Was this piece recommended by your instructor for inclusion in the End of the Year show?</span> 
+				<div class="form-input" data-inputtype="radio">
+					<ul class="inputlist radio">
+						<li><label for="recommended-1"> 
+						<input type="radio" name="recommended" id="recommended-1" value="yes">
+						Yes</label></li>
+						<li><label for="recommended-2"> 
+						<input type="radio" name="recommended" id="recommended-2" value="no">
+						No</label></li>
+					</ul>
+				</div>
+			</div>
+			<div class="formblock" data-required="required">
+				<span class="pseudolabel" data-anchor="class">Class</span> 
+				<p class="label-context">
+					Please choose the class(es). 
+				</p>
+				<div class="form-input" data-inputtype="datalist">
+					<input list="datalist-classes" id="classes" name="classes" placeholder="Classes" />
+					<datalist id="datalist-classes"> {{#data.courses}} 
+					<option name="{{@index}}">{{course}}</option>
+					{{/data.courses}} </datalist> 
+				</div>
+			</div>
+			<div class="formblock" data-required="optional">
+				<span class="pseudolabel" data-anchor="collaborators">Collaborators</span> 
+				<p class="label-context">
+					Please select your fellow collaborators. 
+				</p>
+				<div class="form-input" data-inputtype="datalist">
+					<input list="datalist-collaborators" id="collaborators" name="collaborators" placeholder="Classes" />
+					<datalist id="datalist-collaborators"> {{#data.students}} 
+					<option name="{{@index}}">{{[First Name]}} {{[Last Name]}}</option>
+					{{/data.students}} </datalist> 
+				</div>
+			</div>
+		</fieldset>
+
 		<button type="submit">Submit</button> <small class="validation-message"></small> 
 	</form>
 </article>
