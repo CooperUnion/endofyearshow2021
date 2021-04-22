@@ -271,9 +271,10 @@ const FormFX = function() {
     const checkList = this.closest(".formblock").querySelector(".inputlist.checkboxes");
     if ([...this.list.options].map(option => option.value).includes(this.value)) {
       const newLi = document.createElement("li");
-      newLi.innerHTML = `<label><input type="checkbox" name="medium" id="medium-1" value="Audiovisual">${this.value}</label>`;
+      newLi.innerHTML = `<label><input type="checkbox" name="${checkList.dataset.name}" value="{this.value}" checked="checked">${this.value}</label>`;
       newLi.addEventListener("change", removeLi);
       checkList.appendChild(newLi);
+      this.value = "";
     }
     function removeLi() {
       // console.log(this);
@@ -281,9 +282,28 @@ const FormFX = function() {
     }
   }
 
-  async function validateAndSubmit(e) {
-    e.preventDefault();
+	async function validateAndSubmit(e) {
+		e.preventDefault();
+			const formData = new FormData(formsForm);
+// Display the values
+for (var value of formData.values()) {
+   console.log(value);
+}
+    const response = await fetch("/wp/formData", {
+				method: "POST",
+				body: formData
+			});
+			const json = await response.json();
+			handleSubmissionResponse(json);
   }
+
+  function handleSubmissionResponse(json) {
+    console.log(json);
+    const resultsLink = document.createElement('h5');
+    resultsLink.innerHTML = `You can view the results of your submission <a href="https://eoys-uploader-2021.glitch.me/wp/post/${json.id}">here</a>.`;
+    document.querySelector("footer").appendChild(resultsLink);
+  }
+
     
 
   function isValid(thisInput) {
