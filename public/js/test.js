@@ -269,7 +269,7 @@ const FormFX = function() {
   
   function updateDatalist() {
     // const dList = this.list
-    console.log(this.list.map );
+    console.log(this.list);
     
   }
 
