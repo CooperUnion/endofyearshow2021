@@ -34,9 +34,19 @@ router.get('/dataTest', async (req, res)=>{
 })
 
 router.get('/test', async (req, res)=>{
-  const data = {}
+  let students = await data.students()
+  let teachers = await data.faculty()
+  let courses = await data.courses()
+
+  const csvData = {
+    students,
+    teachers,
+    courses,
+    user:req.session.user || {name:"mike", email:"mike@test.com"}
+  }
+    
   const renderOptions = {
-    data,
+    data: csvData,
     layout: false
   } 
   return res.render('smallform', renderOptions)

@@ -261,6 +261,11 @@ const FormFX = function() {
       checkTag.classList.remove("checked");
     }
   }
+  
+  function generateCheckboxes() {
+    
+    
+  }
 
   async function validateAndSubmit(e) {
     e.preventDefault();
