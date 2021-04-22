@@ -411,7 +411,9 @@ const FormFX = function() {
 
 	function validateAllInputs() {
 		let invalidForms = [];
-		const allActiveInputs = document.querySelectorAll("fieldset:not([data-reqrad]) .formblock, fieldset.radio-show .formblock");
+		const allActiveInputs = document.querySelectorAll("fieldset .formblock");
+    [...allActiveInputs].filter(node => node.matches("fieldset[data-reqrad]:not(.radio-show) .formblock, fieldset .formblock[data-reqrad]:not(.radio-show)"));
+    console.log(allActiveInputs);
 		allActiveInputs.forEach(function(formblock, currentIndex) {
 			formblock.classList.remove("invalid");
 			if (formblock.dataset.required === "required") {
