@@ -268,10 +268,12 @@ const FormFX = function() {
   }
   
   function updateDatalist() {
-    console.log(this.value);
-    [...this.list.options].forEach(function(opt){
-      console.log(opt.value);
-    });
+    if ([...this.list.options].map(option => option.value).includes(this.value)) {
+      
+    }
+    // [...this.list.options].forEach(function(opt){
+    //   console.log(opt.value);
+    // });
     
   }
 
