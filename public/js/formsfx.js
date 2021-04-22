@@ -35,8 +35,11 @@ const FormFX = function() {
 
 	const formsBody = document.querySelector(".main");
 	const formsForm = formsBody.querySelector("form");
+  
 	const submitButton = document.querySelector("button[type='submit']");
 	submitButton.addEventListener("click", validateAndSubmit);
+  
+  const reqRads = document.querySelector("[reqrad]");
 
 	const allInputs = document.querySelectorAll(".formblock .form-input input, .formblock .form-input textarea");
 	allInputs.forEach(function(thisInput, currentIndex) {
@@ -44,6 +47,11 @@ const FormFX = function() {
 		if (thisInput.type === "checkbox") {
 			thisInput.addEventListener("change", toggleCheckTag);
 		}
+
+		if (thisInput.type === "radio") {
+			thisInput.addEventListener("change", handleReqRads);
+		}
+
 		if (thisInput.type === "file") {
       
  			const inputBlock = thisInput.closest(".form-input"),
@@ -441,7 +449,7 @@ const FormFX = function() {
 		});
 	}
 
-	function toggleCheckTag(e) {
+	function toggleCheckTag() {
 		const checkTag = this.closest("li");
 		if (this.checked) {
 			checkTag.classList.add("checked");
@@ -449,6 +457,12 @@ const FormFX = function() {
 			checkTag.classList.remove("checked");
 		}
 	}
+
+
+	function handleReqRads() {
+    reqRads.forEach();
+  }
+
 
 	async function validateAndSubmit(e) {
 		e.preventDefault();
