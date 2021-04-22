@@ -112,7 +112,7 @@
 				</div>
 			</div>
 		</fieldset>
-		<fieldset class="section-standardwork">
+		<fieldset class="section-standardwork" data-reqrad="docformat-audio,docformat-images,docformat-text,docformat-url">
 			<legend>Standard Work Information</legend> 
 			<p class="sublegend">
 				For each piece of work, please submit all creative assets together as one form. For each new piece, re-submit a new form. 
@@ -127,6 +127,31 @@
 				</p>
 				<div class="form-input" data-inputtype="text">
 					<input id="worktitle" name="worktitle" type="text" placeholder="Title">
+				</div>
+			</div>
+			<div class="formblock" data-required="required">
+				<span class="pseudolabel" data-anchor="typeofwork">Type of work</span> 
+				<p class="label-context">
+					What document type are you going to upload for this work? 
+				</p>
+				<p class="label-context">
+					Note about PDFs: Unless you are working with PDF as a medium, please convert the pages to individual images. 
+				</p>
+				<div class="form-input" data-inputtype="radio">
+					<ul class="inputlist radio">
+						<li><label for="typeofwork-1"> 
+						<input type="radio" name="typeofwork" id="typeofwork-1" value="audio">
+						Audio: mp3, aiff, wav</label></li>
+						<li><label for="typeofwork-2"> 
+						<input type="radio" name="typeofwork" id="typeofwork-2" value="image">
+						Image: png, jpg, gif, tiff, psd, ai, eps</label></li>
+						<li><label for="typeofwork-3"> 
+						<input type="radio" name="typeofwork" id="typeofwork-3" value="pdf">
+						PDF: pdf</label></li>
+						<li><label for="typeofwork-4"> 
+						<input type="radio" name="typeofwork" id="typeofwork-4" value="text">
+						Text: doc, docx, txt</label></li>
+					</ul>
 				</div>
 			</div>
 			<div class="formblock" data-required="required" data-reqrad="docformat-audio,docformat-images,docformat-text">
@@ -160,35 +185,10 @@
 				</div>
 			</div>
 			<div class="formblock" data-required="required">
-				<span class="pseudolabel" data-anchor="typeofwork">Type of work</span> 
-				<p class="label-context">
-					What document type are you going to upload for this work? 
-				</p>
-				<p class="label-context">
-					Note about PDFs: Unless you are working with PDF as a medium, please convert the pages to individual images. 
-				</p>
-				<div class="form-input" data-inputtype="radio">
-					<ul class="inputlist radio">
-						<li><label for="typeofwork-1"> 
-						<input type="radio" name="typeofwork" id="typeofwork-1" value="audio">
-						Audio: mp3, aiff, wav</label></li>
-						<li><label for="typeofwork-2"> 
-						<input type="radio" name="typeofwork" id="typeofwork-2" value="image">
-						Image: png, jpg, gif, tiff, psd, ai, eps</label></li>
-						<li><label for="typeofwork-3"> 
-						<input type="radio" name="typeofwork" id="typeofwork-3" value="pdf">
-						PDF: pdf</label></li>
-						<li><label for="typeofwork-4"> 
-						<input type="radio" name="typeofwork" id="typeofwork-4" value="text">
-						Text: doc, docx, txt</label></li>
-					</ul>
-				</div>
-			</div>
-			<div class="formblock" data-required="required">
 				<div class="uploader" data-uploadservice="wordpress">
-					<span class="pseudolabel" data-anchor="thumbnailupload">Thumbnail</span> 
+					<span class="pseudolabel" data-anchor="thumbnailupload">Preview</span> 
 					<p class="label-context">
-						1. Please upload an image (png preferably, jpg or gif) to use as a thumbnail or key art for this work (640px as the widest dimension). 
+						1. Please upload an image (png preferably, jpg or gif) to use as a preview or key art for this work (640px as the widest dimension). 
 					</p>
 					<p class="label-context">
 						NOTE: DO NOT upload anything other than an above image file type, despite what the form says. 
@@ -255,8 +255,8 @@
 				<div class="form-input" data-inputtype="checkboxes">
 					<ul class="inputlist checkboxes">
 						<li><label for="medium-1"> 
-						<input type="checkbox" name="medium" id="medium-1" value="Audivisual">
-						Audivisual</label></li>
+						<input type="checkbox" name="medium" id="medium-1" value="Audiovisual">
+						Audiovisual</label></li>
 						<li><label for="medium-2"> 
 						<input type="checkbox" name="medium" id="medium-2" value="Design">
 						Design</label></li>
@@ -336,7 +336,7 @@
 				</div>
 			</div> -->
 		</fieldset>
-<fieldset class="section-videowork">
+    <fieldset class="section-videowork" data-reqrad="docformat-video">
 			<legend>Video Work Information</legend> 
 			<p class="sublegend">
 				This section is ONLY for for video work. If your documentation of your work is not video, please go back and choose the correct media. Note, you must follow the video uploading instructions below. 
@@ -353,6 +353,19 @@
 					<input id="videoworktitle" name="worktitle" type="text" placeholder="Title">
 				</div>
 			</div>
+      <div class="formblock" data-required="required">
+        <span class="pseudolabel" data-anchor="typeofvideowork">Type of work</span> 
+        <p class="label-context">
+          What document type are you going to upload for this work? Since this work is a video file, there is only one option. 
+        </p>
+        <div class="form-input" data-inputtype="checkboxes">
+          <ul class="inputlist checkboxes">
+            <li><label for="typeofvideowork-1" class="disabled"> 
+            <input type="checkbox" name="typeofwork" id="typeofvideowork-1" value="video" checked="checked" disabled="disabled">
+            Video</label></li>
+          </ul>
+        </div>
+      </div>
 			<div class="formblock" data-required="required">
 				<label class="titlelabel" for="videoworkid" data-anchor="videoworkid">Video Upload Artwork ID</label> 
 				<p class="label-context">
@@ -390,19 +403,6 @@
 				<div class="form-input" data-inputtype="text">
 					<small class="filesummary">Files submitted: <output class="summary-list"></output></small> 
 					<input id="videoworkid" name="workid" type="hidden" readonly="readonly">
-				</div>
-			</div>
-			<div class="formblock" data-required="required">
-				<span class="pseudolabel" data-anchor="typeofvideowork">Type of work</span> 
-				<p class="label-context">
-					What document type are you going to upload for this work? Since this work is a video file, there is only one option. 
-				</p>
-				<div class="form-input" data-inputtype="checkboxes">
-					<ul class="inputlist checkboxes">
-						<li><label for="typeofvideowork-1" class="disabled"> 
-						<input type="checkbox" name="typeofwork" id="typeofvideowork-1" value="video" checked="checked" disabled="disabled">
-						Video</label></li>
-					</ul>
 				</div>
 			</div>
 			<div class="formblock" data-required="required">
@@ -444,9 +444,9 @@
 			</div>
 			<div class="formblock" data-required="required">
 				<div class="uploader" data-uploadservice="wordpress">
-					<span class="pseudolabel" data-anchor="videothumbnailupload">Thumbnail</span> 
+					<span class="pseudolabel" data-anchor="videothumbnailupload">Preview</span> 
 					<p class="label-context">
-						1. Please upload an image (png preferably, jpg or gif) to use as a thumbnail or key art for this work (640px as the widest dimension). 
+						1. Please upload an image (png preferably, jpg or gif) to use as a preview or key art for this work (640px as the widest dimension). 
 					</p>
 					<p class="label-context">
 						NOTE: DO NOT upload anything other than an above image file type, despite what the form says. 
@@ -503,7 +503,7 @@
 				</div>
 			</div> -->
 		</fieldset>
-		<fieldset class="section-classinfo">
+		<fieldset class="section-classinfo" data-reqrad="docformat-video,docformat-audio,docformat-images,docformat-text,docformat-url">
 			<legend>Class Information</legend> 
 			<p class="sublegend">
 				Please use this section to annotate which class this work is from. 

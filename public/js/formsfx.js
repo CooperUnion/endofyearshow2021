@@ -22,8 +22,8 @@ const FormFX = function() {
 		};
 	}
 
-	const worktypeRadio = document.querySelector("fieldset.section-typeofwork .inputlist.radio");
-	worktypeRadio.addEventListener("click", handleFieldsetVisibility);
+	// const worktypeRadio = document.querySelector("fieldset.section-typeofwork .inputlist.radio");
+	// worktypeRadio.addEventListener("click", handleFieldsetVisibility);
 
 	const specialRadioText = document.querySelector(".special.radio-text input[type='text']");
 	specialRadioText.addEventListener("focus", forceRadioCheck);
@@ -366,30 +366,30 @@ const FormFX = function() {
 
 	const validationMsg = document.querySelector(".validation-message");
 
-	document.querySelector("fieldset.section-videowork").classList.add("hide");
-	document.querySelector("fieldset.section-standardwork").classList.add("hide");
-	document.querySelector("fieldset.section-classinfo").classList.add("hide");
+	// document.querySelector("fieldset.section-videowork").classList.add("hide");
+	// document.querySelector("fieldset.section-standardwork").classList.add("hide");
+	// document.querySelector("fieldset.section-classinfo").classList.add("hide");
 
-	function handleFieldsetVisibility() {
-		const workTypeChecked = worktypeRadio.querySelector("input:checked");
+// 	function handleFieldsetVisibility() {
+// 		const workTypeChecked = worktypeRadio.querySelector("input:checked");
 
-		if (workTypeChecked === null) {
-			return false;
-		}
+// 		if (workTypeChecked === null) {
+// 			return false;
+// 		}
 
-		switch (workTypeChecked.value) {
-			case "video":
-				document.querySelector("fieldset.section-standardwork").classList.add("hide");
-				document.querySelector("fieldset.section-videowork").classList.remove("hide");
-				break;
+// 		switch (workTypeChecked.value) {
+// 			case "video":
+// 				document.querySelector("fieldset.section-standardwork").classList.add("hide");
+// 				document.querySelector("fieldset.section-videowork").classList.remove("hide");
+// 				break;
 
-			default:
-				document.querySelector("fieldset.section-standardwork").classList.remove("hide");
-				document.querySelector("fieldset.section-videowork").classList.add("hide");
-		}
+// 			default:
+// 				document.querySelector("fieldset.section-standardwork").classList.remove("hide");
+// 				document.querySelector("fieldset.section-videowork").classList.add("hide");
+// 		}
 
-		document.querySelector("fieldset.section-classinfo").classList.remove("hide");
-	}
+// 		document.querySelector("fieldset.section-classinfo").classList.remove("hide");
+// 	}
 
 	function forceRadioCheck() {
 		this.closest(".special").querySelector("input[type='radio']").checked = true;
