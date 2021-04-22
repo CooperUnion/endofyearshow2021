@@ -269,7 +269,9 @@ const FormFX = function() {
   
   function updateDatalist() {
     // const dList = this.list
-    console.log(this.list);
+    this.list.forEach(function(opt){
+      console.log(opt.value);
+    });
     
   }
 
