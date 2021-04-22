@@ -472,6 +472,7 @@ const FormFX = function() {
         reqElem.classList.remove("radio-show");
       }
     });
+    validateAllInputs();
   }
 
 
