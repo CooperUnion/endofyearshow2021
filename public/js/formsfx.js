@@ -253,6 +253,7 @@ const FormFX = function() {
         `;
 				summaryInput.classList.add("generated");
 				summaryInput.querySelector("input[type='hidden']").value = JSON.stringify(response.map(item => item.id));
+        validateAllInputs();
 			}
 
       async function uploadToVimeo(e) {
@@ -341,10 +342,9 @@ const FormFX = function() {
           `;
           summaryInput.classList.add("generated");
           summaryInput.querySelector("input[type='hidden']").value = videoID;
-
+          validateAllInputs();
 
           const tagName = "cooper_union_vimeo_uploader";
-
           let putRequest = fetch(
             "https://api.vimeo.com/videos/" + videoID + "/tags/" + tagName,
             {
@@ -507,6 +507,8 @@ const FormFX = function() {
 		e.preventDefault();
 
 		if (validateAllInputs()) {
+      submitButton.disabled = true;
+      submitButton.textContent = "Submitting…";
 			const formData = new FormData(formsForm);
 			//       for (let key in allDroppedFiles) {
 			//         Array.from(allDroppedFiles[key]).forEach(file => { 
