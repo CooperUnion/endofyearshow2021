@@ -284,11 +284,11 @@ const FormFX = function() {
 
 	async function validateAndSubmit(e) {
 		e.preventDefault();
-			const formData = new FormData(formsForm);
-// Display the values
-for (var entry of formData.entries()) {
-   console.log(entry); 
-}
+    const formData = new FormData(formsForm);
+    // Display the values
+    for (var entry of formData.entries()) {
+       console.log(entry); 
+    }
     const response = await fetch("/wp/formData", {
 				method: "POST",
 				body: formData
@@ -302,9 +302,7 @@ for (var entry of formData.entries()) {
     const resultsLink = document.createElement('h5');
     resultsLink.innerHTML = `You can view the results of your submission <a href="https://eoys-uploader-2021.glitch.me/wp/post/${json.id}">here</a>.`;
     document.querySelector("footer").appendChild(resultsLink);
-  }
-
-    
+  } 
 
   function isValid(thisInput) {
     let isValid = true;
@@ -339,7 +337,6 @@ for (var entry of formData.entries()) {
       }
 
       break;
-
 
     default:
       const inputFilled = thisInput.querySelector("input").value.length;

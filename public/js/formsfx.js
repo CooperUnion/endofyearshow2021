@@ -22,16 +22,11 @@ const FormFX = function() {
 		};
 	}
 
-	// const worktypeRadio = document.querySelector("fieldset.section-typeofwork .inputlist.radio");
-	// worktypeRadio.addEventListener("click", handleFieldsetVisibility);
-
 	const specialRadioText = document.querySelector(".special.radio-text input[type='text']");
 	specialRadioText.addEventListener("focus", forceRadioCheck);
 	specialRadioText.addEventListener("blur", validateSpecialRadio);
 	const specialRadioCheckbox = document.querySelector(".special.radio-text input[type='radio']");
 	specialRadioCheckbox.addEventListener("change", focusSpecialText);
-
-	//   let allDroppedFiles = {};
 
 	const formsBody = document.querySelector(".main");
 	const formsForm = formsBody.querySelector("form");
@@ -59,348 +54,323 @@ const FormFX = function() {
         thisInput.addEventListener("change", handleDatalist);
         break;
 
+      case "file": {
+
+        const inputBlock = thisInput.closest(".form-input"),
+          // promptClear = inputBlock.querySelector("button.clear"),
+          clearAll = inputBlock.querySelector(".clearall"),
+          uploadIt = inputBlock.querySelector(".uploadit"),
+          promptList = inputBlock.querySelector(".promptlist"),
+          summaryInput = inputBlock.closest(".formblock").querySelector(":scope > .form-input");   
+
+        inputBlock.classList.add("has-advanced-upload"); // designating the file-select inputs for drag-and-drop decoration
+
+        inputBlock.addEventListener("drop", handleFileOperation);
+        thisInput.addEventListener("change", handleFileOperation);
+        uploadIt.addEventListener("click", uploadToExternalService);
+        clearAll.addEventListener("click", clearFileInputSelections);
+
+        ["drag", "dragstart", "dragend", "dragover", "dragenter", "dragleave", "drop"].forEach(function(event) {
+          inputBlock.addEventListener(event, function(e) {
+            // preventing the unwanted behaviours
+            e.preventDefault();
+            e.stopPropagation();
+          });
+        });
+        ["dragover", "dragenter"].forEach(function(event) {
+          inputBlock.addEventListener(event, function() {
+            inputBlock.classList.add("is-dragover");
+          });
+        });
+        ["dragleave", "dragend", "drop"].forEach(function(event) {
+          inputBlock.addEventListener(event, function() {
+            inputBlock.classList.remove("is-dragover");
+          });
+        });     
+
+        function handleFileOperation(e) {
+          if (typeof e === 'undefined') { // Should this ever occur?
+            // fileOutput.textContent = "";
+            promptList.innerHTML = "";
+            return false;
+          }
+          // let inputFiles = {};
+          if (e.dataTransfer) { // Are we being passed a (drag and drop) FileList?
+            thisInput.value = "";
+            thisInput.submittedFiles = e.dataTransfer.files;
+            validateAllInputs();
+          } else {
+            thisInput.submittedFiles = thisInput.files;
+          }
+          inputBlock.classList.remove("success");
+          clearAll.disabled = thisInput.submittedFiles.length > 0 ? false : true;
+          uploadIt.textContent = thisInput.submittedFiles.length === 1 ? "Upload it" : "Upload them";
+          promptList.innerHTML = `
+            ${[...thisInput.submittedFiles].map((item, i) => `
+              <dt class="filethumb"><img class="genthumb" src=""></dt>
+              <dd class="filemeta" data-required="required"><span class="pseudolabel">Alt text:</span><input type="text" class="alttextfield" placeholder="Please provide a description of ${item.name}"></dd>`.trim()).join('')}
+          `;
+
+          [...thisInput.submittedFiles].forEach(function(file, i) {
+            promptList.querySelectorAll(".filemeta")[i].addEventListener("input", validateAltText);          
+            (async function() {
+              const generatedThumbSrc = await getThumbSrc(file);
+              promptList.querySelectorAll("img.genthumb")[i].src = generatedThumbSrc;
+            })();
+          });
+          uploadIt.disabled = true;
+          if (thisInput.submittedFiles.length > 0) {
+            inputBlock.classList.add("populated");
+            inputBlock.querySelector(".success-message small").textContent = "Your " + (thisInput.submittedFiles.length === 1 ? "file has" : "files have") + " been submitted.";
+          }
+        }
+
+        function validateAltText() {
+          let validCount = true;
+          promptList.querySelectorAll(".alttextfield").forEach(function(alttextinput) {
+            if (alttextinput.value.length === 0) {
+              validCount = false;
+            }
+          });
+          if (validCount) {
+            uploadIt.disabled = false;
+          } else {
+            uploadIt.disabled = true;
+          }
+        }
+
+        function getThumbSrc(file, seekTo = 5.0) {
+          return new Promise((resolve, reject) => {
+            var fileReader = new FileReader();
+            if (file.type.match('image')) {
+              fileReader.onload = function() {
+                resolve(fileReader.result);
+              };
+              fileReader.readAsDataURL(file);
+            } else {
+              fileReader.onload = function() {
+                // load the file to a video player
+                const videoPlayer = document.createElement('video');
+                videoPlayer.setAttribute('src', URL.createObjectURL(file));
+                videoPlayer.load();
+                videoPlayer.addEventListener('error', (ex) => {
+                    reject("error when loading video file", ex);
+                });
+                // load metadata of the video to get video duration and dimensions
+                videoPlayer.addEventListener('loadedmetadata', () => {
+                    // seek to user defined timestamp (in seconds) if possible
+                    if (videoPlayer.duration < seekTo) {
+                        seekTo = 0.0;
+                    }
+                    // delay seeking or else 'seeked' event won't fire on Safari
+                    setTimeout(() => {
+                      videoPlayer.currentTime = seekTo;
+                    }, 200);
+                    // extract video thumbnail once seeking is complete
+                    videoPlayer.addEventListener('seeked', () => {
+                        // define a canvas to have the same dimension as the video
+                        const canvas = document.createElement("canvas");
+                        canvas.width = videoPlayer.videoWidth;
+                        canvas.height = videoPlayer.videoHeight;
+                        // draw the video frame to canvas
+                        canvas.getContext("2d").drawImage(videoPlayer, 0, 0, canvas.width, canvas.height);
+                        var imgData = canvas.toDataURL();
+                        resolve(imgData);
+                    });
+                  });
+              };
+              fileReader.readAsArrayBuffer(file);
+            }            
+          });
+        }
+
+        function uploadToExternalService(e) {
+          e.preventDefault();
+
+          clearAll.disabled = true;
+          uploadIt.disabled = true;
+          uploadIt.textContent = "Uploading…";
+          inputBlock.classList.add("uploading");
+          promptList.querySelectorAll(".alttextfield").forEach(function(textfield) {
+            textfield.readOnly = true;
+          });
+
+          const upServ = this.closest("[data-uploadservice]").dataset.uploadservice;
+          if (upServ === "wordpress") {
+            uploadToWordpress();
+          } else if (upServ === "vimeo") {
+            uploadToVimeo();
+          }
+        }
+
+        function clearFileInputSelections() {
+          promptList.innerHTML = "";
+          inputBlock.classList.remove("uploading");
+          // thisInput.dataset.filecount = 0;
+          inputBlock.classList.remove("populated");
+          thisInput.submittedFiles = {};
+          thisInput.value = "";
+        }  
+
+        async function uploadToWordpress() {
+          let formData = new FormData();
+
+          let alttext = [];
+          for (let i = 0; i < thisInput.submittedFiles.length; i++) {
+            formData.append(thisInput.submittedFiles[i].name, thisInput.submittedFiles[i]);
+            alttext.push(promptList.querySelectorAll(".alttextfield")[i].value);
+          }
+          formData.append("alt_text", JSON.stringify(alttext));
+
+          const response = await fetch("/wp/imageArray", {
+            method: "POST",
+            body: formData
+          }).then(post => post.json());
+          resolveFromWordpress(response);
+        }
+
+        function resolveFromWordpress(response) {
+          clearFileInputSelections();
+          inputBlock.classList.add("success");
+          summaryInput.querySelector(".summary-list").innerHTML = `
+            <ul class="response-files">
+              ${response.map(metadata => `
+                <li class="response-file" data-id="${metadata.id}" data-thumb="${metadata.thumbnail.source_url}">${metadata.originalname}</li>
+            `).join("\n")}
+            </ul>
+          `;
+          summaryInput.classList.add("generated");
+          summaryInput.querySelector("input[type='hidden']").value = JSON.stringify(response.map(item => item.id));
+          validateAllInputs();
+        }
+
+        async function uploadToVimeo(e) {
+
+          const email = inputBlock.closest(".uploader").querySelector('input.vimeoemail'),
+                progBar = document.querySelector(".uploadProgress"),
+                fileSize = thisInput.submittedFiles[0].size,
+                fileName = thisInput.submittedFiles[0].name, // Currently unused
+                fileData = thisInput.submittedFiles[0];      
+
+          console.log({ fileSize, fileData });
+
+          let authResponse = await fetch("/token", {
+            method: "GET",
+            mode: "no-cors"
+          });
+
+          let authResult = await authResponse.json();
+          console.log(authResult.token);
+
+          const bearer = "bearer " + authResult.token;
+
+          let uploadRequest = await fetch("https://api.vimeo.com/me/videos", {
+            method: "POST",
+            body: JSON.stringify({
+              upload: {
+                approach: "tus",
+                size: fileSize,
+                redirect_url: window.location.href + "/uploaded"
+              },
+              privacy: { "view": "unlisted" },
+              description: email.value // Passing the e-mail in the description field, for easier identification later
+            }),
+            headers: {
+              Authorization: bearer,
+              Accept: "application/vnd.vimeo.*+json;version=3.4",
+              "Content-Type": "application/json"
+            }
+          });
+
+          let uploadResponse = await uploadRequest.json();
+          console.log(uploadResponse);
+
+          const uploadLink = uploadResponse.upload.upload_link;
+          console.log({ uploadLink });
+
+          const videoID = uploadResponse.uri.split("/")[2];
+          console.log({ videoID: videoID });
+
+          var xhr = new XMLHttpRequest();
+
+          xhr.upload.onprogress = function(e) {
+            if (e.lengthComputable) {
+              progBar.setAttribute("max", e.total);
+              progBar.setAttribute("value", e.loaded);
+              progBar.innerHTML = Math.floor(e.loaded / e.total) + "%";
+            }
+          };
+          xhr.onloadstart = function(e) {
+            console.log("upload initiated");
+          };
+          xhr.onloadend = function(e) {
+            console.log("upload complete");
+            changeStateSuccess();
+          };
+
+          xhr.open("PATCH", uploadLink);
+          xhr.setRequestHeader(
+            "Accept",
+            "application/vnd.vimeo.*+json;version=3.4"
+          );
+          xhr.setRequestHeader("Tus-Resumable", "1.0.0");
+          xhr.setRequestHeader("Upload-Offset", 0);
+          xhr.setRequestHeader("Content-Type", "application/offset+octet-stream");
+
+          xhr.send(fileData);
+
+          let changeStateSuccess = async () => {
+            clearFileInputSelections();
+
+            inputBlock.classList.add("success");
+            summaryInput.querySelector(".summary-list").innerHTML = `
+              <ul class="response-files">
+                  <li class="response-file" data-id="${videoID}" data-link="${uploadResponse.link}">${uploadResponse.name}</li>
+              </ul>
+            `;
+            summaryInput.classList.add("generated");
+            summaryInput.querySelector("input[type='hidden']").value = "[" + videoID + "]"; // Array-like string, to match the Wordpress implementation
+            validateAllInputs();
+
+            const tagName = "cooper_union_vimeo_uploader";
+            let putRequest = fetch(
+              "https://api.vimeo.com/videos/" + videoID + "/tags/" + tagName,
+              {
+                method: "PUT",
+                headers: {
+                  Authorization: bearer,
+                  Accept: "application/vnd.vimeo.*+json;version=3.4",
+                  "Content-Type": "application/vnd.vimeo.tag+json"
+                }
+              }
+            );
+
+            let downloadRequest = await fetch(
+              "https://api.vimeo.com/me/videos/" + videoID,
+              {
+                method: "GET",
+                headers: {
+                  Authorization: bearer,
+                  Accept: "application/vnd.vimeo.*+json;version=3.4",
+                  "Content-Type": "application/json"
+                }
+              }
+            );
+            let downloadResponse = await downloadRequest.json();
+            console.log(downloadResponse);
+          };
+        }
+      }
+        
+        break;
+
 			default:
         thisInput.addEventListener("change", validateAllInputs);
     }
 
-		if (thisInput.type === "file") {
-      
- 			const inputBlock = thisInput.closest(".form-input"),
-				// promptClear = inputBlock.querySelector("button.clear"),
-				clearAll = inputBlock.querySelector(".clearall"),
-				uploadIt = inputBlock.querySelector(".uploadit"),
-				promptList = inputBlock.querySelector(".promptlist"),
-				summaryInput = inputBlock.closest(".formblock").querySelector(":scope > .form-input");   
-      
-			inputBlock.classList.add("has-advanced-upload"); // designating the file-select inputs for drag-and-drop decoration
-
-			inputBlock.addEventListener("drop", handleFileOperation);
-			thisInput.addEventListener("change", handleFileOperation);
-			uploadIt.addEventListener("click", uploadToExternalService);
-			clearAll.addEventListener("click", clearFileInputSelections);
-
-			["drag", "dragstart", "dragend", "dragover", "dragenter", "dragleave", "drop"].forEach(function(event) {
-				inputBlock.addEventListener(event, function(e) {
-					// preventing the unwanted behaviours
-					e.preventDefault();
-					e.stopPropagation();
-				});
-			});
-			["dragover", "dragenter"].forEach(function(event) {
-				inputBlock.addEventListener(event, function() {
-					inputBlock.classList.add("is-dragover");
-				});
-			});
-			["dragleave", "dragend", "drop"].forEach(function(event) {
-				inputBlock.addEventListener(event, function() {
-					inputBlock.classList.remove("is-dragover");
-				});
-			});     
-      
-			function handleFileOperation(e) {
-				if (typeof e === 'undefined') { // Should this ever occur?
-					// fileOutput.textContent = "";
-					promptList.innerHTML = "";
-					return false;
-				}
-				// let inputFiles = {};
-				if (e.dataTransfer) { // Are we being passed a (drag and drop) FileList?
-					thisInput.value = "";
-					thisInput.submittedFiles = e.dataTransfer.files;
-					//           if (!thisInput.matches('[data-destination="external"]')) { // Excluding the Vimeo uploader file from submission
-					//             allDroppedFiles[thisInput.id] = e.dataTransfer.files;
-					//           }
-					validateAllInputs();
-				} else {
-					thisInput.submittedFiles = thisInput.files;
-				}
-        inputBlock.classList.remove("success");
-				clearAll.disabled = thisInput.submittedFiles.length > 0 ? false : true;
-				uploadIt.textContent = thisInput.submittedFiles.length === 1 ? "Upload it" : "Upload them";
-				promptList.innerHTML = `
-          ${[...thisInput.submittedFiles].map((item, i) => `
-            <dt class="filethumb"><img class="genthumb" src=""></dt>
-            <dd class="filemeta" data-required="required"><span class="pseudolabel">Alt text:</span><input type="text" class="alttextfield" placeholder="Please provide a description of ${item.name}"></dd>`.trim()).join('')}
-        `;
-
-				[...thisInput.submittedFiles].forEach(function(file, i) {
- 					promptList.querySelectorAll(".filemeta")[i].addEventListener("input", validateAltText);          
-          (async function() {
-            const generatedThumbSrc = await getThumbSrc(file);
-            promptList.querySelectorAll("img.genthumb")[i].src = generatedThumbSrc;
-          })();
-				});
-				uploadIt.disabled = true;
-				if (thisInput.submittedFiles.length > 0) {
-					inputBlock.classList.add("populated");
-					inputBlock.querySelector(".success-message small").textContent = "Your " + (thisInput.submittedFiles.length === 1 ? "file has" : "files have") + " been submitted.";
-				}
-			}
-      
-			function validateAltText() {
-				let validCount = true;
-				promptList.querySelectorAll(".alttextfield").forEach(function(alttextinput) {
-					if (alttextinput.value.length === 0) {
-						validCount = false;
-					}
-				});
-				if (validCount) {
-					uploadIt.disabled = false;
-				} else {
-					uploadIt.disabled = true;
-				}
-			}
-
-      function getThumbSrc(file, seekTo = 5.0) {
-        return new Promise((resolve, reject) => {
-          var fileReader = new FileReader();
-          if (file.type.match('image')) {
-            fileReader.onload = function() {
-              resolve(fileReader.result);
-            };
-            fileReader.readAsDataURL(file);
-          } else {
-            fileReader.onload = function() {
-              // load the file to a video player
-              const videoPlayer = document.createElement('video');
-              videoPlayer.setAttribute('src', URL.createObjectURL(file));
-              videoPlayer.load();
-              videoPlayer.addEventListener('error', (ex) => {
-                  reject("error when loading video file", ex);
-              });
-              // load metadata of the video to get video duration and dimensions
-              videoPlayer.addEventListener('loadedmetadata', () => {
-                  // seek to user defined timestamp (in seconds) if possible
-                  if (videoPlayer.duration < seekTo) {
-                      seekTo = 0.0;
-                  }
-                  // delay seeking or else 'seeked' event won't fire on Safari
-                  setTimeout(() => {
-                    videoPlayer.currentTime = seekTo;
-                  }, 200);
-                  // extract video thumbnail once seeking is complete
-                  videoPlayer.addEventListener('seeked', () => {
-                      // define a canvas to have the same dimension as the video
-                      const canvas = document.createElement("canvas");
-                      canvas.width = videoPlayer.videoWidth;
-                      canvas.height = videoPlayer.videoHeight;
-                      // draw the video frame to canvas
-                      canvas.getContext("2d").drawImage(videoPlayer, 0, 0, canvas.width, canvas.height);
-                      var imgData = canvas.toDataURL();
-                      resolve(imgData);
-                  });
-                });
-            };
-            fileReader.readAsArrayBuffer(file);
-          }            
-        });
-      }
-      
-      function uploadToExternalService(e) {
-        e.preventDefault();
-
-        clearAll.disabled = true;
-				uploadIt.disabled = true;
-				uploadIt.textContent = "Uploading…";
-				inputBlock.classList.add("uploading");
-				promptList.querySelectorAll(".alttextfield").forEach(function(textfield) {
-					textfield.readOnly = true;
-				});
-
-        const upServ = this.closest("[data-uploadservice]").dataset.uploadservice;
-        if (upServ === "wordpress") {
-          uploadToWordpress();
-        } else if (upServ === "vimeo") {
-          uploadToVimeo();
-        }
-      }
-
-			function clearFileInputSelections() {
-				promptList.innerHTML = "";
-				inputBlock.classList.remove("uploading");
-				// thisInput.dataset.filecount = 0;
-				inputBlock.classList.remove("populated");
-				thisInput.submittedFiles = {};
-				thisInput.value = "";
-			}  
-
-			async function uploadToWordpress() {
-				let formData = new FormData();
-        
-				let alttext = [];
-				for (let i = 0; i < thisInput.submittedFiles.length; i++) {
-					formData.append(thisInput.submittedFiles[i].name, thisInput.submittedFiles[i]);
-					alttext.push(promptList.querySelectorAll(".alttextfield")[i].value);
-				}
-				formData.append("alt_text", JSON.stringify(alttext));
-
-				const response = await fetch("/wp/imageArray", {
-					method: "POST",
-					body: formData
-				}).then(post => post.json());
-				resolveFromWordpress(response);
-			}
-
-			function resolveFromWordpress(response) {
-				clearFileInputSelections();
-				inputBlock.classList.add("success");
-				summaryInput.querySelector(".summary-list").innerHTML = `
-          <ul class="response-files">
-            ${response.map(metadata => `
-              <li class="response-file" data-id="${metadata.id}" data-thumb="${metadata.thumbnail.source_url}">${metadata.originalname}</li>
-          `).join("\n")}
-          </ul>
-        `;
-				summaryInput.classList.add("generated");
-				summaryInput.querySelector("input[type='hidden']").value = JSON.stringify(response.map(item => item.id));
-        validateAllInputs();
-			}
-
-      async function uploadToVimeo(e) {
-
-        const email = inputBlock.closest(".uploader").querySelector('input.vimeoemail'),
-              progBar = document.querySelector(".uploadProgress"),
-              fileSize = thisInput.submittedFiles[0].size,
-              fileName = thisInput.submittedFiles[0].name, // Currently unused
-              fileData = thisInput.submittedFiles[0];      
-
-        console.log({ fileSize, fileData });
-
-        let authResponse = await fetch("/token", {
-          method: "GET",
-          mode: "no-cors"
-        });
-
-        let authResult = await authResponse.json();
-        console.log(authResult.token);
-
-        const bearer = "bearer " + authResult.token;
-
-        let uploadRequest = await fetch("https://api.vimeo.com/me/videos", {
-          method: "POST",
-          body: JSON.stringify({
-            upload: {
-              approach: "tus",
-              size: fileSize,
-              redirect_url: window.location.href + "/uploaded"
-            },
-            privacy: { "view": "unlisted" },
-            description: email.value // Passing the e-mail in the description field, for easier identification later
-          }),
-          headers: {
-            Authorization: bearer,
-            Accept: "application/vnd.vimeo.*+json;version=3.4",
-            "Content-Type": "application/json"
-          }
-        });
-
-        let uploadResponse = await uploadRequest.json();
-        console.log(uploadResponse);
-
-        const uploadLink = uploadResponse.upload.upload_link;
-        console.log({ uploadLink });
-
-        const videoID = uploadResponse.uri.split("/")[2];
-        console.log({ videoID: videoID });
-
-        var xhr = new XMLHttpRequest();
-
-        xhr.upload.onprogress = function(e) {
-          if (e.lengthComputable) {
-            progBar.setAttribute("max", e.total);
-            progBar.setAttribute("value", e.loaded);
-            progBar.innerHTML = Math.floor(e.loaded / e.total) + "%";
-          }
-        };
-        xhr.onloadstart = function(e) {
-          console.log("upload initiated");
-        };
-        xhr.onloadend = function(e) {
-          console.log("upload complete");
-          changeStateSuccess();
-        };
-
-        xhr.open("PATCH", uploadLink);
-        xhr.setRequestHeader(
-          "Accept",
-          "application/vnd.vimeo.*+json;version=3.4"
-        );
-        xhr.setRequestHeader("Tus-Resumable", "1.0.0");
-        xhr.setRequestHeader("Upload-Offset", 0);
-        xhr.setRequestHeader("Content-Type", "application/offset+octet-stream");
-
-        xhr.send(fileData);
-
-        let changeStateSuccess = async () => {
-          clearFileInputSelections();
-
-          inputBlock.classList.add("success");
-          summaryInput.querySelector(".summary-list").innerHTML = `
-            <ul class="response-files">
-                <li class="response-file" data-id="${videoID}" data-link="${uploadResponse.link}">${uploadResponse.name}</li>
-            </ul>
-          `;
-          summaryInput.classList.add("generated");
-          summaryInput.querySelector("input[type='hidden']").value = "[" + videoID + "]"; // Array-like string, to match the Wordpress implementation
-          validateAllInputs();
-
-          const tagName = "cooper_union_vimeo_uploader";
-          let putRequest = fetch(
-            "https://api.vimeo.com/videos/" + videoID + "/tags/" + tagName,
-            {
-              method: "PUT",
-              headers: {
-                Authorization: bearer,
-                Accept: "application/vnd.vimeo.*+json;version=3.4",
-                "Content-Type": "application/vnd.vimeo.tag+json"
-              }
-            }
-          );
-
-          let downloadRequest = await fetch(
-            "https://api.vimeo.com/me/videos/" + videoID,
-            {
-              method: "GET",
-              headers: {
-                Authorization: bearer,
-                Accept: "application/vnd.vimeo.*+json;version=3.4",
-                "Content-Type": "application/json"
-              }
-            }
-          );
-          let downloadResponse = await downloadRequest.json();
-          console.log(downloadResponse);
-        };
-      }
-		}
 	});
 
 	const validationMsg = document.querySelector(".validation-message");
-
-	// document.querySelector("fieldset.section-videowork").classList.add("hide");
-	// document.querySelector("fieldset.section-standardwork").classList.add("hide");
-	// document.querySelector("fieldset.section-classinfo").classList.add("hide");
-
-// 	function handleFieldsetVisibility() {
-// 		const workTypeChecked = worktypeRadio.querySelector("input:checked");
-
-// 		if (workTypeChecked === null) {
-// 			return false;
-// 		}
-
-// 		switch (workTypeChecked.value) {
-// 			case "video":
-// 				document.querySelector("fieldset.section-standardwork").classList.add("hide");
-// 				document.querySelector("fieldset.section-videowork").classList.remove("hide");
-// 				break;
-
-// 			default:
-// 				document.querySelector("fieldset.section-standardwork").classList.remove("hide");
-// 				document.querySelector("fieldset.section-videowork").classList.add("hide");
-// 		}
-
-// 		document.querySelector("fieldset.section-classinfo").classList.remove("hide");
-// 	}
 
 	function forceRadioCheck() {
 		this.closest(".special").querySelector("input[type='radio']").checked = true;
@@ -490,6 +460,10 @@ const FormFX = function() {
   function handleDatalist() {
     const checkList = this.closest(".formblock").querySelector(".inputlist.checkboxes");
     if ([...this.list.options].map(option => option.value).includes(this.value)) {
+      // Check for dupes
+      checkList.querySelectorAll("li").forEach(function(li) {
+        console.log(li.value);
+      })
       const newLi = document.createElement("li");
       newLi.innerHTML = `<label><input type="checkbox" name="${checkList.dataset.name}" value="${this.value}" checked="checked">${this.value}</label>`;
       newLi.addEventListener("change", removeLi);
@@ -523,11 +497,6 @@ const FormFX = function() {
       });
             
 			const formData = new FormData(formsForm);
-			//       for (let key in allDroppedFiles) {
-			//         Array.from(allDroppedFiles[key]).forEach(file => { 
-			//           formData.append('file', file);
-			//         });
-			//       }
 			const response = await fetch("/wp/formData", {
 				method: "POST",
 				body: formData
