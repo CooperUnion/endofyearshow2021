@@ -85,7 +85,9 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
     artworkid,
     videoworkid,
     videoworktitle,
-    workid
+    workid,
+    academicyear,
+    documentationformat
   } = req.body
   
   const body = {
@@ -94,19 +96,21 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
       "taxonomy": {
         "author": {
           "artist": `${firstname} ${lastname}`,
-          "instructor": faculty
+          "instructor": faculty,
+          "year": academicyear
         },
         "tags": {
           "tags": medium,
           "category": "NOT USED"
-        }
+        },
+        "type": documentationformat
       },
-      "external":{
-        "vimeo_url": "vimeo://",
-        "youtube_url": "NOT USED",
-        "soundcloud_url": "NOT USED",
-        "dropbox_url": "NOT USED"
-      },
+      // "external":{
+      //   "vimeo_url": "vimeo://",
+      //   "youtube_url": "NOT USED",
+      //   "soundcloud_url": "NOT USED",
+      //   "dropbox_url": "NOT USED"
+      // },
       "meta": {
         "description": description,
         "optional": {
