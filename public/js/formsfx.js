@@ -489,7 +489,6 @@ const FormFX = function() {
       this.value = "";
     }
     function removeLi() {
-      // console.log(this);
       checkList.removeChild(this);
       validateAllInputs();
     }
@@ -540,7 +539,6 @@ const FormFX = function() {
 				}
 				break;
 
-
 			case "textarea":
 				const textareaFilled = thisInput.querySelector("textarea").value.length;
 				if (textareaFilled === 0) {
@@ -550,6 +548,7 @@ const FormFX = function() {
 
       case "datalist":
         const numGenerated = thisInput.querySelectorAll(".inputlist input[type='checkbox']:checked").length;
+        console.log(thisInput.querySelectorAll(".inputlist input[type='checkbox']:checked"));
         if (numGenerated === 0) {
           isValid = false;
         }
