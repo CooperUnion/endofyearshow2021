@@ -460,10 +460,12 @@ const FormFX = function() {
   function handleDatalist() {
     const checkList = this.closest(".formblock").querySelector(".inputlist.checkboxes");
     if ([...this.list.options].map(option => option.value).includes(this.value)) {
-      let dupes
-      checkList.querySelectorAll("li input").forEach(function(input) {
-        console.log(input.value);
-      })
+      // checkList.querySelectorAll("li").forEach(function(thisLi) {
+      //             console.log(thisLi.querySelector("input"));
+      //   if (thisLi.querySelector("input").value = this.value) {
+      //     checkList.removeChild(thisLi);
+      //   }
+      // })
       const newLi = document.createElement("li");
       newLi.innerHTML = `<label><input type="checkbox" name="${checkList.dataset.name}" value="${this.value}" checked="checked">${this.value}</label>`;
       newLi.addEventListener("change", removeLi);
