@@ -38,7 +38,7 @@ const FormFX = function() {
 
 	const allInputs = document.querySelectorAll(".formblock .form-input input, .formblock .form-input textarea");
 	allInputs.forEach(function(thisInput) {
-    
+        
     const inputType = thisInput.list ? "datalist" : thisInput.type;
 
     switch (inputType) {
@@ -46,7 +46,7 @@ const FormFX = function() {
         thisInput.addEventListener("change", handleReqRads);
         break;
 
-			case "checkboxes":
+			case "checkbox":
         thisInput.addEventListener("change", toggleCheckTag);
         break;
 
@@ -467,6 +467,7 @@ const FormFX = function() {
         }
       });
       const newLi = document.createElement("li");
+      newLi.classList.add("checked");
       newLi.innerHTML = `<label><input type="checkbox" name="${checkList.dataset.name}" value="${listValue}" checked="checked">${listValue}</label>`;
       newLi.addEventListener("change", removeLi);
       checkList.appendChild(newLi);
