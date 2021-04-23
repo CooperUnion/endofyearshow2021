@@ -518,12 +518,10 @@ const FormFX = function() {
           const childInputs = hiddenBlock.querySelectorAll("input, textarea");
           childInputs.forEach(function(childInput){
             childInput.disabled = true;
-          })
+          });
         }
       });
-      
-      // const onlyHiddenInputs = [...allInputs].filter(node => !node.matches("[data-reqrad]:not(.radio-show)"));
-      
+            
 			const formData = new FormData(formsForm);
 			//       for (let key in allDroppedFiles) {
 			//         Array.from(allDroppedFiles[key]).forEach(file => { 
@@ -574,7 +572,6 @@ const FormFX = function() {
 
       case "datalist":
         const numGenerated = thisInput.querySelectorAll(".inputlist input[type='checkbox']:checked").length;
-        console.log(numGenerated)
         if (numGenerated === 0) {
           isValid = false;
         }
