@@ -43,8 +43,10 @@ const FormFX = function() {
 
 	const allInputs = document.querySelectorAll(".formblock .form-input input, .formblock .form-input textarea");
 	allInputs.forEach(function(thisInput, currentIndex) {
+    
+    const inputType = thisInput.list ? "datalist" : thisInput.type;
 
-    switch (thisInput.dataset.inputtype) {
+    switch (inputType) {
 			case "radio":
         thisInput.addEventListener("change", handleReqRads);
         break;
@@ -493,12 +495,12 @@ const FormFX = function() {
       newLi.addEventListener("change", removeLi);
       checkList.appendChild(newLi);
       this.value = "";
+      validateAllInputs();
     }
     function removeLi() {
       checkList.removeChild(this);
-      console.log(checkList.querySelectorAll(".inputlist input[type='checkbox']:checked"));
+      validateAllInputs();
     }
-    validateAllInputs();
   }
 
 	async function validateAndSubmit(e) {
