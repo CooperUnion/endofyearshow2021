@@ -26,14 +26,23 @@ const pluck = (data)=>{
   return data.filter((item)=>{return item != ''})
 }
 
-const parse = (data)=>{
+const multiple = (data)=>{
   try{
-    const parsedData = Array.JSON.parse(data)
+    const parsedData = Array.isArray(data) ? data : JSON.parse(data)
     return pluck(parsedData)
   } catch(e){
     console.log("Could not parse:", data)
     return undefined
   }
+}
+
+const singular = (data)=>{
+  try{
+    return multiple(data).shift()
+  } catch(e){
+    console.log("Could not find a singular elemenet:", data)
+    return undefined
+  }  
 }
 
 
@@ -107,12 +116,12 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
   } = req.body
   
   const body = {
-    title: worktitle || videoworktitle,
+    title: singular(worktitle),
     "fields": {
       "taxonomy": {
         "author": {
           "artist": `${firstname} ${lastname}`,
-          "instructor": faculty,
+          "instructor": multiple(faculty),
           "year": academicyear
         },
         "tags": {
@@ -128,16 +137,16 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
       //   "dropbox_url": "NOT USED"
       // },
       "meta": {
-        "description": description,
+        "description": singular(description),
         "optional": {
-          "dimensions": dimensions,
+          "dimensions": singular(dimensions),
           "url": "https://NOT.USED"
         },
         "email": email,
         project
       },
       // "media": parse(media || artworkid || videoworkid || workid)
-      "media": parse(workid)
+      "media": multiple(workid)
     }
   }
   
