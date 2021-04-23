@@ -21,14 +21,21 @@ var upload = multer({ storage: memoryStorage })
 
 // const uploadBuffer = multer({ storage: memoryStorage})
 
+
+const pluck = (data)=>{
+  return data.filter((item)=>{return item != ''})
+}
+
 const parse = (data)=>{
   try{
-    return JSON.parse(data)
+    const parsedData = Array.JSON.parse(data)
+    return pluck(parsedData)
   } catch(e){
     console.log("Could not parse:", data)
     return undefined
   }
 }
+
 
 const {
   getAllTags, 
