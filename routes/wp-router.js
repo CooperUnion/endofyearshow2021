@@ -27,12 +27,17 @@ const pluck = (data)=>{
 }
 
 const multiple = (data)=>{
+   
+  if(Array.isArray(data)) {
+    return data
+  }  
+  
   try{
-    const parsedData = Array.isArray(data) ? data : JSON.parse(data)
+    const parsedData = JSON.parse(data)
     return pluck(parsedData)
   } catch(e){
-    console.log("Could not parse:", data)
-    return undefined
+    console.log("Could not parse, returning the string", data)
+    return data
   }
 }
 
@@ -112,7 +117,10 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
     videoworktitle,
     workid,
     academicyear,
-    documentationformat
+    documentationformat,
+    thumbnailid,
+    classproject,
+    whichproject
   } = req.body
   
   const body = {
@@ -143,7 +151,9 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
           "url": "https://NOT.USED"
         },
         "email": email,
-        project
+        project,
+        classproject,
+        whichproject: multiple(whichproject)
       },
       // "media": parse(media || artworkid || videoworkid || workid)
       "media": multiple(workid)
