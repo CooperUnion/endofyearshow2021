@@ -490,6 +490,7 @@ const FormFX = function() {
     }
     function removeLi() {
       checkList.removeChild(this);
+      console.log(checkList.querySelectorAll(".inputlist input[type='checkbox']:checked"));
       validateAllInputs();
     }
   }
@@ -548,7 +549,7 @@ const FormFX = function() {
 
       case "datalist":
         const numGenerated = thisInput.querySelectorAll(".inputlist input[type='checkbox']:checked").length;
-        console.log(thisInput.querySelectorAll(".inputlist input[type='checkbox']:checked"));
+        console.log(numGenerated)
         if (numGenerated === 0) {
           isValid = false;
         }
