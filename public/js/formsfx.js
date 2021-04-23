@@ -43,17 +43,22 @@ const FormFX = function() {
 
 	const allInputs = document.querySelectorAll(".formblock .form-input input, .formblock .form-input textarea");
 	allInputs.forEach(function(thisInput, currentIndex) {
-		thisInput.addEventListener("change", validateAllInputs);
-		if (thisInput.type === "checkbox") {
-			thisInput.addEventListener("change", toggleCheckTag);
-		}
 
-		if (thisInput.type === "radio") {
-			thisInput.addEventListener("change", handleReqRads);
-		}
+    switch (thisInput.dataset.inputtype) {
+			case "radio":
+        thisInput.addEventListener("change", handleReqRads);
+        break;
 
-    if (thisInput.hasAttribute('list')) {
-      thisInput.addEventListener("change", handleDatalist);
+			case "checkboxes":
+        thisInput.addEventListener("change", toggleCheckTag);
+        break;
+
+      case "datalist":
+        thisInput.addEventListener("change", handleDatalist);
+        break;
+
+			default:
+        thisInput.addEventListener("change", validateAllInputs);
     }
 
 		if (thisInput.type === "file") {
@@ -461,6 +466,7 @@ const FormFX = function() {
 		} else {
 			checkTag.classList.remove("checked");
 		}
+    validateAllInputs();
 	}
 
 	function handleReqRads() {
@@ -491,8 +497,8 @@ const FormFX = function() {
     function removeLi() {
       checkList.removeChild(this);
       console.log(checkList.querySelectorAll(".inputlist input[type='checkbox']:checked"));
-      validateAllInputs();
     }
+    validateAllInputs();
   }
 
 	async function validateAndSubmit(e) {
@@ -553,6 +559,7 @@ const FormFX = function() {
         if (numGenerated === 0) {
           isValid = false;
         }
+        break;
 
 			default:
 				const inputFilled = thisInput.querySelector("input").value.length;
