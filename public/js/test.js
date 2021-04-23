@@ -331,12 +331,12 @@ for (var entry of formData.entries()) {
       }
       break;
 
-//     case "file":
-        
-//       const thisInputField = thisInput.querySelector("input[type='file']");
-//       if (!(thisInputField.id in allDroppedFiles) && thisInputField.files.length === 0) {
-//         isValid = false;
-//       }      
+    case "datalist":
+      const numGenerated = thisInput.querySelectorAll(".inputlist input[type='checkbox']:checked").length;
+        console.log(numGenerated);
+      if (numGenerated === 0) {
+        isValid = false;
+      }
 
       break;
 

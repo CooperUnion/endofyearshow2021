@@ -491,6 +491,7 @@ const FormFX = function() {
     function removeLi() {
       // console.log(this);
       checkList.removeChild(this);
+      validateAllInputs();
     }
   }
 
@@ -547,15 +548,11 @@ const FormFX = function() {
 				}
 				break;
 
-				//     case "file":
-				//         
-				//       const thisInputField = thisInput.querySelector("input[type='file']");
-				//       if (!(thisInputField.id in allDroppedFiles) && thisInputField.files.length === 0) {
-				//         isValid = false;
-				//       }      
-				// 
-				//       break;
-
+      case "datalist":
+        const numGenerated = thisInput.querySelectorAll(".inputlist input[type='checkbox']:checked").length;
+        if (numGenerated === 0) {
+          isValid = false;
+        }
 
 			default:
 				const inputFilled = thisInput.querySelector("input").value.length;

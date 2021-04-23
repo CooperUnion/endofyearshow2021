@@ -560,7 +560,7 @@
 				</p>
 				<div class="form-input" data-inputtype="datalist">
           <ul class="inputlist checkboxes" data-name="classes"></ul>
-					<input list="datalist-classes" placeholder="Classes" />
+					<input list="datalist-classes" placeholder="Class" />
 					<datalist id="datalist-classes"> {{#data.courses}} 
 					<option name="{{@index}}">{{course}}</option>
 					{{/data.courses}} </datalist> 
@@ -573,7 +573,7 @@
 				</p>
 				<div class="form-input" data-inputtype="datalist">
           <ul class="inputlist checkboxes" data-name="collaborators"></ul>
-					<input list="datalist-collaborators" placeholder="Classes" />
+					<input list="datalist-collaborators" placeholder="Collaborator" />
 					<datalist id="datalist-collaborators"> {{#data.students}} 
 					<option name="{{@index}}">{{[First Name]}} {{[Last Name]}}</option>
 					{{/data.students}} </datalist> 
