@@ -511,9 +511,14 @@ const FormFX = function() {
       submitButton.textContent = "Submitting…";
       
       const hiddenBlocks = formsForm.querySelectorAll("[data-reqrad]:not(.radio-show)");
-      hiddenBlocks.forEach(function(block){
-        if (block.matches("fieldset")) {
-          
+      hiddenBlocks.forEach(function(hiddenBlock){
+        if (hiddenBlock.matches("fieldset")) {
+          hiddenBlock.disabled = true;
+        } else {
+          const childInputs = hiddenBlock.querySelectorAll("input, textarea");
+          childInputs.forEach(function(childInput){
+            childInput.disabled = true;
+          })
         }
       });
       
