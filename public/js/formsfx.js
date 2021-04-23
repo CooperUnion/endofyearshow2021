@@ -510,7 +510,14 @@ const FormFX = function() {
       submitButton.disabled = true;
       submitButton.textContent = "Submitting…";
       
-      const onlyHiddenInputs = [...allInputs].filter(node => !node.matches("[data-reqrad]:not(.radio-show)"));
+      const hiddenBlocks = formsForm.querySelectorAll("[data-reqrad]:not(.radio-show)");
+      hiddenBlocks.forEach(function(block){
+        if (block.matches("fieldset")) {
+          
+        }
+      });
+      
+      // const onlyHiddenInputs = [...allInputs].filter(node => !node.matches("[data-reqrad]:not(.radio-show)"));
       
 			const formData = new FormData(formsForm);
 			//       for (let key in allDroppedFiles) {
