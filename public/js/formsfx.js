@@ -341,7 +341,7 @@ const FormFX = function() {
             </ul>
           `;
           summaryInput.classList.add("generated");
-          summaryInput.querySelector("input[type='hidden']").value = videoID;
+          summaryInput.querySelector("input[type='hidden']").value = "[" + videoID + "]"; // Array-like string, to match the Wordpress implementation
           validateAllInputs();
 
           const tagName = "cooper_union_vimeo_uploader";
