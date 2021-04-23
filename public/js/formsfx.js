@@ -509,6 +509,7 @@ const FormFX = function() {
 		if (validateAllInputs()) {
       submitButton.disabled = true;
       submitButton.textContent = "Submitting…";
+      
 			const formData = new FormData(formsForm);
 			//       for (let key in allDroppedFiles) {
 			//         Array.from(allDroppedFiles[key]).forEach(file => { 
