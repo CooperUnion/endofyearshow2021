@@ -30,7 +30,7 @@ router.get('/', formLogger, async (req, res)=>{
     students,
     teachers,
     courses,
-    user:req.session.user || {name:{full:"mike stamm", first:"mike", last:"stamm"} email:"mike@test.com"}
+    user:req.session.user || {name:{full:"mike stamm", first:"mike", last:"stamm"}, email:"mike@test.com"}
   }
   
   const renderOptions = {

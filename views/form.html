@@ -11,7 +11,7 @@
 </head>
 <body>
 <header class="introduction">
-	{{#data.user}} <strong> Welcome, {{name}}. </strong> {{/data.user}} 
+	{{#data.user}} <strong> Welcome, {{name.full}}. </strong> {{/data.user}} 
 	<h1>
 		EOYS 2021 Submission Form 
 	</h1>
@@ -37,7 +37,7 @@
 					Please enter your preferred first name. This can differ from your legal or Cooper registered first name. 
 				</p>
 				<div class="form-input" data-inputtype="text">
-					<input id="firstname" name="firstname" type="text" placeholder="First name">
+					<input id="firstname" name="firstname" type="text" placeholder="First name" value="{{data.user.name.first}}">
 				</div>
 			</div>
 			<div class="formblock" data-required="required">
@@ -46,7 +46,7 @@
 					Please enter your preferred last name. This can differ from your legal or Cooper registered last name. 
 				</p>
 				<div class="form-input" data-inputtype="text">
-					<input id="lastname" name="lastname" type="text" placeholder="Last name">
+					<input id="lastname" name="lastname" type="text" placeholder="Last name" value="{{data.user.name.last}}">
 				</div>
 			</div>
 			{{#data.user}} 
