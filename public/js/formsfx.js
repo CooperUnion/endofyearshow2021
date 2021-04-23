@@ -459,15 +459,15 @@ const FormFX = function() {
 
   function handleDatalist() {
     const checkList = this.closest(".formblock").querySelector(".inputlist.checkboxes");
-    if ([...this.list.options].map(option => option.value).includes(this.value)) {
-      // checkList.querySelectorAll("li").forEach(function(thisLi) {
-      //             console.log(thisLi.querySelector("input"));
-      //   if (thisLi.querySelector("input").value = this.value) {
-      //     checkList.removeChild(thisLi);
-      //   }
-      // })
+    const listValue = this.value;
+    if ([...this.list.options].map(option => option.value).includes(listValue)) {
+      checkList.querySelectorAll("li").forEach(function(thisLi) {
+        if (thisLi.querySelector("input").value === listValue) {
+          checkList.removeChild(thisLi);
+        }
+      });
       const newLi = document.createElement("li");
-      newLi.innerHTML = `<label><input type="checkbox" name="${checkList.dataset.name}" value="${this.value}" checked="checked">${this.value}</label>`;
+      newLi.innerHTML = `<label><input type="checkbox" name="${checkList.dataset.name}" value="${listValue}" checked="checked">${listValue}</label>`;
       newLi.addEventListener("change", removeLi);
       checkList.appendChild(newLi);
       this.value = "";
