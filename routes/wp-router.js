@@ -21,6 +21,15 @@ var upload = multer({ storage: memoryStorage })
 
 // const uploadBuffer = multer({ storage: memoryStorage})
 
+const parse = (data)=>{
+  try{
+    return JSON.parse(data)
+  } catch(e){
+    console.log("Could not parse:", data)
+    return undefined
+  }
+}
+
 const {
   getAllTags, 
   getAllCategories,
@@ -120,7 +129,8 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
         "email": email,
         project
       },
-      "media": JSON.parse(media || artworkid || videoworkid || workid) || null
+      // "media": parse(media || artworkid || videoworkid || workid)
+      "media": parse(workid)
     }
   }
   
