@@ -42,7 +42,7 @@ const FormFX = function() {
   const reqRads = document.querySelectorAll("[data-reqrad]");
 
 	const allInputs = document.querySelectorAll(".formblock .form-input input, .formblock .form-input textarea");
-	allInputs.forEach(function(thisInput, currentIndex) {
+	allInputs.forEach(function(thisInput) {
     
     const inputType = thisInput.list ? "datalist" : thisInput.type;
 
@@ -424,7 +424,7 @@ const FormFX = function() {
 		let invalidForms = [];
 		const allActiveInputs = document.querySelectorAll("fieldset:not([data-reqrad]) .formblock, fieldset.radio-show .formblock");
     const filteredActiveInputs = [...allActiveInputs].filter(node => !node.matches("[data-reqrad]:not(.radio-show)"));
-		filteredActiveInputs.forEach(function(formblock, currentIndex) {
+		filteredActiveInputs.forEach(function(formblock) {
 			formblock.classList.remove("invalid");
 			if (formblock.dataset.required === "required") {
 				const thisInput = formblock.querySelector(".form-input:not(.no-validate)");
@@ -509,6 +509,8 @@ const FormFX = function() {
 		if (validateAllInputs()) {
       submitButton.disabled = true;
       submitButton.textContent = "Submitting…";
+      
+      const onlyHiddenInputs = [...allInputs].filter(node => !node.matches("[data-reqrad]:not(.radio-show)"));
       
 			const formData = new FormData(formsForm);
 			//       for (let key in allDroppedFiles) {
