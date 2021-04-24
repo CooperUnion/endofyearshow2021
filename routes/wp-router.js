@@ -37,7 +37,7 @@ const multiple = (data)=>{
     return pluck(parsedData)
   } catch(e){
     console.log("Could not parse, returning the string", data)
-    return data
+    return undefined
   }
 }
 
