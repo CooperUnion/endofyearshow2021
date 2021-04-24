@@ -139,34 +139,33 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
       "taxonomy": {
         "author": {
           "artist": `${firstname} ${lastname}`,
-          "instructor": multiple(faculty) || null,
-          "year": academicyear
+          "year": academicyear,
+          email
         },
         "tags": {
-          "tags": medium,
+          "tags": medium || 'external',
           "category": "NOT USED"
         },
         "type": documentationformat
       },
-      // "external":{
-      //   "vimeo_url": "vimeo://",
-      //   "youtube_url": "NOT USED",
-      //   "soundcloud_url": "NOT USED",
-      //   "dropbox_url": "NOT USED"
-      // },
       "meta": {
-        "description": singular(description),
+        "description": description,
         "optional": {
-          "dimensions": singular(dimensions),
-          "url": "https://NOT.USED"
+          dimensions,
+          materials,          
+          "url": "https://NOT.PROVIDED"
         },
-        "email": email,
         project,
         classproject,
-        whichproject: multiple(whichproject)
+        whichproject
       },
-      // "media": parse(media || artworkid || videoworkid || workid)
-      "media": multiple(workid)
+      "media": multiple(workid),
+      "preview": thumbnailid,
+      "origin":{
+        class:'',
+                  "instructor": multiple(faculty) || null,
+
+      }
     }
   }
   
