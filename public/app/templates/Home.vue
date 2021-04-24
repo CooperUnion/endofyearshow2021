@@ -45,6 +45,7 @@
       }
     },
     mounted: async function () {
+      console.log("hi")
       this.init()
     },
     computed:{

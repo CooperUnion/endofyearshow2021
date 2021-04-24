@@ -70,7 +70,7 @@ let $route = router.match(location)
 
 // console.log("matched path", $route.path)
 
-
+console.log(router)
 const app = new Vue({
   store,
   router,
