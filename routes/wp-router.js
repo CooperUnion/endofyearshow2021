@@ -135,9 +135,13 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
   const body = {
     title: worktitle,
     fields: {
-      type: typeofwork,    
+      // type: typeofwork,    
       author: {
-        artist: `${firstname} ${lastname}`,
+        artist: {
+          first: firstname,
+          last:lastname,
+          formatted: `${firstname} ${lastname}`
+        },
         year: academicyear,
         email
       },
