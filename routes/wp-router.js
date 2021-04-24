@@ -135,7 +135,8 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
   const body = {
     title: worktitle,
     fields: {
-      // type: typeofwork,    
+      // type: typeofwork,
+      type: documentationformat,      
       author: {
         artist: {
           first: firstname,
@@ -149,13 +150,10 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
         tags: medium || 'external',
         category: "NOT USED"
       },
-      type: documentationformat,
       meta: {
-        description: description,
-        optional: {
-          dimensions,
-          materials,          
-        }
+        description,
+        dimensions,
+        materials
       },
       assets:{
         media: multiple(workid),
