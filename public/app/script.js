@@ -1,17 +1,17 @@
 /* global Vue, VueRouter, httpVueLoader, vuescroll, Vuex */
-const Home = httpVueLoader('/templates/Home.vue')
-const Category = httpVueLoader('/templates/Category.vue')
-const Tags = httpVueLoader('/templates/Tags.vue')
-const Areas = httpVueLoader('/templates/Areas.vue')
-const Students = httpVueLoader('/templates/Students.vue')
-const Student = httpVueLoader('/templates/Student.vue')
-const Work = httpVueLoader('/templates/Work.vue')
+const Home = httpVueLoader('/app/templates/Home.vue')
+// const Category = httpVueLoader('/templates/Category.vue')
+// const Tags = httpVueLoader('/templates/Tags.vue')
+// const Areas = httpVueLoader('/templates/Areas.vue')
+// const Students = httpVueLoader('/templates/Students.vue')
+// const Student = httpVueLoader('/templates/Student.vue')
+// const Work = httpVueLoader('/templates/Work.vue')
 
 // desktop
-const Desktop = httpVueLoader('/templates/Desktop.vue')
+// const Desktop = httpVueLoader('/templates/Desktop.vue')
 
 
-const Test = httpVueLoader('/templates/Test.vue')
+// const Test = httpVueLoader('/templates/Test.vue')
 
 Vue.config.devtools = true
 
@@ -49,16 +49,16 @@ Vue.directive('scroll', {
 
 
 const routes = [
-  {path: '/category/students', component: Students},
-  {path: '/category/areas', component: Areas},
-  {path: '/category/:category', component: Category},
-  {path: '/tags/areas', component: Areas},
-  {path: '/tags/:tag', component: Tags},
-  {path: '/student/:student', component: Student},  
-  {path: '/work/:work', component: Work},    
-  {path: '/test', component: Test},
+  // {path: '/category/students', component: Students},
+  // {path: '/category/areas', component: Areas},
+  // {path: '/category/:category', component: Category},
+  // {path: '/tags/areas', component: Areas},
+  // {path: '/tags/:tag', component: Tags},
+  // {path: '/student/:student', component: Student},  
+  // {path: '/work/:work', component: Work},    
+  // {path: '/test', component: Test},
   {path: '/', component: Home},
-  {path: '/desktop', component: Desktop}
+  // {path: '/desktop', component: Desktop}
 ]
 
 const router = new VueRouter({
