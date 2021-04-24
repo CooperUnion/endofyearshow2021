@@ -132,17 +132,17 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
     typeofwork
   } = req.body
   
+  console.log("special debug", firstname, lastname)
+  
   const body = {
     title: worktitle,
     fields: {
       // type: typeofwork,
       type: documentationformat,      
       author: {
-        artist: {
-          first: firstname,
-          last:lastname,
-          formatted: `${firstname} ${lastname}`
-        },
+        first: firstname,
+        last:lastname,
+        formatted: `${firstname} ${lastname}`,
         year: academicyear,
         email
       },
