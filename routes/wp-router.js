@@ -128,16 +128,18 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
     documentationformat,
     thumbnailid,
     classproject,
-    whichproject
+    whichproject,
+    typeofwork
   } = req.body
   
   const body = {
     title: worktitle,
+    type: typeofwork,
     "fields": {
       "taxonomy": {
         "author": {
           "artist": `${firstname} ${lastname}`,
-          "instructor": multiple(faculty),
+          "instructor": multiple(faculty) || null,
           "year": academicyear
         },
         "tags": {
