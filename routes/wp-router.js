@@ -147,7 +147,7 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
         email
       },
       taxonomy: {
-        tags: medium || 'external',
+        tags: JSON.stringify(medium) || 'external',
         category: "NOT USED"
       },
       meta: {
