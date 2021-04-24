@@ -135,36 +135,32 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
   const body = {
     title: worktitle,
     type: typeofwork,
-    "fields": {
-      "taxonomy": {
-        "author": {
-          "artist": `${firstname} ${lastname}`,
-          "year": academicyear,
-          email
-        },
-        "tags": {
-          "tags": medium || 'external',
-          "category": "NOT USED"
-        },
-        "type": documentationformat
+    fields: {
+      author: {
+        artist: `${firstname} ${lastname}`,
+        year: academicyear,
+        email
       },
-      "meta": {
-        "description": description,
-        "optional": {
+      taxonomy: {
+        tags: medium || 'external',
+        category: "NOT USED"
+      },
+      type: documentationformat,
+      meta: {
+        description: description,
+        optional: {
           dimensions,
           materials,          
-          "url": "https://NOT.PROVIDED"
-        },
-        project,
-        classproject,
-        whichproject
+          url: "https://NOT.PROVIDED"
+        }
       },
-      "media": multiple(workid),
-      "preview": thumbnailid,
-      "origin":{
-        class:'',
-                  "instructor": multiple(faculty) || null,
-
+      assets:{
+      media: multiple(workid),
+      preview: thumbnailid,
+      },
+      class:{
+        instructor: multiple(faculty) || null,
+        project: multiple(whichproject) || null
       }
     }
   }
