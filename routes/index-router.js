@@ -26,6 +26,15 @@ router.get('/file/:filename', indexLogger, (req, res)=>{
   res.sendFile(`${__dirname}/uploads/${req.params.filename}`)
 })
 
+//vue app instantiation
+router.get('/app', indexLogger, (req, res)=>{
+  const renderOptions = {
+    data: [],
+    layout: false
+  } 
+  return res.render('app', renderOptions)
+})
+
 
 //shouldn't be used
 router.get('/dataTest', async (req, res)=>{
