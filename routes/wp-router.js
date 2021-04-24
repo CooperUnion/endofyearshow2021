@@ -50,6 +50,14 @@ const singular = (data)=>{
   }  
 }
 
+const parse = (data)=>{
+  try{
+    return JSON.parse(data)
+  } catch(e){
+    console.log("Could not parse:", data)
+    return undefined
+  }  
+}
 
 const {
   getAllTags, 
@@ -124,7 +132,7 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
   } = req.body
   
   const body = {
-    title: singular(worktitle),
+    title: worktitle,
     "fields": {
       "taxonomy": {
         "author": {
