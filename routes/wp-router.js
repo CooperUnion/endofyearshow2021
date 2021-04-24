@@ -134,8 +134,8 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
   
   const body = {
     title: worktitle,
-    type: typeofwork,
     fields: {
+      type: typeofwork,    
       author: {
         artist: `${firstname} ${lastname}`,
         year: academicyear,
@@ -151,12 +151,12 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
         optional: {
           dimensions,
           materials,          
-          url: "https://NOT.PROVIDED"
         }
       },
       assets:{
-      media: multiple(workid),
-      preview: thumbnailid,
+        media: multiple(workid),
+        preview: thumbnailid,
+        url: "https://NOT.PROVIDED"        
       },
       class:{
         instructor: multiple(faculty) || null,
