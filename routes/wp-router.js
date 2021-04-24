@@ -141,9 +141,9 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
       type: documentationformat,      
       author: {
         first: firstname,
-        last:lastname,
+        last: lastname,
         formatted: `${firstname} ${lastname}`,
-        year: academicyear,
+        academicyear,
         email
       },
       taxonomy: {
