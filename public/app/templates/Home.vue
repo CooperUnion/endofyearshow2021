@@ -6,14 +6,15 @@
     <ul>
       <li class="post" v-for="post in posts">
         
-        <img :src="post.assets.preview.thumbnail.source_url" />
+        <a :href="post.assets.preview.source_url"><img :src="post.assets.preview.thumbnail.source_url" /></a>
         <pre>
           title: {{post.title}}
           type: {{post.type}}
           author: {{post.author.formatted}}
           tags: {{post.taxonomy.tags}}
           description: {{post.meta.description}}
-          
+          url: {{post.meta.url}}
+          high-res: {{post.assets.preview.source_url}}
           
         </pre>
     
