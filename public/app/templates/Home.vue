@@ -8,8 +8,13 @@
         
         <img :src="post.assets.preview.thumbnail.source_url" />
         <pre>
-          {{post.title}}
-          {{post.type}}
+          title: {{post.title}}
+          type: {{post.type}}
+          author: {{post.author.formatted}}
+          tags: {{post.taxonomy.tags}}
+          description: {{post.meta.description}}
+          
+          
         </pre>
     
       </li>  
@@ -56,5 +61,8 @@
     background-color: gainsboro;
     width: 100%;
     height: 100vh;
-  
+  }
+  .post{
+    display:flex;
+  }
 </style>
