@@ -513,6 +513,7 @@ const FormFX = function() {
 
   function handleSubmissionResponse(json) {
     console.log(json);
+    formsForm.style.display = "none";
     const successMsg = document.createElement('h5');
     successMsg.innerHTML = `Your form has been submitted. If you need to submit additional items, please <a href="${window.location}">fill out this form again.</a>.`;
     document.querySelector("footer").appendChild(successMsg);

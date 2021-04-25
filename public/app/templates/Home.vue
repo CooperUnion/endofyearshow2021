@@ -70,4 +70,8 @@
   pre, pre * {
     font-family: "courier new"
   }
+  
+  pre a {
+    text-decoration:underline;
+  }
 </style>
