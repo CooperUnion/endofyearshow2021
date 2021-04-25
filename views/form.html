@@ -113,7 +113,12 @@
 			</div>
 		</fieldset>
 		<fieldset class="section-standardwork" data-reqrad="docformat-audio,docformat-images,docformat-text,docformat-url">
-      <legend><span class="worktype-title" data-reqrad="docformat-audio,docformat-images,docformat-text,docformat-url">Standard</span> Work Information</legend> 
+      <legend>
+        <span class="worktype-title" data-reqrad="docformat-images">Image</span>
+        <span class="worktype-title" data-reqrad="docformat-text">Text</span>
+        <span class="worktype-title" data-reqrad="docformat-audio">Audio</span>
+        <span class="worktype-title" data-reqrad="docformat-url">URL</span>
+        Work Information</legend> 
 			<p class="sublegend">
 				For each piece of work, please submit all creative assets together as one form. For each new piece, re-submit a new form. 
 			</p>
@@ -185,7 +190,7 @@
 				</div>
 			</div>
 			<div class="formblock" data-required="required" data-reqrad="docformat-audio,docformat-text,docformat-url">
-				<label class="titlelabel" for="workurl" data-anchor="dimensions">URL</label> 
+				<label class="titlelabel" for="workurl" data-anchor="workurl">URL</label> 
 				<p class="label-context">
 					Please enter the URL for your piece.
 				</p>
@@ -226,10 +231,10 @@
 					<input id="thumbnailid" name="thumbnailid" type="hidden" readonly="readonly">
 				</div>
 			</div>
-			<div class="formblock" data-required="required">
+			<div class="formblock" data-required="optional">
 				<label class="titlelabel" for="dimensions" data-anchor="dimensions">Dimensions</label> 
 				<p class="label-context">
-					Please enter the dimensions for your piece. This is free-form, and could be LxWxH, time, file size, or any other numeric representation of your work's "size." 
+					OPTIONAL: Please enter the dimensions of your piece, either in size or length.
 				</p>
 				<div class="form-input" data-inputtype="text">
 					<input id="dimensions" name="dimensions" type="text" placeholder="Dimensions">
