@@ -514,7 +514,7 @@ const FormFX = function() {
   function handleSubmissionResponse(json) {
     console.log(json);
     const successMsg = document.createElement('h5');
-    successMsg.innerHTML = `Your form has been submitted. If you need to submit additional items, please <a href="https://eoys-uploader-2021.glitch.me/form">fill out this form again.</a>.`;
+    successMsg.innerHTML = `Your form has been submitted. If you need to submit additional items, please <a href="${window.location}">fill out this form again.</a>.`;
     document.querySelector("footer").appendChild(successMsg);
     const resultsLink = document.createElement('h6');
     resultsLink.innerHTML = `You can view the results of your submission <a href="https://eoys-uploader-2021.glitch.me/app/post/${json.id}">here</a>.`;
