@@ -13,7 +13,7 @@
           author: {{post.author.formatted}}
           tags: {{post.taxonomy.tags}}
           description: {{post.meta.description}}
-          url: {{post.meta.url}}
+          url: {{post.assets.url}}
           high-res: {{post.assets.preview.source_url}}
           
         </pre>
