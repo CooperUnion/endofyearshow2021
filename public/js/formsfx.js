@@ -500,7 +500,7 @@ const FormFX = function() {
       });
             
 			const formData = new FormData(formsForm);
-			const response = await fetch("/wp/formData", {
+			const response = await fetch("/app/post/:id", {
 				method: "POST",
 				body: formData
 			});
