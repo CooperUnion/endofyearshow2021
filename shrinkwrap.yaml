@@ -2,6 +2,7 @@ dependencies:
   '@azure/msal-node': 1.0.1
   body-parser: 1.19.0
   cookie-session: 1.4.0
+  cors: 2.8.5
   csv-reader: 1.0.7
   express: 4.17.1
   express-fileupload: 1.2.1
@@ -199,6 +200,15 @@ packages:
     dev: false
     resolution:
       integrity: sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
+  /cors/2.8.5:
+    dependencies:
+      object-assign: 4.1.1
+      vary: 1.1.2
+    dev: false
+    engines:
+      node: '>= 0.10'
+    resolution:
+      integrity: sha512-KIHbLJqu73RGr/hnbrO9uBeixNGuvSQjul/jdFvS/KFSIH1hWVd1ng7zOHx+YrEfInLG7q4n6GHQ9cDtxv/P6g==
   /csv-reader/1.0.7:
     dev: false
     engines:
@@ -1059,6 +1069,7 @@ specifiers:
   '@azure/msal-node': ^1.0.1
   body-parser: ^1.19.0
   cookie-session: ^1.4.0
+  cors: ^2.8.5
   csv-reader: ^1.0.6
   express: ^4.17.1
   express-fileupload: ^1.2.1

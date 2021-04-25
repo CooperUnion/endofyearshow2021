@@ -3,6 +3,9 @@
     <code>home debug info: {{path}}</code>
 <!--     <masthead></masthead> -->
     <!-- <tiles :categories="categories" class="tiles"></tiles> -->
+    <ul>
+      <li>{{this.posts}}</li>  
+    </ul>
   </main>     
 </template>
 
@@ -15,10 +18,7 @@
 
 
   module.exports = {
-    components: {
-      // Masthead,
-      // Tiles
-    },
+    components: {},
     data() {
       return {
         loading: true,
@@ -27,9 +27,7 @@
     },
     methods:{
       async init(){
-        const res = await fetch('https://eoys-client-2020.glitch.me/categories')
-        const data = await res.json()
-        this.categories = data
+        this.posts = await fetch('/api/posts').then(res=>res.json())
         this.loading = false         
       }
     },
