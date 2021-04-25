@@ -27,42 +27,42 @@ Vue.config.devtools = true
 Vue.use(VueRouter)
 Vue.use(Vuex)
 
-//Vuex configuration
-// const store = new Vuex.Store({
-//   state: {
-//     displayUI: true,
-//     displayNav: false
-//   },
-//   mutations: {
-//     toggleUI(state){
-//       state.displayUI = state.displayUI === false
-//     },
-//     showUI(state){
-//       state.displayUI = true
-//     },
-//     hideUI(state){
-//       state.displayUI = false
-//     },
-//     showNav(state){
-//       state.displayNav = true
-//     },
-//     hideNav(state){
-//       state.displayNav = false
-//     }
+// Vuex configuration
+const store = new Vuex.Store({
+  state: {
+    displayUI: true,
+    displayNav: false
+  },
+  mutations: {
+    toggleUI(state){
+      state.displayUI = state.displayUI === false
+    },
+    showUI(state){
+      state.displayUI = true
+    },
+    hideUI(state){
+      state.displayUI = false
+    },
+    showNav(state){
+      state.displayNav = true
+    },
+    hideNav(state){
+      state.displayNav = false
+    }
 
-//   }
-// })
+  }
+})
 
-// Vue.directive('scroll', {
-//   inserted: function (el, binding) {
-//     let f = function (evt) {
-//       if (binding.value(evt, el)) {
-//         window.removeEventListener('scroll', f)
-//       }
-//     }
-//     window.addEventListener('scroll', f)
-//   }
-// })
+Vue.directive('scroll', {
+  inserted: function (el, binding) {
+    let f = function (evt) {
+      if (binding.value(evt, el)) {
+        window.removeEventListener('scroll', f)
+      }
+    }
+    window.addEventListener('scroll', f)
+  }
+})
 
 
 const routes = [
@@ -74,7 +74,7 @@ const routes = [
   // {path: '/student/:student', component: DesktopStudent},  
   // {path: '/work/:work', component: DesktopWork},    
   // {path: '/test', component: Test},
-  {path: '/', component: Desktop},
+  {path: '/app', component: Desktop},
   // {path: '/desktop', component: Desktop}
 ]
 
@@ -89,7 +89,7 @@ let $route = router.match(location)
 
 
 const app = new Vue({
-  // store,
+  store,
   router,
   template:`<router-view />`
 }).$mount('#app')

@@ -9,8 +9,8 @@ const indexLogger = (req, res, next) =>{
 }
 
 //auth router redirects
-router.get('/', indexLogger, msalAuth.validate, (req, res) => {
-  res.redirect('/form')
+router.get('/', indexLogger, msalAuth.validate, (req, res) => {  
+  res.redirect(req.session.redirect || '/form')
 });
 
 router.get('/logout', indexLogger, (req, res)=>{
@@ -85,6 +85,13 @@ router.get('/teachers', async (req, res)=>{
 router.get('/courses', async (req, res)=>{
   let csvData = await data.courses()
   res.json(csvData)
+})
+
+router.get('/cookieRedirect/:path', async(req, res)=>{
+  
+  req.session.redirect = '/'+req.params.path
+  res.redirect(req.session.redirect)
+  
 })
 
 
