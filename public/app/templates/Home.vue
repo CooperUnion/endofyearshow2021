@@ -4,7 +4,7 @@
 <!--     <masthead></masthead> -->
     <!-- <tiles :categories="categories" class="tiles"></tiles> -->
     <ul>
-      <li>{{this.posts}}</li>  
+      <li v-for="post in posts">{{post}}</li>  
     </ul>
   </main>     
 </template>
@@ -22,7 +22,8 @@
     data() {
       return {
         loading: true,
-        categories: []
+        categories: [],
+        posts: []
       }
     },
     methods:{
