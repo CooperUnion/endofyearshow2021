@@ -7,10 +7,8 @@
 // const Student = httpVueLoader('/templates/Student.vue')
 // const Work = httpVueLoader('/templates/Work.vue')
 
-console.log("script.js loaded")
-
 // desktop
-const Desktop = httpVueLoader('/app/templates/Desktop.vue')
+const Home = httpVueLoader('/app/templates/Home.vue')
 // const DesktopStudent = httpVueLoader('/templates/DesktopStudent.vue')
 // const DesktopStudents = httpVueLoader('/templates/DesktopStudents.vue')
 // const DesktopTags = httpVueLoader('/templates/DesktopTags.vue')
@@ -74,7 +72,7 @@ const routes = [
   // {path: '/student/:student', component: DesktopStudent},  
   // {path: '/work/:work', component: DesktopWork},    
   // {path: '/test', component: Test},
-  {path: '/app', component: Desktop},
+  {path: '/app', component: Home},
   // {path: '/desktop', component: Desktop}
 ]
 
