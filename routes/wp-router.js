@@ -130,7 +130,8 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
     classproject,
     whichproject,
     typeofwork,
-    url
+    url,
+    workurl
   } = req.body
   
   console.log("special debug", firstname, lastname)
@@ -159,7 +160,7 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
       assets:{
         media: multiple(workid),
         preview: thumbnailid,
-        url: url || "https://NOT.PROVIDED"        
+        url: url || workurl || "https://NOT.PROVIDED"        
       },
       class:{
         instructor: multiple(faculty) || null,
