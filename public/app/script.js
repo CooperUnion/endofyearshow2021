@@ -10,7 +10,7 @@
 console.log("script.js loaded")
 
 // desktop
-const Desktop = httpVueLoader('/templates/Desktop.vue')
+const Desktop = httpVueLoader('/app/templates/Desktop.vue')
 // const DesktopStudent = httpVueLoader('/templates/DesktopStudent.vue')
 // const DesktopStudents = httpVueLoader('/templates/DesktopStudents.vue')
 // const DesktopTags = httpVueLoader('/templates/DesktopTags.vue')
