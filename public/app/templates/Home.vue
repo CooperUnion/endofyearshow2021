@@ -4,10 +4,13 @@
 <!--     <masthead></masthead> -->
     <!-- <tiles :categories="categories" class="tiles"></tiles> -->
     <ul>
-      <li v-for="post in posts">
+      <li class="post" v-for="post in posts">
         
         <img :src="post.assets.preview.thumbnail.source_url" />
-        
+        <pre>
+          {{post.title}}
+          {{post.type}}
+        </pre>
     
       </li>  
     </ul>
