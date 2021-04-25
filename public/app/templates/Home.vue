@@ -13,8 +13,8 @@
           author: {{post.author.formatted}}
           tags: {{post.taxonomy.tags}}
           description: {{post.meta.description}}
-          url: {{post.assets.url}}
-          high-res: {{post.assets.preview.source_url}}
+          url: <a :href="post.assets.url">{{post.assets.url}}</a>
+          high-res: <a :href="post.assets.preview.source_url">{{post.assets.preview.source_url}}</a>
           
         </pre>
     
@@ -65,5 +65,9 @@
   }
   .post{
     display:flex;
+  }
+  
+  pre, pre * {
+    font-family: "courier new"
   }
 </style>
