@@ -1,16 +1,12 @@
 <template>
   <main>
     <code>home debug info: {{path}}</code>
-<!--     <masthead></masthead> -->
-    <!-- <tiles :categories="categories" class="tiles"></tiles> -->
     <p v-if="loading">loading...</p>
-    <ul>
-      <li class="post" v-for="post in posts">
-        
-        <post :post="post"></post>
-    
-      </li>  
-    </ul>
+
+    <div v-else>
+      <p>View <a href="/app">all posts</a></p>
+      <posts :posts="posts"></posts>          
+    </div>
   </main>     
 </template>
 
@@ -19,12 +15,12 @@
 
   // import {Tiles} from '/components/tiles.js'
   // const Masthead = httpVueLoader('/components/masthead.vue')
-  const Post = httpVueLoader('/app/components/post.vue')
+  const Posts = httpVueLoader('/app/components/posts.vue')
 
 
   module.exports = {
     components: {
-      Post
+      Posts
     },
     data() {
       return {

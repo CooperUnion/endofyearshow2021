@@ -6,15 +6,11 @@
     
     <p v-if="loading">loading...</p>
 
-    <p v-else>View <a href="/app">all posts</a></p>
+    <div v-else>
+      <p>View <a href="/app">all posts</a></p>
+      <posts :posts="posts"></posts>          
+    </div>
     
-    <ul>
-      <li class="post" v-for="post in posts">
-        
-        <post :post="post"></post>
-    
-      </li>  
-    </ul>
   </main>     
 </template>
 
@@ -22,12 +18,12 @@
   /* global httpVueLoader */
 
   // const Masthead = httpVueLoader('/components/masthead.vue')
-  const Post = httpVueLoader('/app/components/post.vue')
+  const Posts = httpVueLoader('/app/components/posts.vue')
 
 
   module.exports = {
     components: {
-      Post
+      Posts
     },
     data() {
       return {
