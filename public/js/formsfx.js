@@ -520,7 +520,6 @@ const FormFX = function() {
     const resultsLink = document.createElement('h6');
     resultsLink.innerHTML = `You can view the results of your submission <a href="https://eoys-uploader-2021.glitch.me/app/post/${json.id}">here</a>.`;
     document.querySelector("footer").appendChild(resultsLink);
-
   }
   
 	function isValid(thisInput) {
