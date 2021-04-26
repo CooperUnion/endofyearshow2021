@@ -4,6 +4,8 @@
 <!--     <masthead></masthead> -->
     <!-- <tiles :categories="categories" class="tiles"></tiles> -->
     
+    <h1>View <a href="/app">all posts</a></h1>
+    
     <ul>
       <li class="post" v-for="post in posts">
         
