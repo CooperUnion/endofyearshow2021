@@ -26,12 +26,15 @@
 </script>
 
 <style scoped>
-  .tile {
-    border: 1px solid black;
-    width: var(--cell-side);
-    height: var(--cell-side);
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+  .post{
+    display:flex;
+  }
+  
+  pre, pre *, p {
+    font-family: "courier new"
+  }
+  
+  pre a, p a {
+    text-decoration:underline;
   }
 </style>
