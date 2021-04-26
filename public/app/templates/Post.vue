@@ -44,7 +44,7 @@
     },
     methods:{
       async init(){
-        this.posts = await fetch(`/api/posts/${$this.route.params.id}`).then(res=>res.json())
+        this.posts = [await fetch(`/api/posts/${this.$route.params.id}`).then(res=>res.json())]
         this.loading = false         
       }
     },
