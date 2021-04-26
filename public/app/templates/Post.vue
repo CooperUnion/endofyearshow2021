@@ -4,6 +4,8 @@
 <!--     <masthead></masthead> -->
     <!-- <tiles :categories="categories" class="tiles"></tiles> -->
     
+    <p v-if="loading">...</p>
+
     <h1>View <a href="/app">all posts</a></h1>
     
     <ul>
