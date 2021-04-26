@@ -3,7 +3,7 @@
     <code>home debug info: {{path}}</code>
 <!--     <masthead></masthead> -->
     <!-- <tiles :categories="categories" class="tiles"></tiles> -->
-    <p v-if="loading">lo...</p>
+    <p v-if="loading">loading...</p>
     <ul>
       <li class="post" v-for="post in posts">
         

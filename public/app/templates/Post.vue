@@ -4,9 +4,9 @@
 <!--     <masthead></masthead> -->
     <!-- <tiles :categories="categories" class="tiles"></tiles> -->
     
-    <p v-if="loading">...</p>
+    <p v-if="loading">loading...</p>
 
-    <h1>View <a href="/app">all posts</a></h1>
+    <p v-else>View <a href="/app">all posts</a></p>
     
     <ul>
       <li class="post" v-for="post in posts">
@@ -32,9 +32,8 @@
 <script>
   /* global httpVueLoader */
 
-  // import {Tiles} from '/components/tiles.js'
   // const Masthead = httpVueLoader('/components/masthead.vue')
-  // const Tiles = httpVueLoader('/components/tiles.vue')
+  const Post = httpVueLoader('/components/post.vue')
 
 
   module.exports = {
@@ -73,11 +72,11 @@
     display:flex;
   }
   
-  pre, pre * {
+  pre, pre *, p {
     font-family: "courier new"
   }
   
-  pre a {
+  pre a, p a {
     text-decoration:underline;
   }
 </style>
