@@ -18,4 +18,9 @@ router.get('/posts', apiLogger, async (req, res, next)=>{
   res.json(posts)
 })
 
+router.get('/posts/:id', apiLogger, async (req, res, next)=>{
+  const posts = await wp.getPostById(req.params.id)
+  res.json(posts)
+})
+
 module.exports = router

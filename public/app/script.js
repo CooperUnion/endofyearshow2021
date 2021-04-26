@@ -9,6 +9,8 @@
 
 // desktop
 const Home = httpVueLoader('/app/templates/Home.vue')
+const Post = httpVueLoader('/app/templates/Post.vue')
+
 // const DesktopStudent = httpVueLoader('/templates/DesktopStudent.vue')
 // const DesktopStudents = httpVueLoader('/templates/DesktopStudents.vue')
 // const DesktopTags = httpVueLoader('/templates/DesktopTags.vue')
@@ -73,6 +75,7 @@ const routes = [
   // {path: '/work/:work', component: DesktopWork},    
   // {path: '/test', component: Test},
   {path: '/app', component: Home},
+  {path: '/app/post/:id', component: Post},
   // {path: '/desktop', component: Desktop}
 ]
 

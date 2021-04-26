@@ -35,6 +35,14 @@ router.get('/app', indexLogger, (req, res)=>{
   return res.render('app', renderOptions)
 })
 
+router.get('/app/post/:id', indexLogger, (req, res)=>{
+  const renderOptions = {
+    data: [],
+    layout: false
+  } 
+  return res.render('app', renderOptions)
+})
+
 
 //shouldn't be used
 router.get('/dataTest', async (req, res)=>{
