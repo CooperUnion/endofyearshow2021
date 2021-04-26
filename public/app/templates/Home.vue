@@ -8,7 +8,7 @@
         
         <a :href="post.assets.preview.source_url"><img :src="post.assets.preview.thumbnail.source_url" /></a>
         <pre>
-          id: {{post.id}}
+          id: <a :href="post.route">{{post.id}}</a>
           title: {{post.title}}
           type: {{post.type}}
           author: {{post.author.formatted}}
