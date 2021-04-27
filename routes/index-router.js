@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const msalAuth = require('../lib/msal-auth');
 const data = require('../lib/data');
-
+const push = require('./push-router')
 const indexLogger = (req, res, next) =>{
   console.log('hit /index', req.path)
   next()
@@ -100,6 +100,10 @@ router.get('/cookieRedirect/:path', async(req, res)=>{
   req.session.redirect = '/'+req.params.path
   res.redirect(req.session.redirect)
   
+})
+
+router.get('/push', async (req, res)=>{
+  push('hi!')
 })
 
 

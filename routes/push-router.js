@@ -7,10 +7,9 @@ const prowl = new p(apikey);
 
 const push = (msg) =>{
 
-prowl.push('YO, this is awesomez!', 'My app', {
-	providerkey: 'my-provider-key',
+prowl.push(msg, 'My app', {
 	priority: 2,
-	url: 'http://revrise.com'
+	url: 'https://eoys-uploader-2021.glitch.me/app'
 }, function( err, remaining ){
 	if( err ) throw err;
 	console.log( 'I have ' + remaining + ' calls to the api during current hour. BOOM!' );
