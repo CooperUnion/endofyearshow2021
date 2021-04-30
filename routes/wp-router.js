@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json({extended:true})
-
+const push = require('../lib/push');
 
 //multer configuration
 const multer = require('multer');
