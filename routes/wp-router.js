@@ -173,6 +173,7 @@ router.post('/formData', wpLogger, upload.none(), async (req, res, next)=>{
   try {
     // return res.json({ok:true})
     let post = await wp.create(body)
+    push(post.id, "A new post was created!")
     res.json(post)
   } catch (e) {
     res.status(500).json({error:e})
