@@ -11,27 +11,20 @@
     <link rel="stylesheet" href="/app/css/space.css">    
     <link rel="stylesheet" href="/app/css/style.css">
 
-    <script type="module" src="https://cdn.jsdelivr.net/npm/vue@3.0.11/dist/vue.global{{data.env}}.min.js"></script>
-    <script type="module">
-    
-      import * as Vue from 'https://cdn.jsdelivr.net/npm/vue@3.0.11/dist/vue.global{{data.env}}.min.js'
+ {{#data.prod}}
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.0.11/dist/vue.global.prod.js" integrity="sha256-duyn52PmPNCJdKEZOCIhsB9Rv7qzoWAgADcqNAYkgjk=" crossorigin="anonymous"></script>
+{{/data.prod}}    
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.0.11/dist/vue.global.js" integrity="sha256-jN9tBRIyWCHH2GPV46P5ll/uyBFkXXqdtXTRwW1Mrp8=" crossorigin="anonymous"></script>
 
-      const vue = new Vue()
-      
-      import * as vueLoader from 'https://cdn.jsdelivr.net/npm/vue3-sfc-loader@0.7.3/dist/vue3-sfc-loader.esm.min.js'
-      import * as VueRouter from 'https://cdn.jsdelivr.net/npm/vue-router@4.0.6/dist/vue-router.esm-browser.min.js'
-      // import * as vuex from 'https://cdn.jsdelivr.net/npm/vuex@4.0.0/dist/vuex.esm-browser.min.js'
-    
-    
-    </script>
-    
-<!--     <script type="module">
-      import * as Vue from 'https://cdn.jsdelivr.net/npm/vue@3.0.11/dist/vue.esm-browser{{data.env}}.min.js'
-      import * as vueLoader from 'https://cdn.jsdelivr.net/npm/vue3-sfc-loader@0.7.3/dist/vue3-sfc-loader.esm.min.js'
-      import * as vueRouter from 'https://cdn.jsdelivr.net/npm/vue-router@4.0.6/dist/vue-router.esm-browser.min.js'
-      import * as vuex from 'https://cdn.jsdelivr.net/npm/vuex@4.0.0/dist/vuex.esm-browser.min.js'
-    
-    </script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue-router@3.5.1/dist/vue-router.min.js" integrity="sha256-eZzOaXKNUwCBbixtwh69SAgFtFqGT6028WLW01MNPKA=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue3-sfc-loader@0.7.3/dist/vue3-sfc-loader.js" integrity="sha256-ZQZNtT9KesW5w8c3Kz4Voix7QBJvN5iiEnd+AoZg8NE=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vuex@3.6.2/dist/vuex.min.js" integrity="sha256-Pv2SFYpMJPmZV3P6/t4ld+Fkb3OBUsA7gHZ4thBYPzw=" crossorigin="anonymous"></script>
+
+
+
+
     
 
   </head>
