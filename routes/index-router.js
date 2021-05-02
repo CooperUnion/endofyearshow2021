@@ -47,7 +47,8 @@ router.get('/app/post/:id', indexLogger, (req, res)=>{
 router.get('/app3', indexLogger, (req, res)=>{
   const renderOptions = {
     data: {
-      prod: process.env.VUE_ENV_PROD == 'TRUE'
+      prod: process.env.VUE_ENV_PROD == 'TRUE',
+      dev: process.env.VUE_ENV_PROD != 'TRUE',
     },
     layout: false
   } 
