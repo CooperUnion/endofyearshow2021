@@ -43,6 +43,23 @@ router.get('/app/post/:id', indexLogger, (req, res)=>{
   return res.render('app', renderOptions)
 })
 
+//vue3 app instantiation
+router.get('/app3', indexLogger, (req, res)=>{
+  const renderOptions = {
+    data: [],
+    layout: false
+  } 
+  return res.render('app3', renderOptions)
+})
+
+router.get('/app3/post/:id', indexLogger, (req, res)=>{
+  const renderOptions = {
+    data: [],
+    layout: false
+  } 
+  return res.render('app', renderOptions)
+})
+
 
 //shouldn't be used
 router.get('/dataTest', async (req, res)=>{
