@@ -6,18 +6,25 @@ import Vuex from './js/vuex@3.6.2/dist/vuex.esm.browser.min.js'
 
 console.log("loaded fine")
 
-const Counter = {
-  data() {
-    return {
-      counter: 0
-    }
-  },
-  mounted() {
-    setInterval(() => {
-      this.counter++
-      console.log(this.counter)
-    }, 1000)
-  }
-}
+const options = {
+  moduleCache: { vue: Vue },
+  getFile: () => `
+  <template>
+    vue3-sfc-loader esm version
+      <button @click="count++">count is: {{ count }} {{name}}</button>
 
-Vue.createApp(Counter).mount('#counter')
+  </template>
+  <script>
+    import { ref } from "vue";
+    export default {
+      setup() {
+        const name = ref('Name etc');
+        let count = 0
+        return { name, count };
+      }
+    };
+  </script>
+  `,
+  addStyle: () => {},
+}
+Vue.createApp(Vue.defineAsyncComponent(() => loadModule('file.vue', options))).mount(document.body);
