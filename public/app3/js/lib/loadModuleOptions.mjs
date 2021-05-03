@@ -1,4 +1,4 @@
-import * as Vue from './vue@3.0.11/dist/vue.esm-browser.min.js'
+import * as Vue from '../vue@3.0.11/dist/vue.esm-browser.min.js'
 
 const options = {
   moduleCache: {

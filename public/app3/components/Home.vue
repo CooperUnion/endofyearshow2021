@@ -36,8 +36,8 @@
 
 <script type="module">
   import { ref, onBeforeMount } from "vue";
-    // import quickLoad from '../js/lib/quickLoadModule.js'
-  import options from '../js/loadModuleOptions.js'
+  import quickLoad from '../js/lib/quickLoadModule.mjs'
+  // import options from '../js/loadModuleOptions.js'
 
   export default {
     components: {
