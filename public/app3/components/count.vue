@@ -1,6 +1,6 @@
 <template>
   <button @click="counter++">count is: {{ counter }}</button>
-  <div id="counter" :style="bg">
+  <div id="counter" :style="{backgroundColor:color}">
     Counter: {{ counter }} {{color}}
   </div>  
 </template>
@@ -11,10 +11,9 @@
  
   export default {
     props: ['color'],
-    setup(){
+    setup(context, props){
       const counter = ref(0)
-      const bg = ref(`background-color: ${this.color}`)
-      return {counter, bg}
+      return {counter}
     }
   }
 
@@ -22,8 +21,8 @@
 
 <style scoped>
 
-  div {
+/*   div {
     background-color: green;
-  }
+  } */
 
 </style>

@@ -16,7 +16,7 @@ const app = Vue.createApp({
   },
   template: `
     <count color="red"></count>
-    <anotherCount></anotherCount>
+    <count color="green"></count>
     <home></home>
   `
 }).mount("#app");
