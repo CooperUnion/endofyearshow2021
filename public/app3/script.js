@@ -11,11 +11,13 @@ console.log("loaded fine")
 const app = Vue.createApp({
   components: {
     'count': Vue.defineAsyncComponent( () => loadModule('./count.vue', options) ),
-    'anotherCount': Vue.defineAsyncComponent( () => loadModule('./anotherCount.vue', options) )
+    'anotherCount': Vue.defineAsyncComponent( () => loadModule('./anotherCount.vue', options) ),
+    'Home': Vue.defineAsyncComponent( () => loadModule('./Home.vue', options) )
   },
   template: `
     <count></count>
     <anotherCount></anotherCount>
+    <home></home>
   `
 }).mount("#app");
 // app.config.devtools = true
