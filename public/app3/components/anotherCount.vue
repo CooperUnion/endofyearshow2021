@@ -1,6 +1,6 @@
 <template>
   <button @click="counter++">count is: {{ counter }}</button>
-  <div id="counter">
+  <div id="counter2">
     Counter: {{ counter }}
   </div>  
 </template>
@@ -12,7 +12,7 @@
   export default {
     setup(){
       const counter = ref(0)
-      return {counter}
+      return { counter }
     }
   }
 
@@ -21,7 +21,7 @@
 <style scoped>
 
   div {
-    background-color: green;
+    background-color: gainsboro;
   }
 
 </style>
