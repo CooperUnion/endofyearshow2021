@@ -15,7 +15,7 @@ const app = Vue.createApp({
     'Home': Vue.defineAsyncComponent( () => loadModule('./Home.vue', options) )
   },
   template: `
-    <count></count>
+    <count color="red"></count>
     <anotherCount></anotherCount>
     <home></home>
   `

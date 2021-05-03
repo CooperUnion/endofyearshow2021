@@ -1,7 +1,7 @@
 <template>
   <button @click="counter++">count is: {{ counter }}</button>
-  <div id="counter">
-    Counter: {{ counter }}
+  <div id="counter" :style="bg">
+    Counter: {{ counter }} {{color}}
   </div>  
 </template>
 
@@ -10,12 +10,11 @@
   import { ref } from "vue";
  
   export default {
-    props: {
-      color: 'red'
-    },
+    props: ['color'],
     setup(){
       const counter = ref(0)
-      return {counter}
+      const bg = ref(`background-color: ${this.color}`)
+      return {counter, bg}
     }
   }
 
