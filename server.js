@@ -4,6 +4,7 @@ const app = express();
 const msal = require('@azure/msal-node');
 const cookieSession = require("cookie-session");
 const exphbs  = require('express-handlebars');
+const fs = require('fs');
 
 //custom middleware
 const data = require('./lib/data');
@@ -27,6 +28,19 @@ app.use(cookieSession({
   maxAge: 168 * 60 * 60 * 1000, // 24*7 hours
 }))
 
+app.get('/app3/components/:file', function(req, res) {
+  // Note: should use a stream here, instead of fs.readFile
+  fs.readFile('./public/' + req.params.file, function(err, data) {
+    if(err) {
+      res.send("Oops! Couldn't find that file.");
+    } else {
+      // set the content type based on the file
+      res.contentType(req.params.file);
+      res.send(data);
+    }   
+    res.end();
+  }); 
+});
 //serve static assets from /public
 // express.static.mime.define({'application/javascript': ['vue']});
 app.use(express.static("public"));

@@ -6,6 +6,20 @@ import Vuex from './js/vuex@3.6.2/dist/vuex.esm.browser.min.js'
 
 console.log("loaded fine")
 
+
+const AsyncComp = Vue.defineAsyncComponent(() =>
+  import('./components/count.vue')
+)
+
+
+Vue.createApp({
+  // ...
+  components: {
+    count: AsyncComp
+  },
+  template:'<count></count>'
+}).mount("#app")
+
 // import count from './components/count.vue.js'
 
 // const options = {
