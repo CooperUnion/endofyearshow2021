@@ -10,6 +10,9 @@
   import { ref } from "vue";
  
   export default {
+    props: {
+      color: 'red'
+    },
     setup(){
       const counter = ref(0)
       return {counter}
