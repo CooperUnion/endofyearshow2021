@@ -36,7 +36,7 @@
 
 <script>
   import { ref, onBeforeMount } from "vue";
-  // import {quickLoad} from '../js/lib/quickLoadModule.js'
+  import { quickLoad } from '../js/lib/quickLoadModule.js'
   
   export default {
     components: {
@@ -44,6 +44,7 @@
     },
     props: {},
     setup(){
+      console.log(quickLoad)
       const loading = ref(true)
       const posts = ref([])
       onBeforeMount(async ()=>{        
