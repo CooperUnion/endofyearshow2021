@@ -30,12 +30,12 @@ app.use(cookieSession({
 
 app.get('/app3/components/:file', function(req, res) {
   // Note: should use a stream here, instead of fs.readFile
-  fs.readFile('./public/' + req.params.file, function(err, data) {
+  fs.readFile('./public/app3/components/' + req.params.file, function(err, data) {
     if(err) {
       res.send("Oops! Couldn't find that file.");
     } else {
       // set the content type based on the file
-      res.contentType(req.params.file);
+      res.contentType("text/javascript");
       res.send(data);
     }   
     res.end();

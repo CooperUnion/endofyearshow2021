@@ -1,4 +1,5 @@
 <template>
+  <button @click="counter++">count is: {{ counter }}</button>
   <div id="counter">
     Counter: {{ counter }}
   </div>  
@@ -11,7 +12,16 @@
   export default {
     setup(){
       const counter = ref(0)
+      return { counter }
     }
   }
 
 </script>
+
+<style scoped>
+
+  div {
+    backgr
+  }
+
+</style>
