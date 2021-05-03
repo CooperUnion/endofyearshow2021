@@ -6,7 +6,6 @@ import options from './js/loadModuleOptions.js'
 
 console.log("loaded fine")
 
-
  
 const app = Vue.createApp({
   components: {
@@ -18,3 +17,4 @@ const app = Vue.createApp({
     <anotherCount></anotherCount>
   `
 }).mount("#app");
+app.config.devtools = true
