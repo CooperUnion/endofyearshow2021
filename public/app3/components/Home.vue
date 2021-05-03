@@ -34,17 +34,17 @@
   </main>     
 </template>
 
-<script>
+<script type="module">
   import { ref, onBeforeMount } from "vue";
-  import { quickLoad } from '../js/lib/quickLoadModule.js'
-  
+    // import quickLoad from '../js/lib/quickLoadModule.js'
+  import options from '../js/loadModuleOptions.js'
+
   export default {
     components: {
       // Post: () => loadModule('./Post.vue', options),
     },
     props: {},
     setup(){
-      console.log(quickLoad)
       const loading = ref(true)
       const posts = ref([])
       onBeforeMount(async ()=>{        
