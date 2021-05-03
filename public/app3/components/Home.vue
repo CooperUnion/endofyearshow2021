@@ -3,7 +3,6 @@
     <code>home debug info: {{path}}</code>
     <h1 @click="loadToggle">test loading</h1>
 
-    <post></post>
     
     <p v-if="loading">loading...</p>
     <div v-else>
@@ -36,7 +35,7 @@
 
 <script type="module">
   import { ref, onBeforeMount } from "vue";
-  import Post from './Post.vue';
+  import Post from 'Post.vue';
   // import { quickLoad } from '../js/lib/quickLoadModule.mjs'
   // import options from '../js/loadModuleOptions.js'
 

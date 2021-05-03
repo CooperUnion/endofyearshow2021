@@ -9,8 +9,8 @@ console.log("loaded fine")
  
 const app = createApp({
   components: {
-    count: defineAsyncComponent(()=>quickLoad('./count.vue')),
-    home: defineAsyncComponent(()=>quickLoad('./Home.vue'))
+    count: defineAsyncComponent(()=>quickLoad('count.vue')),
+    home: defineAsyncComponent(()=>quickLoad('Home.vue'))
   },
   template: `
     <count color="red"></count>
