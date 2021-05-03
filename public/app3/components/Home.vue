@@ -1,10 +1,11 @@
 <template>
   <main>
     <code>home debug info: {{path}}</code>
+    <h1 @click="loadToggle">test loading</h1>
+
     <p v-if="loading">loading...</p>
     <div v-else>
       <p>View <a href="/app">all posts</a></p>
-      <h1 @click="loadToggle">test</h1>
       <ul>
         <li v-for="post in posts">
           <div class="post">
@@ -43,13 +44,11 @@
         posts.value = await fetch('/api/posts').then(res=>res.json())         
         loading.value = false
       })
-      return {posts, loading}
-    },
-    methods:{
-      async loadToggle(){
+      async function loadToggle(){
         console.log("ok...")
-        loading.value = 
+        loading.value = loading.value === true ? false : true
       }
+      return {posts, loading, loadToggle}
     }
   }
 </script>
