@@ -6,6 +6,7 @@ import options from './js/loadModuleOptions.js'
 
 console.log("loaded fine")
 
+// Vue.devtools.config = true
  
 const app = Vue.createApp({
   components: {
@@ -19,3 +20,7 @@ const app = Vue.createApp({
 }).mount("#app");
 // app.config.devtools = true
 window.__VUE_DEVTOOLS_GLOBAL_HOOK__.Vue = app.constructor
+window.postMessage({
+  devtoolsEnabled: true,
+  vueDetected: true
+}, '*')
