@@ -28,8 +28,16 @@ app.use(cookieSession({
 }))
 
 //serve static assets from /public
-express.static.mime.define({'application/javascript': ['vue']});
+// express.static.mime.define({'application/javascript': ['vue']});
 app.use(express.static("public"));
+
+// var options = {
+//   setHeaders: function (res, path, stat) {
+//     res.set('Content-Type','text/javascript')
+//   }
+// }
+
+// app.use(express.static('public/app3/components', options))
 
 
 //router setups
