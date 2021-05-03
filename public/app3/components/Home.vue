@@ -36,11 +36,13 @@
 
 <script type="module">
   import { ref, onBeforeMount } from "vue";
-  import quickLoad from '../js/lib/quickLoadModule.mjs'
+  import Post from './Post.vue';
+  // import { quickLoad } from '../js/lib/quickLoadModule.mjs'
   // import options from '../js/loadModuleOptions.js'
 
   export default {
     components: {
+      Post
       // Post: () => loadModule('./Post.vue', options),
     },
     props: {},
