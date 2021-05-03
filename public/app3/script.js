@@ -6,25 +6,27 @@ import Vuex from './js/vuex@3.6.2/dist/vuex.esm.browser.min.js'
 
 console.log("loaded fine")
 
-const options = {
-  moduleCache: { vue: Vue },
-  getFile: () => `
-  <template>
-    vue3-sfc-loader esm version
-      <button @click="count++">count is: {{ count }} {{name}}</button>
+// const options = {
+//   moduleCache: { vue: Vue },
+//   getFile: () => `
+//   <template>
+//     vue3-sfc-loader esm version
+//       <button @click="count++">count is: {{ count }} {{name}}</button>
 
-  </template>
-  <script>
-    import { ref } from "vue";
-    export default {
-      setup() {
-        const name = ref('Name etc');
-        let count = 0
-        return { name, count };
-      }
-    };
-  </script>
-  `,
-  addStyle: () => {},
-}
-Vue.createApp(Vue.defineAsyncComponent(() => loadModule('file.vue', options))).mount(document.body);
+//   </template>
+//   <script>
+//     import { ref } from "vue";
+//     export default {
+//       setup() {
+//         const name = ref('Name etc');
+//         const count = ref(0)
+//         return { name, count };
+//       }
+//     };
+//   </script>
+//   `,
+//   addStyle: () => {},
+// }
+
+// Vue.createApp(Vue.defineAsyncComponent(() => loadModule('file.vue', options))).mount(document.body);
+
