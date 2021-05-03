@@ -28,7 +28,10 @@ app.use(cookieSession({
 }))
 
 //serve static assets from /public
+express.static.mime.define({'application/javascript': ['vue']});
 app.use(express.static("public"));
+
+
 //router setups
 const auth = express.Router()
 auth.use(msalRouter)

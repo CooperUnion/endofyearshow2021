@@ -6,6 +6,10 @@ import Vuex from './js/vuex@3.6.2/dist/vuex.esm.browser.min.js'
 
 console.log("loaded fine")
 
+import count from './components/count.vue'
+
+
+
 // const options = {
 //   moduleCache: { vue: Vue },
 //   getFile: () => `
