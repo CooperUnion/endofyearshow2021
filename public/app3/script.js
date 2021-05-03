@@ -8,31 +8,29 @@ console.log("loaded fine")
 
 // import count from './components/count.vue.js'
 
- const options = {
-  moduleCache: {
-    vue: Vue
-  },
-  async getFile(url) {
+// const options = {
+//   moduleCache: {
+//     vue: Vue
+//   },
+//   async getFile(url) {
+//     const res = await fetch('https://eoys-uploader-2021.glitch.me/app3/components/'+url);
+//     // if ( !res.ok ) throw Object.assign(new Error(res.statusText + ' ' + url), { res });
+//     return await res.text();
+//   },
+//   addStyle(textContent) {
 
-    const res = await fetch('/app3/components/count.vue.js');
-    if ( !res.ok )
-      throw Object.assign(new Error(res.statusText + ' ' + url), { res });
-    return await res.text();
-  },
-  addStyle(textContent) {
-
-    const style = Object.assign(document.createElement('style'), { textContent });
-    const ref = document.head.getElementsByTagName('style')[0] || null;
-    document.head.insertBefore(style, ref);
-  },
-}
+//     const style = Object.assign(document.createElement('style'), { textContent });
+//     const ref = document.head.getElementsByTagName('style')[0] || null;
+//     document.head.insertBefore(style, ref);
+//   }
+// }
  
- const app = Vue.createApp({
-  components: {
-    'my-component': Vue.defineAsyncComponent( () => loadModule('./myComponent.vue', options) )
-  },
-  template: '<my-component></my-component>'
-});
+//  const app = Vue.createApp({
+//   components: {
+//     'my-component': Vue.defineAsyncComponent( () => loadModule('./count.vue.js', options) )
+//   },
+//   template: '<my-component></my-component>'
+// }).mount("#app");
 
 // const options = {
 //   moduleCache: { vue: Vue },
