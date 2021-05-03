@@ -4,61 +4,54 @@
     <p v-if="loading">loading...</p>
     <div v-else>
       <p>View <a href="/app">all posts</a></p>
-      {{ posts }}
+      <h1 @click="loadToggle">test</h1>
+      <ul>
+        <li v-for="post in posts">
+          <div class="post">
+            <a :href="post.assets.preview.source_url">
+              <img :src="post.assets.preview.thumbnail.source_url" />
+            </a>
+            <pre>
+              id: <a :href="post.route">{{post.id}}</a>
+              title: {{post.title}}
+              type: {{post.type}}
+              author: {{post.author.formatted}}
+              tags: {{post.taxonomy.tags}}
+              description: {{post.meta.description}}
+              url: <a :href="post.assets.url">{{post.assets.url}}</a>
+              high-res: <a :href="post.assets.preview.source_url">{{post.assets.preview.source_url}}</a>
+              <span v-if="post.type === 'video'">video: <a :href="post.assets.media.url">{{post.assets.media.url}}</a></span>
+            </pre>
+          </div>
+        </li>
+      </ul>
+      
+      
     </div>
   </main>     
 </template>
 
 <script>
-  /* global httpVueLoader */
-
-  // import {Tiles} from '/components/tiles.js'
-  // const Masthead = httpVueLoader('/components/masthead.vue')
-  // const Posts = httpVueLoader('/app/components/posts.vue')
   import { ref, onBeforeMount } from "vue";
  
   export default {
     props: {},
     setup(){
       const loading = ref(true)
-      onBeforeMount(()=>{
-        loading.value = "yes"
-        console.log(loading.value)
-        // return {loading}
-      })
-      // console.log(loading.value)
       const posts = ref([])
+      onBeforeMount(async ()=>{        
+        posts.value = await fetch('/api/posts').then(res=>res.json())         
+        loading.value = false
+      })
       return {posts, loading}
+    },
+    methods:{
+      async loadToggle(){
+        console.log("ok...")
+        loading.value = 
+      }
     }
   }
-
-  
-//   module.exports = {
-//     components: {
-//       Posts
-//     },
-//     data() {
-//       return {
-//         loading: true,
-//         categories: [],
-//         posts: []
-//       }
-//     },
-//     methods:{
-//       async init(){
-//         this.posts = await fetch('/api/posts').then(res=>res.json())
-//         this.loading = false         
-//       }
-//     },
-//     mounted: async function () {
-//       this.init()
-//     },
-//     computed:{
-//       path(){
-//         return this.$route.path
-//       }
-//     }
-//   }
 </script>
 
 <style scoped>
@@ -66,5 +59,16 @@
     background-color: gainsboro;
     width: 100%;
     height: 100vh;
+  }
+   .post{
+    display:flex;
+  }
+  
+  pre, pre *, p {
+    font-family: "courier new"
+  }
+  
+  pre a, p a {
+    text-decoration:underline;
   }
 </style>
