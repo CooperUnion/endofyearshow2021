@@ -18,3 +18,4 @@ const app = Vue.createApp({
   `
 }).mount("#app");
 app.config.devtools = true
+window.__VUE_DEVTOOLS_GLOBAL_HOOK__.Vue = app.constructor
