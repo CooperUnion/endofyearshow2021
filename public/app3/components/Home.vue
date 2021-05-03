@@ -33,15 +33,15 @@
   </main>     
 </template>
 
-<script type="module">
+<script>
   import { ref, onBeforeMount } from "vue";
   import Post from 'Post.vue';
-  // import { quickLoad } from '../js/lib/quickLoadModule.mjs'
+  // import quickLoad from '../js/lib/quickLoadModule.mjs'
   // import options from '../js/loadModuleOptions.js'
 
   export default {
     components: {
-      Post
+      // Post
       // Post: () => loadModule('./Post.vue', options),
     },
     props: {},
