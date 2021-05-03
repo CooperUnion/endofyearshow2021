@@ -3,6 +3,8 @@
     <code>home debug info: {{path}}</code>
     <h1 @click="loadToggle">test loading</h1>
 
+    <post></post>
+    
     <p v-if="loading">loading...</p>
     <div v-else>
       <p>View <a href="/app">all posts</a></p>
@@ -34,10 +36,11 @@
 
 <script>
   import { ref, onBeforeMount } from "vue";
- 
+  // import {quickLoad} from '../js/lib/quickLoadModule.js'
+  
   export default {
     components: {
-      Post: () => loadModule('./Post.vue', options),
+      // Post: () => loadModule('./Post.vue', options),
     },
     props: {},
     setup(){
