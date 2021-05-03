@@ -36,6 +36,9 @@
   import { ref, onBeforeMount } from "vue";
  
   export default {
+    components: {
+      Post: () => loadModule('./Post.vue', options),
+    },
     props: {},
     setup(){
       const loading = ref(true)
@@ -59,15 +62,5 @@
     width: 100%;
     height: 100vh;
   }
-   .post{
-    display:flex;
-  }
-  
-  pre, pre *, p {
-    font-family: "courier new"
-  }
-  
-  pre a, p a {
-    text-decoration:underline;
-  }
+ 
 </style>
