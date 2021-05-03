@@ -2,7 +2,6 @@
   <main>
     <code>home debug info: {{path}}</code>
     <p v-if="loading">loading...</p>
-
     <div v-else>
       <p>View <a href="/app">all posts</a></p>
       {{ posts }}
@@ -16,17 +15,20 @@
   // import {Tiles} from '/components/tiles.js'
   // const Masthead = httpVueLoader('/components/masthead.vue')
   // const Posts = httpVueLoader('/app/components/posts.vue')
-  import { ref } from "vue";
+  import { ref, onBeforeMount } from "vue";
  
   export default {
     props: {},
     setup(){
-      
-      onBeforeMounted(()=>{
-        
+      const loading = ref(true)
+      onBeforeMount(()=>{
+        loading.value = "yes"
+        console.log(loading.value)
+        // return {loading}
       })
+      // console.log(loading.value)
       const posts = ref([])
-      return {posts}
+      return {posts, loading}
     }
   }
 
