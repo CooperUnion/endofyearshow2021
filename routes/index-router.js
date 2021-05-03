@@ -44,9 +44,7 @@ router.get('/app/post/:id', indexLogger, (req, res)=>{
 })
 
 //vue3 app instantiation
-r
-
-outer.get('/app3', indexLogger, (req, res)=>{
+router.get('/app3', indexLogger, (req, res)=>{
   const renderOptions = {
     data: {
       prod: process.env.VUE_ENV_PROD == 'TRUE',

@@ -12,9 +12,12 @@
     <link rel="stylesheet" href="/app/css/style.css">
 
 
-
-    <script type="module" src="/app4/script.js"></script>
-    
+    <script type="module">
+      import * as Test from '/app4/script.js'
+  
+      Test.fancy()
+      Test.amazing()
+    </script>
   </head>
   <body >
 
