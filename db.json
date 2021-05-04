@@ -1,6 +1,7 @@
 {
-  "posts": [],
-  "user": {},
-  "count": 0,
-  "projects": []
+  "projects": [
+    "Special Project 1",
+    "Another",
+    "a third test"
+  ]
 }
