@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-// const cors = require('cors');
+const Special = require('../lib/projects')
+
 
 const {
   ...wp
@@ -21,6 +22,10 @@ router.get('/posts', apiLogger, async (req, res, next)=>{
 router.get('/posts/:id', apiLogger, async (req, res, next)=>{
   const posts = await wp.getPostById(req.params.id)
   res.json(posts)
+})
+
+router.get('/projects', apiLogger, async (req, res, next)=>{
+  
 })
 
 module.exports = router
