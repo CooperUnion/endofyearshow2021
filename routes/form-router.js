@@ -25,12 +25,14 @@ router.get('/', formLogger, async (req, res)=>{
   let students = await data.students()
   let teachers = await data.faculty()
   let courses = await data.courses()
+  let projects = data.projects
   
   const csvData = {
     students,
     teachers,
     courses,
-    user:req.session.user || {name:{full:"mike stamm", first:"mike", last:"stamm"}, email:"mike@test.com"}
+    user:req.session.user || {name:{full:"mike stamm", first:"mike", last:"stamm"}, email:"mike@test.com"},
+    projects
   }
   
   const renderOptions = {
