@@ -609,12 +609,6 @@
 			<div class="formblock" data-required="required">
 				<span class="pseudolabel" data-anchor="whichproject">Which special project is this from?</span> 
 				<div class="form-input" data-inputtype="checkbox">
-          <datalist id="datalist-projects"> 
-              {{#data.projects}} 
-              <option name="{{this}}">{{this}}</option>
-              {{/data.projects}} 
-          </datalist> 
-
 					<ul class="inputlist checkboxes">
 						<li><label for="whichproject-1"> 
 						<input type="checkbox" name="whichproject" id="whichproject-1" value="Senior show">
@@ -625,6 +619,23 @@
 					</ul>
 				</div>
 			</div>
+			<div class="formblock" data-required="required">
+				<span class="pseudolabel" data-anchor="datalist-projects">Special project</span> 
+				<p class="label-context">
+					Which special project is this from?
+				</p>
+				<div class="form-input" data-inputtype="datalist">
+          <ul class="inputlist checkboxes" data-name="faculty"></ul>
+					<input list="datalist-project" placeholder="Special project" />
+					<datalist id="datalist-project">
+          {{#data.projects}} 
+					<option name="{{this}}">{{this}}</option>
+					{{/data.projects}}
+          </datalist> 
+				</div>
+			</div>
+
+
 		</fieldset>
 		<button type="submit">Submit</button> <small class="validation-message"></small> 
 	</form>

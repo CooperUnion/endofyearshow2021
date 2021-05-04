@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const msalAuth = require('../lib/msal-auth');
 const data = require('../lib/data');
 const push = require('../lib/push');
 const indexLogger = (req, res, next) =>{
@@ -9,7 +8,7 @@ const indexLogger = (req, res, next) =>{
 }
 
 //auth router redirects
-router.get('/', indexLogger, msalAuth.validate, (req, res) => {  
+router.get('/', indexLogger, (req, res) => {  
   res.redirect(req.session.redirect || '/form')
 });
 

@@ -1,17 +1,15 @@
 //app setup and auth
 const express = require("express");
 const app = express();
-const msal = require('@azure/msal-node');
 const cookieSession = require("cookie-session");
 const exphbs  = require('express-handlebars');
 const fs = require('fs');
 
 //custom middleware
 const data = require('./lib/data');
-const msalAuth = require('./lib/msal-auth');
 
 //custom routers
-const msalRouter = require('./routes/msal-router');
+// const msalRouter = require('./routes/msal-router');
 const formRouter = require('./routes/form-router');
 const indexRouter = require('./routes/index-router');
 const wpRouter = require('./routes/wp-router');
@@ -55,9 +53,6 @@ app.use(express.static("public"));
 
 
 //router setups
-const auth = express.Router()
-auth.use(msalRouter)
-
 const form = express.Router()
 form.use(formRouter)
 
@@ -71,7 +66,6 @@ const api = express.Router()
 api.use(apiRouter)
  
 //attach routers
-app.use('/auth', auth)
 app.use('/form', form)
 app.use('/wp', wp)
 app.use('/', index)
