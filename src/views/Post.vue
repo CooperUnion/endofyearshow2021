@@ -46,11 +46,14 @@
       // Post: () => loadModule('./Post.vue', options),
     },
     props: {
-      post: Number
+      post: String
     },
-    setup(){
+    setup(post, route){
       const loading = ref(true)
       const posts = ref([])
+      
+      console.log(post, route.params)
+      
       onBeforeMount(async ()=>{        
         posts.value = await fetch(`https://eoys-uploader-2021.glitch.me/api/posts/${post}`).then(res=>res.json())         
         loading.value = false
