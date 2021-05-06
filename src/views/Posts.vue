@@ -6,7 +6,6 @@
     
     <p v-if="loading">loading...</p>
     <div v-else>
-      <p>View a test post<a href="/posts/3320">all posts</a></p>
       <ul>
         <li v-for="post in posts" :key="post.id">
           <div class="post">

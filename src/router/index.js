@@ -35,6 +35,10 @@ const routes = [
   {
     path: '/app/',
     redirect: { name: 'Posts'}
+  },
+  {
+    path: '/app',
+    redirect: { name: 'Posts'}
   }
 ]
 
