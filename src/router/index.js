@@ -27,7 +27,7 @@ const routes = [
     name: 'Post',
     component: Post,
     props: {
-      post: route=>route.params.post
+      post: (route) => { return {post: route.params.post} }
     }
   }
 ]

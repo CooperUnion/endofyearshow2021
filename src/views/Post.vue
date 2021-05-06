@@ -1,7 +1,7 @@
 <template>
   <main>
     <code>home debug info: {{path}}</code>
-    <h1 @click="loadPosts(post)">test loading individual post page</h1>
+    <h1 @click="loadPosts()">test loading individual post page</h1>
 
     <code>{{$route.params.post}}</code>
     
@@ -52,7 +52,7 @@
       const loading = ref(true)
       const posts = ref([])
       
-      console.log(props.post)
+      console.log(props.post())
       
       onBeforeMount(loadPosts)
       async function loadToggle(){
@@ -60,8 +60,8 @@
         loading.value = loading.value === true ? false : true
       }
       
-      async function loadPosts(post){
-        posts.value = await fetch(`https://eoys-uploader-2021.glitch.me/api/posts/${post}`).then(res=>res.json())   
+      async function loadPosts(){
+        posts.value = await fetch(`https://eoys-uploader-2021.glitch.me/api/posts/${props.post}`).then(res=>res.json())   
         loading.value = false   
         return true
       }
