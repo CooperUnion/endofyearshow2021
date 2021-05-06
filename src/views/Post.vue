@@ -52,7 +52,7 @@
       const loading = ref(true)
       const posts = ref([])
       
-      console.log(props.post())
+      console.log(props.post)
       
       onBeforeMount(loadPosts)
       async function loadToggle(){
@@ -61,8 +61,8 @@
       }
       
       async function loadPosts(){
-        // posts.value = await fetch(`https://eoys-uploader-2021.glitch.me/api/posts/${props.post}`).then(res=>res.json())   
-        loading.value = false   
+        posts = await fetch(`https://eoys-uploader-2021.glitch.me/api/posts/${props.post}`).then(res=>res.json())   
+        loading = false   
         return true
       }
       return {posts, loading, loadToggle, loadPosts}

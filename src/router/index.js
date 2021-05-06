@@ -26,10 +26,7 @@ const routes = [
     path: '/posts/:post',
     name: 'Post',
     component: Post,
-    props: {
-      post: route => ({ post: route })
-
-    }
+    props: true
   }
 ]
 
