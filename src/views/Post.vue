@@ -3,6 +3,7 @@
     <code>home debug info: {{path}}</code>
     <h1 @click="loadToggle">test loading individual post page</h1>
 
+    <code>{{$route.params.post}}</code>
     
     <p v-if="loading">loading...</p>
     <div v-else>
@@ -44,19 +45,21 @@
       // Post
       // Post: () => loadModule('./Post.vue', options),
     },
-    props: {},
+    props: {
+      post: Number
+    },
     setup(){
       const loading = ref(true)
       const posts = ref([])
       onBeforeMount(async ()=>{        
-        posts.value = await fetch('https://eoys-uploader-2021.glitch.me/api/posts').then(res=>res.json())         
+        posts.value = await fetch(`https://eoys-uploader-2021.glitch.me/api/posts/${post}`).then(res=>res.json())         
         loading.value = false
       })
       async function loadToggle(){
         console.log("ok...")
         loading.value = loading.value === true ? false : true
       }
-      return {posts, loading, loadToggle, $route}
+      return {posts, loading, loadToggle}
     }
   }
 </script>
