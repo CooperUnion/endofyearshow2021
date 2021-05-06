@@ -1,12 +1,12 @@
 <template>
   <main>
     <code>home debug info: {{path}}</code>
-    <h1 @click="loadToggle">test loading</h1>
+    <h1 @click="loadToggle">test loading individual post page</h1>
 
     
     <p v-if="loading">loading...</p>
     <div v-else>
-      <p>View a test post<a href="/posts/3320">all posts</a></p>
+      <p>View <a href="/app">all posts</a></p>
       <ul>
         <li v-for="post in posts" :key="post.id">
           <div class="post">
@@ -56,7 +56,7 @@
         console.log("ok...")
         loading.value = loading.value === true ? false : true
       }
-      return {posts, loading, loadToggle}
+      return {posts, loading, loadToggle, $route}
     }
   }
 </script>
