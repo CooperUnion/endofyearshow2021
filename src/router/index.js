@@ -27,6 +27,14 @@ const routes = [
     name: 'Post',
     component: Post,
     props: true
+  },
+  {
+    path: '/app/post/:post',
+    redirect: { name: 'Post' }
+  },
+  {
+    path: '/app/',
+    redirect: { name: 'Posts'}
   }
 ]
 
