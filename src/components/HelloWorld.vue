@@ -1,4 +1,5 @@
 <template>
+  <Test></Test>
   <div class="hello">
     <h1>{{ msg }}</h1>
     <p>
@@ -35,6 +36,9 @@
 </template>
 
 <script>
+  
+import Test from '@/components/Test.vue'
+  
 export default {
   name: 'HelloWorld',
   props: {
