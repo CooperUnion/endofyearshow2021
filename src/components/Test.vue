@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <h1>
-      A test from Erin {{fancy}}  
+      A test from Erin {{fancy}}
     </h1>
   </div>
 </template>
@@ -10,7 +10,7 @@
 export default {
   name: 'Test',
   props: {
-    fancy: Boolean
+    fancy: String
   }
 }
 </script>
@@ -30,5 +30,8 @@ li {
 }
 a {
   color: #42b983;
+}
+h1 {
+  background-color:gainsboro;
 }
 </style>
