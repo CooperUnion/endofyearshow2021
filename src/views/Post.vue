@@ -11,6 +11,7 @@
       <ul>
         <li v-for="post in posts" :key="post.id">
           <div class="post">
+            
             <a :href="post.assets.preview.source_url">
               <img :src="post.assets.preview.thumbnail.source_url" />
             </a>
@@ -51,9 +52,7 @@
     setup(props){
       const loading = ref(true)
       const posts = ref([])
-      
-      console.log(props.post)
-      
+            
       onBeforeMount(loadPosts)
       async function loadToggle(){
         console.log("ok...")
@@ -61,8 +60,9 @@
       }
       
       async function loadPosts(){
-        posts = await fetch(`https://eoys-uploader-2021.glitch.me/api/posts/${props.post}`).then(res=>res.json())   
-        loading = false   
+        posts.value.push(await fetch(`https://eoys-uploader-2021.glitch.me/api/posts/${props.post}`).then(res=>res.json()))  
+        loading.value = false
+        console.log(posts.value)
         return true
       }
       return {posts, loading, loadToggle, loadPosts}
