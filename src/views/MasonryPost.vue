@@ -63,7 +63,7 @@
       }
       
       async function loadPosts(){
-        items.value = await fetch(`https://eoys-uploader-2021.glitch.me/api/posts`).then(res=>res.json())
+        items.value.push(await fetch(`https://eoys-uploader-2021.glitch.me/api/posts/${props.post}`).then(res=>res.json()))  
         loading.value = false
         console.log(items.value)
         return true

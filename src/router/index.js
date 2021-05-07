@@ -3,6 +3,7 @@ import Home from '../views/Home.vue'
 import Posts from '../views/Posts.vue'
 import Post from '../views/Post.vue'
 import Masonry from '../views/Masonry.vue'
+import MasonryPost from '../views/MasonryPost.vue'
 
 const routes = [
   {
@@ -30,22 +31,28 @@ const routes = [
     props: true
   },
   {
-    path: '/masonry/:post',
+    path: '/masonry',
     name: 'Masonry',
     component: Masonry,
     props: true
   },  
   {
+    path: '/masonry/:post',
+    name: 'MasonryPost',
+    component: MasonryPost,
+    props: true
+  },  
+  {
     path: '/app/post/:post',
-    redirect: { name: 'Post' }
+    redirect: { name: 'MasonryPost' }
   },
   {
     path: '/app/',
-    redirect: { name: 'Posts'}
+    redirect: { name: 'Masonry'}
   },
   {
     path: '/app',
-    redirect: { name: 'Posts'}
+    redirect: { name: 'Masonry'}
   }
 ]
 
