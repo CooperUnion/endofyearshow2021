@@ -18,9 +18,9 @@
               <ul class="post-info">
                 <li class="title">{{item.title}}</li>
                 <li class="name">{{item.author.formatted}}</li>
-                <li class="tags">{{item.taxonomy.tags}}
-                  <ul>
-                    <li v-for="item in item.taxonomy.tags" :key="item.id">
+                <li class="tags">
+                  <ul class="tagList">
+                    <li class="tag" v-for="item in item.taxonomy.tags" :key="item.id">
                       {{ item }}
                     </li>
                   </ul>
@@ -95,7 +95,7 @@
   }
  
   .post {
-    width: 200px;
+    width: 266px;
     border: 1px solid transparent;
     margin: 24px;
   }
@@ -114,11 +114,30 @@
     font-size: 20px;
     line-height: 1;
     margin-top: 0.5em;
+    position: relative;
   }
 
   .post-info .title {
     font-weight: 700;
   }
+
+  .post-info .tagList {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  
+  .post-info .tagList .tag {
+    background-color: gainsboro;
+    height: 16px;
+    width: 16px;
+    overflow: hidden;
+    text-indent: -999vw;
+    border-radius: 50%;
+  }
+
 
   
 </style>
