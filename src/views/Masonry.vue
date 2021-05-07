@@ -103,6 +103,7 @@
   
   .post {
     width: 27vw;
+    min-width: 266px;
     border: 1px solid transparent;
     margin-bottom: 48px;
 /*     margin: 24px; */
