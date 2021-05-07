@@ -20,7 +20,7 @@
                 <li class="name">{{item.author.formatted}}</li>
                 <li class="tags">{{item.taxonomy.tags}}</li>
               </ul>
-              <ul style="display: none;">
+<!--               <ul style="display: none;">
                 <li>id: <a :href="item.route">{{item.id}}</a></li>
                 <li>title: {{item.title}}</li>
                 <li>type: {{item.type}}</li>
@@ -29,7 +29,7 @@
                 <li>description: {{item.meta.description}}</li>
                 <li>url: <a :href="item.assets.url">{{item.assets.url}}</a></li>
                 <li>high-res: <a :href="item.assets.preview.source_url">link</a></li>
-              </ul>
+              </ul> -->
             </div>
         </div>
       </div>
