@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Posts from '../views/Posts.vue'
 import Post from '../views/Post.vue'
+import Masonry from '../views/Masonry.vue'
 
 const routes = [
   {
