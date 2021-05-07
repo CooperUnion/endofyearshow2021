@@ -13,10 +13,11 @@
            <div class="post">
 
               <a :href="item.assets.preview.source_url">
-                <img :src="item.assets.preview.thumbnail.source_url" />
+                <img :src="item.assets.preview.source_url" />
               </a>
               <ul class="post-info">
-                <li class="titletags"><h6 class="title">{{item.title}}</h6>
+                <li class="titletags">
+                  <h6 class="title">{{item.title}}</h6>
                   <ul class="tagList">
                     <li class="tag" v-for="item in item.taxonomy.tags" :key="item.id">
                       {{ item }}
@@ -126,8 +127,8 @@
 
   .post-info .title {
     font-weight: 700;
-    margin-bottom: 0.25em;
     text-transform: capitalize;
+    margin: 0;
   }
 
   .post-info .tagList {
@@ -144,7 +145,9 @@
     border-radius: 50%;
   }  
 
-
+  .post-info .name {
+    margin-top: 0.25em;
+  }
 
   
 </style>
