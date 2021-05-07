@@ -8,30 +8,30 @@
     <p v-if="loading">loading...</p>
     <div v-else>
       
-      <vue-masonry-wall :posts="posts" :options="{width: 300, padding: 12}" @append="append">
-      <template v-slot:default="{post}">
-    
-        <div class="post">
-            
-            <a :href="post.assets.preview.source_url">
-              <img :src="post.assets.preview.thumbnail.source_url" />
-            </a>
-            <pre>
-              id: <a :href="post.route">{{post.id}}</a>
-              title: {{post.title}}
-              type: {{post.type}}
-              author: {{post.author.formatted}}
-              tags: {{post.taxonomy.tags}}
-              description: {{post.meta.description}}
-              url: <a :href="post.assets.url">{{post.assets.url}}</a>
-              high-res: <a :href="post.assets.preview.source_url">{{post.assets.preview.source_url}}</a>
-              <span v-if="post.type === 'video'">
-                video: <a :href="post.assets.media.url">{{post.assets.media.url}}</a>
-              </span>
-            </pre>
-          </div>
-        
-      </template>
+      <vue-masonry-wall :items="items" :options="{width: 300, padding: 12}">
+        <template v-slot:default="{item}">
+
+          <div class="post">
+
+              <a :href="item.assets.preview.source_url">
+                <img :src="item.assets.preview.thumbnail.source_url" />
+              </a>
+              <pre>
+                id: <a :href="item.route">{{item.id}}</a>
+                title: {{item.title}}
+                type: {{item.type}}
+                author: {{item.author.formatted}}
+                tags: {{item.taxonomy.tags}}
+                description: {{item.meta.description}}
+                url: <a :href="item.assets.url">{{item.assets.url}}</a>
+                high-res: <a :href="item.assets.preview.source_url">{{item.assets.preview.source_url}}</a>
+                <span v-if="item.type === 'video'">
+                  video: <a :href="item.assets.media.url">{{item.assets.media.url}}</a>
+                </span>
+              </pre>
+            </div>
+
+        </template>
       </vue-masonry-wall>
       
     </div>
@@ -55,7 +55,7 @@
     },
     setup(props){
       const loading = ref(true)
-      const posts = ref([])
+      const items = ref([])
             
       onBeforeMount(loadPosts)
       async function loadToggle(){
@@ -64,12 +64,12 @@
       }
       
       async function loadPosts(){
-        posts.value.push(await fetch(`https://eoys-uploader-2021.glitch.me/api/posts/${props.post}`).then(res=>res.json()))  
+        items.value.push(await fetch(`https://eoys-uploader-2021.glitch.me/api/posts/${props.post}`).then(res=>res.json()))  
         loading.value = false
-        console.log(posts.value)
+        console.log(items.value)
         return true
       }
-      return {posts, loading, loadToggle, loadPosts}
+      return {items, loading, loadToggle, loadPosts}
     }
   }
 </script>
