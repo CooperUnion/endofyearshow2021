@@ -30,6 +30,12 @@ const routes = [
     props: true
   },
   {
+    path: '/masonry/:post',
+    name: 'Masonry',
+    component: Masonry,
+    props: true
+  },  
+  {
     path: '/app/post/:post',
     redirect: { name: 'Post' }
   },

@@ -7,10 +7,11 @@
     
     <p v-if="loading">loading...</p>
     <div v-else>
-      <p>View <a href="/app">all posts</a></p>
-      <ul>
-        <li v-for="post in posts" :key="post.id">
-          <div class="post">
+      
+      <vue-masonry-wall :posts="posts" :options="{width: 300, padding: 12}" @append="append">
+      <template v-slot:default="{post}">
+    
+        <div class="post">
             
             <a :href="post.assets.preview.source_url">
               <img :src="post.assets.preview.thumbnail.source_url" />
@@ -24,12 +25,14 @@
               description: {{post.meta.description}}
               url: <a :href="post.assets.url">{{post.assets.url}}</a>
               high-res: <a :href="post.assets.preview.source_url">{{post.assets.preview.source_url}}</a>
-              <span v-if="post.type === 'video'">video: <a :href="post.assets.media.url">{{post.assets.media.url}}</a></span>
+              <span v-if="post.type === 'video'">
+                video: <a :href="post.assets.media.url">{{post.assets.media.url}}</a>
+              </span>
             </pre>
           </div>
-        </li>
-      </ul>
-      
+        
+      </template>
+      </vue-masonry-wall>
       
     </div>
   </main>     
@@ -37,14 +40,15 @@
 
 <script>
   import { ref, onBeforeMount } from "vue";
+  import VueMasonryWall from "vue-masonry-wall";
+
   // import Post from 'Post.vue';
   // import quickLoad from '../js/lib/quickLoadModule.mjs'
   // import options from '../js/loadModuleOptions.js'
 
   export default {
     components: {
-      // Post
-      // Post: () => loadModule('./Post.vue', options),
+      VueMasonryWall
     },
     props: {
       post: String
