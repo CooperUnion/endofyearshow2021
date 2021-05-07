@@ -81,8 +81,17 @@
  
   .post {
     width: 200px;
-    border: 1px solid black;
-    background-color: gainsboro;
-    margin: 5px;
+    border: 1px solid transparent;
+    margin: 24px;
   }
+  
+  .post a {
+    display: block;
+    background-color: gainsboro;
+  }
+
+  .post a img {
+    width: 100%;
+  }
+
 </style>
