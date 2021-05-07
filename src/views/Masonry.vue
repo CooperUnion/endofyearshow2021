@@ -16,15 +16,17 @@
                 <img :src="item.assets.preview.thumbnail.source_url" />
               </a>
               <ul class="post-info">
-                <li class="title">{{item.title}}</li>
-                <li class="name">{{item.author.formatted}}</li>
-                <li class="tags">
+                <li class="titletags"><h6 class="title">{{item.title}}</h6>
                   <ul class="tagList">
                     <li class="tag" v-for="item in item.taxonomy.tags" :key="item.id">
                       {{ item }}
                     </li>
                   </ul>
                 </li>
+                <li class="name">{{item.author.formatted}}</li>
+<!--                 <li class="tags">
+                  
+                </li> -->
               </ul>
 <!--               <ul style="display: none;">
                 <li>id: <a :href="item.route">{{item.id}}</a></li>
@@ -115,20 +117,22 @@
     font-size: 16px;
     line-height: 1;
     margin-top: 0.5em;
-    position: relative;
+  }
+
+  .post-info .titletags {
+    display: flex;
+    justify-content: space-between;
   }
 
   .post-info .title {
     font-weight: 700;
     margin-bottom: 0.25em;
+    text-transform: capitalize;
   }
 
   .post-info .tagList {
     display: flex;
     flex-direction: row;
-    position: absolute;
-    top: 0;
-    right: 0;
   }
   
   .post-info .tagList .tag {
@@ -138,7 +142,8 @@
     overflow: hidden;
     text-indent: -999vw;
     border-radius: 50%;
-  }
+  }  
+
 
 
   
