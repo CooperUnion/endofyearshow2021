@@ -18,7 +18,13 @@
               <ul class="post-info">
                 <li class="title">{{item.title}}</li>
                 <li class="name">{{item.author.formatted}}</li>
-                <li class="tags">{{item.taxonomy.tags}}</li>
+                <li class="tags">{{item.taxonomy.tags}}
+                  <ul>
+                    <li v-for="item in item.taxonomy.tags" :key="item.id">
+                      {{ item }}
+                    </li>
+                  </ul>
+                </li>
               </ul>
 <!--               <ul style="display: none;">
                 <li>id: <a :href="item.route">{{item.id}}</a></li>
