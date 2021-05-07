@@ -8,10 +8,10 @@
     <p v-if="loading">loading...</p>
     <div v-else>
       
-      <vue-masonry-wall :items="items" :options="{width: 300, padding: 12}">
-        <template v-slot:default="{item}">
-
-          <div class="post">
+      <div v-masonry="containerId" transition-duration="0.3s" item-selector=".item">
+        <div v-masonry-tile class="item" v-for="item in items" v-bind:key="item.id">
+          <!-- block item markup -->
+           <div class="post">
 
               <a :href="item.assets.preview.source_url">
                 <img :src="item.assets.preview.thumbnail.source_url" />
@@ -30,9 +30,9 @@
                 </span>
               </pre>
             </div>
-
-        </template>
-      </vue-masonry-wall>
+        </div>
+      </div>
+    
       
     </div>
   </main>     
@@ -40,7 +40,7 @@
 
 <script>
   import { ref, onBeforeMount } from "vue";
-  import VueMasonryWall from "vue-masonry-wall";
+  // import VueMasonryWall from "vue-masonry-wall";
 
   // import Post from 'Post.vue';
   // import quickLoad from '../js/lib/quickLoadModule.mjs'
@@ -48,7 +48,7 @@
 
   export default {
     components: {
-      VueMasonryWall
+      // VueMasonryWall
     },
     props: {
       post: String
@@ -64,7 +64,7 @@
       }
       
       async function loadPosts(){
-        items.value.push(await fetch(`https://eoys-uploader-2021.glitch.me/api/posts/${props.post}`).then(res=>res.json()))  
+        items.value.push(await fetch(`https://eoys-uploader-2021.glitch.me/api/posts`).then(res=>res.json()))  
         loading.value = false
         console.log(items.value)
         return true
