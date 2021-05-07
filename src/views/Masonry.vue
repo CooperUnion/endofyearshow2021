@@ -7,7 +7,7 @@
     <p v-if="loading">loading...</p>
     <div v-else>
       
-      <div v-masonry="containerId" transition-duration="0.3s" item-selector=".item" column-width=".post" gutter="48" fit-width="true" horizontal-order="true">
+      <div class="masonryBox" v-masonry="containerId" transition-duration="0.3s" item-selector=".item" column-width=".post" gutter="48" fit-width="true" horizontal-order="true">
         <div v-masonry-tile class="item" v-for="item in items" v-bind:key="item.id">
           <!-- block item markup -->
            <div class="post">
@@ -97,8 +97,12 @@
     height: 100vh;
   }
  
+  .masonryBox {
+    margin: 0 auto;
+  }
+  
   .post {
-    width: 266px;
+    width: 27vw;
     border: 1px solid transparent;
     margin-bottom: 48px;
 /*     margin: 24px; */
