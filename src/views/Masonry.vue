@@ -8,7 +8,7 @@
     <p v-if="loading">loading...</p>
     <div v-else>
       
-      <div v-masonry="containerId" transition-duration="0.3s" item-selector=".item">
+      <div v-masonry="containerId" transition-duration="0.3s" item-selector=".item" column-width=".post">
         <div v-masonry-tile class="item" v-for="item in items" v-bind:key="item.id">
           <!-- block item markup -->
            <div class="post">
@@ -16,7 +16,7 @@
               <a :href="item.assets.preview.source_url">
                 <img :src="item.assets.preview.thumbnail.source_url" />
               </a>
-              <pre>
+              <p>
                 id: <a :href="item.route">{{item.id}}</a>
                 title: {{item.title}}
                 type: {{item.type}}
@@ -24,11 +24,11 @@
                 tags: {{item.taxonomy.tags}}
                 description: {{item.meta.description}}
                 url: <a :href="item.assets.url">{{item.assets.url}}</a>
-                high-res: <a :href="item.assets.preview.source_url">{{item.assets.preview.source_url}}</a>
-                <span v-if="item.type === 'video'">
+                high-res: <a :href="item.assets.preview.source_url">link</a>
+<!--                 <span v-if="item.type === 'video'">
                   video: <a :href="item.assets.media.url">{{item.assets.media.url}}</a>
-                </span>
-              </pre>
+                </span> -->
+              </p>
             </div>
         </div>
       </div>
@@ -64,7 +64,7 @@
       }
       
       async function loadPosts(){
-        items.value.push(await fetch(`https://eoys-uploader-2021.glitch.me/api/posts`).then(res=>res.json()))  
+        items.value = await fetch(`https://eoys-uploader-2021.glitch.me/api/posts`).then(res=>res.json())
         loading.value = false
         console.log(items.value)
         return true
@@ -76,9 +76,14 @@
 
 <style scoped>
   main{
-    background-color: gainsboro;
     width: 100%;
     height: 100vh;
   }
  
+  .post {
+    width: 200px;
+    border: 1px solid black;
+    background-color: gainsboro;
+    margin: 5px;
+  }
 </style>
