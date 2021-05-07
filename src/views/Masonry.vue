@@ -100,6 +100,7 @@
   }
 
   .post a img {
+    display: block;
     width: 100%;
   }
   
