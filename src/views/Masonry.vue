@@ -15,19 +15,21 @@
               <a :href="item.assets.preview.source_url">
                 <img :src="item.assets.preview.thumbnail.source_url" />
               </a>
-              <p>
-                id: <a :href="item.route">{{item.id}}</a>
-                title: {{item.title}}
-                type: {{item.type}}
-                author: {{item.author.formatted}}
-                tags: {{item.taxonomy.tags}}
-                description: {{item.meta.description}}
-                url: <a :href="item.assets.url">{{item.assets.url}}</a>
-                high-res: <a :href="item.assets.preview.source_url">link</a>
-<!--                 <span v-if="item.type === 'video'">
-                  video: <a :href="item.assets.media.url">{{item.assets.media.url}}</a>
-                </span> -->
-              </p>
+              <ul class="post-info">
+                <li class="title">{{item.title}}</li>
+                <li class="name">{{item.author.formatted}}</li>
+                <li class="tags">{{item.taxonomy.tags}}</li>
+              </ul>
+              <ul style="display: none;">
+                <li>id: <a :href="item.route">{{item.id}}</a></li>
+                <li>title: {{item.title}}</li>
+                <li>type: {{item.type}}</li>
+                <li>author: {{item.author.formatted}}</li>
+                <li>tags: {{item.taxonomy.tags}}</li>
+                <li>description: {{item.meta.description}}</li>
+                <li>url: <a :href="item.assets.url">{{item.assets.url}}</a></li>
+                <li>high-res: <a :href="item.assets.preview.source_url">link</a></li>
+              </ul>
             </div>
         </div>
       </div>
@@ -74,6 +76,11 @@
 </script>
 
 <style scoped>
+  ul {
+    list-style-type: none;
+    text-align: left;
+  }
+  
   main{
     width: 100%;
     height: 100vh;
@@ -93,5 +100,10 @@
   .post a img {
     width: 100%;
   }
-
+  
+  .post-info .title {
+    font-weight: 700;
+    
+  }
+  
 </style>
