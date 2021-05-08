@@ -165,10 +165,6 @@
     background-color: Lavender;
   }  
 
-  .post-info .tagList .tag[data-tagname="Sound art"] {
-    background-color: #FFA500;
-  }  
-
   .post-info .tagList .tag[data-tagname="Design"] {
     background-color: #FF0000;
   }  
@@ -203,6 +199,14 @@
 
   .post-info .tagList .tag[data-tagname="Photography"] {
     background-color: #00FF00;
+  }  
+
+  .post-info .tagList .tag[data-tagname="Printmaking"] {
+    background-color: #DEFF10;
+  }  
+
+  .post-info .tagList .tag[data-tagname="Sound art"] {
+    background-color: #FFA500;
   }  
 
   .post-info .tagList .tag[data-tagname="Video"] {
