@@ -6,25 +6,23 @@
     
     <p v-if="loading">loading...</p>
     <div v-else>
-      
       <div class="masonryBox" v-masonry="containerId" transition-duration="0.3s" item-selector=".item" column-width=".post" gutter="48" fit-width="true" horizontal-order="true">
         <div v-masonry-tile class="item" v-for="item in items" v-bind:key="item.id">
           <!-- block item markup -->
-           <div class="post">
-
-              <a :href="item.assets.preview.source_url">
+           <div class="post">{{item.assets.preview}}
+<!--               <a :href="item.assets.preview.source_url">
                 <img :src="item.assets.preview.source_url" />
-              </a>
+              </a> -->
               <ul class="post-info">
                 <li class="titletags">
                   <h6 class="title">{{item.title}}</h6>
                   <ul class="tagList">
-                    <li class="tag" v-for="item in item.taxonomy.tags" :key="item.id">
+                    <li class="tag" v-for="item in item.taxonomy" :key="item.id">
                       {{ item }}
                     </li>
-                  </ul>{{item.taxonomy.tags}}
+                  </ul>{{item.taxonomy}}
                 </li>
-                <li class="name">{{item.author.formatted}}</li>
+<!--                 <li class="name">{{item.author.formatted}}</li> -->
 <!--                 <li class="tags">
                   
                 </li> -->
