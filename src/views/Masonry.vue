@@ -157,8 +157,12 @@
     margin-left: 4px;
   }  
 
-  .post-info .tagList .tag[data-tagname="Website"] {
-    background-color: gainsboro;
+  .post-info .tagList .tag[data-tagname="Audiovisual"] {
+    background-color: Lavender;
+  }  
+
+  .post-info .tagList .tag[data-tagname="Audiovisual"] {
+    background-color: Lavender;
   }  
 
   .post-info .tagList .tag[data-tagname="Sound art"] {
@@ -173,21 +177,38 @@
     background-color: #BD00FF;
   }  
 
+  .post-info .tagList .tag[data-tagname="Film"] {
+    background-color: #6C00FF;
+  }  
+
+  .post-info .tagList .tag[data-tagname="Graphic design"] {
+    background-color: Lavender;
+  }  
+
+  .post-info .tagList .tag[data-tagname="Installation"] {
+    background-color: #0000FF;
+  }  
+
   .post-info .tagList .tag[data-tagname="Photography"] {
     background-color: #00FF00;
   }  
 
-  .post-info .tagList .tag[data-tagname="Film"] {
-    background-color: #6C00FF;
+  .post-info .tagList .tag[data-tagname="Painting"] {
+    background-color: #06A9FF;
+  }  
+
+  .post-info .tagList .tag[data-tagname="Performance"] {
+    background-color: #00FFFF;
   }  
 
   .post-info .tagList .tag[data-tagname="Video"] {
     background-color: #6C00FF;
   }  
 
-  .post-info .tagList .tag[data-tagname="Graphic design"] {
-    background-color: gainsboro;
+  .post-info .tagList .tag[data-tagname="Website"] {
+    background-color: Lavender;
   }  
+
 
 
 
