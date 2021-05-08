@@ -9,8 +9,8 @@
       <div class="masonryBox" v-masonry="containerId" transition-duration="0.3s" item-selector=".item" column-width=".post" gutter="48" fit-width="true" horizontal-order="true">
         <div v-masonry-tile class="item" v-for="item in items" v-bind:key="item.id">
           <!-- block item markup -->
-            <div class="post">
-              <template v-if="item.assets.preview">
+            <div class="post" v-if="item.id">
+                <template v-if="item.assets.preview">
                 <a :href="item.assets.preview.source_url">
                   <img :src="item.assets.preview.source_url" />
                 </a>
@@ -171,7 +171,6 @@
     background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
     background-size: 16px 16px;
     background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
-
   }  
 
   .post-info .tagList .tag[data-tagname="Design"] {
@@ -186,16 +185,14 @@
      background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
     background-size: 16px 16px;
     background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
-
   }  
 
-  .post-info .tagList .tag[data-tagname="Motion Graphics"] {
+  .post-info .tagList .tag[data-tagname="Graphic Design"] {
     background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
     background-size: 16px 16px;
     background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
 
   }  
-  
 
   .post-info .tagList .tag[data-tagname="Installation"] {
     background-color: #0000FF;
@@ -205,14 +202,12 @@
      background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
     background-size: 16px 16px;
     background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
-
   }  
   
   .post-info .tagList .tag[data-tagname="Motion Graphics"] {
     background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
     background-size: 16px 16px;
     background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
-
   }  
   
   .post-info .tagList .tag[data-tagname="Painting"] {
