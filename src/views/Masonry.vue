@@ -189,6 +189,14 @@
 
   }  
 
+  .post-info .tagList .tag[data-tagname="Motion Graphics"] {
+    background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
+    background-size: 16px 16px;
+    background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+
+  }  
+  
+
   .post-info .tagList .tag[data-tagname="Installation"] {
     background-color: #0000FF;
   }  
@@ -223,7 +231,11 @@
     background-color: #DEFF10;
   }  
 
-  .post-info .tagList .tag[data-tagname="Sound art"] {
+  .post-info .tagList .tag[data-tagname="Sculpture"] {
+    background-color: #FFFF00;
+  }  
+
+  .post-info .tagList .tag[data-tagname="Sound Art"] {
     background-color: #FFA500;
   }  
 
