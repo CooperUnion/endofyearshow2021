@@ -157,7 +157,7 @@
     margin-left: 4px;
   }  
 
-  .post-info .tagList .tag[data-tagname="Audiovisual"] {
+  .post-info .tagList .tag[data-tagname="Animation"] {
     background-color: Lavender;
   }  
 
@@ -181,12 +181,16 @@
     background-color: #6C00FF;
   }  
 
-  .post-info .tagList .tag[data-tagname="Graphic design"] {
-    background-color: Lavender;
+  .post-info .tagList .tag[data-tagname="Installation"] {
+    background-color: #0000FF;
   }  
 
   .post-info .tagList .tag[data-tagname="Installation"] {
     background-color: #0000FF;
+  }  
+  
+  .post-info .tagList .tag[data-tagname="Motion Graphics"] {
+    background-color: Lavender;
   }  
 
   .post-info .tagList .tag[data-tagname="Photography"] {
