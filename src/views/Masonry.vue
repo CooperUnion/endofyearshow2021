@@ -185,24 +185,24 @@
     background-color: #0000FF;
   }  
 
-  .post-info .tagList .tag[data-tagname="Installation"] {
-    background-color: #0000FF;
+  .post-info .tagList .tag[data-tagname="Interactive"] {
+    background-color: Lavender;
   }  
   
   .post-info .tagList .tag[data-tagname="Motion Graphics"] {
     background-color: Lavender;
   }  
-
-  .post-info .tagList .tag[data-tagname="Photography"] {
-    background-color: #00FF00;
-  }  
-
+  
   .post-info .tagList .tag[data-tagname="Painting"] {
     background-color: #06A9FF;
   }  
 
   .post-info .tagList .tag[data-tagname="Performance"] {
     background-color: #00FFFF;
+  }  
+
+  .post-info .tagList .tag[data-tagname="Photography"] {
+    background-color: #00FF00;
   }  
 
   .post-info .tagList .tag[data-tagname="Video"] {
