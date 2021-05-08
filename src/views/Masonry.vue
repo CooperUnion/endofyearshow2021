@@ -19,15 +19,12 @@
                 <li class="titletags">
                   <h6 class="title">{{item.title}}</h6>
                   <ul class="tagList">
-                    <li class="tag" v-for="item in item.taxonomy" :key="item.id">
-                      {{ item }}
+                    <li class="tag" :data-tagname="item" v-for="item in item.taxonomy" :key="item.id">
+                      {{item}}
                     </li>
                   </ul>
                 </li>
                 <li class="name">{{item.author.formatted}}</li> 
-<!--                  <li class="tags">
-                  
-                </li> -->
               </ul>
 <!--               <ul style="display: none;">
                 <li>id: <a :href="item.route">{{item.id}}</a></li>
@@ -131,12 +128,18 @@
   }
 
   .post-info .title {
+    color: #000;
     font-weight: 700;
     text-transform: capitalize;
     margin: 0;
   }
 
-  .post-info .tagList {
+   .post-info .name {
+    color: #000;
+    margin-top: 0.25em;
+  }
+
+ .post-info .tagList {
     display: flex;
     flex-direction: row;
   }
@@ -150,15 +153,15 @@
     border-radius: 50%;
   }  
 
-
   .post-info .tagList .tag + .tag {
     margin-left: 4px;
   }  
 
+  .post-info .tagList .tag[data-tagname="Website"] {
+    background-color: gainsboro;
+  }  
 
-  .post-info .name {
-    margin-top: 0.25em;
-  }
+
 
   
 </style>
