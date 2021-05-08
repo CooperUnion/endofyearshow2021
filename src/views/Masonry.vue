@@ -19,7 +19,7 @@
                 <li class="titletags">
                   <h6 class="title">{{item.title}}</h6>
                   <ul class="tagList">
-                    <li class="tag" :data-tagname="item" v-for="item in item.taxonomy" :key="item.id">
+                    <li class="tag" :data-tagname="item" v-for="item in item.taxonomy.tags" :key="item.id">
                       {{item}}
                     </li>
                   </ul>
@@ -158,9 +158,12 @@
   }  
 
   .post-info .tagList .tag[data-tagname="Website"] {
-    background-color: gainsboro;
+    background-color: DeepPink;
   }  
 
+  .post-info .tagList .tag[data-tagname="Website"] {
+    background-color: DeepPink;
+  }  
 
 
   
