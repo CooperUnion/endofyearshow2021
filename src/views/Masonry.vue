@@ -145,7 +145,6 @@
   }
   
   .post-info .tagList .tag {
-    background-color: gainsboro;
     height: 16px;
     width: 16px;
     overflow: hidden;
@@ -156,13 +155,23 @@
   .post-info .tagList .tag + .tag {
     margin-left: 4px;
   }  
+  
+  .post-info .tagList .tag {
+    background-color: #eee;
+  }  
 
   .post-info .tagList .tag[data-tagname="Animation"] {
-    background-color: Lavender;
+    background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
+    background-size: 16px 16px;
+    background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+
   }  
 
   .post-info .tagList .tag[data-tagname="Audiovisual"] {
-    background-color: Lavender;
+    background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
+    background-size: 16px 16px;
+    background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+
   }  
 
   .post-info .tagList .tag[data-tagname="Design"] {
@@ -174,7 +183,10 @@
   }  
 
   .post-info .tagList .tag[data-tagname="Film"] {
-    background-color: #6C00FF;
+     background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
+    background-size: 16px 16px;
+    background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+
   }  
 
   .post-info .tagList .tag[data-tagname="Installation"] {
@@ -182,11 +194,17 @@
   }  
 
   .post-info .tagList .tag[data-tagname="Interactive"] {
-    background-color: Lavender;
+     background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
+    background-size: 16px 16px;
+    background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+
   }  
   
   .post-info .tagList .tag[data-tagname="Motion Graphics"] {
-    background-color: Lavender;
+    background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
+    background-size: 16px 16px;
+    background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+
   }  
   
   .post-info .tagList .tag[data-tagname="Painting"] {
@@ -210,11 +228,15 @@
   }  
 
   .post-info .tagList .tag[data-tagname="Video"] {
-    background-color: #6C00FF;
+    background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
+    background-size: 16px 16px;
+    background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
   }  
 
   .post-info .tagList .tag[data-tagname="Website"] {
-    background-color: Lavender;
+    background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
+    background-size: 16px 16px;
+    background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
   }  
 
 
