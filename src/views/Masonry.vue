@@ -22,7 +22,7 @@
                     <li class="tag" v-for="item in item.taxonomy.tags" :key="item.id">
                       {{ item }}
                     </li>
-                  </ul>
+                  </ul>{{item.taxonomy.tags}}
                 </li>
                 <li class="name">{{item.author.formatted}}</li>
 <!--                 <li class="tags">
