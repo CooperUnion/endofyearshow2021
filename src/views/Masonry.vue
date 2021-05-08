@@ -158,12 +158,37 @@
   }  
 
   .post-info .tagList .tag[data-tagname="Website"] {
-    background-color: DeepPink;
+    background-color: gainsboro;
   }  
 
-  .post-info .tagList .tag[data-tagname="Website"] {
-    background-color: DeepPink;
+  .post-info .tagList .tag[data-tagname="Sound art"] {
+    background-color: #FFA500;
   }  
+
+  .post-info .tagList .tag[data-tagname="Design"] {
+    background-color: #FF0000;
+  }  
+
+  .post-info .tagList .tag[data-tagname="Drawing"] {
+    background-color: #BD00FF;
+  }  
+
+  .post-info .tagList .tag[data-tagname="Photography"] {
+    background-color: #00FF00;
+  }  
+
+  .post-info .tagList .tag[data-tagname="Film"] {
+    background-color: #6C00FF;
+  }  
+
+  .post-info .tagList .tag[data-tagname="Video"] {
+    background-color: #6C00FF;
+  }  
+
+  .post-info .tagList .tag[data-tagname="Graphic design"] {
+    background-color: gainsboro;
+  }  
+
 
 
   
