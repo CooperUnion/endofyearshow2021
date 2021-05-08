@@ -9,10 +9,12 @@
       <div class="masonryBox" v-masonry="containerId" transition-duration="0.3s" item-selector=".item" column-width=".post" gutter="48" fit-width="true" horizontal-order="true">
         <div v-masonry-tile class="item" v-for="item in items" v-bind:key="item.id">
           <!-- block item markup -->
-           <div class="post">{{item.assets.preview}}
-<!--               <a :href="item.assets.preview.source_url">
-                <img :src="item.assets.preview.source_url" />
-              </a> -->
+            <div class="post">
+              <template v-if="item.assets.preview">
+                <a :href="item.assets.preview.source_url">
+                  <img :src="item.assets.preview.source_url" />
+                </a>
+              </template>
               <ul class="post-info">
                 <li class="titletags">
                   <h6 class="title">{{item.title}}</h6>
@@ -20,10 +22,10 @@
                     <li class="tag" v-for="item in item.taxonomy" :key="item.id">
                       {{ item }}
                     </li>
-                  </ul>{{item.taxonomy}}
+                  </ul>
                 </li>
-<!--                 <li class="name">{{item.author.formatted}}</li> -->
-<!--                 <li class="tags">
+                <li class="name">{{item.author.formatted}}</li> 
+<!--                  <li class="tags">
                   
                 </li> -->
               </ul>
@@ -147,6 +149,12 @@
     text-indent: -999vw;
     border-radius: 50%;
   }  
+
+
+  .post-info .tagList .tag + .tag {
+    margin-left: 4px;
+  }  
+
 
   .post-info .name {
     margin-top: 0.25em;
