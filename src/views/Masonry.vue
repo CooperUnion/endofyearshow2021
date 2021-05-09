@@ -12,7 +12,7 @@
             <div class="post" v-if="item.id">
                 <template v-if="item.assets.preview">
                 <a :href="item.assets.preview.source_url">
-                  <img :src="item.assets.preview.source_url" />
+                  <img :src="item.assets.preview.source_url" :srcset="item.assets.preview.sizes.medium_large.source_url + ' ' + item.assets.preview.sizes.medium_large.source_url" + "w" />
                 </a>
               </template>
               <ul class="post-info">
