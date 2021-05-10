@@ -35,6 +35,7 @@
     margin-bottom: 1.5em;
     font-size: 16px;
     line-height: 1.5;
+    cursor: pointer;
  }
 
   .nav-list .nav-item a {
@@ -66,6 +67,12 @@
     width: 24px;
     margin-right: 12px;
   }
+  
+  .nav-list .nav-item:hover .tag .toggle {
+    opacity: 0.2; 
+  }  
+
+
 
 </style>
 

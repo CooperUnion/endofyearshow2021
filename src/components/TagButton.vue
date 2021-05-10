@@ -23,18 +23,19 @@ export default {
     border-radius: 50%;
     background-color: #eee;
     position: relative;
+    box-sizing: border-box;
   }  
 
   .toggle {
     position: absolute;
     top: 5px;
-    left: 4px;
-    height: 16px;
-    width: 16px;
+    left: 5px;
+    height: 14px;
+    width: 14px;
     fill: inherit;
     transform: rotate(45deg);
+/*     display: none; */
   }  
-
 
   .tag[data-tagname="view-all"] {
     background-color: #000;
