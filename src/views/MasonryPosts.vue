@@ -6,8 +6,9 @@
     <p v-if="loading">
       <loading timeout="15" />
     </p>
-    <div v-else>
+    <div v-else class="areas-page">
       
+      <area-nav :items="areaItems" />
       <div 
         class="masonryBox" 
         v-masonry="containerId" 
@@ -39,13 +40,14 @@
   import PostInfo from '@/components/PostInfo.vue'
   import PostMedia from '@/components/PostMedia.vue'
   import Loading from '@/components/Loading.vue'
-
+  import AreaNav from '@/components/AreaNav.vue'
   
   export default {
     components: {
       PostInfo,
       PostMedia,
-      Loading
+      Loading,
+      AreaNav
     },
     props: {
       post: String
@@ -53,7 +55,11 @@
     setup(props){
       const loading = ref(true)
       const items = ref([])
-            
+      const areaNavItems = ref([
+        {name:"link 1", url:"/link1"},
+        {name:"link 2", url:"/link2"}
+      ])
+         
       onBeforeMount(loadPosts)
       async function loadToggle(){
         console.log("ok...")
@@ -66,7 +72,7 @@
         console.log(items.value)
         return true
       }
-      return {items, loading, loadToggle, loadPosts}
+      return {items, loading, loadToggle, loadPosts, areaNavItems}
     }
   }
 </script>
@@ -89,5 +95,24 @@
     margin-bottom: 48px;
 /*     margin: 24px; */
   }
+  
+  #page {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  #page #subnav {
+    width: 275px;
+    list-style-type: none;
+    margin: 0;
+    text-align: left;
+  }
+  
+
+  #page main {
+    width: calc(100% - 275px);
+  }
+
+
   
 </style>

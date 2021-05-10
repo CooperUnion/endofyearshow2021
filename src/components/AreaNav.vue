@@ -1,5 +1,5 @@
 <template>
-  <ul id="subnav" class="nav-list">
+  <ul id="areanav" class="nav-list">
     <li v-for="item in items" :key="item"><router-link :to="item.url">{{item.name}}</router-link></li>
   </ul>
 </template>

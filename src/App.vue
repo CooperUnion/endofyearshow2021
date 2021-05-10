@@ -5,28 +5,28 @@
     <router-link to="/masonry">masonry</router-link>
   </div>
   <div id="page">
-    <sub-nav :items="navItems" />
+<!--     <sub-nav :items="navItems" /> -->
     <router-view/>
   </div>
 </template>
 
 <script>
   import { ref, onBeforeMount } from "vue";
-  import SubNav from '@/components/SubNav.vue'
+  // import SubNav from '@/components/SubNav.vue'
 
   export default {
     name: 'App',
-    components: {
-      SubNav
-    },
-    setup(){
-      const navItems = ref([
-        {name:"link 1", url:"/link1"},
-        {name:"link 2", url:"/link2"}
-      ])
+//     components: {
+//       SubNav
+//     },
+//     setup(){
+//       const areaItems = ref([
+//         {name:"link 1", url:"/link1"},
+//         {name:"link 2", url:"/link2"}
+//       ])
       
-      return {navItems}
-    }
+//       return {navItems}
+    // }
   }
 </script>
 
@@ -53,24 +53,6 @@
 
   #nav a.router-link-exact-active {
     color: #42b983;
-  }
-  
-  #page {
-    display: flex;
-    flex-direction: row;
-  }
-  
-  #page #subnav {
-    width: 275px;
-    list-style-type: none;
-    margin: 0;
-    text-align: left;
-  }
-  
-
-  #page main {
-    width: calc(100% - 275px);
-  }
-  
+  }  
 
 </style>
