@@ -1,6 +1,6 @@
 <template>
   <main>
-    <h1 @click="loadPosts()">test loading individual post page</h1>
+<!--     <h1 @click="loadPosts()">test loading individual post page</h1> -->
 
     <code>{{$route.params.post}}</code>
     
