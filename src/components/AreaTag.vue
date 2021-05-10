@@ -1,127 +1,101 @@
 <template>
-  <ul class="tagList">
-    <li class="tag" :data-tagname="tag" v-for="tag in tags" :key="tag">
-      {{tag}}
-    </li>
-  </ul>
+  <span class="tag" :data-tagname="tag" />
 </template>
 
 <script>
-  import AreaTag from '@/components/AreaTag.vue'
-
-  export default {
-    name: 'TagList',
-    props: {
-      tags: Array
-    }
+export default {
+  name: 'AreaTag',
+  props: {
+    tags: Array
   }
+}
 </script>
 
 <style scoped>
-  .post-info .tagList {
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .post-info .tagList .tag {
-    height: 16px;
-    width: 16px;
-    overflow: hidden;
-    text-indent: -999vw;
-    border-radius: 50%;
-  }  
-
-  .post-info .tagList .tag + .tag {
-    margin-left: 4px;
-  }  
-  
-  .post-info .tagList .tag {
-    background-color: #eee;
-  }  
-
-/*   .post-info .tagList .tag[data-tagname="Animation"] {
+  .tag[data-tagname="animation"] {
     background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
     background-size: 16px 16px;
     background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
 
   }  
 
-  .post-info .tagList .tag[data-tagname="Audiovisual"] {
+  .tag[data-tagname="audiovisual"] {
     background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
     background-size: 16px 16px;
     background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
   }  
 
-  .post-info .tagList .tag[data-tagname="Design"] {
-    background-color: #FF0000;
+  .tag[data-tagname="design"] {
+    background-color: #ff0000;
   }  
 
-  .post-info .tagList .tag[data-tagname="Drawing"] {
-    background-color: #BD00FF;
+  .tag[data-tagname="drawing"] {
+    background-color: #bd00ff;
   }  
 
-  .post-info .tagList .tag[data-tagname="Film"] {
+  .tag[data-tagname="film"] {
      background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
     background-size: 16px 16px;
     background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
   }  
 
-  .post-info .tagList .tag[data-tagname="Graphic Design"] {
+  .tag[data-tagname="graphic-design"] {
     background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
     background-size: 16px 16px;
     background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
 
   }  
 
-  .post-info .tagList .tag[data-tagname="Installation"] {
-    background-color: #0000FF;
+  .tag[data-tagname="installation"] {
+    background-color: #0000ff;
   }  
 
-  .post-info .tagList .tag[data-tagname="Interactive"] {
+  .tag[data-tagname="interactive"] {
      background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
     background-size: 16px 16px;
     background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
   }  
   
-  .post-info .tagList .tag[data-tagname="Motion Graphics"] {
+  .tag[data-tagname="motion-graphics"] {
     background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
     background-size: 16px 16px;
     background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
   }  
   
-  .post-info .tagList .tag[data-tagname="Painting"] {
-    background-color: #06A9FF;
+  .tag[data-tagname="painting"] {
+    background-color: #06a9ff;
   }  
 
-  .post-info .tagList .tag[data-tagname="Performance"] {
-    background-color: #00FFFF;
+  .tag[data-tagname="performance"] {
+    background-color: #00ffff;
   }  
 
-  .post-info .tagList .tag[data-tagname="Photography"] {
-    background-color: #00FF00;
+  .tag[data-tagname="photography"] {
+    background-color: #00ff00;
   }  
 
-  .post-info .tagList .tag[data-tagname="Printmaking"] {
-    background-color: #DEFF10;
+  .tag[data-tagname="printmaking"] {
+    background-color: #deff10;
   }  
 
-  .post-info .tagList .tag[data-tagname="Sculpture"] {
-    background-color: #FFFF00;
+  .tag[data-tagname="sculpture"] {
+    background-color: #ffff00;
   }  
 
-  .post-info .tagList .tag[data-tagname="Sound Art"] {
-    background-color: #FFA500;
+  .tag[data-tagname="sound-art"] {
+    background-color: #ffa500;
   }  
 
-  .post-info .tagList .tag[data-tagname="Video"] {
+  .tag[data-tagname="video"] {
     background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
     background-size: 16px 16px;
     background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
   }  
 
-  .post-info .tagList .tag[data-tagname="Website"] {
+  .tag[data-tagname="website"] {
     background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
     background-size: 16px 16px;
     background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
-  }   */
+  }  
 </style>
+
