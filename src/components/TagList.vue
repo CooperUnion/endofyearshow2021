@@ -1,7 +1,7 @@
 <template>
   <ul class="tagList">
     <li class="tag" :data-tagname="tag" v-for="tag in tags" :key="tag">
-      {{item}}
+      {{tag}}
     </li>
   </ul>
 </template>
