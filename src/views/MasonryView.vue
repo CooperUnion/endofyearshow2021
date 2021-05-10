@@ -19,7 +19,7 @@
               <ul class="post-info">
                 <li class="titletags">
                   <h6 class="title">{{item.title}}</h6>
-                  <tag-list :tags="item.taxonomy.tags"/>
+                  <tag-list :item="item"/>
                 </li>
                 <li class="name">{{item.author.formatted}}</li> 
               </ul>

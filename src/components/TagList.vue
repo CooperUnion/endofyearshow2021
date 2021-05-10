@@ -1,7 +1,7 @@
 <template>
   <ul class="tagList">
-    <li class="tag" :data-tagname="item" v-for="tag in tags" :key="tag">
-      {{tag}}
+    <li class="tag" :data-tagname="item" v-for="item in item.taxonomy.tags" :key="item.id">
+      {{item}}
     </li>
   </ul>
 </template>
@@ -10,7 +10,7 @@
 export default {
   name: 'TagList',
   props: {
-    tag: Array
+    item: Array
   }
 }
 </script>
