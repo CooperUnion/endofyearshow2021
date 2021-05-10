@@ -1,6 +1,6 @@
 <template>
   <main>    
-    <h1 @click="loadToggle()">test loading individual post page</h1>
+    <h1 @click="loadToggle()" class="mainHead">test loading individual post page</h1>
     
     
     <p v-if="loading">
@@ -61,10 +61,10 @@
         {name:"Design", url:"/Design"},
         {name:"Drawing", url:"/Drawing"},
         {name:"Film", url:"/Film"},
-        {name:"Graphic Design", url:"/Graphic Design"},
+        {name:"Graphic Design", url:"/GraphicDesign"},
         {name:"Installation", url:"/Installation"},
         {name:"Interactive", url:"/Interactive"},
-        {name:"Motion Graphics", url:"/Motion Graphics"},
+        {name:"Motion Graphics", url:"/MotionGraphics"},
         {name:"Painting", url:"/Painting"},
         {name:"Performance", url:"/Performance"},
         {name:"Photography", url:"/Photography"},
@@ -94,11 +94,13 @@
 
 <style scoped>
   
-/*   main{
-    width: 100%;
-    height: 100vh;
+  .mainHead {
+    font-size: 48px;
+    text-align: left;
+    text-transform: capitalize;
+    margin-bottom: 48px;
   }
-  */
+  
   .masonryBox {
     margin: 0 auto;
   }
