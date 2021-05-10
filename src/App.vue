@@ -19,10 +19,11 @@
     },
     setup(){
       const navItems = ref([
-        {name:"link 1", url:"/link1"}
+        {name:"link 1", url:"/link1"},
+        {name:"link 2", url:"/link2"}
       ])
       
-      return
+      return {navItems}
     }
   }
 </script>
