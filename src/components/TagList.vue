@@ -1,7 +1,6 @@
 <template>
-  {{item}}
   <ul class="tagList">
-    <li class="tag" :data-tagname="item" v-for="item in item.taxonomy.tags" :key="item.id">
+    <li class="tag" :data-tagname="tag" v-for="tag in tags" :key="tag">
       {{item}}
     </li>
   </ul>
@@ -11,12 +10,11 @@
 export default {
   name: 'TagList',
   props: {
-    item: Array
+    tags: Array
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .post-info .tagList {
     display: flex;

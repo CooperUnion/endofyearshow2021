@@ -19,10 +19,24 @@
               <ul class="post-info">
                 <li class="titletags">
                   <h6 class="title">{{item.title}}</h6>
-                  <tag-list :item="item.taxonomy.tags"/>
+                  <tag-list :tags="item.taxonomy.tags"/>
                 </li>
                 <li class="name">{{item.author.formatted}}</li> 
               </ul>
+
+              <post-info 
+                :tags="item.taxonomy.tags"
+                :title="item.title"
+                :author="item.author" />
+
+<!--  props: {
+      tags: Array,
+      title: String,
+      author: Object
+    },
+    -->
+
+
 <!--               <ul style="display: none;">
                 <li>id: <a :href="item.route">{{item.id}}</a></li>
                 <li>title: {{item.title}}</li>
@@ -52,10 +66,12 @@
   
   //components
   import TagList from '../components/TagList.vue'
+  import PostInfo from '../components/PostInfo.vue'
 
   export default {
     components: {
-      TagList
+      TagList,
+      PostInfo
     },
     props: {
       post: String
