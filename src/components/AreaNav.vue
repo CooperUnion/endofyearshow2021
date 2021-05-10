@@ -1,11 +1,19 @@
 <template>
   <ul id="areanav" class="nav-list">
-    <li v-for="item in items" :key="item" :class="item.name.toLowerCase().replace(/\s+/g, '-')"><router-link :to="item.url">{{item.name}}</router-link><output>##</output></li>
+    <li v-for="item in items" :key="item" :class="item.name.toLowerCase().replace(/\s+/g, '-')">
+      <area-tag :data-tagname="tag.toLowerCase().replace(/\s+/g, '-')" />
+      <router-link :to="item.url">{{item.name}}</router-link>
+      <output>##</output>
+    </li>
   </ul>
 </template>
 
 <script>
   export default {
+    components: {
+      AreaTag
+    },
+
     name: 'areaNavItems',
     props: {
       items: Array,
@@ -38,7 +46,7 @@
   }
 
 
-  .nav-list li:before {
+/*   .nav-list li:before {
   	content: "";
   	display: inline-block;
     height: 24px;
@@ -135,7 +143,7 @@
     background-size: 16px 16px;
     background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
   }  
-
+ */
 
 
 </style>

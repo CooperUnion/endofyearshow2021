@@ -1,5 +1,5 @@
 <template>
-  <span class="tag" :data-tagname="tag" />
+  <span class="tag" />
 </template>
 
 <script>
@@ -12,6 +12,16 @@ export default {
 </script>
 
 <style scoped>
+  .tag {
+    display: block;
+    height: 16px;
+    width: 16px;
+    overflow: hidden;
+    text-indent: -999vw;
+    border-radius: 50%;
+    background-color: #eee;
+  }  
+
   .tag[data-tagname="animation"] {
     background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
     background-size: 16px 16px;
