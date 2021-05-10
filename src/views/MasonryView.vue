@@ -10,43 +10,22 @@
         <div v-masonry-tile class="item" v-for="item in items" v-bind:key="item.id">
           <!-- block item markup -->
             <div class="post" v-if="item.id">
-                <template v-if="item.assets.preview">
+              
+              <template v-if="item.assets.preview">
                 <a :href="item.assets.preview.source_url">
                   <img v-if="!item.assets.preview.sizes.medium_large" :src="item.assets.preview.source_url" />
                   <img v-if="item.assets.preview.sizes.medium_large" :src="item.assets.preview.sizes.medium_large.source_url" />
                 </a>
               </template>
-              <ul class="post-info">
-                <li class="titletags">
-                  <h6 class="title">{{item.title}}</h6>
-                  <tag-list :tags="item.taxonomy.tags"/>
-                </li>
-                <li class="name">{{item.author.formatted}}</li> 
-              </ul>
+
+              
+
 
               <post-info 
                 :tags="item.taxonomy.tags"
                 :title="item.title"
                 :author="item.author" />
 
-<!--  props: {
-      tags: Array,
-      title: String,
-      author: Object
-    },
-    -->
-
-
-<!--               <ul style="display: none;">
-                <li>id: <a :href="item.route">{{item.id}}</a></li>
-                <li>title: {{item.title}}</li>
-                <li>type: {{item.type}}</li>
-                <li>author: {{item.author.formatted}}</li>
-                <li>tags: {{item.taxonomy.tags}}</li>
-                <li>description: {{item.meta.description}}</li>
-                <li>url: <a :href="item.assets.url">{{item.assets.url}}</a></li>
-                <li>high-res: <a :href="item.assets.preview.source_url">link</a></li>
-              </ul> -->
             </div>
         </div>
       </div>
@@ -67,11 +46,13 @@
   //components
   import TagList from '../components/TagList.vue'
   import PostInfo from '../components/PostInfo.vue'
+  import PostMedia from '../components/PostMedia.vue'
 
+  
   export default {
     components: {
-      TagList,
-      PostInfo
+      PostInfo,
+      PostMedia
     },
     props: {
       post: String
@@ -131,34 +112,5 @@
     display: block;
     width: 100%;
   }
-  
-  .post-info {
-    font-size: 16px;
-    line-height: 1;
-    margin-top: 0.5em;
-  }
-
-  .post-info .titletags {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .post-info .title {
-    color: #000;
-    font-weight: 700;
-    text-transform: capitalize;
-    margin: 0;
-  }
-
-   .post-info .name {
-    color: #000;
-    margin-top: 0.25em;
-  }
-
- 
-
-
-
-
   
 </style>
