@@ -90,7 +90,7 @@
   
   .post {
     width: calc(33% - 32px);
-    min-width: 266px;
+/*     min-width: 266px; */
     border: 1px solid transparent;
     margin-bottom: 48px;
 /*     margin: 24px; */
