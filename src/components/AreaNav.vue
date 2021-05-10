@@ -17,16 +17,26 @@
   
   .nav-list li {
     display: flex;
-    margin-bottom: 1em;
-  }
+    margin-bottom: 1.5em;
+    font-size: 16px;
+    line-height: 1.5;
+ }
 
   .nav-list li a {
     color: #000;
     font-weight: 700;
-    height: 24px;
-    line-height: 24px;
     display: inline-block;
   }
+
+
+  .nav-list li output {
+    color: #999;
+    margin-left: 0.25em;
+    font-size: 16px;
+    line-height: 1.5;
+    font-style: normal;
+  }
+
 
   .nav-list li:before {
   	content: "";
