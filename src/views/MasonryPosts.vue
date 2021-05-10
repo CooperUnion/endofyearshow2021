@@ -56,8 +56,23 @@
       const loading = ref(true)
       const items = ref([])
       const areaNavItems = ref([
-        {name:"View all", url:"/viewall"},
-        {name:"Design", url:"/design"}
+        {name:"Animation", url:"/Animation"},
+        {name:"Audiovisual", url:"/Audiovisual"},
+        {name:"Design", url:"/Design"},
+        {name:"Drawing", url:"/Drawing"},
+        {name:"Film", url:"/Film"},
+        {name:"Graphic Design", url:"/Graphic Design"},
+        {name:"Installation", url:"/Installation"},
+        {name:"Interactive", url:"/Interactive"},
+        {name:"Motion Graphics", url:"/Motion Graphics"},
+        {name:"Painting", url:"/Painting"},
+        {name:"Performance", url:"/Performance"},
+        {name:"Photography", url:"/Photography"},
+        {name:"Printmaking", url:"/Printmaking"},
+        {name:"Sculpture", url:"/Sculpture"},
+        {name:"Sound Art", url:"/Sound Art"},
+        {name:"Video", url:"/Video"},
+        {name:"Website", url:"/Website"}
       ])
          
       onBeforeMount(loadPosts)
