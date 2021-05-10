@@ -4,10 +4,7 @@
 
 <script>
 export default {
-  name: 'AreaTag',
-  props: {
-    tags: Array
-  }
+  name: 'TagButton',
 }
 </script>
 
@@ -20,6 +17,10 @@ export default {
     text-indent: -999vw;
     border-radius: 50%;
     background-color: #eee;
+  }  
+
+  .tag[data-tagname="view-all"] {
+    background-color: #000;
   }  
 
   .tag[data-tagname="animation"] {
