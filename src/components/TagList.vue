@@ -1,4 +1,5 @@
 <template>
+  {{item}}
   <ul class="tagList">
     <li class="tag" :data-tagname="item" v-for="item in item.taxonomy.tags" :key="item.id">
       {{item}}
