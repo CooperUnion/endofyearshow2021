@@ -1,6 +1,11 @@
 <template>
   <main>    
-    <p v-if="loading">loading...</p>
+    <h1 @click="loadToggle()">test loading individual post page</h1>
+    
+    
+    <p v-if="loading">
+      <loading timeout="10" />
+    </p>
     <div v-else>
       
       <div 
@@ -33,11 +38,14 @@
   import TagList from '../components/TagList.vue'
   import PostInfo from '../components/PostInfo.vue'
   import PostMedia from '../components/PostMedia.vue'
+  import Loading from '../components/Loading.vue'
+
   
   export default {
     components: {
       PostInfo,
-      PostMedia
+      PostMedia,
+      Loading
     },
     props: {
       post: String

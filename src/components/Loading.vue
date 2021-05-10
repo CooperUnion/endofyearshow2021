@@ -1,55 +1,31 @@
 <template>
-  <div class="loading" :class="this.loading === false ? 'done' : ''">
+  <div class="loading" :class="loading === false ? 'done' : ''">
     <small class="progress">loading...</small>
     <small class="final" >No work of this type available.</small>
   </div>
 </template>
 
 <script>
-  
-  module.exports = {
-    data() {
-      return {
-        loading: true
-      }
-    }, 
-    methods: {
-      async init(){
-        setTimeout(()=>{
-          this.loading = false
-        }, 10000)
-      }
-    },
-    mounted: async function () {
-      this.init()
-    }
-  }
-  
+  import { ref, onBeforeMount } from "vue";
+
   export default {
-    components: {
-      PostInfo,
-      PostMedia
-    },
+    name: 'Loading',
     props: {
-      post: String
+      timeout: Number
     },
     setup(props){
       const loading = ref(true)
-      const items = ref([])
-            
-      onBeforeMount(loadPosts)
-      async function loadToggle(){
-        console.log("ok...")
-        loading.value = loading.value === true ? false : true
+
+      async function autoTimeout(){
+        
+        setTimeout(()=>{
+          loading.value = false
+        }, props.timeout * 1000)
+        
       }
-      
-      async function loadPosts(){
-        items.value = await fetch(`https://eoys-uploader-2021.glitch.me/api/posts`).then(res=>res.json())
-        loading.value = false
-        console.log(items.value)
-        return true
-      }
-      return {items, loading, loadToggle, loadPosts}
+      onBeforeMount(autoTimeout)
+
+      return {loading}
     }
   }
   
