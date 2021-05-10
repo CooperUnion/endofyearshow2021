@@ -2,8 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Posts from '../views/Posts.vue'
 import Post from '../views/Post.vue'
-import Masonry from '../views/Masonry.vue'
-import MasonryView from '../views/MasonryView.vue'
+//import Masonry from '../views/Masonry.vue'
+import MasonryPosts from '../views/MasonryPosts.vue'
 import MasonryPost from '../views/MasonryPost.vue'
 
 const routes = [
@@ -33,14 +33,8 @@ const routes = [
   },
   {
     path: '/masonry',
-    name: 'Masonry',
-    component: Masonry,
-    props: true
-  }, 
-  {
-    path: '/masonryView',
-    name: 'MasonryView',
-    component: MasonryView,
+    name: 'MasonryPosts',
+    component: MasonryPosts,
     props: true
   }, 
   {
@@ -55,11 +49,11 @@ const routes = [
   },
   {
     path: '/app/',
-    redirect: { name: 'Masonry'}
+    redirect: { name: 'MasonryPosts'}
   },
   {
     path: '/app',
-    redirect: { name: 'Masonry'}
+    redirect: { name: 'MasonryPosts'}
   }
 ]
 
