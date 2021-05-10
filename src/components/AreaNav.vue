@@ -67,11 +67,6 @@
     width: 24px;
     margin-right: 12px;
   }
-  
-  .nav-list .nav-item:hover .tag .toggle {
-    opacity: 0.2; 
-  }  
-
 
 
 </style>

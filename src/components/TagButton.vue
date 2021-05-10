@@ -24,6 +24,7 @@ export default {
     background-color: #eee;
     position: relative;
     box-sizing: border-box;
+    cursor: pointer;
   }  
 
   .toggle {
@@ -34,8 +35,13 @@ export default {
     width: 14px;
     fill: inherit;
     transform: rotate(45deg);
-/*     display: none; */
+    display: none;
   }  
+
+  .nav-list .nav-item:hover .tag .toggle {
+    display: block; 
+  }  
+
 
   .tag[data-tagname="view-all"] {
     background-color: #000;
