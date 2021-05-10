@@ -120,7 +120,7 @@
     background-color: #ffff00;
   }  
 
-  .nav-list li.sound art:before {
+  .nav-list li.sound-art:before {
     background-color: #ffa500;
   }  
 

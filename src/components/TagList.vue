@@ -1,7 +1,8 @@
 <template>
   <ul class="tagList">
     <li class="tag" :data-tagname="tag" v-for="tag in tags" :key="tag">
-      {{tag}}
+<!--       {{tag}} -->
+      <area-tag :tag="tag" />
     </li>
   </ul>
 </template>
@@ -10,6 +11,10 @@
   import AreaTag from '@/components/AreaTag.vue'
 
   export default {
+    components: {
+      AreaTag
+    },
+
     name: 'TagList',
     props: {
       tags: Array
@@ -23,7 +28,7 @@
     flex-direction: row;
   }
   
-  .post-info .tagList .tag {
+/*   .post-info .tagList .tag {
     height: 16px;
     width: 16px;
     overflow: hidden;
@@ -38,7 +43,7 @@
   .post-info .tagList .tag {
     background-color: #eee;
   }  
-
+ */
 /*   .post-info .tagList .tag[data-tagname="Animation"] {
     background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
     background-size: 16px 16px;
