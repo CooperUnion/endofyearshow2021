@@ -1,6 +1,6 @@
 <template>
   <ul id="areanav" class="nav-list">
-    <li v-for="item in items" :key="item" :class="item.name.toLowerCase().replace(/\s+/g, '')"><router-link :to="item.url">{{item.name}}</router-link><output>##</output></li>
+    <li v-for="item in items" :key="item" :class="item.name.toLowerCase().replace(/\s+/g, '-')"><router-link :to="item.url">{{item.name}}</router-link><output>##</output></li>
   </ul>
 </template>
 
@@ -77,7 +77,7 @@
     background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
   }  
 
-  .nav-list li.graphicdesign:before {
+  .nav-list li.graphic-design:before {
     background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
     background-size: 16px 16px;
     background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
@@ -94,7 +94,7 @@
     background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
   }  
   
-  .nav-list li.motiongraphics:before {
+  .nav-list li.motion-graphics:before {
     background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
     background-size: 16px 16px;
     background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
