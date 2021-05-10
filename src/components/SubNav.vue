@@ -1,5 +1,5 @@
 <template>
-  <ul class="nav-list">
+  <ul id="subnav" class="nav-list">
     <li v-for="item in items" :key="item"><router-link :to="item.url">{{item.name}}</router-link></li>
   </ul>
 </template>
@@ -14,5 +14,4 @@
 </script>
 
 <style scoped>
-
 </style>

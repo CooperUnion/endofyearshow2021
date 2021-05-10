@@ -73,11 +73,11 @@
 
 <style scoped>
   
-  main{
+/*   main{
     width: 100%;
     height: 100vh;
   }
- 
+  */
   .masonryBox {
     margin: 0 auto;
   }

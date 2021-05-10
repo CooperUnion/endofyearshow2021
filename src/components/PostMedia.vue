@@ -1,10 +1,8 @@
-<template>
-  <template v-if="media" class="post-media">
-    <a :href="media.source_url">
-      <img v-if="!media.sizes.medium_large" :src="media.source_url" />
-      <img v-if="media.sizes.medium_large" :src="media.sizes.medium_large.source_url" />
-    </a>
-  </template>
+<template v-if="media" class="post-media">
+  <a :href="media.source_url">
+    <img v-if="!media.sizes.medium_large" :src="media.source_url" />
+    <img v-if="media.sizes.medium_large" :src="media.sizes.medium_large.source_url" />
+  </a>
 </template>
 
 <script>

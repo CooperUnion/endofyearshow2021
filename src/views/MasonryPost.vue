@@ -74,11 +74,11 @@
 </script>
 
 <style scoped>
-  main{
+/*   main{
     width: 100%;
     height: 100vh;
   }
- 
+  */
   .post {
     width: 200px;
     border: 1px solid black;
