@@ -35,10 +35,10 @@
 
 <script>
   import { ref, onBeforeMount } from "vue";
-  import TagList from '../components/TagList.vue'
-  import PostInfo from '../components/PostInfo.vue'
-  import PostMedia from '../components/PostMedia.vue'
-  import Loading from '../components/Loading.vue'
+  import TagList from '@/components/TagList.vue'
+  import PostInfo from '@/components/PostInfo.vue'
+  import PostMedia from '@/components/PostMedia.vue'
+  import Loading from '@/components/Loading.vue'
 
   
   export default {
