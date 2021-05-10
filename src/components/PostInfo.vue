@@ -25,7 +25,12 @@
 </script>
 
 <style scoped>
+
  .post-info {
+    list-style-type: none;
+    text-align: left;
+    margin: 0;
+    padding: 0;   
     font-size: 16px;
     line-height: 1;
     margin-top: 0.5em;

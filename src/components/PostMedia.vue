@@ -1,8 +1,8 @@
 <template>
-  <template v-if="preview" class="post-media">
-    <a :href="preview.source_url">
-      <img v-if="!preview.sizes.medium_large" :src="preview.source_url" />
-      <img v-if="preview.sizes.medium_large" :src="preview.sizes.medium_large.source_url" />
+  <template v-if="media" class="post-media">
+    <a :href="media.source_url">
+      <img v-if="!media.sizes.medium_large" :src="media.source_url" />
+      <img v-if="media.sizes.medium_large" :src="media.sizes.medium_large.source_url" />
     </a>
   </template>
 </template>
@@ -11,11 +11,20 @@
 export default {
   name: 'PostMedia',
   props: {
-    preview: Object
+    media: Object
   }
 }
 </script>
 
 <style scoped>
   
+  .post-media a {
+    display: block;
+    background-color: gainsboro;
+  }
+
+  .post-media a img {
+    display: block;
+    width: 100%;
+  }
 </style>
