@@ -3,6 +3,7 @@ import Home from '../views/Home.vue'
 import Posts from '../views/Posts.vue'
 import Post from '../views/Post.vue'
 import Masonry from '../views/Masonry.vue'
+import MasonryView from '../views/MasonryView.vue'
 import MasonryPost from '../views/MasonryPost.vue'
 
 const routes = [
@@ -35,7 +36,13 @@ const routes = [
     name: 'Masonry',
     component: Masonry,
     props: true
-  },  
+  }, 
+  {
+    path: '/masonryView',
+    name: 'MasonryView',
+    component: MasonryView,
+    props: true
+  }, 
   {
     path: '/masonry/:post',
     name: 'MasonryPost',
