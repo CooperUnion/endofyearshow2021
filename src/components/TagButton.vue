@@ -19,6 +19,18 @@ export default {
     background-color: #eee;
   }  
 
+
+  .tag:hover {
+    display: block;
+    height: 16px;
+    width: 16px;
+    overflow: hidden;
+    text-indent: -999vw;
+    border-radius: 50%;
+    background-color: #eee;
+  }  
+
+
   .tag[data-tagname="view-all"] {
     background-color: #000;
   }  
