@@ -4,29 +4,14 @@
     <router-link to="/about">About</router-link> | 
     <router-link to="/masonry">masonry</router-link>
   </div>
-<!--   <div id="page">
-    <sub-nav :items="navItems" /> -->
-    <router-view/>
-<!--   </div> -->
+  <router-view/>
 </template>
 
 <script>
   import { ref, onBeforeMount } from "vue";
-  // import SubNav from '@/components/SubNav.vue'
 
   export default {
-    name: 'App'//,
-//     components: {
-//       SubNav
-//     },
-//     setup(){
-//       const areaItems = ref([
-//         {name:"link 1", url:"/link1"},
-//         {name:"link 2", url:"/link2"}
-//       ])
-      
-//       return {navItems}
-    // }
+    name: 'App'
   }
 </script>
 

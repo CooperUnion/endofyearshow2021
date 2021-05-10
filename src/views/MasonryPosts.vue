@@ -56,8 +56,8 @@
       const loading = ref(true)
       const items = ref([])
       const areaNavItems = ref([
-        {name:"link 1", url:"/link1"},
-        {name:"link 2", url:"/link2"}
+        {name:"View all", url:"/viewall"},
+        {name:"Design", url:"/design"}
       ])
          
       onBeforeMount(loadPosts)
@@ -90,6 +90,7 @@
   
   .post {
     width: calc(33% - 32px);
+    width: 21vw;
 /*     min-width: 266px; */
     border: 1px solid transparent;
     margin-bottom: 48px;
