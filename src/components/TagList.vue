@@ -1,6 +1,6 @@
 <template>
   <ul class="tagList">
-    <li class="tag" :data-tagname="tag" v-for="tag in tags" :key="tag">
+    <li class="tag" v-for="tag in tags" :key="tag">
 <!--       {{tag}} -->
       <area-tag :tag="tag" />
     </li>

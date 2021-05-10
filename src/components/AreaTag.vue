@@ -1,5 +1,5 @@
 <template>
-  <span class="tag" :data-tagname="tag.toLowerCase().replace(/\s+/g, '-')" />
+  <span class="tag" :data-tagname="tag" />
 </template>
 
 <script>
