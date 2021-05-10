@@ -6,7 +6,7 @@
 
 <script>
   export default {
-    name: 'NavList',
+    name: 'areaNavItems',
     props: {
       items: Array,
     }

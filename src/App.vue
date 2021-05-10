@@ -15,7 +15,7 @@
   // import SubNav from '@/components/SubNav.vue'
 
   export default {
-    name: 'App',
+    name: 'App'//,
 //     components: {
 //       SubNav
 //     },
