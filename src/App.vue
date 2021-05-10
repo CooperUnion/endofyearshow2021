@@ -60,6 +60,17 @@
     flex-direction: row;
   }
   
-  #page 
+  #page #subnav {
+    width: 275px;
+    list-style-type: none;
+    margin: 0;
+    text-align: left;
+  }
   
+
+  #page main {
+    width: calc(100% - 275px);
+  }
+  
+
 </style>
