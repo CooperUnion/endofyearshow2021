@@ -13,7 +13,6 @@
     components: {
       AreaTag
     },
-
     name: 'TagList',
     props: {
       tags: Array

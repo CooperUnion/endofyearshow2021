@@ -1,7 +1,7 @@
 <template>
   <ul id="areanav" class="nav-list">
-    <li v-for="item in items" :key="item" :class="item.name.toLowerCase().replace(/\s+/g, '-')">
-      <area-tag :data-tagname="tag.toLowerCase().replace(/\s+/g, '-')" />
+    <li v-for="item in items" :key="item">
+      <area-tag :data-tagname="item.name.toLowerCase().replace(/\s+/g, '-')" />
       <router-link :to="item.url">{{item.name}}</router-link>
       <output>##</output>
     </li>
@@ -9,12 +9,13 @@
 </template>
 
 <script>
+  import AreaTag from '@/components/AreaTag.vue'
+
   export default {
     components: {
       AreaTag
     },
-
-    name: 'areaNavItems',
+    name: 'areaNav',
     props: {
       items: Array,
     }
