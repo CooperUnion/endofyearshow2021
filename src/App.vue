@@ -4,8 +4,28 @@
     <router-link to="/about">About</router-link> | 
     <router-link to="/masonry">masonry</router-link>
   </div>
+  <nav-list :items="navItems"></nav-list>
   <router-view/>
 </template>
+
+<script>
+  import { ref, onBeforeMount } from "vue";
+  import NavList from '@/components/Nav.vue'
+
+  export default {
+    name: 'App',
+    components: {
+      NavList
+    },
+    setup(){
+      const navItems = ref([
+        {name:"link 1", url:"/link1"}
+      ])
+      
+      return
+    }
+  }
+</script>
 
 <style>
   

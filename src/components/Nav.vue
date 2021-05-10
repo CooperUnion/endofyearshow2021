@@ -1,0 +1,52 @@
+<template>
+  <ul class="post-info">
+    <li>item 1</li>
+    <li>item 2</li>
+  </ul>
+</template>
+
+<script>
+  // import TagList from '@/components/TagList.vue'
+
+  export default {
+    name: 'PostInfo',
+    // props: {
+    //   tags: Array,
+    //   title: String,
+    //   author: Object
+    // },
+    // components: {
+    //   TagList
+    // }
+  }
+</script>
+
+<style scoped>
+
+ .post-info {
+    list-style-type: none;
+    text-align: left;
+    margin: 0;
+    padding: 0;   
+    font-size: 16px;
+    line-height: 1;
+    margin-top: 0.5em;
+  }
+
+  .post-info .titletags {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .post-info .title {
+    color: #000;
+    font-weight: 700;
+    text-transform: capitalize;
+    margin: 0;
+  }
+
+   .post-info .name {
+    color: #000;
+    margin-top: 0.25em;
+  }
+</style>

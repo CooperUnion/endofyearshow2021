@@ -66,7 +66,9 @@
         console.log(items.value)
         return true
       }
-      return {items, loading, loadToggle, loadPosts}
+      
+      const timeoutValue = ref(15)
+      return {items, loading, loadToggle, loadPosts, timeoutValue}
     }
   }
 </script>
