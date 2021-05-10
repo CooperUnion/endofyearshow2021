@@ -4,10 +4,10 @@
     <router-link to="/about">About</router-link> | 
     <router-link to="/masonry">masonry</router-link>
   </div>
-  <div id="page">
-<!--     <sub-nav :items="navItems" /> -->
+<!--   <div id="page">
+    <sub-nav :items="navItems" /> -->
     <router-view/>
-  </div>
+<!--   </div> -->
 </template>
 
 <script>

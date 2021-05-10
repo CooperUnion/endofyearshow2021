@@ -6,9 +6,9 @@
     <p v-if="loading">
       <loading timeout="15" />
     </p>
-    <div v-else class="areas-page">
+    <div v-else class="areasPage">
       
-      <area-nav :items="areaItems" />
+      <area-nav :items="areaNavItems" />
       <div 
         class="masonryBox" 
         v-masonry="containerId" 
@@ -16,7 +16,7 @@
         item-selector=".item" 
         column-width=".post" 
         gutter="48" 
-        fit-width="true" 
+
         horizontal-order="true">
         <div v-masonry-tile class="item" v-for="item in items" v-bind:key="item.id">
           <!-- block item markup -->
@@ -89,19 +89,19 @@
   }
   
   .post {
-    width: 27vw;
+    width: calc(33% - 32px);
     min-width: 266px;
     border: 1px solid transparent;
     margin-bottom: 48px;
 /*     margin: 24px; */
   }
   
-  #page {
+  .areasPage {
     display: flex;
     flex-direction: row;
   }
   
-  #page #subnav {
+  .areasPage #areanav {
     width: 275px;
     list-style-type: none;
     margin: 0;
@@ -109,7 +109,7 @@
   }
   
 
-  #page main {
+  .areasPage .masonryBox {
     width: calc(100% - 275px);
   }
 
