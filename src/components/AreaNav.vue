@@ -19,7 +19,7 @@
 </template>
 
 <script>
-  import { computed } from 'vue'
+  import { computed, mapGetters } from 'vue'
   import { useStore } from 'vuex'  
   import TagButton from '@/components/TagButton.vue'
 
@@ -38,9 +38,9 @@
       const activeNav = store.state.activeNav
       
       //returns true/false for the passed navItem
-      const currentNav = (navItem)=>{
-        return store.state.activeNav.currentNavState(navItem)
-      }
+      // const currentNav = (navItem)=>{
+      //   return store.state.activeNav.currentNavState(navItem)
+      // }
       
       //toggles navItem state from active to inactive
       const toggleNav = (navItem)=>{
@@ -51,11 +51,15 @@
         }
       }
       
+      const computed = computed() =>{
+        return ...mapGetters(['currentNavState'])
+      }
+      
       //formats a name passed to it by replacing '-' with ' '
       const slug = (name)=>{
         return name.toLowerCase().replace(/\s+/g, '-')
       }
-      return {activeNav, toggleNav, currentNav, slug}
+      return {activeNav, toggleNav, currentNav, slug, ...computed}
     }
   }
 </script>

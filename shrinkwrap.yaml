@@ -1,5 +1,5 @@
 dependencies:
-  core-js: 3.11.2
+  core-js: 3.12.1
   mitt: 2.1.0
   register-service-worker: 1.7.2
   vue: 3.0.11
@@ -3709,9 +3709,15 @@ packages:
     resolution:
       integrity: sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==
   /core-js/3.11.2:
+    dev: true
     requiresBuild: true
     resolution:
       integrity: sha512-3tfrrO1JpJSYGKnd9LKTBPqgUES/UYiCzMKeqwR1+jF16q4kD1BY2NvqkfuzXwQ6+CIWm55V9cjD7PQd+hijdw==
+  /core-js/3.12.1:
+    dev: false
+    requiresBuild: true
+    resolution:
+      integrity: sha512-Ne9DKPHTObRuB09Dru5AjwKjY4cJHVGu+y5f7coGn1E9Grkc3p2iBwE9AI/nJzsE29mQF7oq+mhYYRqOMFN1Bw==
   /core-util-is/1.0.2:
     dev: true
     resolution:
@@ -11817,7 +11823,7 @@ specifiers:
   '@vue/eslint-config-standard': ^5.1.2
   '@vue/test-utils': ^2.0.0-0
   babel-eslint: ^10.1.0
-  core-js: ^3.6.5
+  core-js: ^3.12.1
   eslint: ^6.7.2
   eslint-plugin-import: ^2.20.2
   eslint-plugin-node: ^11.1.0
@@ -11825,11 +11831,11 @@ specifiers:
   eslint-plugin-standard: ^4.0.0
   eslint-plugin-vue: ^7.0.0
   mitt: ^2.1.0
-  register-service-worker: ^1.7.1
+  register-service-worker: ^1.7.2
   typescript: ~3.9.3
-  vue: ^3.0.0
+  vue: ^3.0.11
   vue-jest: ^5.0.0-0
   vue-masonry: ^0.13.0
   vue-masonry-wall: ^0.3.2
-  vue-router: ^4.0.0-0
-  vuex: ^4.0.0-0
+  vue-router: ^4.0.6
+  vuex: ^4.0.0

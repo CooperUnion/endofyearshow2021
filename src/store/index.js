@@ -16,9 +16,9 @@ export default createStore({
   },
   getters: {
     currentNavState: (state) => {
-      (navItem) => {
-      return state.activeNav.get(navItem)
-    }
+      return (navItem) => {
+        return state.activeNav.get(navItem)
+      }
     }
   },
   actions: {
