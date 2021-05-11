@@ -15,7 +15,7 @@
           <post-info 
             :tags="item.taxonomy.tags"
             :title="item.title"
-            :author="item.author" />
+            :author="item.author"  />
         </div>
     </div>
   </div>

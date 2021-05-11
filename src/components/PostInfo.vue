@@ -1,7 +1,7 @@
 <template>
   <ul class="post-info">
     <li class="titletags">
-      <h6 class="title" v-html="title"></h6>
+      <h6 class="title"><router-link :to="itemUrl" v-html="title"></router-link></h6>
       <tag-list :tags="tags"/>
     </li>
     <li class="name">{{author.formatted}}</li> 
@@ -9,6 +9,7 @@
 </template>
 
 <script>
+  import { ref } from "vue";  
   import TagList from '@/components/TagList.vue'
 
   export default {
@@ -16,11 +17,16 @@
     props: {
       tags: Array,
       title: String,
-      author: Object
+      author: Object,
+      post: Number
     },
     components: {
       TagList
-    }
+    },
+    setup(props){
+      const itemUrl = ref(`/posts/${props.post}`)
+      return {itemUrl}
+    }    
   }
 </script>
 

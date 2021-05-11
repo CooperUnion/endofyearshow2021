@@ -25,23 +25,12 @@ const routes = [
   },
   {
     path: '/posts',
-    name: 'Posts',
-    component: Posts
-  },
-  {
-    path: '/posts/:post',
-    name: 'Post',
-    component: Post,
-    props: true
-  },
-  {
-    path: '/masonry',
     name: 'MasonryPosts',
     component: MasonryPosts,
     props: true
   }, 
   {
-    path: '/masonry/:post',
+    path: '/posts/:post',
     name: 'MasonryPost',
     component: MasonryPost,
     props: true

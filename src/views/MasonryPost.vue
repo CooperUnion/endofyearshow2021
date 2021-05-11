@@ -1,88 +1,89 @@
 <template>
-  <main>
-    <h1 @click="loadPosts()">test loading individual post page</h1>
-
-    <code>{{$route.params.post}}</code>
+   <main>    
+    <h1 @click="loadToggle()" class="mainHead">test loading individual post page</h1>
     
-    <p v-if="loading">loading...</p>
-    <div v-else>
+    <div class="areasPage">
       
-      <div v-masonry="containerId" transition-duration="0.3s" item-selector=".item" column-width=".post">
-        <div v-masonry-tile class="item" v-for="item in items" v-bind:key="item.id">
-          <!-- block item markup -->
-           <div class="post">
-
-              <a :href="item.assets.preview.source_url">
-                <img :src="item.assets.preview.thumbnail.source_url" />
-              </a>
-              <p>
-                id: <a :href="item.route">{{item.id}}</a>
-                title: {{item.title}}
-                type: {{item.type}}
-                author: {{item.author.formatted}}
-                tags: {{item.taxonomy.tags}}
-                description: {{item.meta.description}}
-                url: <a :href="item.assets.url">{{item.assets.url}}</a>
-                high-res: <a :href="item.assets.preview.source_url">link</a>
-<!--                 <span v-if="item.type === 'video'">
-                  video: <a :href="item.assets.media.url">{{item.assets.media.url}}</a>
-                </span> -->
-              </p>
-            </div>
-        </div>
-      </div>
-    
+      <area-nav :items="areaNavItems" />
+      
+      <loading v-if="loading" :timeout="15" />
+      <posts v-else :items="items"/>
       
     </div>
-  </main>     
+  </main>   
 </template>
 
 <script>
-  import { ref, onBeforeMount } from "vue";
-  // import VueMasonryWall from "vue-masonry-wall";
-
-  // import Post from 'Post.vue';
-  // import quickLoad from '../js/lib/quickLoadModule.mjs'
-  // import options from '../js/loadModuleOptions.js'
-
+  import { ref, onBeforeMount, watch } from "vue";
+  import { useRoute } from 'vue-router'
+  
+  import Loading from '@/components/Loading.vue'
+  import AreaNav from '@/components/AreaNav.vue'
+  import Posts from '@/components/Posts.vue'
+  import navItems from '@/router/navItems.js'
+  
   export default {
     components: {
-      // VueMasonryWall
+      Loading,
+      Posts,
+      AreaNav
     },
     props: {
-      post: String
+      post: Number
     },
     setup(props){
       const loading = ref(true)
-      const items = ref([])
-            
+      const items = ref()
+      const areaNavItems = ref(navItems)
+      const route = useRoute()      
+         
       onBeforeMount(loadPosts)
       async function loadToggle(){
         console.log("ok...")
         loading.value = loading.value === true ? false : true
       }
       
+      watch(() => route.params.tag, loadPosts)    
+      
       async function loadPosts(){
-        items.value.push(await fetch(`https://eoys-uploader-2021.glitch.me/api/posts/${props.post}`).then(res=>res.json()))  
+        loading.value = true
+        items.value = []
+
+        const url = `https://eoys-uploader-2021.glitch.me/api/posts/${route.param.post}`
+        
+        items.value = await fetch(url).then(res=>res.json())
         loading.value = false
         console.log(items.value)
         return true
       }
-      return {items, loading, loadToggle, loadPosts}
+      return {items, loading, loadToggle, loadPosts, areaNavItems}
     }
   }
 </script>
 
 <style scoped>
-/*   main{
-    width: 100%;
-    height: 100vh;
+  
+ .mainHead {
+    font-size: 48px;
+    text-align: left;
+    text-transform: capitalize;
+    margin-bottom: 48px;
   }
-  */
-  .post {
-    width: 200px;
-    border: 1px solid black;
-    background-color: gainsboro;
-    margin: 5px;
+  
+  .areasPage {
+    display: flex;
+    flex-direction: row;
   }
+  
+  .areasPage #areanav {
+    width: 275px;
+    list-style-type: none;
+    margin: 0;
+    text-align: left;
+  }
+  
+  .areasPage .masonryBox {
+    width: calc(100% - 275px);
+  }
+
 </style>

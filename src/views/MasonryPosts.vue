@@ -1,53 +1,31 @@
 <template>
-  <main>    
+   <main>    
     <h1 @click="loadToggle()" class="mainHead">test loading individual post page</h1>
     
-    
-    <p v-if="loading">
-      <loading :timeout="15" />
-    </p>
-    <div v-else class="areasPage">
+    <div class="areasPage">
       
       <area-nav :items="areaNavItems" />
-      <div 
-        class="masonryBox" 
-        v-masonry 
-        transition-duration="0.3s" 
-        item-selector=".item" 
-        column-width=".post" 
-        gutter="48" 
-
-        horizontal-order="true">
-        <div v-masonry-tile class="item" v-for="item in items" v-bind:key="item.id">
-          <!-- block item markup -->
-            <div class="post" v-if="item.id">
-              <post-media :media="item.assets.preview" />
-              <post-info 
-                :tags="item.taxonomy.tags"
-                :title="item.title"
-                :author="item.author" />
-            </div>
-        </div>
-      </div>
+      
+      <loading v-if="loading" :timeout="15" />
+      <posts v-else :items="items"/>
       
     </div>
-  </main>     
+  </main>   
 </template>
 
 <script>
-  import { ref, onBeforeMount } from "vue";
-  import TagList from '@/components/TagList.vue'
-  import PostInfo from '@/components/PostInfo.vue'
-  import PostMedia from '@/components/PostMedia.vue'
+  import { ref, onBeforeMount, watch } from "vue";
+  import { useRoute } from 'vue-router'
+  
   import Loading from '@/components/Loading.vue'
   import AreaNav from '@/components/AreaNav.vue'
+  import Posts from '@/components/Posts.vue'
   import navItems from '@/router/navItems.js'
   
   export default {
     components: {
-      PostInfo,
-      PostMedia,
       Loading,
+      Posts,
       AreaNav
     },
     props: {
@@ -55,8 +33,9 @@
     },
     setup(props){
       const loading = ref(true)
-      const items = ref([])
+      const items = ref()
       const areaNavItems = ref(navItems)
+      const route = useRoute()      
          
       onBeforeMount(loadPosts)
       async function loadToggle(){
@@ -64,8 +43,12 @@
         loading.value = loading.value === true ? false : true
       }
       
+      watch(() => route.params.tag, loadPosts)    
+      
       async function loadPosts(){
-        
+        loading.value = true
+        items.value = []
+
         const url = `https://eoys-uploader-2021.glitch.me/api/posts`
         
         items.value = await fetch(url).then(res=>res.json())
@@ -80,24 +63,11 @@
 
 <style scoped>
   
-  .mainHead {
+ .mainHead {
     font-size: 48px;
     text-align: left;
     text-transform: capitalize;
     margin-bottom: 48px;
-  }
-  
-  .masonryBox {
-    margin: 0 auto;
-  }
-  
-  .post {
-    width: calc(33% - 32px);
-    width: 21vw;
-/*     min-width: 266px; */
-    border: 1px solid transparent;
-    margin-bottom: 48px;
-/*     margin: 24px; */
   }
   
   .areasPage {
@@ -112,11 +82,8 @@
     text-align: left;
   }
   
-
   .areasPage .masonryBox {
     width: calc(100% - 275px);
   }
 
-
-  
 </style>
