@@ -4,7 +4,7 @@
     
     
     <p v-if="loading">
-      <loading timeout="15" />
+      <loading :timeout="15" />
     </p>
     <div v-else class="areasPage">
       

@@ -1,7 +1,7 @@
 <template>
   <ul class="post-info">
     <li class="titletags">
-      <h6 class="title">{{title}}</h6>
+      <h6 class="title" v-html="title"></h6>
       <tag-list :tags="tags"/>
     </li>
     <li class="name">{{author.formatted}}</li> 
