@@ -14,7 +14,6 @@ export default {
     active: Boolean
   },
   setup(props){
-   
     const isActive = () => {
       return props.active ? 'active' : 'inactive'
     }
@@ -157,14 +156,14 @@ export default {
     display: block; 
   }  
 
-  .nav-list .nav-item .tag.inactive {
+  .nav-list .nav-item .tag:not([data-tagname="view-all"]).inactive {
     background-image: none;
     background-color: #fff;
     border: 2px solid #000;
     fill: #000;
   }
   
-  .nav-list .nav-item .tag.inactive .toggle {
+  .nav-list .nav-item .tag:not([data-tagname="view-all"]).inactive .toggle {
     top: 3px;
     left: 3px;
   }
