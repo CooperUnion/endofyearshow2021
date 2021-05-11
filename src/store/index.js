@@ -16,13 +16,13 @@ export default createStore({
       state.activeNav.delete(navItem)
     }
   },
-  getters: {
-    currentNavState: (state) => {
-      return (navItem) => {
-        return state.activeNav.has(navItem)
-      }
-    }
-  },
+  // getters: {
+  //   currentNavState: (state) => {
+  //     return (navItem) => {
+  //       return state.activeNav.has(navItem)
+  //     }
+  //   }
+  // },
   actions: {
   },
   modules: {

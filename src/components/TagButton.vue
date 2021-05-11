@@ -25,10 +25,6 @@ export default {
 
 <style scoped>
   
-  .active {
-    background-color:gainsboro;
-  }
-  
   .tag {
     display: block;
     height: 16px;
