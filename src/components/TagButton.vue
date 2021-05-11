@@ -12,6 +12,13 @@ export default {
   name: 'TagButton',
   props:{
     active: Boolean
+  },
+  setup(props){
+   
+    const active = () {
+      return props.active ? ''
+    }
+    export {active}
   }
 }
 </script>

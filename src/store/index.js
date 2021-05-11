@@ -1,11 +1,11 @@
 import { createStore } from 'vuex'
 
-const stateSet = new Set()
+const activeNav = new Set()
 
 export default createStore({
   state() {
     return {
-      activeNav: new Set()
+      activeNav
     }
   },
   mutations: {
@@ -19,7 +19,7 @@ export default createStore({
   getters: {
     currentNavState: (state) => {
       return (navItem) => {
-        return state.activeNav.get(navItem)
+        return state.activeNav.has(navItem)
       }
     }
   },

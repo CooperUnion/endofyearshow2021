@@ -10,10 +10,8 @@
     </li>
 
     <li class="nav-item" v-for="item in items" :key="item">
-      <b @click="toggleNav(slug(item.name))">+</b>
-      
       <tag-button :data-tagname="slug(item.name)" :active="currentNavState(slug(item.name))"/>
-      <router-link :to="item.url">{{item.name}}</router-link>
+      <router-link :to="item.url" @click="toggleNav(slug(item.name))">{{item.name}}</router-link>
       <output>##</output>
     </li>
   </ul>
@@ -39,7 +37,7 @@
       const activeNav = store.state.activeNav
       
       const currentNavState = (navItem) => {
-        return store.getters.currentNavState(navItem)
+        return activeNav.has(navItem)
       }
       
       //toggles navItem state from active to inactive
