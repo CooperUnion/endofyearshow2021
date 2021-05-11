@@ -11,7 +11,8 @@
 
     <li class="nav-item" v-for="item in items" :key="item">
       <b @click="toggleNav(slug(item.name))">+</b>
-      <tag-button :data-tagname="slug(item.name)" :active="currentNav(slug(item.name))"/>
+      
+      <tag-button :data-tagname="slug(item.name)" :active="currentNavState(slug(item.name))"/>
       <router-link :to="item.url">{{item.name}}</router-link>
       <output>##</output>
     </li>
@@ -19,7 +20,7 @@
 </template>
 
 <script>
-  import { computed, mapGetters } from 'vue'
+  import { computed } from 'vue'
   import { useStore } from 'vuex'  
   import TagButton from '@/components/TagButton.vue'
 
@@ -37,10 +38,9 @@
       //returns state for all nav items
       const activeNav = store.state.activeNav
       
-      //returns true/false for the passed navItem
-      // const currentNav = (navItem)=>{
-      //   return store.state.activeNav.currentNavState(navItem)
-      // }
+      const currentNavState = (navItem) => {
+        return store.getters.currentNavState(navItem)
+      }
       
       //toggles navItem state from active to inactive
       const toggleNav = (navItem)=>{
@@ -51,15 +51,11 @@
         }
       }
       
-      const computed = computed() =>{
-        return ...mapGetters(['currentNavState'])
-      }
-      
       //formats a name passed to it by replacing '-' with ' '
       const slug = (name)=>{
         return name.toLowerCase().replace(/\s+/g, '-')
       }
-      return {activeNav, toggleNav, currentNav, slug, ...computed}
+      return {activeNav, toggleNav, currentNavState, slug}
     }
   }
 </script>

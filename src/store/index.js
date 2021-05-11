@@ -1,5 +1,7 @@
 import { createStore } from 'vuex'
 
+const stateSet = new Set()
+
 export default createStore({
   state() {
     return {
