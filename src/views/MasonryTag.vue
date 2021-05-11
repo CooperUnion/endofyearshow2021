@@ -15,6 +15,7 @@
 <script>
   import { ref, onBeforeMount, watch } from "vue";
   import { useRoute } from 'vue-router'
+  import { useStore } from 'vuex'  
   
   import Loading from '@/components/Loading.vue'
   import AreaNav from '@/components/AreaNav.vue'
@@ -31,6 +32,8 @@
       tag: String
     },
     setup(props){
+      const store = useStore()
+      
       const loading = ref(true)
       const items = ref()
       const areaNavItems = ref(navItems)

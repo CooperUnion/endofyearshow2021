@@ -1,6 +1,6 @@
 <template>
-  <span :class="['tag', isActive()]">
-    <svg class="toggle" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="14" height="14" viewbox="0, 0, 14, 14">
+  <span class="tag">
+    <svg :class="['toggle', isActive()]" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="14" height="14" viewbox="0, 0, 14, 14">
       <path d="M6,8 L6,13.018 C6,13.551 6.449,14 7,14 C7.551,14 8,13.551 8,13 L8,8 L13.018,8 C13.551,8 14,7.551 14,7 C14,6.449 13.551,6 13,6 L8,6 L8,1 C8,0.431 7.551,0 7,0 C6.449,0 6,0.449 6,1 L6,6 L1,6 C0.431,6 0,6.449 0,7 C0,7.551 0.449,8 1,8 L6,8 z" />
     </svg>
   </span>
@@ -16,7 +16,7 @@ export default {
   setup(props){
    
     const isActive = () => {
-      return props.active ? 'active' : ''
+      return props.active ? 'active' : 'inactive'
     }
     return {isActive}
   }
@@ -42,7 +42,7 @@ export default {
     cursor: pointer;
   }  
 
-  .toggle {
+  .toggle, .active {
     position: absolute;
     top: 5px;
     left: 5px;
@@ -51,7 +51,11 @@ export default {
     fill: inherit;
     transform: rotate(45deg);
     display: none;
-  }  
+  }
+  
+  .inactive {
+    transform: rotate(0deg);
+  }
 
   .nav-list .nav-item:hover .tag .toggle {
     display: block; 
