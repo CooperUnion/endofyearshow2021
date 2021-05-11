@@ -15,6 +15,8 @@
 </template>
 
 <script>
+  import { computed } from 'vue'
+  import { useStore } from 'vuex'  
   import TagButton from '@/components/TagButton.vue'
 
   export default {
@@ -24,6 +26,11 @@
     name: 'areaNav',
     props: {
       items: Array,
+    },
+    setup(props){
+      const store = useStore()
+      
+      
     }
   }
 </script>

@@ -28,7 +28,7 @@
       AreaNav
     },
     props: {
-      post: String
+      post: Number
     },
     setup(props){
       const loading = ref(true)

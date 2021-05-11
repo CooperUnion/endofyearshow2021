@@ -1,6 +1,5 @@
 <template>
   <main>    
-<!--     <h1 @click="loadToggle()" class="mainHead">test loading individual post page</h1> -->
     
     <div class="areasPage">
       
@@ -21,7 +20,6 @@
   import AreaNav from '@/components/AreaNav.vue'
   import Posts from '@/components/Posts.vue'
   import navItems from '@/router/navItems.js'
-
   
   export default {
     components: {
@@ -49,6 +47,7 @@
       async function loadPosts(){
         loading.value = true
         items.value = []
+        
         const url = `https://eoys-uploader-2021.glitch.me/api/posts/tag/${route.params.tag}`
         
         items.value = await fetch(url).then(res=>res.json())
