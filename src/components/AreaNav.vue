@@ -1,5 +1,8 @@
 <template>
   <ul id="areanav" class="nav-list">
+    
+    <b>{{activeNav}}</b>
+    
     <li class="nav-item" >
       <tag-button data-tagname="view-all" />
       <router-link to="/view-all">View all</router-link>
@@ -7,6 +10,7 @@
     </li>
 
     <li class="nav-item" v-for="item in items" :key="item">
+      <b @click="toggleNav(item.name.toLowerCase().replace(/\s+/g, '-'))">+</b>
       <tag-button :data-tagname="item.name.toLowerCase().replace(/\s+/g, '-')" />
       <router-link :to="item.url">{{item.name}}</router-link>
       <output>##</output>
@@ -29,8 +33,16 @@
     },
     setup(props){
       const store = useStore()
+      const activeNav = store.state.activeNav
       
-      
+      const toggleNav = (navItem)=>{
+        if(store.state.activeNav.has(navItem)) {
+          store.commit('deactivateNav', navItem)
+        } else {
+          store.commit('activateNav', navItem)
+        }
+      }      
+      return {activeNav, toggleNav}
     }
   }
 </script>
