@@ -58,6 +58,13 @@ let routes = [
   }
 ]
 
+routes.push({
+    path: '/testtest',
+    name: 'MasonryPost',
+    component: MasonryPost,
+    props: true
+  }  
+
 routes.concat(navItems.map((navItem)=>{
   const {name, url:path} = navItem
   const component = MasonryPosts
@@ -65,8 +72,7 @@ routes.concat(navItems.map((navItem)=>{
   return {
     path,
     name,
-    component,
-    props: true
+    component
   }
 }))
 
