@@ -7,15 +7,19 @@ export default createStore({
     }
   },
   mutations: {
-    activateNav(state, nav) {
-      state.activeNav.add(nav)
+    activateNav(state, navItem) {
+      state.activeNav.add(navItem)
     },
-    deactivateNav(state, nav) {
-      state.activeNav.delete(nav)
+    deactivateNav(state, navItem) {
+      state.activeNav.delete(navItem)
     }
   },
   getters: {
-    
+    currentNavState: (state) => {
+      (navItem) => {
+      return state.activeNav.get(navItem)
+    }
+    }
   },
   actions: {
   },

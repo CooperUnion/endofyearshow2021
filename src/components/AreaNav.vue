@@ -39,10 +39,10 @@
       
       //returns true/false for the passed navItem
       const currentNav = (navItem)=>{
-        return store.state.activeNav.get(navItem)
+        return store.state.activeNav.currentNavState(navItem)
       }
       
-      //
+      //toggles navItem state from active to inactive
       const toggleNav = (navItem)=>{
         if(store.state.activeNav.has(navItem)) {
           store.commit('deactivateNav', navItem)
@@ -51,6 +51,7 @@
         }
       }
       
+      //formats a name passed to it by replacing '-' with ' '
       const slug = (name)=>{
         return name.toLowerCase().replace(/\s+/g, '-')
       }
