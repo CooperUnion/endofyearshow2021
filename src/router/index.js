@@ -1,10 +1,19 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
-import Posts from '../views/Posts.vue'
-import Post from '../views/Post.vue'
-//import Masonry from '../views/Masonry.vue'
-import MasonryPosts from '../views/MasonryPosts.vue'
-import MasonryPost from '../views/MasonryPost.vue'
+import Home from '@/views/Home.vue'
+import Posts from '@/views/Posts.vue'
+import Post from '@/views/Post.vue'
+//import Masonry from '@/views/Masonry.vue'
+import MasonryPosts from '@/views/MasonryPosts.vue'
+import MasonryPost from '@/views/MasonryPost.vue'
+import navItems from '@/router/nav.js'
+
+//  {name:"Animation", url:"/animation"},
+
+// {
+//     path: '/',
+//     name: 'Home',
+//     component: Home
+//   },
 
 const routes = [
   {
@@ -56,6 +65,10 @@ const routes = [
     redirect: { name: 'MasonryPosts'}
   }
 ]
+
+for (const item of navItems) {
+  
+}
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),

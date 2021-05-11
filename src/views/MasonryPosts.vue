@@ -11,7 +11,7 @@
       <area-nav :items="areaNavItems" />
       <div 
         class="masonryBox" 
-        v-masonry="containerId" 
+        v-masonry 
         transition-duration="0.3s" 
         item-selector=".item" 
         column-width=".post" 
@@ -41,6 +41,7 @@
   import PostMedia from '@/components/PostMedia.vue'
   import Loading from '@/components/Loading.vue'
   import AreaNav from '@/components/AreaNav.vue'
+  import navItems from '@/router/nav.js'
   
   export default {
     components: {
@@ -55,25 +56,7 @@
     setup(props){
       const loading = ref(true)
       const items = ref([])
-      const areaNavItems = ref([
-        {name:"Animation", url:"/animation"},
-        {name:"Audiovisual", url:"/audiovisual"},
-        {name:"Design", url:"/design"},
-        {name:"Drawing", url:"/drawing"},
-        {name:"Film", url:"/dilm"},
-        {name:"Graphic Design", url:"/graphic-Design"},
-        {name:"Installation", url:"/installation"},
-        {name:"Interactive", url:"/interactive"},
-        {name:"Motion Graphics", url:"/motion-Graphics"},
-        {name:"Painting", url:"/painting"},
-        {name:"Performance", url:"/performance"},
-        {name:"Photography", url:"/photography"},
-        {name:"Printmaking", url:"/printmaking"},
-        {name:"Sculpture", url:"/aculpture"},
-        {name:"Sound Art", url:"/sound-art"},
-        {name:"Video", url:"/video"},
-        {name:"Website", url:"/website"}
-      ])
+      const areaNavItems = ref(navItems)
          
       onBeforeMount(loadPosts)
       async function loadToggle(){
