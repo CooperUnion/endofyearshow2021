@@ -15,12 +15,14 @@
 </template>
 
 <script>
-  import { ref, onBeforeMount } from "vue";
+  import { ref, onBeforeMount, watch } from "vue";
+  import { useRoute } from 'vue-router'
+  
   import Loading from '@/components/Loading.vue'
   import AreaNav from '@/components/AreaNav.vue'
   import Posts from '@/components/Posts.vue'
   import navItems from '@/router/navItems.js'
-  
+
   
   export default {
     components: {
@@ -35,12 +37,15 @@
       const loading = ref(true)
       const items = ref([])
       const areaNavItems = ref(navItems)
+      const route = useRoute()
          
       onBeforeMount(loadPosts)
       async function loadToggle(){
         console.log("ok...")
         loading.value = loading.value === true ? false : true
       }
+      
+      watch(() => route.params.tag, loadPosts)
       
       async function loadPosts(){
         
