@@ -10,8 +10,8 @@
     </li>
 
     <li class="nav-item" v-for="item in items" :key="item">
-      <b @click="toggleNav(item.name.toLowerCase().replace(/\s+/g, '-'))">+</b>
-      <tag-button :data-tagname="item.name.toLowerCase().replace(/\s+/g, '-')" />
+      <b @click="toggleNav(slug(item.name))">+</b>
+      <tag-button :data-tagname="slug(item.name)" :active="currentNav(slug(item.name))"/>
       <router-link :to="item.url">{{item.name}}</router-link>
       <output>##</output>
     </li>
@@ -33,16 +33,28 @@
     },
     setup(props){
       const store = useStore()
+      
+      //returns state for all nav items
       const activeNav = store.state.activeNav
       
+      //returns true/false for the passed navItem
+      const currentNav = (navItem)=>{
+        return store.state.activeNav.get(navItem)
+      }
+      
+      //
       const toggleNav = (navItem)=>{
         if(store.state.activeNav.has(navItem)) {
           store.commit('deactivateNav', navItem)
         } else {
           store.commit('activateNav', navItem)
         }
-      }      
-      return {activeNav, toggleNav}
+      }
+      
+      const slug = (name)=>{
+        return name.toLowerCase().replace(/\s+/g, '-')
+      }
+      return {activeNav, toggleNav, currentNav, slug}
     }
   }
 </script>

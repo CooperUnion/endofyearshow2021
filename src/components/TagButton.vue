@@ -10,6 +10,9 @@
 <script>
 export default {
   name: 'TagButton',
+  props:{
+    active: Boolean
+  }
 }
 </script>
 
