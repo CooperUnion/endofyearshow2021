@@ -9,7 +9,7 @@
     <div v-else class="areasPage">
       
       <area-nav :items="areaNavItems" />
-      
+      <posts :items="items"/>
     </div>
   </main>     
 </template>
@@ -18,15 +18,18 @@
   import { ref, onBeforeMount } from "vue";
   import Loading from '@/components/Loading.vue'
   import AreaNav from '@/components/AreaNav.vue'
+  import Posts from '@/components/Posts.vue'
   import navItems from '@/router/navItems.js'
+  
   
   export default {
     components: {
       Loading,
+      Posts,
       AreaNav
     },
     props: {
-      post: String
+      tag: String
     },
     setup(props){
       const loading = ref(true)
@@ -41,7 +44,7 @@
       
       async function loadPosts(){
         
-        const url = `https://eoys-uploader-2021.glitch.me/api/posts`
+        const url = `https://eoys-uploader-2021.glitch.me/api/posts/tag/${props.tag}`
         
         items.value = await fetch(url).then(res=>res.json())
         loading.value = false
@@ -62,19 +65,6 @@
     margin-bottom: 48px;
   }
   
-  .masonryBox {
-    margin: 0 auto;
-  }
-  
-  .post {
-    width: calc(33% - 32px);
-    width: 21vw;
-/*     min-width: 266px; */
-    border: 1px solid transparent;
-    margin-bottom: 48px;
-/*     margin: 24px; */
-  }
-  
   .areasPage {
     display: flex;
     flex-direction: row;
@@ -87,11 +77,8 @@
     text-align: left;
   }
   
-
   .areasPage .masonryBox {
     width: calc(100% - 275px);
   }
 
-
-  
 </style>

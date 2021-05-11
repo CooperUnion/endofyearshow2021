@@ -26,14 +26,11 @@
   import PostMedia from '@/components/PostMedia.vue'
 
   export default {
-    name: 'PostInfo',
+    name: 'Posts',
     props: {
-      tags: Array,
-      title: String,
-      author: Object
+      items: Array
     },
     components: {
-      TagList,
       PostInfo,
       PostMedia
     }
@@ -42,30 +39,16 @@
 
 <style scoped>
 
- .post-info {
-    list-style-type: none;
-    text-align: left;
-    margin: 0;
-    padding: 0;   
-    font-size: 16px;
-    line-height: 1;
-    margin-top: 0.5em;
+  .masonryBox {
+    margin: 0 auto;
   }
-
-  .post-info .titletags {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .post-info .title {
-    color: #000;
-    font-weight: 700;
-    text-transform: capitalize;
-    margin: 0;
-  }
-
-   .post-info .name {
-    color: #000;
-    margin-top: 0.25em;
+  
+  .post {
+    width: calc(33% - 32px);
+    width: 21vw;
+/*     min-width: 266px; */
+    border: 1px solid transparent;
+    margin-bottom: 48px;
+/*     margin: 24px; */
   }
 </style>
