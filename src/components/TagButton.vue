@@ -1,3 +1,15 @@
+  .toggle, .active {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    height: 14px;
+    width: 14px;
+    fill: inherit;
+    transform: rotate(45deg);
+    display: none;
+  }
+  
+
 <template>
   <span class="tag">
     <svg :class="['toggle', isActive()]" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="14" height="14" viewbox="0, 0, 14, 14">
@@ -38,18 +50,21 @@ export default {
     cursor: pointer;
   }  
 
-  .toggle, .active {
+  .toggle {
     position: absolute;
     top: 5px;
     left: 5px;
     height: 14px;
     width: 14px;
     fill: inherit;
-    transform: rotate(45deg);
     display: none;
   }
   
-  .inactive {
+  .toggle.active {
+    transform: rotate(45deg);
+  }
+
+  .toggle.inactive {
     transform: rotate(0deg);
   }
 
