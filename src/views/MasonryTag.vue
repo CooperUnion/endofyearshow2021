@@ -1,6 +1,6 @@
 <template>
   <main>    
-    <h1 @click="loadToggle()" class="mainHead">test loading individual post page</h1>
+<!--     <h1 @click="loadToggle()" class="mainHead">test loading individual post page</h1> -->
     
     <div class="areasPage">
       
