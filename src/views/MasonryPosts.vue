@@ -41,7 +41,7 @@
   import PostMedia from '@/components/PostMedia.vue'
   import Loading from '@/components/Loading.vue'
   import AreaNav from '@/components/AreaNav.vue'
-  import navItems from '@/router/nav.js'
+  import navItems from '@/router/navItems.js'
   
   export default {
     components: {

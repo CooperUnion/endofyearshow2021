@@ -5,9 +5,9 @@ import Post from '@/views/Post.vue'
 //import Masonry from '@/views/Masonry.vue'
 import MasonryPosts from '@/views/MasonryPosts.vue'
 import MasonryPost from '@/views/MasonryPost.vue'
-import navItems from '@/router/nav.js'
+import navItems from '@/router/navItems.js'
 
-let routes = [
+const routes = [
   {
     path: '/',
     name: 'Home',
@@ -43,6 +43,12 @@ let routes = [
     name: 'MasonryPost',
     component: MasonryPost,
     props: true
+  },
+  {
+    path: '/tag/:tag',
+    name: 'MasonryPostTagView',
+    component: MasonryPosts,
+    props: true
   },  
   {
     path: '/app/post/:post',
@@ -58,23 +64,19 @@ let routes = [
   }
 ]
 
-routes.push({
-    path: '/testtest',
-    name: 'MasonryPost',
-    component: MasonryPost,
-    props: true
-  }  
-
-routes.concat(navItems.map((navItem)=>{
-  const {name, url:path} = navItem
-  const component = MasonryPosts
+// .concat(navItems.map((navItem)=>{
+//   const {name, url:fullPath} = navItem
+//   const component = MasonryPosts
+//   const path = '/tag/:tag'
+//   const props = true
   
-  return {
-    path,
-    name,
-    component
-  }
-}))
+//   return {
+//     path,
+//     name,
+//     component,
+//     props
+//   }
+// }))
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
