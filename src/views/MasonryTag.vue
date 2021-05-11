@@ -2,14 +2,13 @@
   <main>    
     <h1 @click="loadToggle()" class="mainHead">test loading individual post page</h1>
     
-    
-    <p v-if="loading">
-      <loading :timeout="15" />
-    </p>
-    <div v-else class="areasPage">
+    <div class="areasPage">
       
       <area-nav :items="areaNavItems" />
-      <posts :items="items"/>
+      
+      <loading v-if="loading" :timeout="15" />
+      <posts v-else :items="items"/>
+      
     </div>
   </main>     
 </template>
@@ -50,7 +49,7 @@
       async function loadPosts(){
         loading.value = true
         items.value = []
-        const url = `https://eoys-uploader-2021.glitch.me/api/posts/tag/${props.tag}`
+        const url = `https://eoys-uploader-2021.glitch.me/api/posts/tag/${route.params.tag}`
         
         items.value = await fetch(url).then(res=>res.json())
         loading.value = false
