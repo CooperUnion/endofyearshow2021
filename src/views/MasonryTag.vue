@@ -35,7 +35,7 @@
     },
     setup(props){
       const loading = ref(true)
-      const items = ref([])
+      const items = ref()
       const areaNavItems = ref(navItems)
       const route = useRoute()
          
@@ -48,12 +48,13 @@
       watch(() => route.params.tag, loadPosts)
       
       async function loadPosts(){
-        
+        loading.value = true
+        items.value = []
         const url = `https://eoys-uploader-2021.glitch.me/api/posts/tag/${props.tag}`
         
         items.value = await fetch(url).then(res=>res.json())
         loading.value = false
-        console.log(items.value)
+        // console.log(items.value)
         return true
       }
       return {items, loading, loadToggle, loadPosts, areaNavItems}
