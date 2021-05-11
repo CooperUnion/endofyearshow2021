@@ -49,9 +49,9 @@
         loading.value = true
         items.value = []
 
-        const url = `https://eoys-uploader-2021.glitch.me/api/posts/${route.param.post}`
+        const url = `https://eoys-uploader-2021.glitch.me/api/posts/${route.params.post}`
         
-        items.value = await fetch(url).then(res=>res.json())
+        items.value = [await fetch(url).then(res=>res.json())]
         loading.value = false
         console.log(items.value)
         return true
