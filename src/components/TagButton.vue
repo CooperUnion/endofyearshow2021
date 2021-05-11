@@ -47,7 +47,98 @@ export default {
     fill: inherit;
     display: none;
   }
+    
+  .tag[data-tagname="view-all"] {
+    background-color: #000;
+    fill: white;
+  }  
+
+  .tag[data-tagname="animation"] {
+    background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
+    background-size: 16px 16px;
+    background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+  }  
+
+  .tag[data-tagname="audiovisual"] {
+    background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
+    background-size: 16px 16px;
+    background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+  }  
+
+  .tag[data-tagname="design"] {
+    background-color: #ff0000;
+  }  
+
+  .tag[data-tagname="drawing"] {
+    background-color: #bd00ff;
+  }  
+
+  .tag[data-tagname="film"] {
+     background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
+    background-size: 16px 16px;
+    background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+  }  
+
+  .tag[data-tagname="graphic-design"] {
+    background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
+    background-size: 16px 16px;
+    background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+
+  }  
+
+  .tag[data-tagname="installation"] {
+    background-color: #0000ff;
+    fill: white;
+ }  
+
+  .tag[data-tagname="interactive"] {
+     background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
+    background-size: 16px 16px;
+    background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+  }  
   
+  .tag[data-tagname="motion-graphics"] {
+    background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
+    background-size: 16px 16px;
+    background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+  }  
+  
+  .tag[data-tagname="painting"] {
+    background-color: #06a9ff;
+  }  
+
+  .tag[data-tagname="performance"] {
+    background-color: #00ffff;
+  }  
+
+  .tag[data-tagname="photography"] {
+    background-color: #00ff00;
+  }  
+
+  .tag[data-tagname="printmaking"] {
+    background-color: #deff10;
+  }  
+
+  .tag[data-tagname="sculpture"] {
+    background-color: #ffff00;
+  }  
+
+  .tag[data-tagname="sound-art"] {
+    background-color: #ffa500;
+  }  
+
+  .tag[data-tagname="video"] {
+    background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
+    background-size: 16px 16px;
+    background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+  }  
+
+  .tag[data-tagname="website"] {
+    background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
+    background-size: 16px 16px;
+    background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+  }  
+
   .nav-list .nav-item .tag.active .toggle {
     transform: rotate(45deg);
   }
@@ -67,9 +158,8 @@ export default {
   }  
 
   .nav-list .nav-item .tag.inactive {
+    background-image: none;
     background-color: #fff;
-/*     height: 22px;
-    width: 22px; */
     border: 2px solid #000;
   }
   
@@ -77,97 +167,7 @@ export default {
     top: 3px;
     left: 3px;
   }
-  
-  .tag.active[data-tagname="view-all"] {
-    background-color: #000;
-    fill: white;
-  }  
 
-  .tag.active[data-tagname="animation"] {
-    background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
-    background-size: 16px 16px;
-    background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
-  }  
-
-  .tag.active[data-tagname="audiovisual"] {
-    background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
-    background-size: 16px 16px;
-    background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
-  }  
-
-  .tag.active[data-tagname="design"] {
-    background-color: #ff0000;
-  }  
-
-  .tag.active[data-tagname="drawing"] {
-    background-color: #bd00ff;
-  }  
-
-  .tag.active[data-tagname="film"] {
-     background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
-    background-size: 16px 16px;
-    background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
-  }  
-
-  .tag.active[data-tagname="graphic-design"] {
-    background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
-    background-size: 16px 16px;
-    background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
-
-  }  
-
-  .tag.active[data-tagname="installation"] {
-    background-color: #0000ff;
-    fill: white;
- }  
-
-  .tag.active[data-tagname="interactive"] {
-     background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
-    background-size: 16px 16px;
-    background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
-  }  
-  
-  .tag.active[data-tagname="motion-graphics"] {
-    background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
-    background-size: 16px 16px;
-    background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
-  }  
-  
-  .tag.active[data-tagname="painting"] {
-    background-color: #06a9ff;
-  }  
-
-  .tag.active[data-tagname="performance"] {
-    background-color: #00ffff;
-  }  
-
-  .tag.active[data-tagname="photography"] {
-    background-color: #00ff00;
-  }  
-
-  .tag.active[data-tagname="printmaking"] {
-    background-color: #deff10;
-  }  
-
-  .tag.active[data-tagname="sculpture"] {
-    background-color: #ffff00;
-  }  
-
-  .tag.active[data-tagname="sound-art"] {
-    background-color: #ffa500;
-  }  
-
-  .tag.active[data-tagname="video"] {
-    background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
-    background-size: 16px 16px;
-    background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
-  }  
-
-  .tag.active[data-tagname="website"] {
-    background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
-    background-size: 16px 16px;
-    background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
-  }  
 
 </style>
 
