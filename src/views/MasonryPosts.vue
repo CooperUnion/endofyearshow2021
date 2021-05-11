@@ -5,7 +5,7 @@
       
       <area-nav :items="areaNavItems" />
       
-      <loading v-if="loading" :timeout="15" />
+      <loading v-if="loading" :timeout="20" />
       <posts v-else :items="items"/>
       
     </div>
