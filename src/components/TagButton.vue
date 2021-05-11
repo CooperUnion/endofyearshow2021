@@ -48,32 +48,36 @@ export default {
     display: none;
   }
   
-  .tag.active .toggle {
+  .nav-list .nav-item .tag.active .toggle {
     transform: rotate(45deg);
   }
 
-  .tag.inactive .toggle {
+  .nav-list .nav-item .tag.inactive .toggle {
     transform: rotate(0deg);
+  }
+
+  .nav-list .nav-item .tag {
+    height: 24px;
+    width: 24px;
+    margin-right: 12px;
   }
 
   .nav-list .nav-item:hover .tag .toggle {
     display: block; 
   }  
 
-  .tag.inactive {
+  .nav-list .nav-item .tag.inactive {
     background-color: #fff;
-    height: 12px;
-    width: 12px;
+/*     height: 22px;
+    width: 22px; */
     border: 2px solid #000;
   }
   
-
-  .tag.inactive .toggle {
+  .nav-list .nav-item .tag.inactive .toggle {
     top: 3px;
     left: 3px;
   }
   
-
   .tag.active[data-tagname="view-all"] {
     background-color: #000;
     fill: white;

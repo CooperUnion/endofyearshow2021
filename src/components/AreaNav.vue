@@ -92,12 +92,6 @@
     font-style: normal;
   }
 
-  .nav-list .nav-item .tag {
-    height: 24px;
-    width: 24px;
-    margin-right: 12px;
-  }
-
 
 </style>
 
