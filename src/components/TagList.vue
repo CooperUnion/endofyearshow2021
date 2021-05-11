@@ -3,7 +3,6 @@
     <li class="tagItem" v-for="tag in tags" :key="tag">
       <tag-button :data-tagname="tag.toLowerCase().replace(/\s+/g, '-')" />
     </li>
-
   </ul>
 </template>
 

@@ -161,6 +161,7 @@ export default {
     background-image: none;
     background-color: #fff;
     border: 2px solid #000;
+    fill: #000;
   }
   
   .nav-list .nav-item .tag.inactive .toggle {

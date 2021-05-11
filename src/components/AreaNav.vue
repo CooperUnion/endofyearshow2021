@@ -72,6 +72,7 @@
     color: #000;
     font-weight: 700;
     display: inline-block;
+    text-decoration: none;
   }
 
 
