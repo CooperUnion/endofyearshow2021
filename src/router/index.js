@@ -5,6 +5,8 @@ import Post from '@/views/Post.vue'
 //import Masonry from '@/views/Masonry.vue'
 import MasonryPosts from '@/views/MasonryPosts.vue'
 import MasonryPost from '@/views/MasonryPost.vue'
+import MasonryTag from '@/views/MasonryTag.vue'
+
 import navItems from '@/router/navItems.js'
 
 const routes = [
@@ -46,8 +48,8 @@ const routes = [
   },
   {
     path: '/tag/:tag',
-    name: 'MasonryPostTagView',
-    component: MasonryPosts,
+    name: 'MasonryPostsTag',
+    component: MasonryTag,
     props: true
   },  
   {

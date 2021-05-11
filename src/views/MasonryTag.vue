@@ -9,26 +9,6 @@
     <div v-else class="areasPage">
       
       <area-nav :items="areaNavItems" />
-      <div 
-        class="masonryBox" 
-        v-masonry 
-        transition-duration="0.3s" 
-        item-selector=".item" 
-        column-width=".post" 
-        gutter="48" 
-
-        horizontal-order="true">
-        <div v-masonry-tile class="item" v-for="item in items" v-bind:key="item.id">
-          <!-- block item markup -->
-            <div class="post" v-if="item.id">
-              <post-media :media="item.assets.preview" />
-              <post-info 
-                :tags="item.taxonomy.tags"
-                :title="item.title"
-                :author="item.author" />
-            </div>
-        </div>
-      </div>
       
     </div>
   </main>     
@@ -36,17 +16,12 @@
 
 <script>
   import { ref, onBeforeMount } from "vue";
-  import TagList from '@/components/TagList.vue'
-  import PostInfo from '@/components/PostInfo.vue'
-  import PostMedia from '@/components/PostMedia.vue'
   import Loading from '@/components/Loading.vue'
   import AreaNav from '@/components/AreaNav.vue'
   import navItems from '@/router/navItems.js'
   
   export default {
     components: {
-      PostInfo,
-      PostMedia,
       Loading,
       AreaNav
     },
