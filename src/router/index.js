@@ -7,15 +7,7 @@ import MasonryPosts from '@/views/MasonryPosts.vue'
 import MasonryPost from '@/views/MasonryPost.vue'
 import navItems from '@/router/nav.js'
 
-//  {name:"Animation", url:"/animation"},
-
-// {
-//     path: '/',
-//     name: 'Home',
-//     component: Home
-//   },
-
-const routes = [
+let routes = [
   {
     path: '/',
     name: 'Home',
@@ -66,9 +58,17 @@ const routes = [
   }
 ]
 
-for (const item of navItems) {
+routes.concat(navItems.map((navItem)=>{
+  const {name, url:path} = navItem
+  const component = MasonryPosts
   
-}
+  return {
+    path,
+    name,
+    component,
+    props: true
+  }
+}))
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
