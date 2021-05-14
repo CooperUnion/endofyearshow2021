@@ -1,17 +1,9 @@
 <template>
   <ul id="globalnav" class="nav-list">
-    
-    <b>{{activeNav}}</b>
-    
-    <li class="nav-item" >
-      <tag-button data-tagname="view-all" />
-      <router-link to="/view-all">View all</router-link>
-      <output>##</output>      
-    </li>
-
     <li class="nav-item" v-for="item in items" :key="item">
-      <router-link :to="item.url" @click="toggleNav(slug(item.name))">{{item.name}}</router-link>
-      <output>##</output>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link> | 
+      <router-link to="/posts">Posts</router-link>
     </li>
   </ul>
 </template>
@@ -19,7 +11,6 @@
 <script>
   import { computed } from 'vue'
   import { useStore } from 'vuex'  
-  import TagButton from '@/components/TagButton.vue'
 
   export default {
     name: 'globalNav',
