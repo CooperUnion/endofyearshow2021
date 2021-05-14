@@ -20,7 +20,7 @@
   import { useRoute } from 'vue-router'
   
   import Loading from '@/components/Loading.vue'
-  import globalNav from '@/components/GlobalNav.vue'
+  import GlobalNav from '@/components/GlobalNav.vue'
   import AreaNav from '@/components/AreaNav.vue'
   import Posts from '@/components/Posts.vue'
   import navItems from '@/router/navItems.js'
@@ -60,7 +60,7 @@
         console.log(items.value)
         return true
       }
-      return {items, loading, globalNav, loadToggle, loadPosts, areaNavItems}
+      return {items, loading, loadToggle, loadPosts, areaNavItems}
     }
   }
 </script>

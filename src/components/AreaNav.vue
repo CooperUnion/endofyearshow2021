@@ -26,7 +26,7 @@
     components: {
       TagButton
     },
-    name: 'areaNav',
+    name: 'AreaNav',
     props: {
       items: Array,
     },
