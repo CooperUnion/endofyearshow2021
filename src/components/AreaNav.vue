@@ -33,19 +33,19 @@
     setup(props){
       const store = useStore()
       
-      //returns state for all nav items
-      const activeNav = store.state.activeNav
+      //returns state for all area-nav items
+      const activeArea = store.state.activeArea
       
-      const currentNavState = (navItem) => {
-        return activeNav.has(navItem)
+      const currentAreaState = (areaItem) => {
+        return activeArea.has(areaItem)
       }
       
-      //toggles navItem state from active to inactive
-      const toggleNav = (navItem)=>{
-        if(store.state.activeNav.has(navItem)) {
-          store.commit('deactivateNav', navItem)
+      //toggles areaItem state from active to inactive
+      const toggleArea = (areaItem)=>{
+        if(store.state.activeArea.has(areaItem)) {
+          store.commit('deactivateArea', areaItem)
         } else {
-          store.commit('activateNav', navItem)
+          store.commit('activateArea', areaItem)
         }
       }
       
@@ -53,8 +53,9 @@
       const slug = (name)=>{
         return name.toLowerCase().replace(/\s+/g, '-')
       }
-      return {activeNav, toggleNav, currentNavState, slug}
+      return {activeArea, toggleArea, currentAreaState, slug}
     }
+
   }
 </script>
 

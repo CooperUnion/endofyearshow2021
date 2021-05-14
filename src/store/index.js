@@ -1,25 +1,25 @@
 import { createStore } from 'vuex'
 
-const activeNav = new Set()
+const activeArea = new Set()
 
 export default createStore({
   state() {
     return {
-      activeNav
+      activeArea
     }
   },
   mutations: {
-    activateNav(state, navItem) {
-      state.activeNav.add(navItem)
+    activateArea(state, navItem) {
+      state.activeArea.add(navItem)
     },
-    deactivateNav(state, navItem) {
-      state.activeNav.delete(navItem)
+    deactivateArea(state, navItem) {
+      state.activeArea.delete(navItem)
     }
   },
   // getters: {
-  //   currentNavState: (state) => {
+  //   currentAreaState: (state) => {
   //     return (navItem) => {
-  //       return state.activeNav.has(navItem)
+  //       return state.activeArea.has(navItem)
   //     }
   //   }
   // },
@@ -28,3 +28,4 @@ export default createStore({
   modules: {
   }
 })
+
