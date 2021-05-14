@@ -42,10 +42,15 @@
     line-height: 1.5;
     cursor: pointer;
  }
-
+  
   .nav-list .nav-item + .nav-item {
     margin-left: 1.5em;
   }
+
+  .nav-list .nav-item a {
+    color: inherit;
+  }
+
 
 
 </style>
