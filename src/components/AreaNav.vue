@@ -11,7 +11,7 @@
 
     <li class="nav-item" v-for="item in items" :key="item">
       <tag-button :data-tagname="slug(item.name)" :active="currentAreaState(slug(item.name))"/>
-      <router-link :to="item.url" @click="toggleNav(slug(item.name))">{{item.name}}</router-link>
+      <router-link :to="item.url" @click="toggleArea(slug(item.name))">{{item.name}}</router-link>
       <output>##</output>
     </li>
   </ul>
