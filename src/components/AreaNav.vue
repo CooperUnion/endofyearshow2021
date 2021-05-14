@@ -1,7 +1,7 @@
 <template>
   <ul id="areanav" class="nav-list">
     
-    <b>{{activeNav}}</b>
+    <b>{{activeArea}}</b>
     
     <li class="nav-item" >
       <tag-button data-tagname="view-all" />
@@ -10,7 +10,7 @@
     </li>
 
     <li class="nav-item" v-for="item in items" :key="item">
-      <tag-button :data-tagname="slug(item.name)" :active="currentNavState(slug(item.name))"/>
+      <tag-button :data-tagname="slug(item.name)" :active="currentAreaState(slug(item.name))"/>
       <router-link :to="item.url" @click="toggleNav(slug(item.name))">{{item.name}}</router-link>
       <output>##</output>
     </li>

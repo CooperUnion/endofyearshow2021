@@ -10,7 +10,6 @@
     </li>
 
     <li class="nav-item" v-for="item in items" :key="item">
-      <tag-button :data-tagname="slug(item.name)" :active="currentNavState(slug(item.name))"/>
       <router-link :to="item.url" @click="toggleNav(slug(item.name))">{{item.name}}</router-link>
       <output>##</output>
     </li>
@@ -26,27 +25,27 @@
     name: 'globalNav',
     props: {
       items: Array,
-    },
+    } ,
     setup(props){
-      const store = useStore()
+//       const store = useStore()
       
-      //returns state for all nav items
-      const activeNav = store.state.activeNav
+//       //returns state for all nav items
+//       const activeNav = store.state.activeNav
       
-      const currentNavState = (navItem) => {
-        return activeNav.has(navItem)
-      }
+//       const currentNavState = (navItem) => {
+//         return activeNav.has(navItem)
+//       }
       
-      //toggles navItem state from active to inactive
-      const toggleNav = (navItem)=>{
-        if(store.state.activeNav.has(navItem)) {
-          store.commit('deactivateNav', navItem)
-        } else {
-          store.commit('activateNav', navItem)
-        }
-      }
+//       //toggles navItem state from active to inactive
+//       const toggleNav = (navItem)=>{
+//         if(store.state.activeNav.has(navItem)) {
+//           store.commit('deactivateNav', navItem)
+//         } else {
+//           store.commit('activateNav', navItem)
+//         }
+//       }
       
-      return {activeNav, toggleNav, currentNavState}
+//       return {activeNav, toggleNav, currentNavState}
     }
   }
 </script>
