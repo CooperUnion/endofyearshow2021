@@ -39,7 +39,6 @@
     setup(props){
       const loading = ref(true)
       const items = ref()
-      const areaNavItems = ref(areaNavItems)
       const route = useRoute()      
          
       onBeforeMount(loadPosts)
