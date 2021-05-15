@@ -27,7 +27,7 @@
 
       //toggles areaItem state from active to inactive
       const toggleGlobal = (globalItem) => {
-        if(store.state.activeArea.has(globalItem)) {
+        if(store.state.activeGlobal.has(globalItem)) {
           store.commit('deactivateArea', globalItem)
         } else {
           store.commit('activateArea', globalItem)
