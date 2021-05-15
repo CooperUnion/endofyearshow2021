@@ -23,14 +23,14 @@
   import GlobalNav from '@/components/GlobalNav.vue'
   import AreaNav from '@/components/AreaNav.vue'
   import Posts from '@/components/Posts.vue'
-  import navItems from '@/router/navItems.js'
+  import areaNavItems from '@/router/areaNavItems.js'
   
   export default {
     components: {
       Loading,
       GlobalNav,
       Posts,
-      AreaNav
+      areaNavItems
     },
     props: {
       post: Number
