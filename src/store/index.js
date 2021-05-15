@@ -1,25 +1,28 @@
 import { createStore } from 'vuex'
 
 const activeArea = new Set()
+const activeGlobal = new Set()
+
 
 export default createStore({
   state() {
+    const allStates = {activeArea, activeGlobal};
     return {
-      [activeArea
+      allStates
     }
   },
   mutations: {
-    activateArea(state, navItem) {
-      state.activeArea.add(navItem)
+    activateArea(state, areaItem) {
+      state.activeArea.add(areaItem)
     },
-    deactivateArea(state, navItem) {
-      state.activeArea.delete(navItem)
+    deactivateArea(state, areaItem) {
+      state.activeArea.delete(areaItem)
     },
-    activateGlobal(state, navItem) {
-      state.activeGlobal.add(navItem)
+    activateGlobal(state, globalItem) {
+      state.activeGlobal.add(globalItem)
     },
-    deactivateGlobal(state, navItem) {
-      state.activeGlobal.delete(navItem)
+    deactivateGlobal(state, globalItem) {
+      state.activeGlobal.delete(globalItem)
     }
 
   },
