@@ -1,4 +1,7 @@
 <template>
+
+  <global-nav />
+
    <main>    
     
     <div class="areasPage">
@@ -17,16 +20,18 @@
   import { useRoute } from 'vue-router'
   
   import Loading from '@/components/Loading.vue'
+  import GlobalNav from '@/components/GlobalNav.vue'
   import AreaNav from '@/components/AreaNav.vue'
   import Posts from '@/components/Posts.vue'
-  import navItems from '@/router/navItems.js'
+  import areaNavItems from '@/router/areaNavItems.js'
 
   
   export default {
     components: {
       Loading,
+      GlobalNa
       Posts,
-      AreaNav
+      areaNavItems
     },
     props: {
       post: Number

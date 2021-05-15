@@ -20,7 +20,7 @@
   import Loading from '@/components/Loading.vue'
   import AreaNav from '@/components/AreaNav.vue'
   import Posts from '@/components/Posts.vue'
-  import navItems from '@/router/navItems.js'
+  import navItems from '@/router/areaNavItems.js'
   
   export default {
     components: {

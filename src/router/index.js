@@ -6,7 +6,6 @@ import Home from '@/views/Home.vue'
 import MasonryPosts from '@/views/MasonryPosts.vue'
 import MasonryPost from '@/views/MasonryPost.vue'
 import MasonryTag from '@/views/MasonryTag.vue'
-
 import areaNavItems from '@/router/areaNavItems.js'
 
 const routes = [
