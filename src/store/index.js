@@ -6,9 +6,8 @@ const activeGlobal = new Set()
 
 export default createStore({
   state() {
-    const allStates = {activeArea, activeGlobal};
     return {
-      allStates
+      activeArea
     }
   },
   mutations: {
