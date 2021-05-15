@@ -1,6 +1,6 @@
 <template>
  
-  <global-nav />
+  <global-nav :items="globalNavItems" />
 
    <main>    
     
@@ -20,15 +20,17 @@
   import { useRoute } from 'vue-router'
   
   import Loading from '@/components/Loading.vue'
-  import GlobalNav from '@/components/GlobalNav.vue'
+  import globalNavItems from '@/components/GlobalNav.vue'
   import AreaNav from '@/components/AreaNav.vue'
   import Posts from '@/components/Posts.vue'
   import areaNavItems from '@/router/areaNavItems.js'
+  import globalNavItems from '@/router/globalNavItems.js'
+
   
   export default {
     components: {
       Loading,
-      GlobalNav,
+      globalNavItems,
       Posts,
       areaNavItems
     },
@@ -38,7 +40,7 @@
     setup(props){
       const loading = ref(true)
       const items = ref()
-      const areaNavItems = ref(navItems)
+      const areaNavItems = ref(areaNavItems)
       const route = useRoute()      
          
       onBeforeMount(loadPosts)
@@ -60,7 +62,7 @@
         console.log(items.value)
         return true
       }
-      return {items, loading, loadToggle, loadPosts, areaNavItems}
+      return {items, loading, loadToggle, loadPosts, globalNavItems, areaNavItems}
     }
   }
 </script>

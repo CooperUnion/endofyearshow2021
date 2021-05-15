@@ -1,6 +1,10 @@
 <template>
   <ul id="globalnav" class="nav-list">
-    <li class="nav-item">
+    <li class="nav-item" v-for="item in items" :key="item">
+      <router-link :to="item.url">{{item.name}}</router-link>
+    </li>
+
+<!--     <li class="nav-item">
       <router-link to="/areas">Areas</router-link>
     </li>
     <li class="nav-item">
@@ -17,7 +21,7 @@
     </li>
     <li class="nav-item">
        <router-link to="/info">Info</router-link>
-    </li>
+    </li> -->
   </ul>
 </template>
 
