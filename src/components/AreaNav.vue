@@ -41,7 +41,7 @@
       }
       
       //toggles areaItem state from active to inactive
-      const toggleArea = (areaItem)=>{
+      const toggleArea = (areaItem) => {
         if(store.state.activeArea.has(areaItem)) {
           store.commit('deactivateArea', areaItem)
         } else {
@@ -50,7 +50,7 @@
       }
       
       //formats a name passed to it by replacing '-' with ' '
-      const slug = (name)=>{
+      const slug = (name) => {
         return name.toLowerCase().replace(/\s+/g, '-')
       }
       return {activeArea, toggleArea, currentAreaState, slug}

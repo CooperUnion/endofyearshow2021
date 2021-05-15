@@ -3,7 +3,6 @@ import { createStore } from 'vuex'
 const activeArea = new Set()
 const activeGlobal = new Set()
 
-
 export default createStore({
   state() {
     return {
