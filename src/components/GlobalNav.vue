@@ -34,7 +34,7 @@
       const store = useStore()
 
       //returns state for all area-nav items
-      const activeGlobal = store.state.allStates.activeGlobal
+      const activeGlobal = store.state.activeGlobal
 
       const currentGlobalState = (globalItem) => {
         return activeGlobal.has(globalItem)

@@ -34,7 +34,7 @@
       const store = useStore()
       
       //returns state for all area-nav items
-      const activeArea = store.state.allStates.activeArea
+      const activeArea = store.state.activeArea
       
       const currentAreaState = (areaItem) => {
         return activeArea.has(areaItem)
