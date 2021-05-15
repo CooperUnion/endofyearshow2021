@@ -3,25 +3,6 @@
     <li class="nav-item" v-for="item in items" :key="item">
       <router-link :to="item.url">{{item.name}}</router-link>
     </li>
-
-<!--     <li class="nav-item">
-      <router-link to="/areas">Areas</router-link>
-    </li>
-    <li class="nav-item">
-      <router-link to="/foundation">Foundation</router-link>
-    </li>
-    <li class="nav-item">
-       <router-link to="/projects">Projects</router-link>
-    </li>
-    <li class="nav-item">
-      <router-link to="/forum">Forum</router-link>
-    </li>
-    <li class="nav-item">
-      <router-link to="/students">Students</router-link>
-    </li>
-    <li class="nav-item">
-       <router-link to="/info">Info</router-link>
-    </li> -->
   </ul>
 </template>
 

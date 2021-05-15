@@ -20,17 +20,18 @@
   import { useRoute } from 'vue-router'
   
   import Loading from '@/components/Loading.vue'
-  import globalNavItems from '@/components/GlobalNav.vue'
+  import GlobalNav from '@/components/GlobalNav.vue'
   import AreaNav from '@/components/AreaNav.vue'
   import Posts from '@/components/Posts.vue'
   import areaNavItems from '@/router/areaNavItems.js'
+  import globalNavItems from '@/router/globalNavItems.js'
   
   export default {
     components: {
       Loading,
-      globalNavItems,
+      GlobalNav,
       Posts,
-      areaNavItems
+      AreaNav
     },
     props: {
       post: Number
@@ -38,7 +39,7 @@
     setup(props){
       const loading = ref(true)
       const items = ref()
-      const areaNavItems = ref(navItems)
+      const areaNavItems = ref(areaNavItems)
       const route = useRoute()      
          
       onBeforeMount(loadPosts)
