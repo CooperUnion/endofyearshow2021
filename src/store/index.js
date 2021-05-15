@@ -5,7 +5,7 @@ const activeArea = new Set()
 export default createStore({
   state() {
     return {
-      activeArea
+      [activeArea
     }
   },
   mutations: {
@@ -14,7 +14,14 @@ export default createStore({
     },
     deactivateArea(state, navItem) {
       state.activeArea.delete(navItem)
+    },
+    activateGlobal(state, navItem) {
+      state.activeGlobal.add(navItem)
+    },
+    deactivateGlobal(state, navItem) {
+      state.activeGlobal.delete(navItem)
     }
+
   },
   // getters: {
   //   currentAreaState: (state) => {

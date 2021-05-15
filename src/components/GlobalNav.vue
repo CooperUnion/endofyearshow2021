@@ -27,7 +27,37 @@
 
   export default {
     name: 'GlobalNav'
+  },
+  props: {
+    items: Array,
+  },
+  setup(props){
+    const store = useStore()
+
+    //returns state for all area-nav items
+    const activeGlobal = store.state.activeGlobal
+
+    const currentGlobalState = (globalItem) => {
+      return activeGlobal.has(globalItem)
+    }
+
+    //toggles areaItem state from active to inactive
+    const toggleGlobal = (globalItem) => {
+      if(store.state.activeArea.has(areaItem)) {
+        store.commit('deactivateArea', areaItem)
+      } else {
+        store.commit('activateArea', areaItem)
+      }
+    }
+
+    //formats a name passed to it by replacing '-' with ' '
+    const slug = (name)=>{
+      return name.toLowerCase().replace(/\s+/g, '-')
+    }
+    return {activeArea, toggleArea, currentAreaState, slug}
   }
+
+    
 </script>
 
 <style scoped>
