@@ -1,4 +1,4 @@
-const nav = [
+const areas = [
   {name:"Animation", url:"/tag/animation"},
   {name:"Audiovisual", url:"/tag/audiovisual"},
   {name:"Design", url:"/tag/design"},
@@ -18,4 +18,4 @@ const nav = [
   {name:"Website", url:"/tag/website"}
 ]
 
-export default nav
+export default areas
