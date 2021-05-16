@@ -19,7 +19,7 @@ import {globalNavItems} from '@/router/index.js'
     GlobalNav
   },
   setup(){
-    
+    console.log(globalNavItems, "hi")
     return {globalNavItems}
   }
 }

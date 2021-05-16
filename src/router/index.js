@@ -72,5 +72,4 @@ const router = createRouter({
   routes
 })
 
-export default router
-export { globalNavItems }
+export {router as default, globalNavItems}

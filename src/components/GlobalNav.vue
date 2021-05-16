@@ -1,7 +1,7 @@
 <template>
   <ul id="globalnav" class="nav-list">
     <li class="nav-item" v-for="item in items" :key="item">
-      <router-link :to="item.url">{{item.name}}</router-link>
+      <router-link :to="item.path">{{item.name}}</router-link>
     </li>
   </ul>
 </template>

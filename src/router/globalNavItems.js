@@ -1,2 +1,2 @@
-import { globalNavItems } from './index.js'
-export default globalNavItems
+import * as nav from './index.js'
+export default nav.globalNavItems
