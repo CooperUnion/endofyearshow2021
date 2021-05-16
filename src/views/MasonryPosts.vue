@@ -1,7 +1,6 @@
 <template>
  
-  <global-nav />
-
+  <global-nav></global-nav>
    <main>    
     
     <div class="areasPage">
@@ -59,7 +58,7 @@
         console.log(items.value)
         return true
       }
-      return {items, loading, loadToggle, loadPosts, areaNavItems, globalNavItems}
+      return {items, loading, loadToggle, loadPosts, areaNavItems}
     }
   }
 </script>
