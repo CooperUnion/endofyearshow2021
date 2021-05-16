@@ -1,14 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/views/Home.vue'
-// import Posts from '@/views/Posts.vue'
-// import Post from '@/views/Post.vue'
-//import Masonry from '@/views/Masonry.vue'
 import MasonryPosts from '@/views/MasonryPosts.vue'
 import MasonryPost from '@/views/MasonryPost.vue'
 import MasonryTag from '@/views/MasonryTag.vue'
-import areaNavItems from '@/router/areaNavItems.js'
 
-const routes = [
+let routes = [
   {
     path: '/',
     name: 'Home',
@@ -54,8 +50,8 @@ const routes = [
   }
 ]
 
-const globalNavItems = [
-  {name:"Areas", path:"/areas", component: Home},
+let globalNavItems = [
+  {name:"Areas", path:"/areas", component: MasonryPosts},
   {name:"Foundation", path:"/foundation", component: Home},
   {name:"Projects", path:"/projects", component: Home},
   {name:"Forum", path:"/forum", component: Home},
@@ -63,7 +59,7 @@ const globalNavItems = [
   {name:"Info", path:"/info", component: Home}
 ]
 
-routes.concat(globalNavItems)
+routes = routes.concat(globalNavItems)
 
 
 
