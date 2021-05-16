@@ -1,6 +1,6 @@
 <template>
   <ul id="globalnav" class="nav-list">
-    <li v-for="item in items" :key="item" :class="['nav-item']">
+    <li v-for="item in items" :key="item" :class="['nav-item', isActiveRoute(item)]">
       <router-link :to="item.path">{{item.name}}</router-link>
     </li>
   </ul>
@@ -18,6 +18,7 @@
     },
     setup(props){
       const store = useStore()
+      const route = useRoute()
 
       //returns state for all area-nav items
       const activeGlobal = store.state.activeGlobal
@@ -26,6 +27,11 @@
         return activeGlobal.has(globalItem)
       }
 
+      const isActiveRoute = (current) => {
+        console.log("what is active?", current, route.name)
+        return (current == route.name) ? 'active' : ''
+      }
+      
       //toggles areaItem state from active to inactive
       const toggleGlobal = (globalItem) => {
         if(store.state.activeGlobal.has(globalItem)) {
@@ -34,7 +40,7 @@
           store.commit('activateArea', globalItem)
         }
       }
-      return {activeGlobal, toggleGlobal, currentGlobalState}
+      return {activeGlobal, toggleGlobal, currentGlobalState, isActiveRoute} //
     }
   }
     
