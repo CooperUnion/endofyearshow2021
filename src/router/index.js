@@ -54,19 +54,18 @@ const routes = [
   }
 ]
 
-// .concat(navItems.map((navItem)=>{
-//   const {name, url:fullPath} = navItem
-//   const component = MasonryPosts
-//   const path = '/tag/:tag'
-//   const props = true
-  
-//   return {
-//     path,
-//     name,
-//     component,
-//     props
-//   }
-// }))
+const globalNavItems = [
+  {name:"Areas", path:"/areas", component: Home},
+  {name:"Foundation", path:"/foundation", component: Home},
+  {name:"Projects", path:"/projects", component: Home},
+  {name:"Forum", path:"/forum", component: Home},
+  {name:"Students", path:"/students", component: Home},
+  {name:"Info", path:"/info", component: Home}
+]
+
+routes.concat(globalNavItems)
+
+
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
@@ -74,3 +73,4 @@ const router = createRouter({
 })
 
 export default router
+export { globalNavItems }

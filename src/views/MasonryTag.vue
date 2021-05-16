@@ -1,5 +1,6 @@
 <template>
   
+  <global-nav :items="globalNavItems" />
 
   <main>    
     

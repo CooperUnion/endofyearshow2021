@@ -10,7 +10,7 @@
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
 import GlobalNav from '@/components/GlobalNav.vue'
-import globalNavItems from '@/router/globalNavItems.js'
+import {globalNavItems} from '@/router/index.js'
 
   export default {
   name: 'Home',
