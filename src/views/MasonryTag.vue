@@ -25,7 +25,7 @@
   import Posts from '@/components/Posts.vue'
   import navItems from '@/router/areaNavItems.js'
   import GlobalNav from '@/components/GlobalNav.vue'  
-  import globalNavItems from '@/router/globalNavItems.js'  
+  import {globalNavItems} from '@/router/index.js'
   
   export default {
     components: {

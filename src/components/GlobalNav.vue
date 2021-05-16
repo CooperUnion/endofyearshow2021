@@ -1,6 +1,6 @@
 <template>
   <ul id="globalnav" class="nav-list">
-    <li class="nav-item" v-for="item in items" :key="item">
+    <li v-for="item in items" :key="item" :class="['nav-item']">
       <router-link :to="item.path">{{item.name}}</router-link>
     </li>
   </ul>
@@ -9,6 +9,7 @@
 <script>
   import { computed } from 'vue'
   import { useStore } from 'vuex'  
+  import { useRoute } from 'vue-router'
 
   export default {
     name: 'GlobalNav',
@@ -60,6 +61,9 @@
     color: inherit;
   }
 
+  .nav-list .active {
+    background-color:red;
+  }
 
 
 </style>
