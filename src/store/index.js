@@ -1,13 +1,13 @@
 import { createStore } from 'vuex'
 
 const activeArea = new Set()
-const activeGlobal = 'home'
+const activeGlobalNav = ''
 
 export default createStore({
   state() {
     return {
       activeArea,
-      activeGlobal
+      activeGlobalNav
     }
   },
   mutations: {
@@ -17,8 +17,8 @@ export default createStore({
     deactivateArea(state, areaItem) {
       state.activeArea.delete(areaItem)
     },
-    activateGlobal(state, globalItem) {
-      state.activeGlobal = globalItem
+    setGlobalNav(state, globalNavItem) {
+      state.activeGlobalNav = globalNavItem
     }
   },
   // getters: {
