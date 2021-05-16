@@ -1,6 +1,6 @@
 <template>
 
-  <global-nav></global-nav>
+  <global-nav :items="globalNavItems" />
 
    <main>    
     
@@ -24,6 +24,7 @@
   import AreaNav from '@/components/AreaNav.vue'
   import Posts from '@/components/Posts.vue'
   import areaNavItems from '@/router/areaNavItems.js'
+  import globalNavItems from '@/router/globalNavItems.js'
   
   export default {
     components: {
@@ -60,7 +61,7 @@
         console.log(items.value)
         return true
       }
-      return {items, loading, loadToggle, loadPosts, areaNavItems}
+      return {items, loading, loadToggle, loadPosts, areaNavItems, globalNavItems}
     }
   }
 </script>
