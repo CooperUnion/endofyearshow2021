@@ -1,10 +1,10 @@
 const topnav = [
-  {name:"Areas", url:"/areas"},
-  {name:"Foundation", url:"/foundation"},
-  {name:"Projects", url:"/projects"},
-  {name:"Forum", url:"/forum"},
-  {name:"Students", url:"/students"},
-  {name:"Info", url:"/info"}
+  {name:"Areas", path:"/areas"},
+  {name:"Foundation", path:"/foundation"},
+  {name:"Projects", path:"/projects"},
+  {name:"Forum", path:"/forum"},
+  {name:"Students", path:"/students"},
+  {name:"Info", path:"/info"}
 ]
 
 export default topnav

@@ -9,6 +9,7 @@
 <script>
   import { computed } from 'vue'
   import { useStore } from 'vuex'  
+  import { globalNavItems: items } from '@/router/globalNavItems.js'
 
   export default {
     name: 'GlobalNav',
@@ -33,7 +34,7 @@
           store.commit('activateArea', globalItem)
         }
       }
-      return {activeGlobal, toggleGlobal, currentGlobalState}
+      return {activeGlobal, toggleGlobal, currentGlobalState, it}
     }
   }
     
