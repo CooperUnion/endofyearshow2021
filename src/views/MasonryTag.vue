@@ -1,4 +1,6 @@
 <template>
+  
+
   <main>    
     
     <div class="areasPage">
@@ -21,12 +23,15 @@
   import AreaNav from '@/components/AreaNav.vue'
   import Posts from '@/components/Posts.vue'
   import navItems from '@/router/areaNavItems.js'
+  import GlobalNav from '@/components/GlobalNav.vue'  
+  import globalNavItems from '@/router/globalNavItems.js'  
   
   export default {
     components: {
       Loading,
       Posts,
-      AreaNav
+      AreaNav,
+      GlobalNav
     },
     props: {
       tag: String
@@ -60,7 +65,7 @@
         // console.log(items.value)
         return true
       }
-      return {items, loading, loadToggle, loadPosts, areaNavItems}
+      return {items, loading, loadToggle, loadPosts, areaNavItems, globalNavItems}
     }
   }
 </script>

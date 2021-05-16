@@ -20,10 +20,10 @@
   import { useRoute } from 'vue-router'
   
   import Loading from '@/components/Loading.vue'
-  import GlobalNav from '@/components/GlobalNav.vue'
   import AreaNav from '@/components/AreaNav.vue'
   import Posts from '@/components/Posts.vue'
   import areaNavItems from '@/router/areaNavItems.js'
+  import GlobalNav from '@/components/GlobalNav.vue'  
   import globalNavItems from '@/router/globalNavItems.js'
 
   export default {
