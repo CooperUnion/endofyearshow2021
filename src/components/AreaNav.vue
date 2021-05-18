@@ -18,7 +18,7 @@
 </template>
 
 <script>
-  import { computed, ref } from 'vue'
+  import { computed, ref, watch } from 'vue'
   import { useStore } from 'vuex'  
   import { useRoute } from 'vue-router'  
   import TagButton from '@/components/TagButton.vue'
@@ -35,6 +35,14 @@
       const store = useStore()
       const route = useRoute()
       const mutableItems = ref(props.items)
+
+      const currentBaseNav = ()=>{
+        const base = route.path.split('/').pop().split(',').shift()
+        console.log({base})
+        return base
+      }
+      
+      const baseNav = ref(currentBaseNav())
       
       //returns state for all area-nav items
       const activeArea = store.state.activeArea
@@ -57,16 +65,23 @@
         return name.toLowerCase().replace(/\s+/g, '-')
       }
       
-      // mutableItems.value = mutableItems.value.map((item)=>{
-      //   return item
-      // })
+      mutableItems.value = mutableItems.value.map((item)=>{
+        const distinct
+        const augmentedUrl = item.url+
+        
+      })
+     
+      // console.log(Object.keys(route), c)
       
-      console.log(Object.keys(route), route.path.split('/').pop().split(',').shift())
+      watch(() => route.params.tag, ()=>{
+        baseNav.value = currentBaseNav()
+      })
       
       
       
       
-      return {activeArea, toggleArea, currentAreaState, slug}
+      
+      return {activeArea, toggleArea, currentAreaState, slug, baseNav}
     }
 
   }
