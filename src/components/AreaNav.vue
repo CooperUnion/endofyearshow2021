@@ -65,17 +65,14 @@
         return name.toLowerCase().replace(/\s+/g, '-')
       }
       
-      const recomputeNav = ()=>{
-        // mutableItems.value = mutableItems.value.map((item)=>{
-        //   const filteredActiveAreas = Array.from(activeArea).filter((area)=>{
-        //     return area != baseNav.value
-        //   })
-        //   // if(filteredActiveAreas.length>0) {
-        //     const modifiedUrl = ','+filteredActiveAreas.join(',')
-        //     item.url += modifiedUrl
-        //   // }
-        //   return item
-        // })
+      const recomputeNav = (currentLocation, newLocations)=>{
+ 
+        if(newLocations.includes(currentLocation)) {
+          newLocations = newLocations.filter((loc)=>{return !newLocations.includes(loc)})
+        }
+        
+        return newLocations.filter(newLocations.includes(currentLocation))
+        
       }
      
       // console.log(Object.keys(route), c)
