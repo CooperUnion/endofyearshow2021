@@ -20,7 +20,7 @@
 <script>
   import { computed, ref, watch } from 'vue'
   import { useStore } from 'vuex'  
-  import { useRoute } from 'vue-router'  
+  import { useRoute, userouter } from 'vue-router'  
   import TagButton from '@/components/TagButton.vue'
 
   export default {
@@ -34,6 +34,7 @@
     setup(props){
       const store = useStore()
       const route = useRoute()
+      const router = useRouter()
       // const mutableItems = ref(props.items)
 
       const currentBaseNav = ()=>{
@@ -58,6 +59,8 @@
         } else {
           store.commit('activateArea', areaItem)
         }
+        recomputeNav()
+        
       }
       
       //formats a name passed to it by replacing '-' with ' '
@@ -66,12 +69,19 @@
       }
       
       const recomputeNav = () => {
-        console.log("recompute", activeArea)        
+
+        const data = {
+          baseNav: baseNav.value,
+          possibleNewNav: Array.from(store.state.activeArea)
+        }
+        
+        console.log("recompute", data)
+        
       }
       
-      watch(() => activeArea, ()=>{
+      watch(() => route.params.tag, ()=>{
         baseNav.value = currentBaseNav()
-        recomputeNav()
+        // recomputeNav()
       })
       
       
