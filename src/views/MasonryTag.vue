@@ -54,9 +54,13 @@
       watch(() => route.params.tag, loadPosts)
       
       async function loadPosts(){
-        route.params.tag.split(',').map((tag)=>{
-          store.commit('activateArea', tag)
-        })
+        if(route.params.tag.split(',').length>0) {
+          route.params.tag.split(',').map((tag)=>{
+            store.commit('activateArea', tag)
+          })
+        } else {
+          store.commit('activateArea', route.params.tag)
+        }
           
         
         loading.value = true
