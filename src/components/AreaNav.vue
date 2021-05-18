@@ -18,8 +18,9 @@
 </template>
 
 <script>
-  import { computed } from 'vue'
+  import { computed, ref } from 'vue'
   import { useStore } from 'vuex'  
+  import { useRoute } from 'vue-router'  
   import TagButton from '@/components/TagButton.vue'
 
   export default {
@@ -32,7 +33,8 @@
     },
     setup(props){
       const store = useStore()
-      const mutatedProps = ref(props)
+      const route = useRoute()
+      const mutableItems = ref(props.items)
       
       //returns state for all area-nav items
       const activeArea = store.state.activeArea
@@ -55,10 +57,12 @@
         return name.toLowerCase().replace(/\s+/g, '-')
       }
       
-      mutatedProps.value = mutatedProps.value.map((item)=>{
-        item.url = activeArea.join(',')
-        return item
-      })
+      // mutableItems.value = mutableItems.value.map((item)=>{
+      //   return item
+      // })
+      
+      console.log(route.value)
+      
       
       
       
