@@ -66,9 +66,18 @@
       }
       
       mutableItems.value = mutableItems.value.map((item)=>{
-        const distinct
-        const augmentedUrl = item.url+
+        console.log({activeArea})
         
+        //         const distinctTags = props.items.filter((item)=>{
+//           return item !== baseNav.value
+//         }).map((item)=>{
+//           return item.url.split('/').pop()
+//         })
+        
+//         console.log(distinctTags)
+        
+//         item.tagAwareUrl = item.url+distinctTags.join(',')
+        return item
       })
      
       // console.log(Object.keys(route), c)
