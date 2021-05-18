@@ -66,16 +66,16 @@
       }
       
       const recomputeNav = ()=>{
-        mutableItems.value = mutableItems.value.map((item)=>{
-          const filteredActiveAreas = Array.from(activeArea).filter((area)=>{
-            return area != baseNav.value
-          })
-          // if(filteredActiveAreas.length>0) {
-            const modifiedUrl = ','+filteredActiveAreas.join(',')
-            item.url += modifiedUrl
-          // }
-          return item
-        })
+        // mutableItems.value = mutableItems.value.map((item)=>{
+        //   const filteredActiveAreas = Array.from(activeArea).filter((area)=>{
+        //     return area != baseNav.value
+        //   })
+        //   // if(filteredActiveAreas.length>0) {
+        //     const modifiedUrl = ','+filteredActiveAreas.join(',')
+        //     item.url += modifiedUrl
+        //   // }
+        //   return item
+        // })
       }
      
       // console.log(Object.keys(route), c)
