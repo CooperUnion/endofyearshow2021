@@ -65,15 +65,24 @@
         return name.toLowerCase().replace(/\s+/g, '-')
       }
       
-      mutableItems.value = mutableItems.value.map((item)=>{
-        item.modifiedUrl = Array.from(activeArea).join(',')
-        return item
-      })
+      const recomputeNav = ()=>{
+        mutableItems.value = mutableItems.value.map((item)=>{
+          const filteredActiveAreas = Array.from(activeArea).filter((area)=>{
+            return area != baseNav.value
+          })
+          // if(filteredActiveAreas.length>0) {
+            const modifiedUrl = ','+filteredActiveAreas.join(',')
+            item.url += modifiedUrl
+          // }
+          return item
+        })
+      }
      
       // console.log(Object.keys(route), c)
       
       watch(() => route.params.tag, ()=>{
         baseNav.value = currentBaseNav()
+        recomputeNav()
       })
       
       
