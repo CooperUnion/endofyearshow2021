@@ -66,17 +66,7 @@
       }
       
       mutableItems.value = mutableItems.value.map((item)=>{
-        console.log({activeArea})
-        
-        //         const distinctTags = props.items.filter((item)=>{
-//           return item !== baseNav.value
-//         }).map((item)=>{
-//           return item.url.split('/').pop()
-//         })
-        
-//         console.log(distinctTags)
-        
-//         item.tagAwareUrl = item.url+distinctTags.join(',')
+        item.modifiedUrl = Array.from(activeArea).join(',')
         return item
       })
      
