@@ -61,7 +61,7 @@
       //   return item
       // })
       
-      console.log(route, route.path)
+      console.log(Object.keys(route), route.path.split('/').pop().split(',').shift())
       
       
       
