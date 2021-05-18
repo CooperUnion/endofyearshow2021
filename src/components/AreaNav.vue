@@ -20,7 +20,7 @@
 <script>
   import { computed, ref, watch } from 'vue'
   import { useStore } from 'vuex'  
-  import { useRoute, userouter } from 'vue-router'  
+  import { useRoute, useRouter } from 'vue-router'  
   import TagButton from '@/components/TagButton.vue'
 
   export default {
@@ -43,7 +43,7 @@
         return base
       }
       
-      const baseNav = ref(currentBaseNav())
+      // const baseNav = ref(currentBaseNav())
       
       //returns state for all area-nav items
       const activeArea = ref(store.state.activeArea)
@@ -54,13 +54,15 @@
       
       //toggles areaItem state from active to inactive
       const toggleArea = (areaItem) => {
-        if(store.state.activeArea.has(areaItem)) {
+        console.log({areaItem})
+        if(activeArea.value.has(areaItem)) {
           store.commit('deactivateArea', areaItem)
         } else {
           store.commit('activateArea', areaItem)
         }
-        recomputeNav()
-        
+        // recomputeNav()
+        // const tags = Array.from(store.state.activeArea).join(',')
+        // router.push(`/tag/${tags}`)
       }
       
       //formats a name passed to it by replacing '-' with ' '
@@ -68,19 +70,8 @@
         return name.toLowerCase().replace(/\s+/g, '-')
       }
       
-      const recomputeNav = () => {
-
-        const data = {
-          baseNav: baseNav.value,
-          possibleNewNav: Array.from(store.state.activeArea)
-        }
-        
-        console.log("recompute", data)
-        
-      }
-      
       watch(() => route.params.tag, ()=>{
-        baseNav.value = currentBaseNav()
+        // baseNav.value = currentBaseNav()
         // recomputeNav()
       })
       
