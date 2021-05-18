@@ -61,7 +61,7 @@
       //   return item
       // })
       
-      console.log(route.value)
+      console.log(route, route.path)
       
       
       
