@@ -71,7 +71,7 @@
           newLocations = newLocations.filter((loc)=>{return !newLocations.includes(loc)})
         }
         
-        return newLocations.filter(newLocations.includes(currentLocation))
+        return newLocations
         
       }
      
