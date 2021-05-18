@@ -1,7 +1,7 @@
 <template>
   <ul id="areanav" class="nav-list">
     
-    <b>{{Array.from(activeArea)}}</b>
+    <b>{{activeArea}}</b>
     
     <li class="nav-item" >
       <tag-button data-tagname="view-all" />
@@ -34,7 +34,7 @@
     setup(props){
       const store = useStore()
       const route = useRoute()
-      const mutableItems = ref(props.items)
+      // const mutableItems = ref(props.items)
 
       const currentBaseNav = ()=>{
         const base = route.path.split('/').pop().split(',').shift()
@@ -45,10 +45,10 @@
       const baseNav = ref(currentBaseNav())
       
       //returns state for all area-nav items
-      const activeArea = store.state.activeArea
+      const activeArea = ref(store.state.activeArea)
       
       const currentAreaState = (areaItem) => {
-        return activeArea.has(areaItem)
+        return activeArea.value.has(areaItem)
       }
       
       //toggles areaItem state from active to inactive
@@ -65,19 +65,11 @@
         return name.toLowerCase().replace(/\s+/g, '-')
       }
       
-      const recomputeNav = (currentLocation, newLocations)=>{
- 
-        if(newLocations.includes(currentLocation)) {
-          newLocations = newLocations.filter((loc)=>{return !newLocations.includes(loc)})
-        }
-        
-        return newLocations
-        
+      const recomputeNav = () => {
+        console.log("recompute", activeArea)        
       }
-     
-      // console.log(Object.keys(route), c)
       
-      watch(() => route.params.tag, ()=>{
+      watch(() => activeArea, ()=>{
         baseNav.value = currentBaseNav()
         recomputeNav()
       })
@@ -86,7 +78,7 @@
       
       
       
-      return {activeArea, toggleArea, currentAreaState, slug, baseNav}
+      return {activeArea, toggleArea, currentAreaState, slug}
     }
 
   }
