@@ -5,7 +5,7 @@
     
     <li class="nav-item" >
       <tag-button data-tagname="view-all" />
-      <router-link to="/view-all">View all</router-link>
+      <router-link to="/areas" @click="resetAreas()">View all</router-link>
       <output>##</output>      
     </li>
 
@@ -61,13 +61,17 @@
           store.commit('activateArea', areaItem)
         }
         // recomputeNav()
-        // const tags = Array.from(store.state.activeArea).join(',')
-        // router.push(`/tag/${tags}`)
+        const tags = Array.from(store.state.activeArea).join(',')
+        router.push(`/tag/${tags}`)
       }
       
       //formats a name passed to it by replacing '-' with ' '
       const slug = (name) => {
         return name.toLowerCase().replace(/\s+/g, '-')
+      }
+      
+      const resetAreas = () => {
+        store.commit('resetAreas')
       }
       
       watch(() => route.params.tag, ()=>{
@@ -79,7 +83,7 @@
       
       
       
-      return {activeArea, toggleArea, currentAreaState, slug}
+      return {activeArea, toggleArea, currentAreaState, slug, resetAreas}
     }
 
   }

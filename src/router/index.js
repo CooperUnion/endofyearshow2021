@@ -47,6 +47,10 @@ let routes = [
   {
     path: '/app',
     redirect: { name: 'MasonryPosts'}
+  },
+  {
+    path: '/tag',
+    redirect: { name: 'Areas'}
   }
 ]
 

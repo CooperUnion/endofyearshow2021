@@ -17,6 +17,9 @@ export default createStore({
     deactivateArea(state, areaItem) {
       state.activeArea.delete(areaItem)
     },
+    resetAreas(state) {
+      state.activeArea = new Set()
+    },
     setGlobalNav(state, globalNavItem) {
       state.activeGlobalNav = globalNavItem
     }
