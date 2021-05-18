@@ -1,7 +1,7 @@
 <template>
   <ul id="areanav" class="nav-list">
     
-    <b>{{activeArea}}</b>
+    <b>{{Array.from(activeArea)}}</b>
     
     <li class="nav-item" >
       <tag-button data-tagname="view-all" />
@@ -32,6 +32,7 @@
     },
     setup(props){
       const store = useStore()
+      const mutatedProps = ref(props)
       
       //returns state for all area-nav items
       const activeArea = store.state.activeArea
@@ -53,6 +54,14 @@
       const slug = (name) => {
         return name.toLowerCase().replace(/\s+/g, '-')
       }
+      
+      mutatedProps.value = mutatedProps.value.map((item)=>{
+        item.url = activeArea.join(',')
+        return item
+      })
+      
+      
+      
       return {activeArea, toggleArea, currentAreaState, slug}
     }
 
