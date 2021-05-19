@@ -1,10 +1,13 @@
 <template>
-<span class="tag"></span>
+  <span class="tag"><small v-if="expanded">{{label}}</small></span>
 </template>
 
 <script>
 export default {
   name: 'TagDot',
+  props: {
+    label: String
+  }  
 }
 </script>
 

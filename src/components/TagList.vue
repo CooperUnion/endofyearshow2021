@@ -1,7 +1,7 @@
 <template>
   <ul class="tagList">
     <li class="tagItem" v-for="tag in tags" :key="tag">
-      <tag-button :data-tagname="tag.toLowerCase().replace(/\s+/g, '-')" :expanded="expanded" />
+      <tag-button :data-tagname="tag.toLowerCase().replace(/\s+/g, '-')" :expanded="expanded" :label="tag" />
     </li>
   </ul>
 </template>
