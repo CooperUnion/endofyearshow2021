@@ -1,5 +1,5 @@
 <template>
-  <span class="tag"><small v-if="expanded">{{label}}</small></span>
+  <span :class="['tag', { expanded: expanded }]"><small v-if="expanded">{{label}}</small></span>
 </template>
 
 <script>
@@ -24,13 +24,26 @@ export default {
     background-color: #eee;
     position: relative;
     box-sizing: border-box;
-    cursor: pointer;
+    color: #000;
   }  
     
+
+  .tag.expanded {
+    width: auto;
+    height: 1em;
+    overflow: auto;
+    text-indent: 0;
+    border-radius: 0.5em;
+    color: inherit;
+    line-height: 1;
+ }  
+    
+
   .tag[data-tagname="view-all"] {
     background-color: #000;
     fill: white;
-  }  
+    color: #fff;
+ }  
 
   .tag[data-tagname="animation"] {
     background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
@@ -53,7 +66,7 @@ export default {
   }  
 
   .tag[data-tagname="film"] {
-     background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
+    background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
     background-size: 16px 16px;
     background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
   }  
@@ -68,10 +81,11 @@ export default {
   .tag[data-tagname="installation"] {
     background-color: #0000ff;
     fill: white;
+    color: #fff;
  }  
 
   .tag[data-tagname="interactive"] {
-     background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
+    background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
     background-size: 16px 16px;
     background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
   }  

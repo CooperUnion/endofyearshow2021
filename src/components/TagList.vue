@@ -17,7 +17,7 @@
     props: {
       expanded: Boolean,
       tags: Array,
-      tag: String
+      tag: String //i dont think this is necessary
     }
   }
 </script>

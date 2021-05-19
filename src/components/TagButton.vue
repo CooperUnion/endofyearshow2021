@@ -31,7 +31,11 @@
 
 <style scoped>
   
-   .toggle {
+  .tag {
+    cursor: pointer;
+  }
+  
+  .toggle {
     position: absolute;
     top: 5px;
     left: 5px;
