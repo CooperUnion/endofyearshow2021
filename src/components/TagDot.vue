@@ -1,18 +1,18 @@
 <template>
-  <span class="tag test"></span>
-<!-- <small v-if="expanded"></small> -->
+  <span class="tag"><small v-if="expanded">{{label}}</small></span>
 </template>
 
 <script>
 export default {
   name: 'TagDot',
   props: {
+    expanded: Boolean,
     label: String
   }  
 }
 </script>
 
-<style>
+<style scoped>
   
   .tag {
     display: block;
