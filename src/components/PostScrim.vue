@@ -1,7 +1,12 @@
 <template>
   <div class="post-scrim">
+    <div class="scrim-shroud"></div>
     <div class="scrim-contents">
-      <h6 class="title">{{title}}—{{author.formatted}}</h6>
+      <header>
+        <h6 class="title">{{title}}—{{author.formatted}}</h6>
+        <button class="close">
+  </button>
+      </header>
       <img :src="media.source_url" />
       <section class="meta">
         <div class="description-block">
@@ -32,26 +37,44 @@
 
 <style scoped>
   .post-scrim {
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    
+  }
+  
+  .post-scrim .scrim-shroud {
     position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
     background-color: #000;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-  }
+    z-index: 1;
+ }
   
-  .post-scrim .scrim-contents {
-    margin: 48px 120px;
+  .post-scrim .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 1em;
+    width: 1em;
+    margin: 0;
+    padding: 0;
+    border-radius: 50%;
   }
 
+  .post-scrim .scrim-contents {
+    margin: 48px 120px;
+    position: relative;
+    z-index: 2;
+  }
 
   .post-scrim .scrim-contents .title {
     color: #fff;
     text-transform: unset;
     font-size: 18px;
+    margin-bottom: 24px;
   }
 
 
@@ -62,6 +85,7 @@
   }
 
   .post-scrim .scrim-contents .meta {
+    margin-top: 36px;
     display: flex;
     flex-direction: row;
     width: auto;
