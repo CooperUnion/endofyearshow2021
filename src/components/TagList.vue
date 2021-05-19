@@ -35,6 +35,7 @@
 
   .tagList .tagItem.expanded + .tagItem.expanded {
     margin-left: 12px;
+    margin-bottom: 12px;
   }  
 
 </style>
