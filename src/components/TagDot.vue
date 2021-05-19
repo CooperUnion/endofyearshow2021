@@ -30,12 +30,13 @@ export default {
 
   .tag.expanded {
     width: auto;
-    height: 1em;
+    height: auto;
     overflow: auto;
     text-indent: 0;
-    border-radius: 0.5em;
-    color: inherit;
+    border-radius: 1em;
     line-height: 1;
+    padding: 6px 24px;
+    font-weight: 700;
  }  
     
 

@@ -1,6 +1,6 @@
 <template>
   <ul class="tagList">
-    <li class="tagItem" v-for="tag in tags" :key="tag">
+    <li :class="['tagItem', {expanded: expanded}]" v-for="tag in tags" :key="tag">
       <tag-button :data-tagname="tag.toLowerCase().replace(/\s+/g, '-')" :expanded="expanded" :label="tag" />
     </li>
   </ul>
@@ -32,4 +32,9 @@
   .tagList .tagItem + .tagItem {
     margin-left: 4px;
   }  
+
+  .tagList .tagItem.expanded + .tagItem.expanded {
+    margin-left: 12px;
+  }  
+
 </style>

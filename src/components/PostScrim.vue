@@ -10,9 +10,9 @@
       <img :src="media.source_url" />
       <section class="meta">
         <div class="description-block">
-          <p class="description">{{meta.description}}</p>
-          <p class="dimensions">{{meta.dimensions}}</p>
-          <p class="materials">{{meta.materials}}</p>      
+          <p v-if="meta.description" class="description">{{meta.description}}</p>
+          <p v-if="meta.dimensions" class="dimensions">{{meta.dimensions}}</p>
+          <p v-if="meta.materials" class="materials">{{meta.materials}}</p>      
         </div>
         <div class="labels-block"><tag-list :tags="tags" :expanded="true"/></div>
       </section>
