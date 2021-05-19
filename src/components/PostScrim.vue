@@ -25,6 +25,9 @@
   
   export default {
     name: 'PostScrim',
+    components: {
+      TagList
+    },
     props: {
       media: Object,
       tags: Array,
@@ -81,7 +84,6 @@
   }
 
   .post-scrim .scrim-contents::-webkit-scrollbar {
-    display: none;  /* Safari and Chrome */
     width: 0;  /* Remove scrollbar space */
     background: transparent;  /* Optional: just make scrollbar invisible */
   }
@@ -114,6 +116,20 @@
     font-size: 18px;
     line-height: 1.333;
   }
+
+
+  .post-scrim .scrim-contents .meta .labels-block {
+    width: 50%;
+  }
+
+
+  .post-scrim .scrim-contents .meta .labels-block .tagList {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+
 
 
   
