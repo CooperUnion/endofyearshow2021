@@ -11,7 +11,8 @@
     <div v-masonry-tile class="item" v-for="item in items" v-bind:key="item.id">
       <!-- block item markup -->
         <div class="post" v-if="item.id">
-          <post-media @click.prevent="loadScrim(item.id)" :media="item.assets.preview" />
+          <post-media @click.prevent="loadScrim(item.id)" 
+            :media="item.assets.preview" />
           <post-info
             :tags="item.taxonomy.tags"
             :title="item.title"
@@ -21,6 +22,7 @@
             :title="item.title"
             :author="item.author"
             :media="item.assets.preview"
+            :meta="item.meta"
             :post="item.id" />
         </div>
     </div>
@@ -34,8 +36,6 @@
   import PostInfo from '@/components/PostInfo.vue'
   import PostMedia from '@/components/PostMedia.vue'
   import PostScrim from '@/components/PostScrim.vue'
-
-
   
   export default {
     name: 'Posts',
@@ -50,7 +50,7 @@
     setup(props){
       const store = useStore()
       
-      const loadScrim = (id)=> {
+      const loadScrim = (id) => {
         store.commit('setActiveScrimId', id)
       }
       
@@ -58,7 +58,7 @@
         store.commit('resetActiveScrimId')
       }
       
-      const displayScrim = (id)=>{
+      const displayScrim = (id) => {
         return id === store.state.activeScrimId
       }
       

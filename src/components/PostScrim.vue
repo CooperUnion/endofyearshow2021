@@ -3,7 +3,14 @@
     <div class="scrim-contents">
       <h6 class="title">{{title}}—{{author.formatted}}</h6>
       <img :src="media.source_url" />
-      <p>{{description}}</p>
+      <section class="meta">
+        <div class="description-block">
+          <p class="description">{{meta.description}}</p>
+          <p class="dimensions">{{meta.dimensions}}</p>
+          <p class="materials">{{meta.materials}}</p>      
+        </div>
+        <div class="labels-block"></div>
+      </section>
     </div>
   </div>
 </template>
@@ -12,10 +19,11 @@
   export default {
     name: 'PostScrim',
     props: {
+      media: Object,
       tags: Array,
       title: String,
       author: Object,
-      media: Object
+      meta: Object
     }
   }
 </script>
