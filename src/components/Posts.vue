@@ -12,19 +12,15 @@
       <!-- block item markup -->
         <div class="post" v-if="item.id">
           <b @click="loadScrim(item.id)">{{item.id}}</b>
-          <b v-if="displayScrim(item.id)" @click="hideScrim()">scrim!!!</b>
           <post-media :media="item.assets.preview" />
-          <post-info 
+          <post-info
             :tags="item.taxonomy.tags"
             :title="item.title"
             :author="item.author"
             :post="item.id" />
-<!--           <post-scrim 
-            :media="item.assets.preview"                      
-            :tags="item.taxonomy.tags"
-            :title="item.title"
-            :author="item.author"
-            :post="item.id"/> -->
+          <post-scrim v-if="displayScrim(item.id)" @click="hideScrim()"
+            :media="item.assets.preview"
+            :post="item.id" />
         </div>
     </div>
   </div>
@@ -36,6 +32,8 @@
     
   import PostInfo from '@/components/PostInfo.vue'
   import PostMedia from '@/components/PostMedia.vue'
+  import PostScrim from '@/components/PostScrim.vue'
+
 
   
   export default {
@@ -45,7 +43,8 @@
     },
     components: {
       PostInfo,
-      PostMedia
+      PostMedia,
+      PostScrim
     },
     setup(props){
       const store = useStore()

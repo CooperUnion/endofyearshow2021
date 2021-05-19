@@ -1,14 +1,17 @@
 <template>
-  <a :href="media.source_url">
-    <img v-if="!media.sizes.medium_large" :src="media.source_url" />
-    <img v-if="media.sizes.medium_large" :src="media.sizes.medium_large.source_url" />
-  </a>
-
+  <div class="post-scrim">
+    {{media}}
+    SCRIM
+    <img />
+  </div>
 </template>
 
 <script>
   export default {
     name: 'PostScrim',
+    props: {
+      media: Object
+    }
   }
 </script>
 
