@@ -13,7 +13,8 @@
     name: 'TagButton',
     props:{
       expanded: Boolean,
-      active: Boolean
+      active: Boolean,
+      label: String
     },
     setup(props){
       const isActive = () => {
