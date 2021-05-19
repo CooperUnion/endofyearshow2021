@@ -2,7 +2,7 @@
   <div class="post-scrim">
     <div class="scrim-shroud"></div>
     <div class="scrim-contents">
-      <header>
+      <header class="title-block">
         <h6 class="title">{{title}}—{{author.formatted}}</h6>
         <button class="close">
   </button>
@@ -40,7 +40,12 @@
     color: #fff;
     display: flex;
     flex-direction: column;
-    
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
   }
   
   .post-scrim .scrim-shroud {
@@ -50,10 +55,14 @@
     bottom: 0;
     right: 0;
     background-color: #000;
-    z-index: 1;
+    z-index: 0;
  }
   
-  .post-scrim .close {
+  .post-scrim .title-block {
+    padding: 0;
+  }
+  
+  .post-scrim .title-block .close {
     position: absolute;
     top: 0;
     right: 0;
@@ -65,9 +74,16 @@
   }
 
   .post-scrim .scrim-contents {
-    margin: 48px 120px;
+    padding: 48px 120px;
     position: relative;
-    z-index: 2;
+    overflow: scroll;
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .post-scrim .scrim-contents::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
   }
 
   .post-scrim .scrim-contents .title {
