@@ -10,6 +10,12 @@
       Foundation consists of a series of courses taken during the first year of study by art students. The year is intended to prepare students for all future areas of   advanced study within the curriculum. It consists of sustained focus and engagement with formal and conceptual exercises, where students develop and investigate the specifics of visual and spatial phenomena.
       </div>
      
+     <div class="buttonHolder">
+       <button class="refreshButton">
+         <img class="refreshIcon" src="https://cdn.glitch.com/d71c7c2a-c6c4-4028-9136-d224524d7374%2FrefreshButton.svg?v=1621465133463"> Refresh curation
+  </button>
+  </div>
+     
     <div class="areasPage">
       
       <area-nav :items="areaNavItems" />
@@ -92,6 +98,18 @@
     font-size: 18px;
     font-weight: 500;
     line-height: 24px;
+  }
+  
+  .refreshButton{
+    background-color: black;
+    color: white;
+    border-radius: 200px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 32px;
+    width: 276px;
+    height: 64px;
   }
   
   .areasPage {
