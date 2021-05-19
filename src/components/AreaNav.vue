@@ -79,10 +79,6 @@
         // recomputeNav()
       })
       
-      
-      
-      
-      
       return {activeArea, toggleArea, currentAreaState, slug, resetAreas}
     }
 
