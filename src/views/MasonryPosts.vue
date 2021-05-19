@@ -7,8 +7,9 @@
       Foundation
     </h1>
      <div class="mainDesc">
-      Foundation consists of a series of courses taken during the first year of study by art students. The year is intended to prepare students for all future areas of advanced study within the curriculum. It consists of sustained focus and engagement with formal and conceptual exercises, where students develop and investigate the specifics of visual and spatial phenomena.
-  </div>
+      Foundation consists of a series of courses taken during the first year of study by art students. The year is intended to prepare students for all future areas of   advanced study within the curriculum. It consists of sustained focus and engagement with formal and conceptual exercises, where students develop and investigate the specifics of visual and spatial phenomena.
+      </div>
+     
     <div class="areasPage">
       
       <area-nav :items="areaNavItems" />
@@ -77,16 +78,19 @@
     text-align: left;
     text-transform: capitalize;
     margin-bottom: 48px;
+    margin-left: 48px; /* <-- tentative */
   }
   
   .mainDesc {
     width: 40vw;
     text-align: left;
+    margin-left: 48px; /* <-- tentative */
   }
   
   .areasPage {
     display: flex;
     flex-direction: row;
+    margin-top: 100px; /* <-- tentative */
   }
   
   .areasPage #areanav {
