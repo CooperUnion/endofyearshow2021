@@ -2,12 +2,14 @@ import { createStore } from 'vuex'
 
 const activeArea = new Set()
 const activeGlobalNav = ''
+const activeScrimId = Number
 
 export default createStore({
   state() {
     return {
       activeArea,
-      activeGlobalNav
+      activeGlobalNav,
+      activeScrimId
     }
   },
   mutations: {
@@ -22,7 +24,11 @@ export default createStore({
     },
     setGlobalNav(state, globalNavItem) {
       state.activeGlobalNav = globalNavItem
+    },
+    setActiveScrimId(state, id) {
+      state.activeScrimId = id
     }
+    
   },
   // getters: {
   //   currentAreaState: (state) => {
