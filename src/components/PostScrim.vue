@@ -14,7 +14,7 @@
           <p class="dimensions">{{meta.dimensions}}</p>
           <p class="materials">{{meta.materials}}</p>      
         </div>
-        <div class="labels-block"><tag-list :tags="tags"/></div>
+        <div class="labels-block"><tag-list :tags="tags" :expanded="true"/></div>
       </section>
     </div>
   </div>
