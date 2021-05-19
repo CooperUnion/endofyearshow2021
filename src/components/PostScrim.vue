@@ -9,13 +9,15 @@
           <p class="dimensions">{{meta.dimensions}}</p>
           <p class="materials">{{meta.materials}}</p>      
         </div>
-        <div class="labels-block"></div>
+        <div class="labels-block"><tag-list :tags="tags"/></div>
       </section>
     </div>
   </div>
 </template>
 
 <script>
+  import TagList from '@/components/TagList.vue'
+  
   export default {
     name: 'PostScrim',
     props: {
@@ -45,10 +47,34 @@
     margin: 48px 120px;
   }
 
+
+  .post-scrim .scrim-contents .title {
+    color: #fff;
+    text-transform: unset;
+    font-size: 18px;
+  }
+
+
   .post-scrim .scrim-contents img {
-    max-width: 100%;
+    display: block;
+    width: 100%;
     height: auto;
   }
+
+  .post-scrim .scrim-contents .meta {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+  }
+
+
+  .post-scrim .scrim-contents .meta .description-block {
+    width: 50%;
+    text-align: left;
+    font-size: 18px;
+    line-height: 1.333;
+  }
+
 
   
 </style>
