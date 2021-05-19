@@ -18,7 +18,7 @@
             :title="item.title"
             :author="item.author"
             :post="item.id" />
-          <post-scrim v-if="displayScrim(item.id)" @click="hideScrim()"
+          <post-scrim v-if="displayScrim(item.id)"
             :tags="item.taxonomy.tags"
             :title="item.title"
             :author="item.author"

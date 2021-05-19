@@ -4,7 +4,7 @@
     <div class="scrim-contents">
       <header class="title-block">
         <h6 class="title">{{title}}—{{author.formatted}}</h6>
-        <button class="close">close</button>
+        <button class="close" @click="hideScrim()">close</button>
       </header>
       <img :src="media.source_url" />
       <section class="meta">
@@ -21,6 +21,7 @@
 
 <script>
   import TagList from '@/components/TagList.vue'
+  import { useStore } from 'vuex'  
   
   export default {
     name: 'PostScrim',
@@ -33,7 +34,18 @@
       title: String,
       author: Object,
       meta: Object
+    },
+    setup(props){
+      const store = useStore()
+      
+      const hideScrim = () => {
+        store.commit('resetActiveScrimId')
+      }   
+      
+      return {hideScrim}
     }
+
+    
   }
 </script>
 
@@ -67,18 +79,19 @@
   
   .post-scrim .title-block .close {
     position: absolute;
-    top: 0;
+    top: -24px;
     right: 0;
-    height: 1em;
-    width: 1em;
+    height: 48px;
+    width: 48px;
     margin: 0;
     padding: 0;
     border: 1px solid #fff;
     border-radius: 50%;
     background-color: transparent;
-    background-image: ('data:image/svg+xml;utf8,<svg fill="white" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><path d="m9.016 40.837c.195.195.451.292.707.292s.512-.098.708-.293l14.292-14.309 14.292 14.309c.195.196.451.293.708.293.256 0 .512-.098.707-.292.391-.39.391-1.023.001-1.414l-14.278-14.294 14.277-14.293c.39-.391.39-1.024-.001-1.414-.392-.391-1.024-.391-1.414.001l-14.293 14.309-14.292-14.309c-.391-.391-1.024-.391-1.414-.001-.391.39-.391 1.023-.001 1.414l14.276 14.293-14.276 14.294c-.39.39-.39 1.024.001 1.414z"/></svg>');
-    background-size: 1em 1em;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="white" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><path d="m9.016 40.837c.195.195.451.292.707.292s.512-.098.708-.293l14.292-14.309 14.292 14.309c.195.196.451.293.708.293.256 0 .512-.098.707-.292.391-.39.391-1.023.001-1.414l-14.278-14.294 14.277-14.293c.39-.391.39-1.024-.001-1.414-.392-.391-1.024-.391-1.414.001l-14.293 14.309-14.292-14.309c-.391-.391-1.024-.391-1.414-.001-.391.39-.391 1.023-.001 1.414l14.276 14.293-14.276 14.294c-.39.39-.39 1.024.001 1.414z"/></svg>');
+    background-size: 28px 28px;
     background-repeat: no-repeat;
+    background-position: center center;
     text-indent: -999vw;
     overflow: hidden;
   }
@@ -105,8 +118,9 @@
 
   .post-scrim .scrim-contents img {
     display: block;
-    width: 100%;
+    width: auto;
     height: auto;
+    max-height: 600px;
   }
 
   .post-scrim .scrim-contents .meta {
@@ -135,6 +149,7 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    flex-wrap: wrap;
   }
 
 
