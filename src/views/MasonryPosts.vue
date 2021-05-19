@@ -78,13 +78,20 @@
     text-align: left;
     text-transform: capitalize;
     margin-bottom: 48px;
-    margin-left: 48px; /* <-- tentative */
+    margin-left: 96px; /* <-- tentative */
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
   }
   
   .mainDesc {
     width: 40vw;
     text-align: left;
-    margin-left: 48px; /* <-- tentative */
+    margin-left: 96px; /* <-- tentative */
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24px;
   }
   
   .areasPage {
