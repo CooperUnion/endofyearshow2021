@@ -1,5 +1,6 @@
 <template>
-  <span class="tag"><small v-if="expanded">{{label}}</small></span>
+  <span class="tag test"></span>
+<!-- <small v-if="expanded"></small> -->
 </template>
 
 <script>
