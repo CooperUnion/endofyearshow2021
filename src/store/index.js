@@ -2,7 +2,7 @@ import { createStore } from 'vuex'
 
 const activeArea = new Set()
 const activeGlobalNav = ''
-const activeScrimId = Number
+const activeScrimId = 0
 
 export default createStore({
   state() {
@@ -27,6 +27,9 @@ export default createStore({
     },
     setActiveScrimId(state, id) {
       state.activeScrimId = id
+    },
+    resetActiveScrimId(state) {
+      state.activeScrimId = 0
     }
     
   },

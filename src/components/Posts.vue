@@ -12,7 +12,7 @@
       <!-- block item markup -->
         <div class="post" v-if="item.id">
           <b @click="loadScrim(item.id)">{{item.id}}</b>
-          <b v-if="displayScrim(item.id)">scrim!!!</b>
+          <b v-if="displayScrim(item.id)" @click="hideScrim()">scrim!!!</b>
           <post-media :media="item.assets.preview" />
           <post-info 
             :tags="item.taxonomy.tags"
@@ -54,11 +54,15 @@
         store.commit('setActiveScrimId', id)
       }
       
+      const hideScrim = () => {
+        store.commit('resetActiveScrimId')
+      }
+      
       const displayScrim = (id)=>{
         return id === store.state.activeScrimId
       }
       
-      return {loadScrim, displayScrim}
+      return {loadScrim, displayScrim, hideScrim}
     }
   }
 </script>
