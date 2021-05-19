@@ -1,7 +1,9 @@
 <template>
   <div class="post-scrim">
     <div class="scrim-contents">
+      <h6 class="title">{{title}}—{{author.formatted}}</h6>
       <img :src="media.source_url" />
+      <p>{{description}}</p>
     </div>
   </div>
 </template>
@@ -10,6 +12,9 @@
   export default {
     name: 'PostScrim',
     props: {
+      tags: Array,
+      title: String,
+      author: Object,
       media: Object
     }
   }
@@ -26,7 +31,6 @@
     color: #fff;
     display: flex;
     flex-direction: column;
-    justify-content: center;
   }
   
   .post-scrim .scrim-contents {

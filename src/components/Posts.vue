@@ -11,14 +11,15 @@
     <div v-masonry-tile class="item" v-for="item in items" v-bind:key="item.id">
       <!-- block item markup -->
         <div class="post" v-if="item.id">
-          <b @click="loadScrim(item.id)">{{item.id}}</b>
-          <post-media :media="item.assets.preview" />
+          <post-media @click.prevent="loadScrim(item.id)" :media="item.assets.preview" />
           <post-info
             :tags="item.taxonomy.tags"
             :title="item.title"
             :author="item.author"
             :post="item.id" />
           <post-scrim v-if="displayScrim(item.id)" @click="hideScrim()"
+            :title="item.title"
+            :author="item.author"
             :media="item.assets.preview"
             :post="item.id" />
         </div>
