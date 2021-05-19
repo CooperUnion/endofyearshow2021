@@ -26,7 +26,6 @@ export default {
     box-sizing: border-box;
     color: #000;
   }  
-    
 
   .tag.expanded {
     width: auto;
@@ -39,7 +38,6 @@ export default {
     font-weight: 700;
  }  
     
-
   .tag[data-tagname="view-all"] {
     background-color: #000;
     fill: white;
