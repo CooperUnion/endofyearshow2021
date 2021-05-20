@@ -24,16 +24,19 @@
 
 <style scoped>
   .tagList {
+    margin: 0;
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     list-style-type: none;
+    flex-wrap: wrap;
   }
   
-  .tagList .tagItem + .tagItem {
+  .tagList .tagItem {
     margin-left: 4px;
+    margin-bottom: 4px;
   }  
 
-  .tagList .tagItem.expanded + .tagItem.expanded {
+  .tagList .tagItem.expanded {
     margin-left: 12px;
     margin-bottom: 12px;
   }  

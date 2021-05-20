@@ -60,7 +60,7 @@
   }
   
   .post-info .tagList {
-    max-width: 100px;
+    max-width: 80px;
   }
 
 
