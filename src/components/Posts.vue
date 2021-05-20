@@ -22,7 +22,7 @@
             :tags="item.taxonomy.tags"
             :title="item.title"
             :author="item.author"
-            :media="item.assets.preview"
+            :assets="item.assets"
             :meta="item.meta"
             :post="item.id" />
         </div>

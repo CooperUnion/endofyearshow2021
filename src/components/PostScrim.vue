@@ -6,7 +6,8 @@
         <h6 class="title">{{title}} — {{author.formatted}}</h6>
         <button class="close" @click="hideScrim()">close</button>
       </header>
-      <img :src="media.source_url" />
+      <img :src="assets.media.source_url" />
+      <b @click="next()">next</b><b @click="prev()">prev</b>
       <section class="meta">
         <div class="description-block">
           <p v-if="meta.description" class="description">{{meta.description}}</p>
@@ -29,7 +30,7 @@
       TagList
     },
     props: {
-      media: Object,
+      assets: Array,
       tags: Array,
       title: String,
       author: Object,
@@ -38,11 +39,21 @@
     setup(props){
       const store = useStore()
       
+      const currentMediaIndex = ref(0)
+      
       const hideScrim = () => {
         store.commit('resetActiveScrimId')
       }   
       
-      return {hideScrim}
+      const next = ()=>{
+        currentMediaIndex.value = (currentMediaIndex + 1 > props.assets.media.length - 1) ? 0 : currentMediaIndex + 1
+      }
+      
+      const prev = ()=>{
+        currentMediaIndex.value = (currentMediaIndex - 1 < 0) ? props.assets.media.length -1 : currentMediaIndex - 1
+      }
+      
+      return {hideScrim, next, prev}
     }
 
     
