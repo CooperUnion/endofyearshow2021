@@ -14,7 +14,8 @@
   import { useRoute } from 'vue-router'  
   
   import PageHeaderButton from '@/components/PageHeaderButton.vue'
-  import pageConfig from '@'
+  import pageConfig from '@/router/pageConfig.js'
+  
   export default {
     name: 'Pageheader',
     components: {
