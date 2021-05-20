@@ -4,7 +4,7 @@
 
    <main>    
      
-    <page-header title="Foundation!" body="Lorem ipsum..."/>
+    <page-header />
     <div class="areasPage">
       
       <area-nav :items="areaNavItems" />
