@@ -3,7 +3,8 @@
   <global-nav :items="globalNavItems" />
 
    <main>    
-    
+     
+    <page-header title="Foundation!" body="Lorem ipsum..."/>
     <div class="areasPage">
       
       <area-nav :items="areaNavItems" />
@@ -25,13 +26,15 @@
   import areaNavItems from '@/router/areaNavItems.js'
   import GlobalNav from '@/components/GlobalNav.vue'  
   import {globalNavItems} from '@/router/index.js'
+  import PageHeader from '@/components/PageHeader.vue'  
 
   export default {
     components: {
       Loading,
       GlobalNav,
       Posts,
-      AreaNav
+      AreaNav,
+      PageHeader
     },
     props: {
       post: Number
@@ -67,16 +70,10 @@
 
 <style scoped>
   
- .mainHead {
-    font-size: 48px;
-    text-align: left;
-    text-transform: capitalize;
-    margin-bottom: 48px;
-  }
-  
   .areasPage {
     display: flex;
     flex-direction: row;
+    margin-top: 100px; /* <-- tentative */
   }
   
   .areasPage #areanav {
