@@ -5,12 +5,13 @@
    <main>    
      
     <page-header />
-    <div class="areasPage">
+    <div class="areasPage">{{$route.name}}
       
       <area-nav :items="areaNavItems" />
       
       <loading v-if="loading" :timeout="20" />
-      <posts v-else :items="items"/>
+      
+      <posts v-show="$route.name!=='projects'" v-else :items="items"/>
       
     </div>
   </main>   

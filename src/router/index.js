@@ -51,7 +51,14 @@ let routes = [
   {
     path: '/tag',
     redirect: { name: 'Areas'}
+  },
+  {
+    path: '/projects',
+    name: 'Projects',
+    component: MasonryPosts,
+    props: true
   }
+
 ]
 
 let globalNavItems = [
