@@ -13,6 +13,10 @@
 <style>
   
   @import url('https://cdn.jsdelivr.net/gh/yegor256/tacit@gh-pages/tacit-css-1.5.5.min.css');
+  
+  body {
+    padding: 0;
+  }
 
   #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -20,6 +24,9 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
+    margin: 0 auto;
+    width: calc(100% - 240px);
+    max-width: 1200px;
   }
 
   #nav {

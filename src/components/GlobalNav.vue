@@ -46,7 +46,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-bottom: 1.5em;
+    margin: 80px 0 40px 0;
     font-size: 16px;
     line-height: 1.5;
     cursor: pointer;

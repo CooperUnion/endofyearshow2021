@@ -68,12 +68,12 @@
   }
   
   .titleBlock {
-    width: 50%;
+    width: 61%;
   }
   
   .listBlock {
-    width: 50%;
-        text-align
+    width: 39%;
+    text-align: left;
   }
 
   .projectsList {
