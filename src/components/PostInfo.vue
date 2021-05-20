@@ -2,9 +2,9 @@
   <div class="post-info">
     <ul class="post-infolist">
       <li>
-        <h6 class="title">{{title}}</h6>
+        <h6 class="title" v-html="title"></h6>
       </li>
-      <li class="name">{{author.formatted}}</li> 
+      <li class="name" v-html="author.formatted"></li> 
     </ul>
     <tag-list :tags="tags"/>
   </div>

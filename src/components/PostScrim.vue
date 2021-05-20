@@ -3,10 +3,9 @@
     <div class="scrim-shroud"></div>
     <div class="scrim-contents">
       <header class="title-block">
-        <h6 class="title">{{title}} — {{author.formatted}}</h6>
+        <h6 class="title" v-html="title + ' — ' + author.formatted"></h6>
         <button class="close" @click="hideScrim()">close</button>
       </header>
-      
       <!-- logic for separate content types -->
       <div v-if="type==='images'">
         <img :src="assets.media[current].source_url" />
@@ -14,10 +13,11 @@
           <b @click="prev()">prev</b> | <b @click="next()">next</b>
         </div>    
       </div>
-      <div v-else-if="type==='url'">
+      <div v-else-if="type==='url' || type==='video'">
         <img :src="assets.preview.source_url" />
-        <b><a :href="assets.url">visit site url</a></b>
+        <b v-if="assets.preview.source_url"><a :href="assets.url">visit site url</a></b>
       </div>        
+
 
       <section class="meta">
         <div class="description-block">
