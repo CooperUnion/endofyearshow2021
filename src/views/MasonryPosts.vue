@@ -3,19 +3,8 @@
   <global-nav :items="globalNavItems" />
 
    <main>    
-    <h1 class="mainHead">
-      Foundation
-    </h1>
-     <div class="mainDesc">
-      Foundation consists of a series of courses taken during the first year of study by art students. The year is intended to prepare students for all future areas of   advanced study within the curriculum. It consists of sustained focus and engagement with formal and conceptual exercises, where students develop and investigate the specifics of visual and spatial phenomena.
-      </div>
      
-  
-       <button class="refreshButton">
-         <img class="refreshIcon" src="https://cdn.glitch.com/d71c7c2a-c6c4-4028-9136-d224524d7374%2FrefreshButton.svg?v=1621465133463"> Refresh curation
-  </button>
-
-     
+    <page-header title="Foundation!" body="Lorem ipsum..."/>
     <div class="areasPage">
       
       <area-nav :items="areaNavItems" />
@@ -37,13 +26,15 @@
   import areaNavItems from '@/router/areaNavItems.js'
   import GlobalNav from '@/components/GlobalNav.vue'  
   import {globalNavItems} from '@/router/index.js'
+  import PageHeader from '@/components/PageHeader.vue'  
 
   export default {
     components: {
       Loading,
       GlobalNav,
       Posts,
-      AreaNav
+      AreaNav,
+      PageHeader
     },
     props: {
       post: Number
@@ -78,45 +69,6 @@
 </script>
 
 <style scoped>
-  
- .mainHead {
-    font-size: 48px;
-    text-align: left;
-    text-transform: capitalize;
-    margin-bottom: 48px;
-    margin-left: 96px; /* <-- tentative */
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 48px;
-    font-weight: 700;
-  }
-  
-  .mainDesc {
-    width: 40vw;
-    text-align: left;
-    margin-left: 96px; /* <-- tentative */
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 24px;
-  }
-  
-  .refreshButton{
-    background-color: black;
-    color: white;
-    border-radius: 200px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 30px;
-    width: 276px;
-    height: 64px;
-    margin-top: 48px;
-  }
-  
-  .refreshIcon{
-    margin-bottom: -5px;
-    margin-right: 5px;
-  }
   
   .areasPage {
     display: flex;
