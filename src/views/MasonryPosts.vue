@@ -5,16 +5,12 @@
    <main>    
      
     <page-header />
-    <div class="areasPage">{{$route.name}}
+    <div class="areasPage">
       
       <area-nav :items="areaNavItems" />
       
       <loading v-if="loading" :timeout="20" />
-      
-      <posts v-show="$route.name!=='Projects'" :items="items"/>
-
-      <projects v-show="$route.name ==='Projects'" :items="items"/>
-
+      <posts v-else :items="items"/>
       
     </div>
   </main>   
@@ -27,7 +23,6 @@
   import Loading from '@/components/Loading.vue'
   import AreaNav from '@/components/AreaNav.vue'
   import Posts from '@/components/Posts.vue'
-  import Projects from '@/components/Projects.vue'
   import areaNavItems from '@/router/areaNavItems.js'
   import GlobalNav from '@/components/GlobalNav.vue'  
   import {globalNavItems} from '@/router/index.js'
