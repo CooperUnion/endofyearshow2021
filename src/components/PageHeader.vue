@@ -1,16 +1,16 @@
 <template>
   <h1 class="mainHead">
-    {{title}}
+    {{config.title}}
   </h1>
   <div class="mainDesc">
-    {{body}}
+    {{config.body}}
   </div>
 
-  <page-header-button />
+  <page-header-button v-if="config.refreshEnabled===true"/>
 </template>
 
 <script>
-  import { ref, onBeforeMount } from "vue";
+  import { ref, watch } from "vue";
   import { useRoute } from 'vue-router'  
   
   import PageHeaderButton from '@/components/PageHeaderButton.vue'
@@ -25,11 +25,33 @@
       body: String
     },
     setup(props){
-      
       const route = useRoute()
-      console.log(route.name)
+      const currentRoute = ref(route.name.toLowerCase())
       
-      return {}
+      const pageConfig = {
+        foundation: {
+          title: 'Foundation',
+          body: 'Foundation lorem ipsum...',
+          refreshEnabled: false
+        },
+        forum: {
+          title: 'Forum',
+          body: 'Forum lorem ipsum...',
+          refreshEnabled: true
+        }
+      }
+      
+      const currentPageConfig = ref(pageConfig[currentRoute.value])
+      
+      const updatePageConfig = ()=>{
+        currentPageConfig.value = pageConfig[currentRoute.value]
+      }
+      
+      watch(() => route.name, ()=>{
+        updatePageConfig()
+      })
+      
+      return {config: currentPageConfig}
     }
   }
   
