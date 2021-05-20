@@ -14,7 +14,7 @@
   import { useRoute } from 'vue-router'  
   
   import PageHeaderButton from '@/components/PageHeaderButton.vue'
-
+  import pageConfig from '@'
   export default {
     name: 'Pageheader',
     components: {
@@ -28,26 +28,14 @@
       const route = useRoute()
       const currentRoute = ref(route.name.toLowerCase())
       
-      const pageConfig = {
-        foundation: {
-          title: 'Foundation',
-          body: 'Foundation lorem ipsum...',
-          refreshEnabled: false
-        },
-        forum: {
-          title: 'Forum',
-          body: 'Forum lorem ipsum...',
-          refreshEnabled: true
-        }
-      }
-      
       const currentPageConfig = ref(pageConfig[currentRoute.value])
       
       const updatePageConfig = ()=>{
         currentPageConfig.value = pageConfig[currentRoute.value]
       }
       
-      watch(() => route.name, ()=>{
+      watch(() => route.path, ()=>{
+        currentRoute.value = route.name.toLowerCase()
         updatePageConfig()
       })
       
