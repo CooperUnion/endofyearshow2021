@@ -1,12 +1,27 @@
 <template>
-  <h1 class="mainHead">
-    {{config.title}}
-  </h1>
-  <div class="mainDesc">
-    {{config.body}}
+  <div class="headerBlock">
+    <div class="titleBlock">
+      <h1 class="mainHead">
+        {{config.title}}
+      </h1>
+      <div class="mainDesc">
+        {{config.body}}
+      </div>
+      <page-header-button v-if="config.refreshEnabled===true"/>
+    </div>
+    <div class="listBlock">
+      <template v-if="$route.name === 'Projects'">
+        <ul class="projectsList">
+          <li>Ana Valeria Castillos </li>
+          <li>Ashlyn Guo </li>
+          <li>Richard Yurewitch </li>
+          <li>Ana Valeria Castillos </li>
+          <li>Ashlyn Guo </li>
+          <li>Richard Yurewitch</li>
+        </ul>
+      </template>      
+    </div>
   </div>
-
-  <page-header-button v-if="config.refreshEnabled===true"/>
 </template>
 
 <script>
@@ -47,32 +62,45 @@
 </script>
 
 <style scoped>
+  .headerBlock {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .titleBlock {
+    width: 50%;
+  }
+  
+  .listBlock {
+    width: 50%;
+        text-align
+  }
+
+  .projectsList {
+    list-style-type: none;
+  }
+  
   .mainHead {
     font-size: 48px;
     text-align: left;
     text-transform: capitalize;
-    margin-bottom: 48px;
-    margin-left: 96px; /* <-- tentative */
-    font-family: 'Space Grotesk', sans-serif;
     font-size: 48px;
     font-weight: 700;
+    margin: 0;
   }
   
   .mainDesc {
-    width: 40vw;
     text-align: left;
-    margin-left: 96px; /* <-- tentative */
-    font-family: 'Space Grotesk', sans-serif;
     font-size: 18px;
     font-weight: 500;
     line-height: 24px;
+    margin: 48px 0 0 0;
   }
   
   .refreshButton{
     background-color: black;
     color: white;
     border-radius: 200px;
-    font-family: 'Space Grotesk', sans-serif;
     font-size: 18px;
     font-weight: 700;
     line-height: 30px;

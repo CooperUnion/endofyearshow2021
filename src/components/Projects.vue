@@ -59,13 +59,17 @@
     margin: 0 auto;
   }
   
+  .projectsBox .post {
+    margin-bottom: 36px;
+  }
+
   .projectsBox .post >>> img {
     display: block;
     width: auto;
     height: auto;
     max-height: 600px;
-    margin-bottom: 36px;
   }
+
 
   
 </style>
