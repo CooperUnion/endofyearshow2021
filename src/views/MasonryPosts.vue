@@ -11,7 +11,10 @@
       
       <loading v-if="loading" :timeout="20" />
       
-      <posts v-show="$route.name!=='projects'" v-else :items="items"/>
+      <posts v-show="$route.name!=='Projects'" :items="items"/>
+
+      <projects v-show="$route.name ==='Projects'" :items="items"/>
+
       
     </div>
   </main>   
@@ -24,6 +27,7 @@
   import Loading from '@/components/Loading.vue'
   import AreaNav from '@/components/AreaNav.vue'
   import Posts from '@/components/Posts.vue'
+  import Projects from '@/components/Projects.vue'
   import areaNavItems from '@/router/areaNavItems.js'
   import GlobalNav from '@/components/GlobalNav.vue'  
   import {globalNavItems} from '@/router/index.js'

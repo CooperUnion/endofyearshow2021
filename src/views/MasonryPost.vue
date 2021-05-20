@@ -22,6 +22,7 @@
   import Loading from '@/components/Loading.vue'
   import AreaNav from '@/components/AreaNav.vue'
   import Posts from '@/components/Posts.vue'
+  import Projects from '@/components/Projects.vue'
   import areaNavItems from '@/router/areaNavItems.js'
   import GlobalNav from '@/components/GlobalNav.vue'  
   import {globalNavItems} from '@/router/index.js'
@@ -30,6 +31,7 @@
       Loading,
       GlobalNav,
       Posts,
+      Projects,
       AreaNav
     },
     props: {
