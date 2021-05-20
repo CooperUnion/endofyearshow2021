@@ -8,10 +8,17 @@
     <div class="areasPage">
       
       <area-nav :items="areaNavItems" />
-      
-      <loading v-if="loading" :timeout="20" />
-      <posts v-else :items="items"/>
-      
+
+      <template v-if="$route.name === 'Projects'">
+        <loading v-if="loading" :timeout="20" />
+        <projects v-else :items="items"/>
+      </template>
+      <template v-else>
+        <loading v-if="loading" :timeout="20" />
+        <posts v-else :items="items"/>
+      </template>
+
+
     </div>
   </main>   
 </template>

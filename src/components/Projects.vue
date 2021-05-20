@@ -1,14 +1,6 @@
 <template>
-  <div 
-    class="masonryBox" 
-    v-masonry 
-    transition-duration="0.3s" 
-    item-selector=".item" 
-    column-width=".post" 
-    gutter="48" 
-
-    horizontal-order="true">
-    <div v-masonry-tile class="item" v-for="item in items" v-bind:key="item.id">
+  <div class="projectsBox">
+    <div class="item" v-for="item in items" v-bind:key="item.id">
       <!-- block item markup -->
         <div class="post" v-if="item.id">
           <post-media @click.prevent="loadScrim(item.id)" 
@@ -40,7 +32,7 @@
   import PostScrim from '@/components/PostScrim.vue'
   
   export default {
-    name: 'Posts',
+    name: 'Projects',
     props: {
       items: Array
     },

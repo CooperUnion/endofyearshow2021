@@ -61,7 +61,7 @@
   }
 
   .nav-list .active {
-    background-color:red;
+    font-weight: 700;
   }
 
 
