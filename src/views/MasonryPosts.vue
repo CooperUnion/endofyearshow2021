@@ -82,7 +82,7 @@
   .areasPage {
     display: flex;
     flex-direction: row;
-    margin-top: 100px; /* <-- tentative */
+    margin-top: 48px; /* <-- tentative */
   }
   
   .areasPage #areanav {
