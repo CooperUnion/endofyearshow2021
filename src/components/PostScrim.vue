@@ -6,10 +6,19 @@
         <h6 class="title">{{title}} — {{author.formatted}}</h6>
         <button class="close" @click="hideScrim()">close</button>
       </header>
-      <img :src="assets.media[current].source_url" />
-      <div v-if="assets.media.length>1">
-        <b @click="prev()">prev</b> | <b @click="next()">next</b>
-      </div>    
+      
+      <!-- logic for separate content types -->
+      <div v-if="type==='images'">
+        <img :src="assets.media[current].source_url" />
+        <div v-if="assets.media.length>1">
+          <b @click="prev()">prev</b> | <b @click="next()">next</b>
+        </div>    
+      </div>
+      <div v-else-if="type==='url'">
+        <img :src="assets.preview.source_url" />
+        <b><a :href="assets.url">visit site url</a></b>
+      </div>        
+
       <section class="meta">
         <div class="description-block">
           <p v-if="meta.description" class="description">{{meta.description}}</p>
@@ -38,7 +47,8 @@
       tags: Array,
       title: String,
       author: Object,
-      meta: Object
+      meta: Object,
+      type: String
     },
     setup(props){
       const store = useStore()

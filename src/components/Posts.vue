@@ -24,7 +24,8 @@
             :author="item.author"
             :assets="item.assets"
             :meta="item.meta"
-            :post="item.id" />
+            :post="item.id"
+            :type="item.type"/>
         </div>
     </div>
   </div>
