@@ -6,8 +6,10 @@
         <h6 class="title">{{title}} — {{author.formatted}}</h6>
         <button class="close" @click="hideScrim()">close</button>
       </header>
-      <img :src="assets.media.source_url" />
-      <b @click="next()">next</b><b @click="prev()">prev</b>
+      <img :src="assets.media[current].source_url" />
+      <div v-if="assets.media.length>1">
+        <b @click="prev()">prev</b> | <b @click="next()">next</b>
+      </div>    
       <section class="meta">
         <div class="description-block">
           <p v-if="meta.description" class="description">{{meta.description}}</p>
@@ -21,8 +23,10 @@
 </template>
 
 <script>
-  import TagList from '@/components/TagList.vue'
+  import { ref } from 'vue'  
   import { useStore } from 'vuex'  
+  import TagList from '@/components/TagList.vue'
+  
   
   export default {
     name: 'PostScrim',
@@ -39,21 +43,23 @@
     setup(props){
       const store = useStore()
       
-      const currentMediaIndex = ref(0)
+      const current = ref(0)
       
       const hideScrim = () => {
         store.commit('resetActiveScrimId')
       }   
       
       const next = ()=>{
-        currentMediaIndex.value = (currentMediaIndex + 1 > props.assets.media.length - 1) ? 0 : currentMediaIndex + 1
+        current.value = (current.value + 1 > props.assets.media.length - 1) ? 0 : current.value + 1
+        // console.log("next clicked", current.value)
       }
       
       const prev = ()=>{
-        currentMediaIndex.value = (currentMediaIndex - 1 < 0) ? props.assets.media.length -1 : currentMediaIndex - 1
+        current.value = (current.value - 1 < 0) ? props.assets.media.length -1 : current.value - 1
+        // console.log("prev clicked", current.value)
       }
       
-      return {hideScrim, next, prev}
+      return {hideScrim, next, prev, current}
     }
 
     
