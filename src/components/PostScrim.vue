@@ -15,15 +15,15 @@
       </div>
       <div v-else-if="type==='url' || type==='video'">
         <img :src="assets.preview.source_url" />
-        <b v-if="assets.preview.source_url"><a :href="assets.url">visit site url</a></b>
+        <b v-if="assets.url"><a :href="assets.url">visit site url</a></b>
       </div>        
 
 
       <section class="meta">
         <div class="description-block">
-          <p v-if="meta.description" class="description">{{meta.description}}</p>
-          <p v-if="meta.dimensions" class="dimensions">{{meta.dimensions}}</p>
-          <p v-if="meta.materials" class="materials">{{meta.materials}}</p>      
+          <p v-if="meta.description" class="description" v-html="meta.description"></p>
+          <p v-if="meta.dimensions" class="dimensions" v-html="meta.dimensions"></p>
+          <p v-if="meta.materials" class="materials" v-html="meta.materials"></p>      
         </div>
         <div class="labels-block"><tag-list :tags="tags" :expanded="true"/></div>
       </section>
