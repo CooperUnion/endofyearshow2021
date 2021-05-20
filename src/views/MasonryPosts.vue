@@ -7,7 +7,7 @@
     <page-header />
     <div class="areasPage">
       
-      <area-nav :items="areaNavItems" />
+       <area-nav :items="areaNavItems" v-if="$route.name === 'Areas' || $route.name === 'Students'" />
 
       <template v-if="$route.name === 'Projects'">
         <loading v-if="loading" :timeout="20" />
@@ -93,7 +93,12 @@
   }
   
   .areasPage .masonryBox {
+    width: 100%;
+  }
+
+  .areasPage #areanav ~ .masonryBox {
     width: calc(100% - 275px);
   }
+
 
 </style>

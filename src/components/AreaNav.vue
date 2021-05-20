@@ -1,7 +1,7 @@
 <template>
   <ul id="areanav" class="nav-list">
     
-    <b>{{activeArea}}</b>
+<!--     <b>{{activeArea}}</b> -->
     
     <li class="nav-item" >
       <tag-button data-tagname="view-all" />
