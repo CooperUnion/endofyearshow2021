@@ -58,4 +58,10 @@
     color: #000;
     margin-top: 0.25em;
   }
+  
+  .post-info .tagList {
+    max-width: 100px;
+  }
+
+
 </style>
