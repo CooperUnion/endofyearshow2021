@@ -52,9 +52,8 @@
       const loading = ref(true)
       const items = ref()
       const route = useRoute()
-    const internalInstance = getCurrentInstance()
-    const { api_endpoint } = internalInstance.appContext.config.globalProperties
-      
+      const internalInstance = getCurrentInstance()
+      const { api_endpoint } = internalInstance.appContext.config.globalProperties
          
       onBeforeMount(loadPosts)
       async function loadToggle(){
@@ -68,7 +67,7 @@
         loading.value = true
         items.value = []
 
-        const url = `https://eoys-uploader-2021.glitch.me/api/posts`
+        const url = `${api_endpoint}/api/posts`
         
         items.value = await fetch(url).then(res=>res.json())
         loading.value = false

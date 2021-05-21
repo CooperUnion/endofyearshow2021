@@ -16,7 +16,7 @@
 </template>
 
 <script>
-  import { ref, onBeforeMount, watch } from "vue";
+  import { ref, onBeforeMount, watch, getCurrentInstance } from "vue";
   import { useRoute } from 'vue-router'
   import { useStore } from 'vuex'  
   
@@ -44,6 +44,8 @@
       const items = ref()
       const areaNavItems = ref(navItems)
       const route = useRoute()
+      const internalInstance = getCurrentInstance()
+      const { api_endpoint } = internalInstance.appContext.config.globalProperties
          
       onBeforeMount(loadPosts)
       async function loadToggle(){
@@ -61,12 +63,11 @@
         } else {
           store.commit('activateArea', route.params.tag)
         }
-          
         
         loading.value = true
         items.value = []
         
-        const url = `https://eoys-uploader-2021.glitch.me/api/posts/tags/${route.params.tag}`
+        const url = `${api_endpoint}/api/posts/tags/${route.params.tag}`
         
         items.value = await fetch(url).then(res=>res.json())
         loading.value = false
