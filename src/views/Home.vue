@@ -1,4 +1,5 @@
 <template>
+  <b>Current api_endpoint: {{api_endpoint}}</b>
   <div class="home">
     <global-nav :items="globalNavItems" />
     <img alt="Vue logo" src="../assets/logo.png" />
@@ -7,10 +8,11 @@
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-import GlobalNav from '@/components/GlobalNav.vue'
-import {globalNavItems} from '@/router/index.js'
+  // @ is an alias to /src
+  // import { getCurrentInstance } from 'vue'
+  import HelloWorld from '@/components/HelloWorld.vue'
+  import GlobalNav from '@/components/GlobalNav.vue'
+  import { globalNavItems } from '@/router/index.js'
 
   export default {
   name: 'Home',
@@ -19,7 +21,7 @@ import {globalNavItems} from '@/router/index.js'
     GlobalNav
   },
   setup(){
-    console.log(globalNavItems, "hi")
+    
     return {globalNavItems}
   }
 }
