@@ -16,7 +16,7 @@
 </template>
 
 <script>
-  import { ref, onBeforeMount, watch } from "vue";
+  import { ref, onBeforeMount, watch, getCurrentInstance } from "vue";
   import { useRoute } from 'vue-router'
   
   import Loading from '@/components/Loading.vue'
@@ -39,7 +39,9 @@
       const loading = ref(true)
       const items = ref()
       const areaNavItems = ref(areaNavItems)
-      const route = useRoute()      
+      const route = useRoute()
+      const internalInstance = getCurrentInstance()
+      const { api_endpoint } = internalInstance.appContext.config.globalProperties
          
       onBeforeMount(loadPosts)
       async function loadToggle(){
@@ -53,7 +55,7 @@
         loading.value = true
         items.value = []
 
-        const url = `https://eoys-uploader-2021.glitch.me/api/posts/${route.params.post}`
+        const url = `${api_endpoint}/api/posts/${route.params.post}`
         
         items.value = [await fetch(url).then(res=>res.json())]
         loading.value = false

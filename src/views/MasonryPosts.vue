@@ -24,7 +24,7 @@
 </template>
 
 <script>
-  import { ref, onBeforeMount, watch } from "vue";
+  import { ref, onBeforeMount, watch, getCurrentInstance } from "vue";
   import { useRoute } from 'vue-router'
   
   import Loading from '@/components/Loading.vue'
@@ -51,7 +51,10 @@
     setup(props){
       const loading = ref(true)
       const items = ref()
-      const route = useRoute()      
+      const route = useRoute()
+    const internalInstance = getCurrentInstance()
+    const { api_endpoint } = internalInstance.appContext.config.globalProperties
+      
          
       onBeforeMount(loadPosts)
       async function loadToggle(){

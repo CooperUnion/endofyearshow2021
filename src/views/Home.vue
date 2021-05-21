@@ -9,11 +9,11 @@
 
 <script>
   // @ is an alias to /src
-  // import { getCurrentInstance } from 'vue'
+  import { getCurrentInstance } from 'vue'
   import HelloWorld from '@/components/HelloWorld.vue'
   import GlobalNav from '@/components/GlobalNav.vue'
   import { globalNavItems } from '@/router/index.js'
-
+  
   export default {
   name: 'Home',
   components: {
@@ -21,7 +21,11 @@
     GlobalNav
   },
   setup(){
+    const internalInstance = getCurrentInstance()
+    const { api_endpoint } = internalInstance.appContext.config.globalProperties
+
     
+    console.log("here", api_endpoint)
     return {globalNavItems}
   }
 }
