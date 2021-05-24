@@ -11,7 +11,7 @@
 
       <template v-if="$route.name === 'Projects'">
         <loading v-if="loading" :timeout="20" />
-        <projects v-else :items="items"/>
+        <project v-else :items="items"/>
       </template>
       <template v-else>
         <loading v-if="loading" :timeout="20" />
@@ -30,7 +30,7 @@
   import Loading from '@/components/Loading.vue'
   import AreaNav from '@/components/AreaNav.vue'
   import Posts from '@/components/Posts.vue'
-  import Projects from '@/components/Projects.vue'
+  import Project from '@/components/Project.vue'
   import areaNavItems from '@/router/areaNavItems.js'
   import GlobalNav from '@/components/GlobalNav.vue'  
   import {globalNavItems} from '@/router/index.js'
@@ -41,7 +41,7 @@
       Loading,
       GlobalNav,
       Posts,
-      Projects,
+      Project,
       AreaNav,
       PageHeader
     },

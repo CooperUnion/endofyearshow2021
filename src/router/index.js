@@ -3,6 +3,8 @@ import Home from '@/views/Home.vue'
 import MasonryPosts from '@/views/MasonryPosts.vue'
 import MasonryPost from '@/views/MasonryPost.vue'
 import MasonryTag from '@/views/MasonryTag.vue'
+import Projects from '@/views/Projects.vue'
+
 
 let routes = [
   {
@@ -45,13 +47,15 @@ let routes = [
     redirect: { name: 'MasonryPosts'}
   },
   {
-    path: '/app',
-    redirect: { name: 'MasonryPosts'}
-  },
-  {
     path: '/tag',
     redirect: { name: 'Areas'}
-  }, 
+  },
+  {
+    path: '/project/:project',
+    name: 'Project',
+    component: MasonryPosts,
+    props: true
+  }
 
   
 ]
@@ -60,7 +64,7 @@ let globalNavItems = [
   {name:"Home", path:"/", component: Home},
   {name:"Areas", path:"/areas", component: MasonryPosts},
   {name:"Foundation", path:"/foundation", component: MasonryPosts},
-  {name:"Projects", path:"/projects/submissions", component: MasonryPosts},
+  {name:"Projects", path:"/projects/", component: Projects},
   {name:"Forum", path:"/forum", component: MasonryPosts},
   {name:"Students", path:"/students", component: Home},
   {name:"Info", path:"/info", component: Home}
