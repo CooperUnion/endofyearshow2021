@@ -51,7 +51,7 @@ let routes = [
     redirect: { name: 'Areas'}
   },
   {
-    path: '/project/:project',
+    path: '/projects/:project',
     name: 'Project',
     component: MasonryPosts,
     props: true

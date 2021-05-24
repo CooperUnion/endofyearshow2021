@@ -8,7 +8,7 @@
       <loading v-if="loading" :timeout="15" />
       <ul v-else class="projectList">
         <li class="project" v-for="item in items" v-bind:key="item.id">
-          <router-link :to="'/project/' + slug(item)">{{item}}</router-link>
+          <router-link :to="slug(item)" relative>{{item}}</router-link>
         </li>   
       </ul>
     </div>
@@ -67,7 +67,7 @@
       
       //formats a name passed to it by replacing '-' with ' '
       const slug = (name) => {
-        return name.trim().toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-');
+        return "projects/" + name.trim().toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-');
       }
       
       return {items, loading, loadToggle, loadProjects, globalNavItems, slug}
