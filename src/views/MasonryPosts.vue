@@ -3,10 +3,8 @@
   <global-nav :items="globalNavItems" />
 
    <main>    
-     
-    <page-header />
+    <page-header v-if="!$route.name === 'Projects'" />
     <div class="areasPage">
-      {{$route.name}}
        <area-nav :items="areaNavItems" v-if="$route.name === 'Areas' || $route.name === 'Students'" />
 
       <template v-if="$route.name === 'Projects'">
@@ -17,7 +15,6 @@
         <loading v-if="loading" :timeout="20" />
         <posts v-else :items="items"/>
       </template>
-
 
     </div>
   </main>   
