@@ -11,10 +11,11 @@
 
       
       <loading v-if="loading" :timeout="15" />
-  <router-link class="project" v-for="item in items" v-bind:key="item.id">
-  {{item}}
-  </router-link>   
-
+      <ul v-else class="projectList">
+        <li class="project" v-for="item in items" v-bind:key="item.id">
+          <router-link :to="item">{{item}}</router-link>
+        </li>   
+      </ul>
     </div>
   </main>   
 
@@ -74,4 +75,7 @@
 </script>
 
 <style scoped>
+  .projectList {
+    list-style-type: none;
+  }
 </style>
