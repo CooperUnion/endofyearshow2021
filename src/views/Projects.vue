@@ -8,7 +8,7 @@
       <loading v-if="loading" :timeout="15" />
       <ul v-else class="projectList">
         <li class="project" v-for="item in items" v-bind:key="item.id">
-          <router-link :to="'/projects/' + slug(item)">{{item}}</router-link>
+          <router-link :to="item.url">{{item.name}}</router-link>
         </li>   
       </ul>
     </div>

@@ -6,7 +6,7 @@
      
     <page-header />
     <div class="areasPage">
-      
+      {{$route.name}}
        <area-nav :items="areaNavItems" v-if="$route.name === 'Areas' || $route.name === 'Students'" />
 
       <template v-if="$route.name === 'Projects'">
