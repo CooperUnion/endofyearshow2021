@@ -5,9 +5,15 @@
      
     <page-header />
     <div class="areasPage">
+
       
-       
-This is where the Projects will go
+      This is where the Projects will go
+
+      
+      <loading v-if="loading" :timeout="15" />
+  <router-link class="project" v-for="item in items" v-bind:key="item.id">
+  {{item}}
+  </router-link>   
 
     </div>
   </main>   
@@ -15,19 +21,26 @@ This is where the Projects will go
 </template>
 
 <script>
+  import { ref, onBeforeMount, watch, getCurrentInstance } from "vue";
+  import { useRoute } from 'vue-router'
+  
+  import Loading from '@/components/Loading.vue'
+  import GlobalNav from '@/components/GlobalNav.vue'  
+  import {globalNavItems} from '@/router/index.js'
+  import PageHeader from '@/components/PageHeader.vue'  
+
+  
   export default {
     name: 'Projects',
-  export default {
+    props: {
+    },
     components: {
       Loading,
       GlobalNav,
-      Posts,
-      Project,
-      AreaNav,
       PageHeader
     },
     props: {
-      post: Number
+      project: Number
     },
     setup(props){
       const loading = ref(true)
@@ -36,28 +49,28 @@ This is where the Projects will go
       const internalInstance = getCurrentInstance()
       const { api_endpoint } = internalInstance.appContext.config.globalProperties
          
-      onBeforeMount(loadPosts)
+      onBeforeMount(loadProjects)
       async function loadToggle(){
         console.log("ok...")
         loading.value = loading.value === true ? false : true
       }
       
-      watch(() => route.params.tag, loadPosts)    
+      watch(() => route.params.tag, loadProjects)    
       
-      async function loadPosts(){
+      async function loadProjects(){
         loading.value = true
         items.value = []
 
-        const url = `${api_endpoint}/api/posts`
+        const url = `${api_endpoint}/api/projects/submissions`
         
         items.value = await fetch(url).then(res=>res.json())
         loading.value = false
         console.log(items.value)
         return true
       }
-      return {items, loading, loadToggle, loadPosts, areaNavItems, globalNavItems}
+      return {items, loading, loadToggle, loadProjects, globalNavItems}
     }
-  }  }
+  }  
 </script>
 
 <style scoped>
