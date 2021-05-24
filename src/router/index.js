@@ -60,7 +60,7 @@ let globalNavItems = [
   {name:"Home", path:"/", component: Home},
   {name:"Areas", path:"/areas", component: MasonryPosts},
   {name:"Foundation", path:"/foundation", component: MasonryPosts},
-  {name:"Projects", path:"/projects", component: MasonryPosts},
+  {name:"Projects", path:"/projects/submissions", component: MasonryPosts},
   {name:"Forum", path:"/forum", component: MasonryPosts},
   {name:"Students", path:"/students", component: Home},
   {name:"Info", path:"/info", component: Home}

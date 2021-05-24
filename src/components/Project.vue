@@ -69,7 +69,4 @@
     height: auto;
     max-height: 600px;
   }
-
-
-  
 </style>
