@@ -5,15 +5,10 @@
      
     <page-header />
     <div class="areasPage">
-
-      
-      This is where the Projects will go
-
-      
       <loading v-if="loading" :timeout="15" />
       <ul v-else class="projectList">
         <li class="project" v-for="item in items" v-bind:key="item.id">
-          <router-link :to="item">{{item}}</router-link>
+          <router-link :to="'/project/' + slug(item)">{{item}}</router-link>
         </li>   
       </ul>
     </div>
@@ -69,7 +64,13 @@
         console.log(items.value)
         return true
       }
-      return {items, loading, loadToggle, loadProjects, globalNavItems}
+      
+      //formats a name passed to it by replacing '-' with ' '
+      const slug = (name) => {
+        return name.trim().toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-');
+      }
+      
+      return {items, loading, loadToggle, loadProjects, globalNavItems, slug}
     }
   }  
 </script>
