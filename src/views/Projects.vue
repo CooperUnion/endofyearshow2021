@@ -78,7 +78,7 @@
 
         const urls = {
           project: `${api_endpoint}/api/posts/project/${slug}`,
-          students: `${api_endpoint}/api/project/students/${slug}`
+          students: `${api_endpoint}/api/projects/students/${slug}`
         } 
         
         const data = await Promise.all(Object.keys(urls).map(async (source)=>{
