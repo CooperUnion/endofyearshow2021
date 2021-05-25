@@ -6,7 +6,7 @@
     <page-header v-if="render==='list'"/>
     <div class="areasPage">
       <loading v-if="loading" :timeout="15" />
-      <ul v-else class="projectList">
+      <ul v-else-if="render==='list'" class="projectList">
         <li class="project" v-for="item in items" v-bind:key="item.id">
           <router-link :to="item.url">{{item.name}}</router-link>
         </li>   
@@ -28,15 +28,13 @@
   
   export default {
     name: 'Projects',
-    props: {
-    },
     components: {
       Loading,
       GlobalNav,
       PageHeader
     },
     props: {
-      project: Number
+      project: String
     },
     setup(props){
       const loading = ref(true)
