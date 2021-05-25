@@ -1,10 +1,15 @@
 <template>
   <global-nav :items="globalNavItems" />
 
-   <main>    
+  <main>     
+    <loading v-if="loading" :timeout="15" />
+    <div v-else>
+      <ul>
+        <li v-for="student of students" v-bind:key="student">{{student}}</li>
+      </ul>
+      <project-posts v-else :items="items" />
+    </div>
      
-       <loading v-if="loading" :timeout="15" />
-       <project-list v-else :items="items" />
   </main>   
 
 </template>
@@ -17,7 +22,7 @@
   import GlobalNav from '@/components/GlobalNav.vue'  
   import {globalNavItems} from '@/router/index.js'
   import PageHeader from '@/components/PageHeader.vue'  
-  import Project as ProjectList from '@/components/Project.vue'
+  import ProjectPosts from '@/components/ProjectPosts.vue'
 
   
   export default {
@@ -25,7 +30,7 @@
     components: {
       Loading,
       GlobalNav,
-      ProjectList
+      ProjectPosts
     },
     props: {
       project: String
