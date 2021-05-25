@@ -17,7 +17,7 @@
   import GlobalNav from '@/components/GlobalNav.vue'  
   import {globalNavItems} from '@/router/index.js'
   import PageHeader from '@/components/PageHeader.vue'  
-  import * as ProjectList from '@/components/Project.vue'
+  import Project as ProjectList from '@/components/Project.vue'
 
   
   export default {
