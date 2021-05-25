@@ -3,15 +3,8 @@
 
    <main>    
      
-    <page-header />
-    <div class="areasPage">
-      <loading v-if="loading" :timeout="15" />
-      <ul v-else class="projectList">
-        <li class="project" v-for="item in items" v-bind:key="item.id">
-          <router-link :to="item.url">{{item.name}}</router-link>
-        </li>   
-      </ul>
-    </div>
+       <loading v-if="loading" :timeout="15" />
+
   </main>   
 
 </template>
@@ -27,11 +20,10 @@
 
   
   export default {
-    name: 'Projects',
+    name: 'Project',
     components: {
       Loading,
-      GlobalNav,
-      PageHeader
+      GlobalNav
     },
     props: {
       project: String
@@ -43,39 +35,45 @@
       const internalInstance = getCurrentInstance()
       const { api_endpoint } = internalInstance.appContext.config.globalProperties
       
-      onBeforeMount(loadProjects)
+      onBeforeMount(loadProject)
       async function loadToggle(){
         console.log("ok...")
         loading.value = loading.value === true ? false : true
       }
       
-      // watch(() => route.params.project, ()=>{
-      //   loadProject(route.params.project)
-      //   render.value = 'project'
-      // })    
+      watch(() => route.params.project, ()=>{
+        loadProject(route.params.project)
+      })    
       
-      async function loadProjects(){
-        
-        console.log("loadProjects re-loaded", route.params)
+      async function loadProject(slug) {
+         console.log("loadProject triggered", slug)
         
         loading.value = true
         items.value = []
 
-        const url = `${api_endpoint}/api/projects/submissions`
+        const urls = {
+          project: `${api_endpoint}/api/posts/project/${slug}`,
+          students: `${api_endpoint}/api/projects/students/${slug}`
+        } 
         
-        items.value = await fetch(url).then(res=>res.json())
+        items.value  = await Promise.all(Object.keys(urls).map(async (source)=>{
+          
+          return await fetch(urls[source]).then(res=>res.json())
+          
+        }))
+       
         loading.value = false
         console.log(items.value)
         return true
+      
       }
       
-     
       //formats a name passed to it by replacing '-' with ' '
       const slug = (name) => {
         return name.trim().toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-');
       }
       
-      return {items, loading, loadProjects, globalNavItems, slug}
+      return {items, loading, globalNavItems, slug}
     }
   }  
 </script>

@@ -4,6 +4,8 @@ import MasonryPosts from '@/views/MasonryPosts.vue'
 import MasonryPost from '@/views/MasonryPost.vue'
 import MasonryTag from '@/views/MasonryTag.vue'
 import Projects from '@/views/Projects.vue'
+import Project from '@/views/Project.vue'
+
 
 
 let routes = [
@@ -53,7 +55,7 @@ let routes = [
   {
     path: '/projects/:project',
     name: 'Project',
-    component: Projects,
+    component: Project,
     props: true
   }
 
