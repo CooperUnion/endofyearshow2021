@@ -13,10 +13,18 @@
           <b @click="prev()">prev</b> | <b @click="next()">next</b>
         </div>    
       </div>
-      <div v-else-if="type==='url' || type==='video'">
+      <div v-else-if="type==='url'">
         <img :src="assets.preview.source_url" />
         <b v-if="assets.url"><a :href="assets.url">visit site url</a></b>
-      </div>        
+      </div>   
+      <div v-else-if="type==='video'">
+        <video width="320" height="240" controls>
+          <source :src="assets.media.vimeo.files[0].link" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <img :src="assets.preview.source_url" />
+        <b v-if="assets.url"><a :href="assets.url">visit site url</a></b>
+      </div>         
 
 
       <section class="meta">
