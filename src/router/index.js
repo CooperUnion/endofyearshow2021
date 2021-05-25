@@ -53,7 +53,7 @@ let routes = [
   {
     path: '/projects/:project',
     name: 'Project',
-    component: MasonryPosts,
+    component: Projects,
     props: true
   }
 

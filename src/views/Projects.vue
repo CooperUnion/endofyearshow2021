@@ -51,9 +51,14 @@
         loading.value = loading.value === true ? false : true
       }
       
-      watch(() => route.params.tag, loadProjects)    
+      watch(() => route.params.project, ()=>{
+        loadProject(route.params.project)
+      })    
       
       async function loadProjects(){
+        
+        console.log("loadProjects re-loaded", route.params)
+        
         loading.value = true
         items.value = []
 
@@ -63,6 +68,32 @@
         loading.value = false
         console.log(items.value)
         return true
+      }
+      
+      async function loadProject(slug) {
+         console.log("loadProject triggered", slug)
+        
+        loading.value = true
+        items.value = []
+
+        const urls = {
+          project: `${api_endpoint}/api/posts/project/${slug}`,
+          students: `${api_endpoint}/api/project/students/${slug}`
+        } 
+        
+        const data = await Promise.all(Object.keys(urls).map(async (source)=>{
+          
+          return await fetch(urls[source]).then(res=>res.json())
+          
+        }))
+        
+        console.log(data)
+        
+        items.value = await fetch(url).then(res=>res.json())
+        loading.value = false
+        console.log(items.value)
+        return true
+      
       }
       
       //formats a name passed to it by replacing '-' with ' '
