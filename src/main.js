@@ -9,7 +9,7 @@ import { VueMasonryPlugin } from "vue-masonry/src/masonry-vue3.plugin";
 const emitter = mitt()
 let app = createApp(App).use(store).use(router)
 app.config.globalProperties.emitter = emitter
-app.config.globalProperties.api_endpoint = 'https://eoys-api-2021.glitch.me'
+app.config.globalProperties.api_endpoint = process.env.VUE_APP_FORM_API_ENDPOINT || 'https://eoys-api-2021.glitch.me'
 app.use(VueMasonryPlugin)
 app.mount('#app')
 
