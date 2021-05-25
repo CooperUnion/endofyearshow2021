@@ -4,7 +4,7 @@
    <main>    
      
        <loading v-if="loading" :timeout="15" />
-
+       <project-list v-else :items="items" />
   </main>   
 
 </template>
@@ -17,20 +17,23 @@
   import GlobalNav from '@/components/GlobalNav.vue'  
   import {globalNavItems} from '@/router/index.js'
   import PageHeader from '@/components/PageHeader.vue'  
+  import * as ProjectList from '@/components/Project.vue'
 
   
   export default {
     name: 'Project',
     components: {
       Loading,
-      GlobalNav
+      GlobalNav,
+      ProjectList
     },
     props: {
       project: String
     },
     setup(props){
       const loading = ref(true)
-      const items = ref()
+      const items = ref([])
+      const students = ref([])
       const route = useRoute()
       const internalInstance = getCurrentInstance()
       const { api_endpoint } = internalInstance.appContext.config.globalProperties
@@ -56,16 +59,10 @@
         const project_url = `${api_endpoint}/api/posts/project/${slug}`
         const students_url = `${api_endpoint}/api/projects/students/${slug}`
         
-        const project = fetch(project_url).then(r=>r.json())
-        const students = fetch(students_url).then(r=>r.json())
-
-        const data = {
-          await project, 
-          await students
-        }
-        
+        items.value = await fetch(project_url).then(r=>r.json())
+        students.value = await fetch(students_url).then(r=>r.json())
+      
         loading.value = false
-        console.log(items.value)
         return true
       
       }
@@ -75,7 +72,7 @@
         return name.trim().toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-');
       }
       
-      return {items, loading, globalNavItems, slug}
+      return {items, loading, globalNavItems, slug, students}
     }
   }  
 </script>
