@@ -3,13 +3,13 @@
 
   <main>     
     <loading v-if="loading" :timeout="15" />
-    <div v-else>
+    <template v-else>
+      <router-link to="/projects">&#8592; all projects</router-link>
       <ul>
         <li v-for="student of students" v-bind:key="student">{{student}}</li>
       </ul>
-      <project-posts v-else :items="items" />
-    </div>
-     
+      <project-posts :items="items" />
+    </template>
   </main>   
 
 </template>
