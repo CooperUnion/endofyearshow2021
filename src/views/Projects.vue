@@ -3,7 +3,7 @@
 
    <main>    
      
-    <page-header />
+    <page-header v-if="render==='list'"/>
     <div class="areasPage">
       <loading v-if="loading" :timeout="15" />
       <ul v-else class="projectList">
@@ -45,6 +45,8 @@
       const internalInstance = getCurrentInstance()
       const { api_endpoint } = internalInstance.appContext.config.globalProperties
          
+      const render = ref('list')
+      
       onBeforeMount(loadProjects)
       async function loadToggle(){
         console.log("ok...")
@@ -53,6 +55,7 @@
       
       watch(() => route.params.project, ()=>{
         loadProject(route.params.project)
+        render.value = 'project'
       })    
       
       async function loadProjects(){
@@ -81,15 +84,12 @@
           students: `${api_endpoint}/api/projects/students/${slug}`
         } 
         
-        const data = await Promise.all(Object.keys(urls).map(async (source)=>{
+        items.value  = await Promise.all(Object.keys(urls).map(async (source)=>{
           
           return await fetch(urls[source]).then(res=>res.json())
           
         }))
-        
-        console.log(data)
-        
-        items.value = await fetch(url).then(res=>res.json())
+       
         loading.value = false
         console.log(items.value)
         return true
@@ -101,7 +101,7 @@
         return name.trim().toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-');
       }
       
-      return {items, loading, loadToggle, loadProjects, globalNavItems, slug}
+      return {items, loading, loadToggle, loadProjects, globalNavItems, slug, render}
     }
   }  
 </script>
