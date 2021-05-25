@@ -35,7 +35,9 @@
       const internalInstance = getCurrentInstance()
       const { api_endpoint } = internalInstance.appContext.config.globalProperties
       
-      onBeforeMount(loadProject)
+      onBeforeMount(()=>{
+        loadProject(route.params.project)
+      })
       async function loadToggle(){
         console.log("ok...")
         loading.value = loading.value === true ? false : true
@@ -51,17 +53,17 @@
         loading.value = true
         items.value = []
 
-        const urls = {
-          project: `${api_endpoint}/api/posts/project/${slug}`,
-          students: `${api_endpoint}/api/projects/students/${slug}`
-        } 
+        const project_url = `${api_endpoint}/api/posts/project/${slug}`
+        const students_url = `${api_endpoint}/api/projects/students/${slug}`
         
-        items.value  = await Promise.all(Object.keys(urls).map(async (source)=>{
-          
-          return await fetch(urls[source]).then(res=>res.json())
-          
-        }))
-       
+        const project = fetch(project_url).then(r=>r.json())
+        const students = fetch(students_url).then(r=>r.json())
+
+        const data = {
+          await project, 
+          await students
+        }
+        
         loading.value = false
         console.log(items.value)
         return true
