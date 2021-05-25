@@ -36,6 +36,7 @@
     },
     setup(props){
       const store = useStore()
+      const route = useRoute()
       
       const loadScrim = (id) => {
         store.commit('setActiveScrimId', id)
