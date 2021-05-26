@@ -99,5 +99,11 @@
     width: calc(100% - 275px);
   }
 
+  @media screen and (max-width: 767px) {
+    .areasPage {
+      flex-direction: column;
+    }
+
+  }
 
 </style>
