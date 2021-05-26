@@ -91,11 +91,11 @@
     text-align: left;
   }
   
-  .areasPage .masonryBox {
+  .areasPage >>> .masonryBox {
     width: 100%;
   }
 
-  .areasPage #areanav ~ .masonryBox {
+  .areasPage >>> #areanav ~ .masonryBox {
     width: calc(100% - 275px);
   }
 

@@ -1,5 +1,5 @@
 <template v-if="media" class="post-media">
-  <a :href="media.source_url">
+  <a class="imgLink" :href="media.source_url">
     <img v-if="!media.sizes.medium_large" :src="media.source_url" :loading="loading"/>
     <img v-if="media.sizes.medium_large" :src="media.sizes.medium_large.source_url" :loading="loading"/>
   </a>
@@ -25,12 +25,12 @@ export default {
 
 <style scoped>
   
-  .post-media a {
+  .imgLink {
     display: block;
     background-color: gainsboro;
   }
 
-  .post-media a img {
+  img {
     display: block;
     width: 100%;
     height: auto;

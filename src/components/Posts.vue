@@ -5,8 +5,8 @@
     transition-duration="0.3s" 
     item-selector=".item" 
     column-width=".post" 
-    gutter=".gutterWidth"
-    horizontal-order="true">
+
+       horizontal-order="true">
     <div v-masonry-tile class="item" v-for="(item, index) in items" v-bind:key="item.id">
       <!-- block item markup -->
         <div class="post" v-if="item.id">
@@ -76,7 +76,7 @@
   }
   
   .post {
-    width: 17vw;
+    width: calc(33.33% - );
     border: 1px solid transparent;
     margin-bottom: 48px;
   }
