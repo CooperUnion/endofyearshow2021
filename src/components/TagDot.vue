@@ -103,7 +103,6 @@ export default {
     height: 14px;
     width: 14px;
     fill: inherit;
-    display: none;
   }
     
   .tag.active .toggle {

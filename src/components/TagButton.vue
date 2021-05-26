@@ -1,5 +1,5 @@
 <template>
-    <tag-dot :class="isActive()" :expanded="expanded" :label="tag" :toggle="true"></tag-dot>
+    <tag-dot :class="isActive()" :expanded="expanded" :label="tag" :toggle="toggle"></tag-dot>
 </template>
 
 <script>
@@ -28,20 +28,21 @@
 
 <style scoped>
   
-  .tag {
-    cursor: pointer;
-  }
-  
-
   .nav-list .nav-item .tag {
+    cursor: pointer;
     height: 24px;
     width: 24px;
     margin-right: 12px;
   }
 
-  .nav-list .nav-item:hover .tag .toggle {
+  .nav-list .nav-item .tag >>> .toggle {
+    display: none; 
+  }  
+
+  .nav-list .nav-item:hover .tag >>> .toggle {
     display: block; 
   }  
+
 
   .nav-list .nav-item .tag:not([data-tagname="view-all"]).inactive {
     background-image: none;

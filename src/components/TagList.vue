@@ -1,7 +1,7 @@
 <template>
   <ul class="tagList">
     <li :class="['tagItem', {expanded: expanded}]" v-for="tag in tags" :key="tag">
-      <tag-button :data-tagname="tag.toLowerCase().replace(/\s+/g, '-')" :expanded="expanded" :label="tag" />
+      <tag-button :data-tagname="tag.toLowerCase().replace(/\s+/g, '-')" :expanded="expanded" :label="tag" :toggle="toggle" />
     </li>
   </ul>
 </template>
@@ -16,6 +16,7 @@
     name: 'TagList',
     props: {
       expanded: Boolean,
+      toggle: Boolean,
       tags: Array
     }
   }
