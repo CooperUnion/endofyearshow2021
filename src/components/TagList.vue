@@ -16,8 +16,7 @@
     name: 'TagList',
     props: {
       expanded: Boolean,
-      tags: Array,
-      tag: String //i dont think this is necessary
+      tags: Array
     }
   }
 </script>
