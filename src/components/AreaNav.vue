@@ -6,13 +6,15 @@
     <li class="nav-item" >
       <tag-button data-tagname="view-all" />
       <router-link to="/areas" @click="resetAreas()">View all</router-link>
-      <output>{{itemCount['view-all']}}</output>      
+      <output><router-link to="/areas" @click="resetAreas()">{{itemCount['view-all']}}</router-link></output>      
     </li>
 
     <li class="nav-item" v-for="item in items" :key="item">
       <tag-button :data-tagname="slug(item.name)" :active="currentAreaState(slug(item.name))"/>
       <router-link :to="item.url" @click="toggleArea(slug(item.name))">{{item.name}}</router-link>
-      <output>{{itemCount[slug(item.name)]}}</output>
+      <output @click="resetAndSetArea(slug(item.name))">       
+        {{itemCount[slug(item.name)]}}
+      </output>
     </li>
   </ul>
 </template>
@@ -78,6 +80,12 @@
         store.commit('resetAreas')
       }
       
+      const resetAndSetArea = (areaItem) => {
+        store.commit('resetAreas')
+        // store.commit('activateArea', areaItem)
+        router.push(`/tag/${areaItem}`)
+      }
+      
       
       const getCount = async (tags)=>{
         const api_endpoint_override = 'https://eoys-uploader-2021-stage.glitch.me'
@@ -109,7 +117,7 @@
         // recomputeNav()
       })
       
-      return {activeArea, toggleArea, currentAreaState, slug, resetAreas, itemCount}
+      return {activeArea, toggleArea, currentAreaState, slug, resetAreas, resetAndSetArea, itemCount}
     }
 
   }

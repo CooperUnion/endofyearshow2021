@@ -57,9 +57,11 @@ let routes = [
     name: 'Project',
     component: Project,
     props: true
+  },
+  {
+    path: '/areas',
+    redirect: '/tag/drawing,design,film-+-video,installation,painting,performance,photography,printmaking,sculpture,sound-art'
   }
-
-  
 ]
 
 let globalNavItems = [
