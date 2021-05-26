@@ -39,6 +39,7 @@
       const { api_endpoint } = internalInstance.appContext.config.globalProperties
       
       const itemCount = ref({})
+      const allItemCount = ref()
       
       const currentBaseNav = ()=>{
         const base = route.path.split('/').pop().split(',').shift()
@@ -79,10 +80,20 @@
       
       
       const getCount = async (tags)=>{
-        const url = `${api_endpoint}/api/count/tags/${tag}`
+        const api_endpoint_override = 'https://eoys-uploader-2021-stage.glitch.me'
+        const url = `${api_endpoint_override}/api/count/posts/tags/${tags}`
         const {count} = await fetch(url).then(r=>r.json())
         return count
       }
+      
+      
+      const getAllCount = async ()=>{
+        const api_endpoint_override = 'https://eoys-uploader-2021-stage.glitch.me'
+        const url = `${api_endpoint_override}/api/count/posts`
+        const {count} = await fetch(url).then(r=>r.json())
+        return count
+      }
+      
       
       
       props.items.forEach(async(item)=>{
@@ -96,7 +107,7 @@
         // recomputeNav()
       })
       
-      return {activeArea, toggleArea, currentAreaState, slug, resetAreas, getCount}
+      return {activeArea, toggleArea, currentAreaState, slug, resetAreas, itemCount}
     }
 
   }
