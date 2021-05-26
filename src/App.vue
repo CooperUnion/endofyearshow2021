@@ -41,5 +41,11 @@
   #nav a.router-link-exact-active {
     color: #42b983;
   }  
+  
+  @media screen and (max-width: 767px) {
+    #app {
+      width: calc(100% - 48px);
+    }
+  }  
 
 </style>
