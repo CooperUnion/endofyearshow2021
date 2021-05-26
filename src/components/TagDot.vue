@@ -25,6 +25,7 @@ export default {
     position: relative;
     box-sizing: border-box;
     color: #000;
+    flex: none;
   }  
 
   .tag.expanded {
