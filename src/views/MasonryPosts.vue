@@ -84,34 +84,31 @@
     margin-top: 48px; /* <-- tentative */
   }
   
-  .areasPage #areanav {
+  #areanav {
     width: 275px;
     list-style-type: none;
     margin: 0;
     text-align: left;
   }
   
-  .areasPage >>> .masonryBox {
-    width: 100%;
-  }
-
   .areasPage >>> #areanav ~ .masonryBox {
     width: calc(100% - 275px);
   }
+
+
 
   @media screen and (max-width: 767px) {
     .areasPage {
       flex-direction: column;
     }
     
-    .areasPage #areanav {
+    #areanav {
       width: auto;
     }
     
-    .areasPage #areanav ~ .masonryBox {
-      width: auto;
+    .areasPage >>> #areanav ~ .masonryBox {
+      width: 100%;
     }
-
 
   }
 

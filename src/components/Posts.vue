@@ -72,6 +72,7 @@
 <style scoped>
 
   .masonryBox {
+    width: 100%;
     margin: 0 auto;
   }
   
@@ -91,12 +92,10 @@
     width: 48px;
   }
   
-
-
   
     @media screen and (max-width: 767px) {
-    .post {
-      width: calc(50vw - 48px - 9px);
+    .item {
+      width: calc(50% - 24px);
     }
     .gutterWidth {
       width: 18px;
