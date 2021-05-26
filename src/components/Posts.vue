@@ -12,7 +12,7 @@
       <!-- block item markup -->
         <div class="post" v-if="item.id">
           <post-media @click.prevent="loadScrim(item.id)" 
-            :media="item.assets.preview" />
+            :media="item.assets.preview" :lazy="index>15"/>
           <post-info
             :tags="item.taxonomy.tags"
             :title="item.title"
