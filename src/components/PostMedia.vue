@@ -27,7 +27,6 @@ export default {
   
   .imgLink {
     display: block;
-    background-color: gainsboro;
   }
 
   img {

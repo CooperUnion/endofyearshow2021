@@ -1,6 +1,6 @@
 <template>
-    <button class="apply" v-if="mobile">Apply filters</button>
   <div id="areanav" class="areanavPanel">
+    <button class="apply" v-if="mobile">Apply filters</button>
     <ul class="nav-list">
       <li class="nav-item" >
         <tag-button data-tagname="view-all" :toggle="true" />
