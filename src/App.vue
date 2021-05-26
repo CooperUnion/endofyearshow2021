@@ -44,7 +44,7 @@
   
   @media screen and (max-width: 767px) {
     #app {
-      width: calc(100% - 48px);
+      width: calc(100vw - 48px);
     }
   }  
 

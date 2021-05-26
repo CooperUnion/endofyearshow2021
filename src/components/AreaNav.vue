@@ -162,21 +162,18 @@
 
   @media screen and (max-width: 767px) {
     #areanav {
-      width: auto;
+      width: calc(100vw - 48px);
       position: fixed;
       top: 24px;
       left: 24px;
       right: 24px;
-      background-color: #000;
+      background-color: #fff;
+      border: 2px solid #000;
       z-index: 1;
-      padding: 18px;
+      padding: 36px;
       border-radius: 12px;
     }
-    
-    .nav-list .nav-item a {
-      color: #fff;
-    }
-    
+        
   }
 
 

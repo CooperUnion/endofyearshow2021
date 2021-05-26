@@ -91,17 +91,23 @@
   .areasPage {
     display: flex;
     flex-direction: row;
+    margin-top: 48px; /* <-- tentative */
   }
-  
-  .areasPage #areanav {
-    width: 275px;
-    list-style-type: none;
-    margin: 0;
-    text-align: left;
-  }
-  
-  .areasPage .masonryBox {
+    
+  .areasPage >>> #areanav ~ .masonryBox {
     width: calc(100% - 275px);
   }
+
+  @media screen and (max-width: 767px) {
+    .areasPage {
+      flex-direction: column;
+      position: relative;
+    }
+       
+    .areasPage >>> #areanav ~ .masonryBox {
+      width: 100%;
+    }
+  }
+
 
 </style>
