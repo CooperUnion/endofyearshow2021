@@ -8,7 +8,7 @@
     gutter="48" 
 
     horizontal-order="true">
-    <div v-masonry-tile class="item" v-for="item in items" v-bind:key="item.id">
+    <div v-masonry-tile class="item" v-for="(item, index) in items" v-bind:key="item.id">
       <!-- block item markup -->
         <div class="post" v-if="item.id">
           <post-media @click.prevent="loadScrim(item.id)" 
