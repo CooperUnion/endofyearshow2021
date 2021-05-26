@@ -1,7 +1,7 @@
 const areanav = [
   {name:"Design", url:"/tag/design"},
   {name:"Drawing", url:"/tag/drawing"},
-  {name:"Film + Video", url:"/tag/film-video"},
+  {name:"Film + Video", url:"/tag/film-+-video"},
   {name:"Installation", url:"/tag/installation"},
   {name:"Painting", url:"/tag/painting"},
   {name:"Performance", url:"/tag/performance"},

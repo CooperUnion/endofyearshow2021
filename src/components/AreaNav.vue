@@ -6,14 +6,14 @@
     <li class="nav-item" >
       <tag-button data-tagname="view-all" />
       <router-link to="/areas" @click="resetAreas()">View all</router-link>
-      <output><router-link to="/areas" @click="resetAreas()">{{itemCount['view-all']}}</router-link></output>      
+      <output><a href="/areas" @click="resetAreas()">{{itemCount['view-all']}}</a></output>      
     </li>
 
     <li class="nav-item" v-for="item in items" :key="item">
       <tag-button :data-tagname="slug(item.name)" :active="currentAreaState(slug(item.name))"/>
       <router-link :to="item.url" @click="toggleArea(slug(item.name))">{{item.name}}</router-link>
-      <output @click="resetAndSetArea(slug(item.name))">       
-        {{itemCount[slug(item.name)]}}
+      <output>
+        <a :href="item.url">{{itemCount[slug(item.name)]}}</a>
       </output>
     </li>
   </ul>
@@ -73,6 +73,9 @@
       
       //formats a name passed to it by replacing '-' with ' '
       const slug = (name) => {
+        if(name.toLowerCase === 'film + video') {
+          return 'film-+-video'
+        }
         return name.toLowerCase().replace(/\s+/g, '-')
       }
       
@@ -82,7 +85,7 @@
       
       const resetAndSetArea = (areaItem) => {
         store.commit('resetAreas')
-        // store.commit('activateArea', areaItem)
+        store.commit('activateArea', areaItem)
         router.push(`/tag/${areaItem}`)
       }
       
