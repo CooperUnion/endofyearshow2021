@@ -8,6 +8,7 @@
 
 <script>
   import TagButton from '@/components/TagButton.vue'
+  import { getCurrentInstance } from 'vue'    
 
   export default {
     components: {
@@ -18,6 +19,10 @@
       expanded: Boolean,
       toggle: Boolean,
       tags: Array
+    },
+    setup(props) {
+      const internalInstance = getCurrentInstance()
+      const { mobile } = internalInstance.appContext.config.globalProperties      
     }
   }
 </script>
