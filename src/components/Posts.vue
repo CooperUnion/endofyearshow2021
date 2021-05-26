@@ -5,7 +5,7 @@
     transition-duration="0.3s" 
     item-selector=".item" 
     column-width=".item" 
-    gutter="48"
+    :gutter="mobile ? '18' : '48'"
     horizontal-order="true">
     <div v-masonry-tile class="item" v-for="(item, index) in items" v-bind:key="item.id">
       <!-- block item markup -->
@@ -34,7 +34,7 @@
 <script>
   import { computed, ref, watch } from 'vue'
   import { useStore } from 'vuex'  
-    
+  import { getCurrentInstance } from 'vue'    
   import PostInfo from '@/components/PostInfo.vue'
   import PostMedia from '@/components/PostMedia.vue'
   import PostScrim from '@/components/PostScrim.vue'
@@ -64,6 +64,9 @@
         return id === store.state.activeScrimId
       }
       
+      const internalInstance = getCurrentInstance()
+      const { mobile } = internalInstance.appContext.config.globalProperties
+    
       return {loadScrim, displayScrim, hideScrim}
     }
   }
@@ -95,7 +98,7 @@
   
     @media screen and (max-width: 767px) {
     .item {
-      width: calc(50% - 24px);
+      width: calc(50% - 9px);
     }
     .gutterWidth {
       width: 18px;
