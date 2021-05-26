@@ -39,6 +39,7 @@
     flex-direction: row;
     justify-content: space-between;
     margin-top: 0.5em;
+    align-items: flex-start;
   }
 
   .post-infolist {
