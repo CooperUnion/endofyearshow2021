@@ -1,4 +1,5 @@
 <template>
+    <button class="apply" v-if="mobile">Apply filters</button>
   <div id="areanav" class="areanavPanel">
     <ul class="nav-list">
       <li class="nav-item" >
@@ -130,10 +131,15 @@
 
   #areanav {
     width: 275px;
+  }
+
+
+  .nav-list {
     list-style-type: none;
     margin: 0;
     text-align: left;
   }
+
 
   .nav-list .nav-item {
     display: flex;
