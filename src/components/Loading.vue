@@ -38,6 +38,7 @@
     background-size: contain;
     width: 100px;
     height: 100px;
+    margin: 0 auto 33px auto;
   }
 
   .loading>small {

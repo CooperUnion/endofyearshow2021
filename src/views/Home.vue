@@ -1,5 +1,12 @@
 <template>
-  <b>Current api_endpoint: {{api_endpoint}}</b>
+  <ul>
+    <li>
+      <b>Current api_endpoint: {{api_endpoint}}</b>
+    </li>
+    <li>
+      <b>Device is currently: {{mobile ? 'mobile' : 'desktop'}}</b>
+    </li>
+  </ul>  
   <div class="home">
     <global-nav :items="globalNavItems" />
     <img alt="Vue logo" src="../assets/logo.png" />
@@ -22,7 +29,7 @@
   },
   setup(){
     const internalInstance = getCurrentInstance()
-    const { api_endpoint } = internalInstance.appContext.config.globalProperties
+    const { api_endpoint, mobile } = internalInstance.appContext.config.globalProperties
 
     
     console.log("here", api_endpoint)

@@ -86,7 +86,21 @@
 </script>
 
 <style scoped>
-  
+
+  #areanav {
+    width: 275px;
+    list-style-type: none;
+    margin: 0;
+    text-align: left;
+  }
+
+  @media screen and (max-width: 767px) {
+    #areanav {
+      width: auto;
+    }
+  }
+
+
   .nav-list .nav-item {
     display: flex;
     margin-bottom: 1.5em;

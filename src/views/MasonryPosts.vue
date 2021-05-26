@@ -6,7 +6,6 @@
     <page-header v-if="!$route.name === 'Projects'" />
     <div class="areasPage">
        <area-nav :items="areaNavItems" v-if="$route.name === 'Areas' || $route.name === 'Students'" />
-
       <template v-if="$route.name === 'Projects'">
         <loading v-if="loading" :timeout="20" />
         <project v-else :items="items"/>
@@ -83,14 +82,7 @@
     flex-direction: row;
     margin-top: 48px; /* <-- tentative */
   }
-  
-  #areanav {
-    width: 275px;
-    list-style-type: none;
-    margin: 0;
-    text-align: left;
-  }
-  
+    
   .areasPage >>> #areanav ~ .masonryBox {
     width: calc(100% - 275px);
   }
@@ -101,15 +93,10 @@
     .areasPage {
       flex-direction: column;
     }
-    
-    #areanav {
-      width: auto;
-    }
-    
+       
     .areasPage >>> #areanav ~ .masonryBox {
       width: 100%;
     }
-
   }
 
 </style>
