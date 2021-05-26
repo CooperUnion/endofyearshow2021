@@ -5,8 +5,7 @@
     transition-duration="0.3s" 
     item-selector=".item" 
     column-width=".post" 
-    gutter="48"
-
+    gutter=".gutterWidth"
     horizontal-order="true">
     <div v-masonry-tile class="item" v-for="(item, index) in items" v-bind:key="item.id">
       <!-- block item markup -->
@@ -29,6 +28,7 @@
         </div>
     </div>
   </div>
+<div class="gutterWidth"></div>
 </template>
 
 <script>
@@ -77,15 +77,25 @@
   
   .post {
     width: 17vw;
-/*     min-width: 266px; */
     border: 1px solid transparent;
     margin-bottom: 48px;
-/*     margin: 24px; */
   }
+  
+  .gutterWidth {
+    position: absolute;
+    visibility: hidden;
+    width: 48px;
+  }
+  
+
+
   
     @media screen and (max-width: 767px) {
     .post {
       width: calc(50vw - 48px - 9px);
+    }
+    .gutterWidth {
+      width: 18px;
     }
   }  
 

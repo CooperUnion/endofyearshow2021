@@ -33,5 +33,6 @@ export default {
   .post-media a img {
     display: block;
     width: 100%;
+    height: auto;
   }
 </style>
