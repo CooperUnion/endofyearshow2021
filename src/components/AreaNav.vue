@@ -6,7 +6,7 @@
     <li class="nav-item" >
       <tag-button data-tagname="view-all" />
       <router-link to="/areas" @click="resetAreas()">View all</router-link>
-      <output>##</output>      
+      <output>{{itemCount['view-all']}}</output>      
     </li>
 
     <li class="nav-item" v-for="item in items" :key="item">
@@ -93,15 +93,17 @@
         const {count} = await fetch(url).then(r=>r.json())
         return count
       }
-      
-      
-      
+
       props.items.forEach(async(item)=>{
         const tag = slug(item.name)
         const count = await getCount(tag)
         itemCount.value[tag] = count  
       })
       
+      const specialNav = ['view-all']
+      specialNav.forEach(async(item)=>{
+        itemCount.value[item] = await getAllCount()
+      })
       watch(() => route.params.tag, ()=>{
         // baseNav.value = currentBaseNav()
         // recomputeNav()
