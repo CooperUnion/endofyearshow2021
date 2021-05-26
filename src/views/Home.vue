@@ -31,7 +31,6 @@
     const internalInstance = getCurrentInstance()
     const { api_endpoint, mobile } = internalInstance.appContext.config.globalProperties
 
-    
     console.log("here", api_endpoint)
     return {globalNavItems}
   }

@@ -18,7 +18,7 @@
 </template>
 
 <script>
-  import { computed, ref, watch } from 'vue'
+  import { computed, ref, watch, getCurrentInstance } from 'vue'
   import { useStore } from 'vuex'  
   import { useRoute, useRouter } from 'vue-router'  
   import TagButton from '@/components/TagButton.vue'
@@ -35,7 +35,8 @@
       const store = useStore()
       const route = useRoute()
       const router = useRouter()
-      // const mutableItems = ref(props.items)
+      const internalInstance = getCurrentInstance()
+      const { api_endpoint } = internalInstance.appContext.config.globalProperties
 
       const currentBaseNav = ()=>{
         const base = route.path.split('/').pop().split(',').shift()
@@ -74,12 +75,17 @@
         store.commit('resetAreas')
       }
       
+      const getCount = async (tags)=>{
+        const url = `${api_endpoint}/api/count/tags/${tag}`
+        const count = await fetch(url).then()
+      }
+      
       watch(() => route.params.tag, ()=>{
         // baseNav.value = currentBaseNav()
         // recomputeNav()
       })
       
-      return {activeArea, toggleArea, currentAreaState, slug, resetAreas}
+      return {activeArea, toggleArea, currentAreaState, slug, resetAreas, getCount}
     }
 
   }
@@ -93,13 +99,6 @@
     margin: 0;
     text-align: left;
   }
-
-  @media screen and (max-width: 767px) {
-    #areanav {
-      width: auto;
-    }
-  }
-
 
   .nav-list .nav-item {
     display: flex;
@@ -133,6 +132,26 @@
     line-height: 1.5;
     font-style: normal;
   }
+
+  @media screen and (max-width: 767px) {
+    #areanav {
+      width: auto;
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      right: 24px;
+      background-color: #000;
+      z-index: 1;
+      padding: 18px;
+      border-radius: 12px;
+    }
+    
+    .nav-list .nav-item a {
+      color: #fff;
+    }
+    
+  }
+
 
 
 </style>
