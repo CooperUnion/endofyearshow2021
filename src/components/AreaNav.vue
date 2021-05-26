@@ -173,6 +173,7 @@
       top: 24px;
       left: 24px;
       right: 24px;
+      bottom: 24px;
       background-color: #fff;
       border: 2px solid #000;
       z-index: 1;
