@@ -5,7 +5,7 @@
     transition-duration="0.3s" 
     item-selector=".item" 
     column-width=".post" 
-    gutter="48" 
+    gutter="48"
 
     horizontal-order="true">
     <div v-masonry-tile class="item" v-for="(item, index) in items" v-bind:key="item.id">
