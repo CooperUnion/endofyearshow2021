@@ -103,6 +103,15 @@
     .areasPage {
       flex-direction: column;
     }
+    
+    .areasPage #areanav {
+      width: auto;
+    }
+    
+    .areasPage #areanav ~ .masonryBox {
+      width: auto;
+    }
+
 
   }
 
