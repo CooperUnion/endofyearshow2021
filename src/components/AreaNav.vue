@@ -12,7 +12,7 @@
     <li class="nav-item" v-for="item in items" :key="item">
       <tag-button :data-tagname="slug(item.name)" :active="currentAreaState(slug(item.name))"/>
       <router-link :to="item.url" @click="toggleArea(slug(item.name))">{{item.name}}</router-link>
-      <output>##</output>
+      <output>{{itemCount[slug(item.name)]}}</output>
     </li>
   </ul>
 </template>
@@ -37,7 +37,9 @@
       const router = useRouter()
       const internalInstance = getCurrentInstance()
       const { api_endpoint } = internalInstance.appContext.config.globalProperties
-
+      
+      const itemCount = ref({})
+      
       const currentBaseNav = ()=>{
         const base = route.path.split('/').pop().split(',').shift()
         console.log({base})
@@ -75,10 +77,19 @@
         store.commit('resetAreas')
       }
       
+      
       const getCount = async (tags)=>{
         const url = `${api_endpoint}/api/count/tags/${tag}`
-        const count = await fetch(url).then()
+        const {count} = await fetch(url).then(r=>r.json())
+        return count
       }
+      
+      
+      props.items.forEach(async(item)=>{
+        const tag = slug(item.name)
+        const count = await getCount(tag)
+        itemCount.value[tag] = count  
+      })
       
       watch(() => route.params.tag, ()=>{
         // baseNav.value = currentBaseNav()
@@ -136,7 +147,7 @@
   @media screen and (max-width: 767px) {
     #areanav {
       width: auto;
-      position: absolute;
+      position: fixed;
       top: 24px;
       left: 24px;
       right: 24px;
