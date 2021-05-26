@@ -151,22 +151,14 @@
   }
 
 
-  .nav-list .nav-item output {
+  .nav-list .nav-item output a {
     color: #999;
-    margin-left: 0.25em;
+    margin-left: 0.333em;
     font-size: 16px;
     line-height: 1.5;
-    font-style: normal;
+    font-weight: 100;
   }
 
-
-  .nav-list .nav-item output {
-    color: #999;
-    margin-left: 0.25em;
-    font-size: 16px;
-    line-height: 1.5;
-    font-style: normal;
-  }
 
   @media screen and (max-width: 767px) {
     #areanav {
