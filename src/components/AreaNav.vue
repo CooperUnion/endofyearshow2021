@@ -215,8 +215,6 @@
       margin-bottom: clamp(1em, calc(5.5vh - 1.1em), 2em);
     }
 
-
-
     button.filters {
       color: #fff;
       background-color: #000;
