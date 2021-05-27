@@ -145,6 +145,8 @@
     list-style-type: none;
     margin: 0;
     text-align: left;
+    display: flex;
+    flex-direction: column;
   }
 
 
@@ -197,11 +199,11 @@
       flex-direction: column;
       justify-content: space-between;
       align-items: flex-start;
-      transition: transform 0.125s ease-out;
+      transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
    }
     
     #areanav:not(.showNav) .nav-panel {
-      display: none;
+      transform: translateX(-100vw);
     }
     
     button.filters {
