@@ -197,6 +197,7 @@
       flex-direction: column;
       justify-content: space-between;
       align-items: flex-start;
+      transition: transform 0.125s ease-out;
    }
     
     #areanav:not(.showNav) .nav-panel {
