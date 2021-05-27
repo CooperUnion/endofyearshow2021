@@ -34,7 +34,7 @@
 <style scoped>
   
   .loading {
-    background-image: url(https://cdn.glitch.com/d71c7c2a-c6c4-4028-9136-d224524d7374%2FComp-20_2.gif?v=1621555851955);
+    background-image: url(<%= BASE_URL %>/img/loading.gif);
     background-size: contain;
     width: 100px;
     height: 100px;
