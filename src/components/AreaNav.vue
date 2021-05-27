@@ -200,7 +200,7 @@
       flex-direction: column;
       justify-content: space-between;
       align-items: flex-start;
-      transition: transform 0.2s cubic-bezier(0, 1.4, 1, 1);
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
    }
     
     #areanav:not(.showNav) .nav-panel {
@@ -209,7 +209,14 @@
  
     .nav-list {
       max-height: calc(100% - 96px);
+      transition: transform 0.333s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
+
+    #areanav:not(.showNav) .nav-list {
+      transform: translateX(-50vw);
+    }
+
+
 
    .nav-list .nav-item {
       margin-bottom: clamp(1em, calc(5.5vh - 1.1em), 2em);

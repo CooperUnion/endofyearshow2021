@@ -111,7 +111,7 @@
     
     .nav-list .nav-item {
       margin-bottom: 1em;
-      transition: margin .333s cubic-bezier(0, 1.4, 1, 1);
+      transition: margin .333s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     #globalnav:not(.showNav) .nav-list .nav-item {
