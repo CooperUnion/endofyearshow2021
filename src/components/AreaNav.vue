@@ -178,7 +178,8 @@
 
   @media screen and (max-width: 767px) {
     #areanav {
-      width: auto;  
+      width: auto;
+      margin-bottom: 48px;
     }
     
     .nav-panel {

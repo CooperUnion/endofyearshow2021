@@ -95,6 +95,7 @@
     .areasPage {
       flex-direction: column;
       position: relative;
+      margin: 0;
     }
        
     .areasPage >>> #areanav ~ .masonryBox {
