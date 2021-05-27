@@ -14,6 +14,7 @@ const formRouter = require('./routes/form-router');
 const indexRouter = require('./routes/index-router');
 const wpRouter = require('./routes/wp-router');
 const apiRouter = require('./routes/api-router');
+const socketRouter = require('./routes/socket-router');
 
 //handlebars interception of .html files for custom rendering
 app.engine('html', exphbs({extname: '.html'}));
@@ -64,14 +65,17 @@ index.use(indexRouter)
 
 const api = express.Router()
 api.use(apiRouter)
+
+const socket = express.Router()
+socket.use(socketRouter)
  
 //attach routers
 app.use('/form', form)
 app.use('/wp', wp)
 app.use('/', index)
 app.use('/api', api)
+app.use('/cursors', socket)
 
-console.log("in server.js!")
 
 const listener = app.listen(process.env.PORT, () => {
   console.log("Your app is listening on port " + listener.address().port);
