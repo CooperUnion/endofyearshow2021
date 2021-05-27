@@ -71,6 +71,8 @@ app.use('/wp', wp)
 app.use('/', index)
 app.use('/api', api)
 
+console.log("in server.js!")
+
 const listener = app.listen(process.env.PORT, () => {
   console.log("Your app is listening on port " + listener.address().port);
 });
