@@ -1,9 +1,11 @@
 <template>
-  <ul id="globalnav" class="nav-list">
-    <li v-for="item in items" :key="item" :class="['nav-item', isActiveRoute(item.name)]">
-      <router-link :to="item.path">{{item.name}}</router-link>
-    </li>
-  </ul>
+  <div class="nav-panel">
+     <ul id="globalnav" class="nav-list">
+      <li v-for="item in items" :key="item" :class="['nav-item', isActiveRoute(item.name)]">
+        <router-link :to="item.path">{{item.name}}</router-link>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -65,6 +67,34 @@
     font-weight: 700;
   }
 
+  @media screen and (max-width: 767px) {
+    .nav-panel {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      color: #fff;
+      background-color: #000;
+      z-index: 1;
+      padding: 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+   }
+     
+    .nav-list {
+      flex-direction: column;
+      text-align: left;
+    }
+  .nav-list .nav-item + .nav-item {
+    margin-left: 1.5em;
+  }
 
+    
+  }
+  
 </style>
 
