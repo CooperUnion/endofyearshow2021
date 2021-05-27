@@ -141,6 +141,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: flex-start;
   }
 
   #areanav:not(.showNav) .nav-panel {
@@ -200,7 +201,6 @@
     button {
       color: #fff;
       background-color: #000;
-      flex: none;
     }
     
     button.filters-apply {
