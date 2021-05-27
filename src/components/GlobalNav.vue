@@ -64,13 +64,6 @@
   .nav-list .active {
     font-weight: 700;
   }
-  
-  @media screen and (min-width: 768px) and (max-width: 1024px) {
-    .nav-item {
-      font-size: 14px;
-    }
-  }  
-
 
 
 </style>
