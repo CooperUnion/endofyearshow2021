@@ -211,12 +211,10 @@
       max-height: calc(100% - 96px);
     }
 
-
-   @media screen and (max-height: 720px) {
-     .nav-list .nav-item {
-        margin-bottom: 1em;
-      }
+   .nav-list .nav-item {
+      margin-bottom: clamp(1em, calc(5vh - 2em), 2em);
     }
+
 
 
     button.filters {
