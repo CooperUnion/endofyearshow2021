@@ -34,7 +34,7 @@
 <style scoped>
   
   .loading {
-    background-image: url(./loading.gif);
+    background-image: url(./assets/loading.gif);
     background-size: contain;
     width: 100px;
     height: 100px;
