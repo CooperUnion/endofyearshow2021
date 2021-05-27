@@ -1,6 +1,6 @@
 <template>
-  <div id="areanav" class="areanavPanel">
-    <button class="apply" v-if="mobile" @click="toggleAreanav()">Apply filters</button>
+  <div id="areanav" :class="['areanavPanel', {showNav : areanavShow}]">
+    <button class="apply" v-if="mobile" @click="toggleAreaPanel()">Apply filters</button>
     <ul class="nav-list">
       <li class="nav-item" >
         <tag-button data-tagname="view-all" :toggle="true" />
@@ -91,8 +91,8 @@
         router.push(`/tag/${areaItem}`)
       }
       
-      const toggleAreanav = () => {
-        areanavShow = !areanavShow
+      const toggleAreaPanel = () => {
+        areanavShow.value = !areanavShow.value
       }
       
 
@@ -127,7 +127,7 @@
         // recomputeNav()
       })
       
-      return {activeArea, toggleArea, currentAreaState, slug, resetAreas, resetAndSetArea, itemCount}
+      return {activeArea, toggleArea, currentAreaState, slug, resetAreas, resetAndSetArea, itemCount, areanavShow, toggleAreaPanel}
     }
 
   }
