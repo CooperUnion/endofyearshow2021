@@ -43,6 +43,7 @@
       
       const itemCount = ref({})
       const allItemCount = ref()
+      const areanavShow = ref(false)
       
       const currentBaseNav = ()=>{
         const base = route.path.split('/').pop().split(',').shift()
