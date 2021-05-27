@@ -6,15 +6,24 @@ import store from './store'
 import mitt from 'mitt'
 import { VueMasonryPlugin } from 'vue-masonry/src/masonry-vue3.plugin';
 
-import socketio from './socket.io-client';
-import VueSocketIO from 'vue-socket.io';
+// import socketio from './socket.io-client';
+// import VueSocketIOExtended from './vue-socket.io-extended';
 
-export const SocketInstance = socketio('http://localhost:4113');
+// export const SocketInstance = socketio('http://localhost:4113');
 
-App.use(VueSocketIO, SocketInstance)
+// App.use(VueSocketIOExtended, SocketInstance)
 
+import VueSocketIOExt from 'vue-socket.io-extended';
+import { io } from 'socket.io-client';
+
+const socket = io('https://eoyssockets2021.glitch.me');
 const emitter = mitt()
 let app = createApp(App).use(store).use(router)
+
+// const app = createApp({});
+app.use(VueSocketIOExt, socket);
+
+
 app.config.globalProperties.emitter = emitter
 app.config.globalProperties.api_endpoint = process.env.VUE_APP_FORM_API_ENDPOINT || 'https://eoys-api-2021.glitch.me'
 
