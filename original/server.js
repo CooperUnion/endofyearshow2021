@@ -74,7 +74,7 @@ app.use('/form', form)
 app.use('/wp', wp)
 app.use('/', index)
 app.use('/api', api)
-app.use('/cursors', socket)
+// app.use('/cursors', socket)
 
 // SOCKET INFO
 let port = process.env.PORT || 8000;

@@ -1,14 +1,4 @@
 <template>
-<div>
-      <div class="online-users">
-       <span id="connections">
-        </span> <span id="othervisitors"> other visitors online</span><br>
-          <p>Your name is "<span id="prompt"></span>"</p>
-  <p>Your role is "<span id="role"></span>"</p>
-    </div>
-
-<!--   <p>The current time is <span id="time-stamp"></span>.</p> -->
-  <button id="action" class="hidden">Set Name</button>
   <div id="dialog" class="hidden">
     <button class="close-dialog">
       X
@@ -52,7 +42,7 @@
       <button class="cancel">Skip</button>
     </div>
   </div>
-  </div>
+
 
 
 </template>
