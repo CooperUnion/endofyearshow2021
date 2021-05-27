@@ -1,22 +1,23 @@
 <template>
-  <div id="areanav" :class="['areanavPanel', {showNav : areanavShow}]">
+  <div id="areanav" :class="{showNav : areanavShow}">
     <button class="apply" v-if="mobile" @click="toggleAreaPanel()">Filters</button>
-    <ul class="nav-list">
-      <li class="nav-item" >
-        <tag-button data-tagname="view-all" :toggle="true" />
-        <router-link to="/areas" @click="resetAreas()">View all</router-link>
-        <output><a href="/areas" @click="resetAreas()">{{itemCount['view-all']}}</a></output>      
-      </li>
-
-      <li class="nav-item" v-for="item in items" :key="item">
-        <tag-button :data-tagname="slug(item.name)" :active="currentAreaState(slug(item.name))" :toggle="true"/>
-        <router-link :to="item.url" @click="toggleArea(slug(item.name))">{{item.name}}</router-link>
-        <output>
-          <a :href="item.url">{{itemCount[slug(item.name)]}}</a>
-        </output>
-      </li>
-    </ul>
-    <button class="apply" v-if="mobile">Apply filters</button>
+    <div class="areanavPanel">
+      <ul class="nav-list">
+        <li class="nav-item" >
+          <tag-button data-tagname="view-all" :toggle="true" />
+          <router-link to="/areas" @click="resetAreas()">View all</router-link>
+          <output><a href="/areas" @click="resetAreas()">{{itemCount['view-all']}}</a></output>      
+        </li>
+        <li class="nav-item" v-for="item in items" :key="item">
+          <tag-button :data-tagname="slug(item.name)" :active="currentAreaState(slug(item.name))" :toggle="true"/>
+          <router-link :to="item.url" @click="toggleArea(slug(item.name))">{{item.name}}</router-link>
+          <output>
+            <a :href="item.url">{{itemCount[slug(item.name)]}}</a>
+          </output>
+        </li>
+      </ul>
+      <button class="apply" v-if="mobile">Apply filters</button>
+    </div>
   </div>    
 </template>
 
@@ -139,6 +140,9 @@
     width: 275px;
   }
 
+  #areanav:not(.showNav) .areanavPanel {
+    display: none;
+  }
 
   .nav-list {
     list-style-type: none;
