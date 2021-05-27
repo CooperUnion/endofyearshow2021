@@ -1,16 +1,19 @@
 <template>
-  <div class="nav-panel">
-    <button v-if="mobile" class="close" @click="toggleGlobalPanel()">close</button>
-    <ul id="globalnav" class="nav-list">
-      <li v-for="item in items" :key="item" :class="['nav-item', isActiveRoute(item.name)]">
-        <router-link :to="item.path">{{item.name}}</router-link>
-      </li>
-    </ul>
-  </div>
+  <nav id="globalnav" :class="{showNav : globalnavShow}">
+    <button class="globalnav-toggle" v-if="mobile" @click="toggleGlobalPanel()">☰</button>
+    <div class="nav-panel">
+      <button v-if="mobile" class="close" @click="toggleGlobalPanel()">close</button>
+      <ul class="nav-list">
+        <li v-for="item in items" :key="item" :class="['nav-item', isActiveRoute(item.name)]">
+          <router-link :to="item.path">{{item.name}}</router-link>
+        </li>
+      </ul>
+    </div>
+  </nav>
 </template>
 
 <script>
-  import { computed } from 'vue'
+  import { ref, computed } from 'vue'
   import { useStore } from 'vuex'  
   import { useRoute } from 'vue-router'
 
@@ -22,7 +25,7 @@
     setup(props){
       const store = useStore()
       const route = useRoute()
-      const areanavShow = ref(false)
+      const globalnavShow = ref(false)
       
       //returns state for all area-nav items
       const activeGlobal = store.state.activeGlobal
@@ -37,7 +40,7 @@
       }
       
       const toggleGlobalPanel = () => {
-        areanavShow.value = !areanavShow.value
+        globalnavShow.value = !globalnavShow.value
       }
 
 
@@ -95,7 +98,7 @@
     }
         
     .nav-panel:not(.showNav) {
-      transform: translateY(-100.1vw);
+      transform: translateY(-100.1vh);
     }
 
     .nav-list {

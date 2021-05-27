@@ -3,7 +3,7 @@
   <global-nav :items="globalNavItems" />
 
    <main>    
-    
+    <page-header />
     <div class="areasPage">
       
       <area-nav :items="areaNavItems" />
