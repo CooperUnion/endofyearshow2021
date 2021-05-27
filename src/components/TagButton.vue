@@ -39,10 +39,11 @@
     display: none; 
   }  
 
-  .nav-list .nav-item:hover .tag >>> .toggle {
-    display: block; 
-  }  
-
+  @media (hover: hover) { /* Restrics hover effects to mouse-based interactions */
+    .nav-list .nav-item:hover .tag >>> .toggle {
+      display: block; 
+    }  
+  }
 
   .nav-list .nav-item .tag:not([data-tagname="view-all"]).inactive {
     background-image: none;

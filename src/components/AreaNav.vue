@@ -139,13 +139,6 @@
   #areanav {
     width: 275px;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
-
-  #areanav:not(.showNav) .nav-panel {
-    display: none;
   }
 
   .nav-list {
@@ -196,11 +189,22 @@
       z-index: 1;
       padding: 36px;
       border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+   }
+    
+    #areanav:not(.showNav) .nav-panel {
+      display: none;
     }
     
     button {
       color: #fff;
       background-color: #000;
+      border-radius: 1.25em;
+      padding: 6px 29px;
+      margin: 0;
     }
     
     button.filters-apply {

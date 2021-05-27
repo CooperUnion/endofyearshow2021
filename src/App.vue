@@ -27,6 +27,11 @@
     margin: 0 auto;
     max-width: 1200px;
   }
+  
+  main {
+    width: calc(100% - 240px); 
+    margin: 0 auto;
+  }
 
   #nav {
     padding: 30px;
@@ -39,6 +44,12 @@
 
   #nav a.router-link-exact-active {
     color: #42b983;
-  }  
+  }
+  
+  @media screen and (max-width: 767px) {
+    main {
+       width: calc(100vw - 48px);
+    }
+  }
 
 </style>
