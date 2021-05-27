@@ -187,7 +187,16 @@
     flex-wrap: wrap;
   }
 
-
+  @media screen and (max-width: 767px) {
+    .post-scrim .scrim-contents {
+      padding: 84px 36px 36px 36px;
+    }
+    
+    .post-scrim .title-block .close {
+      top: -60px;
+    }
+    
+  }
 
 
   
