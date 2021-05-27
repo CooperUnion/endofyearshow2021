@@ -6,6 +6,13 @@ import store from './store'
 import mitt from 'mitt'
 import { VueMasonryPlugin } from 'vue-masonry/src/masonry-vue3.plugin';
 
+import socketio from './socket.io-client';
+import VueSocketIO from 'vue-socket.io';
+
+export const SocketInstance = socketio('http://localhost:4113');
+
+App.use(VueSocketIO, SocketInstance)
+
 const emitter = mitt()
 let app = createApp(App).use(store).use(router)
 app.config.globalProperties.emitter = emitter
