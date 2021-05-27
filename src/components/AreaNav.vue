@@ -1,6 +1,6 @@
 <template>
   <div id="areanav" :class="['areanavPanel', {showNav : areanavShow}]">
-    <button class="apply" v-if="mobile" @click="toggleAreaPanel()">Apply filters</button>
+    <button class="apply" v-if="mobile" @click="toggleAreaPanel()">Filters</button>
     <ul class="nav-list">
       <li class="nav-item" >
         <tag-button data-tagname="view-all" :toggle="true" />
