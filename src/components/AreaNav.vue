@@ -139,6 +139,7 @@
   #areanav {
     width: 275px;
     display: flex;
+    justify-content: space-between;
   }
 
   .nav-list {
@@ -205,7 +206,19 @@
     #areanav:not(.showNav) .nav-panel {
       transform: translateX(-100vw);
     }
-    
+ 
+    .nav-list {
+      max-height: calc(100% - 96px);
+    }
+
+
+   @media screen and (max-height: 720px) {
+     .nav-list .nav-item {
+        margin-bottom: 1em;
+      }
+    }
+
+
     button.filters {
       color: #fff;
       background-color: #000;
