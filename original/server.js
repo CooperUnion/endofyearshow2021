@@ -76,6 +76,69 @@ app.use('/', index)
 app.use('/api', api)
 app.use('/cursors', socket)
 
+// SOCKET INFO
+let port = process.env.PORT || 8000;
+let server = require('http').createServer(app).listen(port, function(){
+  console.log('Server is listening at port: ', port);
+});
+
+app.use(express.static('public'));
+
+// let io = require('socket.io').listen(server) /* create socket connection */
+const io = require("socket.io")(server, {
+  // ...
+});
+var totalUsers = 0,
+    stepID = 0,
+    friendsGroup = [];
+
+io.on('connection', function (socket) {
+  friendsGroup.push(++stepID);   /* new id */
+  var thisID = stepID
+  totalUsers++;
+    socket.on('nameChosen',function(data){
+      const playerId = data.player
+      const name = data.response.name
+      const role = data.response.role
+      
+      const completePlayer = {
+        id: playerId,
+        name: name,
+        role: role,
+        lastLocation: [0, 0]
+      }
+      friendsGroup[friendsGroup.indexOf(playerId)] = completePlayer
+      socket.broadcast.emit('name updated', {data:completePlayer})
+  });
+  io.emit('connected', { connections: totalUsers });   /* new connection ALL */
+  socket.broadcast.emit('new friend', { friend: thisID  });   /* new connection friends */
+  socket.emit('init',{ player:thisID, friends: friendsGroup });   /* new connection self */
+  
+  socket.on('disconnect', function (){
+    var i = 0;
+    for(i in friendsGroup){
+    if(friendsGroup[i].id === thisID){
+      friendsGroup.splice(i,1);
+    }
+  }
+    friendsGroup = friendsGroup
+    totalUsers--;
+    socket.broadcast.emit('bye friend',{connections:totalUsers, friend: thisID});
+  });   /* disconnect friends */
+  
+  socket.on('move',function(data){
+    console.log(data)
+    const index = friendsGroup.findIndex(function(item, i){
+    return item.id === data.friend
+    });
+    if (index > -1){
+   friendsGroup[index].lastLocation = [data.friendX, data.friendY]
+    }
+      socket.broadcast.emit('move', data);
+  });
+  //console.log(friendsGroup);
+});
+// END SOCKET INFO
 
 const listener = app.listen(process.env.PORT, () => {
   console.log("Your app is listening on port " + listener.address().port);
