@@ -13,6 +13,10 @@
 <style>
   
   @import url('https://cdn.jsdelivr.net/gh/yegor256/tacit@gh-pages/tacit-css-1.5.5.min.css');
+  
+  body {
+    padding: 0;
+  }
 
   #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -20,6 +24,13 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+  
+  main {
+    width: calc(100% - 240px); 
+    margin: 0 auto;
   }
 
   #nav {
@@ -33,6 +44,19 @@
 
   #nav a.router-link-exact-active {
     color: #42b983;
-  }  
+  }
+  
+  .mainHead {
+    font-size: 48px;
+    text-align: left;
+    text-transform: capitalize;
+    margin-bottom: 48px;
+  }
+  
+  @media screen and (max-width: 767px) {
+    main {
+       width: calc(100vw - 48px);
+    }
+  }
 
 </style>

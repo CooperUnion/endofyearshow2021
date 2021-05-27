@@ -1,4 +1,12 @@
 <template>
+  <ul>
+    <li>
+      <b>Current api_endpoint: {{api_endpoint}}</b>
+    </li>
+    <li>
+      <b>Device is currently: {{mobile ? 'mobile' : 'desktop'}}</b>
+    </li>
+  </ul>  
   <div class="home">
     <global-nav :items="globalNavItems" />
     <img alt="Vue logo" src="../assets/logo.png" />
@@ -7,11 +15,12 @@
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-import GlobalNav from '@/components/GlobalNav.vue'
-import {globalNavItems} from '@/router/index.js'
-
+  // @ is an alias to /src
+  import { getCurrentInstance } from 'vue'
+  import HelloWorld from '@/components/HelloWorld.vue'
+  import GlobalNav from '@/components/GlobalNav.vue'
+  import { globalNavItems } from '@/router/index.js'
+  
   export default {
   name: 'Home',
   components: {
@@ -19,7 +28,10 @@ import {globalNavItems} from '@/router/index.js'
     GlobalNav
   },
   setup(){
-    console.log(globalNavItems, "hi")
+    const internalInstance = getCurrentInstance()
+    const { api_endpoint, mobile } = internalInstance.appContext.config.globalProperties
+
+    console.log("here", api_endpoint)
     return {globalNavItems}
   }
 }

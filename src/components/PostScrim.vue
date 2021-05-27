@@ -3,15 +3,35 @@
     <div class="scrim-shroud"></div>
     <div class="scrim-contents">
       <header class="title-block">
-        <h6 class="title">{{title}}—{{author.formatted}}</h6>
+        <h6 class="title" v-html="title + ' — ' + author.formatted"></h6>
         <button class="close" @click="hideScrim()">close</button>
       </header>
-      <img :src="media.source_url" />
+      <!-- logic for separate content types -->
+      <div v-if="type==='images'">
+        <img :src="assets.media[current].source_url" />
+        <div v-if="assets.media.length>1">
+          <b @click="prev()">prev</b> | <b @click="next()">next</b>
+        </div>    
+      </div>
+      <div v-else-if="type==='url'">
+        <img :src="assets.preview.source_url" />
+        <b v-if="assets.url"><a :href="assets.url">visit site url</a></b>
+      </div>   
+      <div v-else-if="type==='video'">
+        <video width="320" height="240" controls>
+          <source :src="assets.media.vimeo.files[0].link" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <img :src="assets.preview.source_url" />
+        <b v-if="assets.url"><a :href="assets.url">visit site url</a></b>
+      </div>         
+
+
       <section class="meta">
         <div class="description-block">
-          <p v-if="meta.description" class="description">{{meta.description}}</p>
-          <p v-if="meta.dimensions" class="dimensions">{{meta.dimensions}}</p>
-          <p v-if="meta.materials" class="materials">{{meta.materials}}</p>      
+          <p v-if="meta.description" class="description" v-html="meta.description"></p>
+          <p v-if="meta.dimensions" class="dimensions" v-html="meta.dimensions"></p>
+          <p v-if="meta.materials" class="materials" v-html="meta.materials"></p>      
         </div>
         <div class="labels-block"><tag-list :tags="tags" :expanded="true"/></div>
       </section>
@@ -20,8 +40,10 @@
 </template>
 
 <script>
-  import TagList from '@/components/TagList.vue'
+  import { ref } from 'vue'  
   import { useStore } from 'vuex'  
+  import TagList from '@/components/TagList.vue'
+  
   
   export default {
     name: 'PostScrim',
@@ -29,20 +51,33 @@
       TagList
     },
     props: {
-      media: Object,
+      assets: Array,
       tags: Array,
       title: String,
       author: Object,
-      meta: Object
+      meta: Object,
+      type: String
     },
     setup(props){
       const store = useStore()
+      
+      const current = ref(0)
       
       const hideScrim = () => {
         store.commit('resetActiveScrimId')
       }   
       
-      return {hideScrim}
+      const next = ()=>{
+        current.value = (current.value + 1 > props.assets.media.length - 1) ? 0 : current.value + 1
+        // console.log("next clicked", current.value)
+      }
+      
+      const prev = ()=>{
+        current.value = (current.value - 1 < 0) ? props.assets.media.length -1 : current.value - 1
+        // console.log("prev clicked", current.value)
+      }
+      
+      return {hideScrim, next, prev, current}
     }
 
     

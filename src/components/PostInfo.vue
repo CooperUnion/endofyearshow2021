@@ -1,11 +1,13 @@
 <template>
-  <ul class="post-info">
-    <li class="titletags">
-      <h6 class="title"><router-link :to="itemUrl" v-html="title"></router-link></h6>
-      <tag-list :tags="tags"/>
-    </li>
-    <li class="name">{{author.formatted}}</li> 
-  </ul>
+  <div class="post-info">
+    <ul class="post-infolist">
+      <li>
+        <h6 class="title" v-html="title"></h6>
+      </li>
+      <li class="name" v-html="author.formatted"></li> 
+    </ul>
+    <tag-list :tags="tags"/>
+  </div>
 </template>
 
 <script>
@@ -31,31 +33,39 @@
 </script>
 
 <style scoped>
+  
+  .post-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 0.5em;
+    align-items: flex-start;
+  }
 
- .post-info {
+  .post-infolist {
     list-style-type: none;
     text-align: left;
     margin: 0;
     padding: 0;   
     font-size: 16px;
     line-height: 1;
-    margin-top: 0.5em;
   }
 
-  .post-info .titletags {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .post-info .title {
+  .post-infolist .title {
     color: #000;
     font-weight: 700;
     text-transform: capitalize;
     margin: 0;
   }
 
-   .post-info .name {
+  .post-infolist .name {
     color: #000;
     margin-top: 0.25em;
   }
+  
+  .post-info .tagList {
+    max-width: 80px;
+  }
+
+
 </style>

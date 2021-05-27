@@ -1,15 +1,19 @@
 <template>
- 
   <global-nav :items="globalNavItems" />
 
    <main>    
+     
     <page-header />
     <div class="areasPage">
-      <area-nav :items="areaNavItems" v-if="$route.name === 'Areas' || $route.name === 'Students'" />
-      <loading v-if="loading" :timeout="20" />
-      <posts v-else :items="items"/>
+      <loading v-if="loading" :timeout="15" />
+      <ul v-else class="projectList">
+        <li class="project" v-for="item in items" v-bind:key="item.id">
+          <router-link :to="item.url">{{item.name}}</router-link>
+        </li>   
+      </ul>
     </div>
   </main>   
+
 </template>
 
 <script>
@@ -17,23 +21,20 @@
   import { useRoute } from 'vue-router'
   
   import Loading from '@/components/Loading.vue'
-  import AreaNav from '@/components/AreaNav.vue'
-  import Posts from '@/components/Posts.vue'
-  import areaNavItems from '@/router/areaNavItems.js'
   import GlobalNav from '@/components/GlobalNav.vue'  
   import {globalNavItems} from '@/router/index.js'
   import PageHeader from '@/components/PageHeader.vue'  
 
+  
   export default {
+    name: 'Projects',
     components: {
       Loading,
       GlobalNav,
-      Posts,
-      AreaNav,
       PageHeader
     },
     props: {
-      post: Number
+      project: String
     },
     setup(props){
       const loading = ref(true)
@@ -41,54 +42,46 @@
       const route = useRoute()
       const internalInstance = getCurrentInstance()
       const { api_endpoint } = internalInstance.appContext.config.globalProperties
-         
-      onBeforeMount(loadPosts)
+      
+      onBeforeMount(loadProjects)
       async function loadToggle(){
         console.log("ok...")
         loading.value = loading.value === true ? false : true
       }
       
-      watch(() => route.params.tag, loadPosts)    
+      // watch(() => route.params.project, ()=>{
+      //   loadProject(route.params.project)
+      //   render.value = 'project'
+      // })    
       
-      async function loadPosts(){
+      async function loadProjects(){
+        
+        console.log("loadProjects re-loaded", route.params)
+        
         loading.value = true
         items.value = []
 
-        const url = `${api_endpoint}/api/posts`
+        const url = `${api_endpoint}/api/projects/submissions`
         
         items.value = await fetch(url).then(res=>res.json())
         loading.value = false
         console.log(items.value)
         return true
       }
-      return {items, loading, loadToggle, loadPosts, areaNavItems, globalNavItems}
+      
+     
+      //formats a name passed to it by replacing '-' with ' '
+      const slug = (name) => {
+        return name.trim().toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-');
+      }
+      
+      return {items, loading, loadProjects, globalNavItems, slug}
     }
-  }
+  }  
 </script>
 
 <style scoped>
-  
-  .areasPage {
-    display: flex;
-    flex-direction: row;
-    margin-top: 48px; /* <-- tentative */
+  .projectList {
+    list-style-type: none;
   }
-    
-  .areasPage >>> #areanav ~ .masonryBox {
-    width: calc(100% - 275px);
-  }
-
-  @media screen and (max-width: 767px) {
-    .areasPage {
-      flex-direction: column;
-      position: relative;
-      margin: 0;
-    }
-       
-    .areasPage >>> #areanav ~ .masonryBox {
-      width: 100%;
-    }
-    
-  }
-
 </style>

@@ -1,22 +1,10 @@
 <template>
-  <div 
-    class="masonryBox" 
-    v-masonry 
-    transition-duration="0.3s" 
-    item-selector=".item" 
-    column-width=".item" 
-    :gutter="mobile ? 18 : 48"
-    horizontal-order="true">
-    <div v-masonry-tile class="item" v-for="(item, index) in items" v-bind:key="item.id">
+  <div class="projectsBox">
+    <div class="item" v-for="item in items" v-bind:key="item.id">
       <!-- block item markup -->
         <div class="post" v-if="item.id">
           <post-media @click.prevent="loadScrim(item.id)" 
-            :media="item.assets.preview" :lazy="index>15"/>
-          <post-info
-            :tags="item.taxonomy.tags"
-            :title="item.title"
-            :author="item.author"
-            :post="item.id" />
+            :media="item.assets.preview" />
           <post-scrim v-if="displayScrim(item.id)"
             :tags="item.taxonomy.tags"
             :title="item.title"
@@ -28,29 +16,28 @@
         </div>
     </div>
   </div>
-<div class="gutterWidth"></div>
 </template>
 
 <script>
   import { computed, ref, watch } from 'vue'
+  import { useRoute } from 'vue-router'  
   import { useStore } from 'vuex'  
-  import { getCurrentInstance } from 'vue'    
-  import PostInfo from '@/components/PostInfo.vue'
+    
   import PostMedia from '@/components/PostMedia.vue'
   import PostScrim from '@/components/PostScrim.vue'
   
   export default {
-    name: 'Posts',
+    name: 'Projects',
     props: {
       items: Array
     },
     components: {
-      PostInfo,
       PostMedia,
       PostScrim
     },
     setup(props){
       const store = useStore()
+      const route = useRoute()
       
       const loadScrim = (id) => {
         store.commit('setActiveScrimId', id)
@@ -64,46 +51,24 @@
         return id === store.state.activeScrimId
       }
       
-      const internalInstance = getCurrentInstance()
-      const { mobile } = internalInstance.appContext.config.globalProperties
-    
       return {loadScrim, displayScrim, hideScrim}
     }
   }
 </script>
 
 <style scoped>
-
-  .masonryBox {
-    width: 100%;
+  .projectsBox {
     margin: 0 auto;
   }
   
-  .item {
-    width: calc(33% - 32px);
+  .projectsBox .post {
+    margin-bottom: 36px;
   }
-  
-  .post {
-    width: 100%;
-    border: 1px solid transparent;
-    margin-bottom: 48px;
-  }
-  
-  .gutterWidth {
-    position: absolute;
-    visibility: hidden;
-    width: 48px;
-  }
-  
-  
-    @media screen and (max-width: 767px) {
-    .item {
-      width: calc(50% - 9px);
-    }
-    .gutterWidth {
-      width: 18px;
-    }
-  }  
 
-
+  .projectsBox .post >>> img {
+    display: block;
+    width: auto;
+    height: auto;
+    max-height: 600px;
+  }
 </style>
