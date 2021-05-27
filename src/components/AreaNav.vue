@@ -1,7 +1,7 @@
 <template>
   <div id="areanav" :class="{showNav : areanavShow}">
-    <button class="apply" v-if="mobile" @click="toggleAreaPanel()">Filters</button>
-    <div class="areanavPanel">
+    <button class="filters-open" v-if="mobile" @click="toggleAreaPanel()">Filters</button>
+    <div class="nav-panel">
       <ul class="nav-list">
         <li class="nav-item" >
           <tag-button data-tagname="view-all" :toggle="true" />
@@ -16,7 +16,7 @@
           </output>
         </li>
       </ul>
-      <button class="apply" v-if="mobile">Apply filters</button>
+      <button class="filters-close" v-if="mobile" @click="toggleAreaPanel()">Apply filters</button>
     </div>
   </div>    
 </template>
@@ -140,7 +140,7 @@
     width: 275px;
   }
 
-  #areanav:not(.showNav) .areanavPanel {
+  #areanav:not(.showNav) .nav-panel {
     display: none;
   }
 
@@ -177,7 +177,7 @@
 
 
   @media screen and (max-width: 767px) {
-    #areanav {
+    .nav-panel {
       width: calc(100vw - 48px);
       position: fixed;
       top: 24px;
