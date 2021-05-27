@@ -1,12 +1,47 @@
 <template>
- 
-<sockethandler/>
-
+  <div>
+    <p v-if="isConnected">We're connected to the server!</p><br>
+    <p>Message from server: "{{socketMessage}}"</p><br>
+    <button @click="pingServer()">Ping Server</button>
+  </div>
 </template>
 
 <script>
-import SocketHandler from '@/components/IListenToSockets.vue'
-    
+export default {
+  data() {
+    return {
+      isConnected: false,
+      socketMessage: ''
+    }
+  },
+
+  sockets: {
+    connect() {
+      // Fired when the socket connects.
+      this.isConnected = true;
+    },
+
+    disconnect() {
+      this.isConnected = false;
+    },
+
+    // Fired when the server sends something on the "messageChannel" channel.
+    messageChannel(data) {
+      this.socketMessage = data
+    }
+  },
+
+  methods: {
+    pingServer() {
+      // Send the "pingServer" event to the server.
+      this.$socket.emit('pingServer', 'PING!')
+    },
+      onMouseMove (ev) {
+        this.x = ev.clientX
+        this.y = ev.clientY
+      }
+  }
+}
 </script>
 
 <style scoped>
@@ -25,8 +60,9 @@ a {
   color: #00b7ff;
 }
 .friend {
-  width: 0px;
-  height: 0px;
+    background-color: gainsboro;
+    width: 1px;
+    height: 1px;
 /*   background: url("https://cdn.glitch.com/fc76c743-ed4f-40b8-8cf5-889b2f64b004%2Fcursor.png?v=1621812496190"); */
   position: absolute;
   z-index: 101;
