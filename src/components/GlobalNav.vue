@@ -47,6 +47,7 @@
     flex-direction: row;
     justify-content: center;
     padding: 80px 0 40px 0;
+    margin: 0;
     font-size: 16px;
     line-height: 1.5;
     cursor: pointer;
@@ -63,6 +64,13 @@
   .nav-list .active {
     font-weight: 700;
   }
+  
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    .nav-item {
+      font-size: 14px;
+    }
+  }  
+
 
 
 </style>

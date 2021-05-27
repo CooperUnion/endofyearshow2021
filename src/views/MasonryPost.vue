@@ -75,10 +75,10 @@
     padding-top: 48px; /* <-- tentative */
   }
     
-  .areasPage >>> #areanav ~ .masonryBox {
+/*   .areasPage >>> #areanav ~ .masonryBox {
     width: calc(100% - 275px);
   }
-
+ */
 
 
   @media screen and (max-width: 767px) {
@@ -87,9 +87,9 @@
       position: relative;
     }
        
-    .areasPage >>> #areanav ~ .masonryBox {
+/*     .areasPage >>> #areanav ~ .masonryBox {
       width: 100%;
-    }
+    } */
   }
 
 

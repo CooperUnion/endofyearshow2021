@@ -87,10 +87,10 @@
     padding-top: 48px; /* <-- tentative */
   }
     
-  .areasPage >>> #areanav ~ .masonryBox {
-    width: calc(100% - 275px);
+/*   .areasPage >>> #areanav ~ .masonryBox {
+    width: -webkit-fill-available;;
   }
-
+ */
   @media screen and (max-width: 767px) {
     .areasPage {
       flex-direction: column;
@@ -98,9 +98,9 @@
       margin: 0;
     }
        
-    .areasPage >>> #areanav ~ .masonryBox {
+/*     .areasPage >>> #areanav ~ .masonryBox {
       width: 100%;
-    }
+    } */
   }
 
 
