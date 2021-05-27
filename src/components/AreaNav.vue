@@ -200,6 +200,7 @@
     button {
       color: #fff;
       background-color: #000;
+      flex: none;
     }
     
     button.filters-apply {
