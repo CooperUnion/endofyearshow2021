@@ -196,6 +196,16 @@
       top: -60px;
     }
     
+    .post-scrim .scrim-contents .meta {
+      flex-direction: column;
+    }
+    
+    .post-scrim .scrim-contents .meta .description-block,
+    .post-scrim .scrim-contents .meta .labels-block {
+      width: auto;
+    }
+
+    
   }
 
 

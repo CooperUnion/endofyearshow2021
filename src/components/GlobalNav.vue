@@ -75,7 +75,7 @@
   .nav-list .active {
     font-weight: 700;
   }
-  .close {
+  .globalnav-toggle, .close {
     display: none;
   }
   
@@ -120,6 +120,10 @@
 
     .nav-list .nav-item + .nav-item {
       margin-left: 0;
+    }
+    
+    .globalnav-toggle {
+      display: block;
     }
     
     .close {
