@@ -1,6 +1,6 @@
 <template>
   <div id="areanav" class="areanavPanel">
-    <button class="apply" v-if="mobile">Apply filters</button>
+    <button class="apply" v-if="mobile" @click="toggleAreanav()">Apply filters</button>
     <ul class="nav-list">
       <li class="nav-item" >
         <tag-button data-tagname="view-all" :toggle="true" />
@@ -45,7 +45,7 @@
       const allItemCount = ref()
       const areanavShow = ref(false)
       
-      const currentBaseNav = ()=>{
+      const currentBaseNav = () => {
         const base = route.path.split('/').pop().split(',').shift()
         console.log({base})
         return base
@@ -91,7 +91,12 @@
         router.push(`/tag/${areaItem}`)
       }
       
+      const toggleAreanav = () => {
+        areanavShow = !areanavShow
+      }
       
+
+     
       const getCount = async (tags)=>{
         const api_endpoint_override = 'https://eoys-uploader-2021-stage.glitch.me'
         const url = `${api_endpoint_override}/api/count/posts/tags/${tags}`
