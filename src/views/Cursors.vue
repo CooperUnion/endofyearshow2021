@@ -7,6 +7,8 @@
 </template>
 
 <script>
+  import {Player, Friend, Meeting} from './People.class.js'
+  
 export default {
   data() {
     return {
@@ -14,15 +16,43 @@ export default {
       socketMessage: ''
     }
   },
+  
+  mounted(){
+
+  },
 
   sockets: {
-    connect() {
-      // Fired when the socket connects.
+    connected(data) {
+           
+                     const Meeting1 = new Meeting(this.$socket)  
+                     document.addEventListener('mousemove', this.onMouseMove)
       this.isConnected = true;
+    },
+    
+    init(data){
+                            data.friends.forEach(friend1 => Meeting1.createFriend(friend1, data.player, Meeting1));
+                      self.player = new Player(data.player);
+
+                      document.querySelector("body").onmousemove = (e) => {
+                          const x = e.clientX
+                          const y = e.clientY
+                          const location = player.update(x,y,socket)
+                      };
     },
 
     disconnect() {
       this.isConnected = false;
+    },
+    
+    newFriend(data){
+      Meeting1.createFriend(data.friend, data.player, Meeting1);
+    },
+    byeFriend(data){
+                            // document.getElementById('connections').innerHTML = data.connections;
+                          Meeting1.removeFriend(self,data.friend, Meeting1);
+    },
+    move(data){
+      Meeting1.updateFriend(data);
     },
 
     // Fired when the server sends something on the "messageChannel" channel.
@@ -37,8 +67,9 @@ export default {
       this.$socket.emit('pingServer', 'PING!')
     },
       onMouseMove (ev) {
-        this.x = ev.clientX
-        this.y = ev.clientY
+                          const x = ev.clientX
+                          const y = ev.clientY
+                          const location = player.update(x,y,socket)
       }
   }
 }
