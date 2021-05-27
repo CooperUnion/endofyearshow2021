@@ -25,7 +25,6 @@
     text-align: center;
     color: #2c3e50;
     margin: 0 auto;
-    width: calc(100% - 240px);
     max-width: 1200px;
   }
 
@@ -42,10 +41,6 @@
     color: #42b983;
   }  
   
-  @media screen and (max-width: 767px) {
-    #app {
-      width: calc(100vw - 48px);
-    }
   }  
 
 </style>

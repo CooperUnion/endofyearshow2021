@@ -177,13 +177,16 @@
 
 
   @media screen and (max-width: 767px) {
+    #areanav {
+      width: auto;  
+    }
+    
     .nav-panel {
-      width: calc(100vw - 48px);
       position: fixed;
       top: 24px;
       left: 24px;
       right: 24px;
-      bottom: 24px;
+      height: calc(100vh - 48px);
       background-color: #fff;
       border: 2px solid #000;
       z-index: 1;

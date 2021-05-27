@@ -78,7 +78,9 @@
     width: calc(100% - 275px);
   }
 
-
+  main {
+    width: calc(100% - 240px);    
+  }
 
   @media screen and (max-width: 767px) {
     .areasPage {
@@ -89,6 +91,11 @@
     .areasPage >>> #areanav ~ .masonryBox {
       width: 100%;
     }
+    
+    main {
+       width: calc(100vw - 48px);
+    }
+
   }
 
 </style>
