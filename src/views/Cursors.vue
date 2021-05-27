@@ -1,4 +1,5 @@
 <template>
+<div>
       <div class="online-users">
        <span id="connections">
         </span> <span id="othervisitors"> other visitors online</span><br>
@@ -51,17 +52,29 @@
       <button class="cancel">Skip</button>
     </div>
   </div>
-
-
-
-
+  </div>
 
 
 </template>
 
 <script>
-      import {Player, Friend, Meeting} from './People.class.js'    
-      import {BadWords} from './BadWords.js'
+
+      
+     
+    // @ is an alias to /src
+  import { getCurrentInstance } from 'vue'
+  import Cursors from '@/components/Cursors.vue'
+  import GlobalNav from '@/components/GlobalNav.vue'
+  import { globalNavItems } from '@/router/index.js'
+  import {Player, Friend, Meeting} from './People.class.js'    
+  import {BadWords} from './BadWords.js'
+  
+  export default {
+  name: 'Cursors',
+  components: {
+
+  },
+  setup(){
       const BadWords1 = new BadWords();
       
       function promptPromise(message, message2) {
@@ -230,9 +243,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 });
-      
-     
-        
+  }
+}      
                                            
 
     
