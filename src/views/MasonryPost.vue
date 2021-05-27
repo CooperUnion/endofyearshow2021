@@ -69,13 +69,6 @@
 
 <style scoped>
   
- .mainHead {
-    font-size: 48px;
-    text-align: left;
-    text-transform: capitalize;
-    margin-bottom: 48px;
-  }
-  
   .areasPage {
     display: flex;
     flex-direction: row;

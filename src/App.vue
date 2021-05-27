@@ -46,6 +46,13 @@
     color: #42b983;
   }
   
+  .mainHead {
+    font-size: 48px;
+    text-align: left;
+    text-transform: capitalize;
+    margin-bottom: 48px;
+  }
+  
   @media screen and (max-width: 767px) {
     main {
        width: calc(100vw - 48px);

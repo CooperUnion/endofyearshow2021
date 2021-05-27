@@ -1,6 +1,6 @@
 <template>
   <div id="areanav" :class="{showNav : areanavShow}">
-    <button class="filters-open" v-if="mobile" @click="toggleAreaPanel()">Filters</button>
+    <button class="filters open" v-if="mobile" @click="toggleAreaPanel()">Filters</button>
     <div class="nav-panel">
       <ul class="nav-list">
         <li class="nav-item" >
@@ -16,7 +16,7 @@
           </output>
         </li>
       </ul>
-      <button class="filters-apply" v-if="mobile" @click="toggleAreaPanel()">Apply filters</button>
+      <button class="filters apply" v-if="mobile" @click="toggleAreaPanel()">Apply filters</button>
     </div>
   </div>    
 </template>
@@ -172,6 +172,9 @@
     font-weight: 100;
   }
 
+  button.filters {
+    display: none;
+  }
 
   @media screen and (max-width: 767px) {
     #areanav {
@@ -199,15 +202,16 @@
       display: none;
     }
     
-    button {
+    button.filters {
       color: #fff;
       background-color: #000;
       border-radius: 1.25em;
       padding: 6px 29px;
       margin: 0;
+      display: inline-block;
     }
     
-    button.filters-apply {
+    button.filters.apply {
       width: 100%;
     }
             

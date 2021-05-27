@@ -82,16 +82,13 @@
     .areasPage {
       flex-direction: column;
       position: relative;
+      margin: 0 0 48px 0;
     }
        
     .areasPage >>> #areanav ~ .masonryBox {
       width: 100%;
     }
     
-    main {
-       width: calc(100vw - 48px);
-    }
-
   }
 
 </style>
