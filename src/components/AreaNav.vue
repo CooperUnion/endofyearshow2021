@@ -212,7 +212,7 @@
     }
 
    .nav-list .nav-item {
-      margin-bottom: clamp(1em, calc(5vh - 2em), 2em);
+      margin-bottom: clamp(1em, calc(5.5vh - 1.1em), 2em);
     }
 
 

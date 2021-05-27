@@ -59,4 +59,11 @@
     }
   }
 
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    main {
+       width: calc(100vw - 72px);
+    }
+  }
+
+
 </style>
