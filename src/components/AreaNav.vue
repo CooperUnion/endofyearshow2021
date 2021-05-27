@@ -16,7 +16,7 @@
           </output>
         </li>
       </ul>
-      <button class="filters-close" v-if="mobile" @click="toggleAreaPanel()">Apply filters</button>
+      <button class="filters-apply" v-if="mobile" @click="toggleAreaPanel()">Apply filters</button>
     </div>
   </div>    
 </template>
@@ -138,6 +138,9 @@
 
   #areanav {
     width: 275px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   #areanav:not(.showNav) .nav-panel {
@@ -185,7 +188,7 @@
       position: fixed;
       top: 24px;
       left: 24px;
-      right: 24px;
+      width: calc(100vw - 48px);
       height: calc(100vh - 48px);
       background-color: #fff;
       border: 2px solid #000;
@@ -193,7 +196,16 @@
       padding: 36px;
       border-radius: 12px;
     }
-        
+    
+    button {
+      color: #fff;
+      background-color: #000;
+    }
+    
+    button.filters-apply {
+      width: 100%;
+    }
+            
   }
 
 
