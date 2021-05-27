@@ -27,7 +27,7 @@
       const route = useRoute()
       const globalnavShow = ref(false)
       
-      //returns state for all area-nav items
+      //returns state for all global-nav items
       const activeGlobal = store.state.activeGlobal
 
       const isActiveRoute = (current) => {
@@ -88,16 +88,17 @@
       height: 100vh;
       color: #fff;
       background-color: #000;
+      box-shadow: 0 -50vh #000;
       z-index: 1;
       padding: 36px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       align-items: flex-start;
-      transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: transform 0.2s cubic-bezier(0, 1.4, 1, 1);
     }
         
-    .nav-panel:not(.showNav) {
+    #globalnav:not(.showNav) .nav-panel {
       transform: translateY(-100.1vh);
     }
 
@@ -110,14 +111,19 @@
     
     .nav-list .nav-item {
       margin-bottom: 1em;
+      transition: margin .5s cubic-bezier(0, 1.4, 1, 1);
     }
 
+    #globalnav:not(.showNav) .nav-list .nav-item {
+      margin-bottom: 2em;
+    }
 
     .nav-list .nav-item + .nav-item {
       margin-left: 0;
     }
     
     .close {
+      display: block;
       position: absolute;
       top: 30px;
       right: 36px;

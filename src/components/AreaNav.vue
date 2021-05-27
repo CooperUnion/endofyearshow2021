@@ -200,7 +200,7 @@
       flex-direction: column;
       justify-content: space-between;
       align-items: flex-start;
-      transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: transform 0.2s cubic-bezier(0, 1.4, 1, 1);
    }
     
     #areanav:not(.showNav) .nav-panel {
