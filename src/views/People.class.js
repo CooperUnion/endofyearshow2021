@@ -160,7 +160,11 @@ class Meeting {
     }
     const friend = new Friend(id, name, role);
     if (friend) {
-        this.friend.add(friend, friends, fullFriend);
+      if (friend.name = undefined){
+        
+      }else {
+        console.log(friend)
+        this.friend.add(friend, friends, fullFriend);}
     }
     
   }

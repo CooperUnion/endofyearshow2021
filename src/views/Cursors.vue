@@ -74,7 +74,7 @@ export default {
   
   mounted(){
     const BadWords1 = new BadWords();
-    
+         window.addEventListener('load', () => {
           function promptPromise(message, message2) {
   var dialog  = document.getElementById('dialog');
   var input   = document.getElementById("textinput");
@@ -169,7 +169,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
   });
 }
     
-     window.addEventListener('load', () => {
+
            var button = document.getElementById('action');
   var output = document.getElementById('prompt');
   var rolefield = document.getElementById('role')
@@ -179,61 +179,61 @@ for (var i = 0, length = radios.length; i < length; i++) {
       
       const response = {name: name.input, role: name.radio}
       
-     const socket = io.connect(document.location.origin); 
-      console.log(document.location.origin)
-         socket.on('connected', async function (data) {
+     // const socket = io.connect(document.location.origin); 
+     //  console.log(document.location.origin)
+//          socket.on('connected', async function (data) {
              
-                    const Meeting1 = new Meeting(socket)  
-                    document.getElementById('connections').innerHTML = (data.connections-1) + " ";
-                    if ((data.connections-1)===1){
-                      document.getElementById("othervisitors").innerHTML = " other visitor online"
-                    } else {
-                        document.getElementById("othervisitors").innerHTML = " other visitors online"
-                    }
-                    // Create player and friends
-                      socket.on('init', async function (data) {
-                      console.log(data)
-                      socket.emit('nameChosen', {response: response, player: data.player})
-                      data.friends.forEach(friend1 => Meeting1.createFriend(friend1.id, data.player, Meeting1, friend1.name, friend1.role, friend1));
-                      self.player = new Player(data.player, socket, response.name, response.role);
-                      console.log(self.player)
-                      document.querySelector("body").onmousemove = (e) => {
-                          const x = e.clientX
-                          const y = e.clientY
-                          const location = player.update(x,y,socket)
-                      };
+//                     const Meeting1 = new Meeting(socket)  
+//                     document.getElementById('connections').innerHTML = (data.connections-1) + " ";
+//                     if ((data.connections-1)===1){
+//                       document.getElementById("othervisitors").innerHTML = " other visitor online"
+//                     } else {
+//                         document.getElementById("othervisitors").innerHTML = " other visitors online"
+//                     }
+//                     // Create player and friends
+//                       socket.on('init', async function (data) {
+//                       console.log(data)
+//                       socket.emit('nameChosen', {response: response, player: data.player})
+//                       data.friends.forEach(friend1 => Meeting1.createFriend(friend1.id, data.player, Meeting1, friend1.name, friend1.role, friend1));
+//                       self.player = new Player(data.player, socket, response.name, response.role);
+//                       console.log(self.player)
+//                       document.querySelector("body").onmousemove = (e) => {
+//                           const x = e.clientX
+//                           const y = e.clientY
+//                           const location = player.update(x,y,socket)
+//                       };
 
-                      // New friend
-                      socket.on('new friend', function (data) {
-                          Meeting1.createFriend(data.friend, data.player, Meeting1, data.name, data.role);
-                      });
+//                       // New friend
+//                       socket.on('new friend', function (data) {
+//                           Meeting1.createFriend(data.friend, data.player, Meeting1, data.name, data.role);
+//                       });
                         
-                       socket.on('name updated', function (data) {
-                         console.log("name updated", data)
-                         Meeting1.updateFriendName(data.data.id, data.data.player, Meeting1, data.data.name, data.data.role, data)
-                      });
+//                        socket.on('name updated', function (data) {
+//                          console.log("name updated", data)
+//                          Meeting1.updateFriendName(data.data.id, data.data.player, Meeting1, data.data.name, data.data.role, data)
+//                       });
 
-                      // Friend gon
-                      socket.on('bye friend', function (data) {
-                          document.getElementById('connections').innerHTML = (data.connections-1) +" ";
-                    if ((data.connections-1)===1){
-                      document.getElementById("othervisitors").innerHTML = " other visitor online"
-                    } else {
-                        document.getElementById("othervisitors").innerHTML = " other visitors online"
-                    }
-                          Meeting1.removeFriend(self,data.friend, Meeting1);
-                      });
+//                       // Friend gon
+//                       socket.on('bye friend', function (data) {
+//                           document.getElementById('connections').innerHTML = (data.connections-1) +" ";
+//                     if ((data.connections-1)===1){
+//                       document.getElementById("othervisitors").innerHTML = " other visitor online"
+//                     } else {
+//                         document.getElementById("othervisitors").innerHTML = " other visitors online"
+//                     }
+//                           Meeting1.removeFriend(self,data.friend, Meeting1);
+//                       });
 
-                      // Friend move
-                      socket.on('move', function (data) {
-                          Meeting1.updateFriend(data);
-                      });
+//                       // Friend move
+//                       socket.on('move', function (data) {
+//                           Meeting1.updateFriend(data);
+//                       });
                   
                   
            
-             });
+//              });
          
-         }) 
+//          }) 
     
     
     })
@@ -258,6 +258,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
       
                       
                       this.Meeting1 = new Meeting(this.$socket)  
+                      // data.friends.forEach(friend1 => console.log(friend1));
                       data.friends.forEach(friend1 => this.Meeting1.createFriend(friend1, data.player, this.Meeting1));
                       self.player = new Player(data.player);
 
