@@ -1,5 +1,7 @@
 <template>
   <div id="cursorscontainer">
+    
+    
     <p v-if="isConnected">We're connected to the server!</p><br>
     <p>Message from server: "{{socketMessage}}"</p><br>
     <button @click="pingServer()">Ping Server</button>
@@ -18,15 +20,95 @@ export default {
   },
   
   mounted(){
+    
+     window.addEventListener('load', () => {
+           var button = document.getElementById('action');
+  var output = document.getElementById('prompt');
+  var rolefield = document.getElementById('role')
+    promptPromise('Welcome to the <br>Cooper Union School of Art <br> End of Year Show 2021!', 'Would you like your cursor to be visible while you move <br> through the galleries?').then(function(name) {
+      output.innerHTML = '' + name.input;
+      rolefield.innerHTML = "" + name.radio;
+      
+      const response = {name: name.input, role: name.radio}
+      
+     const socket = io.connect(document.location.origin); 
+      console.log(document.location.origin)
+         socket.on('connected', async function (data) {
+             
+                    const Meeting1 = new Meeting(socket)  
+                    document.getElementById('connections').innerHTML = (data.connections-1) + " ";
+                    if ((data.connections-1)===1){
+                      document.getElementById("othervisitors").innerHTML = " other visitor online"
+                    } else {
+                        document.getElementById("othervisitors").innerHTML = " other visitors online"
+                    }
+                    // Create player and friends
+                      socket.on('init', async function (data) {
+                      console.log(data)
+                      socket.emit('nameChosen', {response: response, player: data.player})
+                      data.friends.forEach(friend1 => Meeting1.createFriend(friend1.id, data.player, Meeting1, friend1.name, friend1.role, friend1));
+                      self.player = new Player(data.player, socket, response.name, response.role);
+                      console.log(self.player)
+                      document.querySelector("body").onmousemove = (e) => {
+                          const x = e.clientX
+                          const y = e.clientY
+                          const location = player.update(x,y,socket)
+                      };
+
+                      // New friend
+                      socket.on('new friend', function (data) {
+                          Meeting1.createFriend(data.friend, data.player, Meeting1, data.name, data.role);
+                      });
+                        
+                       socket.on('name updated', function (data) {
+                         console.log("name updated", data)
+                         Meeting1.updateFriendName(data.data.id, data.data.player, Meeting1, data.data.name, data.data.role, data)
+                      });
+
+                      // Friend gon
+                      socket.on('bye friend', function (data) {
+                          document.getElementById('connections').innerHTML = (data.connections-1) +" ";
+                    if ((data.connections-1)===1){
+                      document.getElementById("othervisitors").innerHTML = " other visitor online"
+                    } else {
+                        document.getElementById("othervisitors").innerHTML = " other visitors online"
+                    }
+                          Meeting1.removeFriend(self,data.friend, Meeting1);
+                      });
+
+                      // Friend move
+                      socket.on('move', function (data) {
+                          Meeting1.updateFriend(data);
+                      });
+                  
+                  
+           
+             });
          
+         }) 
+    
+    
+    })
+    .catch(function() {
+      output.innerHTML = '¯\\_(ツ)_/¯';
+    });
+     })
   },
 
   sockets: {
     connected(data) {
+                          document.getElementById('connections').innerHTML = (data.connections-1) + " ";
+                    if ((data.connections-1)===1){
+                      document.getElementById("othervisitors").innerHTML = " other visitor online"
+                    } else {
+                        document.getElementById("othervisitors").innerHTML = " other visitors online"
+                    }
       this.isConnected = true;
     },
     
     init(data){      
+      
+                      
                       this.Meeting1 = new Meeting(this.$socket)  
                       data.friends.forEach(friend1 => this.Meeting1.createFriend(friend1, data.player, this.Meeting1));
                       self.player = new Player(data.player);
@@ -37,16 +119,27 @@ export default {
                           const location = player.update(x,y,this.$socket)
                       };
     },
+    
+    nameUpdated(data){
+                          console.log("name updated", data)
+                         this.Meeting1.updateFriendName(data.data.id, data.data.player, this.Meeting1, data.data.name, data.data.role, data)
+    },
 
     disconnect() {
       this.isConnected = false;
     },
     
     newFriend(data){
-      this.Meeting1.createFriend(data.friend, data.player, this.Meeting1);
+      this.Meeting1.createFriend(data.friend, data.player, this.Meeting1, data.name, data.role);
     },
     byeFriend(data){
-                            // document.getElementById('connections').innerHTML = data.connections;
+                     
+                     document.getElementById('connections').innerHTML = (data.connections-1) +" ";
+                    if ((data.connections-1)===1){
+                      document.getElementById("othervisitors").innerHTML = " other visitor online"
+                    } else {
+                        document.getElementById("othervisitors").innerHTML = " other visitors online"
+                    }
                           this.Meeting1.removeFriend(self,data.friend, this.Meeting1);
     },
     move(data){
@@ -89,6 +182,10 @@ a {
   color: #00b7ff;
 }
   
+  #cursorscontainer {
+    height: 100vh;
+    width: 100vw;
+  }  
   
 #cursorscontainer >>> .friend {
     background-color: gainsboro;
