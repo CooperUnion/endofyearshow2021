@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="cursorscontainer">
     <p v-if="isConnected">We're connected to the server!</p><br>
     <p>Message from server: "{{socketMessage}}"</p><br>
     <button @click="pingServer()">Ping Server</button>
@@ -23,9 +23,6 @@ export default {
 
   sockets: {
     connected(data) {
-           
-                     
-                     // document.addEventListener('mousemove', this.onMouseMove)
       this.isConnected = true;
     },
     
@@ -91,7 +88,9 @@ body {
 a {
   color: #00b7ff;
 }
-.friend {
+  
+  
+#cursorscontainer >>> .friend {
     background-color: gainsboro;
     width: 1px;
     height: 1px;
@@ -103,7 +102,7 @@ a {
     transition: left 0.1s linear, top 0.1s linear;
 }
 
-.friend::before{
+#cursorscontainer >>> .friend::before{
     content:"";
   position:absolute;
   z-index:-1;
@@ -121,7 +120,7 @@ a {
   pointer-events: none;
 }
 
-.friend .name {
+#cursorscontainer >>> .friend .name {
     display: inline;
     position: relative;
     left: 19px;
@@ -146,13 +145,13 @@ a {
     
 }
 
-.cursordemo{
+#cursorscontainer >>> .cursordemo{
   width: fit-content;
   height: fit-content;
   margin:auto;
 }
 
-.demo-cursor{
+#cursorscontainer >>> .demo-cursor{
   position: relative;
     height: 0px;
     width: fit-content;
@@ -161,26 +160,26 @@ a {
     margin-left: -20px;
 }
 
-#demo-cursor{
+#cursorscontainer >>> #demo-cursor{
    transition: background-color 0.2s linear;
 }
 
-#democursortext{
+#cursorscontainer >>> #democursortext{
    transition: background-color 0.2s linear;
 }
 
-.ok{
+#cursorscontainer >>> .ok{
   transition: background-color 0.2s linear;
 }
 
-.yourcursorspan{
+#cursorscontainer >>> .yourcursorspan{
   margin-bottom:30px;
       font-size: 18px;
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
 }
 
-.demo-cursor::before{
+#cursorscontainer >>> .demo-cursor::before{
       content:"";
   position:absolute;
   z-index:-1;
@@ -198,22 +197,22 @@ a {
   pointer-events: none;
 }
 
-.friend .name::before{
+#cursorscontainer >>> .friend .name::before{
   display: none;
 }
 
-.name .name-demo::before{
+#cursorscontainer >>> .name .name-demo::before{
   display:none;
 }
 
-.online-users{
+#cursorscontainer >>> .online-users{
 padding-top: 20px;
     padding-left: 20px;
     display: block!important;
 }
 
 
-.dialog{
+#cursorscontainer >>> .dialog{
   width: 40vw;
   height: 80vh;
   background-color: gainsboro;
@@ -224,7 +223,7 @@ padding-top: 20px;
   position: absolute;
 }
 
-.close-dialog{
+#cursorscontainer >>> .close-dialog{
 margin-right: 0px;
     margin-top: -50px;
     margin-left: 200px;
@@ -241,7 +240,7 @@ margin-right: 0px;
   color: black;
 }
 
-    #dialog {
+#cursorscontainer >>> #dialog {
       width: 400px;
       margin: auto;
 /*       border: thin solid black; */
@@ -254,7 +253,7 @@ margin-right: 0px;
       display: none;
     }
 
-.message{
+#cursorscontainer >>> .message{
   text-align: center;
     margin: auto;
     display: block!important;
@@ -265,7 +264,7 @@ margin-right: 0px;
   
 }
 
-.message2{
+#cursorscontainer >>> .message2{
       font-size: 14px;
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
@@ -273,7 +272,7 @@ margin-right: 0px;
   padding-top: 10px;
 }
 
-.radioscontainer{
+#cursorscontainer >>> .radioscontainer{
     text-align: left;
     padding: 40px;
     height: fit-content;
@@ -281,11 +280,11 @@ margin-right: 0px;
     margin: auto;
 }
 
-.radiobutton{
+#cursorscontainer >>> .radiobutton{
   margin-left: 0px;
 }
 
-.cancel{
+#cursorscontainer >>> .cancel{
   margin-top:5px;
   background-color: transparent;
   color: black;
@@ -297,18 +296,18 @@ margin-right: 0px;
 }
 
 
-div:first-of-type {
+#cursorscontainer >>> div:first-of-type {
   display: flex;
   align-items: flex-start;
   margin-bottom: 5px;
 }
 
-label {
+#cursorscontainer >>> label {
   margin-right: 15px;
   line-height: 32px;
 }
 
-input {
+#cursorscontainer >>> input {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -325,7 +324,7 @@ input {
   top: 4px;
 }
 
-#textinput{
+#cursorscontainer >>> #textinput{
     position: relative;
     width: 300px;
     margin: auto;
@@ -341,12 +340,12 @@ input {
     line-height: 18px;
 }
 
-input:checked {
+#cursorscontainer >>> input:checked {
   border: 6px solid black;
 }
 
-button,
-legend {
+#cursorscontainer >>> button,
+#cursorscontainer >>> legend {
   color: white;
   background-color: black;
   padding: 5px 10px;
@@ -355,24 +354,24 @@ legend {
   font-size: 14px;
 }
 
-button:hover,
-button:focus {
+#cursorscontainer >>> button:hover,
+#cursorscontainer >>> button:focus {
   color: #999;
 }
 
-button:active {
+#cursorscontainer >>> button:active {
   background-color: white;
   color: black;
   outline: 1px solid black;
 }
 
 
-.friend-cu{
+#cursorscontainer >>> .friend-cu{
   color: black;
 background-color: #C7BFAB;
 }
 
-.error{
+#cursorscontainer >>> .error{
   color: black;
   background-color: #FF6741!important;
 /*   color: gainsboro; */
@@ -380,7 +379,7 @@ background-color: #C7BFAB;
   pointer: no-drop;
 }
 
-.undefined{
+#cursorscontainer >>> .undefined{
   color: black;
   background-color: gainsboro;
 /*   color: gainsboro; */
@@ -388,27 +387,27 @@ background-color: #C7BFAB;
   pointer: no-drop;
 }
 
-.alumnus{
+#cursorscontainer >>> .alumnus{
   color: black;
   background-color: #9DE3B1;
 }
 
-.faculty-staff{
+#cursorscontainer >>> .faculty-staff{
   color: black;
   background-color: #FFD480;
 }
 
-.current-student{
+#cursorscontainer >>> .current-student{
     color: black;
   background-color: #C7B9FF;
 }
 
-#connections{
+#cursorscontainer >>> #connections{
   margin-right: 0px;
 }
 
 
-.ok{
+#cursorscontainer >>> .ok{
   
       background-color: black;
     color: white;
@@ -427,7 +426,7 @@ background-color: #C7BFAB;
 
 @media only screen and (max-width: 600px) {
 
-    #dialog {
+   #cursorscontainer >>> #dialog {
       width: calc(80vw - 140px);
       
       margin: auto;
@@ -439,22 +438,22 @@ background-color: #C7BFAB;
       text-align: center;
     }
   
-  #textinput{
+  #cursorscontainer >>> #textinput{
     width: 40vw;
     
   }
   
-  .ok{
+  #cursorscontainer >>> .ok{
     width: 40vw;
   }
   
-  .radioscontainer{
+  #cursorscontainer >>> .radioscontainer{
     padding: 0px;
     margin-top: 20px;
     margin-bottom: 20px;
   }
   
-  .close-dialog{
+  #cursorscontainer >>> .close-dialog{
     margin-right: 0px;
     margin-top: -5vh;
     margin-left: 29vw;
