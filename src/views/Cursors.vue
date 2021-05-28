@@ -18,25 +18,26 @@ export default {
   },
   
   mounted(){
-
+         
   },
 
   sockets: {
     connected(data) {
            
-                     const Meeting1 = new Meeting(this.$socket)  
-                     document.addEventListener('mousemove', this.onMouseMove)
+                     
+                     // document.addEventListener('mousemove', this.onMouseMove)
       this.isConnected = true;
     },
     
-    init(data){
-                            data.friends.forEach(friend1 => Meeting1.createFriend(friend1, data.player, Meeting1));
+    init(data){      
+                      const Meeting1 = new Meeting(this.$socket)  
+                      data.friends.forEach(friend1 => Meeting1.createFriend(friend1, data.player, Meeting1));
                       self.player = new Player(data.player);
 
                       document.querySelector("body").onmousemove = (e) => {
                           const x = e.clientX
                           const y = e.clientY
-                          const location = player.update(x,y,socket)
+                          const location = player.update(x,y,this.$socket)
                       };
     },
 
@@ -69,7 +70,7 @@ export default {
       onMouseMove (ev) {
                           const x = ev.clientX
                           const y = ev.clientY
-                          const location = player.update(x,y,socket)
+                          const location = player.update(x,y,this.$socket)
       }
   }
 }

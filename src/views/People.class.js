@@ -5,7 +5,7 @@ class Player {
     this.y = 0
     this.name = name
     this.role = role
-    this.socket = socket
+    this.$socket = socket
   }
   
   update(x,y,socket) {
@@ -23,6 +23,7 @@ class Player {
   }
   
   emit(socket) {
+    console.log(socket)
     socket.emit('move',{ friend: this.id, friendX: this.x, friendY: this.y, name: this.name, role: this.role});
   }
   
