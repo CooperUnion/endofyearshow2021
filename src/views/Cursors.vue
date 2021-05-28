@@ -1,15 +1,68 @@
 <template>
-  <div id="cursorscontainer">
+    <div id="cursorscontainer">
+      <div class="online-users">
+       <span id="connections">
+        </span> <span id="othervisitors"> other visitors online</span><br>
+          <p>Your name is "<span id="prompt"></span>"</p>
+  <p>Your role is "<span id="role"></span>"</p>
+    </div>
+
+<!--   <p>The current time is <span id="time-stamp"></span>.</p> -->
+  <div id="dialog" class="hidden">
+    <button class="close-dialog">
+      X
+    </button>
+        <div class="message">foobar</div>
+        <div class="message2">foobar</div>
+
+    <input style="color:gainsboro;" maxlength="30" id="textinput" type="text">
+
+
+    
+    <div class="radioscontainer">
+      <input class="radiobutton" type="radio" id="contactChoice1"
+       name="roleRadio" value="current-student" checked>
+      <label for="contactChoice1">Current Student</label> <br>
+
+      <input class="radiobutton" type="radio" id="contactChoice2"
+       name="roleRadio" value="faculty-staff">
+      <label for="contactChoice2">Faculty & Staff</label><br>
+
+      <input class="radiobutton" type="radio" id="contactChoice3"
+       name="roleRadio" value="alumnus">
+      <label for="contactChoice3">Alumnus</label><br>
+      
+            <input class="radiobutton" type="radio" id="contactChoice4"
+       name="roleRadio" value="friend-cu">
+      <label for="contactChoice4">Friend</label>
+    </div>
+
+      <div class="yourcursorspan">Your cursor
+  </div>
+    
+<div class="cursordemo">
+
+ <div id="demo-cursor" class="current-student friend demo-cursor"><div id="democursortext" class="current-student name name-demo">Display Name</div></div>
+  
+    </div>
+
+    <div>
+      <button class="ok">Enter</button><br>
+      <button class="cancel">Skip</button>
+    </div>
+  </div>
     
     
     <p v-if="isConnected">We're connected to the server!</p><br>
     <p>Message from server: "{{socketMessage}}"</p><br>
     <button @click="pingServer()">Ping Server</button>
-  </div>
+      </div>   
+
 </template>
 
 <script>
   import {Player, Friend, Meeting} from './People.class.js'
+  import {BadWords} from './BadWords.js'
   
 export default {
   data() {
@@ -20,6 +73,101 @@ export default {
   },
   
   mounted(){
+    const BadWords1 = new BadWords();
+    
+          function promptPromise(message, message2) {
+  var dialog  = document.getElementById('dialog');
+  var input   = document.getElementById("textinput");
+  var okButton = dialog.querySelector('button.ok');
+  var XButton = dialog.querySelector('button.close-dialog');
+  let radio = ""
+  
+  dialog.querySelector('.message').innerHTML = String(message);
+  dialog.querySelector('.message2').innerHTML = String(message2)
+  dialog.className = '';
+
+  return new Promise(function(resolve, reject) {
+    document.getElementById("textinput").placeholder = "Display Name";
+    document.getElementById("textinput").maxlength = "30"
+    
+
+    
+    document.getElementById("textinput").oninput = () => {
+      
+      
+      const description = document.getElementById("textinput").value
+      let isInclude = BadWords1.check(description)
+      
+      if (!isInclude){
+        // console.log("safe!")
+        if (document.getElementById("democursortext").classList.contains("error")){
+        document.getElementById("democursortext").classList.remove("error")
+        document.getElementById("demo-cursor").classList.remove("error")
+        document.getElementsByClassName('ok')[0].classList.remove("error")
+        }
+      document.getElementById("democursortext").innerHTML  = document.getElementById("textinput").value
+      
+        
+      } else {
+        document.getElementById("democursortext").innerHTML = "Nice try. Use another name."
+        document.getElementById("democursortext").classList.add("error")
+        document.getElementById("demo-cursor").classList.add("error")
+        document.getElementsByClassName('ok')[0].classList.add("error")
+      }
+      
+      if (document.getElementById("textinput").style.color!= "black"){
+        document.getElementById("textinput").style.color = "black"
+      } 
+    }
+    
+var rad = document.getElementsByClassName("radiobutton");
+var prev = null;
+var prevprev = null    
+    function set(value){
+      prevprev = value
+    }
+    
+for (var i = 0; i < rad.length; i++) {
+    rad[i].addEventListener('change', function() {
+        if (prev === null){
+          prev = document.getElementById("contactChoice1")
+        }
+        (prev) ? set(prev.value): null;
+        if (this !== prev) {
+            prev = this;
+        }
+        
+        console.log(this.value)
+        document.getElementById("demo-cursor").classList.remove(prevprev)
+        document.getElementById("democursortext").classList.remove(prevprev)
+        document.getElementById("demo-cursor").classList.add(prev.value)
+        document.getElementById("democursortext").classList.add(prev.value)
+    });
+}
+    
+    dialog.addEventListener('click', function handleButtonClicks(e) {
+      if (e.target.tagName !== 'BUTTON') { return; }
+      dialog.removeEventListener('click', handleButtonClicks);
+      dialog.className = 'hidden';
+      if (e.target === okButton) {
+var radios = document.getElementsByName('roleRadio');
+for (var i = 0, length = radios.length; i < length; i++) {
+  if (radios[i].checked) {
+   radio = radios[i].value
+   console.log(radio)
+    resolve({input: input.value, radio: radio});
+    break;
+  }
+}
+
+      } else if (e.target === XButton){
+        // resolve({input: input.value, radio: "undefined"});
+      } else {
+        resolve({input: input.value, radio: "undefined"});
+      }
+    });
+  });
+}
     
      window.addEventListener('load', () => {
            var button = document.getElementById('action');
