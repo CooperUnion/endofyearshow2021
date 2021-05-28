@@ -24,7 +24,7 @@ class Player {
   
   emit(socket) {
     console.log(socket)
-    socket.emit('move',{ friend: this.id, friendX: this.x, friendY: this.y, name: this.name, role: this.role});
+    socket.client.emit('move',{ friend: this.id, friendX: this.x, friendY: this.y, name: this.name, role: this.role});
   }
   
 }

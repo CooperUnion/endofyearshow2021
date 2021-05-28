@@ -30,8 +30,8 @@ export default {
     },
     
     init(data){      
-                      const Meeting1 = new Meeting(this.$socket)  
-                      data.friends.forEach(friend1 => Meeting1.createFriend(friend1, data.player, Meeting1));
+                      this.Meeting1 = new Meeting(this.$socket)  
+                      data.friends.forEach(friend1 => this.Meeting1.createFriend(friend1, data.player, this.Meeting1));
                       self.player = new Player(data.player);
 
                       document.querySelector("body").onmousemove = (e) => {
@@ -46,14 +46,14 @@ export default {
     },
     
     newFriend(data){
-      Meeting1.createFriend(data.friend, data.player, Meeting1);
+      this.Meeting1.createFriend(data.friend, data.player, this.Meeting1);
     },
     byeFriend(data){
                             // document.getElementById('connections').innerHTML = data.connections;
-                          Meeting1.removeFriend(self,data.friend, Meeting1);
+                          this.Meeting1.removeFriend(self,data.friend, this.Meeting1);
     },
     move(data){
-      Meeting1.updateFriend(data);
+      this.Meeting1.updateFriend(data);
     },
 
     // Fired when the server sends something on the "messageChannel" channel.
@@ -65,7 +65,7 @@ export default {
   methods: {
     pingServer() {
       // Send the "pingServer" event to the server.
-      this.$socket.emit('pingServer', 'PING!')
+      this.$socket.client.emit('pingServer', 'PING!')
     },
       onMouseMove (ev) {
                           const x = ev.clientX
