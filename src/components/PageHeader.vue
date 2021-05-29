@@ -1,13 +1,13 @@
 <template>
   <div class="headerBlock">
     <div class="titleBlock">
-      <h1 v-if="config.title" class="mainHead">
-        {{config.title}}
+      <h1 class="mainHead">
+        {{currentPageConfig.title}}
       </h1>
-      <div v-if="config.body" class="mainDesc">
-        {{config.body}}
+      <div class="mainDesc">
+        {{currentPageConfig.body}}
       </div>
-      <page-header-button v-if="config.refreshEnabled===true"/>
+      <page-header-button v-if="currentPageConfig.refreshEnabled===true"/>
     </div>
     <div class="listBlock">
       <template v-if="$route.name === 'Projects'">
@@ -43,28 +43,31 @@
     setup(props){
       const route = useRoute()
       const currentRoute = ref(route.name.toLowerCase())
+      const currentPageConfig = ref({
+        title: '',
+        body: ''
+      })
       
-      // console.log("PageHeader.vue", currentRoute.value)
-      
-      const config = ref({})
-      const updatePageConfig = ()=>{
-        currentPageConfig.value = pageConfig[currentRoute.value]
+      const initPageConfig = ()=>{
+        try{
+          currentPageConfig.value = pageConfig[currentRoute.value] || pageConfig['areas']
+          console.log('updated currentPageConfig properly')
+        } catch(e) {
+          currentPageConfig.value = pageConfig['areas']
+          console.log('failed to update currentPageConfig properly, defaulting')
+        }
+        
       }
 
       watch(() => route.path, ()=>{
         currentRoute.value = route.name.toLowerCase()
-        updatePageConfig()
+        initPageConfig()
       })
       
-      try{
-        const currentPageConfig = ref(pageConfig[currentRoute.value])
-        config.value = currentPageConfig
-      } catch(e) {
-        console.log(e)
-        config.value = {title:'failed', body:'failed to render header'}
-      }
+      initPageConfig()
       
-      return {config}
+      
+      return {currentPageConfig}
       
     }
   }
