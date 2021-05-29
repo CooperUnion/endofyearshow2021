@@ -9,6 +9,7 @@
 
 <!--   <p>The current time is <span id="time-stamp"></span>.</p> -->
   <div id="dialog" class="hidden">
+    <div id="dialogchild">
     <button class="close-dialog">
       X
     </button>
@@ -49,7 +50,7 @@
       <button class="cancel">Skip</button>
     </div>
   </div>
-
+  </div>
       </div>   
 
 </template>
@@ -445,14 +446,25 @@ margin-right: 0px;
 }
 
 #cursorscontainer >>> #dialog {
-      width: 400px;
-      margin: auto;
-/*       border: thin solid black; */
-      padding: 70px;
-      background: gainsboro;
-      border-radius: 10px;
-      text-align: center;
+    width: 400px;
+    width: 400px;
+    max-height: 100vh;
+    margin: auto;
+    margin-top: 0px;
+    top: 0px;
+    position: absolute;
+    margin-left: auto;
+    /* border: thin solid black; */
+    padding: 70px;
+    background: gainsboro;
+    border-radius: 10px;
+    text-align: center;
     }
+  
+  #cursorscontainer >>> #dialogchild {
+
+    }
+  
     .hidden {
       display: none;
     }
