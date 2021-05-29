@@ -129,8 +129,11 @@ class Friend extends Player {
     const label = this.doLabel(id);
     console.log(label)
     console.log(id, player, Meeting, name, role, fullFriend)
-    console.log(document.getElementById(label)) //"undefined though???? FIX THE DATA VUE CAN'T SEE THE CURSOR ADDED DYNAMNICALLY"
+    console.log(document.getElementById(label)) //"undefined though???? FIX THE DATA VUE CAN'T SEE THE CURSOR THAT WAS ADDED DYNAMNICALLY WITHOUT IT"
+    var labelwithquotes = "\"" + label + "\""
+    console.log(labelwithquotes)
     console.log(document.body)
+    console.log(document.getElementById(labelwithquotes))
           if (document.getElementById(label).classList.contains("undefined")){
         document.getElementById(label).classList.remove("undefined")
       }
