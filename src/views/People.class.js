@@ -78,9 +78,7 @@ class Friend extends Player {
     this.element = document.createElement("div")
     this.element.id = this.idx
     this.element.classList.add('friend')
-    window.app.mount(this.element)
     document.getElementById("cursorscontainer").appendChild(this.element)
-    window.app.mount(document.getElementById(this.element));
     }
       }
     }
@@ -128,6 +126,7 @@ class Friend extends Player {
   }
   
   updateName(id, player, Meeting, name, role, fullFriend){
+        // window.app.mount(document.getElementById("app"));
     const label = this.doLabel(id);
     console.log(label)
     console.log(id, player, Meeting, name, role, fullFriend)
