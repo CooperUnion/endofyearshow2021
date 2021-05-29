@@ -9,23 +9,23 @@ class Player {
   }
   
   update(x,y,socket, id, name, role) {
-    this.x = ((x / window.innerWidth) * 100).toFixed(2);
-    this.y = ((y / window.innerHeight) * 100).toFixed(2); 
+    x = ((x / window.innerWidth) * 100).toFixed(2);
+    y = ((y / window.innerHeight) * 100).toFixed(2); 
     this.emit(socket, id, name, role, x, y)
     return {
-      id: this.id,
-      x: this.x,
-      y: this.y,
-      name: this.name,
-      role: this.role
+      id: id,
+      x: x,
+      y: y,
+      name: name,
+      role: role
     }
     
   }
   
   emit(socket, id, name, role, x, y) {
     console.log(socket)
-    console.log({ friend: this.id, friendX: this.x, friendY: this.y, name: this.name, role: this.role})
-    socket.client.emit('move',{ friend: this.id, friendX: this.x, friendY: this.y, name: this.name, role: this.role});
+    console.log({ friend: id, friendX: x, friendY: y, name: name, role: role})
+    socket.client.emit('move',{ friend: id, friendX: x, friendY: y, name: name, role: role});
   }
   
 }

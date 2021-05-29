@@ -218,7 +218,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
                       document.querySelector("body").onmousemove = (e) => {
                           const x = e.clientX
                           const y = e.clientY
-                          const location = player.update(x,y,that.$socket)
+                          const location = player.update(x,y,that.$socket, data.player, name.input, name.radio) 
                       };
      // const socket = io.connect(document.location.origin); 
      //  console.log(document.location.origin)
