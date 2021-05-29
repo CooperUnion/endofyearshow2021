@@ -367,10 +367,33 @@ height: 100%;
 
 #cursorscontainer >>> #demo-cursor{
    transition: background-color 0.2s linear;
+  max-width: unset;
 }
 
 #cursorscontainer >>> #democursortext{
    transition: background-color 0.2s linear;
+      display: inline;
+    position: relative;
+    left: 19px;
+    top: 12px;
+    pointer-events: none;
+    color: black;
+    text-shadow: none;
+    /* background: #000; */
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    white-space: nowrap;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 0px;
+    padding-top: 0.5px;
+    /* padding: 5px; */
+    border-radius: 20px;
+    font-size: 14px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
 }
 
 #cursorscontainer >>> .ok{
@@ -378,7 +401,7 @@ height: 100%;
 }
 
 #cursorscontainer >>> .yourcursorspan{
-  margin-bottom:30px;
+  margin-bottom: 1vh;
       font-size: 18px;
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
@@ -496,25 +519,28 @@ margin-right: 0px;
 #cursorscontainer >>> .radioscontainer{
     text-align: left;
     padding: 40px;
+    padding-bottom: 1.5vh;
     height: fit-content;
     width: fit-content;
     margin: auto;
 }
 
 #cursorscontainer >>> .radiobutton{
-  box-sizing: border-box!important;
-  margin-left: 0px;
-      -webkit-appearance: none;
+    box-sizing: border-box!important;
+    margin-left: 0px;
+    -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     border-radius: 50%;
-    width: 10px!important;
-    height: 10px!important;
+    width: 16px!important;
+    height: 16px!important;
     border: 2px solid #999;
     transition: 0.2s all linear;
-    margin-right: 5px;
+    margin-right: 7px;
     position: relative;
     top: 4px;
+    padding: 0;
+    margin-bottom: 9px;
 }
 
 #cursorscontainer >>> .cancel{
