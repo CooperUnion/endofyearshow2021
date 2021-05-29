@@ -446,23 +446,28 @@ margin-right: 0px;
 }
 
 #cursorscontainer >>> #dialog {
+    width: 100vw;
+    height: 100vh;
+    padding: 10vh;
+    position: absolute;
+    top: 0;
+    }
+  
+  #cursorscontainer >>> #dialogchild {
     width: 400px;
     width: 400px;
-    max-height: 100vh;
+    max-height: 80vh;
     margin: auto;
     margin-top: 0px;
     top: 0px;
-    position: absolute;
+    position: relative;
     margin-left: auto;
     /* border: thin solid black; */
     padding: 70px;
     background: gainsboro;
     border-radius: 10px;
     text-align: center;
-    }
-  
-  #cursorscontainer >>> #dialogchild {
-
+    display: block;
     }
   
     .hidden {
