@@ -73,7 +73,10 @@ export default {
   },
   
   mounted(){
-
+    console.log(app)
+    console.log("mounted")
+    console.log(vue)
+    console.log(Vue)
      
   },
 
