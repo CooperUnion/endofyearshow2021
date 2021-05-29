@@ -17,8 +17,6 @@
 
     <input style="color:gainsboro;" maxlength="30" id="textinput" type="text">
 
-
-    
     <div class="radioscontainer">
       <input class="radiobutton" type="radio" id="contactChoice1"
        name="roleRadio" value="current-student" checked>
@@ -51,11 +49,7 @@
       <button class="cancel">Skip</button>
     </div>
   </div>
-    
-    
-<!--     <p v-if="isConnected">We're connected to the server!</p><br> -->
-<!--     <p>Message from server: "{{socketMessage}}"</p><br> -->
-<!--     <button @click="pingServer()">Ping Server</button> -->
+
       </div>   
 
 </template>
@@ -73,14 +67,6 @@ export default {
   },
   
   mounted(){
-    // app.mount(document.body)
-    // console.log(app.mount(document.body))
-    console.log("mounted")
-
-    // console.log(Vue)
-    
-    console.log(window.app)
-     
   },
 
   sockets: {
@@ -100,9 +86,7 @@ export default {
     
     init(data){      
       
-                                  async function run(data, that){
-        console.log(data)
-        console.log(that)
+   async function run(data, that){
       
           const BadWords1 = new BadWords();
           function promptPromise(message, message2) {
@@ -122,14 +106,11 @@ export default {
     
 
     
-    document.getElementById("textinput").oninput = () => {
-      
-      
+    document.getElementById("textinput").oninput = () => { 
       const description = document.getElementById("textinput").value
       let isInclude = BadWords1.check(description)
       
       if (!isInclude){
-        // console.log("safe!")
         if (document.getElementById("democursortext").classList.contains("error")){
         document.getElementById("democursortext").classList.remove("error")
         document.getElementById("demo-cursor").classList.remove("error")
@@ -191,7 +172,6 @@ for (var i = 0, length = radios.length; i < length; i++) {
 }
 
       } else if (e.target === XButton){
-        // resolve({input: input.value, radio: "undefined"});
       } else {
         resolve({input: input.value, radio: "undefined"});
       }
