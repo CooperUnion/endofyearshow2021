@@ -361,7 +361,7 @@ height: 100%;
     height: 0px;
     width: fit-content;
     margin: auto;
-    margin-bottom: 80px!important;
+    margin-bottom: 8vh!important;
     margin-left: -20px;
 }
 
