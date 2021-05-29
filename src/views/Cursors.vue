@@ -73,8 +73,20 @@ export default {
   },
   
   mounted(){
-    const BadWords1 = new BadWords();
-         window.addEventListener('load', () => {
+
+     
+  },
+
+  sockets: {
+    connected(data) {
+                          document.getElementById('connections').innerHTML = (data.connections-1) + " ";
+                    if ((data.connections-1)===1){
+                      document.getElementById("othervisitors").innerHTML = " other visitor online"
+                    } else {
+                        document.getElementById("othervisitors").innerHTML = " other visitors online"
+                    }
+      
+          const BadWords1 = new BadWords();
           function promptPromise(message, message2) {
   var dialog  = document.getElementById('dialog');
   var input   = document.getElementById("textinput");
@@ -178,7 +190,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
       rolefield.innerHTML = "" + name.radio;
       
       const response = {name: name.input, role: name.radio}
-      
+      this.$socket.client.emit('nameChosen', {response: response, player: data.player})
      // const socket = io.connect(document.location.origin); 
      //  console.log(document.location.origin)
 //          socket.on('connected', async function (data) {
@@ -240,17 +252,6 @@ for (var i = 0, length = radios.length; i < length; i++) {
     .catch(function() {
       output.innerHTML = '¯\\_(ツ)_/¯';
     });
-     })
-  },
-
-  sockets: {
-    connected(data) {
-                          document.getElementById('connections').innerHTML = (data.connections-1) + " ";
-                    if ((data.connections-1)===1){
-                      document.getElementById("othervisitors").innerHTML = " other visitor online"
-                    } else {
-                        document.getElementById("othervisitors").innerHTML = " other visitors online"
-                    }
       this.isConnected = true;
     },
     
