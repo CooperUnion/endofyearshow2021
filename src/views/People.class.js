@@ -127,8 +127,14 @@ class Friend extends Player {
   
   updateName(id, player, Meeting, name, role, fullFriend){
     const label = this.doLabel(id);
-    // console.log(label)
-    console.log(document.getElementById(label).classList.contains(role))
+    console.log(label)
+    console.log(id, player, Meeting, name, role, fullFriend)
+    console.log(document.getElementById(label)) //"undefined though???? FIX THE DATA VUE CAN'T SEE THE CURSOR ADDED DYNAMNICALLY"
+    console.log(document.body)
+          if (document.getElementById(label).classList.contains("undefined")){
+        document.getElementById(label).classList.remove("undefined")
+      }
+    // console.log(document.getElementById(label).classList.contains(role))
     if (!document.getElementById(label).classList.contains(role)){
     document.getElementById(label).classList.add(role)
     const newName = document.createElement("div")
