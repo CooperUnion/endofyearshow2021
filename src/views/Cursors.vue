@@ -80,13 +80,23 @@ export default {
   sockets: {
     connected(data) {
       console.log(this.$socket.client)
-      async function run(data, socketclient){
+
                           document.getElementById('connections').innerHTML = (data.connections-1) + " ";
                     if ((data.connections-1)===1){
                       document.getElementById("othervisitors").innerHTML = " other visitor online"
                     } else {
                         document.getElementById("othervisitors").innerHTML = " other visitors online"
                     }
+      
+
+      this.isConnected = true;
+    },
+    
+    init(data){      
+      
+                                  async function run(data, thisthis){
+        console.log(data)
+        console.log(thisthis)
       
           const BadWords1 = new BadWords();
           function promptPromise(message, message2) {
@@ -191,9 +201,19 @@ for (var i = 0, length = radios.length; i < length; i++) {
       output.innerHTML = '' + name.input;
       rolefield.innerHTML = "" + name.radio;
       console.log("response completed!")
-      console.log(socketclient)
+      console.log(this.$socket.client)
       const response = {name: name.input, role: name.radio}
-      socketclient.emit('nameChosen', {response: response, player: data.player})
+      this.$socket.client.emit('nameChosen', {response: response, player: data.player})
+                            this.Meeting1 = new Meeting(this.$socket)  
+                      // data.friends.forEach(friend1 => console.log(friend1));
+                      data.friends.forEach(friend1 => this.Meeting1.createFriend(friend1, data.player, this.Meeting1));
+                      self.player = new Player(data.player);
+
+                      document.querySelector("body").onmousemove = (e) => {
+                          const x = e.clientX
+                          const y = e.clientY
+                          const location = player.update(x,y,this.$socket)
+                      };
      // const socket = io.connect(document.location.origin); 
      //  console.log(document.location.origin)
 //          socket.on('connected', async function (data) {
@@ -255,24 +275,10 @@ for (var i = 0, length = radios.length; i < length; i++) {
       // output.innerHTML = '¯\\_(ツ)_/¯';
       console.log("ERROR?")
     }); }
+      console.log(this)
+      run(data, this);
       
-      run(data, this.$socket.client);
-      this.isConnected = true;
-    },
-    
-    init(data){      
-      
-                      
-                      this.Meeting1 = new Meeting(this.$socket)  
-                      // data.friends.forEach(friend1 => console.log(friend1));
-                      data.friends.forEach(friend1 => this.Meeting1.createFriend(friend1, data.player, this.Meeting1));
-                      self.player = new Player(data.player);
 
-                      document.querySelector("body").onmousemove = (e) => {
-                          const x = e.clientX
-                          const y = e.clientY
-                          const location = player.update(x,y,this.$socket)
-                      };
     },
     
     nameUpdated(data){
