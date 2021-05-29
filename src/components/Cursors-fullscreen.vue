@@ -692,13 +692,25 @@ background-color: #C7BFAB;
 @media only screen and (max-width: 600px) {
 
    #cursorscontainer >>> #dialog {
-      width: calc(80vw - 140px);
+      width: calc(100vw);
       
-      margin: auto;
-      margin-left: 10vw;
+/*       margin: auto; */
+      margin-left: 0vw;
 /*       border: thin solid black; */
-      padding: 70px;
-      background: gainsboro;
+/*       padding: 70px; */
+/*       background: gainsboro; */
+      border-radius: 10px;
+      text-align: center;
+    }
+  
+     #cursorscontainer >>> #dialogchild {
+/*       width: calc(80vw - 140px); */
+      padding: 30px;
+      margin: auto;
+      margin-left: 0vw;
+/*       border: thin solid black; */
+/*       padding: 70px; */
+/*       background: gainsboro; */
       border-radius: 10px;
       text-align: center;
     }
@@ -726,5 +738,45 @@ background-color: #C7BFAB;
     position: absolute;
   }
   
+  }
+  
+  
+  @media only screen and (max-width: 400px) {
+
+   #cursorscontainer >>> #dialog {
+      width: calc(100vw);
+      
+/*       margin: auto; */
+      margin-left: 0vw;
+/*       border: thin solid black; */
+/*       padding: 70px; */
+/*       background: gainsboro; */
+      border-radius: 10px;
+      text-align: center;
+    }
+  
+     #cursorscontainer >>> #dialogchild {
+/*       width: calc(80vw - 140px); */
+/*        font-size: 1vw; */
+      padding: 30px;
+      margin: auto;
+      margin-left: 0vw;
+/*       border: thin solid black; */
+/*       padding: 70px; */
+/*       background: gainsboro; */
+      border-radius: 10px;
+      text-align: center;
+    }
+    
+    #cursorscontainer >>> .message {
+    line-height: 6vw;
+    font-size: 5vw;
+    }
+    
+    #cursorscontainer >>> .message2 {
+    line-height: 3.2vw;
+    font-size: 2.8vw;
+    }
+
   }
 </style>
