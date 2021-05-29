@@ -310,7 +310,7 @@ a {
   z-index: 101;
 /*   clip-path: polygon(6% 22%, 50% 30%, 94% 22%, 66% 55%, 50% 95%, 34% 56%); */
   pointer-events: none;
-    transition: left 0.1s linear, top 0.1s linear;
+    transition: left 0.1s ease-out, top 0.1s ease-out;
 }
 
 #cursorscontainer >>> .friend::before{
