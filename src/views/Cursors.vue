@@ -4,7 +4,8 @@
 
 <script>
 
- import Cursors from '@/components/Cursors.vue'
+ // import Cursors from '@/components/Cursors.vue'
+ import Cursors from '@/components/Cursors-fullscreen.vue'
 
     export default {
   components: {
