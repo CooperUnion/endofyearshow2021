@@ -44,6 +44,8 @@
       const route = useRoute()
       const currentRoute = ref(route.name.toLowerCase())
       
+      console.log("PageHeader.vue", currentRoute.value)
+      
       const currentPageConfig = ref(pageConfig[currentRoute.value])
       
       const updatePageConfig = ()=>{
