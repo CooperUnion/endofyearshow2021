@@ -94,9 +94,9 @@ export default {
     
     init(data){      
       
-                                  async function run(data, thisthis){
+                                  async function run(data, that){
         console.log(data)
-        console.log(thisthis)
+        console.log(that)
       
           const BadWords1 = new BadWords();
           function promptPromise(message, message2) {
@@ -201,18 +201,18 @@ for (var i = 0, length = radios.length; i < length; i++) {
       output.innerHTML = '' + name.input;
       rolefield.innerHTML = "" + name.radio;
       console.log("response completed!")
-      console.log(this.$socket.client)
+      console.log(that.$socket.client)
       const response = {name: name.input, role: name.radio}
-      this.$socket.client.emit('nameChosen', {response: response, player: data.player})
-                            this.Meeting1 = new Meeting(this.$socket)  
+      that.$socket.client.emit('nameChosen', {response: response, player: data.player})
+                            that.Meeting1 = new Meeting(that.$socket)  
                       // data.friends.forEach(friend1 => console.log(friend1));
-                      data.friends.forEach(friend1 => this.Meeting1.createFriend(friend1, data.player, this.Meeting1));
+                      data.friends.forEach(friend1 => that.Meeting1.createFriend(friend1, data.player, that.Meeting1));
                       self.player = new Player(data.player);
 
                       document.querySelector("body").onmousemove = (e) => {
                           const x = e.clientX
                           const y = e.clientY
-                          const location = player.update(x,y,this.$socket)
+                          const location = player.update(x,y,that.$socket)
                       };
      // const socket = io.connect(document.location.origin); 
      //  console.log(document.location.origin)
@@ -276,14 +276,15 @@ for (var i = 0, length = radios.length; i < length; i++) {
       console.log("ERROR?")
     }); }
       console.log(this)
-      run(data, this);
+      var that = this;
+      run(data, that);
       
 
     },
     
     nameUpdated(data){
                           console.log("name updated", data)
-                         this.Meeting1.updateFriendName(data.data.id, data.data.player, this.Meeting1, data.data.name, data.data.role, data)
+                          this.Meeting1.updateFriendName(data.data.id, data.data.player, this.Meeting1, data.data.name, data.data.role, data)
     },
 
     disconnect() {
