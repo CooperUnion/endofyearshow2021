@@ -57,15 +57,24 @@
 <script>
   import {Player, Friend, Meeting} from './People.class.js'
   import {BadWords} from './BadWords.js'
+  import {ref , onBeforeMount } from "vue";
   
-export default {
-  data() {
+    export default {
+    name: 'Cursors',
+    props: {
+      
+    },
+  setup (props){
+    
+    return{}
+  },
+      data() {
     return {
       isConnected: false,
       socketMessage: ''
     }
   },
-  
+
   mounted(){
   },
 
