@@ -9,7 +9,11 @@
           <output><a href="/areas" @click="resetAreas()">{{itemCount['view-all']}}</a></output>      
         </li>
         <li class="nav-item" v-for="item in items" :key="item">
-          <tag-button :data-tagname="slug(item.name)" :active="currentAreaState(slug(item.name))" :toggle="true"/>
+          <tag-button 
+            :data-tagname="slug(item.name)" 
+            :active="currentAreaState(slug(item.name))" 
+            :toggle="true"
+            @click="toggleArea(slug(item.name))"/>
           <router-link :to="item.url" @click="toggleArea(slug(item.name))">{{item.name}}</router-link>
           <output>
             <a :href="item.url">{{itemCount[slug(item.name)]}}</a>
