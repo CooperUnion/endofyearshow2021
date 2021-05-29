@@ -8,10 +8,10 @@ class Player {
     this.$socket = socket
   }
   
-  update(x,y,socket) {
+  update(x,y,socket, id, name, role) {
     this.x = ((x / window.innerWidth) * 100).toFixed(2);
     this.y = ((y / window.innerHeight) * 100).toFixed(2); 
-    this.emit(socket)
+    this.emit(socket, id, name, role, x, y)
     return {
       id: this.id,
       x: this.x,
@@ -22,7 +22,7 @@ class Player {
     
   }
   
-  emit(socket) {
+  emit(socket, id, name, role, x, y) {
     console.log(socket)
     console.log({ friend: this.id, friendX: this.x, friendY: this.y, name: this.name, role: this.role})
     socket.client.emit('move',{ friend: this.id, friendX: this.x, friendY: this.y, name: this.name, role: this.role});
@@ -130,11 +130,11 @@ class Friend extends Player {
     const label = this.doLabel(id);
     console.log(label)
     console.log(id, player, Meeting, name, role, fullFriend)
-    console.log(document.getElementById(label)) //"undefined though???? FIX THE DATA VUE CAN'T SEE THE CURSOR THAT WAS ADDED DYNAMNICALLY WITHOUT IT"
+    console.log(document.getElementById(label)) //"undefined though???? FIX THE DATA VUE CAN'T SEE THE CURSOR THAT WAS ADDED DYNAMNICALLY WITHOUT IT" //undefined
     var labelwithquotes = "\"" + label + "\""
     console.log(labelwithquotes)
     console.log(document.body)
-    console.log(document.getElementById(labelwithquotes))
+    console.log(document.getElementById(labelwithquotes)) //also undefined,,,, I need to add vue to these elements on creation.... but.........
           if (document.getElementById(label).classList.contains("undefined")){
         document.getElementById(label).classList.remove("undefined")
       }
