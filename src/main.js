@@ -36,4 +36,6 @@ console.log("main.js")
 app.use(VueMasonryPlugin)
 app.mount('#app')
 
+console.log(app)
+window.app = app
 

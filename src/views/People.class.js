@@ -78,8 +78,9 @@ class Friend extends Player {
     this.element = document.createElement("div")
     this.element.id = this.idx
     this.element.classList.add('friend')
+    window.app.mount(this.element)
     document.getElementById("cursorscontainer").appendChild(this.element)
-    app.$mount(document.getElementById(this.element));
+    window.app.mount(document.getElementById(this.element));
     }
       }
     }
