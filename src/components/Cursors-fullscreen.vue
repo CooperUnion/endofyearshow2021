@@ -502,7 +502,19 @@ margin-right: 0px;
 }
 
 #cursorscontainer >>> .radiobutton{
+  box-sizing: border-box!important;
   margin-left: 0px;
+      -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 50%;
+    width: 10px!important;
+    height: 10px!important;
+    border: 2px solid #999;
+    transition: 0.2s all linear;
+    margin-right: 5px;
+    position: relative;
+    top: 4px;
 }
 
 #cursorscontainer >>> .cancel{
@@ -526,23 +538,24 @@ margin-right: 0px;
 #cursorscontainer >>> label {
   margin-right: 15px;
   line-height: 32px;
+      font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px;
 }
 
 #cursorscontainer >>> input {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-
-  border-radius: 50%;
-  width: 16px;
-  height: 16px;
-
-  border: 2px solid #999;
-  transition: 0.2s all linear;
-  margin-right: 5px;
-
-  position: relative;
-  top: 4px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #999;
+    transition: 0.2s all linear;
+    margin-right: 5px;
+    position: relative;
+    top: 4px;
 }
 
 #cursorscontainer >>> #textinput{
