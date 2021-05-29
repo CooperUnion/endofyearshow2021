@@ -79,6 +79,8 @@ export default {
 
   sockets: {
     connected(data) {
+      console.log(this.$socket.client)
+      async function run(data, socketclient){
                           document.getElementById('connections').innerHTML = (data.connections-1) + " ";
                     if ((data.connections-1)===1){
                       document.getElementById("othervisitors").innerHTML = " other visitor online"
@@ -188,9 +190,10 @@ for (var i = 0, length = radios.length; i < length; i++) {
     promptPromise('Welcome to the <br>Cooper Union School of Art <br> End of Year Show 2021!', 'Would you like your cursor to be visible while you move <br> through the galleries?').then(function(name) {
       output.innerHTML = '' + name.input;
       rolefield.innerHTML = "" + name.radio;
-      
+      console.log("response completed!")
+      console.log(socketclient)
       const response = {name: name.input, role: name.radio}
-      this.$socket.client.emit('nameChosen', {response: response, player: data.player})
+      socketclient.emit('nameChosen', {response: response, player: data.player})
      // const socket = io.connect(document.location.origin); 
      //  console.log(document.location.origin)
 //          socket.on('connected', async function (data) {
@@ -248,10 +251,12 @@ for (var i = 0, length = radios.length; i < length; i++) {
 //          }) 
     
     
-    })
-    .catch(function() {
-      output.innerHTML = '¯\\_(ツ)_/¯';
-    });
+    }).catch(function() {
+      // output.innerHTML = '¯\\_(ツ)_/¯';
+      console.log("ERROR?")
+    }); }
+      
+      run(data, this.$socket.client);
       this.isConnected = true;
     },
     
