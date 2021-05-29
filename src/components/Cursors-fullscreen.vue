@@ -193,7 +193,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
            var button = document.getElementById('action');
   var output = document.getElementById('prompt');
   var rolefield = document.getElementById('role')
-    promptPromise('Welcome to the <br>Cooper Union School of Art <br> End of Year Show 2021!', 'Would you like your cursor to be visible while you move <br> through the galleries?').then(function(name) {
+    promptPromise('Welcome to the Cooper Union School of Art End of Year Show 2021!', 'Would you like your cursor to be visible while you move <br> through the galleries?').then(function(name) {
       output.innerHTML = '' + name.input;
       rolefield.innerHTML = "" + name.radio;
       console.log("response completed!")
@@ -520,6 +520,7 @@ margin-right: 0px;
     text-align: left;
     padding: 40px;
     padding-bottom: 1.5vh;
+   padding-top: 2.5vh;
     height: fit-content;
     width: fit-content;
     margin: auto;
@@ -540,18 +541,21 @@ margin-right: 0px;
     position: relative;
     top: 4px;
     padding: 0;
-    margin-bottom: 9px;
+    margin-bottom: 1vh;
 }
 
 #cursorscontainer >>> .cancel{
-  margin-top:5px;
-  background-color: transparent;
-  color: black;
-      font-family: 'Space Grotesk', sans-serif;
+padding-top: 0px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    /* margin-top: 5px; */
+    background-color: transparent;
+    color: black;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: 18px;
     font-weight: 700;
     line-height: 24px;
-  cursor: pointer;
+    cursor: pointer;
 }
 
 
@@ -562,6 +566,7 @@ margin-right: 0px;
 }
 
 #cursorscontainer >>> label {
+  margin-bottom: 1vh;
   margin-right: 15px;
   line-height: 32px;
       font-family: 'Space Grotesk', sans-serif;
@@ -589,7 +594,7 @@ margin-right: 0px;
     width: 300px;
     margin: auto;
     border-radius: 10px;
-    margin-top: 20px;
+    margin-top: 1.3vh;
     height: 40px;
     background-color: white;
     border: 2px solid black;
