@@ -1,10 +1,10 @@
 <template>
   <div class="headerBlock">
     <div class="titleBlock">
-      <h1 class="mainHead">
+      <h1 v-if="config.title" class="mainHead">
         {{config.title}}
       </h1>
-      <div class="mainDesc">
+      <div v-if="config.body" class="mainDesc">
         {{config.body}}
       </div>
       <page-header-button v-if="config.refreshEnabled===true"/>
@@ -44,20 +44,28 @@
       const route = useRoute()
       const currentRoute = ref(route.name.toLowerCase())
       
-      console.log("PageHeader.vue", currentRoute.value)
+      // console.log("PageHeader.vue", currentRoute.value)
       
-      const currentPageConfig = ref(pageConfig[currentRoute.value])
-      
+      const config = ref({})
       const updatePageConfig = ()=>{
         currentPageConfig.value = pageConfig[currentRoute.value]
       }
-      
+
       watch(() => route.path, ()=>{
         currentRoute.value = route.name.toLowerCase()
         updatePageConfig()
       })
       
-      return {config: currentPageConfig}
+      try{
+        const currentPageConfig = ref(pageConfig[currentRoute.value])
+        config.value = currentPageConfig
+      } catch(e) {
+        console.log(e)
+        config.value = {title:'failed', body:'failed to render header'}
+      }
+      
+      return {config}
+      
     }
   }
   

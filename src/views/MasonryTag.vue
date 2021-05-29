@@ -26,13 +26,15 @@
   import navItems from '@/router/areaNavItems.js'
   import GlobalNav from '@/components/GlobalNav.vue'  
   import {globalNavItems} from '@/router/index.js'
+  import PageHeader from '@/components/PageHeader.vue'
   
   export default {
     components: {
       Loading,
       Posts,
       AreaNav,
-      GlobalNav
+      GlobalNav,
+      PageHeader
     },
     props: {
       tag: String
