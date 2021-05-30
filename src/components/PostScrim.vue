@@ -5,6 +5,9 @@
       <header class="title-block">
         <h6 class="title" v-html="title + ' — ' + author.formatted"></h6>
         <button class="close" @click="hideScrim()">close</button>
+        <template v-if="assets.media.length>1">
+          <span class="paginator">{{current + 1}}/{{assets.media.length}}</span>
+        </template>    
       </header>
       <!-- logic for separate content types -->
       <div v-if="type==='images'" class="imageDeck">
@@ -70,14 +73,18 @@
       
       const next = () => {
         current.value = (current.value + 1 > props.assets.media.length - 1) ? 0 : current.value + 1
-        // console.log("next clicked", current.value)
       }
       
       const prev = () => {
         current.value = (current.value - 1 < 0) ? props.assets.media.length -1 : current.value - 1
-        // console.log("prev clicked", current.value)
       }
       
+
+      const prev = () => {
+        current.value = (current.value - 1 < 0) ? props.assets.media.length -1 : current.value - 1
+      }
+      
+
       return {hideScrim, next, prev, current}
     }
 
@@ -192,16 +199,23 @@
     position: relative;
   }
 
+  .paginator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-weight: 700;
+    line-height: 1;
+  }
 
   .imgControl {
     position: absolute;
     top: 0;
-    width: 24px;
+    width: 48px;
     height: 100%;
     overflow: hidden;
     text-indent: -999vw;
     background-repeat: no-repeat;
-    background-size: 24px auto;
+    background-size: 48px auto;
     background-color: transparent;
     background-position: center center;
     margin: 0;
