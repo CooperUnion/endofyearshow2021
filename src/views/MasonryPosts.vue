@@ -33,7 +33,8 @@
       PageHeader
     },
     props: {
-      post: Number
+      post: Number,
+      postsEndpoint: String
     },
     setup(props){
       const loading = ref(true)
@@ -49,12 +50,14 @@
       }
       
       watch(() => route.params.tag, loadPosts)    
-      
+            
       async function loadPosts(){
         loading.value = true
         items.value = []
 
-        const url = `${api_endpoint}/api/posts`
+        const url = (props.postsEndpoint) 
+          ? `${api_endpoint}/api/posts${props.postsEndpoint}`
+          : `${api_endpoint}/api/posts`
         
         items.value = await fetch(url).then(res=>res.json())
         loading.value = false

@@ -67,7 +67,14 @@ let routes = [
 let globalNavItems = [
   {name:"Home", path:"/", component: Home},
   {name:"Areas", path:"/areas", component: MasonryPosts},
-  {name:"Foundation", path:"/foundation", component: MasonryPosts},
+  {
+    name:"Foundation", 
+    path:"/foundation", 
+    component: MasonryPosts,
+    props:{
+      postsEndpoint: '/year/freshman'
+    }
+  },
   {name:"Projects", path:"/projects/", component: Projects},
   {name:"Forum", path:"/forum", component: MasonryPosts},
   {name:"Students", path:"/students", component: Home},
