@@ -116,7 +116,7 @@
     
 
     
-    document.getElementById("textinput").oninput = () => { 
+    document.getElementById("textinput").oninput = () => {
       const description = document.getElementById("textinput").value
       let isInclude = BadWords1.check(description)
       
@@ -138,7 +138,7 @@
       
       if (document.getElementById("textinput").style.color!= "black"){
         document.getElementById("textinput").style.color = "black"
-      } 
+      }
     }
     
 var rad = document.getElementsByClassName("radiobutton");
@@ -148,27 +148,23 @@ var prevprev = null
       prevprev = value
     }
     
-// for (var i = 0; i < rad.length; i++) {
-    // rad[i].addEventListener('change', 
-                            
-        function onradiochange(radio) {
+for (var i = 0; i < rad.length; i++) {
+    rad[i].onchange =  function() {
         if (prev === null){
           prev = document.getElementById("contactChoice1")
         }
         (prev) ? set(prev.value): null;
-        if (radio !== prev) {
-            prev = radio;
+        if (this !== prev) {
+            prev = this;
         }
         
-        console.log(radio.value)
+        console.log(this.value)
         document.getElementById("demo-cursor").classList.remove(prevprev)
         document.getElementById("democursortext").classList.remove(prevprev)
         document.getElementById("demo-cursor").classList.add(prev.value)
         document.getElementById("democursortext").classList.add(prev.value)
     }
-                           
-                           // );
-// }
+}
     
     dialog.onclick = function(e){
       if (e.target.tagName !== 'BUTTON') { return; }
