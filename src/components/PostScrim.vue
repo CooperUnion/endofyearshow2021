@@ -252,8 +252,6 @@
     background-image: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="48" height="48" viewBox="0, 0, 48, 48"><path d="M18,36 L30,24 L18,12" fill-opacity="0" stroke="Silver" stroke-width="2" stroke-linecap="square"/></svg>');
   }
 
-
-
   @media screen and (max-width: 767px) {
     .post-scrim .scrim-contents {
       padding: 84px 36px 36px 36px;
