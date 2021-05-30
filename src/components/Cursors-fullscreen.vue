@@ -148,27 +148,31 @@ var prevprev = null
       prevprev = value
     }
     
-for (var i = 0; i < rad.length; i++) {
-    rad[i].addEventListener('change', function() {
+// for (var i = 0; i < rad.length; i++) {
+    // rad[i].addEventListener('change', 
+                            
+        function onradiochange(radio) {
         if (prev === null){
           prev = document.getElementById("contactChoice1")
         }
         (prev) ? set(prev.value): null;
-        if (this !== prev) {
-            prev = this;
+        if (radio !== prev) {
+            prev = radio;
         }
         
-        console.log(this.value)
+        console.log(radio.value)
         document.getElementById("demo-cursor").classList.remove(prevprev)
         document.getElementById("democursortext").classList.remove(prevprev)
         document.getElementById("demo-cursor").classList.add(prev.value)
         document.getElementById("democursortext").classList.add(prev.value)
-    });
-}
+    }
+                           
+                           // );
+// }
     
-    dialog.addEventListener('click', function handleButtonClicks(e) {
+    dialog.onclick = function(e){
       if (e.target.tagName !== 'BUTTON') { return; }
-      dialog.removeEventListener('click', handleButtonClicks);
+      dialog.onclick = null;
       dialog.className = 'hidden';
       if (e.target === okButton) {
 var radios = document.getElementsByName('roleRadio');
@@ -185,7 +189,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
       } else {
         resolve({input: input.value, radio: "undefined"});
       }
-    });
+    };
   });
 }
     
