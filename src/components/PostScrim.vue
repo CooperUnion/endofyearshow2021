@@ -15,8 +15,8 @@
         <template v-if="assets.media.length>1">
           <button class="imgControl prev" @click="goPrev()">previous</button>
           <button class="imgControl next" @click="goNext()">next</button>
-          <img :src="assets.media[getPrev()].source_url" class="imgGhost prev" />
-          <img :src="assets.media[getNext()].source_url" class="imgGhost next" />
+          <div class="ghostBox"><img :src="assets.media[getPrev()].source_url" class="ghostImg prev" /></div>
+          <div class="ghostBox"><img :src="assets.media[getNext()].source_url" class="ghostImg next" /></div>
         </template>    
       </div>
       <div v-else-if="type==='url'">
@@ -202,7 +202,7 @@
     position: relative;
   }
   
-  .imgGhost {
+  .ghostBox {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -210,10 +210,13 @@
   }
 
 
-  .imgGhost.prev {
-    
+  .ghostImg.prev {
+    transform: translate(-100vw);
   }
 
+  .ghostImg.next {
+    transform: translate(100vw);
+  }
 
   .paginator {
     position: absolute;
