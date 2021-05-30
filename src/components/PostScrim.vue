@@ -121,11 +121,9 @@
     width: 48px;
     margin: 0;
     padding: 0;
-    border: 1px solid #fff;
-    border-radius: 50%;
     background-color: transparent;
-    background-image: url('data:image/svg+xml;utf8,<svg width="48" height="48" viewBox="0 0 48 48" fill="Gainsboro" xmlns="http://www.w3.org/2000/svg"><path d="M32.8895 32.8896L15.111 15.1112" stroke="Gainsboro" stroke-width="2" stroke-linecap="square"/><path d="M32.889 15.1112L15.1105 32.8896" stroke="Gainsboro" stroke-width="2" stroke-linecap="square"/><circle cx="24" cy="24" r="23" stroke="Gainsboro" stroke-width="2"/></svg>');
-    background-size: 28px 28px;
+    background-image: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="48" height="48" viewbox="0, 0, 48, 48"><path d="M32.889,32.89 L15.111,15.111" fill-opacity="0" stroke="Silver" stroke-width="2" stroke-linecap="square" /><path d="M32.889,15.111 L15.111,32.89" fill-opacity="0" stroke="Silver" stroke-width="2" stroke-linecap="square" /><path d="M47,24 C47,36.703 36.703,47 24,47 C11.297,47 1,36.703 1,24 C1,11.297 11.297,1 24,1 C36.703,1 47,11.297 47,24 z" fill-opacity="0" stroke="Silver" stroke-width="2" /></svg>');
+    background-size: 48px 48px;
     background-repeat: no-repeat;
     background-position: center center;
     text-indent: -999vw;
@@ -198,12 +196,12 @@
   .imgControl {
     position: absolute;
     top: 0;
-    width: 12px;
+    width: 24px;
     height: 100%;
     overflow: hidden;
     text-indent: -999vw;
     background-repeat: no-repeat;
-    background-size: 12px auto;
+    background-size: 24px auto;
     background-color: transparent;
     background-position: center center;
     margin: 0;
@@ -212,13 +210,13 @@
   
   .imgControl.prev {
     left: 0;
-    background-image: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="16.274" height="24.892" viewBox="0, 0, 16.274, 24.892"><path d="M0.91,12.227 L0.547,11.782 L0,12.227 L0.547,12.673 L0.91,12.227 z M15.011,0 L0.547,11.782 L1.274,12.673 L15.737,0.892 L15.011,0 z M0.547,12.673 L15.547,24.892 L16.274,24 L1.274,11.782 L0.547,12.673 z" fill="white"/></svg>');
+    background-image: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="48" height="48" viewBox="0, 0, 48, 48"><path d="M30,12 L18,24 L30,36" fill-opacity="0" stroke="Silver" stroke-width="2" stroke-linecap="square"/></svg>');
   }
 
 
   .imgControl.next {
     right: 0;
-    background-image: url('<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="16.274" height="24.892" viewBox="0, 0, 16.274, 24.892"><path d="M15.363,12.664 L15.726,13.11 L16.274,12.664 L15.726,12.218 L15.363,12.664 z M1.263,24.892 L15.726,13.11 L15,12.218 L0.536,24 L1.263,24.892 z M15.726,12.218 L0.726,0 L0,0.892 L15,13.11 L15.726,12.218 z" fill="white"/></svg>');
+    background-image: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="48" height="48" viewBox="0, 0, 48, 48"><path d="M18,36 L30,24 L18,12" fill-opacity="0" stroke="Silver" stroke-width="2" stroke-linecap="square"/></svg>');
   }
 
 
