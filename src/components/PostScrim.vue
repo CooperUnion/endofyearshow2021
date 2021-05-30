@@ -9,9 +9,10 @@
       <!-- logic for separate content types -->
       <div v-if="type==='images'" class="imageDeck">
         <img :src="assets.media[current].source_url" class="imgPrime" />
-        <div v-if="assets.media.length>1">
-          <b @click="prev()">prev</b> | <b @click="next()">next</b>
-        </div>    
+        <template v-if="assets.media.length>1">
+          <button class="imgControl prev" @click="prev()">previous</button>
+          <button class="imgControl next" @click="next()">next</button>
+        </template>    
       </div>
       <div v-else-if="type==='url'">
         <img :src="assets.preview.source_url" />
@@ -187,7 +188,38 @@
     flex-wrap: wrap;
   }
   
-  .im
+  .imageDeck {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+  }
+
+
+  .imgControl {
+    position: absolute;
+    top: 0;
+    width: 24px;
+    height: 100%;
+    overflow: hidden;
+    text-indent: -999vw;
+    background-repeat: no-repeat;
+    background-size: 24px auto;
+    background-color: transparent;
+    background-position: center center;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .imgControl.prev {
+    background-image: url('data:image/svg+xml;utf8,<svg fill="white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16,21 C15.744,21 15.488,20.902 15.293,20.707 L7.293,12.707 C6.902,12.316 6.902,11.684 7.293,11.293 L15.293,3.293 C15.684,2.902 16.316,2.902 16.707,3.293 C17.098,3.684 17.098,4.316 16.707,4.707 L9.414,12 L16.707,19.293 C17.098,19.684 17.098,20.316 16.707,20.707 C16.512,20.902 16.256,21 16,21"/></svg>');
+  }
+
+
+  .imgControl.next {
+    background-image: url('data:image/svg+xml;utf8,<svg fill="white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16,21 C15.744,21 15.488,20.902 15.293,20.707 L7.293,12.707 C6.902,12.316 6.902,11.684 7.293,11.293 L15.293,3.293 C15.684,2.902 16.316,2.902 16.707,3.293 C17.098,3.684 17.098,4.316 16.707,4.707 L9.414,12 L16.707,19.293 C17.098,19.684 17.098,20.316 16.707,20.707 C16.512,20.902 16.256,21 16,21"/></svg>');
+  }
+
+
 
   @media screen and (max-width: 767px) {
     .post-scrim .scrim-contents {
