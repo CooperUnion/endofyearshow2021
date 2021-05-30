@@ -13,8 +13,10 @@
       <div v-if="type==='images'" class="imageDeck">
         <img :src="assets.media[current].source_url" class="imgPrime" />
         <template v-if="assets.media.length>1">
-          <button class="imgControl prev" @click="prev()">previous</button>
-          <button class="imgControl next" @click="next()">next</button>
+          <button class="imgControl prev" @click="goPrev()">previous</button>
+          <button class="imgControl next" @click="goNext()">next</button>
+          <img :src="assets.media[getPrev()].source_url" class="imgGhost prev" />
+          <img :src="assets.media[getNext()].source_url" class="imgGhost next" />
         </template>    
       </div>
       <div v-else-if="type==='url'">
@@ -29,7 +31,6 @@
         <img :src="assets.preview.source_url" />
         <b v-if="assets.url"><a :href="assets.url">visit site url</a></b>
       </div>         
-
 
       <section class="meta">
         <div class="description-block">
@@ -71,21 +72,23 @@
         store.commit('resetActiveScrimId')
       }   
       
-      const next = () => {
-        current.value = (current.value + 1 > props.assets.media.length - 1) ? 0 : current.value + 1
+      const goNext = () => {
+        current.value = getNext()
       }
       
-      const prev = () => {
-        current.value = (current.value - 1 < 0) ? props.assets.media.length -1 : current.value - 1
+      const goPrev = () => {
+        current.value = getPrev()
+      }
+    
+      const getNext = () => {
+        return (current.value + 1 > props.assets.media.length - 1) ? 0 : current.value + 1
       }
       
-
-      const prev = () => {
-        current.value = (current.value - 1 < 0) ? props.assets.media.length -1 : current.value - 1
+      const getPrev = () => {
+        return (current.value - 1 < 0) ? props.assets.media.length -1 : current.value - 1
       }
       
-
-      return {hideScrim, next, prev, current}
+      return {hideScrim, goNext, goPrev, current, getPrev, getNext}
     }
 
     
@@ -198,6 +201,19 @@
     flex-direction: row;
     position: relative;
   }
+  
+  .imgGhost {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+
+  .imgGhost.prev {
+    
+  }
+
 
   .paginator {
     position: absolute;
