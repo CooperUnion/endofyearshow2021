@@ -16,7 +16,8 @@
         <div class="message">foobar</div>
         <div class="message2">foobar</div>
 
-    <input style="color:gainsboro;" maxlength="30" id="textinput" type="text">
+    
+      <input v-model="cursorName" placeholder="Display Name" style="color:gainsboro;" maxlength="30" id="textinput" type="text">
 
     <div class="radioscontainer">
       <input class="radiobutton" type="radio" id="contactChoice1"
@@ -41,7 +42,7 @@
     
 <div class="cursordemo">
 
- <div id="demo-cursor" class="current-student friend demo-cursor"><div id="democursortext" class="current-student name name-demo">Display Name</div></div>
+ <div id="demo-cursor" class="current-student friend demo-cursor"><div id="democursortext" class="current-student name name-demo">{{cursorName}}</div></div>
   
     </div>
 
@@ -116,30 +117,30 @@
     
 
     
-    document.getElementById("textinput").oninput = () => {
-      const description = document.getElementById("textinput").value
-      let isInclude = BadWords1.check(description)
+//     document.getElementById("textinput").oninput = () => {
+//       const description = document.getElementById("textinput").value
+//       let isInclude = BadWords1.check(description)
       
-      if (!isInclude){
-        if (document.getElementById("democursortext").classList.contains("error")){
-        document.getElementById("democursortext").classList.remove("error")
-        document.getElementById("demo-cursor").classList.remove("error")
-        document.getElementsByClassName('ok')[0].classList.remove("error")
-        }
-      document.getElementById("democursortext").innerHTML  = document.getElementById("textinput").value
+//       if (!isInclude){
+//         if (document.getElementById("democursortext").classList.contains("error")){
+//         document.getElementById("democursortext").classList.remove("error")
+//         document.getElementById("demo-cursor").classList.remove("error")
+//         document.getElementsByClassName('ok')[0].classList.remove("error")
+//         }
+//       document.getElementById("democursortext").innerHTML  = document.getElementById("textinput").value
       
         
-      } else {
-        document.getElementById("democursortext").innerHTML = "Nice try. Use another name."
-        document.getElementById("democursortext").classList.add("error")
-        document.getElementById("demo-cursor").classList.add("error")
-        document.getElementsByClassName('ok')[0].classList.add("error")
-      }
+//       } else {
+//         document.getElementById("democursortext").innerHTML = "Nice try. Use another name."
+//         document.getElementById("democursortext").classList.add("error")
+//         document.getElementById("demo-cursor").classList.add("error")
+//         document.getElementsByClassName('ok')[0].classList.add("error")
+//       }
       
-      if (document.getElementById("textinput").style.color!= "black"){
-        document.getElementById("textinput").style.color = "black"
-      }
-    }
+//       if (document.getElementById("textinput").style.color!= "black"){
+//         document.getElementById("textinput").style.color = "black"
+//       }
+//     }
     
 var rad = document.getElementsByClassName("radiobutton");
 var prev = null;
