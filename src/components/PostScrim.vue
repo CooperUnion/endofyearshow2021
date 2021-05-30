@@ -7,8 +7,8 @@
         <button class="close" @click="hideScrim()">close</button>
       </header>
       <!-- logic for separate content types -->
-      <div v-if="type==='images'">
-        <img :src="assets.media[current].source_url" />
+      <div v-if="type==='images'" class="imageDeck">
+        <img :src="assets.media[current].source_url" class="imgPrime" />
         <div v-if="assets.media.length>1">
           <b @click="prev()">prev</b> | <b @click="next()">next</b>
         </div>    
@@ -67,12 +67,12 @@
         store.commit('resetActiveScrimId')
       }   
       
-      const next = ()=>{
+      const next = () => {
         current.value = (current.value + 1 > props.assets.media.length - 1) ? 0 : current.value + 1
         // console.log("next clicked", current.value)
       }
       
-      const prev = ()=>{
+      const prev = () => {
         current.value = (current.value - 1 < 0) ? props.assets.media.length -1 : current.value - 1
         // console.log("prev clicked", current.value)
       }
@@ -186,6 +186,8 @@
     justify-content: flex-end;
     flex-wrap: wrap;
   }
+  
+  .im
 
   @media screen and (max-width: 767px) {
     .post-scrim .scrim-contents {
