@@ -6,6 +6,7 @@ dependencies:
   vue-masonry: 0.13.0
   vue-masonry-wall: 0.3.2
   vue-router: 4.0.6
+  vue-use-gesture: 1.0.1
   vuex: 4.0.0
 devDependencies:
   '@vue/cli-plugin-babel': 4.5.12
@@ -11092,6 +11093,14 @@ packages:
     dev: true
     resolution:
       integrity: sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
+  /vue-demi/0.6.2:
+    dev: false
+    hasBin: true
+    peerDependencies:
+      vue: ^2.6.0 || >=3.0.0-rc.1
+    requiresBuild: true
+    resolution:
+      integrity: sha512-4KfwxbqsZcDz7UryD11oHa6FLK9Gzx4MIwAEcP37IbUdXuF6DHg2w9L5Zv5t+FNqsuAjEQ2NnGVIZ3u71y435Q==
   /vue-eslint-parser/7.6.0:
     dependencies:
       debug: 4.3.1
@@ -11214,6 +11223,17 @@ packages:
     dev: true
     resolution:
       integrity: sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
+  /vue-use-gesture/1.0.1:
+    dependencies:
+      vue-demi: 0.6.2
+    dev: false
+    engines:
+      node: '>=10'
+    peerDependencies:
+      '@vue/composition-api': 1.0.0-rc.1
+      vue: ^2.0.0 || >=3.0.0-rc.0
+    resolution:
+      integrity: sha512-L/ToO34iJQsTeDZx/b6hzvU8PrDhIYBI6ZjhO5GXdstfWS5GyjyJe8HN+E71i7zHLCoUOofTmzc0LYYvUq0W7A==
   /vue/2.6.12:
     dev: false
     resolution:
@@ -11838,4 +11858,5 @@ specifiers:
   vue-masonry: ^0.13.0
   vue-masonry-wall: ^0.3.2
   vue-router: ^4.0.6
+  vue-use-gesture: ^1.0.1
   vuex: ^4.0.0
