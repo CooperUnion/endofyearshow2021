@@ -11,7 +11,7 @@
       </header>
       <!-- logic for separate content types -->
       <div v-if="type==='images'" :class="['imageDeck', {'animating' : animState}, animDirection]">
-        <div class="carousel">
+        <div class="carousel" v-bind="bind()">
           <img :src="assets.media[current].source_url" class="imgPrime" />
           <template v-if="assets.media.length>1">
             <div class="ghostBox prev"><img :src="assets.media[getPrev()].source_url" class="ghostImg" /></div>
@@ -53,6 +53,9 @@
   import { useStore } from 'vuex'  
   import TagList from '@/components/TagList.vue'
   
+  import { useDrag } from 'vue-use-gesture'
+  import { useSpring } from 'vue-use-spring'
+  import { computed } from 'vue'
   
   export default {
     name: 'PostScrim',
@@ -108,8 +111,12 @@
       const getPrev = () => {
         return (current.value - 1 < 0) ? props.assets.media.length -1 : current.value - 1
       }
+
+      const [{ x }, set] = useSpring(() => ({ x: 0 }))
+      const bind = useDrag(({ down, movement: [mx] }) => set({ x: down ? mx : 0 }), { axis: 'x' })
+      const style = computed(() => ({ transform: `translate3d(${x.value}px,${y.value}px,0)` }))      
             
-      return {hideScrim, goNext, goPrev, current, getPrev, getNext, animState, animDirection}
+      return {hideScrim, goNext, goPrev, current, getPrev, getNext, animState, animDirection, bind}
     }
 
     
