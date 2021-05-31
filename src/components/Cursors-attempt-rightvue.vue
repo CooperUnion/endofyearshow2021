@@ -80,6 +80,8 @@
   },
 
   mounted(){
+         this.prev = null;
+     this.prevprev = null;  
   },
 
   sockets: {
@@ -98,6 +100,7 @@
     },
     
     init(data){      
+
       
    async function run(data, that){
       
@@ -118,16 +121,15 @@
     
     //////////////////////////////////////////////////////////////////
     
-var rad = document.getElementsByClassName("radiobutton");
-var prev = null;
-var prevprev = null    
+// var rad = document.getElementsByClassName("radiobutton");
+
 
 
 
     
     
     
-for (var i = 0; i < rad.length; i++) {
+// for (var i = 0; i < rad.length; i++) {
   
 //       function set(value){
 //       prevprev = value
@@ -148,7 +150,7 @@ for (var i = 0; i < rad.length; i++) {
 //         document.getElementById("demo-cursor").classList.add(prev.value)
 //         document.getElementById("democursortext").classList.add(prev.value)
 //     }
-}
+// }
     
     //////////////////////////////////////////////////////////////////
     
@@ -164,6 +166,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
   if (radios[i].checked) {
    radio = radios[i].value
    console.log(radio)
+   console.log("was radio")
     resolve({input: input.value, radio: radio});
     break;
   }
@@ -280,25 +283,25 @@ for (var i = 0, length = radios.length; i < length; i++) {
         document.getElementById("textinput").style.color = "black"
       }
   },
-    radioChange: function(){
-            function set(value){
-      prevprev = value
+    radioChange: function(){ 
+            function set(value, that){
+      that.prevprev = value
     }
   
     
-        if (prev === null){
-          prev = document.getElementById("contactChoice1")
+        if (this.prev === null){
+          this.prev = document.getElementById("contactChoice1").value
         }
-        (prev) ? set(prev.value): null;
-        if (this !== prev) {
-            prev = this;
+        (this.prev) ? set(this.prev, this): null;
+        if (this.roleRadio !== this.prev) {
+            this.prev = this.roleRadio;
         }
         
-        console.log(this.value)
-        document.getElementById("demo-cursor").classList.remove(prevprev)
-        document.getElementById("democursortext").classList.remove(prevprev)
-        document.getElementById("demo-cursor").classList.add(prev.value)
-        document.getElementById("democursortext").classList.add(prev.value)
+        console.log(this.roleRadio)
+        document.getElementById("demo-cursor").classList.remove(this.prevprev)
+        document.getElementById("democursortext").classList.remove(this.prevprev)
+        document.getElementById("demo-cursor").classList.add(this.roleRadio)
+        document.getElementById("democursortext").classList.add(this.roleRadio)
     
     }
 }
