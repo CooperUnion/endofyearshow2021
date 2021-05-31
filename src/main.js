@@ -6,12 +6,12 @@ import store from './store'
 import mitt from 'mitt'
 import { VueMasonryPlugin } from 'vue-masonry/src/masonry-vue3.plugin';
 import VueSocketIOExt from 'vue-socket.io-extended';
-import { io } from 'socket.io-client';
 
-const socket = io('https://eoyssockets2021.glitch.me');
+import $socket from './store/socket';
+
 const emitter = mitt()
 let app = createApp(App)
-  .use(VueSocketIOExt, socket, {store})  
+  .use(VueSocketIOExt, $socket)  
   .use(store)
   .use(router)
 
