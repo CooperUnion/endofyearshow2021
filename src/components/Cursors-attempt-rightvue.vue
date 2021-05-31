@@ -21,19 +21,19 @@
 
     <div class="radioscontainer">
       <input class="radiobutton" type="radio" id="contactChoice1"
-       name="roleRadio" value="current-student" checked>
+       name="roleRadio" v-on:change="radioChange" v-model="roleRadio" value="current-student">
       <label for="contactChoice1">Current Student</label> <br>
 
       <input class="radiobutton" type="radio" id="contactChoice2"
-       name="roleRadio" value="faculty-staff">
+       name="roleRadio" v-on:change="radioChange" v-model="roleRadio" value="faculty-staff">
       <label for="contactChoice2">Faculty & Staff</label><br>
 
       <input class="radiobutton" type="radio" id="contactChoice3"
-       name="roleRadio" value="alumnus">
+       name="roleRadio" v-on:change="radioChange" v-model="roleRadio" value="alumnus">
       <label for="contactChoice3">Alumnus</label><br>
       
             <input class="radiobutton" type="radio" id="contactChoice4"
-       name="roleRadio" value="friend-cu">
+       name="roleRadio" v-on:change="radioChange" v-model="roleRadio" value="friend-cu">
       <label for="contactChoice4">Friend</label>
     </div>
 
@@ -74,7 +74,8 @@
     return {
       isConnected: false,
       socketMessage: '',
-      democursorname: ''
+      democursorname: '',
+      roleRadio: ""
     }
   },
 
@@ -114,30 +115,44 @@
 
   return new Promise(function(resolve, reject) {
     
+    
+    //////////////////////////////////////////////////////////////////
+    
 var rad = document.getElementsByClassName("radiobutton");
 var prev = null;
 var prevprev = null    
-    function set(value){
-      prevprev = value
-    }
+
+
+
+    
+    
     
 for (var i = 0; i < rad.length; i++) {
-    rad[i].onchange =  function() {
-        if (prev === null){
-          prev = document.getElementById("contactChoice1")
-        }
-        (prev) ? set(prev.value): null;
-        if (this !== prev) {
-            prev = this;
-        }
+  
+//       function set(value){
+//       prevprev = value
+//     }
+  
+//     rad[i].onchange =  function() {
+//         if (prev === null){
+//           prev = document.getElementById("contactChoice1")
+//         }
+//         (prev) ? set(prev.value): null;
+//         if (this !== prev) {
+//             prev = this;
+//         }
         
-        console.log(this.value)
-        document.getElementById("demo-cursor").classList.remove(prevprev)
-        document.getElementById("democursortext").classList.remove(prevprev)
-        document.getElementById("demo-cursor").classList.add(prev.value)
-        document.getElementById("democursortext").classList.add(prev.value)
-    }
+//         console.log(this.value)
+//         document.getElementById("demo-cursor").classList.remove(prevprev)
+//         document.getElementById("democursortext").classList.remove(prevprev)
+//         document.getElementById("demo-cursor").classList.add(prev.value)
+//         document.getElementById("democursortext").classList.add(prev.value)
+//     }
 }
+    
+    //////////////////////////////////////////////////////////////////
+    
+    
     
     dialog.onclick = function(e){
       if (e.target.tagName !== 'BUTTON') { return; }
@@ -198,8 +213,8 @@ for (var i = 0, length = radios.length; i < length; i++) {
     },
     
     nameUpdated(data){
-                          console.log("name updated", data)
-                          this.Meeting1.updateFriendName(data.data.id, data.data.player, this.Meeting1, data.data.name, data.data.role, data)
+     console.log("name updated", data)
+     this.Meeting1.updateFriendName(data.data.id, data.data.player, this.Meeting1, data.data.name, data.data.role, data)
     },
 
     disconnect() {
@@ -264,7 +279,28 @@ for (var i = 0, length = radios.length; i < length; i++) {
       if (document.getElementById("textinput").style.color!= "black"){
         document.getElementById("textinput").style.color = "black"
       }
-  }
+  },
+    radioChange: function(){
+            function set(value){
+      prevprev = value
+    }
+  
+    
+        if (prev === null){
+          prev = document.getElementById("contactChoice1")
+        }
+        (prev) ? set(prev.value): null;
+        if (this !== prev) {
+            prev = this;
+        }
+        
+        console.log(this.value)
+        document.getElementById("demo-cursor").classList.remove(prevprev)
+        document.getElementById("democursortext").classList.remove(prevprev)
+        document.getElementById("demo-cursor").classList.add(prev.value)
+        document.getElementById("democursortext").classList.add(prev.value)
+    
+    }
 }
     }
 </script>
