@@ -4,7 +4,8 @@ const activeArea = new Set()
 const activeGlobalNav = ''
 const activeScrimId = 0
 
-export default createStore({
+
+const application = {
   state() {
     return {
       activeArea,
@@ -43,6 +44,16 @@ export default createStore({
   actions: {
   },
   modules: {
+  }
+}
+
+const socket = {}
+
+
+export default createStore({
+  modules:{
+    application,
+    socket
   }
 })
 
