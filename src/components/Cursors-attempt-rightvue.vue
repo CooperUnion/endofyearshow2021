@@ -116,46 +116,7 @@
   dialog.querySelector('.message2').innerHTML = String(message2)
   dialog.className = '';
 
-  return new Promise(function(resolve, reject) {
-    
-    
-    //////////////////////////////////////////////////////////////////
-    
-// var rad = document.getElementsByClassName("radiobutton");
-
-
-
-
-    
-    
-    
-// for (var i = 0; i < rad.length; i++) {
-  
-//       function set(value){
-//       prevprev = value
-//     }
-  
-//     rad[i].onchange =  function() {
-//         if (prev === null){
-//           prev = document.getElementById("contactChoice1")
-//         }
-//         (prev) ? set(prev.value): null;
-//         if (this !== prev) {
-//             prev = this;
-//         }
-        
-//         console.log(this.value)
-//         document.getElementById("demo-cursor").classList.remove(prevprev)
-//         document.getElementById("democursortext").classList.remove(prevprev)
-//         document.getElementById("demo-cursor").classList.add(prev.value)
-//         document.getElementById("democursortext").classList.add(prev.value)
-//     }
-// }
-    
-    //////////////////////////////////////////////////////////////////
-    
-    
-    
+  return new Promise(function(resolve, reject) {    
     dialog.onclick = function(e){
       if (e.target.tagName !== 'BUTTON') { return; }
       dialog.onclick = null;
