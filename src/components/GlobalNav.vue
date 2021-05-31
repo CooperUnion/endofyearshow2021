@@ -21,7 +21,7 @@
       const route = useRoute()
 
       //returns state for all area-nav items
-      const activeGlobal = store.state.activeGlobal
+      const activeGlobal = store.state.application.activeGlobal
 
       const isActiveRoute = (current) => {
         if(current === route.name) {

@@ -11,10 +11,10 @@ import { io } from 'socket.io-client';
 const socket = io('https://eoyssockets2021.glitch.me');
 const emitter = mitt()
 let app = createApp(App)
-  .use(VueSocketIOExt)
-  .use(socket)  
+  .use(VueSocketIOExt, socket, {store})  
   .use(store)
   .use(router)
+
 
 app.config.globalProperties.emitter = emitter
 app.config.globalProperties.api_endpoint = process.env.VUE_APP_FORM_API_ENDPOINT || 'https://eoys-api-2021.glitch.me'

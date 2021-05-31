@@ -55,7 +55,7 @@
       // const baseNav = ref(currentBaseNav())
       
       //returns state for all area-nav items
-      const activeArea = ref(store.state.activeArea)
+      const activeArea = ref(store.state.application.activeArea)
       
       const currentAreaState = (areaItem) => {
         return activeArea.value.has(areaItem)
@@ -70,7 +70,7 @@
           store.commit('activateArea', areaItem)
         }
         // recomputeNav()
-        const tags = Array.from(store.state.activeArea).join(',')
+        const tags = Array.from(store.state.application.activeArea).join(',')
         router.push(`/tag/${tags}`)
       }
       
