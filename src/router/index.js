@@ -6,6 +6,8 @@ import MasonryTag from '@/views/MasonryTag.vue'
 import Projects from '@/views/Projects.vue'
 import Project from '@/views/Project.vue'
 
+import SocketDebug from '@/views/SocketDebug.vue'
+
 
 
 let routes = [
@@ -84,6 +86,11 @@ let globalNavItems = [
 
 routes = routes.concat(globalNavItems)
 
+routes.push(  {
+  path: '/SocketDebug',
+  name: 'SocketDebug',
+  component: SocketDebug
+})
 
 
 const router = createRouter({
