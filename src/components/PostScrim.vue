@@ -11,12 +11,16 @@
       </header>
       <!-- logic for separate content types -->
       <div v-if="type==='images'" :class="['imageDeck', {'animating' : animState}, animDirection]">
-        <img :src="assets.media[current].source_url" class="imgPrime" />
+        <div class="carousel">
+          <img :src="assets.media[current].source_url" class="imgPrime" />
+          <template v-if="assets.media.length>1">
+            <div class="ghostBox"><img :src="assets.media[getPrev()].source_url" class="ghostImg prev" /></div>
+            <div class="ghostBox"><img :src="assets.media[getNext()].source_url" class="ghostImg next" /></div>
+          </template>
+        </div>
         <template v-if="assets.media.length>1">
           <button class="imgControl prev" @click="goPrev()">previous</button>
           <button class="imgControl next" @click="goNext()">next</button>
-          <div class="ghostBox"><img :src="assets.media[getPrev()].source_url" class="ghostImg prev" /></div>
-          <div class="ghostBox"><img :src="assets.media[getNext()].source_url" class="ghostImg next" /></div>
         </template>    
       </div>
       <div v-else-if="type==='url'">
@@ -79,20 +83,20 @@
       const goNext = () => {
         animState.value = true;
         animDirection.value = "next"
-        current.value = getNext()
         setTimeout(() => {
           animState.value = false
           animDirection.value = ""
+          current.value = getNext()          
         }, 1000);
       }
       
       const goPrev = () => {
         animState.value = true;
         animDirection.value = "prev"
-        current.value = getPrev()
         setTimeout(() => {
           animState.value = false
           animDirection.value = ""
+          current.value = getPrev()          
         }, 1000);
 
       }
@@ -214,11 +218,27 @@
   }
   
   .imageDeck {
-    display: flex;
-    flex-direction: row;
     position: relative;
   }
   
+  .imageDeck .carousel {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .imageDeck.animating .carousel {
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .imageDeck.prev .carousel {
+    transform: translate(-100vw);
+  }
+  
+  .imageDeck.next .carousel {
+    transform: translate(100vw);
+  }
+
   .ghostBox {
     position: absolute;
     top: 50%;
@@ -227,13 +247,13 @@
   }
 
   .ghostImg.prev {
-    transform: translate(-100vw);
+    transform: translate(-50vw);
   }
 
   .ghostImg.next {
-    transform: translate(100vw);
+    transform: translate(50vw);
   }
-
+  
   .paginator {
     position: absolute;
     top: 0;
