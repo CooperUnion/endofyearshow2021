@@ -11,7 +11,7 @@
       </header>
       <!-- logic for separate content types -->
       <div v-if="type==='images'" :class="['imageDeck', {'animating' : animState}, animDirection]">
-        <div class="carousel" v-bind="bind()">
+        <div class="carousel" v-bind="bind()" :style="style">
           <img :src="assets.media[current].source_url" class="imgPrime" />
           <template v-if="assets.media.length>1">
             <div class="ghostBox prev"><img :src="assets.media[getPrev()].source_url" class="ghostImg" /></div>
@@ -116,7 +116,7 @@
       const bind = useDrag(({ down, movement: [mx] }) => set({ x: down ? mx : 0 }), { axis: 'x' })
       const style = computed(() => ({ transform: `translate3d(${x.value}px,${y.value}px,0)` }))      
             
-      return {hideScrim, goNext, goPrev, current, getPrev, getNext, animState, animDirection, bind}
+      return {hideScrim, goNext, goPrev, current, getPrev, getNext, animState, animDirection, bind, style}
     }
 
     
@@ -232,7 +232,8 @@
     position: relative;
     display: flex;
     flex-direction: row;
-  }
+    touch-action: none;
+ }
   
   .imageDeck.animating .carousel {
     transition: transform .4s cubic-bezier(0.68, -0.55, 0.265, 1.55);

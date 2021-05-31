@@ -7,6 +7,7 @@ dependencies:
   vue-masonry-wall: 0.3.2
   vue-router: 4.0.6
   vue-use-gesture: 1.0.1
+  vue-use-spring: 0.0.2
   vuex: 4.0.0
 devDependencies:
   '@vue/cli-plugin-babel': 4.5.12
@@ -11234,6 +11235,14 @@ packages:
       vue: ^2.0.0 || >=3.0.0-rc.0
     resolution:
       integrity: sha512-L/ToO34iJQsTeDZx/b6hzvU8PrDhIYBI6ZjhO5GXdstfWS5GyjyJe8HN+E71i7zHLCoUOofTmzc0LYYvUq0W7A==
+  /vue-use-spring/0.0.2:
+    dependencies:
+      vue-demi: 0.6.2
+    dev: false
+    peerDependencies:
+      vue: ^2.6.12 || ^3.0.0
+    resolution:
+      integrity: sha512-xheI3WBcZ3to/U8flkEvdwqyrmMu3BcoZ5EVX7fwjTf3gFQ01ZWzMEpJKlcs+6v/rSUJjmPA6poj2nSWdchLzw==
   /vue/2.6.12:
     dev: false
     resolution:
@@ -11859,4 +11868,5 @@ specifiers:
   vue-masonry-wall: ^0.3.2
   vue-router: ^4.0.6
   vue-use-gesture: ^1.0.1
+  vue-use-spring: ^0.0.2
   vuex: ^4.0.0
