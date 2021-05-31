@@ -19,8 +19,8 @@
           </template>
         </div>
         <template v-if="assets.media.length>1">
-          <button class="imgControl prev" @click="goPrev()">previous</button>
-          <button class="imgControl next" @click="goNext()">next</button>
+          <button class="imgControl prev" @click="goPrev" @keyup.left="goPrev">previous</button>
+          <button class="imgControl next" @click="goNext" @keyup.right="goNext">next</button>
         </template>    
       </div>
       <div v-else-if="type==='url'">
