@@ -41,7 +41,6 @@
   </div>
     
 <div class="cursordemo">
-
  <div id="demo-cursor" class="current-student friend demo-cursor"><div id="democursortext" class="current-student name name-demo">{{ democursorname }}</div></div>
   
     </div>
@@ -99,7 +98,7 @@
       this.isConnected = true;
     },
     
-    init(data){      
+    init(data){
 
       
    async function run(data, that){
