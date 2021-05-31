@@ -47,8 +47,21 @@ const application = {
   }
 }
 
-const socket = {}
+const socket = {  state() {
+    return {
+      message: 'blank'
+    }
+  },
+  mutations: {
+    updateTest(state, message) {
+      state.message = message
+    }
 
+  },
+  getters: {},
+  actions: {
+  }
+}
 
 export default createStore({
   modules:{
