@@ -53,15 +53,15 @@ const socket = {  state() {
     }
   },
   mutations: {
-    SOCKET_UPDATE_MESSAGE(state, message) {
+    SOCKET_USER_MESSAGE(state, message) {
       state.message = message
     }
 
   },
   getters: {},
   actions: {
-    socket_updateMessage ({ dispatch, commit }, message) {
-     commit('SOCKET_UPDATE_MESSAGE', message);
+    socket_userMessage ({ dispatch, commit }, message) {
+     commit('SOCKET_USER_MESSAGE', message);
     }
   }
 }

@@ -2,6 +2,11 @@
   <h1>
     SocketDebug
   </h1>
+  <ul>
+    <li>
+      <b @click="dump()">dump vuex</b>
+    </li>
+  </ul>
   <h2>
     {{message}}
   </h2>
@@ -9,7 +14,7 @@
 
 <script>
 
-  import { ref } from 'vue'
+  import { ref, computed } from 'vue'
   import { useStore } from 'vuex'  
   
   export default {
@@ -18,8 +23,12 @@
   },
   setup(){
       const store = useStore()
-      const message = ref(store.state.socket.message)
+      // const message = ref(store.state.socket.message)
+      const message = computed(() => store.state.socket.message)
 
+      const dump = ()=>{
+        console.log(store.state.socket)
+      }
       //toggles areaItem state from active to inactive
       // const toggleArea = (areaItem) => {
       //   console.log({areaItem})
@@ -33,9 +42,7 @@
       //   router.push(`/tag/${tags}`)
       // }
       
-      console.log(store.state.socket)
-      
-    return {message}
+    return {message, dump}
   }
 }
 </script>
