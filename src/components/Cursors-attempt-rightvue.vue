@@ -103,8 +103,8 @@
       
    async function run(data, that){
       
-          that.BadWords1 = new BadWords();
-          function promptPromise(message, message2) {
+  that.BadWords1 = new BadWords();
+  function promptPromise(message, message2) {
   var dialog  = document.getElementById('dialog');
   var input   = document.getElementById("textinput");
   var okButton = dialog.querySelector('button.ok');
@@ -115,7 +115,7 @@
   dialog.querySelector('.message2').innerHTML = String(message2)
   dialog.className = '';
 
-  return new Promise(function(resolve, reject) {    
+  return new Promise(function(resolve, reject) {
     dialog.onclick = function(e){
       if (e.target.tagName !== 'BUTTON') { return; }
       dialog.onclick = null;
@@ -167,12 +167,13 @@ for (var i = 0, length = radios.length; i < length; i++) {
     }).catch(function() {
       // output.innerHTML = '¯\\_(ツ)_/¯';
       console.log("ERROR?")
-    }); }
+    }); 
+   
+   }
       console.log(this)
       var that = this;
       run(data, that);
       
-
     },
     
     nameUpdated(data){
