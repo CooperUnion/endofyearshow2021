@@ -8,7 +8,8 @@
     </div>
 
 <!--   <p>The current time is <span id="time-stamp"></span>.</p> -->
-  <div id="dialog" class="hidden">
+<!--   <div id="dialog" class="hidden"> -->
+    <div id="dialog">
     <div id="dialogchild">
     <button class="close-dialog">
       X
@@ -16,7 +17,7 @@
         <div class="message">foobar</div>
         <div class="message2">foobar</div>
 
-    <input style="color:gainsboro;" maxlength="30" id="textinput" type="text">
+    <input v-model="democursorname" placeholder="Display Name" maxlength="30" id="textinput" type="text">
 
     <div class="radioscontainer">
       <input class="radiobutton" type="radio" id="contactChoice1"
@@ -41,7 +42,7 @@
     
 <div class="cursordemo">
 
- <div id="demo-cursor" class="current-student friend demo-cursor"><div id="democursortext" class="current-student name name-demo">Display Name</div></div>
+ <div id="demo-cursor" class="current-student friend demo-cursor"><div id="democursortext" class="current-student name name-demo">{{ democursorname }}</div></div>
   
     </div>
 
@@ -72,7 +73,8 @@
       data() {
     return {
       isConnected: false,
-      socketMessage: ''
+      socketMessage: '',
+    democursorname: ''
     }
   },
 
@@ -111,35 +113,37 @@
   dialog.className = '';
 
   return new Promise(function(resolve, reject) {
-    document.getElementById("textinput").placeholder = "Display Name";
-    document.getElementById("textinput").maxlength = "30"
+    // document.getElementById("textinput").placeholder = "Display Name";
+    // document.getElementById("textinput").maxlength = "30"
     
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
-    document.getElementById("textinput").oninput = () => {
-      const description = document.getElementById("textinput").value
-      let isInclude = BadWords1.check(description)
+//     document.getElementById("textinput").oninput = () => {
+//       const description = document.getElementById("textinput").value
+//       let isInclude = BadWords1.check(description)
       
-      if (!isInclude){
-        if (document.getElementById("democursortext").classList.contains("error")){
-        document.getElementById("democursortext").classList.remove("error")
-        document.getElementById("demo-cursor").classList.remove("error")
-        document.getElementsByClassName('ok')[0].classList.remove("error")
-        }
-      document.getElementById("democursortext").innerHTML  = document.getElementById("textinput").value
+//       if (!isInclude){
+//         if (document.getElementById("democursortext").classList.contains("error")){
+//         document.getElementById("democursortext").classList.remove("error")
+//         document.getElementById("demo-cursor").classList.remove("error")
+//         document.getElementsByClassName('ok')[0].classList.remove("error")
+//         }
+//       document.getElementById("democursortext").innerHTML  = document.getElementById("textinput").value
       
         
-      } else {
-        document.getElementById("democursortext").innerHTML = "Nice try. Use another name."
-        document.getElementById("democursortext").classList.add("error")
-        document.getElementById("demo-cursor").classList.add("error")
-        document.getElementsByClassName('ok')[0].classList.add("error")
-      }
+//       } else {
+//         document.getElementById("democursortext").innerHTML = "Nice try. Use another name."
+//         document.getElementById("democursortext").classList.add("error")
+//         document.getElementById("demo-cursor").classList.add("error")
+//         document.getElementsByClassName('ok')[0].classList.add("error")
+//       }
       
-      if (document.getElementById("textinput").style.color!= "black"){
-        document.getElementById("textinput").style.color = "black"
-      }
-    }
+//       if (document.getElementById("textinput").style.color!= "black"){
+//         document.getElementById("textinput").style.color = "black"
+//       }
+//     }
+    
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
 var rad = document.getElementsByClassName("radiobutton");
 var prev = null;
