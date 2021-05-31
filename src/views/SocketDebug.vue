@@ -6,6 +6,9 @@
     <li>
       <b @click="dump()">dump vuex</b>
     </li>
+    <li>
+      <b @click="send()">send test</b>
+    </li>    
   </ul>
   <h2>
     {{message}}
@@ -29,20 +32,14 @@
       const dump = ()=>{
         console.log(store.state.socket)
       }
-      //toggles areaItem state from active to inactive
-      // const toggleArea = (areaItem) => {
-      //   console.log({areaItem})
-      //   if(activeArea.value.has(areaItem)) {
-      //     store.commit('deactivateArea', areaItem)
-      //   } else {
-      //     store.commit('activateArea', areaItem)
-      //   }
-      //   // recomputeNav()
-      //   const tags = Array.from(store.state.application.activeArea).join(',')
-      //   router.push(`/tag/${tags}`)
-      // }
       
-    return {message, dump}
+      const send = ()=>{
+        // store.commit('...', 'test message from vue')
+        store.dispatch('socket_sendMessage', 'data from vue client')
+        console.log("send hit")
+      }      
+      
+    return {message, dump, send}
   }
 }
 </script>

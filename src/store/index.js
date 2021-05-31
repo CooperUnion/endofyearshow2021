@@ -62,7 +62,11 @@ const socket = {  state() {
   actions: {
     socket_userMessage ({ dispatch, commit }, message) {
      commit('SOCKET_USER_MESSAGE', message);
-    }
+    },
+    socket_sendMessage(data) {
+      this._vm.$socket.client.emit('vue_sendMessage', data);
+      console.log("emitted", data)
+    } 
   }
 }
 
