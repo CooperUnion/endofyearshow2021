@@ -80,13 +80,21 @@
         animState.value = true;
         animDirection.value = "next"
         current.value = getNext()
-        setTimeout(this.resetAnimation, 1000);
+        setTimeout(() => {
+          animState.value = false
+          animDirection.value = ""
+        }, 1000);
       }
       
       const goPrev = () => {
         animState.value = true;
         animDirection.value = "prev"
         current.value = getPrev()
+        setTimeout(() => {
+          animState.value = false
+          animDirection.value = ""
+        }, 1000);
+
       }
     
       const getNext = () => {
@@ -96,13 +104,8 @@
       const getPrev = () => {
         return (current.value - 1 < 0) ? props.assets.media.length -1 : current.value - 1
       }
-      
-      const resetAnimation = () => {
-        animState = false
-        animDirection = ""
-      }
-      
-      return {hideScrim, goNext, goPrev, current, getPrev, getNext, animState, animDirection, resetAnimation}
+            
+      return {hideScrim, goNext, goPrev, current, getPrev, getNext, animState, animDirection}
     }
 
     
@@ -222,7 +225,6 @@
     left: 50%;
     transform: translate(-50%, -50%);
   }
-
 
   .ghostImg.prev {
     transform: translate(-100vw);
