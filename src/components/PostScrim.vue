@@ -10,7 +10,7 @@
         </template>    
       </header>
       <!-- logic for separate content types -->
-      <div v-if="type==='images'" :class="['imageDeck', animating, animDirection]">
+      <div v-if="type==='images'" :class="['imageDeck', {'animating' : animState}, animDirection]">
         <img :src="assets.media[current].source_url" class="imgPrime" />
         <template v-if="assets.media.length>1">
           <button class="imgControl prev" @click="goPrev()">previous</button>
@@ -68,24 +68,24 @@
       
       const current = ref(0)
       
-      let animating = false;
+      const animState = ref(false);
 
-      let animDirection = "";
+      const animDirection = ref("");
       
       const hideScrim = () => {
         store.commit('resetActiveScrimId')
       }   
       
       const goNext = () => {
-        animating = true;
-        animDirection = "next"
+        animState.value = true;
+        animDirection.value = "next"
         current.value = getNext()
-        this.setTimeout(() => this.resetAnimation = false, 1000);
+        setTimeout(this.resetAnimation, 1000);
       }
       
       const goPrev = () => {
-        animating = true;
-        animDirection = "prev"
+        animState.value = true;
+        animDirection.value = "prev"
         current.value = getPrev()
       }
     
@@ -98,11 +98,11 @@
       }
       
       const resetAnimation = () => {
-        animating = false
+        animState = false
         animDirection = ""
       }
       
-      return {hideScrim, goNext, goPrev, current, getPrev, getNext, resetAnimation}
+      return {hideScrim, goNext, goPrev, current, getPrev, getNext, animState, animDirection, resetAnimation}
     }
 
     
