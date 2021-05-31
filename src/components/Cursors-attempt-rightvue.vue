@@ -17,7 +17,7 @@
         <div class="message">foobar</div>
         <div class="message2">foobar</div>
 
-    <input v-model="democursorname" placeholder="Display Name" maxlength="30" id="textinput" type="text">
+    <input v-model="democursorname" v-on:input="demoCursorNameCheck" placeholder="Display Name" maxlength="30" id="textinput" type="text">
 
     <div class="radioscontainer">
       <input class="radiobutton" type="radio" id="contactChoice1"
@@ -74,7 +74,7 @@
     return {
       isConnected: false,
       socketMessage: '',
-    democursorname: ''
+      democursorname: ''
     }
   },
 
@@ -100,7 +100,7 @@
       
    async function run(data, that){
       
-          const BadWords1 = new BadWords();
+          that.BadWords1 = new BadWords();
           function promptPromise(message, message2) {
   var dialog  = document.getElementById('dialog');
   var input   = document.getElementById("textinput");
@@ -113,37 +113,6 @@
   dialog.className = '';
 
   return new Promise(function(resolve, reject) {
-    // document.getElementById("textinput").placeholder = "Display Name";
-    // document.getElementById("textinput").maxlength = "30"
-    
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
-//     document.getElementById("textinput").oninput = () => {
-//       const description = document.getElementById("textinput").value
-//       let isInclude = BadWords1.check(description)
-      
-//       if (!isInclude){
-//         if (document.getElementById("democursortext").classList.contains("error")){
-//         document.getElementById("democursortext").classList.remove("error")
-//         document.getElementById("demo-cursor").classList.remove("error")
-//         document.getElementsByClassName('ok')[0].classList.remove("error")
-//         }
-//       document.getElementById("democursortext").innerHTML  = document.getElementById("textinput").value
-      
-        
-//       } else {
-//         document.getElementById("democursortext").innerHTML = "Nice try. Use another name."
-//         document.getElementById("democursortext").classList.add("error")
-//         document.getElementById("demo-cursor").classList.add("error")
-//         document.getElementsByClassName('ok')[0].classList.add("error")
-//       }
-      
-//       if (document.getElementById("textinput").style.color!= "black"){
-//         document.getElementById("textinput").style.color = "black"
-//       }
-//     }
-    
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
 var rad = document.getElementsByClassName("radiobutton");
 var prev = null;
@@ -194,7 +163,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
 }
     
 
-           var button = document.getElementById('action');
+  var button = document.getElementById('action');
   var output = document.getElementById('prompt');
   var rolefield = document.getElementById('role')
     promptPromise('Welcome to the Cooper Union School of Art End of Year Show 2021!', 'Would you like your cursor to be visible while you move <br> through the galleries?').then(function(name) {
@@ -269,9 +238,35 @@ for (var i = 0, length = radios.length; i < length; i++) {
                           const x = ev.clientX
                           const y = ev.clientY
                           const location = player.update(x,y,this.$socket)
+      },
+     
+    demoCursorNameCheck: function (){
+      // console.log(this.democursorname)
+      const description = this.democursorname
+      let isInclude = this.BadWords1.check(description)
+      
+      if (!isInclude){
+        if (document.getElementById("democursortext").classList.contains("error")){
+        document.getElementById("democursortext").classList.remove("error")
+        document.getElementById("demo-cursor").classList.remove("error")
+        document.getElementsByClassName('ok')[0].classList.remove("error")
+        }
+      document.getElementById("democursortext").innerHTML  = document.getElementById("textinput").value
+      
+        
+      } else {
+        document.getElementById("democursortext").innerHTML = "Nice try. Use another name."
+        document.getElementById("democursortext").classList.add("error")
+        document.getElementById("demo-cursor").classList.add("error")
+        document.getElementsByClassName('ok')[0].classList.add("error")
+      }
+      
+      if (document.getElementById("textinput").style.color!= "black"){
+        document.getElementById("textinput").style.color = "black"
       }
   }
 }
+    }
 </script>
 
 <style scoped>
