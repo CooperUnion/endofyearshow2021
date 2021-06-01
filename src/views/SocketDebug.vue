@@ -7,7 +7,7 @@
       <b @click="dump()">dump vuex</b>
     </li>
     <li>
-      <b @click="send()">send test</b>
+      <b @click="test()">send test</b>
     </li>    
   </ul>
   <h2>
@@ -19,7 +19,6 @@
 
   import { ref, computed } from 'vue'
   import { useStore } from 'vuex'  
-  import $socket from '@/store/socket.js'
   
   export default {
   name: 'SocketDebug',
@@ -31,6 +30,14 @@
       // const message = ref(store.state.socket.message)
       const message = computed(() => store.state.socket.message)
 
+      const test = ()=>{
+        console.log("test fired")
+        const ws = new WebSocket('wss://eoyssockets2021.glitch.me/socket.io/?EIO=3&transport=websocket');
+        ws.onopen = (event)=>{
+          ws.send('42' + JSON.stringify(['hello', 'there']));
+        }
+      }
+      
       const dump = ()=>{
         console.log(store.state.socket)
       }
@@ -40,11 +47,11 @@
         // store.dispatch('socket_sendMessage', 'data from vue client')
         // console.log("send hit")
         
-        $socket.client.emit('emit_method', val);
+        // $socket.client.emit('emit_method', val);
 //isn't socket accessible from this.$socket.client.emit without importing it?
       }      
       
-    return {message, dump, send}
+    return {message, dump, send, test}
   },
   sockets: {
     connect() {
