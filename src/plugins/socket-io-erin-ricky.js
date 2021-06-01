@@ -1,3 +1,4 @@
+//https://stackoverflow.com/questions/64782385/how-to-vue3-composition-api-plugin
 import { io } from 'socket.io-client'
 
 export default {

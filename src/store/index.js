@@ -1,5 +1,5 @@
 import { createStore } from 'vuex'
-import $socket from '@/store/socket'
+// import $socket from '@/store/socket'
 
 const activeArea = new Set()
 const activeGlobalNav = ''
