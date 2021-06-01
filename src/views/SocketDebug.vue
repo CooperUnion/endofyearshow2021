@@ -11,7 +11,7 @@
     </li>    
   </ul>
   <h2>
-    {{message}}
+    {{message}}{{status}}
   </h2>
 </template>
 
@@ -34,16 +34,30 @@
       // const message = ref(store.state.socket.message)
       const message = computed(() => store.state.socket.message)
 
+      const status = ref('not connected')
       
-      // const socket = inject('socket')
+      const socket = inject('socket')
       
-      console.log($socket)
+      console.log(socket)
       
-      // socket.on('connect', ()=>{
-      //   console.log('connected...')
-      // })
+      socket.on('init', ()=>{
+        status.value = 'init'
+      })
+    
+      socket.on('connected', ()=>{
+        status.value = 'connected'
+      })
       
-      const test = ()=>{
+      const test = async ()=>{
+        
+        return new Promise((resolve, reject)=>{
+           socket.on('connect', ()=>{
+            console.log('emitting...')
+            socket.emit("test update", Math.random()*1000)
+            resolve()
+          })    
+        })
+
         
         // console.log("test fired")
         // const ws = new WebSocket('wss://eoyssockets2021.glitch.me/socket.io/?EIO=3&transport=websocket', ['polling', 'WebSocket']);
@@ -68,7 +82,7 @@
 //isn't socket accessible from this.$socket.client.emit without importing it?
       }      
       
-    return {message, dump, send, test}
+    return {message, dump, send, test, status}
   },
   sockets: {
     connect() {
