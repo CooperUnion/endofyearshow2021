@@ -2,8 +2,8 @@
 import { io } from 'socket.io-client'
 
 export default {
-  install: (app, { connection, store, options }) => {
-    const socket = io(connection, options)
+  install: (app, { connection, store, pluginOptions, socketOptions }) => {
+    const socket = io(connection, socketOptions)
     
     console.log("from socket-io-erin-ricky", socket)
     
@@ -16,8 +16,14 @@ export default {
       store.dispatch('socket_userMessage', message)
     })
     
-    socket.onAny((event, ...args) => {
-      console.log(`plugin: got ${event}`);
+    socket.onAny((event, data) => {
+      if(event.includes(pluginOptions.action_prefix)) {
+        console.log(`plugin identified an action: ${event}, ${data}`);
+      } else if (event.includes(pluginOptions.mutation_prefix)) {
+        console.log(`plugin identified a mutation: ${event}, ${data}`);
+      } else {
+        console.log(`plugin: got ${event}`);  
+      }
     });    
     
     

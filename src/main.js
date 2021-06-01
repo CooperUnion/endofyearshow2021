@@ -15,7 +15,11 @@ let app = createApp(App)
 app.use(Socketio, {
     connection:'https://eoyssockets2021.glitch.me',
     store,
-    options:{
+    pluginOptions:{
+      action_prefix: 'SOCKET_ACTION',
+      mutation_prefix: 'SOCKET_MUTATION'
+    },
+    socketOptions:{
       path: '/socket.io/'
     }
   })
