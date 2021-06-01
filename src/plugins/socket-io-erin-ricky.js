@@ -1,18 +1,26 @@
 //https://stackoverflow.com/questions/64782385/how-to-vue3-composition-api-plugin
 import { io } from 'socket.io-client'
+import { ref } from 'vue'
+
+//https://next.vuex.vuejs.org/api/#subscribe
 
 export default {
   install: (app, { connection, store, pluginOptions, socketOptions }) => {
     const socket = io(connection, socketOptions)
     
-    console.log("from socket-io-erin-ricky", socket)
+    const validActions = Object.keys(store._actions)
+    const validMutations =Object.keys(store._mutations)
     
-    app.config.globalProperties.$socket = socket
+    //these get triggered for all vuex actions
+    //here is where we'll send automatic messages
+    const unsubscribe = store.subscribeAction((action, state) => {
+      console.log("subscribe action", action.type)
+      console.log("subscribe action", action.payload)
+    })
 
-    app.provide('socket', socket)
-    
+    //this is how we receive socket data
     socket.on('user_message', (message)=>{
-      console.log('a message was received in the plugin:' + message)
+      console.log('plugin: a message was received:' + message)
       store.dispatch('socket_userMessage', message)
     })
     
@@ -27,6 +35,9 @@ export default {
       }
     });    
     
-    
+    //provide as a global variable
+    app.config.globalProperties.$socket = socket
+    //provide as an injectable socket
+    app.provide('socket', socket)
   }
 }

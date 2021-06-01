@@ -38,7 +38,7 @@
       
       const socket = inject('socket')
       
-      console.log(socket)
+      // console.log(socket)
       
       socket.on('init', ()=>{
         status.value = 'init'
