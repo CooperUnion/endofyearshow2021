@@ -36,6 +36,9 @@
         ws.onopen = (event)=>{
           ws.send('42' + JSON.stringify(['hello', 'there']));
         }
+        ws.onerror = (error)=>{
+          console.log(error)
+        }
       }
       
       const dump = ()=>{

@@ -18,7 +18,6 @@
     "vue-masonry": "^0.13.0",
     "vue-masonry-wall": "^0.3.2",
     "vue-router": "^4.0.6",
-    "vue-socket.io-extended": "^5.0.0-alpha.5",
     "vuex": "^4.0.0"
   },
   "devDependencies": {
