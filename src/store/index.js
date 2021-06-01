@@ -35,13 +35,6 @@ const application = {
     }
     
   },
-  // getters: {
-  //   currentAreaState: (state) => {
-  //     return (navItem) => {
-  //       return state.activeArea.has(navItem)
-  //     }
-  //   }
-  // },
   actions: {
   },
   modules: {
@@ -50,14 +43,16 @@ const application = {
 
 const socket = {  state() {
     return {
-      message: 'blank'
+      message: {message: undefined, origin: undefined}
     }
   },
   mutations: {
     SOCKET_USER_MESSAGE(state, message) {
-      state.message = message
-    }
-
+      state.message = {message, origin: 'socket'}
+    },
+    CLIENT_USER_MESSAGE(state, message) {
+      state.message = {message, origin: 'client'}
+    }    
   },
   getters: {},
   actions: {
@@ -67,7 +62,10 @@ const socket = {  state() {
     socket_sendMessage(data) {
       $socket.client.emit('vue_sendMessage', data);
       console.log("emitted", data)
-    } 
+    },
+    client_userMessage({ dispatch, commit }, message) {
+      commit('CLIENT_USER_MESSAGE', message)
+    }
   }
 }
 

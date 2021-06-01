@@ -7,8 +7,11 @@
       <b @click="dump()">dump vuex</b>
     </li>
     <li>
-      <b @click="test()">send test</b>
-    </li>    
+      <b @click="test()">send test socket message</b>
+    </li> 
+    <li>
+      <b @click="updateVuex()">send test vuex update</b>
+    </li>     
   </ul>
   <h2>
     {{message}}{{status}}
@@ -73,6 +76,10 @@
         console.log(store.state.socket)
       }
       
+      const updateVuex = ()=>{
+        store.dispatch('client_userMessage', 'data from vue client')
+      }
+
       const send = ()=>{
         // store.commit('...', 'test message from vue')
         // store.dispatch('socket_sendMessage', 'data from vue client')
@@ -82,15 +89,7 @@
 //isn't socket accessible from this.$socket.client.emit without importing it?
       }      
       
-    return {message, dump, send, test, status}
-  },
-  sockets: {
-    connect() {
-      console.log('socket connected')
-    },
-    customEmit(val) {
-      console.log('this method was fired by the socket server. eg: io.emit("customEmit", data)')
-    }
+    return {message, dump, send, test, status, updateVuex}
   }
 }
 </script>
