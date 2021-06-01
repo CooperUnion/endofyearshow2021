@@ -5,7 +5,7 @@ import MasonryPost from '@/views/MasonryPost.vue'
 import MasonryTag from '@/views/MasonryTag.vue'
 import Projects from '@/views/Projects.vue'
 import Project from '@/views/Project.vue'
-
+import Landing from '@/views/Landing.vue'
 
 
 let routes = [
@@ -84,7 +84,11 @@ let globalNavItems = [
 
 routes = routes.concat(globalNavItems)
 
-
+routes.push(  {
+  path: '/Landing',
+  name: 'Landing',
+  component: Landing
+})
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
