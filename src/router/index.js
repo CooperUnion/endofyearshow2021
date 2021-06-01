@@ -81,16 +81,11 @@ let globalNavItems = [
   {name:"Projects", path:"/projects/", component: Projects},
   {name:"Forum", path:"/forum", component: MasonryPosts},
   {name:"Students", path:"/students", component: Home},
-  {name:"Info", path:"/info", component: Home}
+  {name:"Info", path:"/info", component: Home},
+  {name: "SocketDebug", path: "/SocketDebug", component: SocketDebug }
 ]
 
 routes = routes.concat(globalNavItems)
-
-routes.push(  {
-  path: '/SocketDebug',
-  name: 'SocketDebug',
-  component: SocketDebug
-})
 
 
 const router = createRouter({
