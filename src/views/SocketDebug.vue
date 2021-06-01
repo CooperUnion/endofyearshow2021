@@ -17,7 +17,7 @@
 
 <script>
 
-  import { ref, computed, inject } from 'vue'
+  import { ref, computed, inject, getCurrentInstance } from 'vue'
   import { useStore } from 'vuex'  
   
   export default {
@@ -25,17 +25,23 @@
   components: {
   },
   setup(){
+    
+      const internalInstance = getCurrentInstance()
+      const { $socket } = internalInstance.appContext.config.globalProperties
+
 
       const store = useStore()
       // const message = ref(store.state.socket.message)
       const message = computed(() => store.state.socket.message)
 
       
-      const socket = inject('socket')
+      // const socket = inject('socket')
       
-      socket.on('connect', ()=>{
-        console.log('connected...')
-      })
+      console.log($socket)
+      
+      // socket.on('connect', ()=>{
+      //   console.log('connected...')
+      // })
       
       const test = ()=>{
         

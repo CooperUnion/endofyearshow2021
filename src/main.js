@@ -5,19 +5,19 @@ import router from './router'
 import store from './store'
 import mitt from 'mitt'
 import { VueMasonryPlugin } from 'vue-masonry/src/masonry-vue3.plugin';
-import {Socketio} from '@/plugins/socket-io-erin-ricky'
+import Socketio from '@/plugins/socket-io-erin-ricky'
 
 const emitter = mitt()
 let app = createApp(App)
-  .use(Socketio, {
-    connection:'https://eoyssockets2021.glitch.me',
-    options:{
-      // path: '/socket.io/'
-    }
-  })
   .use(store)
   .use(router)
 
+app.use(Socketio, {
+    connection:'https://eoyssockets2021.glitch.me',
+    options:{
+      path: '/socket.io/'
+    }
+  })
 
 app.config.globalProperties.emitter = emitter
 app.config.globalProperties.api_endpoint = process.env.VUE_APP_FORM_API_ENDPOINT || 'https://eoys-api-2021.glitch.me'
