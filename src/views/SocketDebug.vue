@@ -47,16 +47,16 @@
       socket.on('connected', ()=>{
         status.value = 'connected'
       })
+    
+       socket.on('user_message', (message)=>{
+        status.value = 'a message was received:' + message
+      })
       
       const test = async ()=>{
         
-        return new Promise((resolve, reject)=>{
-           socket.on('connect', ()=>{
             console.log('emitting...')
             socket.emit("test update", Math.random()*1000)
-            resolve()
-          })    
-        })
+        
 
         
         // console.log("test fired")
