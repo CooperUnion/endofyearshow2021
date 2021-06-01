@@ -1,0 +1,25 @@
+{
+  "name": "vue-vuex-socket.io-opinionated-integration",
+  "version": "0.1.0",
+  "description": "An opinionated plugin that helps ferry events from a socket.io connection to vuex, and vice versa.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CooperUnion/vue-vuex-socket.io-opinionated-integration.git"
+  },
+  "keywords": [
+    "vue",
+    "vue3",
+    "vuex",
+    "socket.io"
+  ],
+  "author": "Erin Sparling, Ricky Yurewitch",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CooperUnion/vue-vuex-socket.io-opinionated-integration/issues"
+  },
+  "homepage": "https://github.com/CooperUnion/vue-vuex-socket.io-opinionated-integration#readme"
+}
