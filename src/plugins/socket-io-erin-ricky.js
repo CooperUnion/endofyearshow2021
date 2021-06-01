@@ -23,25 +23,38 @@ export default {
     
     //these get triggered for all vuex actions
     //here is where we'll send automatic messages
-    const unsubscribe = store.subscribeAction((action, state) => {
-      console.log("subscribe action", action.type)
-      console.log("subscribe action", action.payload)
+    const actionsSubscription = store.subscribeAction((action, state) => {
+      console.log("subscribe action", {
+        type: action.type, 
+        payload: action.payload
+      })
+
+      console.log("sending back to the socket")
+      socket.emit(action.type, action.payload)
     })
 
-    //this is how we receive socket data
-    socket.on('user_message', (message)=>{
-      console.log('plugin: a message was received:' + message)
-      store.dispatch('socket_userMessage', message)
-    })
+    // const mutationsSubscription = store.subscribe((mutation, state) => {
+    //   console.log("subscribe mutation", {
+    //     type: mutation.type, 
+    //     payload: mutation.payload
+    //   })
+    // })    
+
+    //this is an example of how we receive socket data
+    // socket.on('user_message', (message)=>{
+    //   console.log('plugin: a message was received:' + message)
+    //   store.dispatch('socket_userMessage', message)
+    // })
     
     socket.onAny((event, data) => {
-      if(event.includes(pluginOptions.action_prefix)) {
-        console.log(`plugin identified an action: ${event}, ${data}`);
-         store.dispatch('socket_userMessage', data)
-      } else if (event.includes(pluginOptions.mutation_prefix)) {
-        console.log(`plugin identified a mutation: ${event}, ${data}`);
+      //is the incoming event a valid action?
+      if(validActions.includes(event)) {
+        //trigger the action
+        console.log(`Event ${event} is valid, dispatching`)
+        store.dispatch(event, data)
       } else {
-        console.log(`plugin: got ${event}`);  
+        //otherwise, log everything
+        console.log(`Event ${event} is invalid, ignoring`)
       }
     });    
     

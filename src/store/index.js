@@ -1,5 +1,4 @@
 import { createStore } from 'vuex'
-// import $socket from '@/store/socket'
 
 const activeArea = new Set()
 const activeGlobalNav = ''
@@ -58,10 +57,6 @@ const socket = {  state() {
   actions: {
     socket_userMessage ({ dispatch, commit }, message) {
      commit('SOCKET_USER_MESSAGE', message);
-    },
-    socket_sendMessage(data) {
-      $socket.client.emit('vue_sendMessage', data);
-      console.log("emitted", data)
     },
     client_userMessage({ dispatch, commit }, message) {
       commit('CLIENT_USER_MESSAGE', message)

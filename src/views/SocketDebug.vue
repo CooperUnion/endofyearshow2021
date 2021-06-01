@@ -39,26 +39,27 @@
 
       const status = ref('not connected')
       
-      const socket = inject('socket')
+      // const socket = inject('socket')
       
       // console.log(socket)
       
-      socket.on('init', ()=>{
-        status.value = 'init'
-      })
+      // socket.on('init', ()=>{
+      //   status.value = 'init'
+      // })
     
-      socket.on('connected', ()=>{
-        status.value = 'connected'
-      })
+      // socket.on('connected', ()=>{
+      //   status.value = 'connected'
+      // })
     
-       socket.on('user_message', (message)=>{
-        status.value = 'a message was received:' + message
-      })
+      //  socket.on('user_message', (message)=>{
+      //   status.value = 'a message was received:' + message
+      // })
       
       const test = async ()=>{
-        
-            console.log('emitting...')
-            socket.emit("test update", Math.random()*1000)
+    
+        console.log("does nothing, disabled client-side sockets. only test vuex")
+            // console.log('emitting...')
+            // socket.emit("test update", Math.random()*1000)
         
 
         
@@ -77,7 +78,7 @@
       }
       
       const updateVuex = ()=>{
-        store.dispatch('client_userMessage', 'data from vue client')
+        store.dispatch('client_userMessage', `data from vue client, ${Math.random()*1000}`)
       }
 
       const send = ()=>{
