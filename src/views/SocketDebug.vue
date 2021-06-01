@@ -17,7 +17,7 @@
 
 <script>
 
-  import { ref, computed } from 'vue'
+  import { ref, computed, inject } from 'vue'
   import { useStore } from 'vuex'  
   
   export default {
@@ -30,15 +30,23 @@
       // const message = ref(store.state.socket.message)
       const message = computed(() => store.state.socket.message)
 
+      
+      const socket = inject('socket')
+      
+      socket.on('connect', ()=>{
+        console.log('connected...')
+      })
+      
       const test = ()=>{
-        console.log("test fired")
-        const ws = new WebSocket('wss://eoyssockets2021.glitch.me/socket.io/?EIO=3&transport=websocket', ['polling', 'WebSocket']);
-        ws.onopen = (event)=>{
-          ws.send('42' + JSON.stringify(['hello', 'there']));
-        }
-        ws.onerror = (error)=>{
-          console.log(error)
-        }
+        
+        // console.log("test fired")
+        // const ws = new WebSocket('wss://eoyssockets2021.glitch.me/socket.io/?EIO=3&transport=websocket', ['polling', 'WebSocket']);
+        // ws.onopen = (event)=>{
+        //   ws.send('42' + JSON.stringify(['hello', 'there']));
+        // }
+        // ws.onerror = (error)=>{
+        //   console.log(error)
+        // }
       }
       
       const dump = ()=>{
