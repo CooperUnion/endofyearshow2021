@@ -26,8 +26,8 @@
   },
   setup(){
     
-      const internalInstance = getCurrentInstance()
-      const { $socket } = internalInstance.appContext.config.globalProperties
+      // const internalInstance = getCurrentInstance()
+      // const { $socket } = internalInstance.appContext.config.globalProperties
 
 
       const store = useStore()

@@ -14,6 +14,7 @@ let app = createApp(App)
 
 app.use(Socketio, {
     connection:'https://eoyssockets2021.glitch.me',
+    store,
     options:{
       path: '/socket.io/'
     }
