@@ -76,6 +76,8 @@
         document.getElementById("transitionLens").style.top = 0+"px"
                              }, 150,);
     
+    window.location.href = window.location.hostname + "/areas"
+    
     // update url?
     
   }
