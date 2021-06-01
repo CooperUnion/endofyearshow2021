@@ -5,7 +5,7 @@ import router from './router'
 import store from './store'
 import mitt from 'mitt'
 import { VueMasonryPlugin } from 'vue-masonry/src/masonry-vue3.plugin';
-import Socketio from '@/plugins/socket-io-erin-ricky'
+import Socketio from '@/plugins/vue-vuex-socket.io-opinionated-integration'
 
 const emitter = mitt()
 let app = createApp(App)
