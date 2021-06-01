@@ -32,7 +32,7 @@
 
       const test = ()=>{
         console.log("test fired")
-        const ws = new WebSocket('wss://eoyssockets2021.glitch.me/socket.io/?EIO=3&transport=websocket');
+        const ws = new WebSocket('wss://eoyssockets2021.glitch.me/socket.io/?EIO=3&transport=websocket', ['polling', 'WebSocket']);
         ws.onopen = (event)=>{
           ws.send('42' + JSON.stringify(['hello', 'there']));
         }
