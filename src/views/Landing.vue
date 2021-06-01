@@ -142,7 +142,7 @@
     
     for (var i = 1; i < particles.length; i++) {
       // particle hits left side
-      if ((particles[i]['left'] + (particles[i]['size'])*1.5) < 0 && particles[i]['x-velocity'] < 0) {
+      if ((particles[i]['left'] + (particles[i]['size'])*1.85) < 0 && particles[i]['x-velocity'] < 0) {
         styleSlow(particles[i]['dom'])
         particles[i]['dom'].style.left = (canvas_width + particles[i]['x-velocity'] + (particles[i]['size'])*1.5) + 'px';
         particles[i]['dom'].style.top = particles[i]['top'] + particles[i]['y-velocity'] + 'px';
@@ -183,5 +183,42 @@
 </script>
 
 <style scoped>
+body{
+  overflow: hidden;
+}
 
+#particle-frame {
+  position: absolute;
+  display: block;
+  background: black;
+  overflow: hidden;
+  border-radius: 0px;
+  width: 580px; 
+  height: 250px;
+/*   margin-left: -8px; */
+/*   margin-top: -8px; */
+}
+
+
+
+  #particle-frame >>> particle-1, #particle-frame >>> particle-2, #particle-frame >>> particle-3, #particle-frame >>> particle-4, #particle-frame >>> particle-5, #particle-frame >>> particle-6, #particle-frame >>> particle-7, #particle-frame >>> particle-8, #particle-frame >>> particle-9, #particle-frame >>> particle-10 {
+  display: block; 
+  position: absolute;
+  mix-blend-mode: screen;
+  height: 120px;
+  width: 120px;
+/*   transition: left 1.1s linear, top 1.1s linear; */
+}
+
+/*  Color  Variations */
+#particle-frame >>> particle-1 { background-color: #FF0000; }
+#particle-frame >>> particle-2 { background-color: #6C00FF; }
+#particle-frame >>> particle-3 { background-color: #FFA500; }
+#particle-frame >>> particle-4 { background-color: #00FF00; }
+#particle-frame >>> particle-5 { background-color: #DEFF10; }
+#particle-frame >>> particle-6 { background-color: #FFFF00; }
+#particle-frame >>> particle-7 { background-color: #0000FF; }
+#particle-frame >>> particle-8 { background-color: #00FFFF; }
+#particle-frame >>> particle-9 { background-color: #BD00FF; }
+#particle-frame >>> particle-10 { background-color: #06A9FF; }
 </style>
