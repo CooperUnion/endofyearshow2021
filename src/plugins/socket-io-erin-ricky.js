@@ -19,6 +19,7 @@ export default {
     socket.onAny((event, data) => {
       if(event.includes(pluginOptions.action_prefix)) {
         console.log(`plugin identified an action: ${event}, ${data}`);
+         store.dispatch('socket_userMessage', data)
       } else if (event.includes(pluginOptions.mutation_prefix)) {
         console.log(`plugin identified a mutation: ${event}, ${data}`);
       } else {
