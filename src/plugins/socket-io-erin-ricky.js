@@ -3,13 +3,23 @@ import { io } from 'socket.io-client'
 import { ref } from 'vue'
 
 //https://next.vuex.vuejs.org/api/#subscribe
+/* 
+Goals:
+- Listen to all socket messages
+-- Pull out messages that match vuex actions or mutations
+-- Fire actions or mutations with socket message payload
+- Listen for vuex action or mutation changes
+-- Pull out updates that should propogate back to the socket
+--- Possibly filter out updates that came from a socket in the first place?
+-- Fire updates as appropriate back to the socket
+*/
 
 export default {
   install: (app, { connection, store, pluginOptions, socketOptions }) => {
     const socket = io(connection, socketOptions)
     
     const validActions = Object.keys(store._actions)
-    const validMutations =Object.keys(store._mutations)
+    const validMutations = Object.keys(store._mutations)
     
     //these get triggered for all vuex actions
     //here is where we'll send automatic messages
