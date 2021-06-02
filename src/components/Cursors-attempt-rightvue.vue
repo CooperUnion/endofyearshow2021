@@ -295,7 +295,7 @@ a {
     pointer-events:all;
   }
   
-  #cursorscontainercontainer >>> #cursorscontainer {
+  #cursorscontainer {
     height: 100%;
     width: 100vw;
     position: absolute;
