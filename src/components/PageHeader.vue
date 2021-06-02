@@ -55,7 +55,6 @@
           currentPageConfig.value = pageConfig['areas']
           console.log('failed to update currentPageConfig properly, defaulting')
         }
-        
       }
 
       watch(() => route.path, ()=>{
@@ -65,9 +64,7 @@
       
       initPageConfig()
       
-      
       return {currentPageConfig}
-      
     }
   }
   

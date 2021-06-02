@@ -26,7 +26,7 @@
   setup(){
     const internalInstance = getCurrentInstance()
     const { api_endpoint, mobile } = internalInstance.appContext.config.globalProperties
-    return {globalNavItems}
+    return { globalNavItems }
   }
 }
 </script>
