@@ -8,7 +8,8 @@
     </div>
 
 <!--   <p>The current time is <span id="time-stamp"></span>.</p> -->
-  <div id="dialog" class="hidden">
+<!--   <div id="dialog" class="hidden"> -->
+    <div id="dialog">
     <div id="dialogchild">
     <button class="close-dialog">
       X
@@ -16,23 +17,23 @@
         <div class="message">foobar</div>
         <div class="message2">foobar</div>
 
-    <input style="color:gainsboro;" maxlength="30" id="textinput" type="text">
+    <input v-model="democursorname" v-on:input="demoCursorNameCheck" placeholder="Display Name" maxlength="30" id="textinput" type="text">
 
     <div class="radioscontainer">
       <input class="radiobutton" type="radio" id="contactChoice1"
-       name="roleRadio" value="current-student" checked>
+       name="roleRadio" v-on:change="radioChange" v-model="roleRadio" value="current-student">
       <label for="contactChoice1">Current Student</label> <br>
 
       <input class="radiobutton" type="radio" id="contactChoice2"
-       name="roleRadio" value="faculty-staff">
+       name="roleRadio" v-on:change="radioChange" v-model="roleRadio" value="faculty-staff">
       <label for="contactChoice2">Faculty & Staff</label><br>
 
       <input class="radiobutton" type="radio" id="contactChoice3"
-       name="roleRadio" value="alumnus">
+       name="roleRadio" v-on:change="radioChange" v-model="roleRadio" value="alumnus">
       <label for="contactChoice3">Alumnus</label><br>
       
             <input class="radiobutton" type="radio" id="contactChoice4"
-       name="roleRadio" value="friend-cu">
+       name="roleRadio" v-on:change="radioChange" v-model="roleRadio" value="friend-cu">
       <label for="contactChoice4">Friend</label>
     </div>
 
@@ -40,8 +41,7 @@
   </div>
     
 <div class="cursordemo">
-
- <div id="demo-cursor" class="current-student friend demo-cursor"><div id="democursortext" class="current-student name name-demo">Display Name</div></div>
+ <div id="demo-cursor" class="current-student friend demo-cursor"><div id="democursortext" class="current-student name name-demo">{{ democursorname }}</div></div>
   
     </div>
 
@@ -72,11 +72,15 @@
       data() {
     return {
       isConnected: false,
-      socketMessage: ''
+      socketMessage: '',
+      democursorname: '',
+      roleRadio: ""
     }
   },
 
   mounted(){
+         this.prev = null;
+     this.prevprev = null;  
   },
 
   sockets: {
@@ -94,12 +98,13 @@
       this.isConnected = true;
     },
     
-    init(data){      
+    init(data){
+  console.log("init")   
       
    async function run(data, that){
       
-          const BadWords1 = new BadWords();
-          function promptPromise(message, message2) {
+  that.BadWords1 = new BadWords();
+  function promptPromise(message, message2) {
   var dialog  = document.getElementById('dialog');
   var input   = document.getElementById("textinput");
   var okButton = dialog.querySelector('button.ok');
@@ -111,14 +116,126 @@
   dialog.className = '';
 
   return new Promise(function(resolve, reject) {
-    document.getElementById("textinput").placeholder = "Display Name";
-    document.getElementById("textinput").maxlength = "30"
+    dialog.onclick = function(e){
+      if (e.target.tagName !== 'BUTTON') { return; }
+      dialog.onclick = null;
+      dialog.className = 'hidden';
+      if (e.target === okButton) {
+var radios = document.getElementsByName('roleRadio');
+for (var i = 0, length = radios.length; i < length; i++) {
+  if (radios[i].checked) {
+   radio = radios[i].value
+   console.log(radio)
+   console.log("was radio")
+    resolve({input: input.value, radio: radio});
+    break;
+  }
+}
+
+      } else if (e.target === XButton){
+      } else {
+        resolve({input: input.value, radio: "undefined"});
+      }
+    };
+  });
+}
     
 
+  var button = document.getElementById('action');
+  var output = document.getElementById('prompt');
+  var rolefield = document.getElementById('role')
+    promptPromise('Welcome to the Cooper Union School of Art End of Year Show 2021!', 'Would you like your cursor to be visible while you move <br> through the galleries?').then(function(name) {
+      output.innerHTML = '' + name.input;
+      rolefield.innerHTML = "" + name.radio;
+      console.log("response completed!")
+      console.log(that.$socket.client)
+      const response = {name: name.input, role: name.radio}
+      that.$socket.client.emit('nameChosen', {response: response, player: data.player})
+                            that.Meeting1 = new Meeting(that.$socket)  
+                      console.log(data)
+      console.log("data")
+                      // data.friends.forEach(friend1 => console.log(friend1));
+                      data.friends.forEach(friend1 => that.Meeting1.createFriend(friend1.id, data.player, that.Meeting1, friend1.name, friend1.role, friend1));
+                      self.player = new Player(data.player);
+
+                      document.querySelector("body").onmousemove = (e) => {
+                          console.log(document.querySelector("body"))
+                          const x = e.clientX
+                          const y = e.clientY
+                          const location = player.update(x,y,that.$socket, data.player, name.input, name.radio) 
+                      };    
+    setInterval(function(){ 
+    //checks each friend
+      const childrenArray = Array.from(document.getElementById("cursorscontainer").children)
+      childrenArray.forEach(child => this.$socket.client.emit("isChild", child.id))
+      console.log(child.id)
+    }, 30000);
+    }).catch(function() {
+      // output.innerHTML = '¯\\_(ツ)_/¯';
+      console.log("ERROR?")
+    }); 
+   
+   }
+      console.log(this)
+      var that = this;
+      run(data, that);
+      
+    },
     
-    document.getElementById("textinput").oninput = () => {
-      const description = document.getElementById("textinput").value
-      let isInclude = BadWords1.check(description)
+    nameUpdated(data){
+     console.log("name updated", data)
+     this.Meeting1.updateFriendName(data.data.id, data.data.player, this.Meeting1, data.data.name, data.data.role, data)
+    },
+
+    disconnect() {
+      this.isConnected = false;
+    },
+    
+    newFriend(data){
+      this.Meeting1.createFriend(data.friend, data.player, this.Meeting1, data.name, data.role);
+    },
+    byeFriend(data){
+                     
+                     document.getElementById('connections').innerHTML = (data.connections-1) +" ";
+                    if ((data.connections-1)===1){
+                      document.getElementById("othervisitors").innerHTML = " other visitor online"
+                    } else {
+                        document.getElementById("othervisitors").innerHTML = " other visitors online"
+                    }
+                          if(this.Meeting1){
+                          this.Meeting1.removeFriend(self,data.friend, this.Meeting1);
+                          }
+    },
+    move(data){
+      this.Meeting1.updateFriend(data);
+                           document.getElementById('connections').innerHTML = (data.users-1) +" ";
+                    if ((data.users-1)===1){
+                      document.getElementById("othervisitors").innerHTML = " other visitor online"
+                    } else {
+                        document.getElementById("othervisitors").innerHTML = " other visitors online"
+    }},
+
+    // Fired when the server sends something on the "messageChannel" channel.
+    messageChannel(data) {
+      this.socketMessage = data
+    }
+  },
+
+  methods: {
+    pingServer() {
+      // Send the "pingServer" event to the server.
+      this.$socket.client.emit('pingServer', 'PING!')
+    },
+      onMouseMove (ev) {
+                          const x = ev.clientX
+                          const y = ev.clientY
+                          const location = player.update(x,y,this.$socket)
+      },
+     
+    demoCursorNameCheck: function (){
+      // console.log(this.democursorname)
+      const description = this.democursorname
+      let isInclude = this.BadWords1.check(description)
       
       if (!isInclude){
         if (document.getElementById("democursortext").classList.contains("error")){
@@ -139,135 +256,30 @@
       if (document.getElementById("textinput").style.color!= "black"){
         document.getElementById("textinput").style.color = "black"
       }
+  },
+    radioChange: function(){ 
+            function set(value, that){
+      that.prevprev = value
     }
+  
     
-var rad = document.getElementsByClassName("radiobutton");
-var prev = null;
-var prevprev = null    
-    function set(value){
-      prevprev = value
-    }
-    
-for (var i = 0; i < rad.length; i++) {
-    rad[i].onchange =  function() {
-        if (prev === null){
-          prev = document.getElementById("contactChoice1")
+        if (this.prev === null){
+          this.prev = document.getElementById("contactChoice1").value
         }
-        (prev) ? set(prev.value): null;
-        if (this !== prev) {
-            prev = this;
+        (this.prev) ? set(this.prev, this): null;
+        if (this.roleRadio !== this.prev) {
+            this.prev = this.roleRadio;
         }
         
-        console.log(this.value)
-        document.getElementById("demo-cursor").classList.remove(prevprev)
-        document.getElementById("democursortext").classList.remove(prevprev)
-        document.getElementById("demo-cursor").classList.add(prev.value)
-        document.getElementById("democursortext").classList.add(prev.value)
+        console.log(this.roleRadio)
+        document.getElementById("demo-cursor").classList.remove(this.prevprev)
+        document.getElementById("democursortext").classList.remove(this.prevprev)
+        document.getElementById("demo-cursor").classList.add(this.roleRadio)
+        document.getElementById("democursortext").classList.add(this.roleRadio)
+    
     }
 }
-    
-    dialog.onclick = function(e){
-      if (e.target.tagName !== 'BUTTON') { return; }
-      dialog.onclick = null;
-      dialog.className = 'hidden';
-      if (e.target === okButton) {
-var radios = document.getElementsByName('roleRadio');
-for (var i = 0, length = radios.length; i < length; i++) {
-  if (radios[i].checked) {
-   radio = radios[i].value
-   console.log(radio)
-    resolve({input: input.value, radio: radio});
-    break;
-  }
-}
-
-      } else if (e.target === XButton){
-      } else {
-        resolve({input: input.value, radio: "undefined"});
-      }
-    };
-  });
-}
-    
-
-           var button = document.getElementById('action');
-  var output = document.getElementById('prompt');
-  var rolefield = document.getElementById('role')
-    promptPromise('Welcome to the Cooper Union School of Art End of Year Show 2021!', 'Would you like your cursor to be visible while you move <br> through the galleries?').then(function(name) {
-      output.innerHTML = '' + name.input;
-      rolefield.innerHTML = "" + name.radio;
-      console.log("response completed!")
-      console.log(that.$socket.client)
-      const response = {name: name.input, role: name.radio}
-      that.$socket.client.emit('nameChosen', {response: response, player: data.player})
-                            that.Meeting1 = new Meeting(that.$socket)  
-                      console.log(data)
-      console.log("data")
-                      // data.friends.forEach(friend1 => console.log(friend1));
-                      data.friends.forEach(friend1 => that.Meeting1.createFriend(friend1.id, data.player, that.Meeting1, friend1.name, friend1.role, friend1));
-                      self.player = new Player(data.player);
-
-                      document.querySelector("body").onmousemove = (e) => {
-                          const x = e.clientX
-                          const y = e.clientY
-                          const location = player.update(x,y,that.$socket, data.player, name.input, name.radio) 
-                      };    
-    
-    }).catch(function() {
-      // output.innerHTML = '¯\\_(ツ)_/¯';
-      console.log("ERROR?")
-    }); }
-      console.log(this)
-      var that = this;
-      run(data, that);
-      
-
-    },
-    
-    nameUpdated(data){
-                          console.log("name updated", data)
-                          this.Meeting1.updateFriendName(data.data.id, data.data.player, this.Meeting1, data.data.name, data.data.role, data)
-    },
-
-    disconnect() {
-      this.isConnected = false;
-    },
-    
-    newFriend(data){
-      this.Meeting1.createFriend(data.friend, data.player, this.Meeting1, data.name, data.role);
-    },
-    byeFriend(data){
-                     
-                     document.getElementById('connections').innerHTML = (data.connections-1) +" ";
-                    if ((data.connections-1)===1){
-                      document.getElementById("othervisitors").innerHTML = " other visitor online"
-                    } else {
-                        document.getElementById("othervisitors").innerHTML = " other visitors online"
-                    }
-                          this.Meeting1.removeFriend(self,data.friend, this.Meeting1);
-    },
-    move(data){
-      this.Meeting1.updateFriend(data);
-    },
-
-    // Fired when the server sends something on the "messageChannel" channel.
-    messageChannel(data) {
-      this.socketMessage = data
     }
-  },
-
-  methods: {
-    pingServer() {
-      // Send the "pingServer" event to the server.
-      this.$socket.client.emit('pingServer', 'PING!')
-    },
-      onMouseMove (ev) {
-                          const x = ev.clientX
-                          const y = ev.clientY
-                          const location = player.update(x,y,this.$socket)
-      }
-  }
-}
 </script>
 
 <style scoped>
@@ -285,14 +297,24 @@ body {
 a {
   color: #00b7ff;
 }
+  #cursorscontainercontainer{
+        height: 100%;
+    width: 100vw;
+    position: relative;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    pointer-events:all;
+  }
   
   #cursorscontainer {
-height: 100%;
+    height: 100%;
     width: 100vw;
     position: absolute;
     left: 0;
     top: 0;
     overflow: hidden;
+/*     pointer-events:none; */
   }  
   
 #cursorscontainer >>> .friend {
@@ -474,6 +496,7 @@ margin-right: 0px;
     padding: 10vh;
     position: absolute;
     top: 0;
+    pointer-events: all;
     }
   
   #cursorscontainer >>> #dialogchild {
