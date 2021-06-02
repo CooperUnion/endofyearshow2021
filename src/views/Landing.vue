@@ -2,7 +2,7 @@
 <div id="particle-frame" style="
   ">
   <img class ="desktoplogo" src="https://cdn.glitch.com/d71c7c2a-c6c4-4028-9136-d224524d7374%2Fdesktop.svg?v=1622648434792">
-  <img class ="mobilelogo" src="https://cdn.glitch.com/d71c7c2a-c6c4-4028-9136-d224524d7374%2Fmobile.svg?v=1622648434792">
+  <img class ="mobilelogo" src="https://cdn.glitch.com/d71c7c2a-c6c4-4028-9136-d224524d7374%2Fmobile.svg?v=1622665230806">
   </div>
 </template>
 
@@ -281,13 +281,13 @@ body{
   #particle-frame >>> .mobilelogo{
     display:block;
         width: auto;
-    height: 50vh;
+    height: 60vh;
 /*     margin-left: 15vw; */
 /*     margin-right: auto; */
     position: relative;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 25vh;
+    margin-top: 15vh;
   }
 }
   
