@@ -2,7 +2,7 @@
 <template>
   <global-nav :items="globalNavItems" :themeDark="themeDark" />
 
-   <main :themeDark="themeDark">    
+   <main :class="{dark : themeDark}">    
     <page-header />
     <div class="infoPage">
       INFO
@@ -30,3 +30,10 @@
   }
 }
 </script>
+
+<style scoped>
+  main.dark {
+    color: #fff;
+    background-color: #000;
+  }
+</style>

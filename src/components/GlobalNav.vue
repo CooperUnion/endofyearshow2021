@@ -44,7 +44,6 @@
         globalnavShow.value = !globalnavShow.value
       }
 
-
       return { isActiveRoute, globalnavShow, toggleGlobalPanel }
     }
   }
@@ -79,6 +78,12 @@
   .globalnav-toggle, .close {
     display: none;
   }
+  
+  #globalnav.dark {
+    color: #fff;
+    background-color: black;
+  }
+
   
   @media screen and (max-width: 767px) {
     .nav-panel {
@@ -148,10 +153,6 @@
     }
     
   }
-  
-  .dark {
-    background-color: black;
-  }
-  
+    
 </style>
 
