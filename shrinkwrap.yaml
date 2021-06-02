@@ -6,6 +6,7 @@ dependencies:
   socket.io-client: 4.1.2
   vue: 3.0.11
   vue-masonry: 0.13.0
+  vue-pseudo-window: 1.0.0
   vue-router: 4.0.8
   vue-use-gesture: 1.0.1
   vue-use-spring: 0.0.2
@@ -12916,6 +12917,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-HzrqRxu6oamhKQ+i9FC5SGimwMaxQzJAyD5XGD2qUZp/egXGtpi2Cnt6Ahcoh8JNrEdnAwMvxCJLl0E80sQToA==
+  /vue-pseudo-window/1.0.0:
+    dev: false
+    resolution:
+      integrity: sha512-CTg5K6jap5i0wY2jZxwtU3NxPjP/VVUSvWB4A4KxdhN7EL13bmggc8DYrOHKBJGqtjr9uwBbyAB+4zqG3owDbg==
   /vue-router/4.0.8:
     dependencies:
       '@vue/devtools-api': 6.0.0-beta.12
@@ -13630,6 +13635,7 @@ specifiers:
   vue: ^3.0.11
   vue-jest: ^5.0.0-0
   vue-masonry: ^0.13.0
+  vue-pseudo-window: ^1.0.0
   vue-router: ^4.0.6
   vue-use-gesture: ^1.0.1
   vue-use-spring: ^0.0.2
