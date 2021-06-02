@@ -28,10 +28,6 @@
   setup(props){
     const internalInstance = getCurrentInstance()
 
-    const header = inject('header')
-    header.set(props.theme)
-
-
     // const { api_endpoint, mobile } = internalInstance.appContext.config.globalProperties
     return { globalNavItems }
   }

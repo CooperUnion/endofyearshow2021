@@ -49,7 +49,7 @@
       const route = useRoute()
       const internalInstance = getCurrentInstance()
       const { api_endpoint } = internalInstance.appContext.config.globalProperties
-      inject('header').reset()
+
       onBeforeMount(loadPosts)
       async function loadToggle(){
         console.log("ok...")

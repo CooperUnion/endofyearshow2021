@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { Util } from '@/plugins/header'
 import Home from '@/views/Home.vue'
 import MasonryPosts from '@/views/MasonryPosts.vue'
 import MasonryPost from '@/views/MasonryPost.vue'
@@ -9,6 +10,7 @@ import Info from '@/views/Info.vue'
 
 
 import SocketDebug from '@/views/SocketDebug.vue'
+const header = new Util
 
 let routes = [
   {
@@ -114,6 +116,16 @@ routes = routes.concat(globalNavItems)
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  try{ 
+    const props = to.matched[0].props.default
+    header.set(props.theme)
+  } catch(e) {
+    header.reset()
+  }
+  next()
 })
 
 export {router as default, globalNavItems}
