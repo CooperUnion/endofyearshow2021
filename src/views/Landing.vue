@@ -114,7 +114,10 @@
       
       particles[i]['dom'].addEventListener('click', (e) => {
         window.running = false
-                
+                  document.getElementsByClassName("desktoplogo")[0].style.transition='filter 0.2s linear, transform '+1+'s linear, opacity 0.6s linear';
+  document.getElementsByClassName("desktoplogo")[0].style.opacity = 0;
+  document.getElementsByClassName("mobilelogo")[0].style.transition='filter 0.2s linear, transform '+1+'s linear, opacity 0.6s linear';
+  document.getElementsByClassName("mobilelogo")[0].style.opacity = 0; 
               setTimeout(function(e){ 
        removeAndReplaceParticles(e.target.style.height); 
                              }, 1500, e);
