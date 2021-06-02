@@ -70,7 +70,7 @@
   document.getElementsByClassName("mobilelogo")[0].style.transition='filter 0.2s linear, transform '+1+'s linear, opacity 0.6s linear';
   document.getElementsByClassName("mobilelogo")[0].style.opacity = 0; 
               setTimeout(function(){ 
-       removeAndReplaceParticles(particles[0]['dom'].style.height); 
+       removeAndReplaceParticles(document.querySelector("particle-1").style.height); 
                              }, 1500, );
         
       for (var i = 1; i <= particles.length; i++) {
