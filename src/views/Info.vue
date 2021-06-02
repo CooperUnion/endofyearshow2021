@@ -14,11 +14,13 @@
   import { getCurrentInstance } from 'vue'
   import GlobalNav from '@/components/GlobalNav.vue'
   import { globalNavItems } from '@/router/index.js'
+  import PageHeader from '@/components/PageHeader.vue'
   
   export default {
   name: 'Info',
   components: {
-    GlobalNav
+    GlobalNav,
+    PageHeader
   },
   props: {
     themeDark: Boolean
