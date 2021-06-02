@@ -5,6 +5,8 @@ import MasonryPost from '@/views/MasonryPost.vue'
 import MasonryTag from '@/views/MasonryTag.vue'
 import Projects from '@/views/Projects.vue'
 import Project from '@/views/Project.vue'
+import Info from '@/views/Info.vue'
+
 
 import SocketDebug from '@/views/SocketDebug.vue'
 
@@ -23,6 +25,13 @@ let routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+  },
+
+  {
+    path: '/info',
+    name: 'Info',
+    component: Info,
+    props: true
   },
   {
     path: '/posts',
@@ -88,7 +97,7 @@ let globalNavItems = [
   {name:"Projects", path:"/projects/", component: Projects},
   {name:"Forum", path:"/forum", component: MasonryPosts},
   {name:"Students", path:"/students", component: Home},
-  {name:"Info", path:"/info", component: Home},
+  {name:"Info", path:"/info", component: Info},
   {name: "SocketDebug", path: "/SocketDebug", component: SocketDebug }
 ]
 
