@@ -14,7 +14,7 @@
     </li>     
   </ul>
   <h2>
-    {{message}}{{status}}
+    {{message}}
   </h2>
 </template>
 
@@ -25,8 +25,7 @@
   
   export default {
   name: 'SocketDebug',
-  components: {
-  },
+  components: {},
   setup(){
     
       // const internalInstance = getCurrentInstance()
