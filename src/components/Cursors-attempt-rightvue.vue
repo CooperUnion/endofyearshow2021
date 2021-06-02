@@ -292,6 +292,7 @@ height: 100%;
     left: 0;
     top: 0;
     overflow: hidden;
+    pointer-events:none;
   }  
   
 #cursorscontainer >>> .friend {
@@ -473,6 +474,7 @@ margin-right: 0px;
     padding: 10vh;
     position: absolute;
     top: 0;
+    pointer-events: all;
     }
   
   #cursorscontainer >>> #dialogchild {
