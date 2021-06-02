@@ -159,6 +159,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
                       self.player = new Player(data.player);
 
                       document.querySelector("body").onmousemove = (e) => {
+                          console.log(document.querySelector("body"))
                           const x = e.clientX
                           const y = e.clientY
                           const location = player.update(x,y,that.$socket, data.player, name.input, name.radio) 
@@ -284,9 +285,18 @@ body {
 a {
   color: #00b7ff;
 }
+  #cursorscontainercontainer{
+        height: 100%;
+    width: 100vw;
+    position: relative;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    pointer-events:all;
+  }
   
-  #cursorscontainer {
-height: 100%;
+  #cursorscontainercontainer >>> #cursorscontainer {
+    height: 100%;
     width: 100vw;
     position: absolute;
     left: 0;
