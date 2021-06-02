@@ -28,6 +28,9 @@
   document.getElementById("particle-frame").style.height = window.innerHeight + "px"
     
     document.body.onresize = function(){
+  frame = document.getElementById('particle-frame');
+  canvas_width = parseInt(frame.style.width);
+  canvas_height = parseInt(frame.style.height);
   document.getElementById("particle-frame").style.width = window.innerWidth+ "px"
   document.getElementById("particle-frame").style.height = window.innerHeight + "px"
     }
@@ -60,6 +63,29 @@
 
   // functions
   
+    function transition(){
+              window.running = false
+                  document.getElementsByClassName("desktoplogo")[0].style.transition='filter 0.2s linear, transform '+1+'s linear, opacity 0.6s linear';
+  document.getElementsByClassName("desktoplogo")[0].style.opacity = 0;
+  document.getElementsByClassName("mobilelogo")[0].style.transition='filter 0.2s linear, transform '+1+'s linear, opacity 0.6s linear';
+  document.getElementsByClassName("mobilelogo")[0].style.opacity = 0; 
+              setTimeout(function(){ 
+       removeAndReplaceParticles(particles[0]['dom'].style.height); 
+                             }, 1500, );
+        
+      for (var i = 1; i <= particles.length; i++) {
+        particles[i]['dom'].style.transition = "left 1.1s cubic-bezier(1,-0.01, 0.55, 0.99), top 1.1s cubic-bezier(1,-0.01, 0.55, 0.99)"
+        particles[i]['dom'].style.setProperty("left", ((window.innerWidth/2)-(particles[i]['size']/2))+"px");
+        particles[i]['dom'].style.setProperty("top", ((window.innerHeight/2)-(particles[i]['size']/1.35))+"px");
+        particles[i]['dom'].setAttribute("x-velocity", 0)
+        particles[i]['dom'].setAttribute("y-velocity", 0)
+      }
+      
+
+        
+      
+    }
+    
   function removeAndReplaceParticles(size){
     const transitionLens = document.createElement("div")
     transitionLens.id = "transitionLens"
@@ -113,26 +139,7 @@
       particles[i]['dom'].setAttribute("y-velocity",particles[i]['y-velocity']);
       
       particles[i]['dom'].addEventListener('click', (e) => {
-        window.running = false
-                  document.getElementsByClassName("desktoplogo")[0].style.transition='filter 0.2s linear, transform '+1+'s linear, opacity 0.6s linear';
-  document.getElementsByClassName("desktoplogo")[0].style.opacity = 0;
-  document.getElementsByClassName("mobilelogo")[0].style.transition='filter 0.2s linear, transform '+1+'s linear, opacity 0.6s linear';
-  document.getElementsByClassName("mobilelogo")[0].style.opacity = 0; 
-              setTimeout(function(e){ 
-       removeAndReplaceParticles(e.target.style.height); 
-                             }, 1500, e);
-        
-      for (var i = 1; i <= particles.length; i++) {
-        particles[i]['dom'].style.transition = "left 1.1s cubic-bezier(1,-0.01, 0.55, 0.99), top 1.1s cubic-bezier(1,-0.01, 0.55, 0.99)"
-        particles[i]['dom'].style.setProperty("left", ((window.innerWidth/2)-(particles[i]['size']/2))+"px");
-        particles[i]['dom'].style.setProperty("top", ((window.innerHeight/2)-(particles[i]['size']/1.35))+"px");
-        particles[i]['dom'].setAttribute("x-velocity", 0)
-        particles[i]['dom'].setAttribute("y-velocity", 0)
-      }
-      
-
-        
-      
+transition();
       });
       
       frame.prepend(particles[i]['dom']);
