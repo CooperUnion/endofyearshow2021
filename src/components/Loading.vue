@@ -34,11 +34,10 @@
 <style scoped>
   
   .loading {
-    background-image: url(https://cdn.glitch.com/54e20d29-ecb6-4deb-b7dd-99e4bb8437d0%2FComp-13.gif?v=1621378208895);
-    background-size: 100px 100px;
-    width: auto;
-    height: 100%;
-    margin: 0 auto 33px auto;
+    background-image: url(./loading.gif);
+    background-size: contain;
+    width: 100px;
+    height: 100px;
   }
 
   .loading>small {

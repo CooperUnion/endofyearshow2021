@@ -4,7 +4,8 @@ const activeArea = new Set()
 const activeGlobalNav = ''
 const activeScrimId = 0
 
-export default createStore({
+
+const application = {
   state() {
     return {
       activeArea,
@@ -33,16 +34,40 @@ export default createStore({
     }
     
   },
-  // getters: {
-  //   currentAreaState: (state) => {
-  //     return (navItem) => {
-  //       return state.activeArea.has(navItem)
-  //     }
-  //   }
-  // },
   actions: {
   },
   modules: {
+  }
+}
+
+const socket = {  state() {
+    return {
+      message: {message: undefined, origin: undefined}
+    }
+  },
+  mutations: {
+    SOCKET_USER_MESSAGE(state, message) {
+      state.message = {message, origin: 'socket'}
+    },
+    CLIENT_USER_MESSAGE(state, message) {
+      state.message = {message, origin: 'client'}
+    }    
+  },
+  getters: {},
+  actions: {
+    socket_userMessage ({ dispatch, commit }, message) {
+     commit('SOCKET_USER_MESSAGE', message);
+    },
+    client_userMessage({ dispatch, commit }, message) {
+      commit('CLIENT_USER_MESSAGE', message)
+    }
+  }
+}
+
+export default createStore({
+  modules:{
+    application,
+    socket
   }
 })
 

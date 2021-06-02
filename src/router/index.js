@@ -6,6 +6,8 @@ import MasonryTag from '@/views/MasonryTag.vue'
 import Projects from '@/views/Projects.vue'
 import Project from '@/views/Project.vue'
 
+import SocketDebug from '@/views/SocketDebug.vue'
+
 
 
 let routes = [
@@ -61,7 +63,15 @@ let routes = [
   {
     path: '/areas',
     redirect: '/tag/drawing,design,film-+-video,installation,painting,performance,photography,printmaking,sculpture,sound-art'
-  }
+  },
+  {
+    path: '/cursors',
+    name: 'Cursors',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/Cursors.vue')
+  },
 ]
 
 let globalNavItems = [
@@ -78,11 +88,11 @@ let globalNavItems = [
   {name:"Projects", path:"/projects/", component: Projects},
   {name:"Forum", path:"/forum", component: MasonryPosts},
   {name:"Students", path:"/students", component: Home},
-  {name:"Info", path:"/info", component: Home}
+  {name:"Info", path:"/info", component: Home},
+  {name: "SocketDebug", path: "/SocketDebug", component: SocketDebug }
 ]
 
 routes = routes.concat(globalNavItems)
-
 
 
 const router = createRouter({

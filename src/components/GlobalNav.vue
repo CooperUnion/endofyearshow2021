@@ -26,9 +26,9 @@
       const store = useStore()
       const route = useRoute()
       const globalnavShow = ref(false)
-      
-      //returns state for all global-nav items
-      const activeGlobal = store.state.activeGlobal
+
+      //returns state for all area-nav items
+      const activeGlobal = store.state.application.activeGlobal
 
       const isActiveRoute = (current) => {
         if(current === route.name) {

@@ -1,6 +1,6 @@
 {
   "name": "endofyearshow2021",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "start": "vue-cli-service serve",
@@ -11,15 +11,16 @@
   },
   "dependencies": {
     "core-js": "^3.12.1",
-    "register-service-worker": "^1.7.2",
-    "vue": "^3.0.11",
-    "vue-router": "^4.0.6",
-    "vuex": "^4.0.0",
-    "vue-masonry-wall": "^0.3.2",
-    "vue-masonry": "^0.13.0",
     "mitt": "^2.1.0",
+    "register-service-worker": "^1.7.2",
+    "socket.io-client": "^4.1.2",
+    "vue": "^3.0.11",
+    "vue-masonry": "^0.13.0",
     "vue-use-gesture": "^1.0.1",
-    "vue-use-spring": "^0.0.2"
+    "vue-use-spring": "^0.0.2",
+    "vue-router": "^4.0.6",
+    "vue-vuex-socket.io-opinionated-integration": "^0.2.0",
+    "vuex": "^4.0.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
