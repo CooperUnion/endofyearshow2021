@@ -167,7 +167,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
     setInterval(function(){ 
     //checks each friend
       const childrenArray = Array.from(document.getElementById("cursorscontainer").children)
-      childrenArray.forEach(child => socket.emit("isChild", child.id))
+      childrenArray.forEach(child => this.$socket.client.emit("isChild", child.id))
       console.log(child.id)
     }, 30000);
     }).catch(function() {
