@@ -139,109 +139,106 @@
 </script>
 
 <style scoped>
-
-  #areanav {
-    width: 275px;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .nav-list {
-    list-style-type: none;
-    margin: 0;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-  }
-
-
-  .nav-list .nav-item {
-    display: flex;
-    margin-bottom: 1.5em;
-    font-size: 16px;
-    line-height: 1.5;
-    cursor: pointer;
- }
-
-  .nav-list .nav-item a {
-    color: #000;
-    font-weight: 700;
-    display: inline-block;
-    text-decoration: none;
-  }
-
-
-  .nav-list .nav-item output a {
-    color: #999;
-    margin-left: 0.333em;
-    font-size: 16px;
-    line-height: 1.5;
-    font-weight: 100;
-  }
-
-  button.filters {
-    display: none;
-  }
-
-  @media screen and (max-width: 767px) {
-    #areanav {
-      width: auto;
-      margin-bottom: 48px;
-    }
-    
-    .nav-panel {
-      position: fixed;
-      top: 24px;
-      left: 24px;
-      width: calc(100vw - 48px);
-      height: calc(100vh - 48px);
-      background-color: #fff;
-      border: 2px solid #000;
-      z-index: 1;
-      padding: 36px;
-      border-radius: 12px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: flex-start;
-      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-   }
-    
-    #areanav:not(.showNav) .nav-panel {
-      transform: translateX(-100vw);
-    }
- 
-    .nav-list {
-      max-height: calc(100% - 96px);
-      transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)
-    }
-
-    #areanav:not(.showNav) .nav-list {
-      transform: translateX(10vw);
-    }
-
-
-
-   .nav-list .nav-item {
-      margin-bottom: clamp(1em, calc(5.5vh - 1.1em), 2em);
-    }
-
-    button.filters {
-      color: #fff;
-      background-color: #000;
-      border-radius: 1.25em;
-      padding: 6px 29px;
-      margin: 0;
-      display: inline-block;
-    }
-    
-    button.filters.apply {
-      width: 100%;
-    }
-            
-  }
-
-
+	#areanav {
+		width: 275px;
+		display: flex;
+		justify-content: space-between;
+	}
+	
+	.nav-list {
+		list-style-type: none;
+		margin: 0;
+		text-align: left;
+		display: flex;
+		flex-direction: column;
+	}
+	
+	.nav-list .nav-item {
+		display: flex;
+		margin-bottom: 1.5em;
+		font-size: 16px;
+		line-height: 1.5;
+		cursor: pointer;
+	}
+	
+	.nav-list .nav-item a {
+		color: #000;
+		font-weight: 700;
+		display: inline-block;
+		text-decoration: none;
+	}
+	
+	.nav-list .nav-item output a {
+		color: #999;
+		margin-left: 0.333em;
+		font-size: 16px;
+		line-height: 1.5;
+		font-weight: 100;
+	}
+	
+	button.filters {
+		display: none;
+	}
+	
+	@media screen and (max-width: 767px) {
+		#areanav {
+			width: auto;
+		}
+		
+		.nav-panel {
+			position: fixed;
+			top: 24px;
+			left: 24px;
+			width: calc(100vw - 48px);
+			height: calc(100vh - 48px);
+			background-color: #fff;
+			border: 2px solid #000;
+			z-index: 1;
+			padding: 36px;
+			border-radius: 12px;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			align-items: flex-start;
+			transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+		}
+		
+		#areanav:not(.showNav) .nav-panel {
+			transform: translateX(-100vw);
+		}
+		
+		.nav-list {
+			max-height: calc(100% - 96px);
+			transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+		}
+		
+		#areanav:not(.showNav) .nav-list {
+			transform: translateX(10vw);
+		}
+		
+		.nav-list .nav-item {
+			margin-bottom: clamp(1em, calc(5.5vh - 1.1em), 2em);
+		}
+		
+		button.filters {
+			color: #fff;
+			background-color: #000;
+			border-radius: 1.25em;
+			padding: 6px 29px;
+			margin: 0;
+			display: inline-block;
+		}
+		
+		button.filters.open {
+			position: absolute;
+			top: -2em;
+			right: 0;
+		}
+		
+		button.filters.apply {
+			width: 100%;
+		}
+	}
 
 </style>
 
