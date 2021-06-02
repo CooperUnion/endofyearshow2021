@@ -18,6 +18,10 @@
     padding: 0;
   }
 
+  body.dark {
+    background-color:black;
+  }
+
   #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;

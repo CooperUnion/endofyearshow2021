@@ -17,6 +17,7 @@
     "socket.io-client": "^4.1.2",
     "vue": "^3.0.11",
     "vue-masonry": "^0.13.0",
+    "vue-pseudo-window": "^1.0.0",
     "vue-router": "^4.0.6",
     "vue-use-gesture": "^1.0.1",
     "vue-use-spring": "^0.0.2",

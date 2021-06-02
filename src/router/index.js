@@ -10,8 +10,6 @@ import Info from '@/views/Info.vue'
 
 import SocketDebug from '@/views/SocketDebug.vue'
 
-
-
 let routes = [
   {
     path: '/',
@@ -91,7 +89,8 @@ let globalNavItems = [
     path:"/foundation", 
     component: MasonryPosts,
     props:{
-      postsEndpoint: '/year/freshman'
+      postsEndpoint: '/year/freshman',
+      theme: ''
     }
   },
   {name:"Projects", path:"/projects/", component: Projects},
@@ -102,13 +101,14 @@ let globalNavItems = [
     path:"/info", 
     component: Info,
     props: {
-      themeDark: true
+      theme: "dark"
     }
   },
   {name: "SocketDebug", path: "/SocketDebug", component: SocketDebug }
 ]
 
 routes = routes.concat(globalNavItems)
+
 
 
 const router = createRouter({

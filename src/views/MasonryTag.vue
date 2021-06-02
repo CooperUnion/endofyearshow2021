@@ -16,7 +16,7 @@
 </template>
 
 <script>
-  import { ref, onBeforeMount, watch, getCurrentInstance } from "vue";
+  import { ref, onBeforeMount, watch, getCurrentInstance, inject } from "vue";
   import { useRoute } from 'vue-router'
   import { useStore } from 'vuex'  
   
@@ -37,7 +37,8 @@
       PageHeader
     },
     props: {
-      tag: String
+      tag: String,
+      theme: String
     },
     setup(props){
       const store = useStore()
@@ -48,7 +49,8 @@
       const route = useRoute()
       const internalInstance = getCurrentInstance()
       const { api_endpoint } = internalInstance.appContext.config.globalProperties
-         
+      const header = inject('header')
+      header.set(props.theme)
       onBeforeMount(loadPosts)
       async function loadToggle(){
         console.log("ok...")

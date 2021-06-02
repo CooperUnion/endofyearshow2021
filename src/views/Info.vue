@@ -1,8 +1,8 @@
 <!--htmlhint attr-lowercase:false --> 
 <template>
-  <global-nav :items="globalNavItems" :themeDark="themeDark" />
+  <global-nav :items="globalNavItems"/>
 
-   <main :class="{dark : themeDark}">    
+   <main>    
     <page-header />
     <div class="infoPage">
       INFO
@@ -11,11 +11,11 @@
 
 </template>
 <script>
-  import { getCurrentInstance } from 'vue'
+  import { getCurrentInstance, inject } from 'vue'
   import GlobalNav from '@/components/GlobalNav.vue'
   import { globalNavItems } from '@/router/index.js'
   import PageHeader from '@/components/PageHeader.vue'
-  
+
   export default {
   name: 'Info',
   components: {
@@ -23,11 +23,16 @@
     PageHeader
   },
   props: {
-    themeDark: Boolean
+    theme: String
   },
-  setup(){
+  setup(props){
     const internalInstance = getCurrentInstance()
-    const { api_endpoint, mobile } = internalInstance.appContext.config.globalProperties
+
+    const header = inject('header')
+    header.set(props.theme)
+
+
+    // const { api_endpoint, mobile } = internalInstance.appContext.config.globalProperties
     return { globalNavItems }
   }
 }
