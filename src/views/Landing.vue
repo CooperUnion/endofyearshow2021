@@ -189,6 +189,8 @@
 body{
   overflow: hidden;
 }
+  
+  
 
 #particle-frame {
   position: absolute;
