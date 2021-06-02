@@ -228,7 +228,7 @@ body{
   #particle-frame >>> .desktoplogo{
         width: 70vw;
     height: auto;
-    margin-top: 35vh;
+    margin-top: 34vh;
 /*     margin-left: 15vw; */
 /*     margin-right: auto; */
     position: absolute;
@@ -258,4 +258,9 @@ body{
 #particle-frame >>> particle-8 { background-color: #00FFFF; }
 #particle-frame >>> particle-9 { background-color: #BD00FF; }
 #particle-frame >>> particle-10 { background-color: #06A9FF; }
+  
+  
+  
+  
+  
 </style>
