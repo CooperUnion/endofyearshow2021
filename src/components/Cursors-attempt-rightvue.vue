@@ -99,7 +99,7 @@
     },
     
     init(data){
-
+  console.log("init")   
       
    async function run(data, that){
       
@@ -197,11 +197,18 @@ for (var i = 0, length = radios.length; i < length; i++) {
                     } else {
                         document.getElementById("othervisitors").innerHTML = " other visitors online"
                     }
+                          if(this.Meeting1){
                           this.Meeting1.removeFriend(self,data.friend, this.Meeting1);
+                          }
     },
     move(data){
       this.Meeting1.updateFriend(data);
-    },
+                           document.getElementById('connections').innerHTML = (data.users-1) +" ";
+                    if ((data.users-1)===1){
+                      document.getElementById("othervisitors").innerHTML = " other visitor online"
+                    } else {
+                        document.getElementById("othervisitors").innerHTML = " other visitors online"
+    }},
 
     // Fired when the server sends something on the "messageChannel" channel.
     messageChannel(data) {
