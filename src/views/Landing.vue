@@ -1,6 +1,9 @@
 <template>
 <div id="particle-frame" style="
-  "></div>
+  ">
+  <img class ="desktoplogo" src="https://cdn.glitch.com/d71c7c2a-c6c4-4028-9136-d224524d7374%2Fdesktop.svg?v=1622648139448">
+  <img class ="mobilelogo" src="https://cdn.glitch.com/d71c7c2a-c6c4-4028-9136-d224524d7374%2Fmobile.svg?v=1622648139448">
+  </div>
 </template>
 
 <script>
@@ -184,13 +187,20 @@
   }
 }
 </script>
+<style>
+  #app{
+/*     margin: 0!important; */
+/*     max-width: 100vw; */
+  }
+  
+</style>
 
 <style scoped>
 body{
   overflow: hidden;
 }
   
-  
+
 
 #particle-frame {
   position: absolute;
@@ -200,11 +210,18 @@ body{
   border-radius: 0px;
   width: 580px; 
   height: 250px;
+      left: 0px;
+    top: 0px;
 /*   margin-left: -8px; */
 /*   margin-top: -8px; */
 }
 
-
+  #particle-frame >>> .desktoplogo{
+    
+  }
+  #particle-frame >>> .mobilelogo{
+    display:none;
+  }
 
   #particle-frame >>> particle-1, #particle-frame >>> particle-2, #particle-frame >>> particle-3, #particle-frame >>> particle-4, #particle-frame >>> particle-5, #particle-frame >>> particle-6, #particle-frame >>> particle-7, #particle-frame >>> particle-8, #particle-frame >>> particle-9, #particle-frame >>> particle-10 {
   display: block; 
