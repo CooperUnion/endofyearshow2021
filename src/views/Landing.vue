@@ -260,7 +260,29 @@ body{
 #particle-frame >>> particle-10 { background-color: #06A9FF; }
   
   
-  
+  @media only screen and (max-width: 600px) {
+  #particle-frame >>> .desktoplogo{
+        width: 70vw;
+    height: auto;
+    margin-top: 34vh;
+/*     margin-left: 15vw; */
+/*     margin-right: auto; */
+    position: absolute;
+    left: 15vw;
+    display: none;
+  }
+  #particle-frame >>> .mobilelogo{
+    display:block;
+        width: auto;
+    height: 50vh;
+/*     margin-left: 15vw; */
+/*     margin-right: auto; */
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25vh;
+  }
+}
   
   
 </style>
