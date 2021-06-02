@@ -1,5 +1,5 @@
 <template>
-  <nav id="globalnav" :class="{showNav : globalnavShow, themeDark: themeDark}">
+  <nav id="globalnav" :class="{showNav : globalnavShow, dark: themeDark}">
     <button class="globalnav-toggle" v-if="mobile" @click="toggleGlobalPanel()">☰</button>
     <div class="nav-panel">
       <button v-if="mobile" class="close" @click="toggleGlobalPanel()">close</button>
@@ -21,6 +21,7 @@
     name: 'GlobalNav',
     props: {
       items: Array,
+      themeDark: Boolean
     },
     setup(props){
       const store = useStore()
@@ -146,6 +147,10 @@
       overflow: hidden;
     }
     
+  }
+  
+  .dark {
+    background-color: black;
   }
   
 </style>

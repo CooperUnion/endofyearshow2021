@@ -1,5 +1,5 @@
 <template>
-  <global-nav :items="globalNavItems" :themeDark="true" />
+  <global-nav :items="globalNavItems" :themeDark="themeDark" />
 
    <main>    
     <page-header />
@@ -18,6 +18,9 @@
   name: 'Info',
   components: {
     GlobalNav
+  },
+  props: {
+    themeDark: Boolean
   },
   setup(){
     const internalInstance = getCurrentInstance()

@@ -97,7 +97,14 @@ let globalNavItems = [
   {name:"Projects", path:"/projects/", component: Projects},
   {name:"Forum", path:"/forum", component: MasonryPosts},
   {name:"Students", path:"/students", component: Home},
-  {name:"Info", path:"/info", component: Info},
+  {
+    name:"Info", 
+    path:"/info", 
+    component: Info,
+    props: {
+      themeDark: true
+    }
+  },
   {name: "SocketDebug", path: "/SocketDebug", component: SocketDebug }
 ]
 
