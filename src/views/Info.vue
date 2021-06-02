@@ -1,5 +1,5 @@
 <template>
-  <global-nav :items="globalNavItems" />
+  <global-nav :items="globalNavItems" :themeDark="true" />
 
    <main>    
     <page-header />

@@ -1,5 +1,5 @@
 <template>
-  <nav id="globalnav" :class="{showNav : globalnavShow}">
+  <nav id="globalnav" :class="{showNav : globalnavShow, themeDark: themeDark}">
     <button class="globalnav-toggle" v-if="mobile" @click="toggleGlobalPanel()">☰</button>
     <div class="nav-panel">
       <button v-if="mobile" class="close" @click="toggleGlobalPanel()">close</button>
