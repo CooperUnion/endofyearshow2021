@@ -302,7 +302,7 @@ a {
     left: 0;
     top: 0;
     overflow: hidden;
-    pointer-events:none;
+/*     pointer-events:none; */
   }  
   
 #cursorscontainer >>> .friend {
