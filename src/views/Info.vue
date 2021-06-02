@@ -1,7 +1,7 @@
 <template>
   <global-nav :items="globalNavItems" :themeDark="themeDark" />
 
-   <main>    
+   <main :themeDark="themeDark">    
     <page-header />
     <div class="infoPage">
       INFO
