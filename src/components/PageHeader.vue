@@ -27,7 +27,6 @@
 <script>
   import { ref, watch } from "vue";
   import { useRoute } from 'vue-router'  
-  
   import PageHeaderButton from '@/components/PageHeaderButton.vue'
   import pageConfig from '@/router/pageConfig.js'
   

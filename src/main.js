@@ -5,9 +5,24 @@ import router from './router'
 import store from './store'
 import mitt from 'mitt'
 import { VueMasonryPlugin } from 'vue-masonry/src/masonry-vue3.plugin';
+import vuexSocketio from 'vue-vuex-socket.io-opinionated-integration'
 
 const emitter = mitt()
-let app = createApp(App).use(store).use(router)
+const app = createApp(App)
+  .use(store)
+  .use(router)
+  .use(vuexSocketio, {
+    connection:'https://eoyssockets2021.glitch.me',
+    store,
+    pluginOptions:{
+      action_prefix: 'SOCKET_ACTION',
+      mutation_prefix: 'SOCKET_MUTATION'
+    },
+    socketOptions:{
+      path: '/socket.io/'
+    }
+  })
+
 app.config.globalProperties.emitter = emitter
 app.config.globalProperties.api_endpoint = process.env.VUE_APP_FORM_API_ENDPOINT || 'https://eoys-api-2021.glitch.me'
 
@@ -20,4 +35,5 @@ if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine
 app.use(VueMasonryPlugin)
 app.mount('#app')
 
+window.app = app
 

@@ -25,10 +25,16 @@
     setup(props){
       const store = useStore()
       const route = useRoute()
+<<<<<<< HEAD
       const globalnavShow = ref(false)
       
       //returns state for all global-nav items
       const activeGlobal = store.state.activeGlobal
+=======
+
+      //returns state for all area-nav items
+      const activeGlobal = store.state.application.activeGlobal
+>>>>>>> feature/opinionated
 
       const isActiveRoute = (current) => {
         if(current === route.name) {

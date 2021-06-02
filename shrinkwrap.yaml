@@ -2,6 +2,7 @@ dependencies:
   core-js: 3.12.1
   mitt: 2.1.0
   register-service-worker: 1.7.2
+  socket.io-client: 4.1.2
   vue: 3.0.11
   vue-masonry: 0.13.0
   vue-masonry-wall: 0.3.2
@@ -1418,6 +1419,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-W98JrE0j2K78swW4ukqMleo8R7h/pFETjM2DQ90MF6XK2i4LO4W3gQ71Lt4w3bfm2EvVSyWHplECvB5sK22yFQ==
+  /@types/component-emitter/1.2.10:
+    dev: false
+    resolution:
+      integrity: sha512-bsjleuRKWmGqajMerkzox19aGbscQX5rmmvvXl3wlIp5gMG1HgkiwPxsN5p070fBDKTNSPgojVbuY1+HWMbFhg==
   /@types/connect-history-api-fallback/1.3.4:
     dependencies:
       '@types/express-serve-static-core': 4.17.19
@@ -2768,6 +2773,10 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-q/UEjfGJ2Cm3oKV71DJz9d25TPnq5rhBVL2Q4fA5wcC3jcrdn7+SssEybFIxwAvvP+YCsCYNKughoF33GxgycQ==
+  /backo2/1.0.2:
+    dev: false
+    resolution:
+      integrity: sha1-MasayLEpNjRj41s+u2n038+6eUc=
   /balanced-match/1.0.2:
     dev: true
     resolution:
@@ -2786,6 +2795,12 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-5T6P4xPgpp0YDFvSWwEZ4NoE3aM4QBQXDzmVbraCkFj8zHM+mba8SyqB5DbZWyR7mYHo6Y7BdQo3MoA4m0TeQg==
+  /base64-arraybuffer/0.1.4:
+    dev: false
+    engines:
+      node: '>= 0.6.0'
+    resolution:
+      integrity: sha1-mBjHngWbE1X5fgQooBfIOOkLqBI=
   /base64-js/1.5.1:
     dev: true
     resolution:
@@ -3534,7 +3549,6 @@ packages:
     resolution:
       integrity: sha1-3dgA2gxmEnOTzKWVDqloo6rxJTs=
   /component-emitter/1.3.0:
-    dev: true
     resolution:
       integrity: sha512-Rd3se6QB+sO1TwqZjscQrurpEPIfO0/yYnSin6Q/rD3mOutHvUrCAhJub3r90uNb+SESBuE0QYoB90YdfatsRg==
   /compressible/2.0.18:
@@ -4052,7 +4066,6 @@ packages:
   /debug/4.3.1:
     dependencies:
       ms: 2.1.2
-    dev: true
     engines:
       node: '>=6.0'
     resolution:
@@ -4419,6 +4432,28 @@ packages:
     dev: true
     resolution:
       integrity: sha512-+uw1inIHVPQoaVuHzRyXd21icM+cnt4CzD5rW+NC1wjOUSTOs+Te7FOv7AhN7vS9x/oIyhLP5PR1H+phQAHu5Q==
+  /engine.io-client/5.1.1:
+    dependencies:
+      base64-arraybuffer: 0.1.4
+      component-emitter: 1.3.0
+      debug: 4.3.1
+      engine.io-parser: 4.0.2
+      has-cors: 1.1.0
+      parseqs: 0.0.6
+      parseuri: 0.0.6
+      ws: 7.4.6
+      yeast: 0.1.2
+    dev: false
+    resolution:
+      integrity: sha512-jPFpw2HLL0lhZ2KY0BpZhIJdleQcUO9W1xkIpo0h3d6s+5D6+EV/xgQw9qWOmymszv2WXef/6KUUehyxEKomlQ==
+  /engine.io-parser/4.0.2:
+    dependencies:
+      base64-arraybuffer: 0.1.4
+    dev: false
+    engines:
+      node: '>=8.0.0'
+    resolution:
+      integrity: sha512-sHfEQv6nmtJrq6TKuIz5kyEKH/qSdK56H/A+7DnAuUPWosnIZAS2NHNcPLmyjtY3cGS/MqJdZbUjW97JU72iYg==
   /enhanced-resolve/0.9.1:
     dependencies:
       graceful-fs: 4.2.6
@@ -5589,6 +5624,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-LSBS2LjbNBTf6287JEbEzvJgftkF5qFkmCo9hDRpAzKhUOlJ+hx8dd4USs00SgsUNwc4617J9ki5YtEClM2ffA==
+  /has-cors/1.1.0:
+    dev: false
+    resolution:
+      integrity: sha1-XkdHk/fqmEPRu5nCPu9J/xJv/zk=
   /has-flag/3.0.0:
     dev: true
     engines:
@@ -7784,7 +7823,6 @@ packages:
     resolution:
       integrity: sha512-tgp+dl5cGk28utYktBsrFqA7HKgrhgPsg6Z/EfhWI4gl1Hwq8B/GmY/0oXZ6nF8hDVesS/FpnYaD/kOWhYQvyg==
   /ms/2.1.2:
-    dev: true
     resolution:
       integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
   /ms/2.1.3:
@@ -8431,6 +8469,14 @@ packages:
     dev: true
     resolution:
       integrity: sha512-Ofn/CTFzRGTTxwpNEs9PP93gXShHcTq255nzRYSKe8AkVpZY7e1fpmTfOyoIvjP5HG7Z2ZM7VS9PPhQGW2pOpw==
+  /parseqs/0.0.6:
+    dev: false
+    resolution:
+      integrity: sha512-jeAGzMDbfSHHA091hr0r31eYfTig+29g3GKKE/PPbEQ65X0lmMwlEoqmhzu0iztID5uJpZsFlUPDP8ThPL7M8w==
+  /parseuri/0.0.6:
+    dev: false
+    resolution:
+      integrity: sha512-AUjen8sAkGgao7UyCX6Ahv0gIK2fABKmYjvP4xmy5JaKvcbTRueIqIPHLAfq30xJddqSE033IOMUSOMCcK3Sow==
   /parseurl/1.3.3:
     dev: true
     engines:
@@ -10017,6 +10063,30 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-FtyOnWN/wCHTVXOMwvSv26d+ko5vWlIDD6zoUJ7LW8vh+ZBC8QdljveRP+crNrtBwioEUWy/4dMtbBjA4ioNlg==
+  /socket.io-client/4.1.2:
+    dependencies:
+      '@types/component-emitter': 1.2.10
+      backo2: 1.0.2
+      component-emitter: 1.3.0
+      debug: 4.3.1
+      engine.io-client: 5.1.1
+      parseuri: 0.0.6
+      socket.io-parser: 4.0.4
+    dev: false
+    engines:
+      node: '>=10.0.0'
+    resolution:
+      integrity: sha512-RDpWJP4DQT1XeexmeDyDkm0vrFc0+bUsHDKiVGaNISJvJonhQQOMqV9Vwfg0ZpPJ27LCdan7iqTI92FRSOkFWQ==
+  /socket.io-parser/4.0.4:
+    dependencies:
+      '@types/component-emitter': 1.2.10
+      component-emitter: 1.3.0
+      debug: 4.3.1
+    dev: false
+    engines:
+      node: '>=10.0.0'
+    resolution:
+      integrity: sha512-t+b0SS+IxG7Rxzda2EVvyBZbvFPBCjJoyHuE0P//7OAsN23GItzDRdWa6ALxZI/8R5ygK7jAR6t028/z+7295g==
   /sockjs-client/1.5.1:
     dependencies:
       debug: 3.2.7
@@ -11741,6 +11811,15 @@ packages:
       utf-8-validate: ^5.0.2
     resolution:
       integrity: sha512-xzyu3hFvomRfXKH8vOFMU3OguG6oOvhXMo3xsGy3xWExqaM2dxBbVxuD99O7m3ZUFMvvscsZDqxfgMaRr/Nr1g==
+  /ws/7.4.6:
+    dev: false
+    engines:
+      node: '>=8.3.0'
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: ^5.0.2
+    resolution:
+      integrity: sha512-YmhHDO4MzaDLB+M9ym/mDA5z0naX8j7SIlT8f8z+I0VtzsRbekxEutHSme7NPS2qE8StCYQNUnfWdXta/Yu85A==
   /xml-name-validator/3.0.0:
     dev: true
     resolution:
@@ -11825,6 +11904,10 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-D1mvvtDG0L5ft/jGWkLpG1+m0eQxOfaBvTNELraWj22wSVUMWxZUvYgJYcKh6jGGIkJFhH4IZPQhR4TKpc8mBw==
+  /yeast/0.1.2:
+    dev: false
+    resolution:
+      integrity: sha1-AI4G2AlDIMNy28L47XagymyKxBk=
   /yorkie/2.0.0:
     dependencies:
       execa: 0.8.0
@@ -11861,6 +11944,7 @@ specifiers:
   eslint-plugin-vue: ^7.0.0
   mitt: ^2.1.0
   register-service-worker: ^1.7.2
+  socket.io-client: ^4.1.2
   typescript: ~3.9.3
   vue: ^3.0.11
   vue-jest: ^5.0.0-0
