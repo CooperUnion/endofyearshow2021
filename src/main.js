@@ -5,14 +5,13 @@ import router from './router'
 import store from './store'
 import mitt from 'mitt'
 import { VueMasonryPlugin } from 'vue-masonry/src/masonry-vue3.plugin';
-import Socketio from '@/plugins/vue-vuex-socket.io-opinionated-integration'
+import vuexSocketio from 'vue-vuex-socket.io-opinionated-integration'
 
 const emitter = mitt()
-let app = createApp(App)
+const app = createApp(App)
   .use(store)
   .use(router)
-
-app.use(Socketio, {
+  .use(vuexSocketio, {
     connection:'https://eoyssockets2021.glitch.me',
     store,
     pluginOptions:{

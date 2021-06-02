@@ -16,8 +16,8 @@
     "socket.io-client": "^4.1.2",
     "vue": "^3.0.11",
     "vue-masonry": "^0.13.0",
-    "vue-masonry-wall": "^0.3.2",
     "vue-router": "^4.0.6",
+    "vue-vuex-socket.io-opinionated-integration": "^0.2.0",
     "vuex": "^4.0.0"
   },
   "devDependencies": {
