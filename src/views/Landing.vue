@@ -1,8 +1,8 @@
 <template>
 <div id="particle-frame" style="
   ">
-  <img class ="desktoplogo" src="https://cdn.glitch.com/d71c7c2a-c6c4-4028-9136-d224524d7374%2Fdesktop.svg?v=1622648139448">
-  <img class ="mobilelogo" src="https://cdn.glitch.com/d71c7c2a-c6c4-4028-9136-d224524d7374%2Fmobile.svg?v=1622648139448">
+  <img class ="desktoplogo" src="https://cdn.glitch.com/d71c7c2a-c6c4-4028-9136-d224524d7374%2Fdesktop.svg?v=1622648434792">
+  <img class ="mobilelogo" src="https://cdn.glitch.com/d71c7c2a-c6c4-4028-9136-d224524d7374%2Fmobile.svg?v=1622648434792">
   </div>
 </template>
 
@@ -26,6 +26,12 @@
   mounted(){
   document.getElementById("particle-frame").style.width = window.innerWidth+ "px"
   document.getElementById("particle-frame").style.height = window.innerHeight + "px"
+    
+    document.body.onresize = function(){
+  document.getElementById("particle-frame").style.width = window.innerWidth+ "px"
+  document.getElementById("particle-frame").style.height = window.innerHeight + "px"
+    }
+    
    // document.getElementById("particle-frame").style.marginTop = "-40px"
    // document.getElementById("particle-frame").style.marginLeft = "-40px"
   // init vars
@@ -62,7 +68,7 @@
         document.getElementById("particle-frame").removeChild(document.getElementById("particle-frame").firstChild);
     }
 
-        document.getElementById("particle-frame").appendChild(transitionLens)
+        document.getElementById("particle-frame").prepend(transitionLens)
         document.getElementById("transitionLens").style.position = "absolute"
         document.getElementById("transitionLens").style.height = size
         document.getElementById("transitionLens").style.width = size
@@ -126,7 +132,7 @@
       
       });
       
-      frame.appendChild(particles[i]['dom']);
+      frame.prepend(particles[i]['dom']);
     }
   }
 
@@ -208,8 +214,8 @@ body{
   background: black;
   overflow: hidden;
   border-radius: 0px;
-  width: 580px; 
-  height: 250px;
+  width: 100vw; 
+  height: 100vh;
       left: 0px;
     top: 0px;
 /*   margin-left: -8px; */
@@ -217,7 +223,13 @@ body{
 }
 
   #particle-frame >>> .desktoplogo{
-    
+        width: 70vw;
+    height: auto;
+    margin-top: 35vh;
+/*     margin-left: 15vw; */
+/*     margin-right: auto; */
+    position: absolute;
+    left: 15vw;
   }
   #particle-frame >>> .mobilelogo{
     display:none;
