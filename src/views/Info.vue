@@ -1,3 +1,4 @@
+<!--htmlhint attr-lowercase:false --> 
 <template>
   <global-nav :items="globalNavItems" :themeDark="themeDark" />
 
