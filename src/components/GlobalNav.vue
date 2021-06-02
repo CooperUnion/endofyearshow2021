@@ -1,15 +1,17 @@
 <template>
-  <nav id="globalnav" :class="{showNav : globalnavShow, dark : themeDark}">
-    <button class="globalnav-toggle" v-if="mobile" @click="toggleGlobalPanel()">☰</button>
-    <div class="nav-panel">
-      <button v-if="mobile" class="close" @click="toggleGlobalPanel()">close</button>
-      <ul class="nav-list">
-        <li v-for="item in items" :key="item" :class="['nav-item', isActiveRoute(item.name)]">
-          <router-link :to="item.path">{{item.name}}</router-link>
-        </li>
-      </ul>
-    </div>
-  </nav>
+ 
+<nav id="globalnav" :class="{showNav : globalnavShow, dark : themeDark}">
+<div class="logoBanner">
+	<a href="/"><h1 class="logo">EOYS 2021</h1></a>
+	<button class="globalnav-toggle" v-if="mobile" @click="toggleGlobalPanel()">☰</button> 
+</div>
+	<div class="nav-panel">
+		<button v-if="mobile" class="close" @click="toggleGlobalPanel()">close</button> 
+		<ul class="nav-list">
+			<li v-for="item in items" :key="item" :class="['nav-item', isActiveRoute(item.name)]"> <router-link :to="item.path">{{item.name}}</router-link> </li>
+		</ul>
+	</div>
+</nav>
 </template>
 
 <script>
@@ -51,108 +53,143 @@
 </script>
 
 <style scoped>
-  
-  .nav-list {
-    list-style-type: none;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding: 80px 0 40px 0;
-    margin: 0;
-    font-size: 16px;
-    line-height: 1.5;
-    cursor: pointer;
- }
-  
-  .nav-list .nav-item + .nav-item {
-    margin-left: 1.5em;
-  }
 
-  .nav-list .nav-item a {
-    color: inherit;
-  }
+	.logo {
+		overflow: hidden;
+		text-indent: -999vw;
+		background-image: url(../assets/logo.svg);
+		background-repeat: no-repeat;
+		background-size: contain;
+		background-position: center center;
+		width: 268px;
+		height: 48px;
+		margin: 0 auto;
+		padding: 48px 0;
+		display: block;
+	}
+	
+	.nav-list {
+		list-style-type: none;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		padding: 0 0 48px 0;
+		margin: 0;
+		font-size: 16px;
+		line-height: 1.5;
+		cursor: pointer;
+		transition: transform 0.2s cubic-bezier(0, 1.4, 1, 1), opacity 0.2s ease-in-out;
+	}
+	
+	@media screen and (hover: hover) {
+		#globalnav:not(:hover) .nav-list {
+			transform: scale(0.9);
+			opacity: 0;
+		}
+	}	
+	
+	.nav-list .nav-item + .nav-item {
+		margin-left: 1.5em;
+	}
+	
+	.nav-list .nav-item a {
+		text-decoration: none;
+	}
+	
+	.nav-list .nav-item a:hover {
+		text-decoration: underline;
+	}
+	
+	.nav-list .active {
+		font-weight: 700;
+	}
+	
+	.globalnav-toggle, .close {
+		display: none;
+	}
+	
+	@media screen and (max-width: 767px) {
+	
+		.logoBanner {
+			background-color: #eee;
+			margin-bottom: 24px;
+		}
 
-  .nav-list .active {
-    font-weight: 700;
-  }
-  .globalnav-toggle, .close {
-    display: none;
-  }
-  
-  #globalnav.dark {
-    color: #fff;
-    background-color: black;
-  }
-
-  
-  @media screen and (max-width: 767px) {
-    .nav-panel {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      color: #fff;
-      background-color: #000;
-      box-shadow: 0 -50vh #000;
-      z-index: 1;
-      padding: 36px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: flex-start;
-      transition: transform 0.2s cubic-bezier(0, 1.4, 1, 1);
-    }
-        
-    #globalnav:not(.showNav) .nav-panel {
-      transform: translateY(-100.1vh);
-    }
-
-    .nav-list {
-      font-size: 24px;
-      flex-direction: column;
-      text-align: left;
-      padding: 0;
-    }
-    
-    .nav-list .nav-item {
-      margin-bottom: 1em;
-      transition: margin .333s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    #globalnav:not(.showNav) .nav-list .nav-item {
-      margin-bottom: 2em;
-    }
-
-    .nav-list .nav-item + .nav-item {
-      margin-left: 0;
-    }
-    
-    .globalnav-toggle {
-      display: block;
-    }
-    
-    .close {
-      display: block;
-      position: absolute;
-      top: 30px;
-      right: 36px;
-      height: 48px;
-      width: 48px;
-      margin: 0;
-      padding: 0;
-      border: 1px solid #fff;
-      border-radius: 50%;
-      background-color: transparent;
-      background-image: url('data:image/svg+xml;utf8,<svg fill="white" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><path d="m9.016 40.837c.195.195.451.292.707.292s.512-.098.708-.293l14.292-14.309 14.292 14.309c.195.196.451.293.708.293.256 0 .512-.098.707-.292.391-.39.391-1.023.001-1.414l-14.278-14.294 14.277-14.293c.39-.391.39-1.024-.001-1.414-.392-.391-1.024-.391-1.414.001l-14.293 14.309-14.292-14.309c-.391-.391-1.024-.391-1.414-.001-.391.39-.391 1.023-.001 1.414l14.276 14.293-14.276 14.294c-.39.39-.39 1.024.001 1.414z"/></svg>');
-      background-size: 28px 28px;
-      background-repeat: no-repeat;
-      background-position: center center;
-      text-indent: -999vw;
-      overflow: hidden;
-    }
-    
-  }
-    
+		.logo {
+			width: 241px;
+			height: 43px;
+			margin: 0 0 0 24px;
+		}
+	
+		.nav-panel {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100vw;
+			height: 100vh;
+			color: #fff;
+			background-color: #000;
+			box-shadow: 0 -50vh #000;
+			z-index: 1;
+			padding: 36px;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			align-items: flex-start;
+			transition: transform 0.2s cubic-bezier(0, 1.4, 1, 1);
+		}
+		
+		#globalnav:not(.showNav) .nav-panel {
+			transform: translateY(-100.1vh);
+		}
+		
+		.nav-list {
+			font-size: 24px;
+			flex-direction: column;
+			text-align: left;
+			padding: 0;
+		}
+		
+		.nav-list .nav-item {
+			margin-bottom: 1em;
+			transition: margin .333s cubic-bezier(0.34, 1.56, 0.64, 1);
+		}
+		
+		#globalnav:not(.showNav) .nav-list .nav-item {
+			margin-bottom: 2em;
+		}
+		
+		.nav-list .nav-item + .nav-item {
+			margin-left: 0;
+		}
+		
+		.globalnav-toggle {
+			display: block;
+			position: absolute;
+			top: 24px;
+			right: 24px;
+			margin: 0;
+		}
+		
+		.close {
+			display: block;
+			position: absolute;
+			top: 30px;
+			right: 36px;
+			height: 48px;
+			width: 48px;
+			margin: 0;
+			padding: 0;
+			border: 1px solid #fff;
+			border-radius: 50%;
+			background-color: transparent;
+			background-image: url('data:image/svg+xml;utf8,<svg fill="white" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><path d="m9.016 40.837c.195.195.451.292.707.292s.512-.098.708-.293l14.292-14.309 14.292 14.309c.195.196.451.293.708.293.256 0 .512-.098.707-.292.391-.39.391-1.023.001-1.414l-14.278-14.294 14.277-14.293c.39-.391.39-1.024-.001-1.414-.392-.391-1.024-.391-1.414.001l-14.293 14.309-14.292-14.309c-.391-.391-1.024-.391-1.414-.001-.391.39-.391 1.023-.001 1.414l14.276 14.293-14.276 14.294c-.39.39-.39 1.024.001 1.414z"/></svg>');
+			background-size: 28px 28px;
+			background-repeat: no-repeat;
+			background-position: center center;
+			text-indent: -999vw;
+			overflow: hidden;
+		}
+	}
 </style>
 

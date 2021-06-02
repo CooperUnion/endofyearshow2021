@@ -1,10 +1,10 @@
 <template>
   <div class="headerBlock">
     <div class="titleBlock">
-      <h1 class="mainHead">
+      <h2 v-if="currentPageConfig.title" class="mainHead">
         {{currentPageConfig.title}}
-      </h1>
-      <div class="mainDesc">
+      </h2>
+      <div v-if="currentPageConfig.body" class="mainDesc">
         {{currentPageConfig.body}}
       </div>
       <page-header-button v-if="currentPageConfig.refreshEnabled===true"/>
@@ -93,7 +93,6 @@
     font-size: 48px;
     text-align: left;
     text-transform: capitalize;
-    font-size: 48px;
     font-weight: 700;
     margin: 0;
   }

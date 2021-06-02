@@ -20,8 +20,8 @@
     refreshEnabled: false
   },
   info: {
-    title: 'Info',
-    body: 'The Cooper Union End of the Year Show offers the student body a chance to showcase the projects completed over the year. Works are tagged for multiple areas, reflecting on the interdisciplinarity central to the school’s ethos.',
+    title: '',
+    body: '',
     refreshEnabled: false
   },
 
