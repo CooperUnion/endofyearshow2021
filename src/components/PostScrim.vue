@@ -11,7 +11,7 @@
       </header>
       <!-- logic for separate content types -->
       <div v-if="type==='images'" :class="['imageDeck', {'animating' : animState}, animDirection]">
-        <div class="carousel" v-drag="dragHandler" :style="style">
+        <div class="carousel" ref="carousel" v-drag="dragHandler" :style="style">
           <img :src="assets.media[current].source_url" class="imgPrime" />
           <template v-if="assets.media.length>1">
             <div class="ghostBox prev"><img :src="assets.media[getPrev()].source_url" class="ghostImg" /></div>
@@ -50,7 +50,9 @@
 
 <script>
   import { ref, computed } from 'vue'  
-  import { useStore } from 'vuex'  
+  import { useStore } from 'vuex' 
+  import { useMotion, useMotionProperties, useSpring, useDrag } from '@vueuse/motion'
+
   import TagList from '@/components/TagList.vue'
     
   export default {
@@ -109,6 +111,26 @@
       }
 
 
+      const carousel = ref()
+
+      // Bind to the element or component reference
+      // and init style properties that will be animated.
+      const { motionProperties } = useMotionProperties(carousel, {
+        cursor: 'grab',
+        x: 0,
+        y: 0,
+      })
+
+      // Bind the motion properties to a spring reactive object.
+      const { set } = useSpring(motionProperties)
+
+      // Animatable values will be animated, the others will be changed immediately.
+      // const dragHandler = () => {
+      //   console.log("dragging")
+      //   return set({ x: 250, y: 200, cursor: 'default' })
+      // }
+
+
 
       // const [{ x }, set] = useSpring({ x: 0 })
       // const bind = useDrag(({ down, movement: [mx] }) => set({ x: down ? mx : 0 }), { axis: 'x' })
@@ -117,18 +139,27 @@
       const bind = ()=>{}
       const style = computed(() => ({ transform: `translate3d(5px, 5px}`}))      
       
-const dragHandler = ({ movement: [x, y], dragging }) => {
-  if (!dragging) {
-    set({ x: 0, y: 0, cursor: 'grab' })
-    return
-  }
+      const dragHandler = ({ movement: [x, y], dragging }) => {
 
-  set({
-    cursor: 'grabbing',
-    x,
-    y,
-  })
-}
+        console.log("handling")
+        if (!dragging) {
+          console.log("not dragging")
+          set({ x: 0, y: 0, cursor: 'grab' })
+          return
+        }
+
+        console.log("dragging, I guess?")
+        set({
+          cursor: 'grabbing',
+          x,
+          y,
+        })
+      }
+
+      // Composable usage
+      // useDrag(dragHandler, {
+      //   domTarget: carousel,
+      // })      
 
       return {hideScrim, goNext, goPrev, current, getPrev, getNext, animState, animDirection, bind, style, dragHandler}
     }
