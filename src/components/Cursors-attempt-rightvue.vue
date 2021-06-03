@@ -145,6 +145,32 @@ for (var i = 0, length = radios.length; i < length; i++) {
   var button = document.getElementById('action');
   var output = document.getElementById('prompt');
   var rolefield = document.getElementById('role')
+  
+  if (window.sessionStorage.getItem('EOYS2021Name')){
+    // Save data to sessionStorage
+
+    
+          const response = {name: name.input, role: name.radio}
+      that.$socket.client.emit('nameChosen', {response: response, player: data.player})
+                            that.Meeting1 = new Meeting(that.$socket)  
+                      console.log(data)
+      console.log("data")
+                      // data.friends.forEach(friend1 => console.log(friend1));
+                      data.friends.forEach(friend1 => that.Meeting1.createFriend(friend1.id, data.player, that.Meeting1, friend1.name, friend1.role, friend1));
+                      self.player = new Player(data.player);
+
+                      document.querySelector("body").onmousemove = (e) => {
+                          console.log(document.querySelector("body"))
+                          const x = e.clientX
+                          const y = e.clientY
+                          const location = player.update(x,y,that.$socket, data.player, name.input, name.radio) 
+                      };    
+
+
+// Get saved data from sessionStorage
+let data = sessionStorage.getItem('key');
+    
+  }else{
     promptPromise('Welcome to the Cooper Union School of Art End of Year Show 2021!', 'Would you like your cursor to be visible while you move <br> through the galleries?').then(function(name) {
       output.innerHTML = '' + name.input;
       rolefield.innerHTML = "" + name.radio;
@@ -170,7 +196,10 @@ for (var i = 0, length = radios.length; i < length; i++) {
       // output.innerHTML = '¯\\_(ツ)_/¯';
       console.log("ERROR?")
     }); 
-   
+     
+     
+     
+  }
    }
       console.log(this)
       var that = this;

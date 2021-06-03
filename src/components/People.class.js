@@ -117,6 +117,7 @@ class Friend extends Player {
     name.classList.add(data.role)
     name.innerHTML = data.name
     this.element.appendChild(name)
+      //emit a createFriend so that the server knows?
     document.getElementById("cursorscontainer").appendChild(this.element)
     document.getElementById(label).style.left = data.friendX + '%' 
     document.getElementById(label).style.top = data.friendY + '%'
