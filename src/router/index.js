@@ -10,6 +10,7 @@ import Project from '@/views/Project.vue'
 import Info from '@/views/Info.vue'
 
 import SocketDebug from '@/views/SocketDebug.vue'
+import MotionDebug from '@/views/MotionDebug.vue'
 
 const casco = new Casco(['default'])
 
@@ -97,7 +98,8 @@ let globalNavItems = [
       theme: ['dark','fancy']
     }
   },
-  {name: "SocketDebug", path: "/SocketDebug", component: SocketDebug }
+  {name: "SocketDebug", path: "/SocketDebug", component: SocketDebug },
+  {name: "MotionDebug", path: "/MotionDebug", component: MotionDebug }
 ]
 
 routes = routes.concat(globalNavItems)
