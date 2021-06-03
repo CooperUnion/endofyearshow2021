@@ -115,13 +115,20 @@
       // const style = computed(() => ({ transform: `translate3d(${x.value}px,${y.value}px,0)` }))      
             
       const bind = ()=>{}
-      const style = computed(() => ({ transform: `translate3d(5xp, 5px}`}))      
+      const style = computed(() => ({ transform: `translate3d(5px, 5px}`}))      
       
-      const dragHandler = (dragState)=>{
+const dragHandler = ({ movement: [x, y], dragging }) => {
+  if (!dragging) {
+    set({ x: 0, y: 0, cursor: 'grab' })
+    return
+  }
 
-        console.log(dragState)
-
-      }
+  set({
+    cursor: 'grabbing',
+    x,
+    y,
+  })
+}
 
       return {hideScrim, goNext, goPrev, current, getPrev, getNext, animState, animDirection, bind, style, dragHandler}
     }
