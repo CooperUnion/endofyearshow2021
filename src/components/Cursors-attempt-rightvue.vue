@@ -164,12 +164,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
                           const y = e.clientY
                           const location = player.update(x,y,that.$socket, data.player, name.input, name.radio) 
                       };    
-    setInterval(function(){ 
-    //checks each friend
-      const childrenArray = Array.from(document.getElementsByClassName("friend"))
-      childrenArray.forEach(child => this.$socket.client.emit("isChild", child.id))
-      console.log(child.id)
-    }, 30000);
+
     }).catch(function() {
       // output.innerHTML = '¯\\_(ツ)_/¯';
       console.log("ERROR?")
@@ -205,14 +200,6 @@ for (var i = 0, length = radios.length; i < length; i++) {
                           if(this.Meeting1){
                           this.Meeting1.removeFriend(self,data.friend, this.Meeting1);
                           }
-    },
-    
-    notConnected(data){
-
-
-                         this.Meeting1.removeFriend(self,data.friend, Meeting1);
-                          
-
     },
     move(data){
       console.log("connections not updated,", data.connections-1)
