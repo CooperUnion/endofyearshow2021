@@ -106,10 +106,14 @@
         if(store.state.application.areaCount.has(tags)) {
           return store.state.application.areaCount.get(tags)
         }
+        if(localStorage.getItem(tags)) {
+          return localStorage.getItem(tags)
+        }
         const api_endpoint_override = 'https://eoys-uploader-2021-stage.glitch.me'
         const url = `${api_endpoint_override}/api/count/posts/tags/${tags}`
         const {count} = await fetch(url).then(r=>r.json())
         store.commit('setAreaCount', tags, count)
+        localStorage.setItem(tags, count)
         return count
       }
       
@@ -118,10 +122,14 @@
         if(store.state.application.areaCount.has('all')) {
           return store.state.application.areaCount.get('all')
         }
+        if(localStorage.getItem('all')) {
+          return localStorage.getItem('all')
+        }
         const api_endpoint_override = 'https://eoys-uploader-2021-stage.glitch.me'
         const url = `${api_endpoint_override}/api/count/posts`
         const {count} = await fetch(url).then(r=>r.json())
         store.commit('setAreaCount', 'all', count)
+        localStorage.setItem('all', count)
         return count
       }
 
