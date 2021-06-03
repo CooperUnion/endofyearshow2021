@@ -7,13 +7,24 @@ import mitt from 'mitt'
 import { VueMasonryPlugin } from 'vue-masonry/src/masonry-vue3.plugin';
 import VueSocketIOExt from 'vue-socket.io-extended';
 import { io } from 'socket.io-client';
+import vuexSocketio from 'vue-vuex-socket.io-opinionated-integration'
 
-const socket = io('https://eoyssockets2021.glitch.me');
+// const socket = io('https://eoyssockets2021.glitch.me');
 const emitter = mitt()
-let app = createApp(App).use(store).use(router)
 
 
-app.use(VueSocketIOExt, socket);
+// app.use(VueSocketIOExt, socket);
+
+
+const app = createApp(App)
+  .use(store).use(router)
+  .use(vuexSocketio, {
+    connection: 'https://eoyssockets2021.glitch.me',
+    store,
+    socketOptions:{
+      path: '/socket.io/' //default for socket.io
+    }
+  })
 
 
 app.config.globalProperties.emitter = emitter

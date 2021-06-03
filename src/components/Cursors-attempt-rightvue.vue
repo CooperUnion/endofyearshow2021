@@ -1,5 +1,11 @@
 <template>
     <div id="cursorscontainer">
+        <h1>Current message: {{message}}</h1>
+  <ul>
+    <li @click="update(Math.random()*1000)">Send a random number</li>
+    <li @click="dump()">Dump the current vuex store "state" module to the console</li>
+  </ul>
+      
       <div class="online-users">
        <span id="connections">
         </span> <span id="othervisitors"> other visitors online</span><br>
@@ -58,7 +64,8 @@
 <script>
   import {Player, Friend, Meeting} from './People.class.js'
   import {BadWords} from './BadWords.js'
-  import {ref , onBeforeMount } from "vue";
+  import {ref , onBeforeMount, computed } from "vue";
+  import { useStore } from 'vuex';
   
     export default {
     name: 'Cursors',
@@ -67,7 +74,19 @@
     },
   setup (props){
     
-    return{}
+        const store = useStore()
+        const message = computed(() => store.state.socket.message)
+
+        const dump = ()=>{
+          console.log(store.state.socket)
+        }
+        
+        const update = (message)=>{
+          store.dispatch('client_userMessage', `data from vue client, ${message}`)
+        }    
+        
+      return {message, dump, update}
+
   },
       data() {
     return {

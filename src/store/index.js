@@ -4,6 +4,38 @@ const activeArea = new Set()
 const activeGlobalNav = ''
 const activeScrimId = 0
 
+
+const socket = { 
+  state() {
+    return {
+      message: {message: undefined, origin: undefined},
+      system_message: {message: undefined, origin: undefined}
+    }
+  },
+  mutations: {
+    SOCKET_USER_MESSAGE(state, message) {
+      state.message = {message, origin: 'socket'}
+    },
+    CLIENT_USER_MESSAGE(state, message) {
+      state.message = {message, origin: 'client'}
+    },
+    SOCKET_SYSTEM_MESSAGE(state, message) {
+      state.system_message = {message, origin: 'system'}
+    }
+  },
+  actions: {
+    socket_userMessage ({ dispatch, commit }, message) {
+     commit('SOCKET_USER_MESSAGE', message);
+    },
+    client_userMessage({ dispatch, commit }, message) {
+      commit('CLIENT_USER_MESSAGE', message)
+    },
+    socket_systemMessage({ dispatch, commit }, message) {
+      commit('SOCKET_SYSTEM_MESSAGE', message);
+    }
+  }
+}
+
 export default createStore({
   state() {
     return {
@@ -43,6 +75,9 @@ export default createStore({
   actions: {
   },
   modules: {
+    socket
   }
 })
+
+
 

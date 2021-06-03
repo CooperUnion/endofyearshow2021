@@ -9,6 +9,7 @@ dependencies:
   vue-masonry-wall: 0.3.2
   vue-router: 4.0.6
   vue-socket.io-extended: 5.0.0-alpha.5
+  vue-vuex-socket.io-opinionated-integration: 0.2.0
   vuex: 4.0.0
 devDependencies:
   '@vue/cli-plugin-babel': 4.5.12
@@ -11300,6 +11301,13 @@ packages:
     dev: true
     resolution:
       integrity: sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
+  /vue-vuex-socket.io-opinionated-integration/0.2.0:
+    dependencies:
+      socket.io-client: 4.1.2
+      vue: 3.0.11
+    dev: false
+    resolution:
+      integrity: sha512-2dNYjjrjuyyNvBKyDgsE9UjzpQf5rMMS9k0S9C0niYeF68I4jNoevSNppss/RyZQ4BjLybF57JPG9F9J6PsaVg==
   /vue/2.6.12:
     dev: false
     resolution:
@@ -11940,4 +11948,5 @@ specifiers:
   vue-masonry-wall: ^0.3.2
   vue-router: ^4.0.6
   vue-socket.io-extended: ^5.0.0-alpha.5
+  vue-vuex-socket.io-opinionated-integration: ^0.2.0
   vuex: ^4.0.0
