@@ -14,13 +14,13 @@
 				<a href="/projects">Projects</a>: Senior projects and fellowships that develop over the academic year 
 			</p>
 			<p>
-				  <a href="/areas">Areas</a> of study: i.e. painting, sculpture, photography, performance, graphic design, and more 
+			  <a href="/areas">Areas</a> of study: i.e. painting, sculpture, photography, performance, graphic design, and more 
 			</p>
 			<p>
 				<a href="/forum">Forum</a>: an open space where chance and flux bring forward new conversations and encounters between works 
 			</p>
 			<p>
-				  <a href="/foundation">Foundation</a>: works produced in a series of introductory courses taken by freshman year art students 
+			  <a href="/foundation">Foundation</a>: works produced in a series of introductory courses taken by freshman year art students 
 			</p>
 			<img class="imgsep" alt="Graphical separator" src="../assets/lensgraphic.svg" />
 			<small> 
@@ -28,7 +28,7 @@
 					The Cooper Union School of Art End of Year Show 2021 was designed in a collaborative effort. 
 				</p>
 				<dl> 
-					<dt> Designers:</dt>
+					<dt>Designers:</dt>
 					<dd><a href="#">Ashlynn Guo</a> A’21</dd>
 					<dd><a href="#">Richard Yurewitch</a> A’22</dd>
 					<dd><a href="#">Ana Valeria Castillos</a> A’22</dd>
@@ -39,7 +39,7 @@
 				</dl>
 				<dl> 
 					<dt>Developers:</dt>
-					<dd> Erin Sparling, Adjunct Professor</dd>
+					<dd>Erin Sparling, Adjunct Professor</dd>
 					<dd>Mike Stamm</dd>
 					<dd><a href="#">Richard Yurewitch</a> A’22</dd>
 				</dl>
