@@ -206,15 +206,25 @@ for (var i = 0, length = radios.length; i < length; i++) {
                           this.Meeting1.removeFriend(self,data.friend, this.Meeting1);
                           }
     },
+    
+    notConnected(data){
+
+
+                         this.Meeting1.removeFriend(self,data.friend, Meeting1);
+                          
+
+    },
     move(data){
-      console.log("connections,", data.connections-1)
+      console.log("connections not updated,", data.connections-1)
+      console.log(data)
       this.Meeting1.updateFriend(data);
-                           document.getElementById('connections').innerHTML = (data.users-1) +" ";
-                    if ((data.users-1)===1){
-                      document.getElementById("othervisitors").innerHTML = " other visitor online"
-                    } else {
-                        document.getElementById("othervisitors").innerHTML = " other visitors online"
-    }},
+                           // document.getElementById('connections').innerHTML = (data.users-1) +" ";
+                    // if ((data.users-1)===1){
+                      // document.getElementById("othervisitors").innerHTML = " other visitor online"
+                    // } else {
+                        // document.getElementById("othervisitors").innerHTML = " other visitors online"
+    // }
+  },
 
     // Fired when the server sends something on the "messageChannel" channel.
     messageChannel(data) {
