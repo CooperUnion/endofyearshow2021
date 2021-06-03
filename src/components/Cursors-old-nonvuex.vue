@@ -1,5 +1,11 @@
 <template>
     <div id="cursorscontainer">
+        <h1>Current message: {{message}}</h1>
+  <ul>
+    <li @click="update(Math.random()*1000)">Send a random number</li>
+    <li @click="dump()">Dump the current vuex store "state" module to the console</li>
+  </ul>
+      
       <div class="online-users">
        <span id="connections">
         </span> <span id="othervisitors"> other visitors online</span><br>
@@ -9,7 +15,7 @@
 
 <!--   <p>The current time is <span id="time-stamp"></span>.</p> -->
 <!--   <div id="dialog" class="hidden"> -->
-    <div id="dialog">
+    <div id="dialog" class="hidden">
     <div id="dialogchild">
     <button class="close-dialog">
       X
@@ -41,7 +47,7 @@
   </div>
     
 <div class="cursordemo">
- <div id="demo-cursor" class="current-student friend demo-cursor"><div id="democursortext" class="current-student name name-demo">{{ democursorname }}</div></div>
+ <div id="demo-cursor" class="current-student demofriend demo-cursor"><div id="democursortext" class="current-student name name-demo">{{ democursorname }}</div></div>
   
     </div>
 
@@ -58,16 +64,29 @@
 <script>
   import {Player, Friend, Meeting} from './People.class.js'
   import {BadWords} from './BadWords.js'
-  import {ref , onBeforeMount } from "vue";
+  import {ref , onBeforeMount, computed } from "vue";
+  import { useStore } from 'vuex';
   
     export default {
-    name: 'Cursors',
+    name: 'oldCursors',
     props: {
       
     },
   setup (props){
     
-    return{}
+        const store = useStore()
+        const message = computed(() => store.state.socket.message)
+
+        const dump = ()=>{
+          console.log(store.state.socket)
+        }
+        
+        const update = (message)=>{
+          store.dispatch('client_userMessage', `data from vue client, ${message}`)
+        }    
+        
+      return {message, dump, update}
+
   },
       data() {
     return {
@@ -78,15 +97,20 @@
     }
   },
 
-  mounted(){
+  mounted(){ 
+ this.checkOnline()
+        
+      
          this.prev = null;
      this.prevprev = null;  
+              
   },
 
   sockets: {
     connected(data) {
-      console.log(this.$socket.client)
-
+      // console.log(this.$socket.client)
+      console.log(data)
+console.log("connections,", data.connections-1)
                           document.getElementById('connections').innerHTML = (data.connections-1) + " ";
                     if ((data.connections-1)===1){
                       document.getElementById("othervisitors").innerHTML = " other visitor online"
@@ -144,12 +168,15 @@ for (var i = 0, length = radios.length; i < length; i++) {
   var button = document.getElementById('action');
   var output = document.getElementById('prompt');
   var rolefield = document.getElementById('role')
-    promptPromise('Welcome to the Cooper Union School of Art End of Year Show 2021!', 'Would you like your cursor to be visible while you move <br> through the galleries?').then(function(name) {
-      output.innerHTML = '' + name.input;
-      rolefield.innerHTML = "" + name.radio;
-      console.log("response completed!")
-      console.log(that.$socket.client)
-      const response = {name: name.input, role: name.radio}
+  
+  if (window.sessionStorage.getItem('EOYS2021Name')){
+    var dialog  = document.getElementById('dialog');
+    dialog.className = 'hidden'
+    console.log("session storage SUCCESS")
+    // Save data to sessionStorage
+
+    
+          const response = {name: window.sessionStorage.getItem('EOYS2021Name'), role: window.sessionStorage.getItem('EOYS2021Role')}
       that.$socket.client.emit('nameChosen', {response: response, player: data.player})
                             that.Meeting1 = new Meeting(that.$socket)  
                       console.log(data)
@@ -159,22 +186,52 @@ for (var i = 0, length = radios.length; i < length; i++) {
                       self.player = new Player(data.player);
 
                       document.querySelector("body").onmousemove = (e) => {
-                          console.log(document.querySelector("body"))
+                          // console.log(document.querySelector("body"))
+                          const x = e.clientX
+                          const y = e.clientY
+                          const location = player.update(x,y,that.$socket, data.player, response.name, response.role) 
+                      };    
+      output.innerHTML = '' + response.name;
+      rolefield.innerHTML = "" + response.role;
+
+// Get saved data from sessionStorage
+// let data = sessionStorage.getItem('key');
+    
+  }else{
+    var dialog  = document.getElementById('dialog');
+    dialog.classList.remove("hidden")
+    console.log("session storage FAILED")
+    promptPromise('Welcome to the Cooper Union School of Art End of Year Show 2021!', 'Would you like your cursor to be visible while you move <br> through the galleries?').then(function(name) {
+      output.innerHTML = '' + name.input;
+      rolefield.innerHTML = "" + name.radio;
+      console.log("response completed!")
+      console.log(that.$socket.client)
+      const response = {name: name.input, role: name.radio}
+      window.sessionStorage.setItem('EOYS2021Name', name.input)
+      window.sessionStorage.setItem('EOYS2021Role', name.radio)
+      that.$socket.client.emit('nameChosen', {response: response, player: data.player})
+                            that.Meeting1 = new Meeting(that.$socket)  
+                      console.log(data)
+      console.log("data")
+                      // data.friends.forEach(friend1 => console.log(friend1));
+                      data.friends.forEach(friend1 => that.Meeting1.createFriend(friend1.id, data.player, that.Meeting1, friend1.name, friend1.role, friend1));
+                      self.player = new Player(data.player);
+
+                      document.querySelector("body").onmousemove = (e) => {
+                          // console.log(document.querySelector("body"))
                           const x = e.clientX
                           const y = e.clientY
                           const location = player.update(x,y,that.$socket, data.player, name.input, name.radio) 
                       };    
-    setInterval(function(){ 
-    //checks each friend
-      const childrenArray = Array.from(document.getElementById("cursorscontainer").children)
-      childrenArray.forEach(child => this.$socket.client.emit("isChild", child.id))
-      console.log(child.id)
-    }, 30000);
+
     }).catch(function() {
       // output.innerHTML = '¯\\_(ツ)_/¯';
       console.log("ERROR?")
     }); 
-   
+     
+     
+     
+  }
    }
       console.log(this)
       var that = this;
@@ -185,6 +242,14 @@ for (var i = 0, length = radios.length; i < length; i++) {
     nameUpdated(data){
      console.log("name updated", data)
      this.Meeting1.updateFriendName(data.data.id, data.data.player, this.Meeting1, data.data.name, data.data.role, data)
+      console.log("connections updated with nameUpdate")
+      console.log(data.activeUsers-1)
+                          document.getElementById('connections').innerHTML = (data.activeUsers-1) + " ";
+                    if ((data.activeUsers-1)===1){
+                      document.getElementById("othervisitors").innerHTML = " other visitor online"
+                    } else {
+                        document.getElementById("othervisitors").innerHTML = " other visitors online"
+                    }
     },
 
     disconnect() {
@@ -195,7 +260,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
       this.Meeting1.createFriend(data.friend, data.player, this.Meeting1, data.name, data.role);
     },
     byeFriend(data){
-                     
+                     console.log("connections,", data.connections-1)
                      document.getElementById('connections').innerHTML = (data.connections-1) +" ";
                     if ((data.connections-1)===1){
                       document.getElementById("othervisitors").innerHTML = " other visitor online"
@@ -207,13 +272,9 @@ for (var i = 0, length = radios.length; i < length; i++) {
                           }
     },
     move(data){
+      // console.log(data)
       this.Meeting1.updateFriend(data);
-                           document.getElementById('connections').innerHTML = (data.users-1) +" ";
-                    if ((data.users-1)===1){
-                      document.getElementById("othervisitors").innerHTML = " other visitor online"
-                    } else {
-                        document.getElementById("othervisitors").innerHTML = " other visitors online"
-    }},
+  },
 
     // Fired when the server sends something on the "messageChannel" channel.
     messageChannel(data) {
@@ -222,6 +283,12 @@ for (var i = 0, length = radios.length; i < length; i++) {
   },
 
   methods: {
+    checkOnline() {
+ setInterval(function(){ if(document.getElementById("connections").innerText != document.getElementsByClassName("friend").length){
+                document.getElementById("connections").innerText = document.getElementsByClassName("friend").length
+               }}, 10000);
+             },
+    
     pingServer() {
       // Send the "pingServer" event to the server.
       this.$socket.client.emit('pingServer', 'PING!')
@@ -348,6 +415,61 @@ a {
 }
 
 #cursorscontainer >>> .friend .name {
+    display: inline;
+    position: relative;
+    left: 19px;
+    top: 12px;
+    pointer-events: none;
+    color: black;
+    text-shadow: none;
+    /* background: #000; */
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    white-space: nowrap;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 4px;
+    padding-top: 4.6px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    
+}
+  
+  #cursorscontainer >>> .demofriend {
+    background-color: gainsboro;
+    width: 1px;
+    height: 1px;
+/*   background: url("https://cdn.glitch.com/fc76c743-ed4f-40b8-8cf5-889b2f64b004%2Fcursor.png?v=1621812496190"); */
+  position: absolute;
+  z-index: 101;
+/*   clip-path: polygon(6% 22%, 50% 30%, 94% 22%, 66% 55%, 50% 95%, 34% 56%); */
+  pointer-events: none;
+    transition: left 0.1s ease-out, top 0.1s ease-out;
+}
+
+#cursorscontainer >>> .demofriend::before{
+    content:"";
+  position:absolute;
+  z-index:-1;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  background-color: inherit;
+    width: 24px;
+  height: 24px;
+/*   background: url("https://cdn.glitch.com/fc76c743-ed4f-40b8-8cf5-889b2f64b004%2Fcursor.png?v=1621812496190"); */
+  position: absolute;
+  z-index: 101;
+  clip-path: polygon(6% 22%, 50% 30%, 94% 22%, 66% 55%, 50% 95%, 34% 56%);
+  pointer-events: none;
+}
+
+#cursorscontainer >>> .demofriend .name {
     display: inline;
     position: relative;
     left: 19px;

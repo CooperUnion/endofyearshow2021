@@ -6,7 +6,7 @@ import MasonryTag from '@/views/MasonryTag.vue'
 import Projects from '@/views/Projects.vue'
 import Project from '@/views/Project.vue'
 import Landing from '@/views/Landing.vue'
-
+import oldCursors from '@/components/Cursors-old-nonvuex.vue'
 
 let routes = [
   {
@@ -70,6 +70,7 @@ let routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/Cursors.vue')
   },
+
 ]
 
 let globalNavItems = [
@@ -89,6 +90,12 @@ routes.push(  {
   name: 'Landing',
   component: Landing
 })
+
+routes.push({
+    path: '/oldCursors',
+    name: 'oldCursors',
+    component: oldCursors
+  })
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
