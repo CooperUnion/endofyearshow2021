@@ -9,7 +9,7 @@
 
 <!--   <p>The current time is <span id="time-stamp"></span>.</p> -->
 <!--   <div id="dialog" class="hidden"> -->
-    <div id="dialog">
+    <div id="dialog" class="hidden">
     <div id="dialogchild">
     <button class="close-dialog">
       X
@@ -147,10 +147,13 @@ for (var i = 0, length = radios.length; i < length; i++) {
   var rolefield = document.getElementById('role')
   
   if (window.sessionStorage.getItem('EOYS2021Name')){
+    var dialog  = document.getElementById('dialog');
+    dialog.className = 'hidden'
+    console.log("session storage SUCCESS")
     // Save data to sessionStorage
 
     
-          const response = {name: name.input, role: name.radio}
+          const response = {name: window.sessionStorage.getItem('EOYS2021Name'), role: window.sessionStorage.getItem('EOYS2021Role')}
       that.$socket.client.emit('nameChosen', {response: response, player: data.player})
                             that.Meeting1 = new Meeting(that.$socket)  
                       console.log(data)
@@ -163,20 +166,26 @@ for (var i = 0, length = radios.length; i < length; i++) {
                           console.log(document.querySelector("body"))
                           const x = e.clientX
                           const y = e.clientY
-                          const location = player.update(x,y,that.$socket, data.player, name.input, name.radio) 
+                          const location = player.update(x,y,that.$socket, data.player, response.name, response.role) 
                       };    
-
+      output.innerHTML = '' + response.name;
+      rolefield.innerHTML = "" + response.role;
 
 // Get saved data from sessionStorage
-let data = sessionStorage.getItem('key');
+// let data = sessionStorage.getItem('key');
     
   }else{
+    var dialog  = document.getElementById('dialog');
+    dialog.classList.remove("hidden")
+    console.log("session storage FAILED")
     promptPromise('Welcome to the Cooper Union School of Art End of Year Show 2021!', 'Would you like your cursor to be visible while you move <br> through the galleries?').then(function(name) {
       output.innerHTML = '' + name.input;
       rolefield.innerHTML = "" + name.radio;
       console.log("response completed!")
       console.log(that.$socket.client)
       const response = {name: name.input, role: name.radio}
+      window.sessionStorage.setItem('EOYS2021Name', name.input)
+      window.sessionStorage.setItem('EOYS2021Role', name.radio)
       that.$socket.client.emit('nameChosen', {response: response, player: data.player})
                             that.Meeting1 = new Meeting(that.$socket)  
                       console.log(data)
