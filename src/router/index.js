@@ -7,6 +7,7 @@ import Projects from '@/views/Projects.vue'
 import Project from '@/views/Project.vue'
 import Landing from '@/views/Landing.vue'
 import oldCursors from '@/components/Cursors-old-nonvuex.vue'
+import newCursors from '@/components/Cursors-attempt-rightvue.vue'
 
 let routes = [
   {
@@ -62,14 +63,6 @@ let routes = [
     path: '/areas',
     redirect: '/tag/drawing,design,film-+-video,installation,painting,performance,photography,printmaking,sculpture,sound-art'
   },
-  {
-    path: '/cursors',
-    name: 'Cursors',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Cursors.vue')
-  },
 
 ]
 
@@ -90,6 +83,12 @@ routes.push(  {
   name: 'Landing',
   component: Landing
 })
+
+routes.push({
+    path: '/newCursors',
+    name: 'newCursors',
+    component: newCursors
+  })
 
 routes.push({
     path: '/oldCursors',
