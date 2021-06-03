@@ -4,6 +4,7 @@ dependencies:
   register-service-worker: 1.7.2
   socket.io-client: 4.1.2
   vue: 3.0.11
+  vue-casco: 0.2.3
   vue-masonry: 0.13.0
   vue-masonry-wall: 0.3.2
   vue-router: 4.0.6
@@ -11167,6 +11168,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
+  /vue-casco/0.2.3:
+    dev: false
+    resolution:
+      integrity: sha512-FlRwb/NkcXxYL5lkOQHfO1Srxq81DuuWHLUBfUxjns0Ndv7YlS/0p0dSccj08hABoPXyf2ws0K6KQ5zZZeEK6Q==
   /vue-eslint-parser/7.6.0:
     dependencies:
       debug: 4.3.1
@@ -11929,6 +11934,7 @@ specifiers:
   socket.io-client: ^4.1.2
   typescript: ~3.9.3
   vue: ^3.0.11
+  vue-casco: ^0.2.3
   vue-jest: ^5.0.0-0
   vue-masonry: ^0.13.0
   vue-masonry-wall: ^0.3.2

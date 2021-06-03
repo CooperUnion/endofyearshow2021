@@ -79,7 +79,7 @@
   },
 
   mounted(){ 
- checkOnline()
+ this.checkOnline()
         
       
          this.prev = null;
