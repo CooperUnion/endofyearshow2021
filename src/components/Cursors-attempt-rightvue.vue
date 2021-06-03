@@ -78,9 +78,13 @@
     }
   },
 
-  mounted(){
+  mounted(){ 
+ checkOnline()
+        
+      
          this.prev = null;
      this.prevprev = null;  
+              
   },
 
   sockets: {
@@ -260,6 +264,13 @@ for (var i = 0, length = radios.length; i < length; i++) {
   },
 
   methods: {
+    checkOnline() {
+ setInterval(function(){ if(document.getElementById("connections").innerText != document.getElementsByClassName("friend").length){
+                document.getElementById("connections").innerText = document.getElementsByClassName("friend").length
+               }, 10000);
+    }
+             },
+    
     pingServer() {
       // Send the "pingServer" event to the server.
       this.$socket.client.emit('pingServer', 'PING!')

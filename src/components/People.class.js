@@ -192,8 +192,8 @@ class Meeting {
 }
   
   updateFriend(data){
- if(document.getElementById("connections").innerText != document.getElementsByClassName("friend").length){document.getElementById("connections").innerText = document.getElementsByClassName("friend").length
-      }
+ // if(document.getElementById("connections").innerText != document.getElementsByClassName("friend").length){document.getElementById("connections").innerText = document.getElementsByClassName("friend").length
+ //      }
     this.friend.update(data, this.friends)
   }
   
