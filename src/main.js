@@ -6,6 +6,7 @@ import store from './store'
 import mitt from 'mitt'
 import { VueMasonryPlugin } from 'vue-masonry/src/masonry-vue3.plugin'
 import vuexSocketio from 'vue-vuex-socket.io-opinionated-integration'
+import { GesturePlugin } from '@vueuse/gesture'
 
 const emitter = mitt()
 const app = createApp(App)
@@ -22,6 +23,7 @@ const app = createApp(App)
       path: '/socket.io/'
     }
   })
+  .use(GesturePlugin)
 
 app.config.globalProperties.emitter = emitter
 app.config.globalProperties.api_endpoint = process.env.VUE_APP_FORM_API_ENDPOINT || 'https://eoys-api-2021.glitch.me'
