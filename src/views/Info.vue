@@ -35,7 +35,7 @@
 				</dl>
 				<dl> 
 					<dt>Art director:</dt>
-					<dd><a href="#">Julie Harris</a>, Adjunct Instructor   </dd>
+					<dd><a href="#">Julie Harris</a>, Adjunct Instructor </dd>
 				</dl>
 				<dl> 
 					<dt>Developers:</dt>
@@ -45,7 +45,7 @@
 				</dl>
 				<dl> 
 					<dt>Advisors:</dt>
-					<dd>Alexander Tochilovsky, Associate Professor </dd>
+					<dd>Alexander Tochilovsky, Associate Professor</dd>
 					<dd>Beverly Joel, Adjunct Professor</dd>
 					<dd>Mike Essl, Dean of the School of Art</dd>
 					<dd>EOYS Faculty Advisory Committee</dd>
@@ -71,7 +71,7 @@
     PageHeader
   },
   props: {
-    theme: String
+    theme: Array
   },
   setup(props){
     const internalInstance = getCurrentInstance()

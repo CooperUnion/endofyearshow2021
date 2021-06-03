@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { Util } from '@/plugins/header'
+import { Casco } from 'vue-casco'
+
 import Home from '@/views/Home.vue'
 import MasonryPosts from '@/views/MasonryPosts.vue'
 import MasonryPost from '@/views/MasonryPost.vue'
@@ -8,9 +9,9 @@ import Projects from '@/views/Projects.vue'
 import Project from '@/views/Project.vue'
 import Info from '@/views/Info.vue'
 
-
 import SocketDebug from '@/views/SocketDebug.vue'
-const header = new Util
+
+const casco = new Casco(['default'])
 
 let routes = [
   {
@@ -18,15 +19,6 @@ let routes = [
     name: 'Home',
     component: Home
   },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  },
-
   {
     path: '/info',
     name: 'Info',
@@ -91,8 +83,7 @@ let globalNavItems = [
     path:"/foundation", 
     component: MasonryPosts,
     props:{
-      postsEndpoint: '/year/freshman',
-      theme: ''
+      postsEndpoint: '/year/freshman'
     }
   },
   {name:"Projects", path:"/projects/", component: Projects},
@@ -103,7 +94,7 @@ let globalNavItems = [
     path:"/info", 
     component: Info,
     props: {
-      theme: "dark"
+      theme: ['dark','fancy']
     }
   },
   {name: "SocketDebug", path: "/SocketDebug", component: SocketDebug }
@@ -121,9 +112,9 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   try{ 
     const props = to.matched[0].props.default
-    header.set(props.theme)
+    casco.set(props.theme)
   } catch(e) {
-    header.reset()
+    casco.reset()
   }
   next()
 })
