@@ -1,11 +1,12 @@
 dependencies:
+  '@vueuse/gesture': 1.0.0
   core-js: 3.13.1
   heroku: 7.54.0
   mitt: 2.1.0
   register-service-worker: 1.7.2
   socket.io-client: 4.1.2
   vue: 3.0.11
-  vue-casco: 0.2.2
+  vue-casco: 0.2.3
   vue-masonry: 0.13.0
   vue-pseudo-window: 1.0.0
   vue-router: 4.0.8
@@ -2771,6 +2772,15 @@ packages:
     dev: true
     resolution:
       integrity: sha512-Iu8Tbg3f+emIIMmI2ycSI8QcEuAUgPTgHwesDU1eKMLE4YC/c/sFbGc70QgMq31ijRftV0R7vCm9co6rldCeOA==
+  /@vueuse/gesture/1.0.0:
+    dependencies:
+      vue-demi: 0.7.5
+    dev: false
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0-beta.1
+      vue: ^2.0.0 || >=3.0.0-rc.0
+    resolution:
+      integrity: sha512-RKCYGmh1F8SGO00JGssDfVbeUz+HSkwUfhfN9gyI7LnARmKTnMTUaIuO4lJHOwOPTWwnmK857CPsdXX6NkUUAA==
   /@webassemblyjs/ast/1.9.0:
     dependencies:
       '@webassemblyjs/helper-module-context': 1.9.0
@@ -12819,10 +12829,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
-  /vue-casco/0.2.2:
+  /vue-casco/0.2.3:
     dev: false
     resolution:
-      integrity: sha512-mM5wzAAUQ3E7wWjU3RUu+id9HPsGIIeONzx2AOHpoZbl8Ee13VZhCT3KQWtxAznQtZAjthjyhr63bnOynIA0sw==
+      integrity: sha512-FlRwb/NkcXxYL5lkOQHfO1Srxq81DuuWHLUBfUxjns0Ndv7YlS/0p0dSccj08hABoPXyf2ws0K6KQ5zZZeEK6Q==
   /vue-demi/0.6.2:
     dev: false
     hasBin: true
@@ -12831,6 +12841,15 @@ packages:
     requiresBuild: true
     resolution:
       integrity: sha512-4KfwxbqsZcDz7UryD11oHa6FLK9Gzx4MIwAEcP37IbUdXuF6DHg2w9L5Zv5t+FNqsuAjEQ2NnGVIZ3u71y435Q==
+  /vue-demi/0.7.5:
+    dev: false
+    hasBin: true
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0-beta.1
+      vue: ^2.6.0 || >=3.0.0-rc.1
+    requiresBuild: true
+    resolution:
+      integrity: sha512-eFSQSvbQdY7C9ujOzvM6tn7XxwLjn0VQDXQsiYBLBwf28Na+2nTQR4BBBcomhmdP6mmHlBKAwarq6a0BPG87hQ==
   /vue-eslint-parser/7.6.0:
     dependencies:
       debug: 4.3.1
@@ -13624,6 +13643,7 @@ specifiers:
   '@vue/compiler-sfc': ^3.0.0
   '@vue/eslint-config-standard': ^5.1.2
   '@vue/test-utils': ^2.0.0-0
+  '@vueuse/gesture': ^1.0.0
   babel-eslint: ^10.1.0
   core-js: ^3.12.1
   eslint: ^6.7.2
@@ -13638,7 +13658,7 @@ specifiers:
   socket.io-client: ^4.1.2
   typescript: ~3.9.3
   vue: ^3.0.11
-  vue-casco: ^0.2.2
+  vue-casco: ^0.2.3
   vue-jest: ^5.0.0-0
   vue-masonry: ^0.13.0
   vue-pseudo-window: ^1.0.0
