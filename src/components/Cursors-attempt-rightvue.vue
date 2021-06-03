@@ -182,8 +182,8 @@ for (var i = 0, length = radios.length; i < length; i++) {
      console.log("name updated", data)
      this.Meeting1.updateFriendName(data.data.id, data.data.player, this.Meeting1, data.data.name, data.data.role, data)
       
-                          document.getElementById('connections').innerHTML = (data.activeusers-1) + " ";
-                    if ((data.activeusers-1)===1){
+                          document.getElementById('connections').innerHTML = (data.activeUsers-1) + " ";
+                    if ((data.activeUsers-1)===1){
                       document.getElementById("othervisitors").innerHTML = " other visitor online"
                     } else {
                         document.getElementById("othervisitors").innerHTML = " other visitors online"
