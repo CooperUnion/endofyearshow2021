@@ -267,8 +267,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
     checkOnline() {
  setInterval(function(){ if(document.getElementById("connections").innerText != document.getElementsByClassName("friend").length){
                 document.getElementById("connections").innerText = document.getElementsByClassName("friend").length
-               }, 10000);
-    }
+               }}, 10000);
              },
     
     pingServer() {
