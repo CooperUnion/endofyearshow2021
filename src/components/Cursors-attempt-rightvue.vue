@@ -86,6 +86,7 @@
   sockets: {
     connected(data) {
       console.log(this.$socket.client)
+      console.log(data)
 console.log("connections,", data.connections-1)
                           document.getElementById('connections').innerHTML = (data.connections-1) + " ";
                     if ((data.connections-1)===1){
@@ -202,15 +203,8 @@ for (var i = 0, length = radios.length; i < length; i++) {
                           }
     },
     move(data){
-      console.log("connections not updated,", data.connections-1)
       console.log(data)
       this.Meeting1.updateFriend(data);
-                           // document.getElementById('connections').innerHTML = (data.users-1) +" ";
-                    // if ((data.users-1)===1){
-                      // document.getElementById("othervisitors").innerHTML = " other visitor online"
-                    // } else {
-                        // document.getElementById("othervisitors").innerHTML = " other visitors online"
-    // }
   },
 
     // Fired when the server sends something on the "messageChannel" channel.
