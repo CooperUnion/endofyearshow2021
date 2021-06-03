@@ -103,17 +103,25 @@
 
      
       const getCount = async (tags)=>{
+        if(store.state.application.areaCount.has(tags)) {
+          return store.state.application.areaCount.get(tags)
+        }
         const api_endpoint_override = 'https://eoys-uploader-2021-stage.glitch.me'
         const url = `${api_endpoint_override}/api/count/posts/tags/${tags}`
         const {count} = await fetch(url).then(r=>r.json())
+        store.commit('setAreaCount', tags, count)
         return count
       }
       
       
       const getAllCount = async ()=>{
+        if(store.state.application.areaCount.has('all')) {
+          return store.state.application.areaCount.get('all')
+        }
         const api_endpoint_override = 'https://eoys-uploader-2021-stage.glitch.me'
         const url = `${api_endpoint_override}/api/count/posts`
         const {count} = await fetch(url).then(r=>r.json())
+        store.commit('setAreaCount', 'all', count)
         return count
       }
 

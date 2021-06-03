@@ -3,14 +3,15 @@ import { createStore } from 'vuex'
 const activeArea = new Set()
 const activeGlobalNav = ''
 const activeScrimId = 0
-
+const areaCount = new Map()
 
 const application = {
   state() {
     return {
       activeArea,
       activeGlobalNav,
-      activeScrimId
+      activeScrimId,
+      areaCount
     }
   },
   mutations: {
@@ -31,12 +32,10 @@ const application = {
     },
     resetActiveScrimId(state) {
       state.activeScrimId = 0
+    },
+    setAreaCount(state, area, count) {
+      areaCount.set(area, count)
     }
-    
-  },
-  actions: {
-  },
-  modules: {
   }
 }
 
