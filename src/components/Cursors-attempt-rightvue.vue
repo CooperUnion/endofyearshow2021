@@ -86,7 +86,7 @@
   sockets: {
     connected(data) {
       console.log(this.$socket.client)
-
+console.log("connections,", data.connections-1)
                           document.getElementById('connections').innerHTML = (data.connections-1) + " ";
                     if ((data.connections-1)===1){
                       document.getElementById("othervisitors").innerHTML = " other visitor online"
@@ -166,7 +166,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
                       };    
     setInterval(function(){ 
     //checks each friend
-      const childrenArray = Array.from(document.getElementById("cursorscontainer").children)
+      const childrenArray = Array.from(document.getElementsByClassName("friend"))
       childrenArray.forEach(child => this.$socket.client.emit("isChild", child.id))
       console.log(child.id)
     }, 30000);
@@ -195,7 +195,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
       this.Meeting1.createFriend(data.friend, data.player, this.Meeting1, data.name, data.role);
     },
     byeFriend(data){
-                     
+                     console.log("connections,", data.connections-1)
                      document.getElementById('connections').innerHTML = (data.connections-1) +" ";
                     if ((data.connections-1)===1){
                       document.getElementById("othervisitors").innerHTML = " other visitor online"
@@ -207,6 +207,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
                           }
     },
     move(data){
+      console.log("connections,", data.connections-1)
       this.Meeting1.updateFriend(data);
                            document.getElementById('connections').innerHTML = (data.users-1) +" ";
                     if ((data.users-1)===1){
