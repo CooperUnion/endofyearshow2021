@@ -41,7 +41,7 @@
   </div>
     
 <div class="cursordemo">
- <div id="demo-cursor" class="current-student friend demo-cursor"><div id="democursortext" class="current-student name name-demo">{{ democursorname }}</div></div>
+ <div id="demo-cursor" class="current-student demofriend demo-cursor"><div id="democursortext" class="current-student name name-demo">{{ democursorname }}</div></div>
   
     </div>
 
@@ -85,7 +85,7 @@
 
   sockets: {
     connected(data) {
-      console.log(this.$socket.client)
+      // console.log(this.$socket.client)
       console.log(data)
 console.log("connections,", data.connections-1)
                           document.getElementById('connections').innerHTML = (data.connections-1) + " ";
@@ -163,7 +163,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
                       self.player = new Player(data.player);
 
                       document.querySelector("body").onmousemove = (e) => {
-                          console.log(document.querySelector("body"))
+                          // console.log(document.querySelector("body"))
                           const x = e.clientX
                           const y = e.clientY
                           const location = player.update(x,y,that.$socket, data.player, response.name, response.role) 
@@ -195,7 +195,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
                       self.player = new Player(data.player);
 
                       document.querySelector("body").onmousemove = (e) => {
-                          console.log(document.querySelector("body"))
+                          // console.log(document.querySelector("body"))
                           const x = e.clientX
                           const y = e.clientY
                           const location = player.update(x,y,that.$socket, data.player, name.input, name.radio) 
@@ -219,7 +219,8 @@ for (var i = 0, length = radios.length; i < length; i++) {
     nameUpdated(data){
      console.log("name updated", data)
      this.Meeting1.updateFriendName(data.data.id, data.data.player, this.Meeting1, data.data.name, data.data.role, data)
-      
+      console.log("connections updated with nameUpdate")
+      console.log(data.activeUsers-1)
                           document.getElementById('connections').innerHTML = (data.activeUsers-1) + " ";
                     if ((data.activeUsers-1)===1){
                       document.getElementById("othervisitors").innerHTML = " other visitor online"
@@ -248,7 +249,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
                           }
     },
     move(data){
-      console.log(data)
+      // console.log(data)
       this.Meeting1.updateFriend(data);
   },
 
@@ -385,6 +386,61 @@ a {
 }
 
 #cursorscontainer >>> .friend .name {
+    display: inline;
+    position: relative;
+    left: 19px;
+    top: 12px;
+    pointer-events: none;
+    color: black;
+    text-shadow: none;
+    /* background: #000; */
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    white-space: nowrap;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 4px;
+    padding-top: 4.6px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    
+}
+  
+  #cursorscontainer >>> .demofriend {
+    background-color: gainsboro;
+    width: 1px;
+    height: 1px;
+/*   background: url("https://cdn.glitch.com/fc76c743-ed4f-40b8-8cf5-889b2f64b004%2Fcursor.png?v=1621812496190"); */
+  position: absolute;
+  z-index: 101;
+/*   clip-path: polygon(6% 22%, 50% 30%, 94% 22%, 66% 55%, 50% 95%, 34% 56%); */
+  pointer-events: none;
+    transition: left 0.1s ease-out, top 0.1s ease-out;
+}
+
+#cursorscontainer >>> .demofriend::before{
+    content:"";
+  position:absolute;
+  z-index:-1;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  background-color: inherit;
+    width: 24px;
+  height: 24px;
+/*   background: url("https://cdn.glitch.com/fc76c743-ed4f-40b8-8cf5-889b2f64b004%2Fcursor.png?v=1621812496190"); */
+  position: absolute;
+  z-index: 101;
+  clip-path: polygon(6% 22%, 50% 30%, 94% 22%, 66% 55%, 50% 95%, 34% 56%);
+  pointer-events: none;
+}
+
+#cursorscontainer >>> .demofriend .name {
     display: inline;
     position: relative;
     left: 19px;

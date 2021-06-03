@@ -23,8 +23,8 @@ class Player {
   }
   
   emit(socket, id, name, role, x, y) {
-    console.log(socket)
-    console.log({ friend: id, friendX: x, friendY: y, name: name, role: role})
+    // console.log(socket)
+    // console.log({ friend: id, friendX: x, friendY: y, name: name, role: role})
     socket.client.emit('move',{ friend: id, friendX: x, friendY: y, name: name, role: role});
   }
   
@@ -121,6 +121,7 @@ class Friend extends Player {
     document.getElementById("cursorscontainer").appendChild(this.element)
     document.getElementById(label).style.left = data.friendX + '%' 
     document.getElementById(label).style.top = data.friendY + '%'
+      if(document.getElementById("connections").innerText != document.getElementsByClassName("friend").length)
       }
     }
     }
