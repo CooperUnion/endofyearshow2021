@@ -5,6 +5,7 @@ dependencies:
   register-service-worker: 1.7.2
   socket.io-client: 4.1.2
   vue: 3.0.11
+  vue-casco: 0.2.2
   vue-masonry: 0.13.0
   vue-pseudo-window: 1.0.0
   vue-router: 4.0.8
@@ -12818,6 +12819,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
+  /vue-casco/0.2.2:
+    dev: false
+    resolution:
+      integrity: sha512-mM5wzAAUQ3E7wWjU3RUu+id9HPsGIIeONzx2AOHpoZbl8Ee13VZhCT3KQWtxAznQtZAjthjyhr63bnOynIA0sw==
   /vue-demi/0.6.2:
     dev: false
     hasBin: true
@@ -13633,6 +13638,7 @@ specifiers:
   socket.io-client: ^4.1.2
   typescript: ~3.9.3
   vue: ^3.0.11
+  vue-casco: ^0.2.2
   vue-jest: ^5.0.0-0
   vue-masonry: ^0.13.0
   vue-pseudo-window: ^1.0.0
