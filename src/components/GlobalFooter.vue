@@ -1,5 +1,5 @@
 <template> 
-	<footer id="infofooter">
+	<footer id="globalfooter">
 		<div class="description-panel">
 			The Cooper Union<br v-if="mobile" /> 
 			School of Art<br />
@@ -19,7 +19,7 @@
   import { useRoute } from 'vue-router'
 
   export default {
-    name: 'InfoFooter',
+    name: 'GlobalFooter',
     props: {
       items: Array
     },
@@ -46,7 +46,7 @@
 </script>
 
 <style scoped>
-	#infofooter {
+	#globalfooter {
 		width: calc(100% - 240px);
 		margin: 0 auto;
 		border-top: 1px solid white;
@@ -87,7 +87,7 @@
 	}
 	
 	@media screen and (max-width: 767px) {
-		#infofooter {
+		#globalfooter {
 			width: calc(100vw - 48px);
 			flex-direction: column;
 			margin-bottom: 50px;

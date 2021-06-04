@@ -111,7 +111,7 @@
 	@media screen and (max-width: 767px) {
 	
 		body:not(.dark) .logoBanner {
-			background-color: #eee;
+			background-color: transparent;
 			margin-bottom: 24px;
 		}
 
@@ -178,6 +178,8 @@
 			background-repeat: no-repeat;
 			background-position: center center;
 			border-radius: 7px;
+			background-color: white;
+			border: 1px solid black;
 		}
 		
 		.close {

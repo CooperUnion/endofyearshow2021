@@ -59,7 +59,7 @@
 			</small> 		
 		</div>
 	</main>
-	<info-footer :items="globalNavItems" />
+	<global-footer :items="globalNavItems" />
 </template>
 
 <script>
@@ -67,14 +67,14 @@
   import GlobalNav from '@/components/GlobalNav.vue'
   import { globalNavItems } from '@/router/index.js'
   import PageHeader from '@/components/PageHeader.vue'
-  import InfoFooter from '@/components/InfoFooter.vue'
+  import GlobalFooter from '@/components/GlobalFooter.vue'
 
   export default {
   name: 'Info',
   components: {
     GlobalNav,
     PageHeader,
-    InfoFooter
+    GlobalFooter
   },
   props: {
     theme: Array

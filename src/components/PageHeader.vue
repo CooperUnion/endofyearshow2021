@@ -71,55 +71,61 @@
 </script>
 
 <style scoped>
-  .headerBlock {
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .titleBlock {
-    width: 61%;
-  }
-  
-  .listBlock {
-    width: 39%;
-    text-align: left;
-  }
-
-  .projectsList {
-    list-style-type: none;
-  }
-  
-  .mainHead {
-    font-size: 48px;
-    text-align: left;
-    text-transform: capitalize;
-    font-weight: 700;
-    margin: 0;
-  }
-  
-  .mainDesc {
-    text-align: left;
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 24px;
-    margin: 48px 0 0 0;
-  }
-  
-  .refreshButton{
-    background-color: black;
-    color: white;
-    border-radius: 200px;
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 30px;
-    width: 276px;
-    height: 64px;
-    margin-top: 48px;
-  }
-  
-  .refreshIcon{
-    margin-bottom: -5px;
-    margin-right: 5px;
-  } 
+	.headerBlock {
+		display: flex;
+		flex-direction: row;
+	}
+	
+	.titleBlock {
+		width: 61%;
+	}
+	
+	.listBlock {
+		width: 39%;
+		text-align: left;
+	}
+	
+	.projectsList {
+		list-style-type: none;
+	}
+	
+	.mainHead {
+		font-size: 48px;
+		text-align: left;
+		text-transform: capitalize;
+		font-weight: 700;
+		margin: 0;
+	}
+	
+	.mainDesc {
+		text-align: left;
+		font-size: 18px;
+		font-weight: 500;
+		line-height: 24px;
+		margin: 48px 0 0 0;
+	}
+	
+	.refreshButton {
+		background-color: black;
+		color: white;
+		border-radius: 200px;
+		font-size: 18px;
+		font-weight: 700;
+		line-height: 30px;
+		width: 276px;
+		height: 64px;
+		margin-top: 48px;
+	}
+	
+	.refreshIcon {
+		margin-bottom: -5px;
+		margin-right: 5px;
+	}
+	
+	@media screen and (max-width: 767px) {
+		.mainHead {
+			font-size: 32px;
+		}
+	}
 </style>
 

@@ -13,6 +13,7 @@
       
     </div>
   </main>   
+	<global-footer :items="globalNavItems" />
 </template>
 
 <script>
@@ -25,12 +26,15 @@
   import areaNavItems from '@/router/areaNavItems.js'
   import GlobalNav from '@/components/GlobalNav.vue'  
   import {globalNavItems} from '@/router/index.js'
+  import GlobalFooter from '@/components/GlobalFooter.vue'  
+  
   export default {
     components: {
       Loading,
       GlobalNav,
       Posts,
-      AreaNav
+      AreaNav,
+      GlobalFooter
     },
     props: {
       post: Number

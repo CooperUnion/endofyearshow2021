@@ -10,6 +10,7 @@
       <posts v-else :items="items"/>
     </div>
   </main>   
+	<global-footer :items="globalNavItems" />
 </template>
 
 <script>
@@ -22,7 +23,8 @@
   import areaNavItems from '@/router/areaNavItems.js'
   import GlobalNav from '@/components/GlobalNav.vue'  
   import {globalNavItems} from '@/router/index.js'
-  import PageHeader from '@/components/PageHeader.vue'  
+  import PageHeader from '@/components/PageHeader.vue'
+	import GlobalFooter from '@/components/GlobalFooter.vue' 
 
   export default {
     components: {
@@ -30,7 +32,8 @@
       GlobalNav,
       Posts,
       AreaNav,
-      PageHeader
+      PageHeader,
+      GlobalFooter
     },
     props: {
       post: Number,
