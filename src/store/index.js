@@ -9,6 +9,7 @@ const socket = {
   state() {
     return {
       message: {message: undefined, origin: undefined},
+      cursors: {cursors: undefined, origin: undefined},
       system_message: {message: undefined, origin: undefined}
     }
   },
@@ -39,6 +40,14 @@ const socket = {
       commit('SOCKET_SYSTEM_MESSAGE', message);
       console.log("socketsystemmessage", message)
     }
+    
+    // socket on connection (socket connections number)
+    // socket init 
+    // socket client cursor move
+    // socket otherclient cursor move 
+    // socket disconnect (byefriend)
+    // socket nameupdate 
+    // socket newfriend
   }
 }
 

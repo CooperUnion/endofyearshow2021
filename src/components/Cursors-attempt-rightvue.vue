@@ -76,14 +76,14 @@
     
         const store = useStore()
         const message = computed(() => store.state.socket.message)
-
+        const cursors = computed(() => store.state.socket.cursors)
+        
         const dump = ()=>{
           console.log(store.state.socket)
         }
         
         const update = (message, cursors)=>{
           store.dispatch('client_userMessage', `data from vue client, ${message}`)
-          store.dis
         }    
         
         
