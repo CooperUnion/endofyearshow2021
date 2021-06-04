@@ -11,7 +11,7 @@
       </header>
       <!-- logic for separate content types -->
       <div v-if="type==='images'" :class="['imageDeck', {'animating' : animState}, animDirection]">
-				<div class="dragSleeve" ref="dragSleeve" v-drag="dragHandler" :drag-options="dragOptions">
+				<div class="dragSleeve" ref="dragSleeve">
 					<div class="carousel">
 						<img :src="assets.media[current].source_url" class="imgPrime" />
 						<template v-if="assets.media.length>1">
@@ -56,7 +56,8 @@
 <script>
   import { ref, computed } from 'vue'  
   import { useStore } from 'vuex' 
-  import { useMotion, useMotionProperties, useSpring, useDrag } from '@vueuse/motion'
+  import { useMotion, useMotionProperties, useSpring } from '@vueuse/motion'
+  import { useDrag } from '@vueuse/gesture'
 
   import TagList from '@/components/TagList.vue'
     
@@ -88,7 +89,7 @@
       const dragOptions = { 
       	swipeDistance: 100
       }
-
+ 
       // Bind to the element or component reference
       // and init style properties that will be animated.
       const { motionProperties } = useMotionProperties(dragSleeve, {
@@ -168,7 +169,14 @@
         })
       }
 
-      return {hideScrim, goNext, goPrev, current, getPrev, getNext, animState, animDirection, dragSleeve, dragHandler, dragOptions}
+      // Composable usage 
+      if(assets.media.length>1) {
+        useDrag(dragHandler, {
+          domTarget: dragSleeve,
+          ...dragOptions
+        })  
+      }
+      return {hideScrim, goNext, goPrev, current, getPrev, getNext, animState, animDirection, dragSleeve}
     }
 
     
