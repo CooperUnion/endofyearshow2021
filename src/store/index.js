@@ -16,29 +16,29 @@ const socket = {
   mutations: {
     SOCKET_USER_MESSAGE(state, message) {
       state.message = {message, origin: 'socket'}
-      console.log("socketusermessagemutation", message)
+      console.log("socketusermessagemutationMUTATION", message)
     },
     CLIENT_USER_MESSAGE(state, message) {
       state.message = {message, origin: 'client'}
-      console.log("clientusermessagemutation", message)
+      console.log("clientusermessagemutationMUTATION", message)
     },
     SOCKET_SYSTEM_MESSAGE(state, message) {
       state.system_message = {message, origin: 'system'}
-      console.log("statesystemmessagemutation", message)
+      console.log("statesystemmessagemutationMUTATION", message)
     }
   },
   actions: {
     socket_userMessage ({ dispatch, commit }, message) {
      commit('SOCKET_USER_MESSAGE', message);
-      console.log("socketusermessage", message)
+      console.log("socketusermessageACTION", message)
     },
     client_userMessage({ dispatch, commit }, message) {
       commit('CLIENT_USER_MESSAGE', message)
-      console.log("clientusermessage", message)
+      console.log("clientusermessageACTION", message)
     },
     socket_systemMessage({ dispatch, commit }, message) {
       commit('SOCKET_SYSTEM_MESSAGE', message);
-      console.log("socketsystemmessage", message)
+      console.log("socketsystemmessageACTION", message)
     }
     
     // socket on connection (socket connections number)
