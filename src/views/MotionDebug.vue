@@ -8,17 +8,20 @@
 
   <h1>just an active item</h1>
   <ul>
-    <li class="item" ref="carousel" v-drag="dragHandler">
+    <li class="item" ref="carousel">
         {{items[current].name}}
     </li>
   </ul>
   <b @click="prev(items.indexOf(current))">prev</b> | <b @click="next(items.indexOf(current))">next</b>
+
+  <h1>is the obj in motion? {{isActive}}</h1>
 </template>
 
 <script>
 
   import { ref, computed } from 'vue'
-  import { useMotion, useMotionProperties, useSpring, useDrag } from '@vueuse/motion'
+  import { useMotion, useMotionProperties, useSpring } from '@vueuse/motion'
+  import { useDrag } from '@vueuse/gesture'
   import { onKeyStroke, onKeyUp } from '@vueuse/core'
 
   export default {
@@ -53,6 +56,7 @@
       })
       //animation stuff
       const carousel = ref()
+      const isActive = ref(false)
 
       // Bind to the element or component reference
       // and init style properties that will be animated.
@@ -65,9 +69,15 @@
       // Bind the motion properties to a spring reactive object.
       const { set } = useSpring(motionProperties)
               
-      const dragHandler = ({ movement: [x, y], dragging, swipe, tap }) => {
+      const dragHandler = (everything) => {
+        // console.log(Object.keys(everything))
+        const { movement: [x, y], dragging, swipe, tap, active } = everything
 
         // console.log(swipe, tap)
+        console.log(active)
+        
+        // help the template know if an object is in motion
+        isActive.value = active
 
         const swipeLeft = swipe[0] === -1 ? true : false
         const swipeRight = swipe[0] === 1 ? true : false
@@ -92,12 +102,11 @@
       }
 
       // Composable usage
-      // This breaks things, for some reason
-      // useDrag(dragHandler, {
-      //   domTarget: carousel,
-      // })    
+      useDrag(dragHandler, {
+        domTarget: carousel,
+      })    
       
-      return {items, next, prev, current, carousel, dragHandler}
+      return {items, next, prev, current, carousel, dragHandler, isActive}
     }
   }
 </script>
