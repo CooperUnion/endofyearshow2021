@@ -85,7 +85,7 @@ let routes = [
 ]
 
 let globalNavItems = [
-  {name:"Home", path:"/", component: Home},
+//   {name:"Home", path:"/", component: Home},
   {name:"Areas", path:"/areas", component: MasonryPosts},
   {
     name:"Foundation", 
@@ -96,7 +96,7 @@ let globalNavItems = [
     }
   },
   {name:"Projects", path:"/projects/", component: Projects},
-  {name:"Forum", path:"/forum", component: MasonryPosts},
+//   {name:"Forum", path:"/forum", component: MasonryPosts},
   {name:"Students", path:"/students", component: Students},
   {
     name:"Info", 
@@ -106,8 +106,8 @@ let globalNavItems = [
       theme: ['dark','fancy']
     }
   },
-  {name: "SocketDebug", path: "/SocketDebug", component: SocketDebug },
-  {name: "MotionDebug", path: "/MotionDebug", component: MotionDebug }
+  {name: "🔌", path: "/SocketDebug", component: SocketDebug },
+  {name: "🔛", path: "/MotionDebug", component: MotionDebug }
 ]
 
 routes = routes.concat(globalNavItems)

@@ -99,8 +99,6 @@
       const toggleAreaPanel = () => {
         areanavShow.value = !areanavShow.value
       }
-      
-
      
       const getCount = async (tags)=>{
         if(store.state.application.areaCount.has(tags)) {
@@ -206,7 +204,7 @@
 			top: 24px;
 			left: 24px;
 			width: calc(100vw - 48px);
-			height: calc(100vh - 48px);
+			height: calc(100% - 48px);
 			background-color: #fff;
 			border: 2px solid #000;
 			z-index: 1;
@@ -233,7 +231,7 @@
 		}
 		
 		.nav-list .nav-item {
-			margin-bottom: clamp(1em, calc(5.5vh - 1.1em), 2em);
+			margin-bottom: clamp(1em, 10%, 3em);
 		}
 		
 		button.filters {

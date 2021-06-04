@@ -5,7 +5,7 @@
 		<page-header /> 
 		<div class="infoPage">
 			<h3>
-				The Cooper Union End of the Year Show offers the student body a chance to showcase the projects completed over the year. Works are tagged for multiple areas, reflecting on the interdisciplinarity central to the school’s ethos.
+				The Cooper Union <mark>End of the Year Show</mark> offers the student body a chance to showcase the projects completed over the year. Works are tagged for multiple areas, reflecting on the interdisciplinarity central to the school’s ethos.
 			</h3>
 			<p>
 				The site navigates through the variety of work in through: 
@@ -22,7 +22,10 @@
 			<p>
 			  <a href="/foundation">Foundation</a>: works produced in a series of introductory courses taken by freshman year art students 
 			</p>
-			<img class="imgsep" alt="Graphical separator" src="../assets/lensgraphic.svg" />
+			<div class="separator">
+				<img src="../assets/group-1206.png" width="1330" height="265" alt="colorful graphical separator" />
+				<img src="../assets/group-1207.png" width="1330" height="265" alt="colorful graphical separator" />
+			</div>
 			<small> 
 				<p>
 					The Cooper Union School of Art End of Year Show 2021 was designed in a collaborative effort. 
@@ -56,6 +59,7 @@
 			</small> 		
 		</div>
 	</main>
+	<info-footer :items="globalNavItems" />
 </template>
 
 <script>
@@ -63,12 +67,14 @@
   import GlobalNav from '@/components/GlobalNav.vue'
   import { globalNavItems } from '@/router/index.js'
   import PageHeader from '@/components/PageHeader.vue'
+  import InfoFooter from '@/components/InfoFooter.vue'
 
   export default {
   name: 'Info',
   components: {
     GlobalNav,
-    PageHeader
+    PageHeader,
+    InfoFooter
   },
   props: {
     theme: Array
@@ -83,15 +89,24 @@
 </script>
 
 <style scoped>
-
 	.infoPage {
 		width: 50vw;
 		margin: 0 auto;
-		padding-bottom: 417px;
+		padding-bottom: 200px;
 	}
 	
-	.imgsep {
+	mark {
+		background-color: transparent;
+		color: #DEFF10;
+	}
+	
+	.separator {
 		margin-bottom: 1.5em;
+	}
+	
+	.separator img + img {
+		margin-top: -75%;
+		mix-blend-mode: screen;
 	}
 	
 	h3 {
@@ -120,4 +135,6 @@
 	
 	dt, dd {
 		padding: 0;
-	}</style>
+	}
+	
+</style>

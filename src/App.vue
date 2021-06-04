@@ -12,6 +12,7 @@
 
 <style>
 	@import url('https://cdn.jsdelivr.net/gh/yegor256/tacit@gh-pages/tacit-css-1.5.5.min.css');
+	@import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,300;0,700;1,300;1,700&display=swap');	
 	
 	body {
 		padding: 0;
@@ -21,6 +22,11 @@
 	body.dark {
 		color: white;
 		background-color: black;
+		background-image: url(./assets/infodots-head.png);
+		background-repeat: no-repeat;
+		background-position: center top;
+		background-size: 33% auto;
+		
 	}
 	
 	a {
@@ -31,21 +37,27 @@
 	
 	h1, h2, h3, h4, h5, h6 {
 		color: inherit;
-		line-height: 1.1;
+		line-height: 1.25;
 	}
 	
 	#app {
-		font-family: Avenir, Helvetica, Arial, sans-serif;
+		font-family: Epilogue, Avenir, Helvetica, Arial, sans-serif;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 		text-align: left;
 		margin: 0 auto;
 		max-width: 1200px;
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
 	}
 	
 	main {
 		width: calc(100% - 240px);
 		margin: 0 auto;
+		flex: 1;
+		display: flex;
+		flex-direction: column;
 	}
 		
 	@media screen and (max-width: 767px) {

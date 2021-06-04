@@ -38,10 +38,11 @@
     background-size: 100px 100px;
     width: auto;
     min-width: 100px;
-    height: 100%;
+    flex: 1;
     min-height: 100px;
     margin: 0 auto 33px auto;
     background-repeat: no-repeat;
+    background-position: center 33%;
   }
 
   .loading>small {

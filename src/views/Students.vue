@@ -74,6 +74,11 @@
 </script>
 
 <style scoped>
+  .studentsPage {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
   .studentsList {
     list-style-type: none;
   }
