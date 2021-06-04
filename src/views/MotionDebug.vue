@@ -19,6 +19,7 @@
 
   import { ref, computed } from 'vue'
   import { useMotion, useMotionProperties, useSpring, useDrag } from '@vueuse/motion'
+  import { onKeyStroke, onKeyUp } from '@vueuse/core'
 
   export default {
     name: 'MotionDebug',
@@ -41,7 +42,15 @@
         current.value = (current.value - 1 < 0) ? items.length -1 : current.value - 1
       }
 
-
+      onKeyUp('ArrowLeft', (e) => {
+        next()
+      })
+      onKeyUp('ArrowRight', (e) => {
+        prev()
+      })
+      onKeyUp('Escape', (e)=>{
+        console.log("escaped!")
+      })
       //animation stuff
       const carousel = ref()
 
