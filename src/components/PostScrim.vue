@@ -3,7 +3,7 @@
     <div class="scrim-shroud"></div>
     <div class="scrim-contents">
       <header class="title-block">
-        <h6 class="title" v-html="title + ' — ' + author.formatted"></h6>
+        <h6 class="credits"><span class="title">{{title}}</span><a class="author" href="#" v-html="author.formatted"></a></h6>
         <button class="close" @click="hideScrim()">close</button>
         <template v-if="assets.media.length>1">
           <span class="paginator">{{current + 1}}/{{assets.media.length}}</span>
@@ -12,19 +12,19 @@
       <!-- logic for separate content types -->
       <div v-if="type==='images'" :class="['imageDeck', {'animating' : animState}, animDirection]">
 				<div class="dragSleeve" ref="dragSleeve">
-					<div class="carousel">
-						<img :src="assets.media[current].source_url" class="imgPrime" />
+					<div :class="['carousel', assets.media.length>1 ? 'multiple' : '']" >
+						<div class="realBox current"><img :src="assets.media[current].source_url" class="imgPrime" /></div>
 						<template v-if="assets.media.length>1">
 							<div class="ghostBox prev"><img :src="assets.media[getPrev()].source_url" class="ghostImg" /></div>
 							<div class="ghostBox next"><img :src="assets.media[getNext()].source_url" class="ghostImg" /></div>
 						</template>
 					</div>
         </div>
-        <template v-if="assets.media.length>1">
+        <template v-if="assets.media.length>1 && !mobile">
           <button class="imgControl prev" @click="goPrev" @keyup.left="goPrev">previous</button>
           <button class="imgControl next" @click="goNext" @keyup.right="goNext">next</button>
           <ul class="paginationDots">
-						<li v-for="(media, index) of assets.media" v-bind:key="media.id" :class="index === current ? 'selected' : ''"></li>
+						<li v-for="(media, index) of assets.media" v-bind:key="media.id" :class="['dot', index === current ? 'selected' : '']"></li>
           </ul>
         </template>    
       </div>
@@ -112,8 +112,8 @@
           animState.value = false
           animDirection.value = ""
           current.value = getNext()          
+					set({ x: 0, y: 0});
         }, 401);
-        set({ x: 0, y: 0});
       }
       
       const goPrev = () => {
@@ -123,8 +123,8 @@
           animState.value = false
           animDirection.value = ""
           current.value = getPrev()          
+					set({ x: 0, y: 0});
         }, 401);
-				set({ x: 0, y: 0});
       }
     
       const getNext = () => {
@@ -144,11 +144,11 @@
         const swipeLeft = swipe[0] === -1 ? true : false
         const swipeRight = swipe[0] === 1 ? true : false
 
-        console.log({swipeLeft, swipeRight})
+//         console.log({swipeLeft, swipeRight})
 //         if(swipeLeft) goPrev()
 //         if(swipeRight) goNext()
 
-        console.log("handling")
+//         console.log("handling")
         if (!dragging) {
 					if (x > 100) {
 						goPrev()
@@ -184,205 +184,284 @@
 </script>
 
 <style scoped>
-  .post-scrim {
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-  }
-  
-  .post-scrim .scrim-shroud {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-color: #000;
-    z-index: 0;
- }
-  
-  .post-scrim .title-block {
-    padding: 0;
-    position: relative;
-  }
-  
-  .post-scrim .title-block .close {
-    position: absolute;
-    top: -24px;
-    right: 0;
-    height: 48px;
-    width: 48px;
-    margin: 0;
-    padding: 0;
-    background-color: transparent;
-    background-image: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="48" height="48" viewbox="0, 0, 48, 48"><path d="M32.889,32.89 L15.111,15.111" fill-opacity="0" stroke="Silver" stroke-width="2" stroke-linecap="square" /><path d="M32.889,15.111 L15.111,32.89" fill-opacity="0" stroke="Silver" stroke-width="2" stroke-linecap="square" /><path d="M47,24 C47,36.703 36.703,47 24,47 C11.297,47 1,36.703 1,24 C1,11.297 11.297,1 24,1 C36.703,1 47,11.297 47,24 z" fill-opacity="0" stroke="Silver" stroke-width="2" /></svg>');
-    background-size: 48px 48px;
-    background-repeat: no-repeat;
-    background-position: center center;
-    text-indent: -999vw;
-    overflow: hidden;
-  }
-
-  .post-scrim .scrim-contents {
-    padding: 48px 120px;
-    position: relative;
-    overflow: scroll;
-    scrollbar-width: none; /* Firefox */
-  }
-
-  .post-scrim .scrim-contents::-webkit-scrollbar {
-    width: 0;  /* Remove scrollbar space */
-    background: transparent;  /* Optional: just make scrollbar invisible */
-  }
-
-  .post-scrim .scrim-contents .title {
-    color: #fff;
-    text-transform: unset;
-    font-size: 18px;
-    margin-bottom: 24px;
+	.post-scrim {
+		color: #fff;
+		display: flex;
+		flex-direction: column;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 1;
+	}
+	
+	.post-scrim .scrim-shroud {
+		position: fixed;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		background-color: #000;
+		z-index: 0;
+	}
+	
+	.post-scrim .title-block {
+		padding: 0;
+		position: relative;
+	}
+	
+	.post-scrim .title-block .credits {
+		color: #fff;
+		text-transform: unset;
+		font-size: 18px;
+		margin-bottom: 24px;
 		text-align: center;
-  }
-
-
-  .post-scrim .scrim-contents img {
-    display: block;
-    width: auto;
-    height: auto;
-    max-height: 600px;
-    pointer-events: none;
-  }
-
-  .post-scrim .scrim-contents .meta {
-    margin-top: 36px;
-    display: flex;
-    flex-direction: row;
-    width: auto;
-  }
-
-
-  .post-scrim .scrim-contents .meta .description-block {
-    width: 50%;
-    text-align: left;
-    font-size: 18px;
-    line-height: 1.333;
-    padding-top: 3px; /* to match label spacing */
-  }
-
-
-  .post-scrim .scrim-contents .meta .labels-block {
-    width: 50%;
-  }
-
-
-  .post-scrim .scrim-contents .meta .labels-block .tagList {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-  }
-  
-  .imageDeck {
-    position: relative;
-  }
-  
-  .imageDeck .carousel {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    touch-action: none;
- }
-  
-  .imageDeck.animating .carousel {
-    transition: transform .4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  }
-
-  .imageDeck.prev .carousel {
-    transform: translate(100%);
-  }
-  
-  .imageDeck.next .carousel {
-    transform: translate(-100%);
-  }
-
-  .ghostBox {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    display: flex;
-    align-items: center;
-  }
-
-  .ghostBox.prev {
-    transform: translate(-100%);
-  }
-
-  .ghostBox.next {
-    transform: translate(100%);
-  }
-  
-  .paginator {
-    position: absolute;
-    top: 0;
-    left: 0;
-    font-weight: 700;
-    line-height: 1;
-  }
-
-  .imgControl {
-    position: absolute;
-    top: 0;
-    width: 48px;
-    height: 100%;
-    overflow: hidden;
-    text-indent: -999vw;
-    background-repeat: no-repeat;
-    background-size: 48px auto;
-    background-color: transparent;
-    background-position: center center;
-    margin: 0;
-    padding: 0;
-    z-index: 1;
-  }
-  
-  .imgControl.prev {
-    left: 0;
-    background-image: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="48" height="48" viewBox="0, 0, 48, 48"><path d="M30,12 L18,24 L30,36" fill-opacity="0" stroke="Silver" stroke-width="2" stroke-linecap="square"/></svg>');
-  }
-
-
-  .imgControl.next {
-    right: 0;
-    background-image: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="48" height="48" viewBox="0, 0, 48, 48"><path d="M18,36 L30,24 L18,12" fill-opacity="0" stroke="Silver" stroke-width="2" stroke-linecap="square"/></svg>');
-  }
-
-  @media screen and (max-width: 767px) {
-    .post-scrim .scrim-contents {
-      padding: 84px 36px 36px 36px;
-    }
-    
-    .post-scrim .title-block .close {
-      top: -60px;
-    }
-    
-    .post-scrim .scrim-contents .meta {
-      flex-direction: column;
-    }
-    
-    .post-scrim .scrim-contents .meta .description-block,
-    .post-scrim .scrim-contents .meta .labels-block {
-      width: auto;
-    }
-
-    
-  }
-
-
-  
+	}
+	
+	.post-scrim .title-block .credits .title:after {
+		content: "—";
+		margin: 0 0.5em;
+	}
+	
+	.post-scrim .title-block .close {
+		position: absolute;
+		top: -24px;
+		right: 0;
+		height: 48px;
+		width: 48px;
+		margin: 0;
+		padding: 0;
+		background-color: transparent;
+		background-image: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="48" height="48" viewbox="0, 0, 48, 48"><path d="M32.889,32.89 L15.111,15.111" fill-opacity="0" stroke="Silver" stroke-width="2" stroke-linecap="square" /><path d="M32.889,15.111 L15.111,32.89" fill-opacity="0" stroke="Silver" stroke-width="2" stroke-linecap="square" /><path d="M47,24 C47,36.703 36.703,47 24,47 C11.297,47 1,36.703 1,24 C1,11.297 11.297,1 24,1 C36.703,1 47,11.297 47,24 z" fill-opacity="0" stroke="Silver" stroke-width="2" /></svg>');
+		background-size: 48px 48px;
+		background-repeat: no-repeat;
+		background-position: center center;
+		text-indent: -999vw;
+		overflow: hidden;
+	}
+	
+	.post-scrim .scrim-contents {
+		padding: 48px 120px;
+		position: relative;
+		overflow-y: scroll;
+		overflow-x: hidden;
+		scrollbar-width: none;
+		/* Firefox */
+	}
+	
+	.post-scrim .scrim-contents::-webkit-scrollbar {
+		width: 0;
+		/* Remove scrollbar space */
+		background: transparent;
+		/* Optional: just make scrollbar invisible */
+	}
+	
+	.post-scrim .scrim-contents img {
+		display: block;
+		width: auto;
+		height: auto;
+		max-height: 600px;
+		pointer-events: none;
+		-webkit-touch-callout: none; /* iOS Safari */
+		-webkit-user-select: none; /* Safari */
+		-ms-user-select: none; /* Internet Explorer/Edge */
+		user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+	}
+	
+	.post-scrim .scrim-contents .meta {
+		margin-top: 36px;
+		display: flex;
+		flex-direction: row;
+		width: auto;
+	}
+	
+	.post-scrim .scrim-contents .meta .description-block {
+		width: 50%;
+		text-align: left;
+		font-size: 18px;
+		line-height: 1.333;
+		padding-top: 3px;
+		/* to match label spacing */
+	}
+	
+	.post-scrim .scrim-contents .meta .labels-block {
+		width: 50%;
+	}
+	
+	.post-scrim .scrim-contents .meta .labels-block .tagList {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
+		flex-wrap: wrap;
+	}
+	
+	.imageDeck {
+		position: relative;
+	}
+	
+	.dragSleeve {
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+	}
+	
+	.imageDeck .carousel {
+		position: relative;
+		display: flex;
+		flex-direction: row;
+		touch-action: none;
+	}
+	
+	.imageDeck .carousel.multiple {
+		width: 300vw;
+		max-width: unset;
+	}
+	
+	.imageDeck.animating .carousel {
+		transition: transform .4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+	}
+	
+	.imageDeck.prev .carousel {
+		transform: translate(100vw);
+	}
+	
+	.imageDeck.next .carousel {
+		transform: translate(-100vw);
+	}
+	
+	.realBox,
+	.ghostBox {
+		width: 100vw;
+		display: flex;
+		align-items: center;
+	}
+	
+	.ghostBox.prev {
+		order: -1;
+	}
+	
+	.ghostBox.next {
+	}
+	
+	.paginator {
+		position: absolute;
+		top: 0;
+		left: 0;
+		font-weight: 700;
+		line-height: 1;
+	}
+	
+	.paginationDots {
+		position: absolute;
+		bottom: 21px;
+		left: 0;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		flex-direction: row;
+		list-style-type: none;
+		z-index: 2;
+		margin: 0;
+	}
+	
+	.paginationDots .dot {
+		height: 6px;
+		width: 6px;
+		background-color: white;
+		border-radius: 50%;
+		box-shadow: 0 0 3px rgba(0,0,0,0.5);
+		margin: 0 6px;
+	}
+	
+	.paginationDots .dot.selected {
+		background-color: #0000FF;
+	}
+	
+	.imgControl {
+		position: absolute;
+		top: 0;
+		width: 48px;
+		height: 100%;
+		overflow: hidden;
+		text-indent: -999vw;
+		background-repeat: no-repeat;
+		background-size: 48px auto;
+		background-color: transparent;
+		background-position: center center;
+		margin: 0;
+		padding: 0;
+		z-index: 1;
+	}
+	
+	.imgControl.prev {
+		left: 0;
+		background-image: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="48" height="48" viewBox="0, 0, 48, 48"><path d="M30,12 L18,24 L30,36" fill-opacity="0" stroke="Silver" stroke-width="2" stroke-linecap="square"/></svg>');
+	}
+	
+	.imgControl.next {
+		right: 0;
+		background-image: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="48" height="48" viewBox="0, 0, 48, 48"><path d="M18,36 L30,24 L18,12" fill-opacity="0" stroke="Silver" stroke-width="2" stroke-linecap="square"/></svg>');
+	}
+	
+	@media screen and (max-width: 767px) {
+		.post-scrim .scrim-contents {
+			padding: 36px 24px;
+		}
+		
+		.post-scrim .scrim-contents img {
+			max-width: calc(100vw - 48px);
+		}
+		
+		.post-scrim .title-block {
+			padding-right: 54px;
+		}
+		
+		.post-scrim .title-block .credits {
+			text-align: left;
+		}
+		
+		.post-scrim .title-block .credits .title {
+			font-size: 32px;
+		}
+		
+		.post-scrim .title-block .credits .title:after {
+			content: none;
+		}
+		
+		.post-scrim .title-block .credits .author {
+			display: block;
+			font-size: 14px;
+			font-weight: 300;
+			margin-top: 0.5em;
+		}
+		
+		.post-scrim .title-block .paginator {
+			position: static;
+			display: block;
+			margin-bottom: 9px;
+			font-weight: 300;
+			font-size: 13px;
+		}
+		
+		.post-scrim .title-block .close {
+			top: -12px;
+			right: -3px;
+		}
+		
+		.post-scrim .scrim-contents .meta {
+			flex-direction: column;
+		}
+			
+		.post-scrim .scrim-contents .meta .labels-block {
+			order: -1;
+			width: auto;
+			margin-bottom: 36px;
+		}
+		
+		.post-scrim .scrim-contents .meta .description-block {
+			width: auto;
+		}
+	}
 </style>

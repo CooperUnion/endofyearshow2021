@@ -247,7 +247,7 @@
 		
 		button.filters.open {
 			position: absolute;
-			top: -2em;
+			top: -2.5em;
 			right: 0;
 		}
 		
