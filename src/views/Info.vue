@@ -137,4 +137,27 @@
 		padding: 0;
 	}
 	
+	@media screen and (max-width: 767px) {
+		.infoPage {
+			width: auto;
+			padding-bottom: 56px;
+		}
+			
+		.separator {
+			margin-right: -90%;
+			max-width: unset;
+		}
+
+		h3 {
+			font-size: 30px;
+		}
+		
+		p {
+			font-size: 20px;
+		}
+		
+		small {
+			font-size: 14px;
+		}
+	}
 </style>

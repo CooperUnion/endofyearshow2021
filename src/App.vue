@@ -12,7 +12,7 @@
 
 <style>
 	@import url('https://cdn.jsdelivr.net/gh/yegor256/tacit@gh-pages/tacit-css-1.5.5.min.css');
-	@import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,300;0,700;1,300;1,700&display=swap');	
+	@import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,300;0,700;1,300;1,700&display=swap');
 	
 	body {
 		padding: 0;
@@ -26,7 +26,6 @@
 		background-repeat: no-repeat;
 		background-position: center top;
 		background-size: 33% auto;
-		
 	}
 	
 	a {
@@ -59,8 +58,12 @@
 		display: flex;
 		flex-direction: column;
 	}
-		
+	
 	@media screen and (max-width: 767px) {
+		body.dark {
+			background-image: none;
+		}
+		
 		main {
 			width: calc(100vw - 48px);
 		}

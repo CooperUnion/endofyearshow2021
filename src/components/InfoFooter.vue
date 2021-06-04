@@ -1,7 +1,8 @@
 <template> 
 	<footer id="infofooter">
 		<div class="description-panel">
-			The Cooper Union School of Art<br />
+			The Cooper Union<br v-if="mobile" /> 
+			School of Art<br />
 			End of the Year Show 2021 
 		</div>
 		<div class="nav-panel">
@@ -45,7 +46,6 @@
 </script>
 
 <style scoped>
-
 	#infofooter {
 		width: calc(100% - 240px);
 		margin: 0 auto;
@@ -77,14 +77,36 @@
 		flex: 1;
 	}
 	
-	.nav-panel .nav-list{
+	.nav-panel .nav-list {
 		list-style-type: none;
 		display: flex;
 		flex-direction: row;
 		font-size: 16px;
 		justify-content: space-between;
-		margin: 0;		
+		margin: 0;
 	}
-
+	
+	@media screen and (max-width: 767px) {
+		#infofooter {
+			width: calc(100vw - 48px);
+			flex-direction: column;
+			margin-bottom: 50px;
+		}
+		
+		.description-panel {
+			padding-left: 116px;
+			margin-right: 0;
+		}
+		
+		.nav-panel .nav-list {
+			flex-wrap: wrap;
+			justify-content: space-around;
+			margin-top: 56px;
+		}
+		
+		.nav-panel .nav-list li {
+			margin: 0 1em;
+		}
+	}
 </style>
 
