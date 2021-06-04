@@ -81,9 +81,11 @@
           console.log(store.state.socket)
         }
         
-        const update = (message)=>{
+        const update = (message, cursors)=>{
           store.dispatch('client_userMessage', `data from vue client, ${message}`)
+          store.dis
         }    
+        
         
       return {message, dump, update}
 
@@ -93,7 +95,8 @@
       isConnected: false,
       socketMessage: '',
       democursorname: '',
-      roleRadio: ""
+      roleRadio: "",
+      cursors: []
     }
   },
 
