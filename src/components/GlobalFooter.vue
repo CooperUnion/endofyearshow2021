@@ -46,10 +46,16 @@
 </script>
 
 <style scoped>
+	body.dark #globalfooter {
+		border-top: 1px solid white;
+	}
+	
 	#globalfooter {
+		color: white;
+		background-color: black;
+		box-shadow: 50vw 0 0 black, -50vw 0 0 black;
 		width: calc(100% - 240px);
 		margin: 0 auto;
-		border-top: 1px solid white;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
