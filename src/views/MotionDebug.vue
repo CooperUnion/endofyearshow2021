@@ -14,7 +14,10 @@
   </ul>
   <b @click="prev(items.indexOf(current))">prev</b> | <b @click="next(items.indexOf(current))">next</b>
 
-  <h1>is the obj in motion? {{isActive}}</h1>
+  <h1>is the obj active? {{isActive}}</h1>
+  <h1>is the obj moving? {{isActive}}</h1>
+  <h1>donde estas? {{isX}}, {{isY}}</h1>
+
 </template>
 
 <script>
@@ -57,6 +60,9 @@
       //animation stuff
       const carousel = ref()
       const isActive = ref(false)
+      const isMoving = ref(false)
+      const isX = ref(0)
+      const isY = ref(0)
 
       // Bind to the element or component reference
       // and init style properties that will be animated.
@@ -67,17 +73,36 @@
       })
 
       // Bind the motion properties to a spring reactive object.
-      const { set } = useSpring(motionProperties)
-              
+      const { set, values } = useSpring(motionProperties)
+      
+      const dragEnd = () =>{
+        const countdown = setInterval(()=>{
+          if(values.x === 0 && values.y === 0) {
+            stop()
+          }
+          isX.value = values.x
+          isY.value = values.y
+        },10)
+
+        const stop = ()=>{
+          console.log("stopping")
+          clearInterval(countdown)
+        }
+      }
+
       const dragHandler = (everything) => {
         // console.log(Object.keys(everything))
-        const { movement: [x, y], dragging, swipe, tap, active } = everything
+        const { movement: [x, y], dragging, swipe, tap, active, moving } = everything
 
+        let hasDraggedStopped = false
         // console.log(swipe, tap)
-        console.log(active)
+        
+        isX.value = values.x
+        isY.value = values.y
         
         // help the template know if an object is in motion
         isActive.value = active
+        isMoving.value = moving
 
         const swipeLeft = swipe[0] === -1 ? true : false
         const swipeRight = swipe[0] === 1 ? true : false
@@ -90,15 +115,19 @@
         if (!dragging) {
           console.log("not dragging")
           set({ x: 0, y: 0, cursor: 'grab' })
+          dragEnd()
           return
         }
 
-        console.log("dragging, I guess?")
-        set({
-          cursor: 'grabbing',
-          x,
-          y,
-        })
+        if(!hasDraggedStopped) {
+
+          console.log("dragging, I guess?")
+          set({
+            cursor: 'grabbing',
+            x,
+            y,
+          })
+        }
       }
 
       // Composable usage
@@ -106,7 +135,7 @@
         domTarget: carousel,
       })    
       
-      return {items, next, prev, current, carousel, dragHandler, isActive}
+      return {items, next, prev, current, carousel, dragHandler, isActive, isMoving, isX, isY}
     }
   }
 </script>
