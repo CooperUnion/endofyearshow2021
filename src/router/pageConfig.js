@@ -24,5 +24,10 @@
     body: '',
     refreshEnabled: false
   },
+  students: {
+    title: 'Student Work',
+    body: '',
+    refreshEnabled: false
+  },
 
 }

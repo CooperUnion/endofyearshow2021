@@ -7,6 +7,8 @@ import MasonryPost from '@/views/MasonryPost.vue'
 import MasonryTag from '@/views/MasonryTag.vue'
 import Projects from '@/views/Projects.vue'
 import Project from '@/views/Project.vue'
+import Students from '@/views/Students.vue'
+import Student from '@/views/Student.vue'
 import Info from '@/views/Info.vue'
 
 import SocketDebug from '@/views/SocketDebug.vue'
@@ -67,6 +69,12 @@ let routes = [
     redirect: '/tag/drawing,design,film-+-video,installation,painting,performance,photography,printmaking,sculpture,sound-art'
   },
   {
+    path: '/student/:student',
+    name: 'Student',
+    component: Student,
+    props: true
+  },
+  {
     path: '/cursors',
     name: 'Cursors',
     // route level code-splitting
@@ -89,7 +97,7 @@ let globalNavItems = [
   },
   {name:"Projects", path:"/projects/", component: Projects},
   {name:"Forum", path:"/forum", component: MasonryPosts},
-  {name:"Students", path:"/students", component: Home},
+  {name:"Students", path:"/students", component: Students},
   {
     name:"Info", 
     path:"/info", 
