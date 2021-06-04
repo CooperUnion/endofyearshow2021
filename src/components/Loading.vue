@@ -41,7 +41,7 @@
     height: 100%;
     min-height: 100px;
     margin: 0 auto 33px auto;
-
+    background-repeat: no-repeat;
   }
 
   .loading>small {
