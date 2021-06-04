@@ -11,7 +11,7 @@
       </header>
       <!-- logic for separate content types -->
       <div v-if="type==='images'" :class="['imageDeck', {'animating' : animState}, animDirection]">
-				<div :class="['dragSleeve', {traveling : isTraveling}]" ref="dragSleeve">
+				<div :class="['dragSleeve', {overshoot : isOvershooting}]" ref="dragSleeve">
 					<div :class="['carousel', assets.media.length>1 ? 'multiple' : '']" >
 						<div class="realBox current"><img :src="assets.media[current].source_url" class="imgPrime" /></div>
 						<template v-if="assets.media.length>1">
@@ -86,7 +86,7 @@
 
 			//animation stuff
       const dragSleeve = ref()
-      const isTraveling = ref(false)
+      const isOvershooting = ref(false)
       
       const swipeGap = parseInt(document.documentElement.clientWidth / 15, 10)
       
@@ -117,7 +117,7 @@
           animDirection.value = ""
           current.value = getNext()          
 					set({ x: 0, y: 0});
-					isTraveling.value = true
+					isOvershooting.value = true
         }, 401);
       }
       
@@ -129,7 +129,7 @@
           animDirection.value = ""
           current.value = getPrev()          
 					set({ x: 0, y: 0});
-					isTraveling.value = true
+					isOvershooting.value = true
         }, 401);
       }
     
@@ -150,7 +150,7 @@
           isY.value = values.y
         },10)
         const stop = () => {
-          isTraveling.value = false;
+          isOvershooting.value = false;
           clearInterval(countdown)
         }
       }
@@ -197,7 +197,7 @@
           ...dragOptions
         })  
       }
-      return {hideScrim, goNext, goPrev, current, getPrev, getNext, animState, animDirection, dragSleeve, isTraveling}
+      return {hideScrim, goNext, goPrev, current, getPrev, getNext, animState, animDirection, dragSleeve, isOvershooting}
     }
 
     
@@ -366,7 +366,7 @@
 	.ghostBox.next {
 	}
 	
-	.dragSleeve.traveling .ghostBox {
+	.dragSleeve.overshoot .ghostBox {
 		opacity: 0;
 	}
 	
