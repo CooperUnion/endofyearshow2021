@@ -3,7 +3,7 @@
     <div class="scrim-shroud"></div>
     <div class="scrim-contents">
       <header class="title-block">
-        <h6 class="credits"><span class="title">{{title}}</span><a class="author" href="#" v-html="author.formatted"></a></h6>
+        <h6 class="credits"><span class="title" v-html="title"/><a class="author" href="#" v-html="author.formatted"/></h6>
         <button class="close" @click="hideScrim()">close</button>
         <template v-if="assets.media.length>1">
           <span class="paginator">{{current + 1}}/{{assets.media.length}}</span>
@@ -11,7 +11,7 @@
       </header>
       <!-- logic for separate content types -->
       <div v-if="type==='images'" :class="['imageDeck', {'animating' : animState}, animDirection]">
-				<div class="dragSleeve" ref="dragSleeve">
+				<div :class="['dragSleeve', {traveling : isTraveling}]" ref="dragSleeve">
 					<div :class="['carousel', assets.media.length>1 ? 'multiple' : '']" >
 						<div class="realBox current"><img :src="assets.media[current].source_url" class="imgPrime" /></div>
 						<template v-if="assets.media.length>1">
@@ -80,14 +80,18 @@
       const current = ref(0)
       
       const animState = ref(false);
-
       const animDirection = ref("");
+      const isX = ref(0)
+      const isY = ref(0)
 
 			//animation stuff
       const dragSleeve = ref()
+      const isTraveling = ref(false)
+      
+      const swipeGap = parseInt(document.documentElement.clientWidth / 15, 10)
       
       const dragOptions = { 
-      	swipeDistance: 100
+      	swipeDistance: swipeGap
       }
  
       // Bind to the element or component reference
@@ -95,11 +99,11 @@
       const { motionProperties } = useMotionProperties(dragSleeve, {
         cursor: 'grab',
         x: 0,
-        y: 0,
+        y: 0
       })
 
       // Bind the motion properties to a spring reactive object.
-      const { set } = useSpring(motionProperties)      
+      const { set, values } = useSpring(motionProperties)      
       
       const hideScrim = () => {
         store.commit('resetActiveScrimId')
@@ -113,6 +117,7 @@
           animDirection.value = ""
           current.value = getNext()          
 					set({ x: 0, y: 0});
+					isTraveling.value = true
         }, 401);
       }
       
@@ -124,6 +129,7 @@
           animDirection.value = ""
           current.value = getPrev()          
 					set({ x: 0, y: 0});
+					isTraveling.value = true
         }, 401);
       }
     
@@ -135,27 +141,42 @@
         return (current.value - 1 < 0) ? props.assets.media.length -1 : current.value - 1
       }
 
+			const waitForStop = () => {
+        const countdown = setInterval(() => {
+          if(values.x === 0 && values.y === 0) {
+            stop()
+          }
+          isX.value = values.x
+          isY.value = values.y
+        },10)
+        const stop = () => {
+          isTraveling.value = false;
+          clearInterval(countdown)
+        }
+      }
+      
       const dragHandler = ({ 
       	movement: [x, y], 
       	dragging, 
-      	swipe 
+      	swipe
       }) => {
 
         const swipeLeft = swipe[0] === -1 ? true : false
         const swipeRight = swipe[0] === 1 ? true : false
+        
+				isX.value = values.x
+        isY.value = values.y
 
-//         console.log({swipeLeft, swipeRight})
-//         if(swipeLeft) goPrev()
-//         if(swipeRight) goNext()
-
-//         console.log("handling")
+        
         if (!dragging) {
-					if (x > 100) {
+					if (x > swipeGap) {
 						goPrev()
+						waitForStop()
 						return
 					}
-					if (x < -100) {
+					if (x < (-1 * swipeGap)) {
 						goNext()
+						waitForStop()
 						return
 					}
           set({ x: 0, y: 0, cursor: 'grab' })
@@ -176,7 +197,7 @@
           ...dragOptions
         })  
       }
-      return {hideScrim, goNext, goPrev, current, getPrev, getNext, animState, animDirection, dragSleeve}
+      return {hideScrim, goNext, goPrev, current, getPrev, getNext, animState, animDirection, dragSleeve, isTraveling}
     }
 
     
@@ -320,7 +341,7 @@
 	}
 	
 	.imageDeck.animating .carousel {
-		transition: transform .4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+		transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 	}
 	
 	.imageDeck.prev .carousel {
@@ -343,6 +364,10 @@
 	}
 	
 	.ghostBox.next {
+	}
+	
+	.dragSleeve.traveling .ghostBox {
+		opacity: 0;
 	}
 	
 	.paginator {
