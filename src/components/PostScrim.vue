@@ -11,16 +11,21 @@
       </header>
       <!-- logic for separate content types -->
       <div v-if="type==='images'" :class="['imageDeck', {'animating' : animState}, animDirection]">
-        <div class="carousel" ref="carousel" v-drag="dragHandler" :style="style">
-          <img :src="assets.media[current].source_url" class="imgPrime" />
-          <template v-if="assets.media.length>1">
-            <div class="ghostBox prev"><img :src="assets.media[getPrev()].source_url" class="ghostImg" /></div>
-            <div class="ghostBox next"><img :src="assets.media[getNext()].source_url" class="ghostImg" /></div>
-          </template>
+				<div class="dragSleeve" ref="dragSleeve" v-drag="dragHandler" :drag-options="dragOptions">
+					<div class="carousel">
+						<img :src="assets.media[current].source_url" class="imgPrime" />
+						<template v-if="assets.media.length>1">
+							<div class="ghostBox prev"><img :src="assets.media[getPrev()].source_url" class="ghostImg" /></div>
+							<div class="ghostBox next"><img :src="assets.media[getNext()].source_url" class="ghostImg" /></div>
+						</template>
+					</div>
         </div>
         <template v-if="assets.media.length>1">
           <button class="imgControl prev" @click="goPrev" @keyup.left="goPrev">previous</button>
           <button class="imgControl next" @click="goNext" @keyup.right="goNext">next</button>
+          <ul class="paginationDots">
+						<li v-for="(media, index) of assets.media" v-bind:key="media.id" :class="index === current ? 'selected' : ''"></li>
+          </ul>
         </template>    
       </div>
       <div v-else-if="type==='url'">
@@ -76,6 +81,24 @@
       const animState = ref(false);
 
       const animDirection = ref("");
+
+			//animation stuff
+      const dragSleeve = ref()
+      
+      const dragOptions = { 
+      	swipeDistance: 100
+      }
+
+      // Bind to the element or component reference
+      // and init style properties that will be animated.
+      const { motionProperties } = useMotionProperties(dragSleeve, {
+        cursor: 'grab',
+        x: 0,
+        y: 0,
+      })
+
+      // Bind the motion properties to a spring reactive object.
+      const { set } = useSpring(motionProperties)      
       
       const hideScrim = () => {
         store.commit('resetActiveScrimId')
@@ -89,6 +112,7 @@
           animDirection.value = ""
           current.value = getNext()          
         }, 401);
+        set({ x: 0, y: 0});
       }
       
       const goPrev = () => {
@@ -99,7 +123,7 @@
           animDirection.value = ""
           current.value = getPrev()          
         }, 401);
-
+				set({ x: 0, y: 0});
       }
     
       const getNext = () => {
@@ -110,58 +134,41 @@
         return (current.value - 1 < 0) ? props.assets.media.length -1 : current.value - 1
       }
 
+      const dragHandler = ({ 
+      	movement: [x, y], 
+      	dragging, 
+      	swipe 
+      }) => {
 
-      const carousel = ref()
+        const swipeLeft = swipe[0] === -1 ? true : false
+        const swipeRight = swipe[0] === 1 ? true : false
 
-      // Bind to the element or component reference
-      // and init style properties that will be animated.
-      const { motionProperties } = useMotionProperties(carousel, {
-        cursor: 'grab',
-        x: 0,
-        y: 0,
-      })
-
-      // Bind the motion properties to a spring reactive object.
-      const { set } = useSpring(motionProperties)
-
-      // Animatable values will be animated, the others will be changed immediately.
-      // const dragHandler = () => {
-      //   console.log("dragging")
-      //   return set({ x: 250, y: 200, cursor: 'default' })
-      // }
-
-
-
-      // const [{ x }, set] = useSpring({ x: 0 })
-      // const bind = useDrag(({ down, movement: [mx] }) => set({ x: down ? mx : 0 }), { axis: 'x' })
-      // const style = computed(() => ({ transform: `translate3d(${x.value}px,${y.value}px,0)` }))      
-            
-      const bind = ()=>{}
-      const style = computed(() => ({ transform: `translate3d(5px, 5px}`}))      
-      
-      const dragHandler = ({ movement: [x, y], dragging }) => {
+        console.log({swipeLeft, swipeRight})
+//         if(swipeLeft) goPrev()
+//         if(swipeRight) goNext()
 
         console.log("handling")
         if (!dragging) {
-          console.log("not dragging")
+					if (x > 100) {
+						goPrev()
+						return
+					}
+					if (x < -100) {
+						goNext()
+						return
+					}
           set({ x: 0, y: 0, cursor: 'grab' })
           return
         }
 
-        console.log("dragging, I guess?")
         set({
           cursor: 'grabbing',
           x,
-          y,
+          y:0,
         })
       }
 
-      // Composable usage
-      // useDrag(dragHandler, {
-      //   domTarget: carousel,
-      // })      
-
-      return {hideScrim, goNext, goPrev, current, getPrev, getNext, animState, animDirection, bind, style, dragHandler}
+      return {hideScrim, goNext, goPrev, current, getPrev, getNext, animState, animDirection, dragSleeve, dragHandler, dragOptions}
     }
 
     
@@ -230,6 +237,7 @@
     text-transform: unset;
     font-size: 18px;
     margin-bottom: 24px;
+		text-align: center;
   }
 
 
@@ -238,6 +246,7 @@
     width: auto;
     height: auto;
     max-height: 600px;
+    pointer-events: none;
   }
 
   .post-scrim .scrim-contents .meta {
@@ -285,11 +294,11 @@
   }
 
   .imageDeck.prev .carousel {
-    transform: translate(100vw);
+    transform: translate(100%);
   }
   
   .imageDeck.next .carousel {
-    transform: translate(-100vw);
+    transform: translate(-100%);
   }
 
   .ghostBox {
@@ -303,11 +312,11 @@
   }
 
   .ghostBox.prev {
-    transform: translate(-100vw);
+    transform: translate(-100%);
   }
 
   .ghostBox.next {
-    transform: translate(100vw);
+    transform: translate(100%);
   }
   
   .paginator {
