@@ -170,7 +170,7 @@
       }
 
       // Composable usage 
-      if(assets.media.length>1) {
+      if(props.assets.media.length>1) {
         useDrag(dragHandler, {
           domTarget: dragSleeve,
           ...dragOptions
