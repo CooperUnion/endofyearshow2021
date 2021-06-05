@@ -1,7 +1,6 @@
 <template>
- 
+ <newcursors/>
   <global-nav :items="globalNavItems" />
-
    <main>    
     <page-header />
     <div class="areasPage">
@@ -15,7 +14,7 @@
 <script>
   import { ref, onBeforeMount, watch, getCurrentInstance } from "vue";
   import { useRoute } from 'vue-router'
-  
+  import newcursors from '@/components/Cursors-attempt-rightvue.vue'
   import Loading from '@/components/Loading.vue'
   import AreaNav from '@/components/AreaNav.vue'
   import Posts from '@/components/Posts.vue'
@@ -23,14 +22,15 @@
   import GlobalNav from '@/components/GlobalNav.vue'  
   import {globalNavItems} from '@/router/index.js'
   import PageHeader from '@/components/PageHeader.vue'  
-
+  
   export default {
     components: {
       Loading,
       GlobalNav,
       Posts,
       AreaNav,
-      PageHeader
+      PageHeader,
+      newcursors
     },
     props: {
       post: Number

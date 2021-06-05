@@ -391,7 +391,7 @@ a {
     top: 0;
        -webkit-filter: blur(0px);
     overflow: hidden;
-/*     pointer-events:none; */
+    pointer-events:none;
   }  
   
 #cursorscontainer >>> .friend {

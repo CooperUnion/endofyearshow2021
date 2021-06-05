@@ -171,7 +171,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
     
   }else{
     var dialog  = document.getElementById('dialog');
-    dialog.classList.remove("hidden")
+    dialog.classList.remove("hidden"
     console.log("session storage FAILED")
     promptPromise('Welcome to the Cooper Union School of Art End of Year Show 2021!', 'Would you like your cursor to be visible while you move <br> through the galleries?').then(function(name) {
       output.innerHTML = '' + name.input;
