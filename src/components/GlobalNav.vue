@@ -1,20 +1,21 @@
 <template>
- 
-<nav id="globalnav" :class="{showNav : globalnavShow, dark : themeDark}">
-<div class="logoBanner">
-	<a href="/"><h1 class="logo">EOYS 2021</h1></a>
-	<visitor-count v-if="!mobile">
-	2 other visitors online
-	</visitor-count>
-	<button class="globalnav-toggle" v-if="mobile" @click="toggleGlobalPanel()">Navigation menu</button> 
-</div>
-	<div class="nav-panel">
-		<button v-if="mobile" class="close" @click="toggleGlobalPanel()">close</button> 
-		<ul class="nav-list">
-			<li v-for="item in items" :key="item" :class="['nav-item', isActiveRoute(item.name)]"> <router-link :to="item.path">{{item.name}}</router-link> </li>
-		</ul>
-	</div>
-</nav>
+	<header>
+		<nav id="globalnav" :class="{showNav : globalnavShow, dark : themeDark}">
+		<div class="logoBanner">
+			<a href="/"><h1 class="logo">EOYS 2021</h1></a>
+			<visitor-count v-if="!mobile">
+			2 other visitors online
+			</visitor-count>
+			<button class="globalnav-toggle" v-if="mobile" @click="toggleGlobalPanel()">Navigation menu</button> 
+		</div>
+			<div class="nav-panel">
+				<button v-if="mobile" class="close" @click="toggleGlobalPanel()">close</button> 
+				<ul class="nav-list">
+					<li v-for="item in items" :key="item" :class="['nav-item', isActiveRoute(item.name)]"> <router-link :to="item.path">{{item.name}}</router-link> </li>
+				</ul>
+			</div>
+		</nav>
+	</header>
 </template>
 
 <script>
@@ -60,15 +61,20 @@
 </script>
 
 <style scoped>
-
+	header {
+		width: calc(100% - 240px);
+		padding: 0;
+		margin: 0 auto;
+	}
+	
 	#globalnav {
 		margin-bottom: 12px;
 	}
-
+	
 	.logoBanner {
 		position: relative;
 	}
-
+	
 	.logo {
 		overflow: hidden;
 		text-indent: -999vw;
@@ -101,7 +107,7 @@
 			transform: scale(0.9);
 			opacity: 0;
 		}
-	}	
+	}
 	
 	.nav-list .nav-item + .nav-item {
 		margin-left: 1.5em;
@@ -123,19 +129,28 @@
 		display: none;
 	}
 	
-	@media screen and (max-width: 767px) {
+	@media screen and (min-width: 768px) and (max-width: 1024px) {
+		header {
+			width: calc(100vw - 72px);
+		}
+	}
 	
+	@media screen and (max-width: 767px) {
+		header {
+			width: calc(100vw - 48px);
+		}
+		
 		body:not(.dark) .logoBanner {
 			background-color: transparent;
 			margin-bottom: 24px;
 		}
-
+		
 		.logo {
 			width: 241px;
 			height: 43px;
-			margin: 0 0 0 24px;
+			margin: 0;
 		}
-	
+		
 		.nav-panel {
 			position: fixed;
 			top: 0;
@@ -182,7 +197,7 @@
 			display: block;
 			position: absolute;
 			top: 24px;
-			right: 24px;
+			right: 0;
 			margin: 0;
 			width: 48px;
 			height: 48px;

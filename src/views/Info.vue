@@ -23,8 +23,7 @@
 			  <a href="/foundation">Foundation</a>: works produced in a series of introductory courses taken by freshman year art students 
 			</p>
 			<div class="separator">
-				<img src="../assets/group-1206.png" width="1330" height="265" alt="colorful graphical separator" />
-				<img src="../assets/group-1207.png" width="1330" height="265" alt="colorful graphical separator" />
+				<img src="../assets/separatorgraphic.png" width="1235" height="298" alt="a colorful graphical separator" />
 			</div>
 			<small> 
 				<p>
@@ -104,14 +103,16 @@
 		margin-bottom: 1.5em;
 	}
 	
+/* 
 	.separator img + img {
 		margin-top: -75%;
 		mix-blend-mode: screen;
 	}
+ */
 	
 	h3 {
 		font-size: 48px;
-		margin-bottom: 1.5em;
+		margin: 0.5em 0 1.5em 0;
 	}
 	
 	p {
@@ -144,7 +145,15 @@
 		}
 			
 		.separator {
-			margin-right: -90%;
+			margin-right: -24px;
+			
+			width: calc(100% + 24px);
+			overflow: hidden;
+			max-width: unset;
+		}
+
+		.separator img {
+			width: 175%;
 			max-width: unset;
 		}
 
