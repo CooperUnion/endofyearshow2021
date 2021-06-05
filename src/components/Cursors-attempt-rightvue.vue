@@ -378,7 +378,7 @@ a {
     left: 0;
     top: 0;
        -webkit-filter: blur(0px);
-    overflow: hidden;
+/*     overflow: hidden; */
     pointer-events:all;
     z-index: 10;
   }
@@ -390,7 +390,7 @@ a {
     left: 0;
     top: 0;
        -webkit-filter: blur(0px);
-    overflow: hidden;
+/*     overflow: hidden; */
     pointer-events:none;
   }  
   
