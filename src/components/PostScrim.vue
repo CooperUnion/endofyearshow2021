@@ -23,6 +23,8 @@
         <template v-if="assets.media.length>1 && !mobile">
           <button class="imgControl prev" @click="goPrev" @keyup.left="goPrev">previous</button>
           <button class="imgControl next" @click="goNext" @keyup.right="goNext">next</button>
+        </template>    
+        <template v-else>
           <ul class="paginationDots">
 						<li v-for="(media, index) of assets.media" v-bind:key="media.id" :class="['dot', index === current ? 'selected' : '']"></li>
           </ul>
