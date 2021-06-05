@@ -92,6 +92,7 @@
 
 
 <script>
+import { slug } from '@/lib/utils.js'
 export default {
   name: 'StudentTagCircles',
   props: {
@@ -99,9 +100,6 @@ export default {
   },
   setup(props){
 
-    const slug = (name) => {
-      return name.trim().toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-');
-    }
     const colors = {
       'design': '#ff0000',
       'drawing': '#bd00ff',
