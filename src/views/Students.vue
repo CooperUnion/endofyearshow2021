@@ -63,7 +63,9 @@
 
         const url = `${api_endpoint}/api/students`
         
-        students.value = await fetch(url).then(res=>res.json())
+        students.value = await fetch(url).then(res=>res.json()).catch((e)=>{
+          console.log("students.value in Students.vue data fetching error", e)
+        })
         loading.value = false
 
         fetchAllStudentTags()
