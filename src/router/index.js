@@ -99,7 +99,7 @@ let globalNavItems = [
     }
   },
   {name:"Projects", path:"/projects/", component: Projects},
-//   {name:"Forum", path:"/forum", component: MasonryPosts},
+  // {name:"Forum", path:"/forum", component: MasonryPosts},
   {name:"Students", path:"/students", component: Students},
   {
     name:"Info", 
