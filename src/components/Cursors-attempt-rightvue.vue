@@ -1,5 +1,5 @@
 <template>
-    <div id="cursorscontainer">
+    <div id="cursorscontainer" @mousemove="updatePlayerPos(ev.x, ev.y)">
         <h1>Current message: {{message}}</h1>
   <ul>
     <li @click="update(Math.random()*1000)">Send a random number</li>
@@ -85,6 +85,10 @@
         const update = (message, cursors)=>{
           store.dispatch('client_userMessage', `data from vue client, ${message}`)
         }    
+        
+        const updatePlayerPos = (message, cursors) =>{
+          store.dispatch('client_playerCursorMove', `data from cursor movement, ${cursors}, ${message}`)
+        }
         
         
       return {message, dump, update}

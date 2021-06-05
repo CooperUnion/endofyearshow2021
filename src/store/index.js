@@ -39,7 +39,13 @@ const socket = {
     socket_systemMessage({ dispatch, commit }, message) {
       commit('SOCKET_SYSTEM_MESSAGE', message);
       console.log("socketsystemmessageACTION", message)
-    }
+    },
+    
+    client_playerCursorMove({ dispatch, commit }, message) {
+    commit('CLIENT_PLAYER_CURSOR_MOVE', message);
+    console.log("client player cursor move", message)
+  
+}
     
     // socket on connection (socket connections number)
     // socket init 
