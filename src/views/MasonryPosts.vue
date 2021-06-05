@@ -1,5 +1,4 @@
 <template>
- <newcursors/>
   <global-nav :items="globalNavItems" />
    <main>    
     <page-header />
@@ -8,7 +7,8 @@
       <loading v-if="loading" :timeout="20" />
       <posts v-else :items="items"/>
     </div>
-  </main>   
+  </main> 
+ <newcursors/>
 </template>
 
 <script>
@@ -25,12 +25,12 @@
   
   export default {
     components: {
+      newcursors,
       Loading,
       GlobalNav,
       Posts,
       AreaNav,
-      PageHeader,
-      newcursors
+      PageHeader
     },
     props: {
       post: Number

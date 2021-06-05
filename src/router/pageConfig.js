@@ -19,4 +19,4 @@
     body: '',
     refreshEnabled: false
   }
-}
+ }
