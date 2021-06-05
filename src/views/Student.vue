@@ -12,6 +12,7 @@
     </template>
   </main>   
 
+	<global-footer :items="globalNavItems" />
 </template>
 
 <script>
@@ -23,14 +24,15 @@
   import {globalNavItems} from '@/router/index.js'
   import PageHeader from '@/components/PageHeader.vue'  
   import ProjectPosts from '@/components/ProjectPosts.vue'
-
+  import GlobalFooter from '@/components/GlobalFooter.vue'
   
   export default {
     name: 'Project',
     components: {
       Loading,
       GlobalNav,
-      ProjectPosts
+      ProjectPosts,
+      GlobalFooter
     },
     props: {
       project: String

@@ -3,7 +3,7 @@
 <nav id="globalnav" :class="{showNav : globalnavShow, dark : themeDark}">
 <div class="logoBanner">
 	<a href="/"><h1 class="logo">EOYS 2021</h1></a>
-	<button class="globalnav-toggle" v-if="mobile" @click="toggleGlobalPanel()">☰</button> 
+	<button class="globalnav-toggle" v-if="mobile" @click="toggleGlobalPanel()">Navigation menu</button> 
 </div>
 	<div class="nav-panel">
 		<button v-if="mobile" class="close" @click="toggleGlobalPanel()">close</button> 
@@ -110,8 +110,8 @@
 	
 	@media screen and (max-width: 767px) {
 	
-		.logoBanner {
-			background-color: #eee;
+		body:not(.dark) .logoBanner {
+			background-color: transparent;
 			margin-bottom: 24px;
 		}
 
@@ -169,6 +169,17 @@
 			top: 24px;
 			right: 24px;
 			margin: 0;
+			width: 48px;
+			height: 48px;
+			overflow: hidden;
+			text-indent: -999vw;
+			background-image: url('data:image/svg+xml;utf8,<svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="black"/><circle cx="21" cy="20" r="11.5" fill="white" stroke="black"/></svg>');
+			background-size: 32px auto;
+			background-repeat: no-repeat;
+			background-position: center center;
+			border-radius: 7px;
+			background-color: white;
+			border: 1px solid black;
 		}
 		
 		.close {

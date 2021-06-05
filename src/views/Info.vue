@@ -42,8 +42,8 @@
 				</dl>
 				<dl> 
 					<dt>Developers:</dt>
-					<dd>Erin Sparling, Adjunct Professor</dd>
-					<dd>Mike Stamm</dd>
+					<dd><a href="https://erinsparling.glitch.me">Erin Sparling</a>, Adjunct Professor</dd>
+					<dd><a href="https://prevdef.com">Mike Stamm</a></dd>
 					<dd><a href="#">Richard Yurewitch</a> A’22</dd>
 				</dl>
 				<dl> 
@@ -59,7 +59,7 @@
 			</small> 		
 		</div>
 	</main>
-	<info-footer :items="globalNavItems" />
+	<global-footer :items="globalNavItems" />
 </template>
 
 <script>
@@ -67,14 +67,14 @@
   import GlobalNav from '@/components/GlobalNav.vue'
   import { globalNavItems } from '@/router/index.js'
   import PageHeader from '@/components/PageHeader.vue'
-  import InfoFooter from '@/components/InfoFooter.vue'
+  import GlobalFooter from '@/components/GlobalFooter.vue'
 
   export default {
   name: 'Info',
   components: {
     GlobalNav,
     PageHeader,
-    InfoFooter
+    GlobalFooter
   },
   props: {
     theme: Array
@@ -137,4 +137,27 @@
 		padding: 0;
 	}
 	
+	@media screen and (max-width: 767px) {
+		.infoPage {
+			width: auto;
+			padding-bottom: 56px;
+		}
+			
+		.separator {
+			margin-right: -90%;
+			max-width: unset;
+		}
+
+		h3 {
+			font-size: 30px;
+		}
+		
+		p {
+			font-size: 20px;
+		}
+		
+		small {
+			font-size: 14px;
+		}
+	}
 </style>

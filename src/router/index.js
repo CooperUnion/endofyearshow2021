@@ -20,7 +20,10 @@ let routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    props: {
+      theme: 'dark'
+    }
   },
   {
     path: '/info',
@@ -96,7 +99,7 @@ let globalNavItems = [
     }
   },
   {name:"Projects", path:"/projects/", component: Projects},
-//   {name:"Forum", path:"/forum", component: MasonryPosts},
+  // {name:"Forum", path:"/forum", component: MasonryPosts},
   {name:"Students", path:"/students", component: Students},
   {
     name:"Info", 

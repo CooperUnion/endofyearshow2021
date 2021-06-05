@@ -1,7 +1,8 @@
 <template> 
-	<footer id="infofooter">
+	<footer id="globalfooter">
 		<div class="description-panel">
-			The Cooper Union School of Art<br />
+			The Cooper Union<br v-if="mobile" /> 
+			School of Art<br />
 			End of the Year Show 2021 
 		</div>
 		<div class="nav-panel">
@@ -18,7 +19,7 @@
   import { useRoute } from 'vue-router'
 
   export default {
-    name: 'InfoFooter',
+    name: 'GlobalFooter',
     props: {
       items: Array
     },
@@ -45,11 +46,16 @@
 </script>
 
 <style scoped>
-
-	#infofooter {
+	body.dark #globalfooter {
+		border-top: 1px solid white;
+	}
+	
+	#globalfooter {
+		color: white;
+		background-color: black;
+		box-shadow: 50vw 0 0 black, -50vw 0 0 black;
 		width: calc(100% - 240px);
 		margin: 0 auto;
-		border-top: 1px solid white;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
@@ -77,14 +83,36 @@
 		flex: 1;
 	}
 	
-	.nav-panel .nav-list{
+	.nav-panel .nav-list {
 		list-style-type: none;
 		display: flex;
 		flex-direction: row;
 		font-size: 16px;
 		justify-content: space-between;
-		margin: 0;		
+		margin: 0;
 	}
-
+	
+	@media screen and (max-width: 767px) {
+		#globalfooter {
+			width: calc(100vw - 48px);
+			flex-direction: column;
+			margin-bottom: 50px;
+		}
+		
+		.description-panel {
+			padding-left: 116px;
+			margin-right: 0;
+		}
+		
+		.nav-panel .nav-list {
+			flex-wrap: wrap;
+			justify-content: space-around;
+			margin-top: 56px;
+		}
+		
+		.nav-panel .nav-list li {
+			margin: 0 1em;
+		}
+	}
 </style>
 
