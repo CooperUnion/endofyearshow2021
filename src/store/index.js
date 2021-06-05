@@ -35,10 +35,6 @@ const socket = {
       state.message = {message, origin: 'socket'}
       console.log("socketconnectedmessage", message)
     },
-    CLIENT_CONNECTED_MESSAGE(state, message) {
-      state.message = {message, origin: 'client'}
-      console.log("client connected message", message)
-    }
     
   },
   actions: {
@@ -61,19 +57,26 @@ const socket = {
   
 },
     
-    socket_connectedMessage({ dispatch, commit }, message) {
-      commit("SOCKET_CONNECTED_MESSAGE", message);
-      console.log("socket connected!", message)
-      
-    },
-        client_connectedMessage({ dispatch, commit }, message) {
-      commit("CLIENT_CONNECTED_MESSAGE", message);
-      console.log("socket connected!", message)
-      
-    },
     connected({ dispatch, commit }, message) {
-      commit("SOCKET_CONNECTED_MESSAGE", message)
       console.log("socket connected2!", message)
+      commit("SOCKET_CONNECTED_MESSAGE", message)
+    },
+    
+    byeFriend({ dispatch, commit }, message) {
+      console.log("byeFriend", message)
+    },
+    
+    nameUpdated({ dispatch, commit }, message){
+      console.log("nameUpdated", message)
+    },
+    newFriend({ dispatch, commit }, message){
+      console.log("newFriend", message)
+    },
+    init({ dispatch, commit }, message){
+      console.log("init", message)
+    },
+    move({ dispatch, commit }, message){
+      console.log("move", message)
     }
     
     // socket on connection (socket connections number)
