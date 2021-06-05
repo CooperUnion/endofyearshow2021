@@ -73,9 +73,22 @@ const socket = {
       console.log("socket connected2!", message)
       commit("SOCKET_CONNECTED_MESSAGE", message)
     },
+    nameChosen({ dispatch, commit }, message) {
+      console.log("nameChosen!", message) //emit name chosen!
+    },
     
     byeFriend({ dispatch, commit }, message) {
       console.log("byeFriend", message)
+                           console.log("connections,", message.connections-1)
+                     document.getElementById('connections').innerHTML = (message.connections-1) +" ";
+                    if ((message.connections-1)===1){
+                      document.getElementById("othervisitors").innerHTML = " other visitor online"
+                    } else {
+                        document.getElementById("othervisitors").innerHTML = " other visitors online"
+                    }
+                          if(this.Meeting1){
+                          this.Meeting1.removeFriend(self,message.friend, this.Meeting1);
+                          }
     },
     
     nameUpdated({ dispatch, commit }, message){
@@ -140,7 +153,8 @@ for (var i = 0, length = radios.length; i < length; i++) {
     
           const response = {name: window.sessionStorage.getItem('EOYS2021Name'), role: window.sessionStorage.getItem('EOYS2021Role')}
       // that.$socket.client.emit('nameChosen', {response: response, player: data.player})
-      console.log("IMPORTANT: emit nameChosen HERE", {response: response, player: data.player})
+          dispatch('nameChosen',{response: response, player: data.player});
+      // console.log("IMPORTANT: emit nameChosen HERE", {response: response, player: data.player})
     
                       that.Meeting1 = new Meeting(that.$socket)  
                       console.log(data)
@@ -174,7 +188,8 @@ for (var i = 0, length = radios.length; i < length; i++) {
       window.sessionStorage.setItem('EOYS2021Name', name.input)
       window.sessionStorage.setItem('EOYS2021Role', name.radio)
       // that.$socket.client.emit('nameChosen', {response: response, player: data.player})
-      console.log("IMPORTANT: emit nameChosen HERE", {response: response, player: data.player})
+      // console.log("IMPORTANT: emit nameChosen HERE", {response: response, player: data.player})
+      dispatch('nameChosen',{response: response, player: data.player});
                             that.Meeting1 = new Meeting(that.$socket)  
                       console.log(data)
       console.log("data")
@@ -205,11 +220,13 @@ for (var i = 0, length = radios.length; i < length; i++) {
     },
     socketMove({ dispatch, commit }, message){
       console.log("move", message)
+      // {friend: 21, friendX: "81.41", friendY: "0.21", name: "rry-vue-data-store", role: "current-student"}
+      this.Meeting1.updateFriend(message)
     },
     move({ dispatch, commit }, message){
       console.log("playermove", message)
       
-    }
+    },
     
     
     //PLAYERMOVE emit move

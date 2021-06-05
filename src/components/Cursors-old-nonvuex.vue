@@ -56,8 +56,8 @@
 </template>
 
 <script>
-  import {Player, Friend, Meeting} from './People.class.js'
-  import {BadWords} from './BadWords.js'
+  // import {Player, Friend, Meeting} from './People.class.js'
+  // import {BadWords} from './BadWords.js'
   import {ref , onBeforeMount } from "vue";
   
     export default {
