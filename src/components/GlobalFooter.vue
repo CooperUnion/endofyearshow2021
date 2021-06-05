@@ -87,22 +87,22 @@
 		list-style-type: none;
 		display: flex;
 		flex-direction: row;
-			flex-wrap: wrap;
+		flex-wrap: wrap;
 		justify-content: space-around;
 		font-size: 16px;
 		margin: 0;
 	}
 	
-		.nav-panel .nav-list li {
-			margin: 0 1em;
-		}
-
+	.nav-panel .nav-list li {
+		margin: 0 1em;
+	}
+	
 	@media screen and (min-width: 768px) and (max-width: 1024px) {
 		#globalfooter {
 			width: calc(100vw - 72px);
 		}
 	}
-
+	
 	@media screen and (max-width: 767px) {
 		#globalfooter {
 			width: calc(100vw - 48px);
@@ -118,7 +118,6 @@
 		.nav-panel .nav-list {
 			margin-top: 56px;
 		}
-		
 	}
 </style>
 
