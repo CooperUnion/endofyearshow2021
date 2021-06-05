@@ -10,6 +10,7 @@ const socket = {
   state() {
     return {
       message: {message: undefined, origin: undefined},
+      playercursor: {message: undefined, origin: undefined},
       cursors: {cursors: undefined, origin: undefined},
       system_message: {message: undefined, origin: undefined}
     }
@@ -40,9 +41,10 @@ const socket = {
       // state.init = data
       // console.log("initdata", data)
     },
-        move({ dispatch, commit, state }, message){
+        move(state, message){
       console.log("playermove", message)
-          state.message = {message, origin: 'client'}
+          state.playercursor = {message, origin: 'client'}
+          // commit("CLIENT_PLAYER_CURSOR_MOVE", message)
     },
     
   },
@@ -205,6 +207,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
     },
     move({ dispatch, commit }, message){
       console.log("playermove", message)
+      
     }
     
     

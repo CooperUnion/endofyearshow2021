@@ -77,6 +77,7 @@
         const store = useStore()
         const message = computed(() => store.state.socket.message)
         const cursors = computed(() => store.state.socket.cursors)
+        // const playercursor = computed(() => store.state.socket.playercursor)
         // const init = computed(() => store.state.init)
         // console.log(init)
         // console.log("init component")
