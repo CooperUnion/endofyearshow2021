@@ -1,4 +1,5 @@
 <template>
+<newcursors/>
 <div id="particle-frame" style="
   ">
   <img class ="desktoplogo" src="https://cdn.glitch.com/d71c7c2a-c6c4-4028-9136-d224524d7374%2Fdesktop.svg?v=1622648434792">
@@ -7,11 +8,12 @@
 </template>
 
 <script>
-
+    import newcursors from '@/components/Cursors-attempt-rightvue.vue'
 
   export default {
   name: 'Landing',
   components: {
+    newcursors
   },
       setup (props){
     console.log("setup!")

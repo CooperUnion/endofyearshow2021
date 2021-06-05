@@ -63,12 +63,6 @@ const socket = {
       console.log("socketsystemmessageACTION", message)
     },
     
-    client_playerCursorMove({ dispatch, commit }, message) {
-    commit('CLIENT_PLAYER_CURSOR_MOVE', message);
-    console.log("client player cursor move", message)
-  
-},
-    
     connected({ dispatch, commit }, message) {
       console.log("socket connected2!", message)
       commit("SOCKET_CONNECTED_MESSAGE", message)

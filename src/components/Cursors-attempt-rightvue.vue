@@ -626,6 +626,7 @@ margin-right: 0px;
     position: absolute;
     top: 0;
     pointer-events: all;
+    z-index: 999;
     }
   
   #cursorscontainer >>> #dialogchild {

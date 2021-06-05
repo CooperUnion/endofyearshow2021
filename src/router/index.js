@@ -8,6 +8,11 @@ import Project from '@/views/Project.vue'
 import Landing from '@/views/Landing.vue'
 import oldCursors from '@/components/Cursors-old-nonvuex.vue'
 import newCursors from '@/components/Cursors-attempt-rightvue.vue'
+// routes.push({
+//     path: '/newCursors',
+//     name: 'newCursors',
+//     component: newCursors
+//   })
 
 let routes = [
   {
