@@ -40,6 +40,10 @@ const socket = {
       // state.init = data
       // console.log("initdata", data)
     },
+        move({ dispatch, commit, state }, message){
+      console.log("playermove", message)
+          state.message = {message, origin: 'client'}
+    },
     
   },
   actions: {
@@ -199,7 +203,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
     socketMove({ dispatch, commit }, message){
       console.log("move", message)
     },
-    move({ dispatch, commit}, message){
+    move({ dispatch, commit }, message){
       console.log("playermove", message)
     }
     
