@@ -9,7 +9,7 @@ import VueSocketIOExt from 'vue-socket.io-extended';
 import { io } from 'socket.io-client';
 import vuexSocketio from 'vue-vuex-socket.io-opinionated-integration'
 
-const socket = io('https://eoyssockets2021.glitch.me');
+// const socket = io('https://eoyssockets2021.glitch.me');
 const emitter = mitt()
 
 

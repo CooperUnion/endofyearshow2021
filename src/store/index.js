@@ -1,4 +1,6 @@
 import { createStore } from 'vuex'
+  import {Player, Friend, Meeting} from './People.class.js'
+  import {BadWords} from './BadWords.js'
 
 const activeArea = new Set()
 const activeGlobalNav = ''
@@ -128,7 +130,9 @@ for (var i = 0, length = radios.length; i < length; i++) {
 
     
           const response = {name: window.sessionStorage.getItem('EOYS2021Name'), role: window.sessionStorage.getItem('EOYS2021Role')}
-      that.$socket.client.emit('nameChosen', {response: response, player: data.player})
+      // that.$socket.client.emit('nameChosen', {response: response, player: data.player})
+      console.log("IMPORTANT: emit nameChosen HERE", {response: response, player: data.player})
+    
                             that.Meeting1 = new Meeting(that.$socket)  
                       console.log(data)
       console.log("data")
@@ -140,7 +144,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
                           // console.log(document.querySelector("body"))
                           const x = e.clientX
                           const y = e.clientY
-                          const location = player.update(x,y,that.$socket, data.player, response.name, response.role) 
+                          const location = self.player.update(x,y,that.$socket, data.player, response.name, response.role) 
                       };    
       output.innerHTML = '' + response.name;
       rolefield.innerHTML = "" + response.role;
@@ -160,7 +164,8 @@ for (var i = 0, length = radios.length; i < length; i++) {
       const response = {name: name.input, role: name.radio}
       window.sessionStorage.setItem('EOYS2021Name', name.input)
       window.sessionStorage.setItem('EOYS2021Role', name.radio)
-      that.$socket.client.emit('nameChosen', {response: response, player: data.player})
+      // that.$socket.client.emit('nameChosen', {response: response, player: data.player})
+      console.log("IMPORTANT: emit nameChosen HERE", {response: response, player: data.player})
                             that.Meeting1 = new Meeting(that.$socket)  
                       console.log(data)
       console.log("data")
@@ -172,7 +177,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
                           // console.log(document.querySelector("body"))
                           const x = e.clientX
                           const y = e.clientY
-                          const location = player.update(x,y,that.$socket, data.player, name.input, name.radio) 
+                          const location = self.player.update(x,y,that.$socket, data.player, name.input, name.radio) 
                       };    
 
     }).catch(function() {
