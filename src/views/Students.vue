@@ -5,8 +5,12 @@
      
     <page-header />
     <div class="studentsPage">
-      <area-nav v-if="areaNavItems" :items="areaNavItems" />
-    
+      <!-- <area-nav v-if="areaNavItems" :items="areaNavItems" /> -->
+<!--     
+      <b @click="filterStudents('Design')">Design</b>
+      <b @click="filterStudents('Installation')">Installation</b>
+      <b @click="filterStudents('Sculpture')">Sculpture</b> -->
+
       <loading v-if="loading" :timeout="15" />
       <ul v-else class="studentsList">
         <li class="student" v-for="student in students" v-bind:key="student.slug">
@@ -29,9 +33,10 @@
   import {globalNavItems} from '@/router/index.js'
   import PageHeader from '@/components/PageHeader.vue'  
   import AreaNav from '@/components/AreaNav.vue'
-  import areaNavItems from '@/router/areaNavItems.js'
+  import navItems from '@/router/areaNavItems.js'
   import GlobalFooter from '@/components/GlobalFooter.vue'
   import StudentTagCircles from '@/components/StudentTagCircles.vue'
+  import { slug } from '@/lib/utils.js'
   
   export default {
     name: 'Students',
@@ -39,7 +44,7 @@
       Loading,
       GlobalNav,
       PageHeader,
-      AreaNav,
+      // AreaNav,
       GlobalFooter,
       StudentTagCircles
     },
@@ -47,13 +52,12 @@
     setup(props){
       const loading = ref(true)
       const students = ref()
+      const filteredStudents = ref([])
       const route = useRoute()
       const internalInstance = getCurrentInstance()
       const { api_endpoint } = internalInstance.appContext.config.globalProperties
-      const areaNavItems = ref(areaNavItems)
+      const areaNavItems = ref(navItems)
       
-      const delayed = ref(false)
-
       onMounted(loadStudents)
       async function loadToggle(){
         console.log("ok...")
@@ -74,31 +78,29 @@
         })
         loading.value = false
 
-        fetchAllStudentTags()
+        // filterStudents()
         return true
       }
 
-      function fetchAllStudentTags(){
-
-        for (let i = 0; i<students.value.length; i++) {
-          try {
-            const { slug } = students.value[i]
-            const url = `${api_endpoint}/api/tags/student/${slug}`
-          
-            fetch(url).then(res=>res.json()).then((tags)=>{
-              students.value[i].tags = tags
-            }).catch((e)=>{})
-          } catch(e) {
-
-          }
+      function filterStudents(area = 'all'){
+        loading.value = true        
+        
+        const allStudents = students
+        if(area==='all') {  
+          filteredStudents.value = allStudents.value
+          loading.value = false
+          return true
         }
-      }
-      
 
-     
-      //formats a name passed to it by replacing '-' with ' '
-      const slug = (name) => {
-        return name.trim().toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-');
+        filteredStudents.value = allStudents.value.filter((student)=>{
+          try{
+            return student.tags.includes(area)
+          } catch(e) {
+            return false
+          }
+        })
+        loading.value = false
+
       }
       
       return {students, loading, loadStudents, areaNavItems, globalNavItems, slug}
