@@ -1,5 +1,5 @@
 <template>
-    <div id="cursorscontainer" @mousemove="mousemove($event)">
+    <div id="cursorscontainer">
         <h1>Current message: {{message}}</h1>
   <ul>
     <li @click="update(Math.random()*1000)">Send a random number</li>
@@ -107,7 +107,7 @@
   mounted(){      
          this.prev = null;
      this.prevprev = null;  
-              
+    //send the promise? need socket connect first... :/
   },
 
 //   sockets: {
@@ -289,7 +289,7 @@
   methods: {
             mouseMove(event) {
             console.log(event.clientX, event.clientY);
-              store.dispatch('client_playerCursorMove', `data from cursor movement, ${event}`)
+            // store.dispatch('client_playerCursorMove', `data from cursor movement, ${event}`)
         },
     
     pingServer() {

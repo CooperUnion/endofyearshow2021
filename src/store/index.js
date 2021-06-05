@@ -26,6 +26,9 @@ const socket = {
       state.system_message = {message, origin: 'system'}
       console.log("statesystemmessagemutationMUTATION", message)
     }
+    
+    CLIENT_PLAYER_CURSOR_MOVE(state, message)
+    
   },
   actions: {
     socket_userMessage ({ dispatch, commit }, message) {
@@ -42,10 +45,16 @@ const socket = {
     },
     
     client_playerCursorMove({ dispatch, commit }, message) {
-  commit('CLIENT_PLAYER_CURSOR_MOVE', message);
-      console.log("client player cursor move", message)
+    commit('CLIENT_PLAYER_CURSOR_MOVE', message);
+    console.log("client player cursor move", message)
   
-}
+},
+    
+    socket_connectedMessage({ dispatch, commit }, message) {
+      commit("SOCKET_CONNECTED_MESSAGE", message);
+      console.log("socket connected!", message)
+      
+    }
     
     // socket on connection (socket connections number)
     // socket init 
