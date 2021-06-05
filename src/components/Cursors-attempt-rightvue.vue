@@ -1,5 +1,5 @@
 <template>
-    <div id="cursorscontainer" @mousemove="updatePlayerPos(ev.x, ev.y)">
+    <div id="cursorscontainer" @mousemove="updatePlayerPos({event.clientX, event.clientY})">
         <h1>Current message: {{message}}</h1>
   <ul>
     <li @click="update(Math.random()*1000)">Send a random number</li>
