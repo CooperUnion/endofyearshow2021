@@ -25,9 +25,20 @@ const socket = {
     SOCKET_SYSTEM_MESSAGE(state, message) {
       state.system_message = {message, origin: 'system'}
       console.log("statesystemmessagemutationMUTATION", message)
-    }
+    },
     
-    CLIENT_PLAYER_CURSOR_MOVE(state, message)
+    CLIENT_PLAYER_CURSOR_MOVE(state, message) {
+    state.message = {message, origin: 'client'}
+    console.log("clientplayercursormove", message)
+},
+    SOCKET_CONNECTED_MESSAGE(state, message) {
+      state.message = {message, origin: 'socket'}
+      console.log("socketconnectedmessage", message)
+    },
+    CLIENT_CONNECTED_MESSAGE(state, message) {
+      state.message = {message, origin: 'client'}
+      console.log("client connected message", message)
+    }
     
   },
   actions: {
@@ -54,6 +65,15 @@ const socket = {
       commit("SOCKET_CONNECTED_MESSAGE", message);
       console.log("socket connected!", message)
       
+    },
+        client_connectedMessage({ dispatch, commit }, message) {
+      commit("CLIENT_CONNECTED_MESSAGE", message);
+      console.log("socket connected!", message)
+      
+    },
+    connected({ dispatch, commit }, message) {
+      commit("SOCKET_CONNECTED_MESSAGE", message)
+      console.log("socket connected2!", message)
     }
     
     // socket on connection (socket connections number)
