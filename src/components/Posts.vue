@@ -88,17 +88,17 @@
     margin-bottom: 48px;
   }
     
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    .item {
+      width: calc(33.33% - 32px);
+    }
+  }  
+
   @media screen and (max-width: 767px) {
     .item {
       width: calc(50% - 9px);
     }
   }
-
-  @media screen and (min-width: 768px) and (max-width: 1024px) {
-    .item {
-      width: calc(33.33% - 12px);
-    }
-  }  
 
 
 </style>
