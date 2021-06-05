@@ -20,7 +20,10 @@ let routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    props: {
+      theme: 'dark'
+    }
   },
   {
     path: '/info',

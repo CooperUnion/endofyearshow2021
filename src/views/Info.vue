@@ -42,8 +42,8 @@
 				</dl>
 				<dl> 
 					<dt>Developers:</dt>
-					<dd>Erin Sparling, Adjunct Professor</dd>
-					<dd>Mike Stamm</dd>
+					<dd><a href="https://erinsparling.glitch.me">Erin Sparling</a>, Adjunct Professor</dd>
+					<dd><a href="https://prevdef.com">Mike Stamm</a></dd>
 					<dd><a href="#">Richard Yurewitch</a> A’22</dd>
 				</dl>
 				<dl> 

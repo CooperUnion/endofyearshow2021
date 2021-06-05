@@ -1,4 +1,9 @@
  export default {
+  home: {
+    title: 'Debug Homepage',
+    body: '',
+    refreshEnabled: false
+  },
   foundation: {
     title: 'Foundation',
     body: 'Foundation consists of a series of courses taken during the first year of study by art students. The year is intended to prepare students for all future areas of advanced study within the curriculum. It consists of sustained focus and engagement with formal and conceptual exercises, where students develop and investigate the specifics of visual and spatial phenomena.',
