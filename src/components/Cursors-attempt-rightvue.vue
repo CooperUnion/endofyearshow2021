@@ -377,8 +377,10 @@ a {
     position: relative;
     left: 0;
     top: 0;
+       -webkit-filter: blur(0px);
     overflow: hidden;
     pointer-events:all;
+    z-index: 999;
   }
   
   #cursorscontainer {
@@ -387,6 +389,7 @@ a {
     position: absolute;
     left: 0;
     top: 0;
+       -webkit-filter: blur(0px);
     overflow: hidden;
 /*     pointer-events:none; */
   }  
@@ -627,6 +630,7 @@ margin-right: 0px;
     top: 0;
     pointer-events: all;
     z-index: 999;
+     -webkit-filter: blur(0px);
     }
   
   #cursorscontainer >>> #dialogchild {
@@ -640,10 +644,12 @@ margin-right: 0px;
     margin-left: auto;
     /* border: thin solid black; */
     padding: 70px;
-    background: gainsboro;
+    background: #dcdcdc30;
     border-radius: 10px;
     text-align: center;
     display: block;
+       -webkit-filter: blur(0px);
+    backdrop-filter: blur(6px)
     }
   
     .hidden {
