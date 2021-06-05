@@ -1,11 +1,10 @@
 <template>
     <div id="cursorscontainer">
-        <h1>Current message: {{message}}</h1>
+<!--         <h1>Current message: {{message}}</h1>
   <ul>
     <li @click="update(Math.random()*1000)">Send a random number</li>
     <li @click="dump()">Dump the current vuex store "state" module to the console</li>
-  </ul>
-      
+  </ul> -->
       <div class="online-users">
        <span id="connections">
         </span> <span id="othervisitors"> other visitors online</span><br>
@@ -396,14 +395,16 @@ a {
   
 #cursorscontainer >>> .friend {
     background-color: gainsboro;
-    width: 1px;
+    width: 0px;
     height: 1px;
-/*   background: url("https://cdn.glitch.com/fc76c743-ed4f-40b8-8cf5-889b2f64b004%2Fcursor.png?v=1621812496190"); */
-  position: absolute;
-  z-index: 11;
-/*   clip-path: polygon(6% 22%, 50% 30%, 94% 22%, 66% 55%, 50% 95%, 34% 56%); */
-  pointer-events: none;
+    /* background: url(https://cdn.glitch.com/fc76c743-ed4f-40b8-8cf5-889b2f64b004%2Fcursor.png?v=1621812496190); */
+    position: absolute;
+    z-index: 11;
+    /* clip-path: polygon(6% 22%, 50% 30%, 94% 22%, 66% 55%, 50% 95%, 34% 56%); */
+    pointer-events: none;
     transition: left 0.1s ease-out, top 0.1s ease-out;
+    margin-top: -5px;
+    margin-left: -1px;
 }
 
 #cursorscontainer >>> .friend::before{
@@ -428,7 +429,7 @@ a {
     display: inline;
     position: relative;
     left: 19px;
-    top: 12px;
+    top: 4px;
     pointer-events: none;
     color: black;
     text-shadow: none;

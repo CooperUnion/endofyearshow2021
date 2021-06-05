@@ -5,7 +5,6 @@ import MasonryPost from '@/views/MasonryPost.vue'
 import MasonryTag from '@/views/MasonryTag.vue'
 import Projects from '@/views/Projects.vue'
 import Project from '@/views/Project.vue'
-import Landing from '@/views/Landing.vue'
 import oldCursors from '@/components/Cursors-old-nonvuex.vue'
 import newCursors from '@/components/Cursors-attempt-rightvue.vue'
 // routes.push({
@@ -82,12 +81,6 @@ let globalNavItems = [
 ]
 
 routes = routes.concat(globalNavItems)
-
-routes.push(  {
-  path: '/Landing',
-  name: 'Landing',
-  component: Landing
-})
 
 routes.push({
     path: '/newCursors',
