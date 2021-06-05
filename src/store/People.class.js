@@ -8,10 +8,10 @@ class Player {
     this.$socket = socket
   }
   
-  update(x,y,commit, id, name, role) {
+  update(x,y,dispatch, id, name, role) {
     x = ((x / window.innerWidth) * 100).toFixed(2);
     y = ((y / window.innerHeight) * 100).toFixed(2); 
-    this.emit(commit, id, name, role, x, y)
+    this.emit(dispatch, id, name, role, x, y)
     return {
       id: id,
       x: x,
@@ -22,10 +22,10 @@ class Player {
     
   }
   
-  emit(commit, id, name, role, x, y) {
+  emit(dispatch, id, name, role, x, y) {
     // console.log(socket)
     // console.log({ friend: id, friendX: x, friendY: y, name: name, role: role})
-    commit('move',{ friend: id, friendX: x, friendY: y, name: name, role: role});
+    dispatch('move',{ friend: id, friendX: x, friendY: y, name: name, role: role});
   }
   
 }

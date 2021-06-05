@@ -62,7 +62,7 @@
 </template>
 
 <script>
-  import {Player, Friend, Meeting} from './People.class.js'
+  // import {Player, Friend, Meeting} from './People.class.js'
   import {BadWords} from './BadWords.js'
   import {ref , onBeforeMount, computed } from "vue";
   import { useStore } from 'vuex';

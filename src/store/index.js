@@ -41,11 +41,12 @@ const socket = {
       // state.init = data
       // console.log("initdata", data)
     },
-        move(state, message){
-      console.log("playermove", message)
-          state.playercursor = {message, origin: 'client'}
-          // commit("CLIENT_PLAYER_CURSOR_MOVE", message)
-    },
+    // move(state, message){
+    //   console.log("playermove", message)
+    //   state.playercursor = {message, origin: 'client'}
+    //   //how to send to socket???
+    //       // commit("CLIENT_PLAYER_CURSOR_MOVE", message)
+    // },
     
   },
   actions: {
@@ -87,7 +88,7 @@ const socket = {
       console.log("init", data)
         console.log("init")   
       commit("SOCKET_INIT", data)
-   async function run(data, that, commit){
+   async function run(data, that, dispatch){
       
   function promptPromise(message, message2) {
   var dialog  = document.getElementById('dialog');
@@ -152,7 +153,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
                           // console.log(document.querySelector("body"))
                           const x = e.clientX
                           const y = e.clientY
-                          const location = self.player.update(x,y,commit, data.player, response.name, response.role) 
+                          const location = self.player.update(x,y,dispatch, data.player, response.name, response.role) 
                       };    
       output.innerHTML = '' + response.name;
       rolefield.innerHTML = "" + response.role;
@@ -185,7 +186,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
                           // console.log(document.querySelector("body"))
                           const x = e.clientX
                           const y = e.clientY
-                          const location = self.player.update(x,y,commit, data.player, name.input, name.radio) 
+                          const location = self.player.update(x,y,dispatch, data.player, name.input, name.radio) 
                       };    
 
     }).catch(function() {
@@ -199,7 +200,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
    }
       console.log(this)
       var that = this;
-      run(data, that, commit);
+      run(data, that, dispatch);
       
     },
     socketMove({ dispatch, commit }, message){
