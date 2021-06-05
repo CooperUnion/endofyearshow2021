@@ -10,7 +10,7 @@ class Player {
   
   update(x,y,dispatch, id, name, role) {
     x = ((x / window.innerWidth) * 100).toFixed(2);
-    y = ((y / window.innerHeight) * 100).toFixed(2); 
+    y = y.toFixed(2); 
     this.emit(dispatch, id, name, role, x, y)
     return {
       id: id,
@@ -72,7 +72,7 @@ class Friend extends Player {
     this.element.appendChild(name)
     document.getElementById("cursorscontainer").appendChild(this.element)
     document.getElementById(label).style.left = fullFriend.lastLocation[0] + '%' 
-    document.getElementById(label).style.top = fullFriend.lastLocation[1] + '%'
+    document.getElementById(label).style.top = fullFriend.lastLocation[1] + 'px'
     } else if (this.idx != "friend-undefined"){
     friends[label] = friend;
     this.element = document.createElement("div")
@@ -101,7 +101,7 @@ class Friend extends Player {
     // console.log(data)    
     if (document.getElementById(label)){
     document.getElementById(label).style.left = data.friendX + '%' 
-    document.getElementById(label).style.top = data.friendY + '%'
+    document.getElementById(label).style.top = data.friendY + 'px'
     } else {
       console.log(data)
     if (label != "friend-undefined"){
@@ -120,7 +120,7 @@ class Friend extends Player {
       //emit a createFriend so that the server knows?
     document.getElementById("cursorscontainer").appendChild(this.element)
     document.getElementById(label).style.left = data.friendX + '%' 
-    document.getElementById(label).style.top = data.friendY + '%'
+    document.getElementById(label).style.top = data.friendY + 'px'
       }
     }
     }

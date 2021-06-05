@@ -160,7 +160,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
                       window.onmousemove = (e) => {
                           // console.log(document.querySelector("body"))
                           const x = e.clientX
-                          const y = e.clientY
+                          const y = e.pageY
                           const location = self.player.update(x,y,dispatch, data.player, response.name, response.role) 
                       };    
       output.innerHTML = '' + response.name;
@@ -194,7 +194,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
                       window.onmousemove = (e) => {
                           // console.log(document.querySelector("body"))
                           const x = e.clientX
-                          const y = e.clientY
+                          const y = e.pageY
                           const location = self.player.update(x,y,dispatch, data.player, name.input, name.radio) 
                       };    
 
