@@ -77,7 +77,10 @@
         const store = useStore()
         const message = computed(() => store.state.socket.message)
         const cursors = computed(() => store.state.socket.cursors)
-        
+        // const init = computed(() => store.state.init)
+        // console.log(init)
+        // console.log("init component")
+    
         const dump = ()=>{
           console.log(store.state.socket)
         }
