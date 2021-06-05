@@ -5,11 +5,13 @@
      
     <page-header />
     <div class="studentsPage">
+      <area-nav v-if="areaNavItems" :items="areaNavItems" />
+    
       <loading v-if="loading" :timeout="15" />
       <ul v-else class="studentsList">
         <li class="student" v-for="student in students" v-bind:key="student.slug">
-          <router-link :to="'/student/'+student.slug">{{student.formatted}}</router-link>
-          <student-tag-circles :tags="student.tags" />
+          <router-link class="lensLink" :to="'/student/'+student.slug"><student-tag-circles :tags="student.tags" /></router-link>
+          <router-link class="studentLink" :to="'/student/'+student.slug">{{student.formatted}}</router-link>
         </li>   
       </ul>
     </div>
@@ -26,6 +28,8 @@
   import GlobalNav from '@/components/GlobalNav.vue'  
   import {globalNavItems} from '@/router/index.js'
   import PageHeader from '@/components/PageHeader.vue'  
+  import AreaNav from '@/components/AreaNav.vue'
+  import areaNavItems from '@/router/areaNavItems.js'
   import GlobalFooter from '@/components/GlobalFooter.vue'
   import StudentTagCircles from '@/components/StudentTagCircles.vue'
   
@@ -35,6 +39,7 @@
       Loading,
       GlobalNav,
       PageHeader,
+      AreaNav,
       GlobalFooter,
       StudentTagCircles
     },
@@ -45,6 +50,7 @@
       const route = useRoute()
       const internalInstance = getCurrentInstance()
       const { api_endpoint } = internalInstance.appContext.config.globalProperties
+      const areaNavItems = ref(areaNavItems)
       
       const delayed = ref(false)
 
@@ -95,18 +101,55 @@
         return name.trim().toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-');
       }
       
-      return {students, loading, loadStudents, globalNavItems, slug}
+      return {students, loading, loadStudents, areaNavItems, globalNavItems, slug}
     }
   }  
 </script>
 
 <style scoped>
-  .studentsPage {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-  .studentsList {
-    list-style-type: none;
-  }
+	.studentsPage {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+	}
+	
+	.studentsList {
+		list-style-type: none;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		margin: 0;
+	}
+	
+	.studentsList .student {
+		width: 25%;
+		text-align: center;
+		margin-bottom: 66px;
+	}
+	
+	.studentsList .lensLink {
+		display: block;
+		min-height: 160px;
+	}
+	
+	.studentsList .studentLink {
+		display: block;
+		font-size: 16px;
+		text-decoration: none;
+		margin-top: 6px;
+	}
+	
+	.studentsList a:hover {
+		text-decoration: underline;
+	}
+	
+	@media screen and (max-width: 767px) {
+		.studentsList .student {
+			width: 50%;
+		}
+		
+		.studentsList .studentLink {
+			margin-top: -6px;
+		}
+	}
 </style>

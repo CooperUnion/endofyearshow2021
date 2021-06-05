@@ -3,6 +3,9 @@
 <nav id="globalnav" :class="{showNav : globalnavShow, dark : themeDark}">
 <div class="logoBanner">
 	<a href="/"><h1 class="logo">EOYS 2021</h1></a>
+	<visitor-count v-if="!mobile">
+	2 other visitors online
+	</visitor-count>
 	<button class="globalnav-toggle" v-if="mobile" @click="toggleGlobalPanel()">Navigation menu</button> 
 </div>
 	<div class="nav-panel">
@@ -18,9 +21,13 @@
   import { ref, computed } from 'vue'
   import { useStore } from 'vuex'  
   import { useRoute } from 'vue-router'
+  import VisitorCount from '@/components/VisitorCount.vue'
 
   export default {
     name: 'GlobalNav',
+    components: {
+      VisitorCount
+    },
     props: {
       items: Array,
       themeDark: Boolean
@@ -54,6 +61,14 @@
 
 <style scoped>
 
+	#globalnav {
+		margin-bottom: 12px;
+	}
+
+	.logoBanner {
+		position: relative;
+	}
+
 	.logo {
 		overflow: hidden;
 		text-indent: -999vw;
@@ -73,7 +88,7 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
-		padding: 0 0 48px 0;
+		padding: 0 0 24px 0;
 		margin: 0;
 		font-size: 16px;
 		line-height: 1.5;
