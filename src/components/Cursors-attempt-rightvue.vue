@@ -90,7 +90,6 @@
           store.dispatch('client_playerCursorMove', `data from cursor movement, ${cursors}, ${message}`)
         }
         
-        
       return {message, dump, update}
 
   },
@@ -107,6 +106,7 @@
   mounted(){      
          this.prev = null;
      this.prevprev = null;  
+    this.BadWords1 = new BadWords()
     //send the promise? need socket connect first... :/
   },
 

@@ -80,7 +80,7 @@ const socket = {
       
    async function run(data, that){
       
-  that.BadWords1 = new BadWords();
+  // that.BadWords1 = new BadWords();
   function promptPromise(message, message2) {
   var dialog  = document.getElementById('dialog');
   var input   = document.getElementById("textinput");
@@ -133,9 +133,9 @@ for (var i = 0, length = radios.length; i < length; i++) {
       // that.$socket.client.emit('nameChosen', {response: response, player: data.player})
       console.log("IMPORTANT: emit nameChosen HERE", {response: response, player: data.player})
     
-                            that.Meeting1 = new Meeting(that.$socket)  
+                      that.Meeting1 = new Meeting(that.$socket)  
                       console.log(data)
-      console.log("data")
+                      console.log("data")
                       // data.friends.forEach(friend1 => console.log(friend1));
                       data.friends.forEach(friend1 => that.Meeting1.createFriend(friend1.id, data.player, that.Meeting1, friend1.name, friend1.role, friend1));
                       self.player = new Player(data.player);
@@ -160,7 +160,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
       output.innerHTML = '' + name.input;
       rolefield.innerHTML = "" + name.radio;
       console.log("response completed!")
-      console.log(that.$socket.client)
+      // console.log(that.$socket.client)
       const response = {name: name.input, role: name.radio}
       window.sessionStorage.setItem('EOYS2021Name', name.input)
       window.sessionStorage.setItem('EOYS2021Role', name.radio)
