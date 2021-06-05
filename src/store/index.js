@@ -37,8 +37,8 @@ const socket = {
       console.log("socketconnectedmessage", message)
     },
     SOCKET_INIT(data, state){
-      state.init = data
-      console.log("initdata", data)
+      // state.init = data
+      // console.log("initdata", data)
     },
     
   },
@@ -81,7 +81,7 @@ const socket = {
       console.log("init", data)
         console.log("init")   
       commit("SOCKET_INIT", data)
-   async function run(data, that){
+   async function run(data, that, commit){
       
   function promptPromise(message, message2) {
   var dialog  = document.getElementById('dialog');
@@ -146,7 +146,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
                           // console.log(document.querySelector("body"))
                           const x = e.clientX
                           const y = e.clientY
-                          const location = self.player.update(x,y,that.$socket, data.player, response.name, response.role) 
+                          const location = self.player.update(x,y,commit, data.player, response.name, response.role) 
                       };    
       output.innerHTML = '' + response.name;
       rolefield.innerHTML = "" + response.role;
@@ -179,7 +179,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
                           // console.log(document.querySelector("body"))
                           const x = e.clientX
                           const y = e.clientY
-                          const location = self.player.update(x,y,that.$socket, data.player, name.input, name.radio) 
+                          const location = self.player.update(x,y,commit, data.player, name.input, name.radio) 
                       };    
 
     }).catch(function() {
@@ -193,11 +193,14 @@ for (var i = 0, length = radios.length; i < length; i++) {
    }
       console.log(this)
       var that = this;
-      run(data, that);
+      run(data, that, commit);
       
     },
     socketMove({ dispatch, commit }, message){
       console.log("move", message)
+    },
+    move({ dispatch, commit}, message){
+      console.log("playermove", message)
     }
     
     
