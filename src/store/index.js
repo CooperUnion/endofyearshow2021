@@ -157,7 +157,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
                       data.friends.forEach(friend1 => that.Meeting1.createFriend(friend1.id, data.player, that.Meeting1, friend1.name, friend1.role, friend1));
                       self.player = new Player(data.player);
 
-                      document.querySelector("body").onmousemove = (e) => {
+                      window.onmousemove = (e) => {
                           // console.log(document.querySelector("body"))
                           const x = e.clientX
                           const y = e.clientY
@@ -191,7 +191,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
                       data.friends.forEach(friend1 => that.Meeting1.createFriend(friend1.id, data.player, that.Meeting1, friend1.name, friend1.role, friend1));
                       self.player = new Player(data.player);
 
-                      document.querySelector("body").onmousemove = (e) => {
+                      window.onmousemove = (e) => {
                           // console.log(document.querySelector("body"))
                           const x = e.clientX
                           const y = e.clientY

@@ -380,7 +380,7 @@ a {
        -webkit-filter: blur(0px);
     overflow: hidden;
     pointer-events:all;
-    z-index: 999;
+    z-index: 10;
   }
   
   #cursorscontainer {
@@ -400,7 +400,7 @@ a {
     height: 1px;
 /*   background: url("https://cdn.glitch.com/fc76c743-ed4f-40b8-8cf5-889b2f64b004%2Fcursor.png?v=1621812496190"); */
   position: absolute;
-  z-index: 101;
+  z-index: 11;
 /*   clip-path: polygon(6% 22%, 50% 30%, 94% 22%, 66% 55%, 50% 95%, 34% 56%); */
   pointer-events: none;
     transition: left 0.1s ease-out, top 0.1s ease-out;
@@ -419,7 +419,7 @@ a {
   height: 24px;
 /*   background: url("https://cdn.glitch.com/fc76c743-ed4f-40b8-8cf5-889b2f64b004%2Fcursor.png?v=1621812496190"); */
   position: absolute;
-  z-index: 101;
+  z-index: 11;
   clip-path: polygon(6% 22%, 50% 30%, 94% 22%, 66% 55%, 50% 95%, 34% 56%);
   pointer-events: none;
 }
@@ -455,7 +455,7 @@ a {
     height: 1px;
 /*   background: url("https://cdn.glitch.com/fc76c743-ed4f-40b8-8cf5-889b2f64b004%2Fcursor.png?v=1621812496190"); */
   position: absolute;
-  z-index: 101;
+  z-index: 11;
 /*   clip-path: polygon(6% 22%, 50% 30%, 94% 22%, 66% 55%, 50% 95%, 34% 56%); */
   pointer-events: none;
     transition: left 0.1s ease-out, top 0.1s ease-out;
@@ -474,7 +474,7 @@ a {
   height: 24px;
 /*   background: url("https://cdn.glitch.com/fc76c743-ed4f-40b8-8cf5-889b2f64b004%2Fcursor.png?v=1621812496190"); */
   position: absolute;
-  z-index: 101;
+  z-index: 11;
   clip-path: polygon(6% 22%, 50% 30%, 94% 22%, 66% 55%, 50% 95%, 34% 56%);
   pointer-events: none;
 }
@@ -574,7 +574,7 @@ a {
   height: 24px;
 /*   background: url("https://cdn.glitch.com/fc76c743-ed4f-40b8-8cf5-889b2f64b004%2Fcursor.png?v=1621812496190"); */
   position: absolute;
-  z-index: 101;
+  z-index: 11;
   clip-path: polygon(6% 22%, 50% 30%, 94% 22%, 66% 55%, 50% 95%, 34% 56%);
   pointer-events: none;
 }
@@ -629,8 +629,8 @@ margin-right: 0px;
     position: absolute;
     top: 0;
     pointer-events: all;
-    z-index: 999;
-     -webkit-filter: blur(0px);
+    z-index: 10;
+/*      -webkit-filter: blur(0px); */
     }
   
   #cursorscontainer >>> #dialogchild {
@@ -651,6 +651,19 @@ margin-right: 0px;
        -webkit-filter: blur(0px);
     backdrop-filter: blur(6px)
     }
+  
+  #cursorscontainer >>> #dialogchild::before{
+/*     content: '';
+    position: absolute;
+    margin: 0px;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    z-index: 0; */
+  }
   
     .hidden {
       display: none;
