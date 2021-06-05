@@ -75,7 +75,7 @@ const socket = {
     init({ dispatch, commit }, message){
       console.log("init", message)
     },
-    move({ dispatch, commit }, message){
+    move({ dispatch }, message){
       console.log("move", message)
     }
     
