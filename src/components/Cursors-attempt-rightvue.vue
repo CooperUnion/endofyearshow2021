@@ -51,7 +51,7 @@
     </div>
 
     <div>
-      <button class="ok">Enter</button><br>
+      <button class="ok">Select</button><br>
       <button class="cancel">Skip</button>
     </div>
   </div>
