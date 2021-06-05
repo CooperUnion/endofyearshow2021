@@ -120,6 +120,8 @@ export default {
 
   svg {
     isolation: isolate;
+    display: block;
+    margin: 0 auto;
   }
   circle, path { 
     mix-blend-mode: screen;

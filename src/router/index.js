@@ -3,7 +3,7 @@ import { Casco } from 'vue-casco'
 
 import Home from '@/views/Home.vue'
 import MasonryPosts from '@/views/MasonryPosts.vue'
-import MasonryPost from '@/views/MasonryPost.vue'
+// import MasonryPost from '@/views/MasonryPost.vue'
 import MasonryTag from '@/views/MasonryTag.vue'
 import Projects from '@/views/Projects.vue'
 import Project from '@/views/Project.vue'
@@ -31,32 +31,26 @@ let routes = [
     component: Info,
     props: true
   },
-  {
-    path: '/posts',
-    name: 'MasonryPosts',
-    component: MasonryPosts,
-    props: true
-  }, 
-  {
-    path: '/posts/:post',
-    name: 'MasonryPost',
-    component: MasonryPost,
-    props: true
-  },
+  // {
+  //   path: '/posts/:post',
+  //   name: 'MasonryPost',
+  //   component: MasonryPost,
+  //   props: true
+  // },
   {
     path: '/tag/:tag',
     name: 'MasonryPostsTag',
     component: MasonryTag,
     props: true
   },  
-  {
-    path: '/app/post/:post',
-    redirect: { name: 'MasonryPost' }
-  },
-  {
-    path: '/app/',
-    redirect: { name: 'MasonryPosts'}
-  },
+  // {
+  //   path: '/app/post/:post',
+  //   redirect: { name: 'MasonryPost' }
+  // },
+  // {
+  //   path: '/app/',
+  //   redirect: { name: 'MasonryPosts'}
+  // },
   {
     path: '/tag',
     redirect: { name: 'Areas'}
@@ -84,7 +78,7 @@ let routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/Cursors.vue')
-  },
+  }
 ]
 
 let globalNavItems = [
