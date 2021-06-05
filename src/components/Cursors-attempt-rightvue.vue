@@ -106,7 +106,6 @@
   mounted(){      
          this.prev = null;
      this.prevprev = null;  
-    this.BadWords1 = new BadWords()
     //send the promise? need socket connect first... :/
   },
 
@@ -287,10 +286,10 @@
 //   },
 
   methods: {
-            mouseMove(event) {
-            console.log(event.clientX, event.clientY);
-            // store.dispatch('client_playerCursorMove', `data from cursor movement, ${event}`)
-        },
+        //     mouseMove(event) {
+        //     console.log(event.clientX, event.clientY);
+        //     // store.dispatch('client_playerCursorMove', `data from cursor movement, ${event}`)
+        // },
     
     pingServer() {
       // Send the "pingServer" event to the server.
@@ -303,6 +302,7 @@
       },
      
     demoCursorNameCheck: function (){
+      this.BadWords1 = new BadWords()
       // console.log(this.democursorname)
       const description = this.democursorname
       let isInclude = this.BadWords1.check(description)

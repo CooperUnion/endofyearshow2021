@@ -1,6 +1,5 @@
 import { createStore } from 'vuex'
   import {Player, Friend, Meeting} from './People.class.js'
-  import {BadWords} from './BadWords.js'
 
 const activeArea = new Set()
 const activeGlobalNav = ''
@@ -36,6 +35,10 @@ const socket = {
     SOCKET_CONNECTED_MESSAGE(state, message) {
       state.message = {message, origin: 'socket'}
       console.log("socketconnectedmessage", message)
+    },
+    SOCKET_INIT(data){
+      init.data = {data, origin: 'socket'}
+      conso
     },
     
   },
@@ -77,121 +80,120 @@ const socket = {
     init({ dispatch, commit }, data){
       console.log("init", data)
         console.log("init")   
+      commit("SOCKET_INIT", data)
+//    async function run(data, that){
       
-   async function run(data, that){
-      
-  // that.BadWords1 = new BadWords();
-  function promptPromise(message, message2) {
-  var dialog  = document.getElementById('dialog');
-  var input   = document.getElementById("textinput");
-  var okButton = dialog.querySelector('button.ok');
-  var XButton = dialog.querySelector('button.close-dialog');
-  let radio = ""
+//   function promptPromise(message, message2) {
+//   var dialog  = document.getElementById('dialog');
+//   var input   = document.getElementById("textinput");
+//   var okButton = dialog.querySelector('button.ok');
+//   var XButton = dialog.querySelector('button.close-dialog');
+//   let radio = ""
   
-  dialog.querySelector('.message').innerHTML = String(message);
-  dialog.querySelector('.message2').innerHTML = String(message2)
-  dialog.className = '';
+//   dialog.querySelector('.message').innerHTML = String(message);
+//   dialog.querySelector('.message2').innerHTML = String(message2)
+//   dialog.className = '';
 
-  return new Promise(function(resolve, reject) {
-    dialog.onclick = function(e){
-      if (e.target.tagName !== 'BUTTON') { return; }
-      dialog.onclick = null;
-      dialog.className = 'hidden';
-      if (e.target === okButton) {
-var radios = document.getElementsByName('roleRadio');
-for (var i = 0, length = radios.length; i < length; i++) {
-  if (radios[i].checked) {
-   radio = radios[i].value
-   console.log(radio)
-   console.log("was radio")
-    resolve({input: input.value, radio: radio});
-    break;
-  }
-}
+//   return new Promise(function(resolve, reject) {
+//     dialog.onclick = function(e){
+//       if (e.target.tagName !== 'BUTTON') { return; }
+//       dialog.onclick = null;
+//       dialog.className = 'hidden';
+//       if (e.target === okButton) {
+// var radios = document.getElementsByName('roleRadio');
+// for (var i = 0, length = radios.length; i < length; i++) {
+//   if (radios[i].checked) {
+//    radio = radios[i].value
+//    console.log(radio)
+//    console.log("was radio")
+//     resolve({input: input.value, radio: radio});
+//     break;
+//   }
+// }
 
-      } else if (e.target === XButton){
-      } else {
-        resolve({input: input.value, radio: "undefined"});
-      }
-    };
-  });
-}
+//       } else if (e.target === XButton){
+//       } else {
+//         resolve({input: input.value, radio: "undefined"});
+//       }
+//     };
+//   });
+// }
     
 
-  var button = document.getElementById('action');
-  var output = document.getElementById('prompt');
-  var rolefield = document.getElementById('role')
+//   var button = document.getElementById('action');
+//   var output = document.getElementById('prompt');
+//   var rolefield = document.getElementById('role')
   
-  if (window.sessionStorage.getItem('EOYS2021Name')){
-    var dialog  = document.getElementById('dialog');
-    dialog.className = 'hidden'
-    console.log("session storage SUCCESS")
-    // Save data to sessionStorage
+//   if (window.sessionStorage.getItem('EOYS2021Name')){
+//     var dialog  = document.getElementById('dialog');
+//     dialog.className = 'hidden'
+//     console.log("session storage SUCCESS")
+//     // Save data to sessionStorage
 
     
-          const response = {name: window.sessionStorage.getItem('EOYS2021Name'), role: window.sessionStorage.getItem('EOYS2021Role')}
-      // that.$socket.client.emit('nameChosen', {response: response, player: data.player})
-      console.log("IMPORTANT: emit nameChosen HERE", {response: response, player: data.player})
+//           const response = {name: window.sessionStorage.getItem('EOYS2021Name'), role: window.sessionStorage.getItem('EOYS2021Role')}
+//       // that.$socket.client.emit('nameChosen', {response: response, player: data.player})
+//       console.log("IMPORTANT: emit nameChosen HERE", {response: response, player: data.player})
     
-                      that.Meeting1 = new Meeting(that.$socket)  
-                      console.log(data)
-                      console.log("data")
-                      // data.friends.forEach(friend1 => console.log(friend1));
-                      data.friends.forEach(friend1 => that.Meeting1.createFriend(friend1.id, data.player, that.Meeting1, friend1.name, friend1.role, friend1));
-                      self.player = new Player(data.player);
+//                       that.Meeting1 = new Meeting(that.$socket)  
+//                       console.log(data)
+//                       console.log("data")
+//                       // data.friends.forEach(friend1 => console.log(friend1));
+//                       data.friends.forEach(friend1 => that.Meeting1.createFriend(friend1.id, data.player, that.Meeting1, friend1.name, friend1.role, friend1));
+//                       self.player = new Player(data.player);
 
-                      document.querySelector("body").onmousemove = (e) => {
-                          // console.log(document.querySelector("body"))
-                          const x = e.clientX
-                          const y = e.clientY
-                          const location = self.player.update(x,y,that.$socket, data.player, response.name, response.role) 
-                      };    
-      output.innerHTML = '' + response.name;
-      rolefield.innerHTML = "" + response.role;
+//                       document.querySelector("body").onmousemove = (e) => {
+//                           // console.log(document.querySelector("body"))
+//                           const x = e.clientX
+//                           const y = e.clientY
+//                           const location = self.player.update(x,y,that.$socket, data.player, response.name, response.role) 
+//                       };    
+//       output.innerHTML = '' + response.name;
+//       rolefield.innerHTML = "" + response.role;
 
-// Get saved data from sessionStorage
-// let data = sessionStorage.getItem('key');
+// // Get saved data from sessionStorage
+// // let data = sessionStorage.getItem('key');
     
-  }else{
-    var dialog  = document.getElementById('dialog');
-    dialog.classList.remove("hidden")
-    console.log("session storage FAILED")
-    promptPromise('Welcome to the Cooper Union School of Art End of Year Show 2021!', 'Would you like your cursor to be visible while you move <br> through the galleries?').then(function(name) {
-      output.innerHTML = '' + name.input;
-      rolefield.innerHTML = "" + name.radio;
-      console.log("response completed!")
-      // console.log(that.$socket.client)
-      const response = {name: name.input, role: name.radio}
-      window.sessionStorage.setItem('EOYS2021Name', name.input)
-      window.sessionStorage.setItem('EOYS2021Role', name.radio)
-      // that.$socket.client.emit('nameChosen', {response: response, player: data.player})
-      console.log("IMPORTANT: emit nameChosen HERE", {response: response, player: data.player})
-                            that.Meeting1 = new Meeting(that.$socket)  
-                      console.log(data)
-      console.log("data")
-                      // data.friends.forEach(friend1 => console.log(friend1));
-                      data.friends.forEach(friend1 => that.Meeting1.createFriend(friend1.id, data.player, that.Meeting1, friend1.name, friend1.role, friend1));
-                      self.player = new Player(data.player);
+//   }else{
+//     var dialog  = document.getElementById('dialog');
+//     dialog.classList.remove("hidden")
+//     console.log("session storage FAILED")
+//     promptPromise('Welcome to the Cooper Union School of Art End of Year Show 2021!', 'Would you like your cursor to be visible while you move <br> through the galleries?').then(function(name) {
+//       output.innerHTML = '' + name.input;
+//       rolefield.innerHTML = "" + name.radio;
+//       console.log("response completed!")
+//       // console.log(that.$socket.client)
+//       const response = {name: name.input, role: name.radio}
+//       window.sessionStorage.setItem('EOYS2021Name', name.input)
+//       window.sessionStorage.setItem('EOYS2021Role', name.radio)
+//       // that.$socket.client.emit('nameChosen', {response: response, player: data.player})
+//       console.log("IMPORTANT: emit nameChosen HERE", {response: response, player: data.player})
+//                             that.Meeting1 = new Meeting(that.$socket)  
+//                       console.log(data)
+//       console.log("data")
+//                       // data.friends.forEach(friend1 => console.log(friend1));
+//                       data.friends.forEach(friend1 => that.Meeting1.createFriend(friend1.id, data.player, that.Meeting1, friend1.name, friend1.role, friend1));
+//                       self.player = new Player(data.player);
 
-                      document.querySelector("body").onmousemove = (e) => {
-                          // console.log(document.querySelector("body"))
-                          const x = e.clientX
-                          const y = e.clientY
-                          const location = self.player.update(x,y,that.$socket, data.player, name.input, name.radio) 
-                      };    
+//                       document.querySelector("body").onmousemove = (e) => {
+//                           // console.log(document.querySelector("body"))
+//                           const x = e.clientX
+//                           const y = e.clientY
+//                           const location = self.player.update(x,y,that.$socket, data.player, name.input, name.radio) 
+//                       };    
 
-    }).catch(function() {
-      // output.innerHTML = '¯\\_(ツ)_/¯';
-      console.log("ERROR?")
-    }); 
+//     }).catch(function() {
+//       // output.innerHTML = '¯\\_(ツ)_/¯';
+//       console.log("ERROR?")
+//     }); 
      
      
      
-  }
-   }
-      console.log(this)
-      var that = this;
-      run(data, that);
+//   }
+//    }
+//       console.log(this)
+//       var that = this;
+//       run(data, that);
       
     },
     socketMove({ dispatch, commit }, message){
