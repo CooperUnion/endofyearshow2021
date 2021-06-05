@@ -9,18 +9,6 @@
       </div>
       <page-header-button v-if="currentPageConfig.refreshEnabled===true"/>
     </div>
-    <div class="listBlock">
-      <template v-if="$route.name === 'Projects'">
-<!--         <ul class="projectsList">
-          <li>Ana Valeria Castillos </li>
-          <li>Ashlyn Guo </li>
-          <li>Richard Yurewitch </li>
-          <li>Ana Valeria Castillos </li>
-          <li>Ashlyn Guo </li>
-          <li>Richard Yurewitch</li>
-        </ul> -->
-      </template>      
-    </div>
   </div>
 </template>
 

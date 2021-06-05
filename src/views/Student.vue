@@ -4,7 +4,7 @@
   <main>     
     <loading v-if="loading" :timeout="15" />
     <template v-else>
-      <router-link to="/students">&#8592; all students</router-link>
+      <router-link to="/students" class="backLink">All students</router-link>
       <ul>
         <li v-for="student of students" v-bind:key="student">{{student}}</li>
       </ul>
@@ -82,5 +82,25 @@
 <style scoped>
   .projectList {
     list-style-type: none;
+  }
+  
+  .backLink {
+  		line-height: 1;
+			background-image: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 12L3 12" stroke="black" stroke-linecap="round"/><path d="M9 6L3 12L9 18" stroke="black" stroke-linecap="round"/></svg>');
+			background-size: auto 1.5em;
+			background-repeat: no-repeat;
+			background-position: left 60%;
+			padding-left: 2em;
+			text-decoration: none;
+			transition: transform 0.2s cubic-bezier(0, 1.4, 1, 1), opacity 0.2s ease-in-out;
+  }
+  
+  .backLink:hover {
+			text-decoration: underline;
+  }
+  
+  #globalnav:hover ~ main .backLink {
+			transform: scale(0.99);
+  	opacity: 0;
   }
 </style>
