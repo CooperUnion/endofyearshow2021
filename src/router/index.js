@@ -118,7 +118,7 @@ let globalNavItems = [
   {name: "🔌", path: "/DebugSocket", component: DebugSocket },
   {name: "🔛", path: "/DebugMotion", component: DebugMotion },
   {name: "DBCD", path:"/DebugCursorDisplay", component: DebugCursorDisplay},
-  {name: "DBCD", path:"/DebugOnlineCount", component: DebugOnlineCount},
+  {name: "DBOC", path:"/DebugOnlineCount", component: DebugOnlineCount},
   // {name: "🖱️", path: "/DebugCursor", component: DebugCursor},
   {
     name: "🚶", 

@@ -4,7 +4,7 @@
   </h1>
   <b @click="dump()">dump vuex</b>
 
-  <cursor-display />
+  <online-count />
   Current live data: {{position}} <br />
   Data from vuex: {{storeRetreivedData}}
 </template>
