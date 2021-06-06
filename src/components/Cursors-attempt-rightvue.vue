@@ -5,12 +5,12 @@
     <li @click="update(Math.random()*1000)">Send a random number</li>
     <li @click="dump()">Dump the current vuex store "state" module to the console</li>
   </ul> -->
-              <!--       <div class="online-users">
+                    <div class="online-users">
                      <span id="connections">
                       </span> <span id="othervisitors"> other visitors online</span><br>
                         <p class="online-users">Your name is "<span id="prompt"></span>"</p>
                 <p class="online-users">Your role is "<span id="role"></span>"</p>
-                  </div> -->
+                  </div>
 
 <!--   <p>The current time is <span id="time-stamp"></span>.</p> -->
 <!--   <div id="dialog" class="hidden"> -->
@@ -100,7 +100,7 @@
     return {
       isConnected: false,
       socketMessage: '',
-      democursorname: 'Peter Cooper BSE\'83',
+      democursorname: 'Peter Cooper \'83',
       roleRadio: "friend-cu",
       cursors: []
     }
