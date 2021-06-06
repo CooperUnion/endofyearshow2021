@@ -1,10 +1,10 @@
 <template>
   <div class="post-info">
     <ul class="post-infolist">
-      <li>
+      <li v-if="title">
         <h6 class="title" v-html="title"></h6>
       </li>
-      <li class="name" v-html="author.formatted"></li> 
+      <li class="name" v-if="author" v-html="author.formatted"></li> 
     </ul>
     <tag-list :tags="tags"/>
   </div>

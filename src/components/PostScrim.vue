@@ -21,8 +21,8 @@
 					</div>
         </div>
         <template v-if="assets.media.length>1 && !mobile">
-          <button class="imgControl prev" @click="goPrev" @keyup.left="goPrev">previous</button>
-          <button class="imgControl next" @click="goNext" @keyup.right="goNext">next</button>
+          <button class="imgControl prev" @click="goPrev()">previous</button>
+          <button class="imgControl next" @click="goNext()">next</button>
         </template>    
         <template v-else>
           <ul class="paginationDots">
@@ -112,27 +112,29 @@
         store.commit('resetActiveScrimId')
       }   
       
-      const goNext = () => {
+      const goNext = (fromDrag) => {
         animState.value = true;
+				isOvershooting.value = false;
         animDirection.value = "next"
         setTimeout(() => {
           animState.value = false
           animDirection.value = ""
           current.value = getNext()          
 					set({ x: 0, y: 0});
-					isOvershooting.value = true
+					isOvershooting.value = fromDrag ? true : false;
         }, 401);
       }
       
-      const goPrev = () => {
+      const goPrev = (fromDrag) => {
         animState.value = true;
+				isOvershooting.value = false;
         animDirection.value = "prev"
         setTimeout(() => {
           animState.value = false
           animDirection.value = ""
           current.value = getPrev()          
 					set({ x: 0, y: 0});
-					isOvershooting.value = true
+					isOvershooting.value = fromDrag ? true : false;
         }, 401);
       }
     
@@ -183,16 +185,17 @@
         
         if (!dragging) {
 					if (x > swipeGap) {
-						goPrev()
+						goPrev(true)
 						waitForStop()
 						return
 					}
 					if (x < (-1 * swipeGap)) {
-						goNext()
+						goNext(true)
 						waitForStop()
 						return
 					}
           set({ x: 0, y: 0, cursor: 'grab' })
+					isOvershooting.value = false;
           return
         }
 
@@ -251,6 +254,7 @@
 		font-size: 18px;
 		margin-bottom: 24px;
 		text-align: center;
+		padding: 0 54px;
 	}
 	
 	.post-scrim .title-block .credits .title:after {
@@ -453,11 +457,11 @@
 		}
 		
 		.post-scrim .title-block {
-			padding-right: 54px;
 		}
 		
 		.post-scrim .title-block .credits {
 			text-align: left;
+			padding: 0 54px 0 0;
 		}
 		
 		.post-scrim .title-block .credits .title {
