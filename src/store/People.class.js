@@ -178,17 +178,14 @@ class Meeting {
         console.log(friend)
         this.friend.add(friend, friends, fullFriend);}
     }
-          if(document.getElementById("connections").innerText != document.getElementsByClassName("friend").length){document.getElementById("connections").innerText = document.getElementsByClassName("friend").length
+//           if(document.getElementById("connections").innerText != document.getElementsByClassName("friend").length){document.getElementById("connections").innerText = document.getElementsByClassName("friend").length
         
-      }
+//       }
     
   }
   
   removeFriend(self, id, meeting){
     this.friend.remove(id, this.friends);
-          if(document.getElementById("connections").innerText != document.getElementsByClassName("friend").length){document.getElementById("connections").innerText = document.getElementsByClassName("friend").length
-        
-      }
 }
   
   updateFriend(data){

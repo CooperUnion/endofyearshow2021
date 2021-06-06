@@ -64,7 +64,7 @@ const socket = {
       console.log("socketsystemmessageACTION", message)
     },
     
-    connected({ dispatch, commit }, message) {
+    connected({ dispatch, commit }, message) { //new connection for everyone
       console.log("socket connected2!", message)
       commit("SOCKET_CONNECTED_MESSAGE", message)
       document.getElementById("connections").innerHTML = message.connecitons-1

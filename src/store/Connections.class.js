@@ -28,11 +28,15 @@ class Session {
 }
   
   friendConnect(){
-
+          if(document.getElementById("connections").innerText != document.getElementsByClassName("friend").length){document.getElementById("connections").innerText = document.getElementsByClassName("friend").length
+        
+      }
   }
   
   friendDisconnect(){
-
+          if(document.getElementById("connections").innerText != document.getElementsByClassName("friend").length){document.getElementById("connections").innerText = document.getElementsByClassName("friend").length
+        
+      }
   }
   
     
