@@ -7,15 +7,7 @@ import MasonryPosts from '@/views/MasonryPosts.vue'
 import MasonryTag from '@/views/MasonryTag.vue'
 import Projects from '@/views/Projects.vue'
 import Project from '@/views/Project.vue'
-<<<<<<< HEAD
-import oldCursors from '@/components/Cursors-old-nonvuex.vue'
 import newCursors from '@/components/Cursors-attempt-rightvue.vue'
-// routes.push({
-//     path: '/newCursors',
-//     name: 'newCursors',
-//     component: newCursors
-//   })
-=======
 import Students from '@/views/Students.vue'
 import Student from '@/views/Student.vue'
 import Info from '@/views/Info.vue'
@@ -24,7 +16,6 @@ import SocketDebug from '@/views/SocketDebug.vue'
 import MotionDebug from '@/views/MotionDebug.vue'
 
 const casco = new Casco(['default'])
->>>>>>> v0.4.1
 
 let routes = [
   {
@@ -75,9 +66,6 @@ let routes = [
     path: '/areas',
     redirect: '/tag/drawing,design,film-+-video,installation,painting,performance,photography,printmaking,sculpture,sound-art'
   },
-<<<<<<< HEAD
-
-=======
   {
     path: '/student/:student',
     name: 'Student',
@@ -92,7 +80,6 @@ let routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/Cursors.vue')
   }
->>>>>>> v0.4.1
 ]
 
 let globalNavItems = [
@@ -118,22 +105,11 @@ let globalNavItems = [
     }
   },
   {name: "🔌", path: "/SocketDebug", component: SocketDebug },
-  {name: "🔛", path: "/MotionDebug", component: MotionDebug }
+  {name: "🔛", path: "/MotionDebug", component: MotionDebug },
+  {name: "Cursor", path: "/CursorDebug", component: newCursors}
 ]
 
 routes = routes.concat(globalNavItems)
-
-routes.push({
-    path: '/newCursors',
-    name: 'newCursors',
-    component: newCursors
-  })
-
-routes.push({
-    path: '/oldCursors',
-    name: 'oldCursors',
-    component: oldCursors
-  })
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),

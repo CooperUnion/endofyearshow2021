@@ -7,36 +7,26 @@
       <loading v-if="loading" :timeout="20" />
       <posts v-else :items="items"/>
     </div>
-<<<<<<< HEAD
-  </main> 
- <newcursors/>
-=======
   </main>   
 	<global-footer :items="globalNavItems" />
->>>>>>> v0.4.1
 </template>
 
 <script>
   import { ref, onBeforeMount, watch, getCurrentInstance } from "vue";
   import { useRoute } from 'vue-router'
-  import newcursors from '@/components/Cursors-attempt-rightvue.vue'
   import Loading from '@/components/Loading.vue'
   import AreaNav from '@/components/AreaNav.vue'
   import Posts from '@/components/Posts.vue'
   import areaNavItems from '@/router/areaNavItems.js'
   import GlobalNav from '@/components/GlobalNav.vue'  
   import {globalNavItems} from '@/router/index.js'
-<<<<<<< HEAD
   import PageHeader from '@/components/PageHeader.vue'  
   
-=======
   import PageHeader from '@/components/PageHeader.vue'
 	import GlobalFooter from '@/components/GlobalFooter.vue' 
 
->>>>>>> v0.4.1
   export default {
     components: {
-      newcursors,
       Loading,
       GlobalNav,
       Posts,

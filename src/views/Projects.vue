@@ -13,18 +13,13 @@
       </ul>
     </div>
   </main>   
-<<<<<<< HEAD
-      <newcursors/>
-=======
 
 	<global-footer :items="globalNavItems" />
->>>>>>> v0.4.1
 </template>
 
 <script>
   import { ref, onBeforeMount, watch, getCurrentInstance } from "vue";
   import { useRoute } from 'vue-router'
-  import newcursors from '@/components/Cursors-attempt-rightvue.vue'
   import Loading from '@/components/Loading.vue'
   import GlobalNav from '@/components/GlobalNav.vue'  
   import {globalNavItems} from '@/router/index.js'
@@ -34,7 +29,6 @@
   export default {
     name: 'Projects',
     components: {
-      newcursors,
       Loading,
       GlobalNav,
       PageHeader,

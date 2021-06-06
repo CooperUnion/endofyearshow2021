@@ -1,14 +1,12 @@
 import { createStore } from 'vuex'
-  import {Player, Friend, Meeting} from './People.class.js'
+import {Player, Friend, Meeting} from './People.class.js'
 
 const activeArea = new Set()
 const activeGlobalNav = ''
 const activeScrimId = 0
 const areaCount = new Map()
 
-<<<<<<< HEAD
-
-const socket = { 
+const socket = {
   state() {
     return {
       message: {message: undefined, origin: undefined},
@@ -258,10 +256,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
   }
 }
 
-export default createStore({
-=======
 const application = {
->>>>>>> v0.4.1
   state() {
     return {
       activeArea,
@@ -295,37 +290,9 @@ const application = {
   }
 }
 
-const socket = {  state() {
-    return {
-      message: {message: undefined, origin: undefined}
-    }
-  },
-  mutations: {
-    SOCKET_USER_MESSAGE(state, message) {
-      state.message = {message, origin: 'socket'}
-    },
-    CLIENT_USER_MESSAGE(state, message) {
-      state.message = {message, origin: 'client'}
-    }    
-  },
-<<<<<<< HEAD
-  modules: {
-=======
-  getters: {},
-  actions: {
-    socket_userMessage ({ dispatch, commit }, message) {
-     commit('SOCKET_USER_MESSAGE', message);
-    },
-    client_userMessage({ dispatch, commit }, message) {
-      commit('CLIENT_USER_MESSAGE', message)
-    }
-  }
-}
-
 export default createStore({
   modules:{
     application,
->>>>>>> v0.4.1
     socket
   }
 })

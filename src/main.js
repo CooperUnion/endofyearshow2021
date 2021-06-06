@@ -4,29 +4,6 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import mitt from 'mitt'
-<<<<<<< HEAD
-import { VueMasonryPlugin } from 'vue-masonry/src/masonry-vue3.plugin';
-import { io } from 'socket.io-client';
-import vuexSocketio from 'vue-vuex-socket.io-opinionated-integration'
-
-// const socket = io('https://eoyssockets2021.glitch.me');
-const emitter = mitt()
-
-
-// app.use(VueSocketIOExt, socket);
-
-
-const app = createApp(App)
-  .use(store).use(router)
-  .use(vuexSocketio, {
-    connection: 'https://eoyssockets2021.glitch.me',
-    store,
-    socketOptions:{
-      path: '/socket.io/' //default for socket.io
-    }
-  })
-
-=======
 import { VueMasonryPlugin } from 'vue-masonry/src/masonry-vue3.plugin'
 import vuexSocketio from 'vue-vuex-socket.io-opinionated-integration'
 import { GesturePlugin } from '@vueuse/gesture'
@@ -37,19 +14,14 @@ const app = createApp(App)
   .use(store)
   .use(router)
   .use(vuexSocketio, {
-    connection:'https://eoyssockets2021.glitch.me',
+    connection: 'https://eoyssockets2021.glitch.me',
     store,
-    pluginOptions:{
-      action_prefix: 'SOCKET_ACTION',
-      mutation_prefix: 'SOCKET_MUTATION'
-    },
     socketOptions:{
-      path: '/socket.io/'
+      path: '/socket.io/' //default for socket.io
     }
   })
   .use(GesturePlugin)
   .use(MotionPlugin)
->>>>>>> v0.4.1
 
 app.config.globalProperties.emitter = emitter
 app.config.globalProperties.api_endpoint = process.env.VUE_APP_FORM_API_ENDPOINT || 'https://eoys-api-2021.glitch.me'

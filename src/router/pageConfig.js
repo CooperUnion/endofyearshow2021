@@ -23,10 +23,6 @@
     title: 'Projects',
     body: '',
     refreshEnabled: false
-<<<<<<< HEAD
-  }
- }
-=======
   },
   info: {
     title: '',
@@ -40,4 +36,3 @@
   },
 
 }
->>>>>>> v0.4.1
