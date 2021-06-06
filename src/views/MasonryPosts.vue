@@ -14,7 +14,7 @@
 </template>
 
 <script>
-  import { ref, onBeforeMount, watch, getCurrentInstance } from "vue";
+  import { ref, onBeforeMount, onMounted, watch, getCurrentInstance } from "vue";
   import { useRoute } from 'vue-router'
   
   import Loading from '@/components/Loading.vue'
@@ -46,7 +46,7 @@
       const internalInstance = getCurrentInstance()
       const { api_endpoint } = internalInstance.appContext.config.globalProperties
          
-      onBeforeMount(loadPosts)
+      onMounted(loadPosts)
       async function loadToggle(){
         console.log("ok...")
         loading.value = loading.value === true ? false : true

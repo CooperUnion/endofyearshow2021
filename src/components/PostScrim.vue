@@ -3,7 +3,9 @@
     <div class="scrim-shroud"></div>
     <div class="scrim-contents">
       <header class="title-block">
-        <h6 class="credits"><span class="title" v-html="title"/><a class="author" href="#" v-html="author.formatted"/></h6>
+        <h6 class="credits"><span class="title" v-html="title"/>
+					<a class="author" @click="hideScrim()" :href="'/student/'+author.slug" v-html="author.formatted" />
+				</h6>
         <button class="close" @click="hideScrim()">close</button>
         <template v-if="assets.media.length>1">
           <span class="paginator">{{current + 1}}/{{assets.media.length}}</span>
@@ -21,8 +23,8 @@
 					</div>
         </div>
         <template v-if="assets.media.length>1 && !mobile">
-          <button class="imgControl prev" @click="goPrev" @keyup.left="goPrev">previous</button>
-          <button class="imgControl next" @click="goNext" @keyup.right="goNext">next</button>
+          <button class="imgControl prev" @click="goPrev()">previous</button>
+          <button class="imgControl next" @click="goNext()">next</button>
         </template>    
         <template v-else>
           <ul class="paginationDots">
@@ -30,15 +32,21 @@
           </ul>
         </template>    
       </div>
+
       <div v-else-if="type==='url'">
         <img :src="assets.preview.source_url" />
         <b v-if="assets.url"><a :href="assets.url">visit site url</a></b>
-      </div>   
+      </div>
+
       <div v-else-if="type==='video'">
-        <video width="320" height="240" controls>
+				<!-- {{assets.media[0]}} -->
+				<video-player ref="VideoPlayer" :options="playerOptions" :playsinline="true">
+				</video-player>
+				<!-- https://player.vimeo.com/external/559536163.m3u8?s=236b0cc303d53bb53031c2106198baa800dbfc5c&oauth2_token_id=1484602730 -->
+        <!-- <video width="320" height="240" controls>
           <source :src="assets.media.vimeo.files[0].link" type="video/mp4">
           Your browser does not support the video tag.
-        </video>
+        </video> -->
         <img :src="assets.preview.source_url" />
         <b v-if="assets.url"><a :href="assets.url">visit site url</a></b>
       </div>         
@@ -63,11 +71,13 @@
   import { onKeyStroke, onKeyUp } from '@vueuse/core'
 
   import TagList from '@/components/TagList.vue'
+	import VideoPlayer from 'vue-video-player'
     
   export default {
     name: 'PostScrim',
     components: {
-      TagList
+      TagList,
+			VideoPlayer
     },
     props: {
       assets: Object,
@@ -82,6 +92,14 @@
       
       const current = ref(0)
       
+			const playerOptions = {
+				sources: [{
+					type: "video/mp4",
+					src: "https://player.vimeo.com/external/559536163.m3u8?s=236b0cc303d53bb53031c2106198baa800dbfc5c&oauth2_token_id=1484602730"
+				}],
+			}
+
+
       const animState = ref(false);
       const animDirection = ref("");
       const isX = ref(0)
@@ -112,27 +130,29 @@
         store.commit('resetActiveScrimId')
       }   
       
-      const goNext = () => {
+      const goNext = (fromDrag) => {
         animState.value = true;
+				isOvershooting.value = false;
         animDirection.value = "next"
         setTimeout(() => {
           animState.value = false
           animDirection.value = ""
           current.value = getNext()          
 					set({ x: 0, y: 0});
-					isOvershooting.value = true
+					isOvershooting.value = fromDrag ? true : false;
         }, 401);
       }
       
-      const goPrev = () => {
+      const goPrev = (fromDrag) => {
         animState.value = true;
+				isOvershooting.value = false;
         animDirection.value = "prev"
         setTimeout(() => {
           animState.value = false
           animDirection.value = ""
           current.value = getPrev()          
 					set({ x: 0, y: 0});
-					isOvershooting.value = true
+					isOvershooting.value = fromDrag ? true : false;
         }, 401);
       }
     
@@ -183,16 +203,17 @@
         
         if (!dragging) {
 					if (x > swipeGap) {
-						goPrev()
+						goPrev(true)
 						waitForStop()
 						return
 					}
 					if (x < (-1 * swipeGap)) {
-						goNext()
+						goNext(true)
 						waitForStop()
 						return
 					}
           set({ x: 0, y: 0, cursor: 'grab' })
+					isOvershooting.value = false;
           return
         }
 
@@ -210,7 +231,7 @@
           ...dragOptions
         })  
       }
-      return {hideScrim, goNext, goPrev, current, getPrev, getNext, animState, animDirection, dragSleeve, isOvershooting}
+      return {hideScrim, goNext, goPrev, current, getPrev, getNext, animState, animDirection, dragSleeve, isOvershooting, playerOptions}
     }
 
     
@@ -251,6 +272,7 @@
 		font-size: 18px;
 		margin-bottom: 24px;
 		text-align: center;
+		padding: 0 54px;
 	}
 	
 	.post-scrim .title-block .credits .title:after {
@@ -453,11 +475,11 @@
 		}
 		
 		.post-scrim .title-block {
-			padding-right: 54px;
 		}
 		
 		.post-scrim .title-block .credits {
 			text-align: left;
+			padding: 0 54px 0 0;
 		}
 		
 		.post-scrim .title-block .credits .title {

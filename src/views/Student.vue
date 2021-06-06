@@ -99,7 +99,7 @@
 			text-decoration: underline;
   }
   
-  #globalnav:hover ~ main .backLink {
+  header:hover ~ main .backLink {
 			transform: scale(0.99);
   	opacity: 0;
   }
