@@ -5,7 +5,6 @@
      
     <page-header />
     <div class="studentsPage">
-      <!-- <area-nav v-if="areaNavItems" :items="areaNavItems" /> -->
 <!--     
       <b @click="filterStudents('Design')">Design</b>
       <b @click="filterStudents('Installation')">Installation</b>
