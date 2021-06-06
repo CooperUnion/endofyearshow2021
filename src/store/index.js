@@ -151,7 +151,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
           dispatch('nameChosen',{response: response, player: data.player});
       // console.log("IMPORTANT: emit nameChosen HERE", {response: response, player: data.player})
     
-                      that.Meeting1 = new Meeting(that.$socket)  
+                      that.Meeting1 = new Meeting()  
                       console.log(data)
                       console.log("data")
                       // data.friends.forEach(friend1 => console.log(friend1));
@@ -185,7 +185,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
       // that.$socket.client.emit('nameChosen', {response: response, player: data.player})
       // console.log("IMPORTANT: emit nameChosen HERE", {response: response, player: data.player})
       dispatch('nameChosen',{response: response, player: data.player});
-                            that.Meeting1 = new Meeting(that.$socket)  
+                            that.Meeting1 = new Meeting()  
                       console.log(data)
       console.log("data")
                       // data.friends.forEach(friend1 => console.log(friend1));
@@ -198,6 +198,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
                           const y = e.pageY
                           const location = self.player.update(x,y,dispatch, data.player, name.input, name.radio) 
                       };    
+      window.sessionStorage.setItem('EOYS2021TempId', data.player)
 
     }).catch(function() {
       // output.innerHTML = '¯\\_(ツ)_/¯';
@@ -216,7 +217,16 @@ for (var i = 0, length = radios.length; i < length; i++) {
     socketMove({ dispatch, commit }, message){
       console.log("move", message)
       // {friend: 21, friendX: "81.41", friendY: "0.21", name: "rry-vue-data-store", role: "current-student"}
+      if (this.Meeting1){
       this.Meeting1.updateFriend(message)
+      } else {
+        // console.log(self.player)
+        // console.log(data.player)
+        const playerId = window.sessionStorage.getItem('EOYS2021TempId')
+        self.player = new Player(playerId);
+        this.Meeting1 = new Meeting()
+      }
+      
     },
     move({ dispatch, commit }, message){
       console.log("playermove", message)
