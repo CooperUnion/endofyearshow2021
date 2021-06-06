@@ -8,7 +8,14 @@
       <loading v-if="loading" :timeout="15" />
       <ul v-else class="projectList">
         <li class="project" v-for="item in items" v-bind:key="item.id">
-          <router-link :to="item.url">{{item.name}}</router-link>
+          <router-link :to="item.url">
+            {{item.name}}
+          </router-link>
+          <template v-for="(post, index) in item.posts" v-bind:key="post.id">
+            <router-link :to="item.url" v-if="index<6">
+              <img :src="post.assets.preview.source_url" />
+            </router-link>
+          </template>
         </li>   
       </ul>
     </div>
