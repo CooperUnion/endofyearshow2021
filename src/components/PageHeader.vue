@@ -38,7 +38,7 @@
       const initPageConfig = ()=>{
         try{
           currentPageConfig.value = pageConfig[currentRoute.value] || pageConfig['areas']
-          console.log('updated currentPageConfig properly')
+          // console.log('updated currentPageConfig properly')
         } catch(e) {
           currentPageConfig.value = pageConfig['areas']
           console.log('failed to update currentPageConfig properly, defaulting')

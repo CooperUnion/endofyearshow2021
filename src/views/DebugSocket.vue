@@ -24,7 +24,7 @@
   import { useStore } from 'vuex'  
   
   export default {
-  name: 'SocketDebug',
+  name: 'DebugSocket',
   components: {},
   setup(){
     

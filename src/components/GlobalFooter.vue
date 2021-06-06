@@ -107,7 +107,7 @@
 		#globalfooter {
 			width: calc(100vw - 48px);
 			flex-direction: column;
-			margin-bottom: 50px;
+			padding-bottom: 50px;
 		}
 		
 		.description-panel {
