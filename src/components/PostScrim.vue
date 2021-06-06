@@ -41,15 +41,21 @@
       </div>
 
       <div v-else-if="type==='video'">
-				<!-- {{assets.media[0]}} -->
-				<video-player ref="VideoPlayer" :options="playerOptions" :playsinline="true">
-				</video-player>
-				<!-- https://player.vimeo.com/external/559536163.m3u8?s=236b0cc303d53bb53031c2106198baa800dbfc5c&oauth2_token_id=1484602730 -->
-        <!-- <video width="320" height="240" controls>
-          <source :src="assets.media.vimeo.files[0].link" type="video/mp4">
-          Your browser does not support the video tag.
-        </video> -->
-        <img :src="assets.preview.source_url" />
+
+				<video 
+					ref="videojsplayer" 
+					class="" 
+					controls 
+					controlsList="nodownload"
+					preload="auto"
+					v-bind:poster="assets.preview.source_url" 
+					width="640" 
+					height="268">
+					
+					<source 
+						v-bind:src="assets.media[0].vimeo.files[0].link" type="video/mp4" />
+
+				</video>
         <b v-if="assets.url"><a :href="assets.url">visit site url</a></b>
       </div>         
 
@@ -66,20 +72,18 @@
 </template>
 
 <script>
-  import { ref, computed } from 'vue'  
+  import { ref, computed, onBeforeMount, onMounted } from 'vue'  
   import { useStore } from 'vuex' 
   import { useMotion, useMotionProperties, useSpring } from '@vueuse/motion'
   import { useDrag } from '@vueuse/gesture'
   import { onKeyStroke, onKeyUp } from '@vueuse/core'
 
   import TagList from '@/components/TagList.vue'
-	import VideoPlayer from 'vue-video-player'
     
   export default {
     name: 'PostScrim',
     components: {
-      TagList,
-			VideoPlayer
+      TagList
     },
     props: {
       assets: Object,
@@ -93,15 +97,8 @@
       const store = useStore()
       
       const current = ref(0)
-      
-			const playerOptions = {
-				sources: [{
-					type: "video/mp4",
-					src: "https://player.vimeo.com/external/559536163.m3u8?s=236b0cc303d53bb53031c2106198baa800dbfc5c&oauth2_token_id=1484602730"
-				}],
-			}
 
-
+			//animation
       const animState = ref(false);
       const animDirection = ref("");
       const isX = ref(0)
@@ -237,7 +234,7 @@
           ...dragOptions
         })  
       }
-      return {hideScrim, goNext, goPrev, current, getPrev, getNext, animState, animDirection, dragSleeve, isOvershooting, playerOptions}
+      return {hideScrim, goNext, goPrev, current, getPrev, getNext, animState, animDirection, dragSleeve, isOvershooting}
     }
 
     

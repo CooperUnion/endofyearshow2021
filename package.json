@@ -17,12 +17,10 @@
     "heroku": "^7.54.0",
     "mitt": "^2.1.0",
     "register-service-worker": "^1.7.2",
-    "socket.io-client": "^4.1.2",
     "vue": "^3.0.11",
     "vue-casco": "^0.2.3",
     "vue-masonry": "^0.13.0",
     "vue-router": "^4.0.6",
-    "vue-video-player": "^5.0.2",
     "vue-vuex-socket.io-opinionated-integration": "^0.2.0",
     "vuex": "^4.0.0"
   },
