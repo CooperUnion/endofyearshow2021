@@ -75,8 +75,6 @@
         const url = (props.postsEndpointSuffix) 
           ? `${api_endpoint}/api/posts/${props.postsEndpointSuffix}`
           : `${api_endpoint}/api/posts`
-
-        console.log({url,name:route.name})
         
         items.value = await fetch(url).then(res=>res.json())
         loading.value = false
