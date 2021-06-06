@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
 import {Player, Friend, Meeting} from './People.class.js'
+import {Client, Session} from './Connections.class.js'
 
 const activeArea = new Set()
 const activeGlobalNav = ''
@@ -70,9 +71,11 @@ const socket = {
     },
     nameChosen({ dispatch, commit }, message) {
       console.log("nameChosen!", message) //emit name chosen!
+      commit("nameChosen", message)
     },
     
     byeFriend({ dispatch, commit }, message) {
+      //classes: this.connections?
       console.log("byeFriend", message)
                            console.log("connections,", message.connections-1)
                      document.getElementById('connections').innerHTML = (message.connections-1) +" ";
@@ -88,6 +91,7 @@ const socket = {
     
     nameUpdated({ dispatch, commit }, message){
       console.log("nameUpdated", message)
+      
     },
     newFriend({ dispatch, commit }, message){
       console.log("newFriend", message)

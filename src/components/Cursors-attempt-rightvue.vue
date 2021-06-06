@@ -5,12 +5,12 @@
     <li @click="update(Math.random()*1000)">Send a random number</li>
     <li @click="dump()">Dump the current vuex store "state" module to the console</li>
   </ul> -->
-      <div class="online-users">
-       <span id="connections">
-        </span> <span id="othervisitors"> other visitors online</span><br>
-          <p class="online-users">Your name is "<span id="prompt"></span>"</p>
-  <p class="online-users">Your role is "<span id="role"></span>"</p>
-    </div>
+              <!--       <div class="online-users">
+                     <span id="connections">
+                      </span> <span id="othervisitors"> other visitors online</span><br>
+                        <p class="online-users">Your name is "<span id="prompt"></span>"</p>
+                <p class="online-users">Your role is "<span id="role"></span>"</p>
+                  </div> -->
 
 <!--   <p>The current time is <span id="time-stamp"></span>.</p> -->
 <!--   <div id="dialog" class="hidden"> -->
