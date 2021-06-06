@@ -16,9 +16,9 @@
 <!--   <div id="dialog" class="hidden"> -->
     <div id="dialog" class="hidden">
     <div id="dialogchild">
-    <button class="close-dialog">
+<!--     <button class="close-dialog">
       X
-    </button>
+    </button> -->
         <div class="message">foobar</div>
         <div class="message2">foobar</div>
 
@@ -38,7 +38,7 @@
       <label for="contactChoice3">Alumnus</label><br>
       
             <input class="radiobutton" type="radio" id="contactChoice4"
-       name="roleRadio" v-on:change="radioChange" v-model="roleRadio" value="friend-cu">
+       name="roleRadio" v-on:change="radioChange" v-model="roleRadio" value="friend-cu" checked>
       <label for="contactChoice4">Friend</label>
     </div>
 
@@ -100,8 +100,8 @@
     return {
       isConnected: false,
       socketMessage: '',
-      democursorname: '',
-      roleRadio: "",
+      democursorname: 'Peter Cooper BSE\'83',
+      roleRadio: "alumnus",
       cursors: []
     }
   },
@@ -632,8 +632,17 @@ margin-right: 0px;
     pointer-events: all;
     z-index: 10;
 /*      -webkit-filter: blur(0px); */
-  
+  animation: fadeIn 2s linear;
+              -webkit-animation-duration: 2s;
+            animation-duration: 2s;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
     }
+  
+  @keyframes fadeIn {
+     0% {opacity: 0;}
+   100% {opacity: 1;}
+} 
   
   #cursorscontainer >>> #dialogchild {
     width: 400px;
@@ -646,12 +655,13 @@ margin-right: 0px;
     margin-left: auto;
     /* border: thin solid black; */
     padding: 70px;
-    background: #dcdcdc30;
+    background: #dcdcdc;
     border-radius: 10px;
     text-align: center;
     display: block;
-       -webkit-filter: blur(0px);
-    backdrop-filter: blur(6px)
+    -webkit-filter: blur(0px);
+    backdrop-filter: blur(6px);
+    animation-timing-function: cubic-bezier(1,-0.01, 0.55, 0.99);
     }
   
   #cursorscontainer >>> #dialogchild::before{
@@ -679,6 +689,7 @@ margin-right: 0px;
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
   line-height: 32px;
+  color: black;
   
 }
 
@@ -688,6 +699,7 @@ margin-right: 0px;
     font-weight: 700;
     line-height: 18px;
   padding-top: 10px;
+  color: black;
 }
 
 #cursorscontainer >>> .radioscontainer{
