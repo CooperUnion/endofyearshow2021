@@ -13,7 +13,12 @@
       </ul>
     </div>
   </main>   
+<<<<<<< HEAD
       <newcursors/>
+=======
+
+	<global-footer :items="globalNavItems" />
+>>>>>>> v0.4.1
 </template>
 
 <script>
@@ -24,7 +29,7 @@
   import GlobalNav from '@/components/GlobalNav.vue'  
   import {globalNavItems} from '@/router/index.js'
   import PageHeader from '@/components/PageHeader.vue'  
-
+  import GlobalFooter from '@/components/GlobalFooter.vue'  
   
   export default {
     name: 'Projects',
@@ -32,7 +37,8 @@
       newcursors,
       Loading,
       GlobalNav,
-      PageHeader
+      PageHeader,
+      GlobalFooter
     },
     props: {
       project: String

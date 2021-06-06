@@ -4,7 +4,9 @@ import { createStore } from 'vuex'
 const activeArea = new Set()
 const activeGlobalNav = ''
 const activeScrimId = 0
+const areaCount = new Map()
 
+<<<<<<< HEAD
 
 const socket = { 
   state() {
@@ -257,11 +259,15 @@ for (var i = 0, length = radios.length; i < length; i++) {
 }
 
 export default createStore({
+=======
+const application = {
+>>>>>>> v0.4.1
   state() {
     return {
       activeArea,
       activeGlobalNav,
-      activeScrimId
+      activeScrimId,
+      areaCount
     }
   },
   mutations: {
@@ -282,19 +288,44 @@ export default createStore({
     },
     resetActiveScrimId(state) {
       state.activeScrimId = 0
+    },
+    setAreaCount(state, area, count) {
+      areaCount.set(area, count)
     }
-    
+  }
+}
+
+const socket = {  state() {
+    return {
+      message: {message: undefined, origin: undefined}
+    }
   },
-  // getters: {
-  //   currentAreaState: (state) => {
-  //     return (navItem) => {
-  //       return state.activeArea.has(navItem)
-  //     }
-  //   }
-  // },
-  actions: {
+  mutations: {
+    SOCKET_USER_MESSAGE(state, message) {
+      state.message = {message, origin: 'socket'}
+    },
+    CLIENT_USER_MESSAGE(state, message) {
+      state.message = {message, origin: 'client'}
+    }    
   },
+<<<<<<< HEAD
   modules: {
+=======
+  getters: {},
+  actions: {
+    socket_userMessage ({ dispatch, commit }, message) {
+     commit('SOCKET_USER_MESSAGE', message);
+    },
+    client_userMessage({ dispatch, commit }, message) {
+      commit('CLIENT_USER_MESSAGE', message)
+    }
+  }
+}
+
+export default createStore({
+  modules:{
+    application,
+>>>>>>> v0.4.1
     socket
   }
 })

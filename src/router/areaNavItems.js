@@ -7,7 +7,7 @@ const areanav = [
   {name:"Performance", url:"/tag/performance"},
   {name:"Photography", url:"/tag/photography"},
   {name:"Printmaking", url:"/tag/printmaking"},
-  {name:"Sculpture", url:"/tag/aculpture"},
+  {name:"Sculpture", url:"/tag/sculpture"},
   {name:"Sound Art", url:"/tag/sound-art"}
 ]
 

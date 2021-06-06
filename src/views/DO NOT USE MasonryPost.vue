@@ -1,7 +1,7 @@
 <template>
   <global-nav :items="globalNavItems" />
    <main>    
-    
+    <page-header />
     <div class="areasPage">
       
       <area-nav :items="areaNavItems" />
@@ -10,10 +10,15 @@
       <posts v-else :items="items"/>
       
     </div>
+<<<<<<< HEAD:src/views/MasonryPost.vue
   </main>  
 
 <newcursors/>
 
+=======
+  </main>   
+	<global-footer :items="globalNavItems" />
+>>>>>>> v0.4.1:src/views/DO NOT USE MasonryPost.vue
 </template>
 
 <script>
@@ -27,13 +32,16 @@
   import areaNavItems from '@/router/areaNavItems.js'
   import GlobalNav from '@/components/GlobalNav.vue'  
   import {globalNavItems} from '@/router/index.js'
+  import GlobalFooter from '@/components/GlobalFooter.vue'  
+  
   export default {
     components: {
       newcursors,
       Loading,
       GlobalNav,
       Posts,
-      AreaNav
+      AreaNav,
+      GlobalFooter
     },
     props: {
       post: Number
@@ -75,23 +83,13 @@
   .areasPage {
     display: flex;
     flex-direction: row;
-    margin-top: 48px; /* <-- tentative */
+    padding-top: 48px; /* <-- tentative */
   }
     
-  .areasPage >>> #areanav ~ .masonryBox {
-    width: calc(100% - 275px);
-  }
-
-
-
   @media screen and (max-width: 767px) {
     .areasPage {
       flex-direction: column;
       position: relative;
-    }
-       
-    .areasPage >>> #areanav ~ .masonryBox {
-      width: 100%;
     }
   }
 

@@ -35,9 +35,14 @@
   
   .loading {
     background-image: url(./loading.gif);
-    background-size: contain;
-    width: 100px;
-    height: 100px;
+    background-size: 100px 100px;
+    width: auto;
+    min-width: 100px;
+    flex: 1;
+    min-height: 100px;
+    margin: 0 auto 33px auto;
+    background-repeat: no-repeat;
+    background-position: center 33%;
   }
 
   .loading>small {

@@ -3,7 +3,7 @@
   <global-nav :items="globalNavItems" />
 
   <main>    
-    
+    <page-header />
     <div class="areasPage">
       
       <area-nav :items="areaNavItems" />
@@ -13,10 +13,11 @@
       
     </div>
   </main>     
+	<global-footer :items="globalNavItems" />
 </template>
 
 <script>
-  import { ref, onBeforeMount, watch, getCurrentInstance } from "vue";
+  import { ref, onBeforeMount, watch, getCurrentInstance, inject } from "vue";
   import { useRoute } from 'vue-router'
   import { useStore } from 'vuex'  
   
@@ -27,16 +28,21 @@
   import navItems from '@/router/areaNavItems.js'
   import GlobalNav from '@/components/GlobalNav.vue'  
   import {globalNavItems} from '@/router/index.js'
+  import PageHeader from '@/components/PageHeader.vue'
+  import GlobalFooter from '@/components/GlobalFooter.vue'
   
   export default {
     components: {
       Loading,
       Posts,
       AreaNav,
-      GlobalNav
+      GlobalNav,
+      PageHeader,
+      GlobalFooter
     },
     props: {
-      tag: String
+      tag: String,
+      theme: String
     },
     setup(props){
       const store = useStore()
@@ -47,7 +53,7 @@
       const route = useRoute()
       const internalInstance = getCurrentInstance()
       const { api_endpoint } = internalInstance.appContext.config.globalProperties
-         
+
       onBeforeMount(loadPosts)
       async function loadToggle(){
         console.log("ok...")
@@ -85,22 +91,14 @@
   .areasPage {
     display: flex;
     flex-direction: row;
-    margin-top: 48px; /* <-- tentative */
+    padding-top: 48px; /* <-- tentative */
   }
     
-  .areasPage >>> #areanav ~ .masonryBox {
-    width: calc(100% - 275px);
-  }
-
   @media screen and (max-width: 767px) {
     .areasPage {
       flex-direction: column;
       position: relative;
       margin: 0;
-    }
-       
-    .areasPage >>> #areanav ~ .masonryBox {
-      width: 100%;
     }
   }
 

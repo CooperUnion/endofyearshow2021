@@ -48,7 +48,7 @@
       }
       
       const displayScrim = (id) => {
-        return id === store.state.activeScrimId
+        return id === store.state.application.activeScrimId
       }
       
       return {loadScrim, displayScrim, hideScrim}

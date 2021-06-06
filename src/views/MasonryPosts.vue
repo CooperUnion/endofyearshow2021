@@ -7,8 +7,13 @@
       <loading v-if="loading" :timeout="20" />
       <posts v-else :items="items"/>
     </div>
+<<<<<<< HEAD
   </main> 
  <newcursors/>
+=======
+  </main>   
+	<global-footer :items="globalNavItems" />
+>>>>>>> v0.4.1
 </template>
 
 <script>
@@ -21,8 +26,14 @@
   import areaNavItems from '@/router/areaNavItems.js'
   import GlobalNav from '@/components/GlobalNav.vue'  
   import {globalNavItems} from '@/router/index.js'
+<<<<<<< HEAD
   import PageHeader from '@/components/PageHeader.vue'  
   
+=======
+  import PageHeader from '@/components/PageHeader.vue'
+	import GlobalFooter from '@/components/GlobalFooter.vue' 
+
+>>>>>>> v0.4.1
   export default {
     components: {
       newcursors,
@@ -30,10 +41,12 @@
       GlobalNav,
       Posts,
       AreaNav,
-      PageHeader
+      PageHeader,
+      GlobalFooter
     },
     props: {
-      post: Number
+      post: Number,
+      postsEndpoint: String
     },
     setup(props){
       const loading = ref(true)
@@ -49,12 +62,14 @@
       }
       
       watch(() => route.params.tag, loadPosts)    
-      
+            
       async function loadPosts(){
         loading.value = true
         items.value = []
 
-        const url = `${api_endpoint}/api/posts`
+        const url = (props.postsEndpoint) 
+          ? `${api_endpoint}/api/posts${props.postsEndpoint}`
+          : `${api_endpoint}/api/posts`
         
         items.value = await fetch(url).then(res=>res.json())
         loading.value = false
@@ -71,24 +86,15 @@
   .areasPage {
     display: flex;
     flex-direction: row;
-    margin-top: 48px; /* <-- tentative */
+    padding-top: 48px; /* <-- tentative */
   }
     
-  .areasPage >>> #areanav ~ .masonryBox {
-    width: calc(100% - 275px);
-  }
-
   @media screen and (max-width: 767px) {
     .areasPage {
       flex-direction: column;
       position: relative;
       margin: 0;
     }
-       
-    .areasPage >>> #areanav ~ .masonryBox {
-      width: 100%;
-    }
-    
   }
 
 </style>

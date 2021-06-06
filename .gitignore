@@ -1,0 +1,4 @@
+node_modules
+.netrc
+.env
+.data

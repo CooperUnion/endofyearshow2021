@@ -28,7 +28,6 @@
         </div>
     </div>
   </div>
-<div class="gutterWidth"></div>
 </template>
 
 <script>
@@ -61,7 +60,7 @@
       }
       
       const displayScrim = (id) => {
-        return id === store.state.activeScrimId
+        return id === store.state.application.activeScrimId
       }
       
       const internalInstance = getCurrentInstance()
@@ -80,7 +79,7 @@
   }
   
   .item {
-    width: calc(33% - 32px);
+    width: calc(33.33% - 32px);
   }
   
   .post {
@@ -88,22 +87,18 @@
     border: 1px solid transparent;
     margin-bottom: 48px;
   }
-  
-  .gutterWidth {
-    position: absolute;
-    visibility: hidden;
-    width: 48px;
-  }
-  
-  
-    @media screen and (max-width: 767px) {
+    
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    .item {
+      width: calc(33.33% - 32px);
+    }
+  }  
+
+  @media screen and (max-width: 767px) {
     .item {
       width: calc(50% - 9px);
     }
-    .gutterWidth {
-      width: 18px;
-    }
-  }  
+  }
 
 
 </style>
