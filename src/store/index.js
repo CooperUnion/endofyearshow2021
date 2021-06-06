@@ -26,6 +26,7 @@ const socket = {
       console.log("socket init start", data)
       const justUsers = data.friends.filter((item)=>{ return typeof item === 'object' })
       justUsers.forEach(user => state.cursors.cursors[user.id] = user)
+      //also render them in the page?
     },
     SOCKET_USER_MESSAGE(state, message) {
       state.message = {message, origin: 'socket'}
