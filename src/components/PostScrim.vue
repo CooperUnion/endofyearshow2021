@@ -22,15 +22,17 @@
 						</template>
 					</div>
         </div>
-        <template v-if="assets.media.length>1 && !mobile">
-          <button class="imgControl prev" @click="goPrev()">previous</button>
-          <button class="imgControl next" @click="goNext()">next</button>
-        </template>    
-        <template v-else>
-          <ul class="paginationDots">
-						<li v-for="(media, index) of assets.media" v-bind:key="media.id" :class="['dot', index === current ? 'selected' : '']"></li>
-          </ul>
-        </template>    
+        <template v-if="assets.media.length>1">
+					<template v-if="mobile">
+						<ul class="paginationDots">
+							<li v-for="(media, index) of assets.media" v-bind:key="media.id" :class="['dot', index === current ? 'selected' : '']"></li>
+						</ul>
+					</template>   
+					<template v-else>
+						<button class="imgControl prev" @click="goPrev()">previous</button>
+						<button class="imgControl next" @click="goNext()">next</button>
+					</template>    
+        </template> 
       </div>
 
       <div v-else-if="type==='url'">
@@ -109,7 +111,7 @@
       const dragSleeve = ref()
       const isOvershooting = ref(false)
       
-      const swipeGap = parseInt(document.documentElement.clientWidth / 15, 10)
+      const swipeGap = parseInt(document.documentElement.clientWidth / 15, 10) // Threshold for swiping is 1/15th of the width of the screen.
       
       const dragOptions = { 
       	swipeDistance: swipeGap
@@ -165,10 +167,14 @@
       }
 
       onKeyUp('ArrowLeft', (e) => {
-			 goPrev()
-     })
+				if (props.assets.media.length > 1) {
+				 goPrev()
+				}
+			})
       onKeyUp('ArrowRight', (e) => {
-        goNext()
+				if (props.assets.media.length > 1) {
+					goNext()
+				}
       })
       onKeyUp('Escape', (e)=>{
         hideScrim()

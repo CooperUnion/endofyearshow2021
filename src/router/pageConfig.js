@@ -30,7 +30,7 @@
     refreshEnabled: false
   },
   students: {
-    title: 'Student Work',
+    title: 'Students',
     body: '',
     refreshEnabled: false
   },
