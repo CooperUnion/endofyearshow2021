@@ -7,7 +7,7 @@ import MasonryPosts from '@/views/MasonryPosts.vue'
 // import MasonryTag from '@/views/MasonryTag.vue'
 import Projects from '@/views/Projects.vue'
 import Project from '@/views/Project.vue'
-import newCursors from '@/components/Cursors-attempt-rightvue.vue'
+// import newCursors from '@/components/Cursors-attempt-rightvue.vue'
 import Students from '@/views/Students.vue'
 import Student from '@/views/Student.vue'
 import Info from '@/views/Info.vue'
@@ -15,6 +15,8 @@ import Info from '@/views/Info.vue'
 import DebugSocket from '@/views/DebugSocket.vue'
 import DebugMotion from '@/views/DebugMotion.vue'
 import DebugPath from '@/views/DebugPath.vue'
+import DebugCursor from '@/views/DebugCursorDisplay.vue'
+
 
 const casco = new Casco(['default'])
 
@@ -64,14 +66,14 @@ let routes = [
     component: Student,
     props: true
   },
-  {
-    path: '/cursors',
-    name: 'Cursors',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Cursors.vue')
-  },
+  // {
+  //   path: '/cursors',
+  //   name: 'Cursors',
+  //   // route level code-splitting
+  //   // this generates a separate chunk (about.[hash].js) for this route
+  //   // which is lazy-loaded when the route is visited.
+  //   component: () => import(/* webpackChunkName: "about" */ '../views/Cursors.vue')
+  // },
   {
     name: "🚶/urlParam", 
     path: "/DebugPath/:test", 
@@ -115,7 +117,7 @@ let globalNavItems = [
 
   {name: "🔌", path: "/DebugSocket", component: DebugSocket },
   {name: "🔛", path: "/DebugMotion", component: DebugMotion },
-  {name: "🖱️", path: "/DebugCursor", component: newCursors},
+  {name: "🖱️", path: "/DebugCursor", component: DebugCursor},
   {
     name: "🚶", 
     path: "/DebugPath", 
