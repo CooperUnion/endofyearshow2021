@@ -40,6 +40,12 @@ const socket = {
     state.playercursor = data
     console.log("clientplayercursormove", data)
 },
+    SOCKET_OTHERUSER_CURSOR_MOVE(state, data){
+       // {friend: 21, friendX: "81.41", friendY: "0.21", name: "rry-vue-data-store", role: "current-student"}
+      state.cursors[data.friend].posX = data.friendX //?
+      console.log(data)
+    },
+    
     SOCKET_CONNECTED_MESSAGE(state, message) {
       // state.message = {message, origin: 'socket'}
       // console.log("socketconnectedmessage", message)
@@ -257,31 +263,16 @@ for (let i = 0, length = radios.length; i < length; i++) {
       run(data, that, dispatch);
       
     },
-    socketMove({ dispatch, commit }, message){
-      console.log("move", message)
-      // {friend: 21, friendX: "81.41", friendY: "0.21", name: "rry-vue-data-store", role: "current-student"}
-      if (this.Meeting1){
-      this.Meeting1.updateFriend(message)
-      } else {
-        // console.log(self.player)
-        // console.log(data.player)
-        if (window.sessionStorage.getItem('EOYS2021TempId')){
-        const playerId = window.sessionStorage.getItem('EOYS2021TempId')
-        self.player = new Player(playerId);
-        this.Meeting1 = new Meeting()
-        
-                              window.onmousemove = (e) => {
-                          // console.log(document.querySelector("body"))
-                          const x = e.clientX
-                          const y = e.pageY
-                          const location = self.player.update(x,y,dispatch, playerId, window.sessionStorage.getItem('EOYS2021Name'),  window.sessionStorage.getItem('EOYS2021Role')) 
-                      }; 
-        }
-      }
+    socketMove({ dispatch, commit }, data){
+      console.log("otherusermove", data)
+      commit('SOCKET_OTHERUSER_CURSOR_MOVE', data)
+     
+
+      
       
     },
     move({ dispatch, commit }, data){
-      console.log("playermove", data)
+      // console.log("playermove", data)
       commit('CLIENT_PLAYER_CURSOR_MOVE', data)
     }
     
