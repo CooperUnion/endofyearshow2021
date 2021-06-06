@@ -35,12 +35,12 @@
         </template> 
       </div>
 
-      <div v-else-if="type==='url'">
+      <div v-else-if="type==='url'" class="urlDeck">
         <img :src="assets.preview.source_url" />
         <b v-if="assets.url"><a :href="assets.url">visit site url</a></b>
       </div>
 
-      <div v-else-if="type==='video'">
+      <div v-else-if="type==='video'" class="videoDeck">
 
 				<video 
 					ref="videojsplayer" 
@@ -48,9 +48,8 @@
 					controls 
 					controlsList="nodownload"
 					preload="auto"
-					v-bind:poster="assets.preview.source_url" 
-					width="640" 
-					height="268">
+					v-bind:poster="assets.preview.source_url"
+					>
 					
 					<source 
 						v-bind:src="assets.media[0].vimeo.files[0].link" type="video/mp4" />
@@ -466,6 +465,12 @@
 	.imgControl.next {
 		right: 0;
 		background-image: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="48" height="48" viewBox="0, 0, 48, 48"><path d="M18,36 L30,24 L18,12" fill-opacity="0" stroke="Silver" stroke-width="2" stroke-linecap="square"/></svg>');
+	}
+	
+	.videoDeck video {
+		width: 100%;
+		height: auto;
+		max-height: 600px;
 	}
 	
 	@media screen and (max-width: 767px) {
