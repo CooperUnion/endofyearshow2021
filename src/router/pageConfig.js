@@ -33,6 +33,5 @@
     title: 'Student Work',
     body: '',
     refreshEnabled: false
-  },
-
+  }
 }
