@@ -34,8 +34,8 @@ const socket = {
     console.log("clientplayercursormove", message)
 },
     SOCKET_CONNECTED_MESSAGE(state, message) {
-      state.message = {message, origin: 'socket'}
-      console.log("socketconnectedmessage", message)
+      // state.message = {message, origin: 'socket'}
+      // console.log("socketconnectedmessage", message)
     },
     SOCKET_INIT(data, state){
       // state.init = data
@@ -66,6 +66,7 @@ const socket = {
     connected({ dispatch, commit }, message) {
       console.log("socket connected2!", message)
       commit("SOCKET_CONNECTED_MESSAGE", message)
+      document.getElementById("connections").innerHTML = message.connecitons-1
     },
     nameChosen({ dispatch, commit }, message) {
       console.log("nameChosen!", message) //emit name chosen!
