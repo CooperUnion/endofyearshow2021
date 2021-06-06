@@ -4,7 +4,7 @@ import { Casco } from 'vue-casco'
 import Home from '@/views/Home.vue'
 import MasonryPosts from '@/views/MasonryPosts.vue'
 // import MasonryPost from '@/views/MasonryPost.vue'
-import MasonryTag from '@/views/MasonryTag.vue'
+// import MasonryTag from '@/views/MasonryTag.vue'
 import Projects from '@/views/Projects.vue'
 import Project from '@/views/Project.vue'
 import Students from '@/views/Students.vue'
@@ -34,9 +34,14 @@ let routes = [
   },
   {
     path: '/tag/:tag',
-    name: 'MasonryPostsTag',
-    component: MasonryTag,
-    props: true
+    name: 'Area',
+    component: MasonryPosts,
+    props: (route) =>{
+      return {
+        tag: route.params.tag,
+        postsEndpointSuffix: `tags/${route.params.tag}`
+      }
+    }
   },  
   {
     path: '/tag',
@@ -65,6 +70,22 @@ let routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/Cursors.vue')
+  },
+  {
+    name: "🚶/urlParam", 
+    path: "/DebugPath/:test", 
+    component: DebugPath,
+    props: true
+  },
+  {
+    name: "🚶/function", 
+    path: "/DebugPath/function/:test", 
+    component: DebugPath,
+    props: (route) =>{
+      return {
+        test: `The test url param is: ${route.params.test}`
+      }
+    }
   }
 ]
 
@@ -76,7 +97,7 @@ let globalNavItems = [
     path:"/foundation", 
     component: MasonryPosts,
     props:{
-      postsEndpoint: '/year/freshman'
+      postsEndpointSuffix: 'year/freshman'
     }
   },
   {name:"Projects", path:"/projects/", component: Projects},
@@ -98,22 +119,6 @@ let globalNavItems = [
     component: DebugPath,
     props: {
       test: "A string set in the router"
-    }
-  },
-  {
-    name: "🚶/urlParam", 
-    path: "/DebugPath/:test", 
-    component: DebugPath,
-    props: true
-  },
-  {
-    name: "🚶/function", 
-    path: "/DebugPath/function/:test", 
-    component: DebugPath,
-    props: (route) =>{
-      return {
-        test: `The test url param is: ${route.params.test}`
-      }
     }
   }
 ]

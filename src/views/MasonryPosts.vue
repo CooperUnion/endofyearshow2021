@@ -4,7 +4,7 @@
    <main>    
     <page-header />
     <div class="areasPage">
-      <area-nav :items="areaNavItems" v-if="$route.name === 'Areas' || $route.name === 'Students'" />
+      <area-nav :items="areaNavItems" v-if="['Areas','Area','Students'].includes($route.name)" />
       <loading v-if="loading" :timeout="20" />
       <posts v-else :items="items"/>
     </div>
@@ -37,7 +37,7 @@
     },
     props: {
       post: Number,
-      postsEndpoint: String,
+      postsEndpointSuffix: String,
       tag: String,
       theme: String
     },
@@ -52,10 +52,6 @@
       const { api_endpoint } = internalInstance.appContext.config.globalProperties
          
       onMounted(loadPosts)
-      async function loadToggle(){
-        console.log("ok...")
-        loading.value = loading.value === true ? false : true
-      }
       
       watch(() => route.params.tag, loadPosts)    
             
@@ -76,16 +72,17 @@
         loading.value = true
         items.value = []
 
-        const url = (props.postsEndpoint) 
-          ? `${api_endpoint}/api/posts${props.postsEndpoint}`
+        const url = (props.postsEndpointSuffix) 
+          ? `${api_endpoint}/api/posts/${props.postsEndpointSuffix}`
           : `${api_endpoint}/api/posts`
+
+        console.log({url,name:route.name})
         
         items.value = await fetch(url).then(res=>res.json())
         loading.value = false
-        console.log(items.value)
         return true
       }
-      return {items, loading, loadToggle, loadPosts, areaNavItems, globalNavItems}
+      return {items, loading, loadPosts, areaNavItems, globalNavItems}
     }
   }
 </script>

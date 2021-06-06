@@ -4,7 +4,7 @@
   </h1>
   <ul>
     <li>
-      test: {{test}} 
+      test: {{test === 'test' ? 'test is the url param, sent with props:true' : test}} 
     </li>
     <li>
      props.test: {{test}} 
