@@ -78,15 +78,15 @@ const socket = {
       //classes: this.connections?
       console.log("byeFriend", message)
                            console.log("connections,", message.connections-1)
-                     document.getElementById('connections').innerHTML = (message.connections-1) +" ";
-                    if ((message.connections-1)===1){
-                      document.getElementById("othervisitors").innerHTML = " other visitor online"
-                    } else {
-                        document.getElementById("othervisitors").innerHTML = " other visitors online"
-                    }
-                          if(this.Meeting1){
-                          this.Meeting1.removeFriend(self,message.friend, this.Meeting1);
-                          }
+                    //  document.getElementById('connections').innerHTML = (message.connections-1) +" ";
+                    // if ((message.connections-1)===1){
+                    //   document.getElementById("othervisitors").innerHTML = " other visitor online"
+                    // } else {
+                    //     document.getElementById("othervisitors").innerHTML = " other visitors online"
+                    // }
+                    //       if(this.Meeting1){
+                    //       this.Meeting1.removeFriend(self,message.friend, this.Meeting1);
+                    //       }
     },
     
     nameUpdated({ dispatch, commit }, message){ //other person's name is uodated, update cursor currently in the page
