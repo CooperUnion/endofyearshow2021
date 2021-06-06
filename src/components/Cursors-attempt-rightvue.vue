@@ -632,6 +632,7 @@ margin-right: 0px;
     pointer-events: all;
     z-index: 10;
 /*      -webkit-filter: blur(0px); */
+  
     }
   
   #cursorscontainer >>> #dialogchild {

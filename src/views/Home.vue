@@ -3,7 +3,7 @@
   ">
   <img class ="desktoplogo" src="https://cdn.glitch.com/d71c7c2a-c6c4-4028-9136-d224524d7374%2Fdesktop.svg?v=1622648434792">
   <img class ="mobilelogo" src="https://cdn.glitch.com/d71c7c2a-c6c4-4028-9136-d224524d7374%2Fmobile.svg?v=1622665230806">
-  <button class="refreshButton">Enter</button>
+  <button id="transitionbutton" class="refreshButton">Enter</button>
   </div>
 <newcursors/>
 </template>
@@ -146,6 +146,9 @@
       particles[i]['dom'].addEventListener('click', (e) => {
 transition();
       });
+      document.getElementById("transitionbutton").addEventListener('click', (e) => {
+        transition();
+      })
       
       frame.prepend(particles[i]['dom']);
     }
@@ -207,7 +210,66 @@ transition();
 
     document.body.style.overflow = 'hidden'
     
-  }
+  }, 
+    
+//     methods: {
+//         transition: function(){
+//               window.running = false
+//                   document.getElementsByClassName("desktoplogo")[0].style.transition='filter 0.2s linear, transform '+1+'s linear, opacity 0.6s linear';
+//   document.getElementsByClassName("desktoplogo")[0].style.opacity = 0;
+//   document.getElementsByClassName("mobilelogo")[0].style.transition='filter 0.2s linear, transform '+1+'s linear, opacity 0.6s linear';
+//   document.getElementsByClassName("mobilelogo")[0].style.opacity = 0; 
+//   Array.from(document.getElementsByClassName("friend")).forEach(friend => friend.remove())
+//   Array.from(document.getElementsByClassName("refreshButton")).forEach(friend => friend.remove())
+//               setTimeout(function(){ 
+//        this.removeAndReplaceParticles(document.querySelector("particle-1").style.height); 
+//                              }, 1500, );
+        
+//       for (var i = 1; i <= particles.length; i++) {
+//         particles[i]['dom'].style.transition = "left 1.1s cubic-bezier(1,-0.01, 0.55, 0.99), top 1.1s cubic-bezier(1,-0.01, 0.55, 0.99)"
+//         particles[i]['dom'].style.setProperty("left", ((window.innerWidth/2)-(particles[i]['size']/2))+"px");
+//         particles[i]['dom'].style.setProperty("top", ((window.innerHeight/2)-(particles[i]['size']/1.35))+"px");
+//         particles[i]['dom'].setAttribute("x-velocity", 0)
+//         particles[i]['dom'].setAttribute("y-velocity", 0)
+//       }
+      
+
+        
+      
+//     },
+    
+//   removeAndReplaceParticles: function(size){
+//     const transitionLens = document.createElement("div")
+//     transitionLens.id = "transitionLens"
+    
+//     while (document.getElementById("particle-frame").firstChild) {
+//         document.getElementById("particle-frame").removeChild(document.getElementById("particle-frame").firstChild);
+//     }
+
+//         document.getElementById("particle-frame").prepend(transitionLens)
+//         document.getElementById("transitionLens").style.position = "absolute"
+//         document.getElementById("transitionLens").style.height = size
+//         document.getElementById("transitionLens").style.width = size
+//         document.getElementById("transitionLens").style.backgroundColor = "white"
+//         document.getElementById("transitionLens").style.left = ((window.innerWidth/2)-((size.replace("px", ""))/2))+"px"
+//         document.getElementById("transitionLens").style.top = ((window.innerHeight/2)-((size.replace("px", ""))/1.35))+"px"
+//         document.getElementById("transitionLens").style.borderRadius = (size.replace("px", ""))/2 + "px"
+//                       setTimeout(function(){ 
+//         document.getElementById("transitionLens").style.transition = "height 0.5s cubic-bezier(1,-0.01, 0.55, 0.99), width 0.5s cubic-bezier(1,-0.01, 0.55, 0.99), border-radius 0.5s cubic-bezier(1,-0.01,1,-0.13), left 0.5s cubic-bezier(1,-0.01, 0.55, 0.99), top 0.5s cubic-bezier(1,-0.01, 0.55, 0.99)"
+//         document.getElementById("transitionLens").style.height = window.innerHeight +"px"
+//         document.getElementById("transitionLens").style.width = window.innerWidth + "px"
+//         document.getElementById("transitionLens").style.borderRadius = 0 + "px"
+//         document.getElementById("transitionLens").style.left = 0+"px"
+//         document.getElementById("transitionLens").style.top = 0+"px"
+//                              }, 150,);
+//     setTimeout(function(){ 
+//     window.location.href = "/areas"
+//       }, 900,);
+    
+//     // update url?
+    
+//   }
+//   }
 }
 </script>
 <style>
