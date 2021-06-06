@@ -7,11 +7,16 @@ const activeGlobalNav = ''
 const activeScrimId = 0
 const areaCount = new Map()
 
+const playercursor = {
+  x:0,
+  y:0
+}
+
 const socket = {
   state() {
     return {
       message: {message: undefined, origin: undefined},
-      playercursor: {message: undefined, origin: undefined},
+      playercursor,
       cursors: {cursors: undefined, origin: undefined},
       system_message: {message: undefined, origin: undefined}
     }
@@ -27,12 +32,13 @@ const socket = {
     },
     SOCKET_SYSTEM_MESSAGE(state, message) {
       state.system_message = {message, origin: 'system'}
+      state.playercursor = {}
       console.log("statesystemmessagemutationMUTATION", message)
     },
     
-    CLIENT_PLAYER_CURSOR_MOVE(state, message) {
-    state.message = {message, origin: 'client'}
-    console.log("clientplayercursormove", message)
+    CLIENT_PLAYER_CURSOR_MOVE(state, data) {
+    state.playercursor = data
+    console.log("clientplayercursormove", data)
 },
     SOCKET_CONNECTED_MESSAGE(state, message) {
       // state.message = {message, origin: 'socket'}
@@ -274,10 +280,10 @@ for (let i = 0, length = radios.length; i < length; i++) {
       }
       
     },
-    move({ dispatch, commit }, message){
-      console.log("playermove", message)
-      
-    },
+    move({ dispatch, commit }, data){
+      console.log("playermove", data)
+      commit('CLIENT_PLAYER_CURSOR_MOVE', data)
+    }
     
     
     //PLAYERMOVE emit move

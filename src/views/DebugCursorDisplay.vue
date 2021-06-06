@@ -2,7 +2,11 @@
   <h1>
     DebugCursorDisplay
   </h1>
-  <cursor-display/>
+  <b @click="dump()">dump vuex</b>
+
+  <cursor-display />
+  Current live data: {{position}} <br />
+  Data from vuex: {{storeRetreivedData}}
 </template>
 <script>
 
@@ -17,6 +21,28 @@
     },
     props:{
       test: String
+    },
+    setup(props){
+
+      const store = useStore()
+
+      const position = ref({})
+
+      window.onmousemove = (e) => {
+          const x = e.clientX
+          const y = e.pageY
+          position.value = {x,y}
+          store.dispatch('move', position.value)
+      }
+
+      const storeRetreivedData = ref(store.state.socket)
+
+
+      const dump = ()=>{
+        console.log(store.state.socket)
+      }
+
+      return { position, dump, storeRetreivedData }
     }
   }
 </script>
