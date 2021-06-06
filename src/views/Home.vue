@@ -3,6 +3,7 @@
   ">
   <img class ="desktoplogo" src="https://cdn.glitch.com/d71c7c2a-c6c4-4028-9136-d224524d7374%2Fdesktop.svg?v=1622648434792">
   <img class ="mobilelogo" src="https://cdn.glitch.com/d71c7c2a-c6c4-4028-9136-d224524d7374%2Fmobile.svg?v=1622665230806">
+  <button class="refreshButton">Enter</button>
   </div>
 <newcursors/>
 </template>
@@ -71,6 +72,8 @@
   document.getElementsByClassName("desktoplogo")[0].style.opacity = 0;
   document.getElementsByClassName("mobilelogo")[0].style.transition='filter 0.2s linear, transform '+1+'s linear, opacity 0.6s linear';
   document.getElementsByClassName("mobilelogo")[0].style.opacity = 0; 
+  Array.from(document.getElementsByClassName("friend")).forEach(friend => friend.remove())
+  Array.from(document.getElementsByClassName("refreshButton")).forEach(friend => friend.remove())
               setTimeout(function(){ 
        removeAndReplaceParticles(document.querySelector("particle-1").style.height); 
                              }, 1500, );
@@ -220,7 +223,21 @@ body{
   overflow: hidden;
 }
   
-
+  #particle-frame >>> .refreshButton{
+    background-color: black;
+    color: white;
+    border-radius: 200px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 30px;
+    width: 276px;
+    height: 64px;
+    margin-top: 48px;
+    position: absolute;
+    bottom: 100px;
+    left: calc(50vw - 138px);
+    border: 2px solid white;
+  }
 
 #particle-frame {
   position: absolute;
