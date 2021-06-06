@@ -64,7 +64,7 @@ const socket = {
       console.log("socketsystemmessageACTION", message)
     },
     
-    connected({ dispatch, commit }, message) { //new connection for everyone
+    connected({ dispatch, commit }, message) { //new connection for everyone //essentially just there to update "online" count
       console.log("socket connected2!", message)
       commit("SOCKET_CONNECTED_MESSAGE", message)
       document.getElementById("connections").innerHTML = message.connecitons-1
@@ -74,7 +74,7 @@ const socket = {
       commit("nameChosen", message)
     },
     
-    byeFriend({ dispatch, commit }, message) {
+    byeFriend({ dispatch, commit }, message) { //to remove connections, and remove the cursor from the page (does it work properly?)
       //classes: this.connections?
       console.log("byeFriend", message)
                            console.log("connections,", message.connections-1)
@@ -89,12 +89,51 @@ const socket = {
                           }
     },
     
-    nameUpdated({ dispatch, commit }, message){
+    nameUpdated({ dispatch, commit }, message){ //other person's name is uodated, update cursor currently in the page
       console.log("nameUpdated", message)
       
+                  if (this.Meeting1){
+      this.Meeting1.updateFriendName(message.data.id, message.data.player, this.Meeting1, message.data.name, message.data.role, message)
+      } else {
+        // console.log(self.player)
+        // console.log(data.player)
+        if (window.sessionStorage.getItem('EOYS2021TempId')){
+        const playerId = window.sessionStorage.getItem('EOYS2021TempId')
+        self.player = new Player(playerId);
+        this.Meeting1 = new Meeting()
+        this.Meeting1.updateFriendName(message.data.id, message.data.player, this.Meeting1, message.data.name, message.data.role, message)
+                              window.onmousemove = (e) => {
+                          // console.log(document.querySelector("body"))
+                          const x = e.clientX
+                          const y = e.pageY
+                          const location = self.player.update(x,y,dispatch, playerId, window.sessionStorage.getItem('EOYS2021Name'),  window.sessionStorage.getItem('EOYS2021Role')) 
+                      }; 
+        }
+      }
+      
     },
-    newFriend({ dispatch, commit }, message){
+    newFriend({ dispatch, commit }, message){ //new cursor first connects, no name, just id
       console.log("newFriend", message)
+      
+            if (this.Meeting1){
+      this.Meeting1.createFriend(message.friend, message.player, this.Meeting1, message.name, message.role); //undefined on purpose
+      } else {
+        // console.log(self.player)
+        // console.log(data.player)
+        if (window.sessionStorage.getItem('EOYS2021TempId')){
+        const playerId = window.sessionStorage.getItem('EOYS2021TempId')
+        self.player = new Player(playerId);
+        this.Meeting1 = new Meeting()
+        this.Meeting1.createFriend(message.friend, message.player, this.Meeting1, message.name, message.role);
+                              window.onmousemove = (e) => {
+                          // console.log(document.querySelector("body"))
+                          const x = e.clientX
+                          const y = e.pageY
+                          const location = self.player.update(x,y,dispatch, playerId, window.sessionStorage.getItem('EOYS2021Name'),  window.sessionStorage.getItem('EOYS2021Role')) 
+                      }; 
+        }
+      }
+      
     },
     init({ dispatch, commit }, data){
       console.log("init", data)
