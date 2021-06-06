@@ -3,7 +3,9 @@
     <div class="scrim-shroud"></div>
     <div class="scrim-contents">
       <header class="title-block">
-        <h6 class="credits"><span class="title" v-html="title"/><a class="author" href="#" v-html="author.formatted"/></h6>
+        <h6 class="credits"><span class="title" v-html="title"/>
+					<a class="author" @click="hideScrim()" :href="'/student/'+author.slug" v-html="author.formatted" />
+				</h6>
         <button class="close" @click="hideScrim()">close</button>
         <template v-if="assets.media.length>1">
           <span class="paginator">{{current + 1}}/{{assets.media.length}}</span>
