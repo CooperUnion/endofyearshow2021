@@ -15,6 +15,7 @@ import Info from '@/views/Info.vue'
 import DebugSocket from '@/views/DebugSocket.vue'
 import DebugMotion from '@/views/DebugMotion.vue'
 import DebugPath from '@/views/DebugPath.vue'
+import DebugCursorDisplay from '@/views/DebugCursorDisplay.vue'
 
 const casco = new Casco(['default'])
 
@@ -116,6 +117,7 @@ let globalNavItems = [
   {name: "🔌", path: "/DebugSocket", component: DebugSocket },
   {name: "🔛", path: "/DebugMotion", component: DebugMotion },
   {name: "🖱️", path: "/DebugCursor", component: newCursors},
+  {name: "DBCD", path:"/DebugCursorDisplay", component: DebugCursorDisplay},
   {
     name: "🚶", 
     path: "/DebugPath", 

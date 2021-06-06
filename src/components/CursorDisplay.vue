@@ -9,9 +9,9 @@
   
 
   export default {
-    name: 'Loading',
+    name: 'CursorDisplay',
     props: {
-      timeout: Number
+      
     },
     setup(props){
       const loading = ref(true)
