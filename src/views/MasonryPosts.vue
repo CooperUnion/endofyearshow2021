@@ -3,7 +3,7 @@
    <main>    
     <page-header />
     <div class="areasPage">
-      <area-nav :items="areaNavItems" v-if="$route.name === 'Areas' || $route.name === 'Students'" />
+      <area-nav :items="areaNavItems" v-if="['Areas','Area','Students'].includes($route.name)" />
       <loading v-if="loading" :timeout="20" />
       <posts v-else :items="items"/>
     </div>
@@ -12,12 +12,14 @@
 </template>
 
 <script>
-  import { ref, onBeforeMount, watch, getCurrentInstance } from "vue";
+  import { ref, onBeforeMount, onMounted, watch, getCurrentInstance } from "vue";
   import { useRoute } from 'vue-router'
+  import { useStore } from 'vuex'  
+
   import Loading from '@/components/Loading.vue'
   import AreaNav from '@/components/AreaNav.vue'
   import Posts from '@/components/Posts.vue'
-  import areaNavItems from '@/router/areaNavItems.js'
+  import navItems from '@/router/areaNavItems.js'
   import GlobalNav from '@/components/GlobalNav.vue'  
   import {globalNavItems} from '@/router/index.js'
   import PageHeader from '@/components/PageHeader.vue'  
@@ -34,37 +36,50 @@
     },
     props: {
       post: Number,
-      postsEndpoint: String
+      postsEndpointSuffix: String,
+      tag: String,
+      theme: String
     },
     setup(props){
+      const store = useStore()
+
       const loading = ref(true)
       const items = ref()
+      const areaNavItems = ref(navItems)
       const route = useRoute()
       const internalInstance = getCurrentInstance()
       const { api_endpoint } = internalInstance.appContext.config.globalProperties
          
-      onBeforeMount(loadPosts)
-      async function loadToggle(){
-        console.log("ok...")
-        loading.value = loading.value === true ? false : true
-      }
+      onMounted(loadPosts)
       
       watch(() => route.params.tag, loadPosts)    
             
       async function loadPosts(){
+        try {
+          // Handle when filtering for a tag
+          if(route.params.tag.split(',').length>0) {
+            route.params.tag.split(',').map((tag)=>{
+              store.commit('activateArea', tag)
+            })
+          } else {
+            store.commit('activateArea', route.params.tag)
+          }
+        } catch(e) {
+          // Not filtering by a tag
+        }
+
         loading.value = true
         items.value = []
 
-        const url = (props.postsEndpoint) 
-          ? `${api_endpoint}/api/posts${props.postsEndpoint}`
+        const url = (props.postsEndpointSuffix) 
+          ? `${api_endpoint}/api/posts/${props.postsEndpointSuffix}`
           : `${api_endpoint}/api/posts`
         
         items.value = await fetch(url).then(res=>res.json())
         loading.value = false
-        console.log(items.value)
         return true
       }
-      return {items, loading, loadToggle, loadPosts, areaNavItems, globalNavItems}
+      return {items, loading, loadPosts, areaNavItems, globalNavItems}
     }
   }
 </script>

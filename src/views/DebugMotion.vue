@@ -28,7 +28,7 @@
   import { onKeyStroke, onKeyUp } from '@vueuse/core'
 
   export default {
-    name: 'MotionDebug',
+    name: 'DebugMotion',
     components: {},
     setup(){
 

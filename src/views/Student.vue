@@ -5,9 +5,12 @@
     <loading v-if="loading" :timeout="15" />
     <template v-else>
       <router-link to="/students" class="backLink">All students</router-link>
+      <page-subheader :title="student" />
+<!-- 
       <ul>
         <li v-for="student of students" v-bind:key="student">{{student}}</li>
       </ul>
+ -->
       <project-posts :items="items" />
     </template>
   </main>   
@@ -22,7 +25,7 @@
   import Loading from '@/components/Loading.vue'
   import GlobalNav from '@/components/GlobalNav.vue'  
   import {globalNavItems} from '@/router/index.js'
-  import PageHeader from '@/components/PageHeader.vue'  
+  import PageSubheader from '@/components/PageSubheader.vue'  
   import ProjectPosts from '@/components/ProjectPosts.vue'
   import GlobalFooter from '@/components/GlobalFooter.vue'
   
@@ -31,6 +34,7 @@
     components: {
       Loading,
       GlobalNav,
+      PageSubheader,
       ProjectPosts,
       GlobalFooter
     },
@@ -99,7 +103,7 @@
 			text-decoration: underline;
   }
   
-  #globalnav:hover ~ main .backLink {
+  header:hover ~ main .backLink {
 			transform: scale(0.99);
   	opacity: 0;
   }
