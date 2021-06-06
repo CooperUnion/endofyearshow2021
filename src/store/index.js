@@ -156,6 +156,7 @@ const socket = {
 
   dialog.querySelector('.message').innerHTML = String(message);
   dialog.querySelector('.message2').innerHTML = String(message2)
+    console.log("promptPromise")
   dialog.className = '';
 
   return new Promise(function(resolve, reject) {
@@ -196,10 +197,10 @@ for (var i = 0, length = radios.length; i < length; i++) {
     data.friends.forEach(friend1 => that.Meeting1.createFriend(friend1.id, data.player, that.Meeting1, friend1.name, friend1.role, friend1));
     that.player = new Player(data.player);
 
-  let output = document.getElementById('prompt');
-  let rolefield = document.getElementById('role')
-      output.innerHTML = '' + response.name;
-      rolefield.innerHTML = "" + response.role;
+  // let output = document.getElementById('prompt');
+  // let rolefield = document.getElementById('role')
+  //     output.innerHTML = '' + response.name;
+  //     rolefield.innerHTML = "" + response.role;          //is player information
     
            window.onmousemove = (e) => {
           const x = e.clientX
