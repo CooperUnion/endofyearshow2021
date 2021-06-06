@@ -102,6 +102,7 @@ const socket = {
   var input   = document.getElementById("textinput");
   var okButton = dialog.querySelector('button.ok');
   var XButton = dialog.querySelector('button.close-dialog');
+  const skipButton = dialog.querySelector('button.cancel')
   let radio = ""
   
   dialog.querySelector('.message').innerHTML = String(message);
@@ -126,8 +127,8 @@ for (var i = 0, length = radios.length; i < length; i++) {
 }
 
       } else if (e.target === XButton){
-      } else {
-        resolve({input: input.value, radio: "undefined"});
+      } else if (e.target === skipButton){
+        resolve({input: "", radio: "skipped"});
       }
     };
   });
@@ -138,7 +139,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
   var output = document.getElementById('prompt');
   var rolefield = document.getElementById('role')
   
-  if (window.sessionStorage.getItem('EOYS2021Name')){
+  if (window.sessionStorage.getItem('EOYS2021Name') && window.sessionStorage.getItem('EOYS2021Name') != ""){
     var dialog  = document.getElementById('dialog');
     dialog.className = 'hidden'
     console.log("session storage SUCCESS")
@@ -178,9 +179,9 @@ for (var i = 0, length = radios.length; i < length; i++) {
       rolefield.innerHTML = "" + name.radio;
       console.log("response completed!")
       // console.log(that.$socket.client)
-      const response = {name: name, role: "skipped"}
-      window.sessionStorage.setItem('EOYS2021Name', "")
-      window.sessionStorage.setItem('EOYS2021Role', "skipped")
+      const response = {name: name.input, role: name.radio}
+      window.sessionStorage.setItem('EOYS2021Name', name.input)
+      window.sessionStorage.setItem('EOYS2021Role', name.radio)
       // that.$socket.client.emit('nameChosen', {response: response, player: data.player})
       // console.log("IMPORTANT: emit nameChosen HERE", {response: response, player: data.player})
       dispatch('nameChosen',{response: response, player: data.player});
@@ -195,7 +196,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
                           // console.log(document.querySelector("body"))
                           const x = e.clientX
                           const y = e.pageY
-                          const location = self.player.update(x,y,dispatch, data.player, response.name, response.role) 
+                          const location = self.player.update(x,y,dispatch, data.player, name.input, name.radio) 
                       };    
 
     }).catch(function() {
