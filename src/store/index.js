@@ -1,6 +1,5 @@
 import { createStore } from 'vuex'
 import {Player, Friend, Meeting} from './People.class.js'
-import {Client, Session} from './Connections.class.js'
 
 const activeArea = new Set()
 const activeGlobalNav = ''
@@ -18,7 +17,8 @@ const socket = {
       message: {message: undefined, origin: undefined},
       playercursor,
       cursors: {cursors: {}, origin: undefined},
-      system_message: {message: undefined, origin: undefined}
+      system_message: {message: undefined, origin: undefined},
+      connections: 0
     }
   },
   mutations: {
@@ -53,7 +53,8 @@ const socket = {
     },
     
     SOCKET_CONNECTED_MESSAGE(state, message) {
-      // state.message = {message, origin: 'socket'}
+      state.connections = message
+      console.log("socket connected message ^")
       // console.log("socketconnectedmessage", message)
     },
     // move(state, message){

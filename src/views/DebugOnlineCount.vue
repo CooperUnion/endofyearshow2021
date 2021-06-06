@@ -6,7 +6,7 @@
 
   <online-count />
   Current live data: {{position}} <br />
-  Data from vuex: {{storeRetreivedData}}
+  Data from vuex: {{storeRetreivedData.connections}}
 </template>
 <script>
 
@@ -28,12 +28,6 @@
 
       const position = ref({})
 
-      window.onmousemove = (e) => {
-          const x = e.clientX
-          const y = e.pageY
-          position.value = {x,y}
-          store.dispatch('move', position.value)
-      }
 
       const storeRetreivedData = ref(store.state.socket)
 
