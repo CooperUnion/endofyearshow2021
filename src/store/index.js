@@ -178,9 +178,9 @@ for (var i = 0, length = radios.length; i < length; i++) {
       rolefield.innerHTML = "" + name.radio;
       console.log("response completed!")
       // console.log(that.$socket.client)
-      const response = {name: name.input, role: name.radio}
-      window.sessionStorage.setItem('EOYS2021Name', name.input)
-      window.sessionStorage.setItem('EOYS2021Role', name.radio)
+      const response = {name: name, role: "skipped"}
+      window.sessionStorage.setItem('EOYS2021Name', "")
+      window.sessionStorage.setItem('EOYS2021Role', "skipped")
       // that.$socket.client.emit('nameChosen', {response: response, player: data.player})
       // console.log("IMPORTANT: emit nameChosen HERE", {response: response, player: data.player})
       dispatch('nameChosen',{response: response, player: data.player});
@@ -195,7 +195,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
                           // console.log(document.querySelector("body"))
                           const x = e.clientX
                           const y = e.pageY
-                          const location = self.player.update(x,y,dispatch, data.player, name.input, name.radio) 
+                          const location = self.player.update(x,y,dispatch, data.player, response.name, response.role) 
                       };    
 
     }).catch(function() {

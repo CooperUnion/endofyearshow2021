@@ -46,7 +46,7 @@
   </div>
     
 <div class="cursordemo">
- <div id="demo-cursor" class="current-student demofriend demo-cursor"><div id="democursortext" class="current-student name name-demo">{{ democursorname }}</div></div>
+ <div id="demo-cursor" class="friend-cu demofriend demo-cursor"><div id="democursortext" class="friend-cu name name-demo">{{ democursorname }}</div></div>
   
     </div>
 
@@ -101,7 +101,7 @@
       isConnected: false,
       socketMessage: '',
       democursorname: 'Peter Cooper BSE\'83',
-      roleRadio: "alumnus",
+      roleRadio: "friend-cu",
       cursors: []
     }
   },
