@@ -152,6 +152,9 @@
 						case "mutationfilmfest":
 							outgoingSiteType.value = "Mutation Film Fest";
 							break;
+						case "neocities":
+							outgoingSiteType.value = "Neocities";
+							break;
 						default:
 							outgoingSiteType.value = hostname.split('.').reverse()[1] + "." + hostname.split('.').reverse()[0];
 						}
