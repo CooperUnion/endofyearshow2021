@@ -8,8 +8,8 @@
       <div class="online-users">
        <span id="connections">
         </span> <span id="othervisitors"> other visitors online</span><br>
-          <p>Your name is "<span id="prompt"></span>"</p>
-  <p>Your role is "<span id="role"></span>"</p>
+          <p class="online-users">Your name is "<span id="prompt"></span>"</p>
+  <p class="online-users">Your role is "<span id="role"></span>"</p>
     </div>
 
 <!--   <p>The current time is <span id="time-stamp"></span>.</p> -->
@@ -594,9 +594,25 @@ a {
 }
 
 #cursorscontainer >>> .online-users{
-padding-top: 20px;
+      padding-top: 20px;
     padding-left: 20px;
     display: block!important;
+    text-align: right;
+    line-height: 12px;
+    font-size: 10px;
+  margin-right:20px;
+}
+  
+  #cursorscontainer >>> .online-users p{
+      padding-top: 0px;
+    padding-left: 0px;
+    display: block!important;
+    text-align: right;
+    line-height: 12px;
+    font-size: 10px;
+      margin-top:0px;
+    margin-bottom:0px;
+    margin-right:20px;
 }
 
 
