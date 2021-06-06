@@ -17,7 +17,7 @@ const socket = {
     return {
       message: {message: undefined, origin: undefined},
       playercursor,
-      cursors: {cursors: undefined, origin: undefined},
+      cursors: {cursors: {}, origin: undefined},
       system_message: {message: undefined, origin: undefined}
     }
   },
@@ -42,8 +42,8 @@ const socket = {
 },
     SOCKET_OTHERUSER_CURSOR_MOVE(state, data){
        // {friend: 21, friendX: "81.41", friendY: "0.21", name: "rry-vue-data-store", role: "current-student"}
-      state.cursors[data.friend].posX = data.friendX //?
-      console.log(data)
+      state.cursors.cursors[data.friend] = data
+      console.log(state.cursors[data.friend])
     },
     
     SOCKET_CONNECTED_MESSAGE(state, message) {
@@ -75,7 +75,7 @@ const socket = {
     connected({ dispatch, commit }, message) { //new connection for everyone //essentially just there to update "online" count
       console.log("socket connected2!", message)
       commit("SOCKET_CONNECTED_MESSAGE", message)
-      document.getElementById("connections").innerHTML = message.connecitons-1
+      // document.getElementById("connections").innerHTML = message.connecitons-1
     },
     nameChosen({ dispatch, commit }, message) {
       console.log("nameChosen!", message) //emit name chosen!
@@ -190,7 +190,9 @@ for (let i = 0, length = radios.length; i < length; i++) {
   
   if (window.sessionStorage.getItem('EOYS2021Name') && window.sessionStorage.getItem('EOYS2021Name') != ""){
     let dialog  = document.getElementById('dialog');
+    if (dialog){
     dialog.className = 'hidden'
+    }
     console.log("session storage SUCCESS")
     // Save data to sessionStorage
 
