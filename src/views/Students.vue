@@ -43,7 +43,6 @@
       Loading,
       GlobalNav,
       PageHeader,
-      // AreaNav,
       GlobalFooter,
       StudentTagCircles
     },

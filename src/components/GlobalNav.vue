@@ -1,6 +1,6 @@
 <template>
 	<header>
-		<nav id="globalnav" :class="{showNav : globalnavShow, dark : themeDark}">
+		<nav id="globalnav" :class="{showNav : globalnavShow}">
 		<div class="logoBanner">
 			<a href="/"><h1 class="logo">EOYS 2021</h1></a>
 			<visitor-count v-if="!mobile">
@@ -30,8 +30,7 @@
       VisitorCount
     },
     props: {
-      items: Array,
-      themeDark: Boolean
+      items: Array
     },
     setup(props){
       const store = useStore()
