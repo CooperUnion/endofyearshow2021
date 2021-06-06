@@ -38,12 +38,12 @@ const socket = {
     
     CLIENT_PLAYER_CURSOR_MOVE(state, data) {
     state.playercursor = data
-    console.log("clientplayercursormove", data)
+    // console.log("clientplayercursormove", data)
 },
     SOCKET_OTHERUSER_CURSOR_MOVE(state, data){
        // {friend: 21, friendX: "81.41", friendY: "0.21", name: "rry-vue-data-store", role: "current-student"}
       state.cursors.cursors[data.friend] = data
-      console.log(state.cursors[data.friend])
+      // console.log(state.cursors[data.friend])
     },
     
     SOCKET_CONNECTED_MESSAGE(state, message) {
