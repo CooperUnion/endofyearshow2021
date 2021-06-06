@@ -71,7 +71,7 @@ const socket = {
     },
     nameChosen({ dispatch, commit }, message) {
       console.log("nameChosen!", message) //emit name chosen!
-      commit("nameChosen", message)
+      // commit("nameChosen", message)
     },
     
     byeFriend({ dispatch, commit }, message) { //to remove connections, and remove the cursor from the page (does it work properly?)
@@ -148,8 +148,8 @@ const socket = {
   const skipButton = dialog.querySelector('button.cancel')
   let radio = ""
   let button = document.getElementById('action');
-  let output = document.getElementById('prompt');
-  let rolefield = document.getElementById('role')
+
+
   let response = {};
      
   function promptPromise(message, message2) {
@@ -196,7 +196,8 @@ for (var i = 0, length = radios.length; i < length; i++) {
     data.friends.forEach(friend1 => that.Meeting1.createFriend(friend1.id, data.player, that.Meeting1, friend1.name, friend1.role, friend1));
     self.player = new Player(data.player);
 
- 
+  let output = document.getElementById('prompt');
+  let rolefield = document.getElementById('role')
       output.innerHTML = '' + response.name;
       rolefield.innerHTML = "" + response.role;
 
@@ -205,6 +206,8 @@ for (var i = 0, length = radios.length; i < length; i++) {
     dialog.classList.remove("hidden")
     console.log("session storage FAILED")
     promptPromise('Welcome to the Cooper Union School of Art End of Year Show 2021!', 'Would you like your cursor to be visible while you move <br> through the galleries?').then(function(name) {
+  let output = document.getElementById('prompt');
+  let rolefield = document.getElementById('role')
       output.innerHTML = '' + name.input;
       rolefield.innerHTML = "" + name.radio;
       console.log("response completed!")
