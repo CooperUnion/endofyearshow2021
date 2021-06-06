@@ -73,10 +73,6 @@
 		text-align: left;
 	}
 	
-	.projectsList {
-		list-style-type: none;
-	}
-	
 	.mainHead {
 		font-size: 48px;
 		text-align: left;
