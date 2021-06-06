@@ -120,13 +120,17 @@
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
-		justify-content: space-between;
+		justify-content: flex-start;
 		margin: 0;
 	}
 	
 	.thumbsList .thumbItem {
 		width: calc(33.333% - 60px);
-		margin-bottom: 60px;
+		margin: 0 90px 60px 0;
+	}
+	
+	.thumbsList .thumbItem:nth-child(3n) {
+		margin-right: 0;
 	}
 	
 	.thumbsList .thumbItem .thumb-imagelink {
