@@ -22,7 +22,7 @@
         <div class="message">foobar</div>
         <div class="message2">foobar</div>
 
-    <input v-model="democursorname" v-on:input="demoCursorNameCheck" placeholder="Display Name" maxlength="30" id="textinput" type="text">
+    <input v-model="democursorname"  @click.once="messageNone" v-on:input="demoCursorNameCheck" placeholder="Display Name" maxlength="30" id="textinput" type="text">
 
     <div class="radioscontainer">
       <input class="radiobutton" type="radio" id="contactChoice1"
@@ -330,6 +330,11 @@
         document.getElementById("textinput").style.color = "black"
       }
   },
+    messageNone: function(){
+      this.democursorname = ""
+      const description = this.democursorname
+      document.getElementById("democursortext").innerHTML  = document.getElementById("textinput").value
+    },
     radioChange: function(){
             function set(value, that){
       that.prevprev = value
