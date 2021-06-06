@@ -148,6 +148,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
     
           const response = {name: window.sessionStorage.getItem('EOYS2021Name'), role: window.sessionStorage.getItem('EOYS2021Role')}
       // that.$socket.client.emit('nameChosen', {response: response, player: data.player})
+          window.sessionStorage.setItem('EOYS2021TempId', data.player)
           dispatch('nameChosen',{response: response, player: data.player});
       // console.log("IMPORTANT: emit nameChosen HERE", {response: response, player: data.player})
     
@@ -222,9 +223,18 @@ for (var i = 0, length = radios.length; i < length; i++) {
       } else {
         // console.log(self.player)
         // console.log(data.player)
+        if (window.sessionStorage.getItem('EOYS2021TempId')){
         const playerId = window.sessionStorage.getItem('EOYS2021TempId')
         self.player = new Player(playerId);
         this.Meeting1 = new Meeting()
+        
+                              window.onmousemove = (e) => {
+                          // console.log(document.querySelector("body"))
+                          const x = e.clientX
+                          const y = e.pageY
+                          const location = self.player.update(x,y,dispatch, playerId, window.sessionStorage.getItem('EOYS2021Name'),  window.sessionStorage.getItem('EOYS2021Role')) 
+                      }; 
+        }
       }
       
     },
