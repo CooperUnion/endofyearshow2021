@@ -200,7 +200,12 @@ for (var i = 0, length = radios.length; i < length; i++) {
   let rolefield = document.getElementById('role')
       output.innerHTML = '' + response.name;
       rolefield.innerHTML = "" + response.role;
-
+    
+           window.onmousemove = (e) => {
+          const x = e.clientX
+          const y = e.pageY
+          const location = this.player.update(x,y,dispatch, data.player, response.name, response.role) 
+      };   
     
   }else{
     dialog.classList.remove("hidden")
@@ -231,16 +236,16 @@ for (var i = 0, length = radios.length; i < length; i++) {
       console.log("ERROR?")
     }); 
      
-     
+                window.onmousemove = (e) => {
+          const x = e.clientX
+          const y = e.pageY
+          const location = this.player.update(x,y,dispatch, data.player, response.name, response.role) 
+      };   
      
   }
      
      
-           window.onmousemove = (e) => {
-          const x = e.clientX
-          const y = e.pageY
-          const location = self.player.update(x,y,dispatch, data.player, response.name, response.role) 
-      };   
+
      
      
    }
