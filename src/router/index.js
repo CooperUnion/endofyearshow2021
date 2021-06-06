@@ -106,7 +106,7 @@ let globalNavItems = [
   },
   {name: "🔌", path: "/SocketDebug", component: SocketDebug },
   {name: "🔛", path: "/MotionDebug", component: MotionDebug },
-  {name: "Cursor", path: "/CursorDebug", component: newCursors}
+  {name: "🖱️", path: "/CursorDebug", component: newCursors}
 ]
 
 routes = routes.concat(globalNavItems)
