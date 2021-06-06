@@ -95,18 +95,18 @@ const socket = {
                   if (this.Meeting1){
       this.Meeting1.updateFriendName(message.data.id, message.data.player, this.Meeting1, message.data.name, message.data.role, message)
       } else {
-        // console.log(self.player)
+        // console.log(this.player)
         // console.log(data.player)
         if (window.sessionStorage.getItem('EOYS2021TempId')){
         const playerId = window.sessionStorage.getItem('EOYS2021TempId')
-        self.player = new Player(playerId);
+        this.player = new Player(playerId);
         this.Meeting1 = new Meeting()
         this.Meeting1.updateFriendName(message.data.id, message.data.player, this.Meeting1, message.data.name, message.data.role, message)
                               window.onmousemove = (e) => {
                           // console.log(document.querySelector("body"))
                           const x = e.clientX
                           const y = e.pageY
-                          const location = self.player.update(x,y,dispatch, playerId, window.sessionStorage.getItem('EOYS2021Name'),  window.sessionStorage.getItem('EOYS2021Role')) 
+                          const location = this.player.update(x,y,dispatch, playerId, window.sessionStorage.getItem('EOYS2021Name'),  window.sessionStorage.getItem('EOYS2021Role')) 
                       }; 
         }
       }
@@ -118,18 +118,18 @@ const socket = {
             if (this.Meeting1){
       this.Meeting1.createFriend(message.friend, message.player, this.Meeting1, message.name, message.role); //undefined on purpose
       } else {
-        // console.log(self.player)
+        // console.log(this.player)
         // console.log(data.player)
         if (window.sessionStorage.getItem('EOYS2021TempId')){
         const playerId = window.sessionStorage.getItem('EOYS2021TempId')
-        self.player = new Player(playerId);
+        this.player = new Player(playerId);
         this.Meeting1 = new Meeting()
         this.Meeting1.createFriend(message.friend, message.player, this.Meeting1, message.name, message.role);
                               window.onmousemove = (e) => {
                           // console.log(document.querySelector("body"))
                           const x = e.clientX
                           const y = e.pageY
-                          const location = self.player.update(x,y,dispatch, playerId, window.sessionStorage.getItem('EOYS2021Name'),  window.sessionStorage.getItem('EOYS2021Role')) 
+                          const location = this.player.update(x,y,dispatch, playerId, window.sessionStorage.getItem('EOYS2021Name'),  window.sessionStorage.getItem('EOYS2021Role')) 
                       }; 
         }
       }
@@ -194,7 +194,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
     console.log(data)
     console.log("data")
     data.friends.forEach(friend1 => that.Meeting1.createFriend(friend1.id, data.player, that.Meeting1, friend1.name, friend1.role, friend1));
-    self.player = new Player(data.player);
+    that.player = new Player(data.player);
 
   let output = document.getElementById('prompt');
   let rolefield = document.getElementById('role')
@@ -204,7 +204,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
            window.onmousemove = (e) => {
           const x = e.clientX
           const y = e.pageY
-          const location = this.player.update(x,y,dispatch, data.player, response.name, response.role) 
+          const location = that.player.update(x,y,dispatch, data.player, response.name, response.role) 
       };   
     
   }else{
@@ -227,7 +227,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
       console.log("data")
                       // data.friends.forEach(friend1 => console.log(friend1));
                       data.friends.forEach(friend1 => that.Meeting1.createFriend(friend1.id, data.player, that.Meeting1, friend1.name, friend1.role, friend1));
-                      self.player = new Player(data.player);
+                      that.player = new Player(data.player);
   
 
 
@@ -239,7 +239,7 @@ for (var i = 0, length = radios.length; i < length; i++) {
                 window.onmousemove = (e) => {
           const x = e.clientX
           const y = e.pageY
-          const location = this.player.update(x,y,dispatch, data.player, response.name, response.role) 
+          const location = that.player.update(x,y,dispatch, data.player, response.name, response.role) 
       };   
      
   }
@@ -260,18 +260,18 @@ for (var i = 0, length = radios.length; i < length; i++) {
       if (this.Meeting1){
       this.Meeting1.updateFriend(message)
       } else {
-        // console.log(self.player)
+        // console.log(this.player)
         // console.log(data.player)
         if (window.sessionStorage.getItem('EOYS2021TempId')){
         const playerId = window.sessionStorage.getItem('EOYS2021TempId')
-        self.player = new Player(playerId);
+        this.player = new Player(playerId);
         this.Meeting1 = new Meeting()
         
                               window.onmousemove = (e) => {
                           // console.log(document.querySelector("body"))
                           const x = e.clientX
                           const y = e.pageY
-                          const location = self.player.update(x,y,dispatch, playerId, window.sessionStorage.getItem('EOYS2021Name'),  window.sessionStorage.getItem('EOYS2021Role')) 
+                          const location = this.player.update(x,y,dispatch, playerId, window.sessionStorage.getItem('EOYS2021Name'),  window.sessionStorage.getItem('EOYS2021Role')) 
                       }; 
         }
       }
