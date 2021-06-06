@@ -1,23 +1,19 @@
 <template>
   
   <global-nav :items="globalNavItems" />
-
   <main>    
     <page-header />
     <div class="areasPage">
-      
       <area-nav :items="areaNavItems" />
-      
       <loading v-if="loading" :timeout="15" />
       <posts v-else :items="items"/>
-      
     </div>
   </main>     
 	<global-footer :items="globalNavItems" />
 </template>
 
 <script>
-  import { ref, onBeforeMount, watch, getCurrentInstance, inject } from "vue";
+  import { ref, onBeforeMount, watch, getCurrentInstance } from "vue";
   import { useRoute } from 'vue-router'
   import { useStore } from 'vuex'  
   

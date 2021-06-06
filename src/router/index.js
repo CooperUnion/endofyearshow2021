@@ -11,8 +11,9 @@ import Students from '@/views/Students.vue'
 import Student from '@/views/Student.vue'
 import Info from '@/views/Info.vue'
 
-import SocketDebug from '@/views/SocketDebug.vue'
-import MotionDebug from '@/views/MotionDebug.vue'
+import DebugSocket from '@/views/DebugSocket.vue'
+import DebugMotion from '@/views/DebugMotion.vue'
+import DebugPath from '@/views/DebugPath.vue'
 
 const casco = new Casco(['default'])
 
@@ -31,26 +32,12 @@ let routes = [
     component: Info,
     props: true
   },
-  // {
-  //   path: '/posts/:post',
-  //   name: 'MasonryPost',
-  //   component: MasonryPost,
-  //   props: true
-  // },
   {
     path: '/tag/:tag',
     name: 'MasonryPostsTag',
     component: MasonryTag,
     props: true
   },  
-  // {
-  //   path: '/app/post/:post',
-  //   redirect: { name: 'MasonryPost' }
-  // },
-  // {
-  //   path: '/app/',
-  //   redirect: { name: 'MasonryPosts'}
-  // },
   {
     path: '/tag',
     redirect: { name: 'Areas'}
@@ -103,8 +90,32 @@ let globalNavItems = [
       theme: ['dark','fancy']
     }
   },
-  {name: "🔌", path: "/SocketDebug", component: SocketDebug },
-  {name: "🔛", path: "/MotionDebug", component: MotionDebug }
+  {name: "🔌", path: "/DebugSocket", component: DebugSocket },
+  {name: "🔛", path: "/DebugMotion", component: DebugMotion },
+  {
+    name: "🚶", 
+    path: "/DebugPath", 
+    component: DebugPath,
+    props: {
+      test: "A string set in the router"
+    }
+  },
+  {
+    name: "🚶/urlParam", 
+    path: "/DebugPath/:test", 
+    component: DebugPath,
+    props: true
+  },
+  {
+    name: "🚶/function", 
+    path: "/DebugPath/function/:test", 
+    component: DebugPath,
+    props: (route) =>{
+      return {
+        test: `The test url param is: ${route.params.test}`
+      }
+    }
+  }
 ]
 
 routes = routes.concat(globalNavItems)
