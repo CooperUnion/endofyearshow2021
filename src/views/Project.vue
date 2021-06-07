@@ -5,7 +5,7 @@
     <loading v-if="loading" :timeout="15" />
     <template v-else>
       <router-link to="/projects" class="backLink">All projects</router-link>
-      <page-subheader :title="student" :items="students" />
+      <page-subheader :title="student" :items="students" :project="projectData" />
 
 <!-- 
       <ul>
@@ -46,6 +46,7 @@
       const loading = ref(true)
       const items = ref([])
       const students = ref([])
+      const projectData = ref([])
       const route = useRoute()
       const internalInstance = getCurrentInstance()
       const { api_endpoint } = internalInstance.appContext.config.globalProperties
@@ -68,12 +69,20 @@
         loading.value = true
         items.value = []
 
+        const project_submissions_url = `${api_endpoint}/api/projects/submissions`
         const project_url = `${api_endpoint}/api/posts/project/${slug}`
         const students_url = `${api_endpoint}/api/projects/students/${slug}`
         
         items.value = await fetch(project_url).then(r=>r.json())
         students.value = await fetch(students_url).then(r=>r.json())
-      
+        const projectRequest = await fetch(project_submissions_url)
+          .then(r=>r.json())
+
+        
+        projectData.value = projectRequest.filter((project)=>{
+          return project.slug === route.params.project
+        }).pop()
+
         loading.value = false
         return true
       
@@ -84,7 +93,7 @@
         return name.trim().toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-');
       }
       
-      return {items, loading, globalNavItems, slug, students}
+      return {items, loading, globalNavItems, slug, students, projectData}
     }
   }  
 </script>

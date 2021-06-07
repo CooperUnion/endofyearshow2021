@@ -2,12 +2,13 @@
 	<div class="headerBlock">
 		<div class="titleBlock">
 			<student-tag-circles />  <!-- :tags="student.tags" -->
-			<h2 class="subHead">{{title}}</h2>
+			<h2 class="subHead">{{project.name}}</h2>
 		</div>
 		<div class="listBlock">
-			<h5 v-if="items">I have no idea how to turn these student names into links</h5>
 			<ul v-if="items" class="subList">
-				<li v-for="item of items" v-bind:key="item">{{item}}</li>
+				<li v-for="item of items" v-bind:key="item">
+					<router-link :to="item.url">{{item.name}}</router-link>
+				</li>
 			</ul>
 		</div>
 	</div>
@@ -24,7 +25,8 @@
       StudentTagCircles    
     },
     props: {
-      items: Array
+      items: Array,
+			project: Object
      },
     setup(props){
     	const title = "I'm not smart enough to figure out how to pass data to a component"
