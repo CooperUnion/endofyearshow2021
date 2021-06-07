@@ -41,6 +41,7 @@
 	
 	#app {
 		font-family: Epilogue, Avenir, Helvetica, Arial, sans-serif;
+		font-weight: 300;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 		text-align: left;
