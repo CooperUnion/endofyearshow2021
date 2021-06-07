@@ -4,8 +4,8 @@
   </h1>
   <b @click="dump()">dump vuex</b>
 
-  <cursor-display />
-  Current live data: {{position}} <br />
+  <cursor-display :player="player" />
+  Current live data: {{player}} <br />
   Data from vuex: {{storeRetreivedData}}
 </template>
 <script>
@@ -24,15 +24,17 @@
     },
     setup(props){
 
+      const player = ref({})
+      player.value.name = "ricky"
+      player.value.type = "current-student"
+      player.value.id = 10
       const store = useStore()
-
-      const position = ref({})
 
       window.onmousemove = (e) => {
           const x = e.clientX
           const y = e.pageY
-          position.value = {x,y}
-          store.dispatch('move', position.value)
+          player.value.position = {x,y}
+          store.dispatch('move', player.value)
       }
 
       const storeRetreivedData = ref(store.state.socket)
@@ -42,7 +44,7 @@
         console.log(store.state.socket)
       }
 
-      return { position, dump, storeRetreivedData }
+      return { player, dump, storeRetreivedData }
     }
   }
 </script>
