@@ -60,6 +60,12 @@
 		flex-direction: column;
 	}
 	
+	@media screen and (min-width: 768px) and (max-width: 1024px) {
+		main {
+			width: calc(100vw - 72px);
+		}
+	}
+	
 	@media screen and (max-width: 767px) {
 		body.dark {
 			background-image: none;
@@ -67,12 +73,6 @@
 		
 		main {
 			width: calc(100vw - 48px);
-		}
-	}
-	
-	@media screen and (min-width: 768px) and (max-width: 1024px) {
-		main {
-			width: calc(100vw - 72px);
 		}
 	}
 </style>

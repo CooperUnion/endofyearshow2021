@@ -1,6 +1,6 @@
 <template>
 
-<div v-if="optOutStatus===false && mobile === false">
+<div v-if="optOutStatus===false && mobile === false" class="cursorsBox">
   <cursor-display :self="true" :player="player" />
   <cursor-display 
     v-for="player in playerCursors" 
@@ -185,6 +185,10 @@
 </script>
 
 <style scoped>
+.cursorsBox {
+	margin: 0 -120px;
+}
+
 .dialog{
   width: 40vw;
   height: 80vh;
@@ -616,6 +620,17 @@ background-color: #C7BFAB;
   
   }
   
+	@media screen and (min-width: 768px) and (max-width: 1024px) {
+		.cursorsBox {
+			margin: 0 -36px;
+		}
+	}
+	
+	@media screen and (max-width: 767px) {
+		.cursorsBox {
+			margin: 0 -24px;
+		}
+  }
   
   @media only screen and (max-width: 400px) {
 
