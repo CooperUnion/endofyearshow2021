@@ -98,11 +98,6 @@
       // Send the "pingServer" event to the server.
       this.$socket.client.emit('pingServer', 'PING!')
     },
-      onMouseMove (ev) {
-                          const x = ev.clientX
-                          const y = ev.clientY
-                          const location = this.player.update(x,y,this.$socket, 1, "testtest", "current-student") 
-      },
      
     demoCursorNameCheck: function (){
       this.BadWords1 = new BadWords()
@@ -164,6 +159,17 @@
         role: this.roleRadio,
         position: player.position
       }
+        
+               window.onmousemove = (e) => {
+        const x = ((e.clientX / window.innerWidth) * 100).toFixed(2)
+        const y = e.pageY
+        this.$refs.player.value.name = completePlayer.name
+        this.$refs.player.value.role = completePlayer.role
+        this.$refs.player.value.id = completePlayer.id
+        this.$refs.player.value.position = {x,y}
+        store.dispatch('move', this.$refs.player.value)
+      }
+        this.$refs.player.value = completePlayer
         store.dispatch('nameChosen', completePlayer)
         
         }
