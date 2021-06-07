@@ -7,6 +7,7 @@
       <loading v-if="loading" :timeout="20" />
       <posts v-else :items="items"/>
     </div>
+    <loading v-if="loadingRemainder" :timeout="20" />
   </main>   
 	<global-footer :items="globalNavItems" />
 </template>
@@ -45,6 +46,7 @@
       const store = useStore()
 
       const loading = ref(true)
+      const loadingRemainder = ref(false)
       const items = ref()
       const areaNavItems = ref(navItems)
       const route = useRoute()
@@ -75,12 +77,33 @@
         const url = (props.postsEndpointSuffix) 
           ? `${api_endpoint}/api/posts/${props.postsEndpointSuffix}`
           : `${api_endpoint}/api/posts`
-        
-        items.value = await fetch(url).then(res=>res.json())
+        const query = `?limit=15`
+        const urlQuery = url+query
+
+        items.value = await fetch(urlQuery).then(res=>res.json())
         loading.value = false
+        loadRemainder()
         return true
       }
-      return {items, loading, loadPosts, areaNavItems, globalNavItems}
+
+      function loadRemainder() {
+        loadingRemainder.value = true
+        const url = (props.postsEndpointSuffix) 
+          ? `${api_endpoint}/api/posts/${props.postsEndpointSuffix}`
+          : `${api_endpoint}/api/posts`
+        const query = `?limit=1000&offset=20`
+        const urlQuery = url+query
+
+        fetch(urlQuery).then(res=>res.json()).then((remainder)=>{
+          remainder.forEach((post)=>{
+            items.value.push(post)
+          })
+          loadingRemainder.value = false
+        })
+      }
+
+      
+      return {items, loading, loadingRemainder, loadPosts, areaNavItems, globalNavItems}
     }
   }
 </script>
