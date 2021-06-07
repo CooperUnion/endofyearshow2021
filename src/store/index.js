@@ -24,30 +24,11 @@ const socket = {
   },
   mutations: {
     SOCKET_INIT_START(state, data){
-      console.log("socket init start", data)
       const justUsers = data.friends.filter((item)=>{ return typeof item === 'object' })
-      // justUsers.forEach(user => state.playerCursors[user.id] = user)
-      //also render them in the page?
-      // this.Meeting1 = new Meeting()
-      console.log(data.player)
-      window.sessionStorage.setItem('EOYS2021TempId', data.player)
-      // justUsers.forEach(friend1 => this.Meeting1.createFriend(friend1.id, data.player, this.Meeting1, friend1.name, friend1.role, friend1));
+      justUsers.forEach(user => state.playerCursors[user.id] = user)
     },
     SOCKET_USER_DISCONNECT(state, data){
-      delete state.playerCursors[data]
-    },
-    SOCKET_USER_MESSAGE(state, message) {
-      state.message = {message, origin: 'socket'}
-      console.log("socketusermessagemutationMUTATION", message)
-    },
-    CLIENT_USER_MESSAGE(state, message) {
-      state.message = {message, origin: 'client'}
-      console.log("clientusermessagemutationMUTATION", message)
-    },
-    SOCKET_SYSTEM_MESSAGE(state, message) {
-      state.system_message = {message, origin: 'system'}
-      state.playercursor = {}
-      console.log("statesystemmessagemutationMUTATION", message)
+      delete state.playerCursors[data.friend]
     },
     
     CLIENT_PLAYER_CURSOR_MOVE(state, data) {
@@ -55,16 +36,12 @@ const socket = {
     // console.log("clientplayercursormove", data)
 },
     SOCKET_OTHERUSER_CURSOR_MOVE(state, data){
-       // {friend: 21, friendX: "81.41", friendY: "0.21", name: "rry-vue-data-store", role: "current-student"}
-      
       state.playerCursors[data.id] = data
-      // console.log(state.cursors[data.friend])
     },
     
     SOCKET_CONNECTED_MESSAGE(state, message) {
       state.connections = message
       console.log("socket connected message ^")
-      // console.log("socketconnectedmessage", message)
     },
     CLIENT_PLAYER_ID_GENERATED(state, message) {
       console.log(message)
