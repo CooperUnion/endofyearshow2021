@@ -52,7 +52,7 @@
         const x = e.clientX
         const xpercent = ((e.clientX / window.innerWidth) * 100).toFixed(2)
         const y = e.pageY
-        player.value.position = {x,y, xpercent}
+        player.value.position = {x,y}
         store.dispatch('move', player.value)
       }
 
@@ -161,7 +161,7 @@
           player.name = completePlayer.name
           player.role = completePlayer.role
           player.id = completePlayer.id
-          player.position = {x,y,xpercent}
+          player.position = {x,y}
           store.dispatch('move', player)
           localStorage.setItem('player', JSON.stringify(player))
         }
