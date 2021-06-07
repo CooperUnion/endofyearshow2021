@@ -2,6 +2,12 @@
 <h1>
   CursorDisplay is HERE {{player}}
   </h1>
+
+
+ <div class="friend current-student" :style="{'left': player.position.x, 'top': player.position.y}">
+   <div class="current-student name">{{player.name}}</div>
+  </div>
+
 </template>
 
 <script>
@@ -14,38 +20,13 @@
       player: Object
     },
     setup(props){
-      const loading = ref(true)
-
-      async function autoTimeout(){
-        
-        setTimeout(()=>{
-          loading.value = false
-        }, props.timeout * 1000)
-        
-      }
-      onBeforeMount(autoTimeout)
-
-      return {loading}
+     
     }
   }
   
 </script>
 
 <style scoped>
-:root{
-   --scrollbar-width: calc(100vw - 100%);
-}
-
-  
-  
-body {
-  padding: 0px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  height: 100vh;
-  width: 100vw;
-  margin: 0px;
-  }
-  
 .friend {
     background-color: gainsboro;
 /*     width: 0px; */
