@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.1daa2e8ff4d920d161bcbbc857ca1bc3.js"
+  "/precache-manifest.d05f7afd1c0d9b8b70da618f1c5cf17a.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "endofyearshow2021"});
