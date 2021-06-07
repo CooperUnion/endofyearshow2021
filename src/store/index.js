@@ -71,6 +71,7 @@ const socket = {
       state.playerCursor.position = message.position
       state.playerCursor.name = message.name
       console.log(state.playerCursor)
+          
     }
     
   },
@@ -97,6 +98,7 @@ const socket = {
       console.log("nameChosen!", message) //emit name chosen!
       console.log(message)
       commit("USER_NAME_CHOSEN", message)
+
       // commit("nameChosen", message)
     },
     
