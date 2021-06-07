@@ -82,8 +82,11 @@
       }
 
       const playerCursors = ref(store.state.socket.playerCursors)
-
-      return { player, playerCursors }
+      
+      return { player, 
+      playerCursors, 
+      democursorname: 'Peter Cooper \'83',
+      roleRadio: "friend-cu", }
     },
       methods: {
         //     mouseMove(event) {
@@ -103,7 +106,6 @@
      
     demoCursorNameCheck: function (){
       this.BadWords1 = new BadWords()
-      // console.log(this.democursorname)
       const description = this.democursorname
       let isInclude = this.BadWords1.check(description)
       
@@ -449,8 +451,8 @@ button:active {
 }
 
 #democursortext{
-   transition: background-color 0.2s linear;
-      display: inline;
+    transition: background-color 0.2s linear;
+    display: inline;
     position: relative;
     left: 19px;
     top: 12px;
@@ -465,12 +467,13 @@ button:active {
     padding: 5px;
     padding-left: 10px;
     padding-right: 10px;
-    padding-bottom: 0px;
-    padding-top: 0.5px;
+    padding-bottom: 6px;
+    padding-top: 5.5px;
     /* padding: 5px; */
     border-radius: 20px;
     font-size: 14px;
-    font-family: 'Space Grotesk', sans-serif;
+    /* font-family: 'Space Grotesk', sans-serif; */
+    font-family: Epilogue, Avenir, Helvetica, Arial, sans-serif;
     font-weight: 700;
 }
 
@@ -506,6 +509,43 @@ button:active {
   .name .name-demo::before{
   display:none;
 }
+  
+  .friend-cu{
+  color: black;
+background-color: #C7BFAB;
+}
+
+.error{
+  color: black;
+  background-color: #FF6741!important;
+/*   color: gainsboro; */
+  pointer-events: none;
+  pointer: no-drop;
+}
+
+.undefined{
+  color: black;
+  background-color: gainsboro;
+/*   color: gainsboro; */
+  pointer-events: none;
+  pointer: no-drop;
+}
+
+.alumnus{
+  color: black;
+  background-color: #9DE3B1;
+}
+
+.faculty-staff{
+  color: black;
+  background-color: #FFD480;
+}
+
+.current-student{
+    color: black;
+  background-color: #C7B9FF;
+}
+
   
 @media only screen and (max-width: 600px) {
 
