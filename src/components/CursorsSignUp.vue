@@ -192,12 +192,13 @@ margin-right: 0px;
     padding: 10vh;
     position: absolute;
     top: 0;
+    left:0;
     pointer-events: all;
     z-index: 10;
 /*      -webkit-filter: blur(0px); */
-  animation: fadeIn 2s linear;
-              -webkit-animation-duration: 2s;
-            animation-duration: 2s;
+  animation: fadeIn 1s cubic-bezier(1,-0.01, 0.55, 0.99);
+              -webkit-animation-duration: 1s cubic-bezier(1,-0.01, 0.55, 0.99);
+            animation-duration: 1s cubic-bezier(1,-0.01, 0.55, 0.99);
             -webkit-animation-fill-mode: both;
             animation-fill-mode: both;
     }
@@ -273,6 +274,7 @@ margin-right: 0px;
     height: fit-content;
     width: fit-content;
     margin: auto;
+    color: black;
 }
 
 .radiobutton{
@@ -300,7 +302,7 @@ padding-top: 0px;
     /* margin-top: 5px; */
     background-color: transparent;
     color: black;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: Epilogue, Avenir, Helvetica, Arial, sans-serif;
     font-size: 18px;
     font-weight: 700;
     line-height: 24px;
@@ -477,6 +479,14 @@ button:active {
 
 .ok{
   transition: background-color 0.2s linear;
+  border-radius: 300px;
+  padding: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+padding-bottom: 9px;
+    font-family: Epilogue, Avenir, Helvetica, Arial, sans-serif;
+    font-weight: 700;
+  
 }
 
 .yourcursorspan{
@@ -484,6 +494,8 @@ button:active {
       font-size: 18px;
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
+   color: black;
+  
 }
 
 .demo-cursor::before{
