@@ -277,8 +277,7 @@ margin-right: 0px;
     margin: auto;
     display: block!important;
       font-size: 24px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
+    font-weight: 500;
   line-height: 32px;
   color: black;
   
@@ -286,8 +285,7 @@ margin-right: 0px;
 
 .message2{
       font-size: 14px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
+    font-weight: 500;
     line-height: 18px;
   padding-top: 10px;
   color: black;
@@ -328,9 +326,8 @@ padding-top: 0px;
     /* margin-top: 5px; */
     background-color: transparent;
     color: black;
-    font-family: 'Space Grotesk', sans-serif;
     font-size: 18px;
-    font-weight: 700;
+    font-weight: 500;
     line-height: 24px;
     cursor: pointer;
 }
@@ -339,8 +336,7 @@ label {
   margin-bottom: 1vh;
   margin-right: 15px;
   line-height: 32px;
-      font-family: 'Space Grotesk', sans-serif;
-    font-size: 14px;
+      font-size: 14px;
     font-weight: 500;
     line-height: 18px;
 }
@@ -369,9 +365,8 @@ input {
     background-color: white;
     border: 2px solid black;
     text-align: center;
-      font-family: 'Space Grotesk', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
+      font-size: 14px;
+    font-weight: 500;
     line-height: 18px;
 }
 
@@ -451,8 +446,7 @@ button:active {
     padding-top: 4.6px;
     border-radius: 20px;
     font-size: 14px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
+    font-weight: 500;
     
 }
 
@@ -498,9 +492,8 @@ button:active {
     /* padding: 5px; */
     border-radius: 20px;
     font-size: 14px;
-    /* font-family: 'Space Grotesk', sans-serif; */
     font-family: Epilogue, Avenir, Helvetica, Arial, sans-serif;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 .ok{
@@ -510,8 +503,7 @@ button:active {
 .yourcursorspan{
   margin-bottom: 1vh;
       font-size: 18px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 .demo-cursor::before{

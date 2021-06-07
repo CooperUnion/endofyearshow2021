@@ -30,19 +30,19 @@
 				</p>
 				<dl> 
 					<dt>Designers:</dt>
-					<dd><a href="#">Ashlynn Guo</a> A’21</dd>
-					<dd><a href="#">Richard Yurewitch</a> A’22</dd>
-					<dd><a href="#">Ana Valeria Castillos</a> A’22</dd>
+					<dd><a href="/student/ashlynn-guo">Ashlynn Guo</a> A’21</dd>
+					<dd><a href="https://ricc.glitch.me/">Richard Yurewitch</a> A’22</dd>
+					<dd><a href="/student/ana-valeria-castillos">Ana Valeria Castillos</a> A’22</dd>
 				</dl>
 				<dl> 
 					<dt>Art director:</dt>
-					<dd><a href="#">Julie Harris</a>, Adjunct Instructor </dd>
+					<dd>Julie Harris, Adjunct Instructor </dd>
 				</dl>
 				<dl> 
 					<dt>Developers:</dt>
 					<dd><a href="https://erinsparling.glitch.me">Erin Sparling</a>, Adjunct Professor</dd>
 					<dd><a href="https://prevdef.com">Mike Stamm</a></dd>
-					<dd><a href="#">Richard Yurewitch</a> A’22</dd>
+					<dd><a href="https://ricc.glitch.me/">Richard Yurewitch</a> A’22</dd>
 				</dl>
 				<dl> 
 					<dt>Advisors:</dt>

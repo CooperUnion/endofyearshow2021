@@ -12,7 +12,7 @@
 
 <style>
 	@import url('https://cdn.jsdelivr.net/gh/yegor256/tacit@gh-pages/tacit-css-1.5.5.min.css');
-	@import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,300;0,700;1,300;1,700&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,300;0,500;1,300;1,500&display=swap');
 	
 	body {
 		padding: 0;
@@ -41,6 +41,7 @@
 	
 	#app {
 		font-family: Epilogue, Avenir, Helvetica, Arial, sans-serif;
+		font-weight: 300;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 		text-align: left;

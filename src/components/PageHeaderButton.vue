@@ -26,9 +26,8 @@
     background-color: black;
     color: white;
     border-radius: 200px;
-    font-family: 'Space Grotesk', sans-serif;
     font-size: 18px;
-    font-weight: 700;
+    font-weight: 500;
     line-height: 30px;
     width: 276px;
     height: 64px;

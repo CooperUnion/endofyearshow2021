@@ -78,7 +78,7 @@
 		font-size: 48px;
 		text-align: left;
 		text-transform: capitalize;
-		font-weight: 700;
+		font-weight: 500;
 		margin: 0;
 	}
 	
@@ -95,7 +95,7 @@
 		color: white;
 		border-radius: 200px;
 		font-size: 18px;
-		font-weight: 700;
+		font-weight: 500;
 		line-height: 30px;
 		width: 276px;
 		height: 64px;

@@ -53,7 +53,7 @@
 
   .post-infolist .title {
     color: #000;
-    font-weight: 700;
+    font-weight: 500;
     text-transform: capitalize;
     margin: 0;
   }

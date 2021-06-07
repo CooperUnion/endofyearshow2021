@@ -80,8 +80,7 @@
     padding-top: 5.6px;
     border-radius: 20px;
     font-size: 14px;
-/*     font-family: 'Space Grotesk', sans-serif; */
-    font-weight: 700;
+    font-weight: 500;
     
 }
   
