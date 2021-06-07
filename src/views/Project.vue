@@ -1,6 +1,5 @@
 <template>
-  <global-nav :items="globalNavItems" />
-
+	<global-header />
   <main>     
     <loading v-if="loading" :timeout="15" />
     <template v-else>
@@ -24,17 +23,17 @@
   import { useRoute } from 'vue-router'
   
   import Loading from '@/components/Loading.vue'
-  import GlobalNav from '@/components/GlobalNav.vue'  
   import {globalNavItems} from '@/router/index.js'
   import PageSubheader from '@/components/PageSubheader.vue'  
   import ProjectPosts from '@/components/ProjectPosts.vue'
+	import GlobalHeader from '@/components/GlobalHeader.vue' 
   import GlobalFooter from '@/components/GlobalFooter.vue'
   
   export default {
     name: 'Project',
     components: {
       Loading,
-      GlobalNav,
+      GlobalHeader,
       PageSubheader,
       ProjectPosts,
       GlobalFooter

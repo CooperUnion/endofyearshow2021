@@ -110,6 +110,10 @@
 		.mainHead {
 			font-size: 32px;
 		}
+		
+		.titleBlock {
+			width: auto;
+		}
 	}
 </style>
 

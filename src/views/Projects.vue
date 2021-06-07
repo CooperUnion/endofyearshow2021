@@ -1,9 +1,6 @@
 <template>
-  <global-nav :items="globalNavItems" />
-
+	<global-header />
    <main>    
-     
-    <page-header />
     <div class="areasPage">
       <loading v-if="loading" :timeout="15" />
       <ul v-else class="projectList">
@@ -39,14 +36,14 @@
   import GlobalNav from '@/components/GlobalNav.vue'  
   import {globalNavItems} from '@/router/index.js'
   import PageHeader from '@/components/PageHeader.vue'  
+	import GlobalHeader from '@/components/GlobalHeader.vue' 
   import GlobalFooter from '@/components/GlobalFooter.vue'  
   
   export default {
     name: 'Projects',
     components: {
       Loading,
-      GlobalNav,
-      PageHeader,
+      GlobalHeader,
       GlobalFooter
     },
     props: {
@@ -129,8 +126,10 @@
 		margin: 0 90px 60px 0;
 	}
 	
-	.thumbsList .thumbItem:nth-child(3n) {
-		margin-right: 0;
+	@media screen and (min-width: 768px) {
+		.thumbsList .thumbItem:nth-child(3n) {
+			margin-right: 0;
+		}
 	}
 	
 	.thumbsList .thumbItem .thumb-imagelink {
@@ -153,5 +152,16 @@
 		height: 100%;
 		object-fit: cover;
 		border-radius: 50%;
+	}
+	
+	@media screen and (max-width: 767px) {
+		.thumbsList .thumbItem {
+			width: calc(50% - 8px);
+			margin: 0 16px 60px 0;
+		}
+		
+		.thumbsList .thumbItem:nth-child(2n) {
+			margin-right: 0;
+		}
 	}
 </style>
