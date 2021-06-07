@@ -11,6 +11,7 @@ import Project from '@/views/Project.vue'
 import Students from '@/views/Students.vue'
 import Student from '@/views/Student.vue'
 import Info from '@/views/Info.vue'
+import Colophon from '@/views/Colophon.vue'
 
 import DebugSocket from '@/views/DebugSocket.vue'
 import DebugMotion from '@/views/DebugMotion.vue'
@@ -101,7 +102,9 @@ let routes = [
     props: {
       test: "A string set in the router"
     }
-  }
+  },
+  {name: "Colophon", path:"/colophon", component: Colophon},
+
 ]
 
 let globalNavItems = [

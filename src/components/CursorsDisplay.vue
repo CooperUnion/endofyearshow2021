@@ -1,6 +1,6 @@
 <template>
 
-<div v-if="optOutStatus===false">
+<div v-if="optOutStatus===false && mobile === false">
   <cursor-display :self="true" :player="player" />
   <cursor-display 
     v-for="player in playerCursors" 
@@ -54,7 +54,7 @@
 </template>
 <script>
   import {BadWords} from './BadWords.js'
-  import { ref, onBeforeMount, computed } from 'vue'
+  import { ref, onBeforeMount, computed, getCurrentInstance} from 'vue'
   import { useStore } from 'vuex'  
   import CursorDisplay from '@/components/CursorDisplay.vue'
   
@@ -65,7 +65,9 @@
     },
     props:{},
     setup(props){
-      
+      const internalInstance = getCurrentInstance()
+      const { mobile } = internalInstance.appContext.config.globalProperties
+
       const player = ref({})
 
       player.value.role = "friend-cu"
@@ -101,7 +103,8 @@
         }
       })
       return { hasOptedOut, player, store,
-      playerCursors, 
+      playerCursors,
+      mobile, 
       playerType: localStorage.getItem('player') || false,
       optOutStatus: localStorage.getItem('optOut') || false,
       democursorname: 'Peter Cooper \'83',
