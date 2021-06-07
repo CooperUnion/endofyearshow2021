@@ -1,6 +1,7 @@
 <template>
  <global-header />
-   <main>    
+   <main>
+    <cursors-display />
     <div class="areasPage">
       <area-nav :items="areaNavItems" v-if="['Areas','Area','Students'].includes($route.name)" />
       <loading v-if="loading" :timeout="20" />
@@ -22,6 +23,8 @@
   import navItems from '@/router/areaNavItems.js'
 	import GlobalHeader from '@/components/GlobalHeader.vue' 
 	import GlobalFooter from '@/components/GlobalFooter.vue' 
+  import CursorsDisplay from '@/components/CursorsDisplay.vue' 
+
 
   export default {
     components: {
@@ -29,7 +32,8 @@
       Posts,
       AreaNav,
       GlobalHeader,
-      GlobalFooter
+      GlobalFooter,
+      CursorsDisplay
     },
     props: {
       post: Number,

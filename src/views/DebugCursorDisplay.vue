@@ -1,43 +1,20 @@
 <template>
 
-  <cursor-display :player="player" />
-  <cursor-display 
-    v-for="player in playerCursors" 
-    v-bind:key="player.id" 
-    :player="player"  />
+  <cursors-display />
 
 </template>
 <script>
-
-  import { ref, onBeforeMount } from 'vue'
-  import { useStore } from 'vuex'  
-  import CursorDisplay from '@/components/CursorDisplay.vue'
+ 
+  import CursorsDisplay from '@/components/CursorsDisplay.vue'
   
   export default {
-    name: 'DebugCursorDisplay',
+    name: 'DebugCursorsDisplay',
     components:{
-      CursorDisplay
+      CursorsDisplay
     },
     props:{},
     setup(props){
-      
-      const player = ref({})
-      player.value.name = "ricky"
-      player.value.role = "friend-cu"
-      player.value.id = Math.floor(Math.random()*100)
-      const store = useStore()
-      store.dispatch('nameChosen', player.value)
-
-       window.onmousemove = (e) => {
-        const x = e.clientX
-        const y = e.pageY
-        player.value.position = {x,y}
-        store.dispatch('move', player.value)
-      }
-
-      const playerCursors = ref(store.state.socket.playerCursors)
-
-      return { player, playerCursors }
+   
     }
   }
 </script>
