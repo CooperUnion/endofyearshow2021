@@ -43,7 +43,7 @@
     </div>
 
     <div>
-      <button @click="submitForm(player, store)" class="ok">Select</button><br>
+      <button @click="submitForm(store)" class="ok">Select</button><br>
       <button class="cancel">Skip</button>
     </div>
   </div>
@@ -151,25 +151,27 @@
     
     },
   
-        submitForm: function(player, store){
+        submitForm: function(store){
+          const player = ref({})
+          
           console.log(player)
         const completePlayer = {
-        id: player.id,
+        id: player.value.id,
         name: this.democursorname,
         role: this.roleRadio,
-        position: player.position
+        position: player.value.position
       }
         
                window.onmousemove = (e) => {
         const x = ((e.clientX / window.innerWidth) * 100).toFixed(2)
         const y = e.pageY
-        this.$refs.player.value.name = completePlayer.name
-        this.$refs.player.value.role = completePlayer.role
-        this.$refs.player.value.id = completePlayer.id
-        this.$refs.player.value.position = {x,y}
-        store.dispatch('move', this.$refs.player.value)
+        player.value.name = completePlayer.name
+        player.value.role = completePlayer.role
+        player.value.id = completePlayer.id
+        player.value.position = {x,y}
+        store.dispatch('move', player.value)
       }
-        this.$refs.player.value = completePlayer
+        player.value = completePlayer
         store.dispatch('nameChosen', completePlayer)
         
         }
