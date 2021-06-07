@@ -2,9 +2,9 @@
   <div 
     v-if="player && player.position && player.position.x && player.position.y"
     class="friend" 
-    :class="[player.role]" 
+    :class="[player.role, {self}]"
     :style="{ 
-      left: player.position.x + 'px', 
+      left: player.position.x + '%', 
       top: player.position.y+'px' }">
    <div class="name">{{player.name}}</div>
   </div>
@@ -17,6 +17,7 @@
   export default {
     name: 'CursorDisplay',
     props: {
+      self: Boolean,
       player: Object
     },
     setup(props){
@@ -40,7 +41,7 @@
     margin-top: -5px;
     margin-left: -1px;
 }
-
+  
 .friend::before{
     content:"";
   position:absolute;
@@ -82,6 +83,10 @@
 /*     font-family: 'Space Grotesk', sans-serif; */
     font-weight: 700;
     
+}
+  
+.self.friend::before{
+    display: none !important;
 }
   
   .friend .name::before{

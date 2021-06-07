@@ -11,6 +11,7 @@ import Project from '@/views/Project.vue'
 import Students from '@/views/Students.vue'
 import Student from '@/views/Student.vue'
 import Info from '@/views/Info.vue'
+import Colophon from '@/views/Colophon.vue'
 
 import DebugSocket from '@/views/DebugSocket.vue'
 import DebugMotion from '@/views/DebugMotion.vue'
@@ -89,11 +90,24 @@ let routes = [
         test: `The test url param is: ${route.params.test}`
       }
     }
-  }
+  },
+  {name: "🔌", path: "/DebugSocket", component: DebugSocket },
+  {name: "🔛", path: "/DebugMotion", component: DebugMotion },
+  {name: "DBCD", path:"/DebugCursorDisplay", component: DebugCursorDisplay},
+  {name: "DBOC", path:"/DebugOnlineCount", component: DebugOnlineCount},
+  {
+    name: "🚶", 
+    path: "/DebugPath", 
+    component: DebugPath,
+    props: {
+      test: "A string set in the router"
+    }
+  },
+  {name: "Colophon", path:"/colophon", component: Colophon},
+
 ]
 
 let globalNavItems = [
-//   {name:"Home", path:"/", component: Home},
   {name:"Areas", path:"/areas", component: MasonryPosts},
   {
     name:"Foundation", 
@@ -112,20 +126,6 @@ let globalNavItems = [
     component: Info,
     props: {
       theme: ['dark','fancy']
-    }
-  },
-
-  {name: "🔌", path: "/DebugSocket", component: DebugSocket },
-  {name: "🔛", path: "/DebugMotion", component: DebugMotion },
-  {name: "DBCD", path:"/DebugCursorDisplay", component: DebugCursorDisplay},
-  {name: "DBOC", path:"/DebugOnlineCount", component: DebugOnlineCount},
-  // {name: "🖱️", path: "/DebugCursor", component: DebugCursor},
-  {
-    name: "🚶", 
-    path: "/DebugPath", 
-    component: DebugPath,
-    props: {
-      test: "A string set in the router"
     }
   }
 ]
