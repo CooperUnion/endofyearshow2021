@@ -69,15 +69,23 @@
       const { mobile } = internalInstance.appContext.config.globalProperties
 
       const player = ref({})
-
+      const store = useStore()
+      
+      if (localStorage.getItem('player')){
+      const player = JSON.parse(localStorage.getItem('player'))
+      player.value = player
+      store.dispatch('IDGenerated', player.value.id)
+      store.dispatch('nameChosen', player.value)
+        
+      } else {
       player.value.role = "friend-cu"
       player.value.id = Math.floor(Math.random()*100000)
       player.value.position = {x:(Math.floor(Math.random()*100)), y:(Math.floor(Math.random()*400))}
-      const store = useStore()
       store.dispatch('IDGenerated', player.value.id)
       player.value.name = player.value.id
       store.dispatch('nameChosen', player.value)
-
+      }
+      
        window.onmousemove = (e) => {
         const x = ((e.clientX / window.innerWidth) * 100).toFixed(2)
         const y = e.pageY
@@ -249,6 +257,7 @@ margin-right: 0px;
     padding: 10vh;
     position: absolute;
     top: 0;
+    left: 0;
     pointer-events: all;
     z-index: 10;
 /*      -webkit-filter: blur(0px); */
