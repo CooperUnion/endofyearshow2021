@@ -1,10 +1,7 @@
 <template>
-  <global-nav :items="globalNavItems" />
-
+	<global-header />
    <main>    
-     
-    <page-header />
-    <div class="studentsPage">
+     <div class="studentsPage">
 <!--     
       <b @click="filterStudents('Design')">Design</b>
       <b @click="filterStudents('Installation')">Installation</b>
@@ -28,9 +25,8 @@
   import { useRoute } from 'vue-router'
   
   import Loading from '@/components/Loading.vue'
-  import GlobalNav from '@/components/GlobalNav.vue'  
   import {globalNavItems} from '@/router/index.js'
-  import PageHeader from '@/components/PageHeader.vue'  
+  import GlobalHeader from '@/components/GlobalHeader.vue'  
   import AreaNav from '@/components/AreaNav.vue'
   import navItems from '@/router/areaNavItems.js'
   import GlobalFooter from '@/components/GlobalFooter.vue'
@@ -41,8 +37,7 @@
     name: 'Students',
     components: {
       Loading,
-      GlobalNav,
-      PageHeader,
+      GlobalHeader,
       GlobalFooter,
       StudentTagCircles
     },
