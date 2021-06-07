@@ -34,7 +34,7 @@ const socket = {
       // justUsers.forEach(friend1 => this.Meeting1.createFriend(friend1.id, data.player, this.Meeting1, friend1.name, friend1.role, friend1));
     },
     SOCKET_USER_DISCONNECT(state, data){
-      
+      delete state.playerCursors[data]
     },
     SOCKET_USER_MESSAGE(state, message) {
       state.message = {message, origin: 'socket'}
@@ -66,6 +66,9 @@ const socket = {
       console.log("socket connected message ^")
       // console.log("socketconnectedmessage", message)
     },
+    CLIENT_PLAYER_ID_GENERATED(state, message) {
+      console.log(message)
+    }
     
   },
   actions: {
@@ -238,6 +241,9 @@ const socket = {
     move({ dispatch, commit }, data){
       // console.log("playermove", data)
       commit('CLIENT_PLAYER_CURSOR_MOVE', data)
+    },
+    IDGenerated({ dispatch, commit }, data){
+      commit('CLIENT_PLAYER_ID_GENERATED', data)
     }
     
     

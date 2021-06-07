@@ -25,8 +25,9 @@
    
       player.value.role = "friend-cu"
       player.value.id = Math.floor(Math.random()*10000)
-      player.value.name = "ricky-"+player.value.id
       const store = useStore()
+      store.dispatch('IDGenerated', player.value.id)
+      player.value.name = "ricky-"+player.value.id
       store.dispatch('nameChosen', player.value)
 
        window.onmousemove = (e) => {
