@@ -49,9 +49,10 @@
       }
       
        window.onmousemove = (e) => {
-        const x = ((e.clientX / window.innerWidth) * 100).toFixed(2)
+        const x = e.clientX
+        const xpercent = ((e.clientX / window.innerWidth) * 100).toFixed(2)
         const y = e.pageY
-        player.value.position = {x,y}
+        player.value.position = {x,y, xpercent}
         store.dispatch('move', player.value)
       }
 
@@ -154,12 +155,13 @@
         }
         
         window.onmousemove = (e) => {
-          const x = ((e.clientX / window.innerWidth) * 100).toFixed(2)
+          const x = e.clientX
+          const xpercent = ((e.clientX / window.innerWidth) * 100).toFixed(2)
           const y = e.pageY
           player.name = completePlayer.name
           player.role = completePlayer.role
           player.id = completePlayer.id
-          player.position = {x,y}
+          player.position = {x,y,xpercent}
           store.dispatch('move', player)
           localStorage.setItem('player', JSON.stringify(player))
         }
