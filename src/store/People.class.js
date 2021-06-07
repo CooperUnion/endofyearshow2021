@@ -70,6 +70,7 @@ class Friend extends Player {
     name.classList.add(fullFriend.role)
     name.innerHTML = fullFriend.name
     this.element.appendChild(name)
+    if
     document.getElementById("cursorscontainer").appendChild(this.element)
     document.getElementById(label).style.left = fullFriend.lastLocation[0] + '%' 
     document.getElementById(label).style.top = fullFriend.lastLocation[1] + 'px'
