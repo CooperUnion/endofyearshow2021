@@ -27,7 +27,7 @@ const socket = {
     SOCKET_INIT_START(state, data){
       console.log("socket init start", data)
       const justUsers = data.friends.filter((item)=>{ return typeof item === 'object' })
-      justUsers.forEach(user => state.cursors.cursors[user.id] = user)
+      // justUsers.forEach(user => state.playerCursors[user.id] = user)
       //also render them in the page?
       this.Meeting1 = new Meeting()
       console.log(data.player)
@@ -54,6 +54,7 @@ const socket = {
 },
     SOCKET_OTHERUSER_CURSOR_MOVE(state, data){
        // {friend: 21, friendX: "81.41", friendY: "0.21", name: "rry-vue-data-store", role: "current-student"}
+      
       state.playerCursors[data.id] = data
       // console.log(state.cursors[data.friend])
     },
@@ -92,7 +93,7 @@ const socket = {
     },
     nameChosen({ dispatch, commit }, message) {
       console.log("nameChosen!", message) //emit name chosen!
-      commit("nameChosen", message)
+      // commit("nameChosen", message)
     },
     
     byeFriend({ dispatch, commit }, message) { //to remove connections, and remove the cursor from the page (does it work properly?)
