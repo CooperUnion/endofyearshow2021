@@ -8,10 +8,10 @@ class Player {
     this.$socket = socket
   }
   
-  update(x,y,socket, id, name, role) {
+  update(x,y,dispatch, id, name, role) {
     x = ((x / window.innerWidth) * 100).toFixed(2);
-    y = ((y / window.innerHeight) * 100).toFixed(2); 
-    this.emit(socket, id, name, role, x, y)
+    y = y.toFixed(2); 
+    this.emit(dispatch, id, name, role, x, y)
     return {
       id: id,
       x: x,
@@ -22,10 +22,10 @@ class Player {
     
   }
   
-  emit(socket, id, name, role, x, y) {
-    console.log(socket)
-    console.log({ friend: id, friendX: x, friendY: y, name: name, role: role})
-    socket.client.emit('move',{ friend: id, friendX: x, friendY: y, name: name, role: role});
+  emit(dispatch, id, name, role, x, y) {
+    // console.log(socket)
+    // console.log({ friend: id, friendX: x, friendY: y, name: name, role: role})
+    dispatch('move',{ friend: id, friendX: x, friendY: y, name: name, role: role});
   }
   
 }
@@ -56,6 +56,7 @@ class Friend extends Player {
   add(friend, friends, fullFriend){
     const label = this.doLabel(friend.id);
     this.idx = label;
+    if(document.getElementById("cursorscontainer")){
     if (!document.getElementById(label)){
     if (this.idx != "friend-undefined" && fullFriend){
     console.log(fullFriend.name)
@@ -72,7 +73,7 @@ class Friend extends Player {
     this.element.appendChild(name)
     document.getElementById("cursorscontainer").appendChild(this.element)
     document.getElementById(label).style.left = fullFriend.lastLocation[0] + '%' 
-    document.getElementById(label).style.top = fullFriend.lastLocation[1] + '%'
+    document.getElementById(label).style.top = fullFriend.lastLocation[1] + 'px'
     } else if (this.idx != "friend-undefined"){
     friends[label] = friend;
     this.element = document.createElement("div")
@@ -80,8 +81,9 @@ class Friend extends Player {
     this.element.classList.add('friend')
     document.getElementById("cursorscontainer").appendChild(this.element)
     }
-      }
     }
+    }
+  }
    
   
   remove(id, friends){
@@ -101,7 +103,7 @@ class Friend extends Player {
     // console.log(data)    
     if (document.getElementById(label)){
     document.getElementById(label).style.left = data.friendX + '%' 
-    document.getElementById(label).style.top = data.friendY + '%'
+    document.getElementById(label).style.top = data.friendY + 'px'
     } else {
       console.log(data)
     if (label != "friend-undefined"){
@@ -117,9 +119,10 @@ class Friend extends Player {
     name.classList.add(data.role)
     name.innerHTML = data.name
     this.element.appendChild(name)
+      //emit a createFriend so that the server knows?
     document.getElementById("cursorscontainer").appendChild(this.element)
     document.getElementById(label).style.left = data.friendX + '%' 
-    document.getElementById(label).style.top = data.friendY + '%'
+    document.getElementById(label).style.top = data.friendY + 'px'
       }
     }
     }
@@ -177,6 +180,9 @@ class Meeting {
         console.log(friend)
         this.friend.add(friend, friends, fullFriend);}
     }
+//           if(document.getElementById("connections").innerText != document.getElementsByClassName("friend").length){document.getElementById("connections").innerText = document.getElementsByClassName("friend").length
+        
+//       }
     
   }
   
@@ -185,6 +191,8 @@ class Meeting {
 }
   
   updateFriend(data){
+ // if(document.getElementById("connections").innerText != document.getElementsByClassName("friend").length){document.getElementById("connections").innerText = document.getElementsByClassName("friend").length
+ //      }
     this.friend.update(data, this.friends)
   }
   

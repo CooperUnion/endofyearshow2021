@@ -17,6 +17,7 @@
   import { useRoute } from 'vue-router'
   import { useStore } from 'vuex'  
   
+  import newcursors from '@/components/Cursors-attempt-rightvue.vue'
   import Loading from '@/components/Loading.vue'
   import AreaNav from '@/components/AreaNav.vue'
   import Posts from '@/components/Posts.vue'

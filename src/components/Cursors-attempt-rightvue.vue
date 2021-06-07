@@ -1,23 +1,28 @@
 <template>
     <div id="cursorscontainer">
-      <div class="online-users">
-       <span id="connections">
-        </span> <span id="othervisitors"> other visitors online</span><br>
-          <p>Your name is "<span id="prompt"></span>"</p>
-  <p>Your role is "<span id="role"></span>"</p>
-    </div>
+<!--         <h1>Current message: {{message}}</h1>
+  <ul>
+    <li @click="update(Math.random()*1000)">Send a random number</li>
+    <li @click="dump()">Dump the current vuex store "state" module to the console</li>
+  </ul> -->
+                    <div class="online-users">
+                     <span id="connections">
+                      </span> <span id="othervisitors"> other visitors online</span><br>
+                        <p class="online-users">Your name is "<span id="prompt"></span>"</p>
+                <p class="online-users">Your role is "<span id="role"></span>"</p>
+                  </div>
 
 <!--   <p>The current time is <span id="time-stamp"></span>.</p> -->
 <!--   <div id="dialog" class="hidden"> -->
-    <div id="dialog">
+    <div id="dialog" class="hidden">
     <div id="dialogchild">
-    <button class="close-dialog">
+<!--     <button class="close-dialog">
       X
-    </button>
+    </button> -->
         <div class="message">foobar</div>
         <div class="message2">foobar</div>
 
-    <input v-model="democursorname" v-on:input="demoCursorNameCheck" placeholder="Display Name" maxlength="30" id="textinput" type="text">
+    <input v-model="democursorname"  @click.once="messageNone" v-on:input="demoCursorNameCheck" placeholder="Display Name" maxlength="30" id="textinput" type="text">
 
     <div class="radioscontainer">
       <input class="radiobutton" type="radio" id="contactChoice1"
@@ -33,7 +38,7 @@
       <label for="contactChoice3">Alumnus</label><br>
       
             <input class="radiobutton" type="radio" id="contactChoice4"
-       name="roleRadio" v-on:change="radioChange" v-model="roleRadio" value="friend-cu">
+       name="roleRadio" v-on:change="radioChange" v-model="roleRadio" value="friend-cu" checked>
       <label for="contactChoice4">Friend</label>
     </div>
 
@@ -41,13 +46,12 @@
   </div>
     
 <div class="cursordemo">
-
- <div id="demo-cursor" class="current-student friend demo-cursor"><div id="democursortext" class="current-student name name-demo">{{ democursorname }}</div></div>
+ <div id="demo-cursor" class="friend-cu demofriend demo-cursor"><div id="democursortext" class="friend-cu name name-demo">{{ democursorname }}</div></div>
   
     </div>
 
     <div>
-      <button class="ok">Enter</button><br>
+      <button class="ok">Select</button><br>
       <button class="cancel">Skip</button>
     </div>
   </div>
@@ -57,197 +61,239 @@
 </template>
 
 <script>
-  import {Player, Friend, Meeting} from './People.class.js'
+  // import {Player, Friend, Meeting} from './People.class.js'
   import {BadWords} from './BadWords.js'
-  import {ref , onBeforeMount } from "vue";
+  import {ref , onBeforeMount, computed } from "vue";
+  import { useStore } from 'vuex';
   
     export default {
-    name: 'Cursors',
+    name: 'newCursors',
     props: {
       
     },
   setup (props){
     
-    return{}
+        const store = useStore()
+        const message = computed(() => store.state.socket.message)
+        const cursors = computed(() => store.state.socket.cursors)
+        // const playercursor = computed(() => store.state.socket.playercursor)
+        // const init = computed(() => store.state.init)
+        // console.log(init)
+        // console.log("init component")
+    
+        const dump = ()=>{
+          console.log(store.state.socket)
+        }
+        
+        const update = (message, cursors)=>{
+          store.dispatch('client_userMessage', `data from vue client, ${message}`)
+        }    
+        
+        const updatePlayerPos = (message, cursors) =>{
+          store.dispatch('client_playerCursorMove', `data from cursor movement, ${cursors}, ${message}`)
+        }
+        
+      return {message, dump, update}
+
   },
       data() {
     return {
       isConnected: false,
       socketMessage: '',
-      democursorname: '',
-      roleRadio: ""
+      democursorname: 'Peter Cooper \'83',
+      roleRadio: "friend-cu",
+      cursors: []
     }
   },
 
-  mounted(){
+  mounted(){      
          this.prev = null;
      this.prevprev = null;  
+    //send the promise? need socket connect first... :/
   },
 
-  sockets: {
-    connected(data) {
-      console.log(this.$socket.client)
-
-                          document.getElementById('connections').innerHTML = (data.connections-1) + " ";
-                    if ((data.connections-1)===1){
-                      document.getElementById("othervisitors").innerHTML = " other visitor online"
-                    } else {
-                        document.getElementById("othervisitors").innerHTML = " other visitors online"
-                    }
+//   sockets: {
+//     connected(data) {
+//       // console.log(this.$socket.client)
+//       console.log(data)
+// console.log("connections,", data.connections-1)
+//                           document.getElementById('connections').innerHTML = (data.connections-1) + " ";
+//                     if ((data.connections-1)===1){
+//                       document.getElementById("othervisitors").innerHTML = " other visitor online"
+//                     } else {
+//                         document.getElementById("othervisitors").innerHTML = " other visitors online"
+//                     }
       
 
-      this.isConnected = true;
-    },
+//       this.isConnected = true;
+//     },
     
-    init(data){      
+          //     init(data){
+          //   console.log("init")   
 
-      
-   async function run(data, that){
-      
-          that.BadWords1 = new BadWords();
-          function promptPromise(message, message2) {
-  var dialog  = document.getElementById('dialog');
-  var input   = document.getElementById("textinput");
-  var okButton = dialog.querySelector('button.ok');
-  var XButton = dialog.querySelector('button.close-dialog');
-  let radio = ""
-  
-  dialog.querySelector('.message').innerHTML = String(message);
-  dialog.querySelector('.message2').innerHTML = String(message2)
-  dialog.className = '';
+          //    async function run(data, that){
 
-  return new Promise(function(resolve, reject) {
-    
-    
-    //////////////////////////////////////////////////////////////////
-    
-// var rad = document.getElementsByClassName("radiobutton");
+          //   that.BadWords1 = new BadWords();
+          //   function promptPromise(message, message2) {
+          //   var dialog  = document.getElementById('dialog');
+          //   var input   = document.getElementById("textinput");
+          //   var okButton = dialog.querySelector('button.ok');
+          //   var XButton = dialog.querySelector('button.close-dialog');
+          //   let radio = ""
+
+          //   dialog.querySelector('.message').innerHTML = String(message);
+          //   dialog.querySelector('.message2').innerHTML = String(message2)
+          //   dialog.className = '';
+
+          //   return new Promise(function(resolve, reject) {
+          //     dialog.onclick = function(e){
+          //       if (e.target.tagName !== 'BUTTON') { return; }
+          //       dialog.onclick = null;
+          //       dialog.className = 'hidden';
+          //       if (e.target === okButton) {
+          // var radios = document.getElementsByName('roleRadio');
+          // for (var i = 0, length = radios.length; i < length; i++) {
+          //   if (radios[i].checked) {
+          //    radio = radios[i].value
+          //    console.log(radio)
+          //    console.log("was radio")
+          //     resolve({input: input.value, radio: radio});
+          //     break;
+          //   }
+          // }
+
+          //       } else if (e.target === XButton){
+          //       } else {
+          //         resolve({input: input.value, radio: "undefined"});
+          //       }
+          //     };
+          //   });
+          // }
+
+
+          //   var button = document.getElementById('action');
+          //   var output = document.getElementById('prompt');
+          //   var rolefield = document.getElementById('role')
+
+          //   if (window.sessionStorage.getItem('EOYS2021Name')){
+          //     var dialog  = document.getElementById('dialog');
+          //     dialog.className = 'hidden'
+          //     console.log("session storage SUCCESS")
+          //     // Save data to sessionStorage
+
+
+          //           const response = {name: window.sessionStorage.getItem('EOYS2021Name'), role: window.sessionStorage.getItem('EOYS2021Role')}
+          //       that.$socket.client.emit('nameChosen', {response: response, player: data.player})
+          //                             that.Meeting1 = new Meeting(that.$socket)  
+          //                       console.log(data)
+          //       console.log("data")
+          //                       // data.friends.forEach(friend1 => console.log(friend1));
+          //                       data.friends.forEach(friend1 => that.Meeting1.createFriend(friend1.id, data.player, that.Meeting1, friend1.name, friend1.role, friend1));
+          //                       self.player = new Player(data.player);
+
+          //                       document.querySelector("body").onmousemove = (e) => {
+          //                           // console.log(document.querySelector("body"))
+          //                           const x = e.clientX
+          //                           const y = e.clientY
+          //                           const location = player.update(x,y,that.$socket, data.player, response.name, response.role) 
+          //                       };    
+          //       output.innerHTML = '' + response.name;
+          //       rolefield.innerHTML = "" + response.role;
+
+          // // Get saved data from sessionStorage
+          // // let data = sessionStorage.getItem('key');
+
+          //   }else{
+          //     var dialog  = document.getElementById('dialog');
+          //     dialog.classList.remove("hidden")
+          //     console.log("session storage FAILED")
+          //     promptPromise('Welcome to the Cooper Union School of Art End of Year Show 2021!', 'Would you like your cursor to be visible while you move <br> through the galleries?').then(function(name) {
+          //       output.innerHTML = '' + name.input;
+          //       rolefield.innerHTML = "" + name.radio;
+          //       console.log("response completed!")
+          //       console.log(that.$socket.client)
+          //       const response = {name: name.input, role: name.radio}
+          //       window.sessionStorage.setItem('EOYS2021Name', name.input)
+          //       window.sessionStorage.setItem('EOYS2021Role', name.radio)
+          //       that.$socket.client.emit('nameChosen', {response: response, player: data.player})
+          //                             that.Meeting1 = new Meeting(that.$socket)  
+          //                       console.log(data)
+          //       console.log("data")
+          //                       // data.friends.forEach(friend1 => console.log(friend1));
+          //                       data.friends.forEach(friend1 => that.Meeting1.createFriend(friend1.id, data.player, that.Meeting1, friend1.name, friend1.role, friend1));
+          //                       self.player = new Player(data.player);
+
+          //                       document.querySelector("body").onmousemove = (e) => {
+          //                           // console.log(document.querySelector("body"))
+          //                           const x = e.clientX
+          //                           const y = e.clientY
+          //                           const location = player.update(x,y,that.$socket, data.player, name.input, name.radio) 
+          //                       };    
+
+          //     }).catch(function() {
+          //       // output.innerHTML = '¯\\_(ツ)_/¯';
+          //       console.log("ERROR?")
+          //     }); 
 
 
 
+          //   }
+          //    }
+          //       console.log(this)
+          //       var that = this;
+          //       run(data, that);
 
+          //     },
     
+//     nameUpdated(data){
+//      console.log("name updated", data)
+//      this.Meeting1.updateFriendName(data.data.id, data.data.player, this.Meeting1, data.data.name, data.data.role, data)
+//       console.log("connections updated with nameUpdate")
+//       console.log(data.activeUsers-1)
+//                           document.getElementById('connections').innerHTML = (data.activeUsers-1) + " ";
+//                     if ((data.activeUsers-1)===1){
+//                       document.getElementById("othervisitors").innerHTML = " other visitor online"
+//                     } else {
+//                         document.getElementById("othervisitors").innerHTML = " other visitors online"
+//                     }
+//     },
+
+//     disconnect() {
+//       this.isConnected = false;
+//     },
     
-    
-// for (var i = 0; i < rad.length; i++) {
-  
-//       function set(value){
-//       prevprev = value
+//     newFriend(data){
+//       this.Meeting1.createFriend(data.friend, data.player, this.Meeting1, data.name, data.role);
+//     },
+//     byeFriend(data){
+//                      console.log("connections,", data.connections-1)
+//                      document.getElementById('connections').innerHTML = (data.connections-1) +" ";
+//                     if ((data.connections-1)===1){
+//                       document.getElementById("othervisitors").innerHTML = " other visitor online"
+//                     } else {
+//                         document.getElementById("othervisitors").innerHTML = " other visitors online"
+//                     }
+//                           if(this.Meeting1){
+//                           this.Meeting1.removeFriend(self,data.friend, this.Meeting1);
+//                           }
+//     },
+//     move(data){
+//       // console.log(data)
+//       this.Meeting1.updateFriend(data);
+//   },
+
+//     // Fired when the server sends something on the "messageChannel" channel.
+//     messageChannel(data) {
+//       this.socketMessage = data
 //     }
-  
-//     rad[i].onchange =  function() {
-//         if (prev === null){
-//           prev = document.getElementById("contactChoice1")
-//         }
-//         (prev) ? set(prev.value): null;
-//         if (this !== prev) {
-//             prev = this;
-//         }
-        
-//         console.log(this.value)
-//         document.getElementById("demo-cursor").classList.remove(prevprev)
-//         document.getElementById("democursortext").classList.remove(prevprev)
-//         document.getElementById("demo-cursor").classList.add(prev.value)
-//         document.getElementById("democursortext").classList.add(prev.value)
-//     }
-// }
-    
-    //////////////////////////////////////////////////////////////////
-    
-    
-    
-    dialog.onclick = function(e){
-      if (e.target.tagName !== 'BUTTON') { return; }
-      dialog.onclick = null;
-      dialog.className = 'hidden';
-      if (e.target === okButton) {
-var radios = document.getElementsByName('roleRadio');
-for (var i = 0, length = radios.length; i < length; i++) {
-  if (radios[i].checked) {
-   radio = radios[i].value
-   console.log(radio)
-   console.log("was radio")
-    resolve({input: input.value, radio: radio});
-    break;
-  }
-}
-
-      } else if (e.target === XButton){
-      } else {
-        resolve({input: input.value, radio: "undefined"});
-      }
-    };
-  });
-}
-    
-
-  var button = document.getElementById('action');
-  var output = document.getElementById('prompt');
-  var rolefield = document.getElementById('role')
-    promptPromise('Welcome to the Cooper Union School of Art End of Year Show 2021!', 'Would you like your cursor to be visible while you move <br> through the galleries?').then(function(name) {
-      output.innerHTML = '' + name.input;
-      rolefield.innerHTML = "" + name.radio;
-      console.log("response completed!")
-      console.log(that.$socket.client)
-      const response = {name: name.input, role: name.radio}
-      that.$socket.client.emit('nameChosen', {response: response, player: data.player})
-                            that.Meeting1 = new Meeting(that.$socket)  
-                      console.log(data)
-      console.log("data")
-                      // data.friends.forEach(friend1 => console.log(friend1));
-                      data.friends.forEach(friend1 => that.Meeting1.createFriend(friend1.id, data.player, that.Meeting1, friend1.name, friend1.role, friend1));
-                      self.player = new Player(data.player);
-
-                      document.querySelector("body").onmousemove = (e) => {
-                          const x = e.clientX
-                          const y = e.clientY
-                          const location = player.update(x,y,that.$socket, data.player, name.input, name.radio) 
-                      };    
-    
-    }).catch(function() {
-      // output.innerHTML = '¯\\_(ツ)_/¯';
-      console.log("ERROR?")
-    }); }
-      console.log(this)
-      var that = this;
-      run(data, that);
-      
-
-    },
-    
-    nameUpdated(data){
-     console.log("name updated", data)
-     this.Meeting1.updateFriendName(data.data.id, data.data.player, this.Meeting1, data.data.name, data.data.role, data)
-    },
-
-    disconnect() {
-      this.isConnected = false;
-    },
-    
-    newFriend(data){
-      this.Meeting1.createFriend(data.friend, data.player, this.Meeting1, data.name, data.role);
-    },
-    byeFriend(data){
-                     
-                     document.getElementById('connections').innerHTML = (data.connections-1) +" ";
-                    if ((data.connections-1)===1){
-                      document.getElementById("othervisitors").innerHTML = " other visitor online"
-                    } else {
-                        document.getElementById("othervisitors").innerHTML = " other visitors online"
-                    }
-                          this.Meeting1.removeFriend(self,data.friend, this.Meeting1);
-    },
-    move(data){
-      this.Meeting1.updateFriend(data);
-    },
-
-    // Fired when the server sends something on the "messageChannel" channel.
-    messageChannel(data) {
-      this.socketMessage = data
-    }
-  },
+//   },
 
   methods: {
+        //     mouseMove(event) {
+        //     console.log(event.clientX, event.clientY);
+        //     // store.dispatch('client_playerCursorMove', `data from cursor movement, ${event}`)
+        // },
+    
     pingServer() {
       // Send the "pingServer" event to the server.
       this.$socket.client.emit('pingServer', 'PING!')
@@ -255,10 +301,11 @@ for (var i = 0, length = radios.length; i < length; i++) {
       onMouseMove (ev) {
                           const x = ev.clientX
                           const y = ev.clientY
-                          const location = player.update(x,y,this.$socket)
+                          const location = this.player.update(x,y,this.$socket, 1, "testtest", "current-student") 
       },
      
     demoCursorNameCheck: function (){
+      this.BadWords1 = new BadWords()
       // console.log(this.democursorname)
       const description = this.democursorname
       let isInclude = this.BadWords1.check(description)
@@ -283,7 +330,12 @@ for (var i = 0, length = radios.length; i < length; i++) {
         document.getElementById("textinput").style.color = "black"
       }
   },
-    radioChange: function(){ 
+    messageNone: function(){
+      this.democursorname = ""
+      const description = this.democursorname
+      document.getElementById("democursortext").innerHTML  = document.getElementById("textinput").value
+    },
+    radioChange: function(){
             function set(value, that){
       that.prevprev = value
     }
@@ -323,26 +375,41 @@ body {
 a {
   color: #00b7ff;
 }
+  #cursorscontainercontainer{
+        height: 100%;
+    width: 100vw;
+    position: relative;
+    left: 0;
+    top: 0;
+       -webkit-filter: blur(0px);
+/*     overflow: hidden; */
+    pointer-events:all;
+    z-index: 10;
+  }
   
   #cursorscontainer {
-height: 100%;
+    height: 100%;
     width: 100vw;
     position: absolute;
     left: 0;
     top: 0;
-    overflow: hidden;
+       -webkit-filter: blur(0px);
+/*     overflow: hidden; */
+    pointer-events:none;
   }  
   
 #cursorscontainer >>> .friend {
     background-color: gainsboro;
-    width: 1px;
+    width: 0px;
     height: 1px;
-/*   background: url("https://cdn.glitch.com/fc76c743-ed4f-40b8-8cf5-889b2f64b004%2Fcursor.png?v=1621812496190"); */
-  position: absolute;
-  z-index: 101;
-/*   clip-path: polygon(6% 22%, 50% 30%, 94% 22%, 66% 55%, 50% 95%, 34% 56%); */
-  pointer-events: none;
+    /* background: url(https://cdn.glitch.com/fc76c743-ed4f-40b8-8cf5-889b2f64b004%2Fcursor.png?v=1621812496190); */
+    position: absolute;
+    z-index: 11;
+    /* clip-path: polygon(6% 22%, 50% 30%, 94% 22%, 66% 55%, 50% 95%, 34% 56%); */
+    pointer-events: none;
     transition: left 0.1s ease-out, top 0.1s ease-out;
+    margin-top: -5px;
+    margin-left: -1px;
 }
 
 #cursorscontainer >>> .friend::before{
@@ -358,12 +425,67 @@ height: 100%;
   height: 24px;
 /*   background: url("https://cdn.glitch.com/fc76c743-ed4f-40b8-8cf5-889b2f64b004%2Fcursor.png?v=1621812496190"); */
   position: absolute;
-  z-index: 101;
+  z-index: 11;
   clip-path: polygon(6% 22%, 50% 30%, 94% 22%, 66% 55%, 50% 95%, 34% 56%);
   pointer-events: none;
 }
 
 #cursorscontainer >>> .friend .name {
+    display: inline;
+    position: relative;
+    left: 19px;
+    top: 4px;
+    pointer-events: none;
+    color: black;
+    text-shadow: none;
+    /* background: #000; */
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    white-space: nowrap;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 4px;
+    padding-top: 4.6px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    
+}
+  
+  #cursorscontainer >>> .demofriend {
+    background-color: gainsboro;
+    width: 1px;
+    height: 1px;
+/*   background: url("https://cdn.glitch.com/fc76c743-ed4f-40b8-8cf5-889b2f64b004%2Fcursor.png?v=1621812496190"); */
+  position: absolute;
+  z-index: 11;
+/*   clip-path: polygon(6% 22%, 50% 30%, 94% 22%, 66% 55%, 50% 95%, 34% 56%); */
+  pointer-events: none;
+    transition: left 0.1s ease-out, top 0.1s ease-out;
+}
+
+#cursorscontainer >>> .demofriend::before{
+    content:"";
+  position:absolute;
+  z-index:-1;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  background-color: inherit;
+    width: 24px;
+  height: 24px;
+/*   background: url("https://cdn.glitch.com/fc76c743-ed4f-40b8-8cf5-889b2f64b004%2Fcursor.png?v=1621812496190"); */
+  position: absolute;
+  z-index: 11;
+  clip-path: polygon(6% 22%, 50% 30%, 94% 22%, 66% 55%, 50% 95%, 34% 56%);
+  pointer-events: none;
+}
+
+#cursorscontainer >>> .demofriend .name {
     display: inline;
     position: relative;
     left: 19px;
@@ -458,7 +580,7 @@ height: 100%;
   height: 24px;
 /*   background: url("https://cdn.glitch.com/fc76c743-ed4f-40b8-8cf5-889b2f64b004%2Fcursor.png?v=1621812496190"); */
   position: absolute;
-  z-index: 101;
+  z-index: 11;
   clip-path: polygon(6% 22%, 50% 30%, 94% 22%, 66% 55%, 50% 95%, 34% 56%);
   pointer-events: none;
 }
@@ -472,9 +594,25 @@ height: 100%;
 }
 
 #cursorscontainer >>> .online-users{
-padding-top: 20px;
+      padding-top: 20px;
     padding-left: 20px;
     display: block!important;
+    text-align: right;
+    line-height: 12px;
+    font-size: 10px;
+  margin-right:20px;
+}
+  
+  #cursorscontainer >>> .online-users p{
+      padding-top: 0px;
+    padding-left: 0px;
+    display: block!important;
+    text-align: right;
+    line-height: 12px;
+    font-size: 10px;
+      margin-top:0px;
+    margin-bottom:0px;
+    margin-right:20px;
 }
 
 
@@ -512,7 +650,20 @@ margin-right: 0px;
     padding: 10vh;
     position: absolute;
     top: 0;
+    pointer-events: all;
+    z-index: 10;
+/*      -webkit-filter: blur(0px); */
+  animation: fadeIn 2s linear;
+              -webkit-animation-duration: 2s;
+            animation-duration: 2s;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
     }
+  
+  @keyframes fadeIn {
+     0% {opacity: 0;}
+   100% {opacity: 1;}
+} 
   
   #cursorscontainer >>> #dialogchild {
     width: 400px;
@@ -525,11 +676,27 @@ margin-right: 0px;
     margin-left: auto;
     /* border: thin solid black; */
     padding: 70px;
-    background: gainsboro;
+    background: #dcdcdc;
     border-radius: 10px;
     text-align: center;
     display: block;
+    -webkit-filter: blur(0px);
+    backdrop-filter: blur(6px);
+    animation-timing-function: cubic-bezier(1,-0.01, 0.55, 0.99);
     }
+  
+  #cursorscontainer >>> #dialogchild::before{
+/*     content: '';
+    position: absolute;
+    margin: 0px;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    z-index: 0; */
+  }
   
     .hidden {
       display: none;
@@ -543,6 +710,7 @@ margin-right: 0px;
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
   line-height: 32px;
+  color: black;
   
 }
 
@@ -552,6 +720,7 @@ margin-right: 0px;
     font-weight: 700;
     line-height: 18px;
   padding-top: 10px;
+  color: black;
 }
 
 #cursorscontainer >>> .radioscontainer{

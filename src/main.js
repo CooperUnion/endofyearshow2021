@@ -14,14 +14,10 @@ const app = createApp(App)
   .use(store)
   .use(router)
   .use(vuexSocketio, {
-    connection:'https://eoyssockets2021.glitch.me',
+    connection: 'https://eoyssockets2021.glitch.me',
     store,
-    pluginOptions:{
-      action_prefix: 'SOCKET_ACTION',
-      mutation_prefix: 'SOCKET_MUTATION'
-    },
     socketOptions:{
-      path: '/socket.io/'
+      path: '/socket.io/' //default for socket.io
     }
   })
   .use(GesturePlugin)

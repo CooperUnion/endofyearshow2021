@@ -31,7 +31,6 @@
 <script>
   import { ref, onBeforeMount, watch, getCurrentInstance } from "vue";
   import { useRoute } from 'vue-router'
-  
   import Loading from '@/components/Loading.vue'
   import GlobalNav from '@/components/GlobalNav.vue'  
   import {globalNavItems} from '@/router/index.js'

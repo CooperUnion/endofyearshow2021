@@ -1,7 +1,5 @@
 <template>
-
   <global-nav :items="globalNavItems" />
-
    <main>    
     <page-header />
     <div class="areasPage">
@@ -12,14 +10,22 @@
       <posts v-else :items="items"/>
       
     </div>
+<<<<<<< HEAD:src/views/MasonryPost.vue
+  </main>  
+
+<newcursors/>
+
+=======
   </main>   
 	<global-footer :items="globalNavItems" />
+>>>>>>> v0.4.1:src/views/DO NOT USE MasonryPost.vue
 </template>
 
 <script>
   import { ref, onBeforeMount, watch, getCurrentInstance } from "vue";
   import { useRoute } from 'vue-router'
   
+  import newcursors from '@/components/Cursors-attempt-rightvue.vue'
   import Loading from '@/components/Loading.vue'
   import AreaNav from '@/components/AreaNav.vue'
   import Posts from '@/components/Posts.vue'
@@ -30,6 +36,7 @@
   
   export default {
     components: {
+      newcursors,
       Loading,
       GlobalNav,
       Posts,

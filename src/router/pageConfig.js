@@ -33,6 +33,5 @@
     title: 'Students',
     body: '',
     refreshEnabled: false
-  },
-
+  }
 }
