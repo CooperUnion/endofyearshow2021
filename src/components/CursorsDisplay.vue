@@ -43,7 +43,7 @@
     </div>
 
     <div>
-      <button @click="submitForm(player, store, dispatch)" class="ok">Select</button><br>
+      <button @click="submitForm(player, store)" class="ok">Select</button><br>
       <button class="cancel">Skip</button>
     </div>
   </div>
@@ -83,7 +83,7 @@
 
       const playerCursors = ref(store.state.socket.playerCursors)
       
-      return { player, 
+      return { player, store,
       playerCursors, 
       democursorname: 'Peter Cooper \'83',
       roleRadio: "friend-cu", }

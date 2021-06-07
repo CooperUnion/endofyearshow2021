@@ -57,6 +57,12 @@ const socket = {
       console.log(state.playerCursors[message.data.id])
       console.log(state.playerCursors[message.data.id].position)
       console.log(state.connections)
+    },
+    USER_NAME_CHOSEN(state, message){
+      console.log(state.playerCursor)
+      console.log(message)
+      state.playerCursor = message
+      console.log(state.playerCursor)
     }
     
   },
@@ -81,6 +87,8 @@ const socket = {
     },
     nameChosen({ dispatch, commit }, message) {
       console.log("nameChosen!", message) //emit name chosen!
+      console.log(message)
+      commit("USER_NAME_CHOSEN", message)
       // commit("nameChosen", message)
     },
     
