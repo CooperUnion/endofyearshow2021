@@ -13,8 +13,6 @@
         id="textinput" 
         type="text" />
 
-      {{badWordError}}
-
       <div class="radioscontainer">
         <input 
           class="radiobutton" 
