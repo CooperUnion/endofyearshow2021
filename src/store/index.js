@@ -1,5 +1,4 @@
 import { createStore } from 'vuex'
-import {Player, Friend, Meeting} from './People.class.js'
 
 const activeArea = new Set()
 const activeGlobalNav = ''
@@ -29,7 +28,7 @@ const socket = {
       const justUsers = data.friends.filter((item)=>{ return typeof item === 'object' })
       // justUsers.forEach(user => state.playerCursors[user.id] = user)
       //also render them in the page?
-      this.Meeting1 = new Meeting()
+      // this.Meeting1 = new Meeting()
       console.log(data.player)
       window.sessionStorage.setItem('EOYS2021TempId', data.player)
       // justUsers.forEach(friend1 => this.Meeting1.createFriend(friend1.id, data.player, this.Meeting1, friend1.name, friend1.role, friend1));
@@ -64,12 +63,6 @@ const socket = {
       console.log("socket connected message ^")
       // console.log("socketconnectedmessage", message)
     },
-    // move(state, message){
-    //   console.log("playermove", message)
-    //   state.playercursor = {message, origin: 'client'}
-    //   //how to send to socket???
-    //       // commit("CLIENT_PLAYER_CURSOR_MOVE", message)
-    // },
     
   },
   actions: {
@@ -97,64 +90,16 @@ const socket = {
     },
     
     byeFriend({ dispatch, commit }, message) { //to remove connections, and remove the cursor from the page (does it work properly?)
-      //classes: this.connections?
       console.log("byeFriend", message)
-                    //        console.log("connections,", message.connections-1)
-                    //  document.getElementById('connections').innerHTML = (message.connections-1) +" ";
-                    // if ((message.connections-1)===1){
-                    //   document.getElementById("othervisitors").innerHTML = " other visitor online"
-                    // } else {
-                    //     document.getElementById("othervisitors").innerHTML = " other visitors online"
-                    // }
-                          if(this.Meeting1){
-                          this.Meeting1.removeFriend(self,message.friend, this.Meeting1);
-                          }
+
     },
     
     nameUpdated({ dispatch, commit }, message){ //other person's name is uodated, update cursor currently in the page
       console.log("nameUpdated", message)
       
-                  if (this.Meeting1){
-      this.Meeting1.updateFriendName(message.data.id, message.data.player, this.Meeting1, message.data.name, message.data.role, message)
-      } else {
-        // console.log(self.player)
-        // console.log(data.player)
-        if (window.sessionStorage.getItem('EOYS2021TempId')){
-        const playerId = window.sessionStorage.getItem('EOYS2021TempId')
-        self.player = new Player(playerId);
-        this.Meeting1 = new Meeting()
-        this.Meeting1.updateFriendName(message.data.id, message.data.player, this.Meeting1, message.data.name, message.data.role, message)
-                              window.onmousemove = (e) => {
-                          // console.log(document.querySelector("body"))
-                          const x = e.clientX
-                          const y = e.pageY
-                          const location = self.player.update(x,y,dispatch, playerId, window.sessionStorage.getItem('EOYS2021Name'),  window.sessionStorage.getItem('EOYS2021Role')) 
-                      }; 
-        }
-      }
-      
     },
     newFriend({ dispatch, commit }, message){ //new cursor first connects, no name, just id
       console.log("newFriend", message)
-      
-            if (this.Meeting1){
-      this.Meeting1.createFriend(message.friend, message.player, this.Meeting1, message.name, message.role); //undefined on purpose
-      } else {
-        // console.log(self.player)
-        // console.log(data.player)
-        if (window.sessionStorage.getItem('EOYS2021TempId')){
-        const playerId = window.sessionStorage.getItem('EOYS2021TempId')
-        self.player = new Player(playerId);
-        this.Meeting1 = new Meeting()
-        this.Meeting1.createFriend(message.friend, message.player, this.Meeting1, message.name, message.role);
-                              window.onmousemove = (e) => {
-                          // console.log(document.querySelector("body"))
-                          const x = e.clientX
-                          const y = e.pageY
-                          const location = self.player.update(x,y,dispatch, playerId, window.sessionStorage.getItem('EOYS2021Name'),  window.sessionStorage.getItem('EOYS2021Role')) 
-                      }; 
-        }
-      }
       
     },
     init({ dispatch, commit }, data){ //fires when first chosen, but not on new pageloads? how can we make it first on new pageloads?
