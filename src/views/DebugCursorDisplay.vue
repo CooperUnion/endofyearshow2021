@@ -22,6 +22,7 @@
       player.value.role = "friend-cu"
       player.value.id = Math.floor(Math.random()*100)
       const store = useStore()
+      store.dispatch('nameChosen', player.value)
 
        window.onmousemove = (e) => {
         const x = e.clientX
