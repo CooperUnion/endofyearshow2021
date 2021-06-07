@@ -11,8 +11,8 @@
 <!--     <button class="close-dialog">
       X
     </button> -->
-        <div class="message">foobar</div>
-        <div class="message2">foobar</div>
+        <div class="message">Welcome to the Cooper Union School of Art End of Year Show 2021!</div>
+        <div class="message2">Would you like your cursor to be visible while you move <br> through the galleries?</div>
 
     <input v-model="democursorname"  @click.once="messageNone" v-on:input="demoCursorNameCheck" placeholder="Display Name" maxlength="30" id="textinput" type="text">
 
@@ -43,7 +43,7 @@
     </div>
 
     <div>
-      <button @click="submitForm(store)" class="ok">Select</button><br>
+      <button @click="submitForm(player, store)" class="ok">Select</button><br>
       <button class="cancel">Skip</button>
     </div>
   </div>
@@ -151,29 +151,31 @@
     
     },
   
-        submitForm: function(store){
-          const player = ref({})
+        submitForm: function(player, store){
+          // const player = ref({})
           
-          console.log(player)
+          // console.log(player)
         const completePlayer = {
-        id: player.value.id,
+        id: player.id,
         name: this.democursorname,
         role: this.roleRadio,
-        position: player.value.position
+        position: player.position
       }
         
                window.onmousemove = (e) => {
         const x = ((e.clientX / window.innerWidth) * 100).toFixed(2)
         const y = e.pageY
-        player.value.name = completePlayer.name
-        player.value.role = completePlayer.role
-        player.value.id = completePlayer.id
-        player.value.position = {x,y}
-        store.dispatch('move', player.value)
+        player.name = completePlayer.name
+        player.role = completePlayer.role
+        player.id = completePlayer.id
+        player.position = {x,y}
+        store.dispatch('move', player)
       }
         player.value = completePlayer
         store.dispatch('nameChosen', completePlayer)
         
+        document.getElementById("dialog").classList.add("hidden")
+          
         }
 }
   }
