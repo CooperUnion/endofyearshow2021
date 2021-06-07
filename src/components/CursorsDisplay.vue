@@ -504,6 +504,7 @@ button:active {
   margin-bottom: 1vh;
       font-size: 18px;
     font-weight: 500;
+   color: black;
 }
 
 .demo-cursor::before{
