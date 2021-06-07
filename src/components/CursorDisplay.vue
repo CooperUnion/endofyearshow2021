@@ -40,7 +40,7 @@
     margin-top: -5px;
     margin-left: -1px;
 }
-
+  
 .friend::before{
     content:"";
   position:absolute;
@@ -82,6 +82,10 @@
 /*     font-family: 'Space Grotesk', sans-serif; */
     font-weight: 700;
     
+}
+  
+.self .friend::before{
+    display:none!important;
 }
   
   .friend .name::before{
