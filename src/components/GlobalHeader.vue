@@ -1,5 +1,6 @@
 <template>
 	<header ref="headerElem">
+		<cursors-display />
 		<div class="nav-header" ref="navhedElem">
 				<global-nav :items="globalNavItems" />
 				<page-header v-if="!hidePageheader" />
@@ -14,12 +15,14 @@
   import GlobalNav from '@/components/GlobalNav.vue'  
   import {globalNavItems} from '@/router/index.js'
   import PageHeader from '@/components/PageHeader.vue'  
+	import CursorsDisplay from '@/components/CursorsDisplay.vue'
 
   export default {
     name: 'GlobalHeader',
     components: {
       GlobalNav,
-      PageHeader
+      PageHeader,
+			CursorsDisplay
     },
     props: {
       items: Array,
