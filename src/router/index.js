@@ -89,11 +89,22 @@ let routes = [
         test: `The test url param is: ${route.params.test}`
       }
     }
+  },
+  {name: "🔌", path: "/DebugSocket", component: DebugSocket },
+  {name: "🔛", path: "/DebugMotion", component: DebugMotion },
+  {name: "DBCD", path:"/DebugCursorDisplay", component: DebugCursorDisplay},
+  {name: "DBOC", path:"/DebugOnlineCount", component: DebugOnlineCount},
+  {
+    name: "🚶", 
+    path: "/DebugPath", 
+    component: DebugPath,
+    props: {
+      test: "A string set in the router"
+    }
   }
 ]
 
 let globalNavItems = [
-//   {name:"Home", path:"/", component: Home},
   {name:"Areas", path:"/areas", component: MasonryPosts},
   {
     name:"Foundation", 
@@ -112,20 +123,6 @@ let globalNavItems = [
     component: Info,
     props: {
       theme: ['dark','fancy']
-    }
-  },
-
-  {name: "🔌", path: "/DebugSocket", component: DebugSocket },
-  {name: "🔛", path: "/DebugMotion", component: DebugMotion },
-  {name: "DBCD", path:"/DebugCursorDisplay", component: DebugCursorDisplay},
-  {name: "DBOC", path:"/DebugOnlineCount", component: DebugOnlineCount},
-  // {name: "🖱️", path: "/DebugCursor", component: DebugCursor},
-  {
-    name: "🚶", 
-    path: "/DebugPath", 
-    component: DebugPath,
-    props: {
-      test: "A string set in the router"
     }
   }
 ]
