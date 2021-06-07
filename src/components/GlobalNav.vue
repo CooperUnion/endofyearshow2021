@@ -37,7 +37,7 @@
       const activeGlobal = store.state.application.activeGlobal
       
       const isActiveRoute = (current) => {
-        if(current === route.name) {
+        if(current === route.name || current === route.name + 's') {
           store.commit('setGlobalNav', current)
           return 'active'
         }
