@@ -82,7 +82,7 @@ class Friend extends Player {
     document.getElementById("cursorscontainer").appendChild(this.element)
     }
     }
-      }
+    }
   }
    
   

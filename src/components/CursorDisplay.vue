@@ -119,8 +119,8 @@ a {
     padding: 0px;
     padding-left: 10px;
     padding-right: 10px;
-    /* padding-bottom: 4px; */
-    padding-top: 1.6px;
+    padding-bottom: 4px;
+    padding-top: 5.6px;
     border-radius: 20px;
     font-size: 14px;
 /*     font-family: 'Space Grotesk', sans-serif; */
