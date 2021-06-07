@@ -1,21 +1,17 @@
 <template>
-	<header>
-		<nav id="globalnav" :class="{showNav : globalnavShow}">
+	<nav id="globalnav" :class="{showNav : globalnavShow}">
 		<div class="logoBanner">
 			<a href="/"><h1 class="logo">EOYS 2021</h1></a>
-			<visitor-count v-if="!mobile">
-			2 other visitors online
-			</visitor-count>
+			<visitor-count v-if="!mobile">2 other visitors online</visitor-count>
 			<button class="globalnav-toggle" v-if="mobile" @click="toggleGlobalPanel()">Navigation menu</button> 
 		</div>
-			<div class="nav-panel">
-				<button v-if="mobile" class="close" @click="closeGlobalPanel()">close</button> 
-				<ul class="nav-list">
-					<li v-for="item in items" :key="item" :class="['nav-item', isActiveRoute(item.name)]"> <router-link :to="item.path" @click="closeGlobalPanel()">{{item.name}}</router-link> </li>
-				</ul>
-			</div>
-		</nav>
-	</header>
+		<div class="nav-panel">
+			<button v-if="mobile" class="close" @click="closeGlobalPanel()">close</button> 
+			<ul class="nav-list">
+				<li v-for="item in items" :key="item" :class="['nav-item', isActiveRoute(item.name)]"> <router-link :to="item.path" @click="closeGlobalPanel()">{{item.name}}</router-link> </li>
+			</ul>
+		</div>
+	</nav>
 </template>
 
 <script>
@@ -39,7 +35,7 @@
 
       //returns state for all area-nav items
       const activeGlobal = store.state.application.activeGlobal
-
+      
       const isActiveRoute = (current) => {
         if(current === route.name) {
           store.commit('setGlobalNav', current)
@@ -118,13 +114,14 @@
 	
 	.nav-list .nav-item a {
 		text-decoration: none;
+		font-weight: 300;
 	}
 	
 	.nav-list .nav-item a:hover {
 		text-decoration: underline;
 	}
 	
-	.nav-list .active {
+	.nav-list .active a {
 		font-weight: 700;
 	}
 	
@@ -225,7 +222,7 @@
 			margin: 0;
 			padding: 0;
 			background-color: transparent;
-			background-image: url(../assets/logo.svg);
+			background-image: url(../assets/close.svg);
 			background-size: 36px 36px;
 			background-repeat: no-repeat;
 			background-position: center center;
