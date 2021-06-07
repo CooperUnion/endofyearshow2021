@@ -4,7 +4,7 @@
     class="friend" 
     :class="[player.role, {self}]"
     :style="{ 
-      left: player.position.x + 'px', 
+      left: player.position.x + '%', 
       top: player.position.y+'px' }">
    <div class="name">{{player.name}}</div>
   </div>

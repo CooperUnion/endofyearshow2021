@@ -24,15 +24,15 @@
       const player = ref({})
    
       player.value.role = "friend-cu"
-      player.value.id = Math.floor(Math.random()*10000)
-      player.value.position = {x:(Math.floor(Math.random()*100)), y:(Math.floor(Math.random()*100))}
+      player.value.id = Math.floor(Math.random()*100000)
+      player.value.position = {x:(Math.floor(Math.random()*100)), y:(Math.floor(Math.random()*400))}
       const store = useStore()
       store.dispatch('IDGenerated', player.value.id)
-      player.value.name = "ricky-"+player.value.id
+      player.value.name = player.value.id
       store.dispatch('nameChosen', player.value)
 
        window.onmousemove = (e) => {
-        const x = e.clientX
+        const x = ((e.clientX / window.innerWidth) * 100).toFixed(2)
         const y = e.pageY
         player.value.position = {x,y}
         store.dispatch('move', player.value)
