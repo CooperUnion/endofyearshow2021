@@ -25,6 +25,7 @@
    
       player.value.role = "friend-cu"
       player.value.id = Math.floor(Math.random()*10000)
+      player.value.position = {x:(Math.floor(Math.random()*100)), y:(Math.floor(Math.random()*100))}
       const store = useStore()
       store.dispatch('IDGenerated', player.value.id)
       player.value.name = "ricky-"+player.value.id

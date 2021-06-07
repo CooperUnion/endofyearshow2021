@@ -52,7 +52,11 @@ const socket = {
       console.log(message)
     },
     SOCKET_USER_NEW(state, message){
-      state.playerCursors[message.id] = message
+      state.playerCursors[message.data.id] = message.data
+      state.connections = message.activeUsers
+      console.log(state.playerCursors[message.data.id])
+      console.log(state.playerCursors[message.data.id].position)
+      console.log(state.connections)
     }
     
   },
