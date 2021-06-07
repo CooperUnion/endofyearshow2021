@@ -131,7 +131,7 @@
 
       const submitForm = (name, role)=>{
         const completePlayer = {
-          id: Math.floor(Math.random()*10000),
+          id: Math.floor(Math.random()*1000000),
           name,
           role,
           position: {x:0,y:0}

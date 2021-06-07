@@ -41,10 +41,10 @@
         
       } else {
       player.value.role = "friend-cu"
-      player.value.id = Math.floor(Math.random()*100000)
+      player.value.id = Math.floor(Math.random()*1000000)
       player.value.position = {x:(Math.floor(Math.random()*100)), y:(Math.floor(Math.random()*400))}
       store.dispatch('IDGenerated', player.value.id)
-      player.value.name = player.value.id
+      player.value.name = ""
       store.dispatch('nameChosen', player.value)
       }
       
