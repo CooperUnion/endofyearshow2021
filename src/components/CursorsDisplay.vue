@@ -6,7 +6,7 @@
     v-bind:key="player.id" 
     :player="player"  />
 
-    <div id="dialog">
+    <div id="dialog" v-if="playerType">
     <div id="dialogchild">
 <!--     <button class="close-dialog">
       X
@@ -85,6 +85,7 @@
       
       return { player, store,
       playerCursors, 
+      playerType: typeof player.value.name === String,
       democursorname: 'Peter Cooper \'83',
       roleRadio: "friend-cu", }
     },
@@ -171,6 +172,10 @@
         player.position = {x,y}
         store.dispatch('move', player)
       }
+               
+        // window.sessionStorage.setItem('EOYS2021TempId', completePlayer.id)
+        // window.sessionStorage.setItem('EOYS2021Name', completePlayer.name)
+        // window.sessionStorage.setItem('EOYS2021Role', completePlayer.role)
         player.value = completePlayer
         store.dispatch('nameChosen', completePlayer)
         
