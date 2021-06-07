@@ -1,13 +1,12 @@
 <template>
-<h1>
-  CursorDisplay is HERE {{player}}
-  </h1>
-
- <div class="friend" :class="[player.type]" :style="{ left: player.position.x + 'px', top: player.position.y+'px' }">
- 
-   <div class="current-student name">{{player.name}}</div>
+  <div 
+    class="friend" 
+    :class="[player.type]" 
+    :style="{ 
+      left: player.position.x + 'px', 
+      top: player.position.y+'px' }">
+   <div class="name">{{player.name}}</div>
   </div>
-
 </template>
 
 <script>
@@ -88,7 +87,7 @@
   display: none;
 }
 
-.friend-cu{
+.friend-cu, .friend-cu .name{
   color: black;
 background-color: #C7BFAB;
 }
@@ -109,17 +108,17 @@ background-color: #C7BFAB;
   pointer: no-drop;
 }
 
-.alumnus{
+.alumnus, .alumnus .name{
   color: black;
   background-color: #9DE3B1;
 }
 
-.faculty-staff{
+.faculty-staff, .faculty-staff .name{
   color: black;
   background-color: #FFD480;
 }
 
-.current-student{
+.current-student, .current-student .name{
     color: black;
   background-color: #C7B9FF;
 }

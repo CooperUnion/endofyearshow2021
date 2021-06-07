@@ -5,8 +5,14 @@
   <b @click="dump()">dump vuex</b>
 
   <cursor-display :player="player" />
+
+  <div>
+    
   Current live data: {{player}} <br />
+
   Data from vuex: {{storeRetreivedData}}
+      </div>
+
 </template>
 <script>
 
@@ -19,14 +25,12 @@
     components:{
       CursorDisplay
     },
-    props:{
-      test: String
-    },
+    props:{},
     setup(props){
 
       const player = ref({})
       player.value.name = "ricky"
-      player.value.type = "current-student"
+      player.value.type = "friend-cu"
       player.value.id = 10
       const store = useStore()
 
@@ -44,7 +48,7 @@
         console.log(store.state.socket)
       }
 
-      return { player, dump, storeRetreivedData }
+      return { player, dump }
     }
   }
 </script>

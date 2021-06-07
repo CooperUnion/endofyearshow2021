@@ -30,7 +30,7 @@ const socket = {
       this.Meeting1 = new Meeting()
       console.log(data.player)
       window.sessionStorage.setItem('EOYS2021TempId', data.player)
-      justUsers.forEach(friend1 => this.Meeting1.createFriend(friend1.id, data.player, this.Meeting1, friend1.name, friend1.role, friend1));
+      // justUsers.forEach(friend1 => this.Meeting1.createFriend(friend1.id, data.player, this.Meeting1, friend1.name, friend1.role, friend1));
     },
     SOCKET_USER_MESSAGE(state, message) {
       state.message = {message, origin: 'socket'}
