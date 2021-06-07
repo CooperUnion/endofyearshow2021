@@ -6,7 +6,7 @@
     v-bind:key="player.id" 
     :player="player"  />
 
-    <div id="dialog" class="hidden">
+    <div id="dialog">
     <div id="dialogchild">
 <!--     <button class="close-dialog">
       X
@@ -43,7 +43,7 @@
     </div>
 
     <div>
-      <button class="ok">Select</button><br>
+      <button @click="submitForm(player, store, dispatch)" class="ok">Select</button><br>
       <button class="cancel">Skip</button>
     </div>
   </div>
@@ -154,7 +154,19 @@
         document.getElementById("demo-cursor").classList.add(this.roleRadio)
         document.getElementById("democursortext").classList.add(this.roleRadio)
     
-    }
+    },
+  
+        submitForm: function(player, store){
+          console.log(player)
+        const completePlayer = {
+        id: player.id,
+        name: this.democursorname,
+        role: this.roleRadio,
+        position: player.position
+      }
+        store.dispatch('nameChosen', completePlayer)
+        
+        }
 }
   }
 </script>
