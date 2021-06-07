@@ -11,7 +11,7 @@
           <span class="paginator">{{current + 1}}/{{assets.media.length}}</span>
         </template>    
       </header>
-      <div v-if="type==='images'" :class="['imageDeck', {'animating' : animState}, animDirection]">
+      <div v-if="type==='images' && isPdf() === false" :class="['imageDeck', {'animating' : animState}, animDirection]">
 				<div :class="['dragSleeve', {overshoot : isOvershooting}]" ref="dragSleeve">
 					<div :class="['carousel', assets.media.length>1 ? 'multiple' : '']" >
 						<div class="realBox current"><img :src="assets.media[current].source_url" class="imgPrime" /></div>
@@ -32,6 +32,11 @@
 						<button class="imgControl next" @click="goNext()">next</button>
 					</template>    
         </template> 
+      </div>
+
+      <div v-if="type==='images' && isPdf() === true" :class="['imageDeck', {'animating' : animState}, animDirection]">
+				<img :src="assets.preview.source_url" />
+        <p class="outgoingLink"><a :href="assets.media[0].source_url" target="_blank">View full pdf</a></p>
       </div>
 
       <div v-else-if="type==='audio'" class="audioDeck">
@@ -100,6 +105,15 @@
       const store = useStore()
       
       const current = ref(0)
+
+			const isPdf = ()=>{
+				try{
+					return props.assets.media[0].source_url.split('.').pop().toLowerCase() === 'pdf'
+				} catch(e) {
+					//can't evaluate extension
+					return false
+				}
+			}
 
 			//animation
       const animState = ref(false);
@@ -292,7 +306,7 @@
           ...dragOptions
         })  
       }
-      return {hideScrim, goNext, goPrev, current, getPrev, getNext, animState, animDirection, dragSleeve, isOvershooting, outgoingSiteURL, outgoingSiteType}
+      return {hideScrim, goNext, goPrev, current, getPrev, getNext, animState, animDirection, dragSleeve, isOvershooting, outgoingSiteURL, outgoingSiteType, isPdf}
     }
 
     
