@@ -3,8 +3,8 @@
   CursorDisplay is HERE {{player}}
   </h1>
 
-
- <div class="friend current-student" :style="{'left': player.position.x, 'top': player.position.y}">
+ <div class="friend" :class="[player.type]" :style="{ left: player.position.x + 'px', top: player.position.y+'px' }">
+ 
    <div class="current-student name">{{player.name}}</div>
   </div>
 
