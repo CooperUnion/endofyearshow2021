@@ -33,6 +33,9 @@ const socket = {
       window.sessionStorage.setItem('EOYS2021TempId', data.player)
       // justUsers.forEach(friend1 => this.Meeting1.createFriend(friend1.id, data.player, this.Meeting1, friend1.name, friend1.role, friend1));
     },
+    SOCKET_USER_DISCONNECT(state, data){
+      
+    },
     SOCKET_USER_MESSAGE(state, message) {
       state.message = {message, origin: 'socket'}
       console.log("socketusermessagemutationMUTATION", message)
@@ -91,7 +94,7 @@ const socket = {
     
     byeFriend({ dispatch, commit }, message) { //to remove connections, and remove the cursor from the page (does it work properly?)
       console.log("byeFriend", message)
-
+      commit("SOCKET_USER_DISCONNECT", message)
     },
     
     nameUpdated({ dispatch, commit }, message){ //other person's name is uodated, update cursor currently in the page

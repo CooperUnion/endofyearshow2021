@@ -1,6 +1,6 @@
 <template>
 
-  <cursor-display class="self" :player="player" />
+  <cursor-display :self="true" :player="player" />
   <cursor-display 
     v-for="player in playerCursors" 
     v-bind:key="player.id" 
