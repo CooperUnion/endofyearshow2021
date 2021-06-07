@@ -6,17 +6,19 @@ const activeGlobalNav = ''
 const activeScrimId = 0
 const areaCount = new Map()
 
-const playercursor = {
-  x:0,
-  y:0
+const playerCursor = {
+  id: 0,
+  role: '',
+  position: {x:0, y:0},
+  name: ''
 }
 
 const socket = {
   state() {
     return {
       message: {message: undefined, origin: undefined},
-      playercursor,
-      cursors: {cursors: {}, origin: undefined},
+      playerCursor,
+      playerCursors: [],
       system_message: {message: undefined, origin: undefined},
       connections: 0
     }
@@ -47,12 +49,12 @@ const socket = {
     },
     
     CLIENT_PLAYER_CURSOR_MOVE(state, data) {
-    state.playercursor = data
+    state.playerCursor = data
     // console.log("clientplayercursormove", data)
 },
     SOCKET_OTHERUSER_CURSOR_MOVE(state, data){
        // {friend: 21, friendX: "81.41", friendY: "0.21", name: "rry-vue-data-store", role: "current-student"}
-      state.cursors.cursors[data.friend] = data
+      state.playerCursors[data.id] = data
       // console.log(state.cursors[data.friend])
     },
     
@@ -282,11 +284,7 @@ const socket = {
     },
     socketMove({ dispatch, commit }, data){
       console.log("otherusermove", data)
-      commit('SOCKET_OTHERUSER_CURSOR_MOVE', data)
-     
-
-      
-      
+      commit('SOCKET_OTHERUSER_CURSOR_MOVE', data)    
     },
     move({ dispatch, commit }, data){
       // console.log("playermove", data)
