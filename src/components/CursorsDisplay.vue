@@ -8,48 +8,8 @@
     :player="player"  />
 </div>
 
-    <div id="dialog" v-if="playerType===false">
-    <div id="dialogchild">
-<!--     <button class="close-dialog">
-      X
-    </button> -->
-        <div class="message">Welcome to the Cooper Union School of Art End of Year Show 2021!</div>
-        <div class="message2">Would you like your cursor to be visible while you move <br> through the galleries?</div>
-
-    <input v-model="democursorname"  @click.once="messageNone" v-on:input="demoCursorNameCheck" placeholder="Display Name" maxlength="30" id="textinput" type="text">
-
-    <div class="radioscontainer">
-      <input class="radiobutton" type="radio" id="contactChoice1"
-       name="roleRadio" v-on:change="radioChange" v-model="roleRadio" value="current-student">
-      <label for="contactChoice1">Current Student</label> <br>
-
-      <input class="radiobutton" type="radio" id="contactChoice2"
-       name="roleRadio" v-on:change="radioChange" v-model="roleRadio" value="faculty-staff">
-      <label for="contactChoice2">Faculty & Staff</label><br>
-
-      <input class="radiobutton" type="radio" id="contactChoice3"
-       name="roleRadio" v-on:change="radioChange" v-model="roleRadio" value="alumnus">
-      <label for="contactChoice3">Alumnus</label><br>
-      
-            <input class="radiobutton" type="radio" id="contactChoice4"
-       name="roleRadio" v-on:change="radioChange" v-model="roleRadio" value="friend-cu" checked>
-      <label for="contactChoice4">Friend</label>
-    </div>
-
-      <div class="yourcursorspan">Your cursor
-  </div>
-    
-<div class="cursordemo">
- <div id="demo-cursor" class="friend-cu demofriend demo-cursor"><div id="democursortext" class="friend-cu name name-demo">{{ democursorname }}</div></div>
-  
-    </div>
-
-    <div>
-      <button @click="submitForm(player, store)" class="ok">Select</button><br>
-      <button @click="optOut()" class="cancel">Skip and turn off cursors</button>
-    </div>
-  </div>
-  </div>
+<cursors-sign-up />
+   
 
 </template>
 <script>
@@ -57,11 +17,13 @@
   import { ref, onBeforeMount, computed, getCurrentInstance} from 'vue'
   import { useStore } from 'vuex'  
   import CursorDisplay from '@/components/CursorDisplay.vue'
-  
+  import CursorsSignUp from '@/components/CursorsSignUp.vue'
+
   export default {
     name: 'DebugCursorDisplay',
     components:{
-      CursorDisplay
+      CursorDisplay,
+      CursorsSignUp
     },
     props:{},
     setup(props){

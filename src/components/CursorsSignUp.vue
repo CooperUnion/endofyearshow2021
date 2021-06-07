@@ -1,10 +1,19 @@
 <template>
-  <div id="dialog" v-if="playerType===false">
+  <div id="dialog" v-if="optOutStatus !== true && !player.id">
     <div id="dialogchild">
       <div class="message">Welcome to the Cooper Union School of Art End of Year Show 2021!</div>
       <div class="message2">Would you like your cursor to be visible while you move <br> through the galleries?</div>
 
-      <input v-model="democursorname"  @click.once="messageNone" v-on:input="demoCursorNameCheck" placeholder="Display Name" maxlength="30" id="textinput" type="text">
+      <input 
+        v-model="democursorname"  
+        @click.once="messageNone" 
+        v-on:input="demoCursorNameCheck(democursorname)" 
+        placeholder="Display Name" 
+        maxlength="30" 
+        id="textinput" 
+        type="text" />
+
+      {{badWordError}}
 
       <div class="radioscontainer">
         <input 
@@ -44,18 +53,28 @@
           name="roleRadio" 
           v-on:change="radioChange" 
           v-model="roleRadio" 
-          value="friend-cu" checked>
+          value="friend-cu">
         <label for="contactChoice4">Friend</label>
       </div>
 
       <div class="yourcursorspan">Your cursor</div>
     
       <div class="cursordemo">
-        <div id="demo-cursor" class="friend-cu demofriend demo-cursor"><div id="democursortext" class="friend-cu name name-demo">{{ democursorname }}</div></div>
+        <div id="demo-cursor" class="demofriend demo-cursor" :class="[roleRadio, {error: badWordError}]">
+          <div id="democursortext" class="name name-demo" :class="[roleRadio, {error: badWordError}]">
+            {{ democursorname }}
+          </div>
+        </div>
       </div>
 
       <div>
-        <button @click="submitForm(player, store)" class="ok">Select</button><br>
+        <button 
+          v-bind:disabled="roleRadio === undefined || democursorname === undefined || badWordError === true" 
+          @click="submitForm(democursorname, roleRadio)" 
+          class="ok" 
+          :class="[{error: badWordError}]">
+          {{badWordError === true ? 'Please choose a different name' : 'Submit'}}
+        </button><br>
         <button @click="optOut()" class="cancel">Skip and turn off cursors</button>
       </div>
     </div>
@@ -65,19 +84,75 @@
   import {BadWords} from './BadWords.js'
   import { ref, onBeforeMount, computed, getCurrentInstance} from 'vue'
   import { useStore } from 'vuex'  
-  import CursorDisplay from '@/components/CursorDisplay.vue'
   
   export default {
-    name: 'DebugCursorDisplay',
+    name: 'CursorsSignUp',
     components:{
-      CursorDisplay
     },
     props:{},
     setup(props){
       const internalInstance = getCurrentInstance()
       const { mobile } = internalInstance.appContext.config.globalProperties
  
-      return { }
+      const playerType = ref()
+      const democursorname = ref()
+      const roleRadio = ref()
+      const badWordError = ref(false)
+      const optOutStatus = ref(false)
+      const player = ref({})
+      const store = useStore()
+
+      onBeforeMount(()=>{
+        try {
+          if(localStorage.getItem('optOut') === 'true') {
+            optOutStatus.value = true
+            player.value = {}
+          }
+        } catch (e) {}
+        try {
+          if(localStorage.getItem('player')) {
+            player.value = JSON.parse(localStorage.getItem('player'))
+            loggedIn.value = true
+          }
+        } catch (e) {}        
+      })
+
+      const optOut = ()=> {
+        localStorage.setItem('optOut', true)
+        localStorage.setItem('player', true)
+        player.value = {}
+        optOutStatus.value = true
+      }
+
+      const demoCursorNameCheck = (democursorname)=>{
+          const badWordChecker = new BadWords()
+          badWordError.value = badWordChecker.check(democursorname)
+      }
+
+      const submitForm = (name, role)=>{
+        const completePlayer = {
+          id: Math.floor(Math.random()*10000),
+          name,
+          role,
+          position: {x:0,y:0}
+        }
+
+        player.value = completePlayer
+        store.dispatch('nameChosen', completePlayer)
+        localStorage.setItem('player', JSON.stringify(completePlayer))
+      }
+
+      return { 
+        playerType,
+        democursorname,
+        roleRadio,
+        submitForm,
+        optOut,
+        demoCursorNameCheck,
+        badWordError,
+        optOutStatus,
+        player
+      }
     }
   }
 </script>
