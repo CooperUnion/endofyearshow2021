@@ -5,16 +5,15 @@
   <img class ="mobilelogo" src="https://cdn.glitch.com/d71c7c2a-c6c4-4028-9136-d224524d7374%2Fmobile.svg?v=1622665230806">
   <button id="transitionbutton" class="refreshButton">Enter</button>
   </div>
-<newcursors/>
+<debug-cursor-display/>
 </template>
 
 <script>
-    import newcursors from '@/components/Cursors-attempt-rightvue.vue'
-
+    import DebugCursorDisplay from '@/views/DebugCursorDisplay.vue'
   export default {
   name: 'Landing',
   components: {
-    newcursors
+    DebugCursorDisplay
   },
       setup (props){
     console.log("setup!")

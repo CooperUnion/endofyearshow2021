@@ -6,7 +6,7 @@
     v-bind:key="player.id" 
     :player="player"  />
 
-    <div id="dialog" v-if="playerType">
+    <div id="dialog" v-if="!playerType">
     <div id="dialogchild">
 <!--     <button class="close-dialog">
       X
