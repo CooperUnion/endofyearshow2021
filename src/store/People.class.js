@@ -56,6 +56,7 @@ class Friend extends Player {
   add(friend, friends, fullFriend){
     const label = this.doLabel(friend.id);
     this.idx = label;
+    if(document.getElementById("cursorscontainer")){
     if (!document.getElementById(label)){
     if (this.idx != "friend-undefined" && fullFriend){
     console.log(fullFriend.name)
@@ -70,7 +71,6 @@ class Friend extends Player {
     name.classList.add(fullFriend.role)
     name.innerHTML = fullFriend.name
     this.element.appendChild(name)
-    if
     document.getElementById("cursorscontainer").appendChild(this.element)
     document.getElementById(label).style.left = fullFriend.lastLocation[0] + '%' 
     document.getElementById(label).style.top = fullFriend.lastLocation[1] + 'px'
@@ -81,8 +81,9 @@ class Friend extends Player {
     this.element.classList.add('friend')
     document.getElementById("cursorscontainer").appendChild(this.element)
     }
-      }
     }
+      }
+  }
    
   
   remove(id, friends){
