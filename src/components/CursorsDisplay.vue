@@ -72,8 +72,8 @@
       const store = useStore()
       
       if (localStorage.getItem('player')){
-      const player = JSON.parse(localStorage.getItem('player'))
-      player.value = player
+      const playerplayer = JSON.parse(localStorage.getItem('player'))
+      player.value = playerplayer
       store.dispatch('IDGenerated', player.value.id)
       store.dispatch('nameChosen', player.value)
         
