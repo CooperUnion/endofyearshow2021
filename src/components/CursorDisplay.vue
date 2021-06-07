@@ -1,7 +1,8 @@
 <template>
   <div 
+    v-if="player && player.position && player.position.x && player.position.y"
     class="friend" 
-    :class="[player.type]" 
+    :class="[player.role]" 
     :style="{ 
       left: player.position.x + 'px', 
       top: player.position.y+'px' }">

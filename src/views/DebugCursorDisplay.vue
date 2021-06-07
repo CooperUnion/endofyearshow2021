@@ -19,8 +19,8 @@
       
       const player = ref({})
       player.value.name = "ricky"
-      player.value.type = "friend-cu"
-      player.value.id = 10
+      player.value.role = "friend-cu"
+      player.value.id = Math.floor(Math.random()*100)
       const store = useStore()
 
        window.onmousemove = (e) => {
