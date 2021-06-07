@@ -62,6 +62,7 @@
 	.headerBlock {
 		display: flex;
 		flex-direction: row;
+		padding-top: 24px;
 	}
 	
 	.titleBlock {
@@ -71,10 +72,6 @@
 	.listBlock {
 		width: 39%;
 		text-align: left;
-	}
-	
-	.projectsList {
-		list-style-type: none;
 	}
 	
 	.mainHead {
@@ -113,6 +110,10 @@
 	@media screen and (max-width: 767px) {
 		.mainHead {
 			font-size: 32px;
+		}
+		
+		.titleBlock {
+			width: auto;
 		}
 	}
 </style>

@@ -18,7 +18,7 @@ const socket = {
     return {
       message: {message: undefined, origin: undefined},
       playerCursor,
-      playerCursors: [],
+      playerCursors: {},
       system_message: {message: undefined, origin: undefined},
       connections: 0
     }

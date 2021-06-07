@@ -1,16 +1,10 @@
 <template>
-  <global-nav :items="globalNavItems" />
-
+	<global-header :hidePageheader="true" />
   <main>     
     <loading v-if="loading" :timeout="15" />
     <template v-else>
       <router-link to="/students" class="backLink">All students</router-link>
-      <page-subheader :title="student" />
-<!-- 
-      <ul>
-        <li v-for="student of students" v-bind:key="student">{{student}}</li>
-      </ul>
- -->
+      <student-subheader :name="student.formatted" :tags="student.tags" />
       <project-posts :items="items" />
     </template>
   </main>   
@@ -23,18 +17,18 @@
   import { useRoute } from 'vue-router'
   
   import Loading from '@/components/Loading.vue'
-  import GlobalNav from '@/components/GlobalNav.vue'  
   import {globalNavItems} from '@/router/index.js'
-  import PageSubheader from '@/components/PageSubheader.vue'  
+  import StudentSubheader from '@/components/StudentSubheader.vue'  
   import ProjectPosts from '@/components/ProjectPosts.vue'
+	import GlobalHeader from '@/components/GlobalHeader.vue' 
   import GlobalFooter from '@/components/GlobalFooter.vue'
   
   export default {
-    name: 'Project',
+    name: 'Student',
     components: {
       Loading,
-      GlobalNav,
-      PageSubheader,
+      GlobalHeader,
+      StudentSubheader,
       ProjectPosts,
       GlobalFooter
     },
@@ -44,7 +38,7 @@
     setup(props){
       const loading = ref(true)
       const items = ref([])
-      const students = ref([])
+      const student = ref({})
       const route = useRoute()
       const internalInstance = getCurrentInstance()
       const { api_endpoint } = internalInstance.appContext.config.globalProperties
@@ -70,6 +64,8 @@
         const posts_url = `${api_endpoint}/api/posts/student/${slug}`
         items.value = await fetch(posts_url).then(r=>r.json())
       
+        const student_url = `${api_endpoint}/api/student/${slug}`
+        student.value = await fetch(student_url).then(r=>r.json())
         loading.value = false
         return true
       }
@@ -78,7 +74,7 @@
         return name.trim().toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-');
       }
       
-      return {items, loading, globalNavItems, slug, students}
+      return {items, loading, globalNavItems, slug, student}
     }
   }  
 </script>

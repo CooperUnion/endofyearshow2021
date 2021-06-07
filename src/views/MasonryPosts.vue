@@ -1,7 +1,6 @@
 <template>
-  <global-nav :items="globalNavItems" />
+ <global-header />
    <main>    
-    <page-header />
     <div class="areasPage">
       <area-nav :items="areaNavItems" v-if="['Areas','Area','Students'].includes($route.name)" />
       <loading v-if="loading" :timeout="20" />
@@ -19,19 +18,17 @@
   import Loading from '@/components/Loading.vue'
   import AreaNav from '@/components/AreaNav.vue'
   import Posts from '@/components/Posts.vue'
-  import navItems from '@/router/areaNavItems.js'
-  import GlobalNav from '@/components/GlobalNav.vue'  
   import {globalNavItems} from '@/router/index.js'
-  import PageHeader from '@/components/PageHeader.vue'  
+  import navItems from '@/router/areaNavItems.js'
+	import GlobalHeader from '@/components/GlobalHeader.vue' 
 	import GlobalFooter from '@/components/GlobalFooter.vue' 
 
   export default {
     components: {
       Loading,
-      GlobalNav,
       Posts,
       AreaNav,
-      PageHeader,
+      GlobalHeader,
       GlobalFooter
     },
     props: {

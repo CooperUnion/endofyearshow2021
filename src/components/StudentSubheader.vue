@@ -1,15 +1,10 @@
 <template>
 	<div class="headerBlock">
-		<div class="titleBlock">
-			<student-tag-circles />  <!-- :tags="student.tags" -->
-			<h2 class="subHead">{{project.name}}</h2>
+		<div class="tagBlock">
+			<student-tag-circles :tags="tags"/>
 		</div>
-		<div class="listBlock">
-			<ul v-if="items" class="subList">
-				<li v-for="item of items" v-bind:key="item">
-					<router-link :to="item.url">{{item.name}}</router-link>
-				</li>
-			</ul>
+		<div class="titleBlock">
+			<h2 class="subHead">{{name}}</h2>
 		</div>
 	</div>
 </template>
@@ -20,14 +15,14 @@
   import StudentTagCircles from '@/components/StudentTagCircles.vue'
   
   export default {
-    name: 'PageSubheader',
+    name: 'StudentSubheader',
     components: {
       StudentTagCircles    
     },
     props: {
-      items: Array,
-			project: Object
-     },
+      name: String,
+      tags: Array
+    },
     setup(props){
     	const title = "I'm not smart enough to figure out how to pass data to a component"
             
@@ -41,12 +36,12 @@
 	.headerBlock {
 		display: flex;
 		flex-direction: row;
+		align-items: center;
 		margin: 48px 0 144px 0;
 	}
 	
-	.titleBlock {
-		width: 61%;
-		padding-right: 10%;
+	.tagBlock {
+		margin-right: 12px;
 	}
 	
 	.subHead {

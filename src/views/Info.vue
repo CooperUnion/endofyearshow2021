@@ -1,8 +1,7 @@
 <!--htmlhint attr-lowercase:false --> 
 <template>
-	<global-nav :items="globalNavItems" />
+	<global-header />
 	<main>
-		<page-header /> 
 		<div class="infoPage">
 			<h3>
 				The Cooper Union <mark>End of the Year Show</mark> offers the student body a chance to showcase the projects completed over the year. Works are tagged for multiple areas, reflecting on the interdisciplinarity central to the school’s ethos.
@@ -63,16 +62,14 @@
 
 <script>
   import { getCurrentInstance, inject } from 'vue'
-  import GlobalNav from '@/components/GlobalNav.vue'
   import { globalNavItems } from '@/router/index.js'
-  import PageHeader from '@/components/PageHeader.vue'
-  import GlobalFooter from '@/components/GlobalFooter.vue'
+	import GlobalHeader from '@/components/GlobalHeader.vue' 
+	import GlobalFooter from '@/components/GlobalFooter.vue' 
 
   export default {
   name: 'Info',
   components: {
-    GlobalNav,
-    PageHeader,
+    GlobalHeader,
     GlobalFooter
   },
   props: {

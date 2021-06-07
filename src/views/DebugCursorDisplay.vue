@@ -1,6 +1,10 @@
 <template>
 
   <cursor-display :player="player" />
+  <cursor-display 
+    v-for="player in playerCursors" 
+    v-bind:key="player.id" 
+    :player="player"  />
 
 </template>
 <script>
@@ -31,9 +35,9 @@
         store.dispatch('move', player.value)
       }
 
-      const storeRetreivedData = ref(store.state.socket)
+      const playerCursors = ref(store.state.socket.playerCursors)
 
-      return { player }
+      return { player, playerCursors }
     }
   }
 </script>

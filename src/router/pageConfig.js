@@ -21,7 +21,7 @@
   },
   projects: {
     title: 'Projects',
-    body: '',
+    body: 'Projects occur throughout the school on the micro to the macro scale. Exchange, senior projects, exhibitions and fellowships are examples of projects that develop over the course of the full academic year.',
     refreshEnabled: false
   },
   info: {
