@@ -1,7 +1,9 @@
 <template>
 	<div class="headerBlock">
-		<div class="titleBlock">
+		<div class="tagBlock">
 			<student-tag-circles :tags="tags"/>
+		</div>
+		<div class="titleBlock">
 			<h2 class="subHead">{{name}}</h2>
 		</div>
 	</div>
@@ -34,12 +36,12 @@
 	.headerBlock {
 		display: flex;
 		flex-direction: row;
+		align-items: center;
 		margin: 48px 0 144px 0;
 	}
 	
-	.titleBlock {
-		width: 61%;
-		padding-right: 10%;
+	.tagBlock {
+		margin-right: 12px;
 	}
 	
 	.subHead {

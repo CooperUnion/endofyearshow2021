@@ -1,5 +1,5 @@
 <template>
-	<global-header />
+	<global-header :hidePageheader="true" />
   <main>     
     <loading v-if="loading" :timeout="15" />
     <template v-else>

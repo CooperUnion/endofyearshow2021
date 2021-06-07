@@ -1,12 +1,14 @@
 <template>
-	<header>
-		<global-nav :items="globalNavItems" />
-    <page-header />
+	<header ref="headerElem">
+		<div class="nav-header" ref="navhedElem">
+				<global-nav :items="globalNavItems" />
+				<page-header v-if="!hidePageheader" />
+		</div>
 	</header>
 </template>
 
 <script>
-  import { ref, computed } from 'vue'
+  import { ref, onMounted } from 'vue'
   import { useStore } from 'vuex'  
   import { useRoute } from 'vue-router'
   import GlobalNav from '@/components/GlobalNav.vue'  
@@ -20,13 +22,26 @@
       PageHeader
     },
     props: {
-      items: Array
+      items: Array,
+      hidePageheader: Boolean
     },
     setup(props){
       const store = useStore()
       const route = useRoute()
+      
+      const headerHeight = ref(0)
+      const headerElem = ref(null)
+      const navhedElem = ref(null)
+      			
+//       onMounted(() => {
+//         setHeaderHeight()
+//       })
+      
+      const setHeaderHeight = () => {
+				headerHeight.value = navhedElem.value.clientHeight
+      }
 
-      return { globalNavItems }
+      return { globalNavItems, headerHeight, headerElem, navhedElem }
     }
   }
     
@@ -37,8 +52,9 @@
 		width: calc(100% - 240px);
 		padding: 0;
 		margin: 0 auto;
+		position: relative;
 	}
-		
+	
 	@media screen and (min-width: 768px) and (max-width: 1024px) {
 		header {
 			width: calc(100vw - 72px);
@@ -49,6 +65,26 @@
 		header {
 			width: calc(100vw - 48px);
 		}
+
+		.nav-header {
+			padding-top: 96px; /* The height of the logo + padding */
+		}
+		
+		#globalnav {
+			background-color: white;
+			position: fixed;
+			width: 100%;
+			padding: 0 24px;
+			top: 0;
+			left: 0;
+			z-index: 1;
+			margin-bottom: 0;
+		}
+		
+		body.dark #globalnav {
+			background-color: black;
+		}
+				
 	}
 </style>
 

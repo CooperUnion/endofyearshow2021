@@ -62,6 +62,7 @@
 	.headerBlock {
 		display: flex;
 		flex-direction: row;
+		padding-top: 24px;
 	}
 	
 	.titleBlock {

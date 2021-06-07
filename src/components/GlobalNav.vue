@@ -142,7 +142,6 @@
 		
 		body:not(.dark) .logoBanner {
 			background-color: transparent;
-			margin-bottom: 24px;
 		}
 		
 		.logo {

@@ -27,7 +27,6 @@
   import Loading from '@/components/Loading.vue'
   import {globalNavItems} from '@/router/index.js'
   import GlobalHeader from '@/components/GlobalHeader.vue'  
-  import AreaNav from '@/components/AreaNav.vue'
   import navItems from '@/router/areaNavItems.js'
   import GlobalFooter from '@/components/GlobalFooter.vue'
   import StudentTagCircles from '@/components/StudentTagCircles.vue'
@@ -96,7 +95,7 @@
 
       }
       
-      return {students, loading, loadStudents, areaNavItems, globalNavItems, slug}
+      return {students, loading, loadStudents, areaNavItems, globalNavItems, slug }
     }
   }  
 </script>
