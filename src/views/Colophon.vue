@@ -12,6 +12,9 @@
 				<li>
 					<b>Device is currently: {{mobile ? 'mobile' : 'desktop'}}</b>
 				</li>
+				<li>
+					<b>Socket server: {{socket_server}}</b>
+				</li>
 			</ul> 
 		</div>
 	</main>

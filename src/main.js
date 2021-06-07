@@ -14,7 +14,7 @@ const app = createApp(App)
   .use(store)
   .use(router)
   .use(vuexSocketio, {
-    connection: 'https://eoyssockets2021.glitch.me',
+    connection: process.env.VUE_APP_SOCKET_SERVER || 'https://eoyssockets2021.glitch.me',
     store,
     socketOptions:{
       path: '/socket.io/' //default for socket.io
@@ -24,6 +24,7 @@ const app = createApp(App)
   .use(MotionPlugin)
 
 app.config.globalProperties.emitter = emitter
+app.config.globalProperties.socket_server = process.env.VUE_APP_SOCKET_SERVER || 'https://eoyssockets2021.glitch.me'
 app.config.globalProperties.api_endpoint = process.env.VUE_APP_FORM_API_ENDPOINT || 'https://eoys-api-2021.glitch.me'
 // app.config.globalProperties.app_version = process.env.npm_package_version || '0.0.0'
 app.config.globalProperties.mobile = false; //initiate as false
