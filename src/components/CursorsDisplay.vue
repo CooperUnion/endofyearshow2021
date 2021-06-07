@@ -1,12 +1,14 @@
 <template>
 
+<div v-if="optOutStatus===false">
   <cursor-display :self="true" :player="player" />
   <cursor-display 
     v-for="player in playerCursors" 
     v-bind:key="player.id" 
     :player="player"  />
+</div>
 
-    <div id="dialog" v-if="!playerType">
+    <div id="dialog" v-if="playerType===false">
     <div id="dialogchild">
 <!--     <button class="close-dialog">
       X
@@ -44,7 +46,7 @@
 
     <div>
       <button @click="submitForm(player, store)" class="ok">Select</button><br>
-      <button class="cancel">Skip</button>
+      <button @click="optOut()" class="cancel">Skip and turn off cursors</button>
     </div>
   </div>
   </div>
@@ -52,7 +54,7 @@
 </template>
 <script>
   import {BadWords} from './BadWords.js'
-  import { ref, onBeforeMount } from 'vue'
+  import { ref, onBeforeMount, computed } from 'vue'
   import { useStore } from 'vuex'  
   import CursorDisplay from '@/components/CursorDisplay.vue'
   
@@ -65,7 +67,7 @@
     setup(props){
       
       const player = ref({})
-   
+
       player.value.role = "friend-cu"
       player.value.id = Math.floor(Math.random()*100000)
       player.value.position = {x:(Math.floor(Math.random()*100)), y:(Math.floor(Math.random()*400))}
@@ -82,12 +84,28 @@
       }
 
       const playerCursors = ref(store.state.socket.playerCursors)
-      
-      return { player, store,
+
+
+      const hasOptedOut = computed(() => {
+        console.log("running...")
+       try {
+          if(localStorage.getItem('optOut') && localStorage.getItem('optOut') == 'true') {
+            return true
+          } else {
+            console.log(localStorage.getItem('optOut'))
+            return false
+          }
+        } catch(e) {
+          console.log("localStorage unavailable")
+          return false
+        }
+      })
+      return { hasOptedOut, player, store,
       playerCursors, 
-      playerType: typeof player.value.name === String,
+      playerType: localStorage.getItem('player') || false,
+      optOutStatus: localStorage.getItem('optOut') || false,
       democursorname: 'Peter Cooper \'83',
-      roleRadio: "friend-cu", }
+      roleRadio: "friend-cu" }
     },
       methods: {
         //     mouseMove(event) {
@@ -151,27 +169,27 @@
         document.getElementById("democursortext").classList.add(this.roleRadio)
     
     },
-  
-        submitForm: function(player, store){
+    submitForm: function(player, store){
           // const player = ref({})
           
           // console.log(player)
         const completePlayer = {
-        id: player.id,
-        name: this.democursorname,
-        role: this.roleRadio,
-        position: player.position
-      }
+          id: player.id,
+          name: this.democursorname,
+          role: this.roleRadio,
+          position: player.position
+        }
         
-               window.onmousemove = (e) => {
-        const x = ((e.clientX / window.innerWidth) * 100).toFixed(2)
-        const y = e.pageY
-        player.name = completePlayer.name
-        player.role = completePlayer.role
-        player.id = completePlayer.id
-        player.position = {x,y}
-        store.dispatch('move', player)
-      }
+        window.onmousemove = (e) => {
+          const x = ((e.clientX / window.innerWidth) * 100).toFixed(2)
+          const y = e.pageY
+          player.name = completePlayer.name
+          player.role = completePlayer.role
+          player.id = completePlayer.id
+          player.position = {x,y}
+          store.dispatch('move', player)
+          localStorage.setItem('player', JSON.stringify(player))
+        }
                
         // window.sessionStorage.setItem('EOYS2021TempId', completePlayer.id)
         // window.sessionStorage.setItem('EOYS2021Name', completePlayer.name)
@@ -181,8 +199,15 @@
         
         document.getElementById("dialog").classList.add("hidden")
           
-        }
-}
+      },
+      optOut: function(){
+        localStorage.setItem('optOut', true)
+        localStorage.setItem('player', true)
+        document.getElementById("dialog").classList.add("hidden")
+
+      }
+      
+    }
   }
 </script>
 

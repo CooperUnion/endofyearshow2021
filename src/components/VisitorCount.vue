@@ -4,18 +4,24 @@
 		<ul class="badges">
 			<li class="badge"></li>
 		</ul>
-			2
-		other visitors online</span> 
+			{{storeRetreivedData.connections}} 
+			other visitor{{storeRetreivedData.connections>1 ? 's' : ''}}
+		 online</span> 
 	</div>
 </template>
 <script>
-	export default {
-	  name: 'visitorCount',
-	  props: {
-	  },
-	  setup(props) {
-	  }
-	}
+	import { ref } from 'vue'
+  import { useStore } from 'vuex'  
+  
+  export default {
+    name: 'VisitorCount',
+    props:{},
+    setup(props){
+      const store = useStore()
+      const storeRetreivedData = ref(store.state.socket)
+      return { storeRetreivedData }
+    }
+  }
 </script>
 <style scoped>	.visitorCount {
 	  position: absolute;
