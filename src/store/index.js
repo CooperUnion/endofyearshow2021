@@ -24,11 +24,16 @@ const socket = {
   },
   mutations: {
     SOCKET_INIT_START(state, data){
+      state.connections = data.connections
+      console.log(state.connections)
+      
       const justUsers = data.friends.filter((item)=>{ return typeof item === 'object' })
       justUsers.forEach(user => state.playerCursors[user.id] = user)
     },
     SOCKET_USER_DISCONNECT(state, data){
       delete state.playerCursors[data.friend]
+      state.connections = data.connections
+      console.log(state.connections)
     },
     
     CLIENT_PLAYER_CURSOR_MOVE(state, data) {
@@ -45,6 +50,9 @@ const socket = {
     },
     CLIENT_PLAYER_ID_GENERATED(state, message) {
       console.log(message)
+    },
+    SOCKET_USER_NEW(state, message){
+      state.playerCursors[message.id] = message
     }
     
   },
@@ -79,7 +87,7 @@ const socket = {
     
     nameUpdated({ dispatch, commit }, message){ //other person's name is uodated, update cursor currently in the page
       console.log("nameUpdated", message)
-      
+      commit("SOCKET_USER_NEW", message)
     },
     newFriend({ dispatch, commit }, message){ //new cursor first connects, no name, just id
       console.log("newFriend", message)
@@ -216,7 +224,6 @@ const socket = {
       commit('SOCKET_OTHERUSER_CURSOR_MOVE', data)    
     },
     move({ dispatch, commit }, data){
-      // console.log("playermove", data)
       commit('CLIENT_PLAYER_CURSOR_MOVE', data)
     },
     IDGenerated({ dispatch, commit }, data){
