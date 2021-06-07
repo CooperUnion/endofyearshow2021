@@ -177,7 +177,7 @@
 	
 	.nav-list .nav-item a {
 		color: #000;
-		font-weight: 700;
+		font-weight: 500;
 		display: inline-block;
 		text-decoration: none;
 	}

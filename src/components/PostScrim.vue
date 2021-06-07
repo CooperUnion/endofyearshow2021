@@ -484,7 +484,7 @@
 		position: absolute;
 		top: 0;
 		left: 0;
-		font-weight: 700;
+		font-weight: 500;
 		line-height: 1;
 	}
 	

@@ -122,7 +122,7 @@
 	}
 	
 	.nav-list .active a {
-		font-weight: 700;
+		font-weight: 500;
 	}
 	
 	.globalnav-toggle, .close {

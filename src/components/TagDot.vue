@@ -42,7 +42,7 @@ export default {
     border-radius: 1em;
     line-height: 1;
     padding: 6px 24px;
-    font-weight: 700;
+    font-weight: 500;
  }  
     
   .tag[data-tagname="view-all"] {

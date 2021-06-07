@@ -48,7 +48,7 @@
 		font-size: 48px;
 		text-align: left;
 		text-transform: capitalize;
-		font-weight: 700;
+		font-weight: 500;
 		margin: 0;
 	}
 	

@@ -450,8 +450,7 @@ a {
     padding-top: 4.6px;
     border-radius: 20px;
     font-size: 14px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
+    font-weight: 500;
     
 }
   
@@ -505,8 +504,7 @@ a {
     padding-top: 4.6px;
     border-radius: 20px;
     font-size: 14px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
+    font-weight: 500;
     
 }
 
@@ -552,8 +550,7 @@ a {
     /* padding: 5px; */
     border-radius: 20px;
     font-size: 14px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 #cursorscontainer >>> .ok{
@@ -563,8 +560,7 @@ a {
 #cursorscontainer >>> .yourcursorspan{
   margin-bottom: 1vh;
       font-size: 18px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 #cursorscontainer >>> .demo-cursor::before{
@@ -707,8 +703,7 @@ margin-right: 0px;
     margin: auto;
     display: block!important;
       font-size: 24px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
+    font-weight: 500;
   line-height: 32px;
   color: black;
   
@@ -716,8 +711,7 @@ margin-right: 0px;
 
 #cursorscontainer >>> .message2{
       font-size: 14px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
+    font-weight: 500;
     line-height: 18px;
   padding-top: 10px;
   color: black;
@@ -758,9 +752,8 @@ padding-top: 0px;
     /* margin-top: 5px; */
     background-color: transparent;
     color: black;
-    font-family: 'Space Grotesk', sans-serif;
     font-size: 18px;
-    font-weight: 700;
+    font-weight: 500;
     line-height: 24px;
     cursor: pointer;
 }
@@ -776,8 +769,7 @@ padding-top: 0px;
   margin-bottom: 1vh;
   margin-right: 15px;
   line-height: 32px;
-      font-family: 'Space Grotesk', sans-serif;
-    font-size: 14px;
+      font-size: 14px;
     font-weight: 500;
     line-height: 18px;
 }
@@ -806,9 +798,8 @@ padding-top: 0px;
     background-color: white;
     border: 2px solid black;
     text-align: center;
-      font-family: 'Space Grotesk', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
+      font-size: 14px;
+    font-weight: 500;
     line-height: 18px;
 }
 
@@ -884,9 +875,8 @@ background-color: #C7BFAB;
       background-color: black;
     color: white;
     border-radius: 200px;
-    font-family: 'Space Grotesk', sans-serif;
     font-size: 24px;
-    font-weight: 700;
+    font-weight: 500;
     line-height: 32px;
     width: 276px;
     height: 64px;
