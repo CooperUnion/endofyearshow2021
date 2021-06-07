@@ -130,6 +130,11 @@
       }
 
       const submitForm = (name, role)=>{
+        try {
+          localStorage.removeItem('optOut')
+        } catch(e) {
+          //user had never opted out before
+        }
         const completePlayer = {
           id: Math.floor(Math.random()*1000000),
           name,
