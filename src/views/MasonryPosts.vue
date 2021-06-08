@@ -6,7 +6,7 @@
       <loading v-if="loading" :timeout="20" />
       <posts v-else :items="items"/>
     </div>
-    <div v-if="loadedRemainder===false" @click="loadRemainder()">
+    <div v-if="loadedRemainder===false && loadByDefault===false" @click="loadRemainder()">
       <tag-dot :expanded="true" :toggle="false" label="Load remaining works..."></tag-dot>
     </div>
     <loading v-if="loadingRemainder" :timeout="20" />
@@ -60,9 +60,9 @@
       async function init(){
         loadPosts()
         try{
-          loadByDefault.value = 
+          loadByDefault.value = localStorage.getItem('loadByDefault') === 'true'
         } catch (e){
-    
+          // no pref
         }
       }
       
@@ -101,6 +101,9 @@
       function loadRemainder() {
         loadedRemainder.value = true
         loadingRemainder.value = true
+        //try{
+        //  localStorage.setItem('loadByDefault', 'true')
+        //} catch(e) {alert(e)}
         const url = (props.postsEndpointSuffix) 
           ? `${api_endpoint}/api/posts/${props.postsEndpointSuffix}`
           : `${api_endpoint}/api/posts`
@@ -117,7 +120,17 @@
       }
 
       
-      return {items, loading, loadRemainder, loadingRemainder, loadedRemainder, loadPosts, areaNavItems, globalNavItems}
+      return {
+        items, 
+        loading,
+        loadByDefault,
+        loadRemainder, 
+        loadingRemainder, 
+        loadedRemainder, 
+        loadPosts, 
+        areaNavItems, 
+        globalNavItems
+      }
     }
   }
 </script>
