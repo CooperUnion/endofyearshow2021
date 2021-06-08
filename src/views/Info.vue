@@ -7,7 +7,7 @@
 				The Cooper Union <mark>End of Year Show</mark> offers the student body a chance to showcase the projects completed over the year. Works are tagged for multiple areas, reflecting on the interdisciplinarity central to the school’s ethos.
 			</h3>
 			<p>
-				The site navigates through the variety of work in through: 
+				The site navigates through the variety of work through: 
 			</p>
 			<p>
 				<a href="/projects">Projects</a>: Senior projects and fellowships that develop over the academic year 
