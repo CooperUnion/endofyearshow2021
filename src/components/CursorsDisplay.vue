@@ -1,14 +1,14 @@
 <template>
-  <div v-if="optOutStatus===false && mobile === false" class="cursorsBox">
-    <cursor-display :self="true" :player="player" />
-    <cursor-display 
-      v-for="player in playerCursors" 
-      v-bind:key="player.id" 
-      :player="player"  />
-  </div>
-
+	<teleport to="#app">
+		<div v-if="optOutStatus===false && mobile === false" class="cursorsBox">
+			<cursor-display :self="true" :player="player" />
+			<cursor-display 
+				v-for="player in playerCursors" 
+				v-bind:key="player.id" 
+				:player="player"  />
+		</div>
+	</teleport>
   <cursors-sign-up v-if="(optOutStatus !== true) && (loggedIn !== true)" />
-
 </template>
 
 <script>
@@ -25,6 +25,17 @@
     },
     props:{},
     setup(props){
+
+//   const htmlElem = document.documentElement;
+//   function captureScreenWidth() {
+//     htmlElem.style.setProperty('--innerwidth', `${htmlElem.clientWidth}px`);
+//     htmlElem.style.setProperty('--scrollbarwidth', `${window.innerWidth - htmlElem.clientWidth}px`);
+//   }
+//   window.addEventListener("resize", captureScreenWidth);
+//   htmlElem.style.height = "200vw";
+//   captureScreenWidth();
+//   htmlElem.style.height = "";
+  
       const internalInstance = getCurrentInstance()
       const { mobile } = internalInstance.appContext.config.globalProperties
       
@@ -89,11 +100,14 @@
     z-index: 999;
   }  
 .cursorsBox {
-  margin: 0 -120px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+/*   margin: 0 -120px; */
   max-width: unset;
-  width: 98vw;
-  position: absolute;
   height: 1px;
+  overflow: hidden;
 }
 
 
@@ -139,9 +153,14 @@ background-color: #C7BFAB;
 
   }
   
+/* 
 	@media screen and (min-width: 1440px) {
 		.cursorsBox {
+<<<<<<< HEAD
 			margin: 0 calc(-50vw + 600px - 120px);
+=======
+			margin: 0 calc((100vw - var(--scrollbarwidth)) / -2 + 600px - 120px);
+>>>>>>> 63bfbb4996f4e0835637c02db61bb8e8a762f08a
 		}
 	}
 	
@@ -156,5 +175,6 @@ background-color: #C7BFAB;
 			margin: 0 -24px;
 		}
   }
+ */
   
 </style>
