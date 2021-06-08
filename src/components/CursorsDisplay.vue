@@ -1,5 +1,6 @@
 <template>
-
+<div class="showDialog" @click="showDialog"> Δ
+</div>
 <div v-if="optOutStatus===false && mobile === false" class="cursorsBox">
   <cursor-display :self="true" :player="player" />
   <cursor-display 
@@ -81,6 +82,11 @@
       roleRadio: "friend-cu" }
     },
       methods: {
+        
+        showDialog: function(){
+          localStorage.removeItem('optOut')
+          document.getElementById("dialog").classList.remove("hidden")
+        },
         //     mouseMove(event) {
         //     console.log(event.clientX, event.clientY);
         //     // store.dispatch('client_playerCursorMove', `data from cursor movement, ${event}`)
@@ -185,6 +191,16 @@
 </script>
 
 <style scoped>
+  
+  .showDialog {
+    background-color: red;
+    height: 24px;
+    width: 24px;
+    position: absolute;
+    right: 0px;
+    top : 60px;
+    z-index: 999;
+  }  
 .cursorsBox {
   margin: 0 -120px;
   max-width: unset;
