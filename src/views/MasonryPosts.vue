@@ -6,6 +6,9 @@
       <loading v-if="loading" :timeout="20" />
       <posts v-else :items="items"/>
     </div>
+    <div v-if="loadedRemainder===false" @click="loadRemainder()">
+      Load additional works
+    </div>
     <loading v-if="loadingRemainder" :timeout="20" />
   </main>   
 	<global-footer :items="globalNavItems" />
@@ -74,21 +77,23 @@
         const url = (props.postsEndpointSuffix) 
           ? `${api_endpoint}/api/posts/${props.postsEndpointSuffix}`
           : `${api_endpoint}/api/posts`
-        const query = `?limit=15`
+        const query = `?limit=5`
         const urlQuery = url+query
 
         items.value = await fetch(urlQuery).then(res=>res.json())
         loading.value = false
-        loadRemainder()
+        //loadRemainder()
         return true
       }
 
+      const loadedRemainder = ref(false)
       function loadRemainder() {
+        loadedRemainder.value = true
         loadingRemainder.value = true
         const url = (props.postsEndpointSuffix) 
           ? `${api_endpoint}/api/posts/${props.postsEndpointSuffix}`
           : `${api_endpoint}/api/posts`
-        const query = `?limit=1000&offset=20`
+        const query = `?limit=1000&offset=15`
         const urlQuery = url+query
 
         fetch(urlQuery).then(res=>res.json()).then((remainder)=>{
@@ -100,7 +105,7 @@
       }
 
       
-      return {items, loading, loadingRemainder, loadPosts, areaNavItems, globalNavItems}
+      return {items, loading, loadRemainder, loadingRemainder, loadedRemainder, loadPosts, areaNavItems, globalNavItems}
     }
   }
 </script>
