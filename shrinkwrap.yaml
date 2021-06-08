@@ -8,6 +8,7 @@ dependencies:
   register-service-worker: 1.7.2
   vue: 3.0.11
   vue-casco: 0.2.3
+  vue-intersect: 3.0.0
   vue-masonry: 0.13.0
   vue-router: 4.0.8
   vue-vuex-socket.io-opinionated-integration: 0.2.0
@@ -12918,6 +12919,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-BXq3jwIagosjgNVae6tkHzzIk6a8MHFtzAdwhnV5VlvPTFxDCvIttgSiHWjdGoTJvXtmRu5HacExfdarRcFhog==
+  /vue-intersect/3.0.0:
+    dev: false
+    peerDependencies:
+      vue: ^3.0.7
+    resolution:
+      integrity: sha512-0vd0xbsX7pwJDqob2O3Vk41nmO/u6eNZY1abG4CS9pULpc3Xk1hNj1/Fovv9gT1fUIARO7Wf3+8/45z7YMSiLQ==
   /vue-jest/3.0.7/babel-core@7.0.0-bridge.0:
     dependencies:
       babel-core: /babel-core/7.0.0-bridge.0/@babel!core@7.14.3
@@ -13686,6 +13693,7 @@ specifiers:
   typescript: ~3.9.3
   vue: ^3.0.11
   vue-casco: ^0.2.3
+  vue-intersect: ^3.0.0
   vue-jest: ^5.0.0-0
   vue-masonry: ^0.13.0
   vue-router: ^4.0.6
