@@ -95,7 +95,7 @@
         items.value = await fetch(urlQuery).then(res=>res.json())
         loading.value = false
         if(loadByDefault.value === true) {
-          loadRemainder()
+          //loadRemainder()
         } else {
           console.log(loadByDefault.value, "lbd value")
         }
