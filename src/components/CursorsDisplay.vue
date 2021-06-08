@@ -141,7 +141,7 @@ background-color: #C7BFAB;
   
 	@media screen and (min-width: 1440px) {
 		.cursorsBox {
-			margin: 0 calc(-50vw + 600px - 240px);
+			margin: 0 calc(-50vw + 600px - 120px);
 		}
 	}
 	
