@@ -9,6 +9,17 @@ import vuexSocketio from 'vue-vuex-socket.io-opinionated-integration'
 import { GesturePlugin } from '@vueuse/gesture'
 import { MotionPlugin } from '@vueuse/motion'
 
+try {
+  if(location.hostname === 'localhost') {
+    throw new Error('Running on localhost.')
+  }
+  if(location.protocol !== 'https:') {
+    location.replace(`https:${location.href.substring(location.protocol.length)}`);
+  }
+} catch (e) {
+  console.log("Can't redirect to https:", e)
+}
+
 const emitter = mitt()
 const app = createApp(App)
   .use(store)
@@ -23,16 +34,17 @@ const app = createApp(App)
   .use(GesturePlugin)
   .use(MotionPlugin)
   
-app.directive('scroll', {
-  mounted: function (el, binding) {
-    let f = function (evt) {
-      if (binding.value(evt, el)) {
-        window.removeEventListener('scroll', f)
-      }
-    }
-    window.addEventListener('scroll', f)
-  }
-})
+// app.directive('scroll', {
+//   mounted: function (el, binding) {
+//     let f = function (evt) {
+//       if (binding.value(evt, el)) {
+//         window.removeEventListener('scroll', f)
+//       }
+//     }
+//     window.addEventListener('scroll', f)
+//   }
+// })
+
 app.config.globalProperties.emitter = emitter
 app.config.globalProperties.socket_server = process.env.VUE_APP_SOCKET_SERVER || 'https://eoyssockets2021.glitch.me'
 app.config.globalProperties.api_endpoint = process.env.VUE_APP_FORM_API_ENDPOINT || 'https://eoys-api-2021.glitch.me'
