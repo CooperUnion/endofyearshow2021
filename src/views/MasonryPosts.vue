@@ -7,7 +7,7 @@
       <posts v-else :items="items"/>
     </div>
     <div v-if="loadedRemainder===false" @click="loadRemainder()">
-      Load additional works
+      <tag-button :expanded="true" tag="test"/>Load additional works
     </div>
     <loading v-if="loadingRemainder" :timeout="20" />
   </main>   
@@ -26,7 +26,7 @@
   import navItems from '@/router/areaNavItems.js'
 	import GlobalHeader from '@/components/GlobalHeader.vue' 
 	import GlobalFooter from '@/components/GlobalFooter.vue' 
-
+  import TagButton from '@/components/TagButton.vue'
 
   export default {
     components: {
@@ -34,7 +34,8 @@
       Posts,
       AreaNav,
       GlobalHeader,
-      GlobalFooter  
+      GlobalFooter,
+      TagButton
     },
     props: {
       post: Number,
@@ -77,7 +78,7 @@
         const url = (props.postsEndpointSuffix) 
           ? `${api_endpoint}/api/posts/${props.postsEndpointSuffix}`
           : `${api_endpoint}/api/posts`
-        const query = `?limit=5&offset=0`
+        const query = `?limit=20`
         const urlQuery = url+query
 
         items.value = await fetch(urlQuery).then(res=>res.json())
@@ -93,13 +94,14 @@
         const url = (props.postsEndpointSuffix) 
           ? `${api_endpoint}/api/posts/${props.postsEndpointSuffix}`
           : `${api_endpoint}/api/posts`
-        const query = `?limit=1000&offset=15`
+        const query = `?limit=1000&offset=20`
         const urlQuery = url+query
 
         fetch(urlQuery).then(res=>res.json()).then((remainder)=>{
-          remainder.forEach((post)=>{
-            items.value.push(post)
-          })
+          //remainder.forEach((post)=>{
+          //  items.value.push(post)
+          //})
+          items.value=items.value.concat(remainder)
           loadingRemainder.value = false
         })
       }
