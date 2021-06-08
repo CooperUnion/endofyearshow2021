@@ -8,7 +8,10 @@
 		<div class="nav-panel">
 			<button v-if="mobile" class="close" @click="closeGlobalPanel()">close</button> 
 			<ul class="nav-list">
-				<li v-for="item in items" :key="item" :class="['nav-item', isActiveRoute(item.name)]"> <router-link :to="item.path" @click="closeGlobalPanel()">{{item.name}}</router-link> </li>
+				<li v-for="item in items" :key="item" :class="['nav-item', isActiveRoute(item.name)]"> 
+					<!-- <router-link :to="item.path" @click="closeGlobalPanel()">{{item.name}}</router-link>  -->
+					<a :href="item.path" @click="closeGlobalPanel()">{{item.name}}</a> 
+				</li>
 			</ul>
 		</div>
 	</nav>
