@@ -77,7 +77,7 @@
         const url = (props.postsEndpointSuffix) 
           ? `${api_endpoint}/api/posts/${props.postsEndpointSuffix}`
           : `${api_endpoint}/api/posts`
-        const query = `?limit=5`
+        const query = `?limit=5&offset=0`
         const urlQuery = url+query
 
         items.value = await fetch(urlQuery).then(res=>res.json())

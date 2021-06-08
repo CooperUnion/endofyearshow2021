@@ -40,7 +40,7 @@
 				</dl>
 				<dl> 
 					<dt>Developers:</dt>
-					<dd><a href="https://erinsparling.glitch.me">Erin Sparling</a>, Adjunct Professor</dd>
+					<dd><router-link to="/colophon">🚧</router-link><a href="https://erinsparling.glitch.me">-Erin Sparling</a>, Adjunct Professor</dd>
 					<dd><a href="https://prevdef.com">Mike Stamm</a></dd>
 					<dd><a href="https://ricc.glitch.me/">Richard Yurewitch</a> A’22</dd>
 				</dl>
