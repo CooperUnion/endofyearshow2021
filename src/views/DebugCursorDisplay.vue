@@ -1,16 +1,16 @@
 <template>
 
-  <cursors-sign-up />
+  <cursors-display />
 
 </template>
 <script>
  
-  import CursorsSignUp from '@/components/CursorsSignUp.vue'
+  import CursorsDisplay from '@/components/CursorsDisplay.vue'
   
   export default {
-    name: 'DebugCursorsSignUp',
+    name: 'DebugCursorsDisplay',
     components:{
-      CursorsSignUp
+      CursorsDisplay
     },
     props:{},
     setup(props){
