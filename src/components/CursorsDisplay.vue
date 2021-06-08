@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
 <div class="showDialog" @click="showDialog"> Δ
 </div>
 <div v-if="optOutStatus===false && mobile === false" class="cursorsBox">
@@ -12,16 +13,25 @@
 <cursors-sign-up />
    
 
+=======
+  <div v-if="optOutStatus===false && mobile === false">
+    <cursor-display :self="true" :player="player" />
+    <cursor-display 
+      v-for="player in playerCursors" 
+      v-bind:key="player.id" 
+      :player="player"  />
+  </div>
+  <cursors-sign-up />
+>>>>>>> v1.2.1
 </template>
 <script>
-  import {BadWords} from './BadWords.js'
-  import { ref, onBeforeMount, computed, getCurrentInstance} from 'vue'
+  import { ref, onBeforeMount, onMounted, getCurrentInstance} from 'vue'
   import { useStore } from 'vuex'  
   import CursorDisplay from '@/components/CursorDisplay.vue'
   import CursorsSignUp from '@/components/CursorsSignUp.vue'
 
   export default {
-    name: 'DebugCursorDisplay',
+    name: 'CursorsDisplay',
     components:{
       CursorDisplay,
       CursorsSignUp
@@ -30,49 +40,30 @@
     setup(props){
       const internalInstance = getCurrentInstance()
       const { mobile } = internalInstance.appContext.config.globalProperties
-
-      const player = ref({})
+      
       const store = useStore()
-      
-      if (localStorage.getItem('player')){
-      const playerplayer = JSON.parse(localStorage.getItem('player'))
-      player.value = playerplayer
-      store.dispatch('IDGenerated', player.value.id)
-      store.dispatch('nameChosen', player.value)
-        
-      } else {
-      player.value.role = "friend-cu"
-      player.value.id = Math.floor(Math.random()*1000000)
-      player.value.position = {x:(Math.floor(Math.random()*100)), y:(Math.floor(Math.random()*400))}
-      store.dispatch('IDGenerated', player.value.id)
-      player.value.name = ""
-      store.dispatch('nameChosen', player.value)
-      }
-      
-       window.onmousemove = (e) => {
-        const x = ((e.clientX / window.innerWidth) * 100).toFixed(2)
-        const y = e.pageY
-        player.value.position = {x,y}
-        store.dispatch('move', player.value)
-      }
-
+      const player = ref({})
       const playerCursors = ref(store.state.socket.playerCursors)
+      const loggedIn = ref(false)
+      const optOutStatus = ref(false)
 
-
-      const hasOptedOut = computed(() => {
-        console.log("running...")
-       try {
-          if(localStorage.getItem('optOut') && localStorage.getItem('optOut') == 'true') {
-            return true
-          } else {
-            console.log(localStorage.getItem('optOut'))
-            return false
+      onBeforeMount(()=>{
+        try {
+          if(localStorage.getItem('optOut') === 'true') {
+            optOutStatus.value = true
+            loggedIn.value = false
+            player.value = {}
           }
-        } catch(e) {
-          console.log("localStorage unavailable")
-          return false
-        }
+        } catch (e) {}
+        try {
+          if(localStorage.getItem('player')) {
+            optOutStatus.value = false
+            loggedIn.value = true
+            player.value = JSON.parse(localStorage.getItem('player'))
+          }
+        } catch (e) {}        
       })
+<<<<<<< HEAD
       return { hasOptedOut, player, store,
       playerCursors,
       mobile, 
@@ -109,88 +100,32 @@
         document.getElementsByClassName('ok')[0].classList.remove("error")
         }
       document.getElementById("democursortext").innerHTML  = document.getElementById("textinput").value
+=======
+>>>>>>> v1.2.1
       
-        
-      } else {
-        document.getElementById("democursortext").innerHTML = "Nice try. Use another name."
-        document.getElementById("democursortext").classList.add("error")
-        document.getElementById("demo-cursor").classList.add("error")
-        document.getElementsByClassName('ok')[0].classList.add("error")
-      }
-      
-      if (document.getElementById("textinput").style.color!= "black"){
-        document.getElementById("textinput").style.color = "black"
-      }
-  },
-    messageNone: function(){
-      this.democursorname = ""
-      const description = this.democursorname
-      document.getElementById("democursortext").innerHTML  = document.getElementById("textinput").value
-    },
-    radioChange: function(){
-            function set(value, that){
-      that.prevprev = value
-    }
-  
-    
-        if (this.prev === null){
-          this.prev = document.getElementById("contactChoice1").value
+      onMounted(()=>{
+        if(loggedIn.value === true) {
+          window.onmousemove = (e) => {
+            const x = ((e.clientX / window.innerWidth) * 100).toFixed(2)
+            const y = e.pageY
+            player.value.position = {x,y}
+            store.dispatch('move', player.value)
+          }
         }
-        (this.prev) ? set(this.prev, this): null;
-        if (this.roleRadio !== this.prev) {
-            this.prev = this.roleRadio;
-        }
-        
-        console.log(this.roleRadio)
-        document.getElementById("demo-cursor").classList.remove(this.prevprev)
-        document.getElementById("democursortext").classList.remove(this.prevprev)
-        document.getElementById("demo-cursor").classList.add(this.roleRadio)
-        document.getElementById("democursortext").classList.add(this.roleRadio)
-    
-    },
-    submitForm: function(player, store){
-          // const player = ref({})
-          
-          // console.log(player)
-        const completePlayer = {
-          id: player.id,
-          name: this.democursorname,
-          role: this.roleRadio,
-          position: player.position
-        }
-        
-        window.onmousemove = (e) => {
-          const x = ((e.clientX / window.innerWidth) * 100).toFixed(2)
-          const y = e.pageY
-          player.name = completePlayer.name
-          player.role = completePlayer.role
-          player.id = completePlayer.id
-          player.position = {x,y}
-          store.dispatch('move', player)
-          localStorage.setItem('player', JSON.stringify(player))
-        }
-               
-        // window.sessionStorage.setItem('EOYS2021TempId', completePlayer.id)
-        // window.sessionStorage.setItem('EOYS2021Name', completePlayer.name)
-        // window.sessionStorage.setItem('EOYS2021Role', completePlayer.role)
-        player.value = completePlayer
-        store.dispatch('nameChosen', completePlayer)
-        
-        document.getElementById("dialog").classList.add("hidden")
-          
-      },
-      optOut: function(){
-        localStorage.setItem('optOut', true)
-        localStorage.setItem('player', true)
-        document.getElementById("dialog").classList.add("hidden")
+      })  
 
+      return { 
+        player, 
+        playerCursors,
+        mobile, 
+        optOutStatus,
       }
-      
     }
   }
 </script>
 
 <style scoped>
+<<<<<<< HEAD
   
   .showDialog {
     background-color: red;
@@ -697,4 +632,7 @@ background-color: #C7BFAB;
     }
 
   }
+=======
+
+>>>>>>> v1.2.1
 </style>

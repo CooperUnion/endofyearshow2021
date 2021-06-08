@@ -97,6 +97,7 @@
       const roleRadio = ref()
       const badWordError = ref(false)
       const optOutStatus = ref(false)
+      const loggedIn = ref(false)
       const player = ref({})
       const store = useStore()
 
@@ -104,16 +105,32 @@
         try {
           if(localStorage.getItem('optOut') === 'true') {
             optOutStatus.value = true
+            loggedIn.value = false
             player.value = {}
           }
         } catch (e) {}
         try {
           if(localStorage.getItem('player')) {
-            player.value = JSON.parse(localStorage.getItem('player'))
+            optOutStatus.value = false
             loggedIn.value = true
+            player.value = JSON.parse(localStorage.getItem('player'))
           }
         } catch (e) {}        
       })
+
+      // player.value.role = "friend-cu"
+      //   player.value.id = Math.floor(Math.random()*1000000)
+      //   player.value.position = {x:(Math.floor(Math.random()*100)), y:(Math.floor(Math.random()*400))}
+      //   store.dispatch('IDGenerated', player.value.id)
+      //   player.value.name = ""
+      //   store.dispatch('nameChosen', player.value)
+
+    // messageNone: function(){
+    //   this.democursorname = ""
+    //   const description = this.democursorname
+    //   document.getElementById("democursortext").innerHTML  = document.getElementById("textinput").value
+    // }
+
 
       const optOut = ()=> {
         localStorage.setItem('optOut', true)
