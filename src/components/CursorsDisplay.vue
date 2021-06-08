@@ -1,13 +1,13 @@
 <template>
-<div v-if="optOutStatus===false && mobile === false" class="cursorsBox">
-  <cursor-display :self="true" :player="player" />
-  <cursor-display 
-    v-for="player in playerCursors" 
-    v-bind:key="player.id" 
-    :player="player"  />
-</div>
+  <div v-if="optOutStatus===false && mobile === false" class="cursorsBox">
+    <cursor-display :self="true" :player="player" />
+    <cursor-display 
+      v-for="player in playerCursors" 
+      v-bind:key="player.id" 
+      :player="player"  />
+  </div>
 
-<cursors-sign-up />
+  <cursors-sign-up v-if="(optOutStatus !== true) && (loggedIn !== true)" />
 
 </template>
 
@@ -43,7 +43,9 @@
           }
         } catch (e) {}
         try {
-          if(localStorage.getItem('player')) {
+          if(localStorage.getItem('player') &&
+            localStorage.getItem('player') !== 'true'
+          ) {
             optOutStatus.value = false
             loggedIn.value = true
             player.value = JSON.parse(localStorage.getItem('player'))
@@ -67,6 +69,7 @@
         playerCursors,
         mobile, 
         optOutStatus,
+        loggedIn
       }
     }
   }

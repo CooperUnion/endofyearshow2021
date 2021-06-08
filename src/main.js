@@ -22,7 +22,17 @@ const app = createApp(App)
   })
   .use(GesturePlugin)
   .use(MotionPlugin)
-
+  
+app.directive('scroll', {
+  mounted: function (el, binding) {
+    let f = function (evt) {
+      if (binding.value(evt, el)) {
+        window.removeEventListener('scroll', f)
+      }
+    }
+    window.addEventListener('scroll', f)
+  }
+})
 app.config.globalProperties.emitter = emitter
 app.config.globalProperties.socket_server = process.env.VUE_APP_SOCKET_SERVER || 'https://eoyssockets2021.glitch.me'
 app.config.globalProperties.api_endpoint = process.env.VUE_APP_FORM_API_ENDPOINT || 'https://eoys-api-2021.glitch.me'

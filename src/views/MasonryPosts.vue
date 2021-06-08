@@ -10,6 +10,9 @@
        <button class="load-more" v-if="loadedRemainder===false && loadByDefault===false" @click="loadRemainder()">Load all</button>
     </div>
     <loading v-if="loadingRemainder" :timeout="20" />
+    <!-- <div>
+      <h1 v-scroll="test">only shows up after loading...</h1>
+    </div> -->
   </main>   
 	<global-footer :items="globalNavItems" />
 </template>
@@ -53,7 +56,7 @@
       const { api_endpoint } = internalInstance.appContext.config.globalProperties
       const loadByDefault = ref(false)
       
-      onMounted(loadPosts)
+      onMounted(init)
       
       async function init(){
         loadPosts()
