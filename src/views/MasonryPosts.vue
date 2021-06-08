@@ -6,9 +6,7 @@
       <loading v-if="loading" :timeout="20" />
       <posts v-else :items="items"/>
     </div>
-    <div v-if="loadedRemainder===false && loadByDefault===false" @click="loadRemainder()">
-      <tag-dot :expanded="true" :toggle="false" label="Load remaining works..."></tag-dot>
-    </div>
+     <button class="load-more" v-if="loadedRemainder===false && loadByDefault===false" @click="loadRemainder()">Load more</button>
     <loading v-if="loadingRemainder" :timeout="20" />
   </main>   
 	<global-footer :items="globalNavItems" />
@@ -141,6 +139,11 @@
     display: flex;
     flex-direction: row;
     padding-top: 48px; /* <-- tentative */
+  }
+  
+  .load-more {
+    
+    
   }
     
   @media screen and (max-width: 767px) {
