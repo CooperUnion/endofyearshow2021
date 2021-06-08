@@ -7,7 +7,7 @@
       <posts v-else :items="items"/>
     </div>
     <div v-if="loadedRemainder===false" @click="loadRemainder()">
-      <tag-button :expanded="true" tag="test"/>Load additional works
+      <tag-dot :expanded="true" :toggle="false" label="Load remaining works..."></tag-dot>
     </div>
     <loading v-if="loadingRemainder" :timeout="20" />
   </main>   
@@ -26,7 +26,7 @@
   import navItems from '@/router/areaNavItems.js'
 	import GlobalHeader from '@/components/GlobalHeader.vue' 
 	import GlobalFooter from '@/components/GlobalFooter.vue' 
-  import TagButton from '@/components/TagButton.vue'
+  import TagDot from '@/components/TagDot.vue'
 
   export default {
     components: {
@@ -35,7 +35,7 @@
       AreaNav,
       GlobalHeader,
       GlobalFooter,
-      TagButton
+      TagDot
     },
     props: {
       post: Number,
@@ -53,8 +53,18 @@
       const route = useRoute()
       const internalInstance = getCurrentInstance()
       const { api_endpoint } = internalInstance.appContext.config.globalProperties
-         
+      const loadByDefault = ref(false)
+      
       onMounted(loadPosts)
+      
+      async function init(){
+        loadPosts()
+        try{
+          loadByDefault.value = 
+        } catch (e){
+    
+        }
+      }
       
       watch(() => route.params.tag, loadPosts)    
             
