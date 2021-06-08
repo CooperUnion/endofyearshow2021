@@ -187,6 +187,7 @@
 <style scoped>
 .cursorsBox {
 	margin: 0 -120px;
+	max-width: unset;
 }
 
 .dialog{
@@ -620,6 +621,12 @@ background-color: #C7BFAB;
   
   }
   
+	@media screen and (min-width: 1440px) {
+		.cursorsBox {
+			margin: 0 calc(-50vw + 600px - 240px);
+		}
+	}
+	
 	@media screen and (min-width: 768px) and (max-width: 1024px) {
 		.cursorsBox {
 			margin: 0 -36px;
