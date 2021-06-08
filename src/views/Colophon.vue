@@ -5,6 +5,12 @@
 		<page-header /> 
 
 		<div class="infoPage">
+			<h2>Resources used</h2>
+			<ul>
+				<li><a href="https://glitch.com/~endofyearshow2021-stage">~endofyearshow2021-stage</a></li>
+				<li><a href="https://glitch.com/~eoys-api-2021">~eoys-api-2021</a></li>
+			</ul>
+			<h2>App Instance Data</h2>
 			<ul>
 				<li>
 					<b>Current api_endpoint: {{api_endpoint}}</b>
