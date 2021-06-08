@@ -108,7 +108,7 @@
         loadedRemainder.value = true
         loadingRemainder.value = true
         try{
-         localStorage.setItem('loadByDefault', 'true')
+         //localStorage.setItem('loadByDefault', 'true')
         } catch(e) {alert(e)}
         const url = (props.postsEndpointSuffix) 
           ? `${api_endpoint}/api/posts/${props.postsEndpointSuffix}`
