@@ -106,7 +106,7 @@
 	width: 100%;
 /*   margin: 0 -120px; */
   max-width: unset;
-  height: 1px;
+  min-height: 100vh;
   overflow: hidden;
 }
 
