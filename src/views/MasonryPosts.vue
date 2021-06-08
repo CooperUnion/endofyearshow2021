@@ -89,7 +89,7 @@
         const url = (props.postsEndpointSuffix) 
           ? `${api_endpoint}/api/posts/${props.postsEndpointSuffix}`
           : `${api_endpoint}/api/posts`
-        const query = `?limit=20`
+        const query = `?limit=30`
         const urlQuery = url+query
 
         items.value = await fetch(urlQuery).then(res=>res.json())
@@ -113,7 +113,7 @@
         const url = (props.postsEndpointSuffix) 
           ? `${api_endpoint}/api/posts/${props.postsEndpointSuffix}`
           : `${api_endpoint}/api/posts`
-        const query = `?limit=1000&offset=20`
+        const query = `?limit=1000&offset=30`
         const urlQuery = url+query
 
         fetch(urlQuery).then(res=>res.json()).then((remainder)=>{
