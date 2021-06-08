@@ -15,12 +15,8 @@
   components: {
     CursorsDisplay
   },
-      setup (props){
-      if (location.protocol !== 'https:') {
-      location.replace(`https:${location.href.substring(location.protocol.length)}`);
-      }
-    console.log("setup!")
-    return{}
+  setup (props){
+    return {}
   },
       data() {
     return {
