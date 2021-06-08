@@ -4,7 +4,7 @@
     <div class="areasPage">
       <area-nav :items="areaNavItems" v-if="['Areas','Area','Students'].includes($route.name)" />
       <loading v-if="loading" :timeout="20" />
-      <posts v-else :items="items"/>
+      <posts v-else :items="items" />
     </div>
      <div class="controls">
        <button class="load-more" v-if="loadedRemainder===false && loadByDefault===false" @click="loadRemainder()">Load all</button>
@@ -56,6 +56,13 @@
       const { api_endpoint } = internalInstance.appContext.config.globalProperties
       const loadByDefault = ref(false)
       
+    //   const { ctx: _this } = getCurrentInstance()
+    
+    // const handleClick = () => {
+    //   arr.push(2)
+    //   _this.$forceUpdate()
+    // }
+
       onMounted(init)
       
       async function init(){
@@ -135,7 +142,8 @@
         loadedRemainder, 
         loadPosts, 
         areaNavItems, 
-        globalNavItems
+        globalNavItems,
+        teardown
       }
     }
   }
