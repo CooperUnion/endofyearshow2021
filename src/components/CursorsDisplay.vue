@@ -91,9 +91,8 @@
 .cursorsBox {
   margin: 0 -120px;
   max-width: unset;
-  width: 98vw;
-  position: absolute;
-  height: 1px;
+  min-height: 100vh;
+  overflow: hidden;
 }
 
 
