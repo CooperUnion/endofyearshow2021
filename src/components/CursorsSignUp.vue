@@ -110,27 +110,15 @@
           }
         } catch (e) {}
         try {
-          if(localStorage.getItem('player')) {
+          if(localStorage.getItem('player') &&
+            localStorage.getItem('player') !== 'true'
+          ) {
             optOutStatus.value = false
             loggedIn.value = true
             player.value = JSON.parse(localStorage.getItem('player'))
           }
         } catch (e) {}        
       })
-
-      // player.value.role = "friend-cu"
-      //   player.value.id = Math.floor(Math.random()*1000000)
-      //   player.value.position = {x:(Math.floor(Math.random()*100)), y:(Math.floor(Math.random()*400))}
-      //   store.dispatch('IDGenerated', player.value.id)
-      //   player.value.name = ""
-      //   store.dispatch('nameChosen', player.value)
-
-    // messageNone: function(){
-    //   this.democursorname = ""
-    //   const description = this.democursorname
-    //   document.getElementById("democursortext").innerHTML  = document.getElementById("textinput").value
-    // }
-
 
       const optOut = ()=> {
         localStorage.setItem('optOut', true)

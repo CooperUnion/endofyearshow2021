@@ -7,6 +7,9 @@
       <posts v-else :items="items"/>
     </div>
     <loading v-if="loadingRemainder" :timeout="20" />
+    <!-- <div>
+      <h1 v-scroll="test">only shows up after loading...</h1>
+    </div> -->
   </main>   
 	<global-footer :items="globalNavItems" />
 </template>
@@ -31,7 +34,7 @@
       Posts,
       AreaNav,
       GlobalHeader,
-      GlobalFooter  
+      GlobalFooter
     },
     props: {
       post: Number,
@@ -50,8 +53,13 @@
       const internalInstance = getCurrentInstance()
       const { api_endpoint } = internalInstance.appContext.config.globalProperties
          
-      onMounted(loadPosts)
-      
+      async function init () {
+        loadPosts()
+      }
+
+      onMounted(init)
+
+
       watch(() => route.params.tag, loadPosts)    
             
       async function loadPosts(){
@@ -74,12 +82,12 @@
         const url = (props.postsEndpointSuffix) 
           ? `${api_endpoint}/api/posts/${props.postsEndpointSuffix}`
           : `${api_endpoint}/api/posts`
-        const query = `?limit=15`
+        const query = `?limit=20`
         const urlQuery = url+query
 
         items.value = await fetch(urlQuery).then(res=>res.json())
         loading.value = false
-        loadRemainder()
+        // loadRemainder()
         return true
       }
 
@@ -99,8 +107,15 @@
         })
       }
 
-      
-      return {items, loading, loadingRemainder, loadPosts, areaNavItems, globalNavItems}
+      return {
+        items, 
+        loading, 
+        loadingRemainder, 
+        loadPosts, 
+        areaNavItems, 
+        globalNavItems,
+        test: function (event, element) { console.log('scrolled', event, element)}
+      }
     }
   }
 </script>
