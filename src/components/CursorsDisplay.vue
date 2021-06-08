@@ -186,8 +186,11 @@
 
 <style scoped>
 .cursorsBox {
-	margin: 0 -120px;
-	max-width: unset;
+  margin: 0 -120px;
+  max-width: unset;
+  width: 98vw;
+  position: absolute;
+  height: 1px;
 }
 
 .dialog{
