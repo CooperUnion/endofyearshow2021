@@ -67,8 +67,11 @@
         }
       }
       
-      watch(() => route.params.tag, loadPosts)    
-            
+      //watch(() => route.params.tag, loadPosts)    
+      
+      watch([route.params.tag, props.postsEndpointSuffix], (newValues, prevValues) => {
+        loadPosts()
+      })
       async function loadPosts(){
         try {
           // Handle when filtering for a tag
