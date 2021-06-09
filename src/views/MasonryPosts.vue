@@ -142,8 +142,7 @@
         loadedRemainder, 
         loadPosts, 
         areaNavItems, 
-        globalNavItems,
-        teardown
+        globalNavItems
       }
     }
   }
