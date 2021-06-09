@@ -74,8 +74,22 @@
         }
       }
       
-      watch(() => route.params.tag, loadPosts)    
-            
+      function teardown() {
+        items.value = []
+        console.log(internalInstance)
+      }
+
+      watch(() => route.params.tag, ()=>{
+        // console.log("older style...", route.path)
+        // loading.value = true
+        // items.value = undefined
+        loadPosts()
+      })    
+      
+      // watch([route.params.tag, props.postsEndpointSuffix], () => {
+      //   console.log("new route watched")
+      //   loadPosts()
+      // })
       async function loadPosts(){
         try {
           // Handle when filtering for a tag
@@ -142,7 +156,8 @@
         loadedRemainder, 
         loadPosts, 
         areaNavItems, 
-        globalNavItems
+        globalNavItems,
+        teardown
       }
     }
   }
