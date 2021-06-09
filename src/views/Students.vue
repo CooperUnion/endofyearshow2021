@@ -40,7 +40,9 @@
       GlobalFooter,
       StudentTagCircles
     },
-    props: {},
+    props: {
+      theme: Array
+    },
     setup(props){
       const loading = ref(true)
       const students = ref()

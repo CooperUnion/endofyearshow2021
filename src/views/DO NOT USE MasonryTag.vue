@@ -38,7 +38,7 @@
     },
     props: {
       tag: String,
-      theme: String
+      theme: Array
     },
     setup(props){
       const store = useStore()

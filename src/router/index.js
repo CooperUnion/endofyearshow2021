@@ -27,7 +27,7 @@ let routes = [
     name: 'Home',
     component: Home,
     props: {
-      theme: 'dark'
+      theme: ['dark']
     }
   },
   {

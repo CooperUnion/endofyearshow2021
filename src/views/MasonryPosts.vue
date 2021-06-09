@@ -42,7 +42,7 @@
       post: Number,
       postsEndpointSuffix: String,
       tag: String,
-      theme: String
+      theme: Array
     },
     setup(props){
       const store = useStore()
@@ -74,22 +74,8 @@
         }
       }
       
-      function teardown() {
-        items.value = []
-        console.log(internalInstance)
-      }
-
-      watch(() => route.params.tag, ()=>{
-        // console.log("older style...", route.path)
-        // loading.value = true
-        // items.value = undefined
-        loadPosts()
-      })    
-      
-      // watch([route.params.tag, props.postsEndpointSuffix], () => {
-      //   console.log("new route watched")
-      //   loadPosts()
-      // })
+      watch(() => route.params.tag, loadPosts)    
+            
       async function loadPosts(){
         try {
           // Handle when filtering for a tag
@@ -156,8 +142,7 @@
         loadedRemainder, 
         loadPosts, 
         areaNavItems, 
-        globalNavItems,
-        teardown
+        globalNavItems
       }
     }
   }
