@@ -93,6 +93,7 @@
   max-width: unset;
   min-height: 100vh;
   overflow: hidden;
+  pointer-events: none;
 }
 
 
