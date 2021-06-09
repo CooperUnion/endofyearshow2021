@@ -39,7 +39,8 @@
       GlobalFooter
     },
     props: {
-      project: String
+      project: String,
+      theme: String
     },
     setup(props){
       const loading = ref(true)

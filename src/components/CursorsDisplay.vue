@@ -90,6 +90,7 @@
   }  
 .cursorsBox {
   margin: 0 -120px;
+  width: 100%;
   max-width: unset;
   min-height: 100vh;
   overflow: hidden;

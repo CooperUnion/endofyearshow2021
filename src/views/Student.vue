@@ -33,7 +33,8 @@
       GlobalFooter
     },
     props: {
-      project: String
+      project: String,
+      theme: String
     },
     setup(props){
       const loading = ref(true)
@@ -56,7 +57,7 @@
       })    
       
       async function loadStudent(slug) {
-         console.log("loadStudent triggered", slug)
+        //  console.log("loadStudent triggered", slug)
         
         loading.value = true
         items.value = []
