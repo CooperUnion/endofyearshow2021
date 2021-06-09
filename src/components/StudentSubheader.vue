@@ -24,9 +24,8 @@
       tags: Array
     },
     setup(props){
-    	const title = "I'm not smart enough to figure out how to pass data to a component"
             
-      return {title}
+      return {}
     }
   }
   

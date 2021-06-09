@@ -15,6 +15,9 @@
   components: {
     CursorsDisplay
   },
+  props: {
+    theme: Array
+  },
   setup (props){
     return {}
   },
