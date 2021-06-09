@@ -34,7 +34,7 @@
     },
     props: {
       project: String,
-      theme: String
+      theme: Array
     },
     setup(props){
       const loading = ref(true)

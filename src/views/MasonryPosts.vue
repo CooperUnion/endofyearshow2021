@@ -42,7 +42,7 @@
       post: Number,
       postsEndpointSuffix: String,
       tag: String,
-      theme: String
+      theme: Array
     },
     setup(props){
       const store = useStore()

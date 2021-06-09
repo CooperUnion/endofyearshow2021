@@ -16,7 +16,7 @@
     CursorsDisplay
   },
   props: {
-    theme: String
+    theme: Array
   },
   setup (props){
     return {}

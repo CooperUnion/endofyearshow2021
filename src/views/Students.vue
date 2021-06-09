@@ -41,7 +41,7 @@
       StudentTagCircles
     },
     props: {
-      theme: String
+      theme: Array
     },
     setup(props){
       const loading = ref(true)

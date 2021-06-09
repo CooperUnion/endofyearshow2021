@@ -73,7 +73,7 @@
     GlobalFooter
   },
   props: {
-    theme: String
+    theme: Array
   },
   setup(props){
     const internalInstance = getCurrentInstance()
