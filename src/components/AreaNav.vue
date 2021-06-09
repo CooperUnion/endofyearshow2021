@@ -4,6 +4,11 @@
     <div class="nav-panel">
       <ul class="nav-list">
         <li class="nav-item" >
+          <tag-button data-tagname="view-random" :toggle="true" />
+          <output><a href="/areas/random" @click="resetAreas()">View Random</a></output>      
+          <output><a href="/areas/random" @click="resetAreas()">20</a></output>      
+        </li>
+        <li class="nav-item" >
           <tag-button data-tagname="view-all" :toggle="true" />
           <router-link to="/areas" @click="resetAreas()">View all</router-link>
           <output><a href="/areas" @click="resetAreas()">{{itemCount['view-all']}}</a></output>      

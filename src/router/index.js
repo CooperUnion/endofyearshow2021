@@ -104,7 +104,17 @@ let routes = [
     }
   },
   {name: "Colophon", path:"/colophon", component: Colophon},
-
+  {
+    path: '/areas/random',
+    name: 'AreasRandom',
+    component: MasonryPosts,
+    props: (route) =>{
+      return {
+        tag: route.params.tag,
+        postsEndpointSuffix: `random`
+      }
+    }
+  }
 ]
 
 let globalNavItems = [
