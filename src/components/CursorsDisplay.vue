@@ -94,6 +94,7 @@
   min-height: 100vh;
   overflow: hidden;
   pointer-events: none;
+  position: absolute;
 }
 
 
