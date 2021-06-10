@@ -2,7 +2,7 @@
  <global-header />
    <main>
     <div class="areasPage">
-      <area-nav :items="areaNavItems" v-if="['Areas','Area','Students'].includes($route.name)" />
+      <area-nav :items="areaNavItems" v-if="['Areas','Area','AreasRandom','Students'].includes($route.name)" />
       <loading v-if="loading" :timeout="20" />
       <posts v-else :items="items" />
     </div>
@@ -13,22 +13,22 @@
     <!-- <div>
       <h1 v-scroll="test">only shows up after loading...</h1>
     </div> -->
-  </main>   
+  </main>
 	<global-footer :items="globalNavItems" />
 </template>
 
 <script>
   import { ref, onBeforeMount, onMounted, watch, getCurrentInstance } from "vue";
   import { useRoute } from 'vue-router'
-  import { useStore } from 'vuex'  
+  import { useStore } from 'vuex'
 
   import Loading from '@/components/Loading.vue'
   import AreaNav from '@/components/AreaNav.vue'
   import Posts from '@/components/Posts.vue'
   import {globalNavItems} from '@/router/index.js'
   import navItems from '@/router/areaNavItems.js'
-	import GlobalHeader from '@/components/GlobalHeader.vue' 
-	import GlobalFooter from '@/components/GlobalFooter.vue' 
+	import GlobalHeader from '@/components/GlobalHeader.vue'
+	import GlobalFooter from '@/components/GlobalFooter.vue'
 
   export default {
     components: {
@@ -55,16 +55,16 @@
       const internalInstance = getCurrentInstance()
       const { api_endpoint } = internalInstance.appContext.config.globalProperties
       const loadByDefault = ref(false)
-      
+
     //   const { ctx: _this } = getCurrentInstance()
-    
+
     // const handleClick = () => {
     //   arr.push(2)
     //   _this.$forceUpdate()
     // }
 
       onMounted(init)
-      
+
       async function init(){
         loadPosts()
         try{
@@ -73,9 +73,9 @@
           // no pref
         }
       }
-      
-      watch(() => route.params.tag, loadPosts)    
-            
+
+      watch(() => route.params.tag, loadPosts)
+
       async function loadPosts(){
         try {
           // Handle when filtering for a tag
@@ -93,7 +93,7 @@
         loading.value = true
         items.value = []
 
-        const url = (props.postsEndpointSuffix) 
+        const url = (props.postsEndpointSuffix)
           ? `${api_endpoint}/api/posts/${props.postsEndpointSuffix}`
           : `${api_endpoint}/api/posts`
         const query = `?limit=30`
@@ -117,7 +117,7 @@
         try{
          //localStorage.setItem('loadByDefault', 'true')
         } catch(e) {alert(e)}
-        const url = (props.postsEndpointSuffix) 
+        const url = (props.postsEndpointSuffix)
           ? `${api_endpoint}/api/posts/${props.postsEndpointSuffix}`
           : `${api_endpoint}/api/posts`
         const query = `?limit=1000&offset=30`
@@ -132,16 +132,16 @@
         })
       }
 
-      
+
       return {
-        items, 
+        items,
         loading,
         loadByDefault,
-        loadRemainder, 
-        loadingRemainder, 
-        loadedRemainder, 
-        loadPosts, 
-        areaNavItems, 
+        loadRemainder,
+        loadingRemainder,
+        loadedRemainder,
+        loadPosts,
+        areaNavItems,
         globalNavItems
       }
     }
@@ -149,7 +149,7 @@
 </script>
 
 <style scoped>
-  
+
   .areasPage {
     display: flex;
     flex-direction: row;
@@ -159,7 +159,7 @@
     text-align: center;
     margin-bottom: 48px;
   }
-  
+
   button.load-more {
     color: #fff;
     background-color: #000;
@@ -172,7 +172,7 @@
     background-repeat: no-repeat;
     background-position: 12px center;
   }
-    
+
   @media screen and (max-width: 767px) {
     .areasPage {
       flex-direction: column;
