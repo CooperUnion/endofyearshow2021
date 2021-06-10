@@ -13,5 +13,5 @@ jobs:
       - uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: "endofyearshow2021-${{ github.base_ref }}-${{ github.job }}"
+          heroku_app_name: "endofyearshow2021-stage"
           heroku_email: "erin@everyplace.net"
