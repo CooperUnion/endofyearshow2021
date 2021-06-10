@@ -7,8 +7,8 @@
       <div v-if="currentPageConfig.body" class="mainDesc">
         {{currentPageConfig.body}}
       </div>
-      <page-header-button v-if="currentPageConfig.refreshEnabled===true"/>
     </div>
+		<page-header-button v-if="currentPageConfig.refreshEnabled===true"/>
   </div>
 </template>
 
@@ -99,7 +99,8 @@
 		line-height: 30px;
 		width: 276px;
 		height: 64px;
-		margin-top: 48px;
+		/* margin-top: 48px; */
+		padding-right:0;
 	}
 	
 	.refreshIcon {
