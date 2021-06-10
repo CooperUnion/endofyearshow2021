@@ -1,23 +1,28 @@
 <template>
  
-<div class="headerBlock">
-	<div class="bannerPrimary">
-		<div class="titleBlock">
-			<h2 v-if="currentPageConfig.title" class="mainHead">
-				{{currentPageConfig.title}} 
-			</h2>
-			<div v-if="currentPageConfig.body" class="mainDesc">
-				{{currentPageConfig.body}} 
+	<div id="pagenav" class="headerBlock">
+		<div class="bannerTitle">
+			<div class="titleBlock">
+				<h2 v-if="currentPageConfig.title" class="mainHead">
+					{{currentPageConfig.title}} 
+				</h2>
+			</div>
+			<div class="operationsBlock">
+	<!-- RANDOMIZE BUTTON WOULD GO HERE -->
 			</div>
 		</div>
-		<div class="operationsBlock">
-		<!-- RANDOMIZE BUTTON WOULD GO HERE -->
+		<div class="bannerDescription">
+			<div class="descBlock">
+				<div v-if="currentPageConfig.body" class="mainDesc">
+					{{currentPageConfig.body}} 
+				</div>
+			</div>
+		</div>
+		<div class="bannerSecondaryOps">
+			<page-header-button v-if="currentPageConfig.refreshEnabled===true" /> 
 		</div>
 	</div>
-	<div class="bannerSecondary">
-		<page-header-button v-if="currentPageConfig.refreshEnabled===true" /> 
-	</div>
-</div>
+
 </template>
 
 <script>
@@ -72,23 +77,22 @@
 		flex-direction: column;
 	}
 	
-	.bannerPrimary {
+	.bannerTitle {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
 	}
 	
-	.bannerSecondary {
+	.bannerSecondaryOps {
 		margin-top: 48px;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
 	}
 	
-	.titleBlock {
+	.titleBlock,
+			.descBlock {
 		width: 61%;
-	}
-	
-	.listBlock {
-		width: 39%;
-		text-align: left;
 	}
 	
 	.mainHead {
@@ -112,13 +116,18 @@
 			font-size: 32px;
 		}
 		
-		.titleBlock {
+		.bannerDescription {
+			order: 2;
+		}
+		
+		.bannerSecondaryOps {
+			margin-top: 24px;
+		}
+		
+		.titleBlock, 
+						.descBlock {
 			width: auto;
 		}
-	.bannerSecondary {
-		margin-top: 48px;
-	}
-	
 	}
 </style>
 

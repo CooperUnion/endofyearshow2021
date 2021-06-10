@@ -1,6 +1,6 @@
 <template>
   <div id="areanav" :class="{showNav : areanavShow}">
-    <button class="filters open" v-if="mobile" @click="toggleAreaPanel()">Filters</button>
+    <teleport to="#pagenav .bannerSecondaryOps"><button class="filters open" v-if="mobile" @click="toggleAreaPanel()">Filters</button></teleport>
     <div class="nav-panel">
       <ul class="nav-list">
         <li class="nav-item" >
@@ -243,7 +243,7 @@
 			display: inline-block;
 		}
 		
-		button.filters.open {
+		#areanav button.filters.open {
 			position: absolute;
 			top: -40px;
 			right: 0;
