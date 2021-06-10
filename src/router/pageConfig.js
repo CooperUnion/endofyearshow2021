@@ -16,7 +16,7 @@
   },
   areas: {
     title: 'Areas',
-    body: '',
+    body: 'A forum where chance and flux bring forward new conversations and encounters between works.',
     refreshEnabled: true
   },
   projects: {
