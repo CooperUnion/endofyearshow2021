@@ -1,6 +1,6 @@
 {
   "name": "endofyearshow2021",
-  "version": "1.4.1a",
+  "version": "1.4.1",
   "private": true,
   "scripts": {
     "start": "vue-cli-service serve",

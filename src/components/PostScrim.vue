@@ -39,11 +39,6 @@
         <p class="outgoingLink"><a :href="assets.media[0].source_url" target="_blank">View full pdf</a></p>
       </div>
 
-     <div v-if="type==='text'" class="urlDeck">
-        <img :src="assets.preview.source_url" />
-        <p v-if="assets.url" class="outgoingLink"><a :href="outgoingSiteURL" target="_blank">View work on {{outgoingSiteType}}</a></p>
-      </div>
-
       <div v-else-if="type==='audio'" class="audioDeck">
         <img :src="assets.preview.source_url" />
         <p v-if="assets.url" class="outgoingLink"><a :href="outgoingSiteURL" target="_blank">Hear work on {{outgoingSiteType}}</a></p>

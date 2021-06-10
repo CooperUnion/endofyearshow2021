@@ -2,7 +2,7 @@
  <global-header />
    <main>
     <div class="areasPage">
-      <area-nav :items="areaNavItems" v-if="['Areas','Area','AreasRandom','Students'].includes($route.name)" />
+      <area-nav :items="areaNavItems" v-if="['Areas','Area','Students'].includes($route.name)" />
       <loading v-if="loading" :timeout="20" />
       <posts v-else :items="items" />
     </div>

@@ -46,7 +46,6 @@ const app = createApp(App)
 // })
 
 app.config.globalProperties.emitter = emitter
-app.config.globalProperties.window = window
 app.config.globalProperties.socket_server = process.env.VUE_APP_SOCKET_SERVER || 'https://eoyssockets2021.glitch.me'
 app.config.globalProperties.api_endpoint = process.env.VUE_APP_FORM_API_ENDPOINT || 'https://eoys-api-2021.glitch.me'
 // app.config.globalProperties.app_version = process.env.npm_package_version || '0.0.0'

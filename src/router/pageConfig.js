@@ -17,7 +17,7 @@
   areas: {
     title: 'Areas',
     body: '',
-    refreshEnabled: true
+    refreshEnabled: false
   },
   projects: {
     title: 'Projects',
