@@ -1,15 +1,23 @@
 <template>
-  <div class="headerBlock">
-    <div class="titleBlock">
-      <h2 v-if="currentPageConfig.title" class="mainHead">
-        {{currentPageConfig.title}}
-      </h2>
-      <div v-if="currentPageConfig.body" class="mainDesc">
-        {{currentPageConfig.body}}
-      </div>
-    </div>
-		<page-header-button v-if="currentPageConfig.refreshEnabled===true"/>
-  </div>
+ 
+<div class="headerBlock">
+	<div class="bannerPrimary">
+		<div class="titleBlock">
+			<h2 v-if="currentPageConfig.title" class="mainHead">
+				{{currentPageConfig.title}} 
+			</h2>
+			<div v-if="currentPageConfig.body" class="mainDesc">
+				{{currentPageConfig.body}} 
+			</div>
+		</div>
+		<div class="operationsBlock">
+		<!-- RANDOMIZE BUTTON WOULD GO HERE -->
+		</div>
+	</div>
+	<div class="bannerSecondary">
+		<page-header-button v-if="currentPageConfig.refreshEnabled===true" /> 
+	</div>
+</div>
 </template>
 
 <script>
@@ -61,8 +69,17 @@
 <style scoped>
 	.headerBlock {
 		display: flex;
+		flex-direction: column;
+	}
+	
+	.bannerPrimary {
+		display: flex;
 		flex-direction: row;
-		padding-top: 24px;
+		justify-content: space-between;
+	}
+	
+	.bannerSecondary {
+		margin-top: 48px;
 	}
 	
 	.titleBlock {
@@ -90,24 +107,6 @@
 		margin: 48px 0 0 0;
 	}
 	
-	.refreshButton {
-		background-color: black;
-		color: white;
-		border-radius: 200px;
-		font-size: 18px;
-		font-weight: 500;
-		line-height: 30px;
-		width: 276px;
-		height: 64px;
-		/* margin-top: 48px; */
-		padding-right:0;
-	}
-	
-	.refreshIcon {
-		margin-bottom: -5px;
-		margin-right: 5px;
-	}
-	
 	@media screen and (max-width: 767px) {
 		.mainHead {
 			font-size: 32px;
@@ -116,6 +115,10 @@
 		.titleBlock {
 			width: auto;
 		}
+	.bannerSecondary {
+		margin-top: 48px;
+	}
+	
 	}
 </style>
 

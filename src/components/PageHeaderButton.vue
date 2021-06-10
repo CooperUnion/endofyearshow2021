@@ -1,10 +1,7 @@
 <template>
-  <button class="refreshButton">
-    <a href="/areas/random">
-      <img class="refreshIcon" src="https://cdn.glitch.com/d71c7c2a-c6c4-4028-9136-d224524d7374%2FrefreshButton.svg?v=1621465133463"> 
-      <span>Refresh Curation</span>
+    <a class="refreshButton" href="/areas/random">
+      Refresh
     </a>
-  </button>
 </template>
 
 <script>
@@ -15,8 +12,6 @@
     props: {
     },
     setup(props){
-      
-
       return {}
     }
   }
@@ -24,21 +19,34 @@
 </script>
 
 <style scoped>
-    
-  .refreshButton{
-    background-color: black;
-    color: white;
-    border-radius: 200px;
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 30px;
-    width: 276px;
-    height: 64px;
-  }
-  
-  .refreshIcon{
-    margin-bottom: -5px;
-    margin-right: 5px;
-  } 
+	.refreshButton {
+		display: block;
+		font-weight: 500;
+		line-height: 1;
+		text-decoration: none;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
+	
+	.refreshButton:hover {
+		text-decoration: underline;
+	}
+	
+	.refreshButton:before {
+		content: "";
+		color: #fff;
+		background-color: #000;
+		border-radius: 50%;
+		width: 36px;
+		height: 36px;
+		margin: 0 0.5em 0 0;
+		display: inline-block;
+		background-image: url('../assets/refresh.svg');
+		background-size: 24px auto;
+		background-repeat: no-repeat;
+		background-position: center center;
+	}
+	
 </style>
 
