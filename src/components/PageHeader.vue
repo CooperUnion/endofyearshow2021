@@ -7,17 +7,17 @@
       <div v-if="currentPageConfig.body" class="mainDesc">
         {{currentPageConfig.body}}
       </div>
-      <page-header-button v-if="currentPageConfig.refreshEnabled===true"/>
     </div>
+		<page-header-button v-if="currentPageConfig.refreshEnabled===true"/>
   </div>
 </template>
 
 <script>
   import { ref, watch } from "vue";
-  import { useRoute } from 'vue-router'
+  import { useRoute } from 'vue-router'  
   import PageHeaderButton from '@/components/PageHeaderButton.vue'
   import pageConfig from '@/router/pageConfig.js'
-
+  
   export default {
     name: 'Pageheader',
     components: {
@@ -34,7 +34,7 @@
         title: '',
         body: ''
       })
-
+      
       const initPageConfig = ()=>{
         try{
           currentPageConfig.value = pageConfig[currentRoute.value] || pageConfig['areas']
@@ -49,13 +49,13 @@
         currentRoute.value = route.name.toLowerCase()
         initPageConfig()
       })
-
+      
       initPageConfig()
-
+      
       return {currentPageConfig}
     }
   }
-
+  
 </script>
 
 <style scoped>
@@ -64,16 +64,16 @@
 		flex-direction: row;
 		padding-top: 24px;
 	}
-
+	
 	.titleBlock {
 		width: 61%;
 	}
-
+	
 	.listBlock {
 		width: 39%;
 		text-align: left;
 	}
-
+	
 	.mainHead {
 		font-size: 48px;
 		text-align: left;
@@ -81,7 +81,7 @@
 		font-weight: 500;
 		margin: 0;
 	}
-
+	
 	.mainDesc {
 		text-align: left;
 		font-size: 18px;
@@ -89,7 +89,7 @@
 		line-height: 24px;
 		margin: 48px 0 0 0;
 	}
-
+	
 	.refreshButton {
 		background-color: black;
 		color: white;
@@ -99,23 +99,23 @@
 		line-height: 30px;
 		width: 276px;
 		height: 64px;
-		/*margin-top: 48px;*/
-    padding-right:0;
-
+		/* margin-top: 48px; */
+		padding-right:0;
 	}
-
+	
 	.refreshIcon {
 		margin-bottom: -5px;
 		margin-right: 5px;
 	}
-
+	
 	@media screen and (max-width: 767px) {
 		.mainHead {
 			font-size: 32px;
 		}
-
+		
 		.titleBlock {
 			width: auto;
 		}
 	}
 </style>
+
