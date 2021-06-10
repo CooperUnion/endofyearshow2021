@@ -1,5 +1,5 @@
 <template>
-	<teleport to="#app">
+	<teleport to="body">
 		<div v-if="optOutStatus===false && mobile === false" class="cursorsBox">
 			<cursor-display :self="true" :player="player" />
 			<cursor-display 

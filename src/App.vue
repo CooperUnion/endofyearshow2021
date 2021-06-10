@@ -17,6 +17,7 @@
 	body {
 		padding: 0;
 		color: black;
+		position: relative;
 	}
 	
 	body.dark {
@@ -50,7 +51,6 @@
 		min-height: 100vh;
 		display: flex;
 		flex-direction: column;
-		position: relative;
 	}
 	
 	main {
