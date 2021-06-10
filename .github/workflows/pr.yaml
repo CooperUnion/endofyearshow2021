@@ -14,6 +14,9 @@ jobs:
       - uses: simpleactions/get-pull-request@v1.0.0
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "endofyearshow2021-${base_ref}"
           heroku_email: "erin@everyplace.net"
