@@ -46,7 +46,7 @@ let routes = [
         postsEndpointSuffix: `tags/${route.params.tag}`
       }
     }
-  },
+  },  
   {
     path: '/tag',
     redirect: { name: 'Areas'}
@@ -76,14 +76,14 @@ let routes = [
   //   component: () => import(/* webpackChunkName: "about" */ '../views/Cursors.vue')
   // },
   {
-    name: "🚶/urlParam",
-    path: "/DebugPath/:test",
+    name: "🚶/urlParam", 
+    path: "/DebugPath/:test", 
     component: DebugPath,
     props: true
   },
   {
-    name: "🚶/function",
-    path: "/DebugPath/function/:test",
+    name: "🚶/function", 
+    path: "/DebugPath/function/:test", 
     component: DebugPath,
     props: (route) =>{
       return {
@@ -96,34 +96,32 @@ let routes = [
   {name: "DBCD", path:"/DebugCursorDisplay", component: DebugCursorDisplay},
   {name: "DBOC", path:"/DebugOnlineCount", component: DebugOnlineCount},
   {
-    name: "🚶",
-    path: "/DebugPath",
+    name: "🚶", 
+    path: "/DebugPath", 
     component: DebugPath,
     props: {
       test: "A string set in the router"
     }
   },
   {name: "Colophon", path:"/colophon", component: Colophon},
-
-   {
-      path: '/areas/random',
-      name: 'AreasRandom',
-      component: MasonryPosts,
-      props: (route) =>{
-        return {
-          tag: route.params.tag,
-          postsEndpointSuffix: `random`
-        }
+  {
+    path: '/areas/random',
+    name: 'AreasRandom',
+    component: MasonryPosts,
+    props: (route) =>{
+      return {
+        tag: route.params.tag,
+        postsEndpointSuffix: `random`
       }
     }
-    
+  }
 ]
 
 let globalNavItems = [
   {name:"Areas", path:"/areas", component: MasonryPosts},
   {
-    name:"Foundation",
-    path:"/foundation",
+    name:"Foundation", 
+    path:"/foundation", 
     component: MasonryPosts,
     props:{
       postsEndpointSuffix: 'year/freshman'
@@ -133,8 +131,8 @@ let globalNavItems = [
   // {name:"Forum", path:"/forum", component: MasonryPosts},
   {name:"Students", path:"/students", component: Students},
   {
-    name:"Info",
-    path:"/info",
+    name:"Info", 
+    path:"/info", 
     component: Info,
     props: {
       theme: ['dark','fancy']
@@ -150,7 +148,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  try{
+  try{ 
     const props = to.matched[0].props.default
     casco.set(props.theme)
   } catch(e) {
