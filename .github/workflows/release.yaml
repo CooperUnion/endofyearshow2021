@@ -1,9 +1,8 @@
-name: Deploy
+name: Release to Production
 
 on:
-  push:
-    branches:
-      - main
+  release:
+    types: [published]
 
 jobs:
   build:
@@ -13,5 +12,5 @@ jobs:
       - uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "endofyearshow2021-stage"
+          heroku_app_name: "endofyearshow2021"
           heroku_email: "erin@everyplace.net"
