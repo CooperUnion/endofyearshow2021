@@ -13,6 +13,7 @@ jobs:
       - uses: jwalton/gh-find-current-pr@v1.0.2
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "endofyearshow2021-${PR}"
           heroku_email: "erin@everyplace.net"
