@@ -1,11 +1,11 @@
-<template>
+<template> 
 	<div class="visitorCount"
 			@mouseover="interacting=true">
 		<ul class="badges" >
 			<li>
 				<span class="readout">
-					{{ connections }}
-					other {{storeRetreivedData.connections>1 ? 'visitors' : 'visitor'}}
+					{{ connections }} 
+					other {{storeRetreivedData.connections>1 ? 'visitors' : 'visitor'}} 
 					online
 			</span>
 		 </li>
@@ -25,6 +25,7 @@
 	import { ref, getCurrentInstance } from 'vue'
   import { useStore } from 'vuex'
 	import { useRoute, useRouter } from 'vue-router'
+
   export default {
     name: 'VisitorCount',
     props:{},
@@ -37,12 +38,13 @@
 			const router = useRouter()
       const internalInstance = getCurrentInstance()
       const { window } = internalInstance.appContext.config.globalProperties
+
 			function reset () {
 				optOut()
 				console.log(window)
 				window.location.reload()
 			}
-
+			
 			// A variation derived from CursorsSignUp.vue
 			const optOut = ()=> {
         localStorage.removeItem('optOut')
@@ -56,15 +58,15 @@
 	  position: absolute;
 	  top: calc(50% - 0.5em);
 	  right: 0;
-	}
-
+	}  
+	
 	.readout, .options {
 		font-size: 10px;
 		line-height: 1;
 		display: flex;
 		flex-direction: row;
 	}
-
+		
 	.badges {
 		list-style-type: none;
 		margin: 0;
@@ -73,16 +75,18 @@
 		align-items: center;
 		margin-right: 0.5em;
 	}
-
+	
 	.badges .badge {
 		background-color: #00FF00;
 		height: 0.5em;
 		width: 0.5em;
 		border-radius: 50%;
 	}
+
 	.badges .badge>span {
 		display:none;
 	}
+
 	.options {
 		margin:0;
 		margin-top:5px;
