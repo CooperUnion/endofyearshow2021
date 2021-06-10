@@ -89,8 +89,8 @@
     z-index: 999;
   }  
 .cursorsBox {
-  margin: 0 -120px;
-  width: 100%;
+  margin: 0 calc(-50vw + 600px - 120PX);
+  width: 100vw;
   max-width: unset;
   min-height: 100vh;
   overflow: hidden;
@@ -143,7 +143,7 @@ background-color: #C7BFAB;
   
 	@media screen and (min-width: 1440px) {
 		.cursorsBox {
-			margin: 0 calc(-50vw + 600px - 120px);
+			margin: 0 calc(-50vw + 600px - 110px);
 		}
 	}
 	
@@ -152,10 +152,28 @@ background-color: #C7BFAB;
 			margin: 0 -36px;
 		}
 	}
+  
+  	@media screen and (min-width: 1025px) and (max-width: 1100px) {
+		.cursorsBox {
+			margin: 0 calc(-50vw + 510px - 120PX);
+		}
+	}
+  
+    	@media screen and (min-width: 1101px) and (max-width: 1159px) {
+		.cursorsBox {
+			margin: 0 calc(-50vw + 560px - 120PX);
+		}
+	}
+  
+    	@media screen and (min-width: 1200px) and (max-width: 1440px) {
+		.cursorsBox {
+			margin: 0 calc(-50vw + 600px - 120PX);
+		}
+	}
 	
 	@media screen and (max-width: 767px) {
 		.cursorsBox {
-			margin: 0 -24px;
+			margin: 0 -12px;
 		}
   }
   
