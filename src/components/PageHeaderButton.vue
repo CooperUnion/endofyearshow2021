@@ -1,6 +1,9 @@
 <template>
   <button class="refreshButton">
-    <img class="refreshIcon" src="https://cdn.glitch.com/d71c7c2a-c6c4-4028-9136-d224524d7374%2FrefreshButton.svg?v=1621465133463"> Refresh curation
+    <a href="/areas/random">
+      <img class="refreshIcon" src="https://cdn.glitch.com/d71c7c2a-c6c4-4028-9136-d224524d7374%2FrefreshButton.svg?v=1621465133463"> 
+      <span>Refresh Curation</span>
+    </a>
   </button>
 </template>
 
@@ -31,7 +34,6 @@
     line-height: 30px;
     width: 276px;
     height: 64px;
-    margin-top: 48px;
   }
   
   .refreshIcon{
