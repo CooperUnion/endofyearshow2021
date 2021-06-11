@@ -49,6 +49,16 @@ app.config.globalProperties.emitter = emitter
 app.config.globalProperties.window = window
 app.config.globalProperties.socket_server = process.env.VUE_APP_SOCKET_SERVER || 'https://eoyssockets2021.glitch.me'
 app.config.globalProperties.api_endpoint = process.env.VUE_APP_FORM_API_ENDPOINT || 'https://eoys-api-2021.glitch.me'
+try {
+    app.config.globalProperties.flags = process.env.VUE_APP_FLAGS 
+      ? JSON.parse(process.env.VUE_APP_FLAGS) 
+      : []
+      console.log("Feature flags enabled")
+} catch (e) {
+  app.config.globalProperties.flags = []
+  console.log("No flags enabled in this environment")
+}
+
 // app.config.globalProperties.app_version = process.env.npm_package_version || '0.0.0'
 app.config.globalProperties.mobile = false; //initiate as false
 if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(navigator.userAgent) 
