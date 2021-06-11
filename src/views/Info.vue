@@ -16,7 +16,7 @@
 			  <a href="/areas">Areas</a> of study: i.e. painting, sculpture, photography, performance, graphic design, and more 
 			</p>
 			<p>
-				<a href="/forum">Forum</a>: an open space where chance and flux bring forward new conversations and encounters between works 
+				<a href="/areas/random">Forum</a>: an open space where chance and flux bring forward new conversations and encounters between works 
 			</p>
 			<p>
 			  <a href="/foundation">Foundation</a>: works produced in a series of introductory courses taken by freshman year art students 
