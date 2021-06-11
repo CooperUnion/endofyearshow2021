@@ -101,7 +101,14 @@ let routes = [
       test: "A string set in the router"
     }
   },
-  {name: "Colophon", path:"/colophon", component: Colophon},
+  {
+    name: "Colophon", 
+    path:"/colophon", 
+    component: Colophon,
+    props: {
+      theme: ['dark']
+    }
+  },
   {
     path: '/areas/random',
     name: 'AreasRandom',

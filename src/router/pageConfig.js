@@ -38,5 +38,10 @@
     title: 'Faculty',
     body: '',
     refreshEnabled: false
-  }  
+  },
+  colophon: {
+    title: 'Colophon',
+    body: '',
+    refreshEnabled: false
+  }   
 }

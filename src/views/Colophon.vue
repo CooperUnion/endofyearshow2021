@@ -35,7 +35,7 @@
   import GlobalFooter from '@/components/GlobalFooter.vue'
 
   export default {
-  name: 'Info',
+  name: 'Colophon',
   components: {
     GlobalNav,
     PageHeader,
