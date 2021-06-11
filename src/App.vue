@@ -18,6 +18,7 @@
 		padding: 0;
 		color: black;
 		position: relative;
+		font-family: Epilogue, Avenir, Helvetica, Arial, sans-serif;
 	}
 	
 	body.dark {
