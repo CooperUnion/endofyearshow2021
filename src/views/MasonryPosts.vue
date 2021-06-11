@@ -6,7 +6,7 @@
       <loading v-if="loading" :timeout="20" />
       <posts v-else :items="items" />
     </div>
-     <div class="controls">
+     <div class="controls" v-if="route.name !== 'AreasRandom'">
        <button class="load-more" v-if="loadedRemainder===false && loadByDefault===false" @click="loadRemainder()">Load all</button>
     </div>
     <loading v-if="loadingRemainder" :timeout="20" />
@@ -55,13 +55,6 @@
       const internalInstance = getCurrentInstance()
       const { api_endpoint } = internalInstance.appContext.config.globalProperties
       const loadByDefault = ref(false)
-      
-    //   const { ctx: _this } = getCurrentInstance()
-    
-    // const handleClick = () => {
-    //   arr.push(2)
-    //   _this.$forceUpdate()
-    // }
 
       onMounted(init)
       
@@ -74,8 +67,11 @@
         }
       }
       
-      watch(() => route.params.tag, loadPosts)    
-            
+      watch(() => [route.path, route.params.tag], ()=>{
+        // console.log(route.name)
+        loadPosts()
+      })
+
       async function loadPosts(){
         try {
           // Handle when filtering for a tag
@@ -142,7 +138,8 @@
         loadedRemainder, 
         loadPosts, 
         areaNavItems, 
-        globalNavItems
+        globalNavItems,
+        route
       }
     }
   }
