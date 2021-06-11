@@ -68,7 +68,6 @@ display: block;
     pointer-events: none;
     color: black;
     text-shadow: none;
-    /* background: #000; */
     border-radius: 20px;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
