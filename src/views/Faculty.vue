@@ -1,20 +1,31 @@
 <template>
 	<global-header />
    <main>    
-     <div class="studentsPage">
+     <div class="studentsPage" :class="{ mobile }">
       <loading v-if="loading" :timeout="15" />
-      <div v-else v-for="instructor in faculty" v-bind:key="instructor.name">
-        <h2>{{instructor.name}}</h2>
-        <ul class="studentsList">
-          <li class="student" v-for="student in instructor.students" v-bind:key="student">
-            <router-link class="lensLink" :to="'/student/'+slug(student)">
-              <student-tag-circles :tags="studentTags(slug(student))" />
-            </router-link>
-            <router-link class="studentLink" :to="'/student/'+slug(student)">
-              {{student}}
-            </router-link>
-          </li>   
-        </ul>
+      <div id="facultyAndStudentsLists" v-else>
+        <div class="allFacultyList">
+          <ul>
+            <li  v-for="instructor in faculty" v-bind:key="instructor.name">  
+              <a :href="'#'+slug(instructor.name)">{{instructor.name}}</a>
+            </li>
+          </ul>
+        </div>
+        <div class="allStudentsList">
+          <div class="facultyStudents"  v-for="instructor in faculty" v-bind:key="instructor.name">
+            <h2 v-bind:id="slug(instructor.name)">{{instructor.name}}</h2>
+            <ul class="studentsList">
+              <li class="student" v-for="student in instructor.students" v-bind:key="student">
+                <router-link class="lensLink" :to="'/student/'+slug(student)">
+                  <student-tag-circles :tags="studentTags(slug(student))" />
+                </router-link>
+                <router-link class="studentLink" :to="'/student/'+slug(student)">
+                  {{student}}
+                </router-link>
+              </li>   
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </main>   
@@ -50,6 +61,7 @@
       const { api_endpoint } = internalInstance.appContext.config.globalProperties
       const faculty = ref([])
       const students = ref([])
+      const { mobile } = internalInstance.appContext.config.globalProperties
 
       onMounted(loadPeople)
       
@@ -85,7 +97,15 @@
         }).shift().tags
       }
       
-      return {faculty, students, studentTags, loading, loadPeople, globalNavItems, slug }
+      return {
+        faculty, 
+        students, 
+        studentTags, 
+        loading, 
+        loadPeople, 
+        globalNavItems, 
+        slug,
+        mobile }
     }
   }  
 </script>
@@ -96,7 +116,40 @@
 		display: flex;
 		flex-direction: column;
 	}
-	
+
+  #facultyAndStudentsLists {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  .studentsPage.mobile #facultyAndStudentsLists {
+    flex-direction: column;
+  }
+
+  .allFacultyList {
+    width: 25vw;
+  }
+
+  .mobile .allFacultyList,
+  .mobile .allStudentsList {
+    width: 80vw;
+  }
+
+  .allFacultyList ul, .allFacultyList li {
+    list-style-type: none;
+    margin-left:0;
+  }
+
+  .allStudentsList {
+    width: 65vw;
+  }
+
+  .allStudentsList h2 {
+    margin-top:0;
+  }
+
+
 	.studentsList {
 		list-style-type: none;
 		display: flex;
