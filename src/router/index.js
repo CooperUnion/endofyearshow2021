@@ -3,15 +3,13 @@ import { Casco } from 'vue-casco'
 
 import Home from '@/views/Home.vue'
 import MasonryPosts from '@/views/MasonryPosts.vue'
-// import MasonryPost from '@/views/MasonryPost.vue'
-// import MasonryTag from '@/views/MasonryTag.vue'
 import Projects from '@/views/Projects.vue'
 import Project from '@/views/Project.vue'
-// import newCursors from '@/components/Cursors-attempt-rightvue.vue'
 import Students from '@/views/Students.vue'
 import Student from '@/views/Student.vue'
 import Info from '@/views/Info.vue'
 import Colophon from '@/views/Colophon.vue'
+import Faculty from '@/views/Faculty.vue'
 
 import DebugSocket from '@/views/DebugSocket.vue'
 import DebugMotion from '@/views/DebugMotion.vue'
@@ -114,6 +112,11 @@ let routes = [
         postsEndpointSuffix: `random`
       }
     }
+  },
+  {
+    name: "Faculty", 
+    path:"/faculty", 
+    component: Faculty
   }
 ]
 
@@ -128,7 +131,6 @@ let globalNavItems = [
     }
   },
   {name:"Projects", path:"/projects/", component: Projects},
-  // {name:"Forum", path:"/forum", component: MasonryPosts},
   {name:"Students", path:"/students", component: Students},
   {
     name:"Info", 
