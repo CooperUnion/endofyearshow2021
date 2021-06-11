@@ -1,14 +1,14 @@
 <template>
-  <div v-if="optOutStatus===false && mobile === false" class="cursorsBox">
-    <cursor-display :self="true" :player="player" />
-    <cursor-display 
-      v-for="player in playerCursors" 
-      v-bind:key="player.id" 
-      :player="player"  />
-  </div>
-
-  <cursors-sign-up v-if="(optOutStatus !== true) && (loggedIn !== true)" />
-
+	<teleport to="body">
+		<div v-if="optOutStatus===false && mobile === false" class="cursorsBox">
+			<cursor-display :self="true" :player="player" />
+			<cursor-display 
+				v-for="player in playerCursors" 
+				v-bind:key="player.id" 
+				:player="player"  />
+		</div>
+		<cursors-sign-up v-if="(optOutStatus !== true) && (loggedIn !== true)" />
+	</teleport>
 </template>
 
 <script>
@@ -76,87 +76,66 @@
 </script>
 
 <style scoped>
-  
-/*   <div class="showDialog" @click="showDialog"> Δ
-</div> */
-  .showDialog {
-    background-color: red;
-    height: 24px;
-    width: 24px;
-    position: absolute;
-    right: 0px;
-    top : 60px;
-    z-index: 999;
-  }  
-.cursorsBox {
-  margin: 0 -120px;
-  width: 100%;
-  max-width: unset;
-  min-height: 100vh;
-  overflow: hidden;
-  pointer-events: none;
-  position: absolute;
-}
-
-
-  
-  .friend-cu{
-  color: black;
-background-color: #C7BFAB;
-}
-
-.error{
-  color: black;
-  background-color: #FF6741!important;
-/*   color: gainsboro; */
-  pointer-events: none;
-  pointer: no-drop;
-}
-
-.undefined{
-  color: black;
-  background-color: gainsboro;
-/*   color: gainsboro; */
-  pointer-events: none;
-  pointer: no-drop;
-}
-
-.alumnus{
-  color: black;
-  background-color: #9DE3B1;
-}
-
-.faculty-staff{
-  color: black;
-  background-color: #FFD480;
-}
-
-.current-student{
-    color: black;
-  background-color: #C7B9FF;
-}
-
-  
-@media only screen and (max-width: 600px) {
-
-  }
-  
-	@media screen and (min-width: 1440px) {
-		.cursorsBox {
-			margin: 0 calc(-50vw + 600px - 120px);
-		}
+	/*   <div class="showDialog" @click="showDialog"> Δ
+	</div> */
+	
+	.cursorsBox {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		margin: 0;
+		width: 100%;
+		max-width: unset;
+		min-height: 100vh;
+		overflow: hidden;
+		pointer-events: none;
 	}
 	
-	@media screen and (min-width: 768px) and (max-width: 1024px) {
-		.cursorsBox {
-			margin: 0 -36px;
-		}
+	.showDialog {
+		background-color: red;
+		height: 24px;
+		width: 24px;
+		position: absolute;
+		right: 0px;
+		top: 60px;
+		z-index: 999;
 	}
 	
-	@media screen and (max-width: 767px) {
-		.cursorsBox {
-			margin: 0 -24px;
-		}
-  }
-  
+	.friend-cu {
+		color: black;
+		background-color: #C7BFAB;
+	}
+	
+	.error {
+		color: black;
+		background-color: #FF6741!important;
+		/*   color: gainsboro; */
+		pointer-events: none;
+		pointer: no-drop;
+	}
+	
+	.undefined {
+		color: black;
+		background-color: gainsboro;
+		/*   color: gainsboro; */
+		pointer-events: none;
+		pointer: no-drop;
+	}
+	
+	.alumnus {
+		color: black;
+		background-color: #9DE3B1;
+	}
+	
+	.faculty-staff {
+		color: black;
+		background-color: #FFD480;
+	}
+	
+	.current-student {
+		color: black;
+		background-color: #C7B9FF;
+	}
 </style>

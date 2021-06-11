@@ -1,15 +1,28 @@
 <template>
-  <div class="headerBlock">
-    <div class="titleBlock">
-      <h2 v-if="currentPageConfig.title" class="mainHead">
-        {{currentPageConfig.title}}
-      </h2>
-      <div v-if="currentPageConfig.body" class="mainDesc">
-        {{currentPageConfig.body}}
-      </div>
-    </div>
-		<page-header-button v-if="currentPageConfig.refreshEnabled===true"/>
-  </div>
+ 
+	<div id="pagenav" class="headerBlock">
+		<div class="bannerTitle">
+			<div class="titleBlock">
+				<h2 v-if="currentPageConfig.title" class="mainHead">
+					{{currentPageConfig.title}} 
+				</h2>
+			</div>
+			<div class="operationsBlock">
+	<!-- RANDOMIZE BUTTON WOULD GO HERE -->
+			</div>
+		</div>
+		<div class="bannerDescription">
+			<div class="descBlock">
+				<div v-if="currentPageConfig.body" class="mainDesc">
+					{{currentPageConfig.body}} 
+				</div>
+			</div>
+		</div>
+		<div class="bannerSecondaryOps">
+			<page-header-button v-if="currentPageConfig.refreshEnabled===true" /> 
+		</div>
+	</div>
+
 </template>
 
 <script>
@@ -61,17 +74,25 @@
 <style scoped>
 	.headerBlock {
 		display: flex;
+		flex-direction: column;
+	}
+	
+	.bannerTitle {
+		display: flex;
 		flex-direction: row;
-		padding-top: 24px;
+		justify-content: space-between;
 	}
 	
-	.titleBlock {
+	.bannerSecondaryOps {
+		margin-top: 48px;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+	
+	.titleBlock,
+			.descBlock {
 		width: 61%;
-	}
-	
-	.listBlock {
-		width: 39%;
-		text-align: left;
 	}
 	
 	.mainHead {
@@ -90,30 +111,21 @@
 		margin: 48px 0 0 0;
 	}
 	
-	.refreshButton {
-		background-color: black;
-		color: white;
-		border-radius: 200px;
-		font-size: 18px;
-		font-weight: 500;
-		line-height: 30px;
-		width: 276px;
-		height: 64px;
-		/* margin-top: 48px; */
-		padding-right:0;
-	}
-	
-	.refreshIcon {
-		margin-bottom: -5px;
-		margin-right: 5px;
-	}
-	
 	@media screen and (max-width: 767px) {
 		.mainHead {
 			font-size: 32px;
 		}
 		
-		.titleBlock {
+		.bannerDescription {
+			order: 2;
+		}
+		
+		.bannerSecondaryOps {
+			margin-top: 24px;
+		}
+		
+		.titleBlock, 
+						.descBlock {
 			width: auto;
 		}
 	}
