@@ -61,7 +61,7 @@
 }
 
 .friend .name {
-    display: block;
+display: block;
     position: relative;
     left: 18px;
     top: 8px;
@@ -76,11 +76,12 @@
     padding: 0px;
     padding-left: 10px;
     padding-right: 10px;
-    padding-bottom: 4px;
-    padding-top: 5.6px;
+    padding-bottom: 1px;
+    padding-top: 3px;
     border-radius: 20px;
     font-size: 14px;
     font-weight: 500;
+    line-height: 23px;
     
 }
   
