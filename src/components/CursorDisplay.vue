@@ -61,7 +61,7 @@
 }
 
 .friend .name {
-    display: inline;
+    display: block;
     position: relative;
     left: 18px;
     top: 8px;
