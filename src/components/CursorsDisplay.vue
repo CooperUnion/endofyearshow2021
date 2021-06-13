@@ -7,8 +7,8 @@
 				v-bind:key="player.id" 
 				:player="player"  />
 		</div>
-		<cursors-sign-up v-if="(optOutStatus !== true) && (loggedIn !== true)" />
 	</teleport>
+	<cursors-sign-up v-if="(optOutStatus !== true) && (loggedIn !== true)" />
 </template>
 
 <script>
