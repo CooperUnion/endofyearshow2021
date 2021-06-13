@@ -33,5 +33,15 @@
     title: 'Students',
     body: '',
     refreshEnabled: false
-  }
+  },
+  faculty: {
+    title: 'Faculty',
+    body: '',
+    refreshEnabled: false
+  },
+  colophon: {
+    title: 'Colophon',
+    body: '',
+    refreshEnabled: false
+  }   
 }
