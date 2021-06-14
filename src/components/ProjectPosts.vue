@@ -12,7 +12,7 @@
 							:post="item.id" />
 						<div class="description-block">
 							<p v-if="item.meta.materials" class="materials" v-html="item.meta.materials"></p>      
-							<p v-if="item.meta.description" class="description" v-html="item.meta.description"></p>
+							<p v-if="item.meta.description" class="description" v-html="item.meta.description.replace(/\n/g, '<br />')"></p>
 							<p v-if="item.meta.dimensions" class="dimensions" v-html="item.meta.dimensions"></p>
 						</div>
 						<div class="labels-block"><tag-list :tags="tags" :expanded="true"/></div>
@@ -52,6 +52,8 @@
     setup(props){
       const store = useStore()
       const route = useRoute()
+      
+//       const descText = props.items[0].meta.description.replace(/\n/g, '<br />')
       
       const loadScrim = (id) => {
         store.commit('setActiveScrimId', id)
@@ -94,7 +96,7 @@
 		align-items: baseline;
 		margin-top: 24px;
 	}
-	
+		
 	.meta >>> .post-info .title {
 		font-size: 32px;
 	}
@@ -103,9 +105,9 @@
 		.meta {
 			width: auto;
 		}
-				
+		
 		.meta >>> .post-info .title,
-				.meta .description-block {
+						.meta .description-block {
 			font-size: 14px;
 		}
 		

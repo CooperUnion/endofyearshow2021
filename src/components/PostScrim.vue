@@ -74,7 +74,7 @@
 
       <section class="meta">
         <div class="description-block">
-          <p v-if="meta.description" class="description" v-html="meta.description"></p>
+          <p v-if="meta.description" class="description" v-html="meta.description.replace(/\n/g, '<br />')"></p>
           <p v-if="meta.dimensions" class="dimensions" v-html="meta.dimensions"></p>
           <p v-if="meta.materials" class="materials" v-html="meta.materials"></p>      
         </div>
@@ -119,7 +119,7 @@
 					return false
 				}
 			}
-
+console.log(props.meta)
 			//animation
       const animState = ref(false);
       const animDirection = ref("")
