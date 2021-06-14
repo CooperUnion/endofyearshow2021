@@ -12,7 +12,7 @@
 							:post="item.id" />
 						<div class="description-block">
 							<p v-if="item.meta.materials" class="materials" v-html="item.meta.materials"></p>      
-							<p v-if="item.meta.description" class="description" v-html="item.meta.description.replace(/\n/g, '<br />')"></p>
+							<p v-if="item.meta.description" class="description" v-html="item.meta.description"></p>
 							<p v-if="item.meta.dimensions" class="dimensions" v-html="item.meta.dimensions"></p>
 						</div>
 						<div class="labels-block"><tag-list :tags="tags" :expanded="true"/></div>
@@ -99,6 +99,10 @@
 		
 	.meta >>> .post-info .title {
 		font-size: 32px;
+	}
+	
+	.meta .description-block .description {
+		white-space: break-spaces;
 	}
 	
 	@media screen and (max-width: 767px) {
