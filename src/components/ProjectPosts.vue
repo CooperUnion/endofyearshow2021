@@ -53,6 +53,8 @@
       const store = useStore()
       const route = useRoute()
       
+//       const descText = props.items[0].meta.description.replace(/\n/g, '<br />')
+      
       const loadScrim = (id) => {
         store.commit('setActiveScrimId', id)
       }
@@ -94,18 +96,22 @@
 		align-items: baseline;
 		margin-top: 24px;
 	}
-	
+		
 	.meta >>> .post-info .title {
 		font-size: 32px;
+	}
+	
+	.meta .description-block .description {
+		white-space: break-spaces;
 	}
 	
 	@media screen and (max-width: 767px) {
 		.meta {
 			width: auto;
 		}
-				
+		
 		.meta >>> .post-info .title,
-				.meta .description-block {
+						.meta .description-block {
 			font-size: 14px;
 		}
 		

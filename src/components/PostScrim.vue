@@ -399,10 +399,14 @@
 		height: auto;
 		max-height: 600px;
 		pointer-events: none;
-		-webkit-touch-callout: none; /* iOS Safari */
-		-webkit-user-select: none; /* Safari */
-		-ms-user-select: none; /* Internet Explorer/Edge */
-		user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+		-webkit-touch-callout: none;
+		/* iOS Safari */
+		-webkit-user-select: none;
+		/* Safari */
+		-ms-user-select: none;
+		/* Internet Explorer/Edge */
+		user-select: none;
+		/* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 	}
 	
 	.post-scrim .scrim-contents .meta {
@@ -419,6 +423,10 @@
 		line-height: 1.333;
 		padding-top: 3px;
 		/* to match label spacing */
+	}
+	
+	.post-scrim .scrim-contents .meta .description-block .description {
+		white-space: break-spaces;
 	}
 	
 	.post-scrim .scrim-contents .meta .labels-block {
@@ -468,7 +476,7 @@
 	}
 	
 	.realBox,
-	.ghostBox {
+			.ghostBox {
 		width: 100vw;
 		display: flex;
 		align-items: center;
@@ -544,7 +552,7 @@
 		right: 0;
 		background-image: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="48" height="48" viewBox="0, 0, 48, 48"><path d="M18,36 L30,24 L18,12" fill-opacity="0" stroke="Silver" stroke-width="2" stroke-linecap="square"/></svg>');
 	}
-		
+	
 	.videoDeck video {
 		width: 100%;
 		height: auto;
@@ -556,7 +564,7 @@
 		text-align: center;
 		margin-top: 1em;
 	}
-
+	
 	.outgoingLink:after {
 		content: "";
 		display: inline-block;
@@ -618,7 +626,7 @@
 		.post-scrim .scrim-contents .meta {
 			flex-direction: column;
 		}
-			
+		
 		.post-scrim .scrim-contents .meta .labels-block {
 			order: -1;
 			width: auto;
